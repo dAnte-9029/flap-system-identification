@@ -1,0 +1,135 @@
+schema_version: aircraft_metadata_v0.1
+aircraft_id: flapper_01
+configuration_id: flapper_01_elevon_rudder_v1
+status: draft_in_use
+
+description: >
+  Symmetric flapping main wings, twin elevon tail, single rudder, physical airspeed
+  sensor, RTK-capable GNSS.
+
+px4_firmware:
+  repo_path: /home/zn/PX4-Autopilot
+  branch_or_tag: flapping-dataset-logging
+  commit: null
+
+frames:
+  body_frame: FRD
+  local_frame: NED
+  body_reference_origin: imu_origin
+  cg_reference_origin: imu_origin
+
+log_coverage:
+  has_logged_wing_phase_topic: false
+  has_logged_absolute_drive_phase_topic: false
+  current_good_log_notes: >
+    Current good log contains encoder_count, rpm, debug_vect, and flap_frequency, but no
+    standalone wing_phase or absolute_drive_phase topic.
+
+mass_properties:
+  mass_kg:
+    value: null
+    unit: kg
+    status: placeholder
+    source: to_measure
+    uncertainty: null
+  cg_b_m:
+    value: [null, null, null]
+    unit: m
+    status: placeholder
+    source: to_measure
+    uncertainty: [null, null, null]
+  inertia_b_kg_m2:
+    value:
+      - [null, null, null]
+      - [null, null, null]
+      - [null, null, null]
+    unit: kg*m^2
+    status: placeholder
+    source: cad_initial_then_bench_test
+    uncertainty: null
+
+flapping_drive:
+  encoder_sensor: AS5600
+  encoder_location: upstream_gear
+  absolute_phase_reference_sensor: hall_index_on_drive_gear
+  encoder_counts_per_rev: 4096
+  encoder_to_drive_ratio:
+    value: 7.5
+    unit: encoder_rad_per_drive_rad
+    status: confirmed
+    source: user_confirmed_mechanical_ratio
+  encoder_to_drive_sign: null
+  drive_phase_zero_definition: sine_argument_zero_crossing
+  drive_phase_zero_offset_rad: null
+  phase_calibration_method: as5600_relative_angle_plus_hall_index_on_drive_gear
+  phase_logging_status: hall_or_absolute_drive_phase_not_seen_in_current_good_log
+  positive_wing_stroke_direction: upstroke
+  wing_stroke_model: sinusoidal_from_drive_phase
+  wing_stroke_amplitude_rad:
+    value: 0.5235987756
+    unit: rad
+    status: confirmed
+    source: user_stated_30_deg_amplitude
+  wing_stroke_phase_offset_rad:
+    value: 0.0
+    unit: rad
+    status: confirmed
+    source: user_defined_phase_convention
+  phase_interval_interpretation:
+    upstroke_deg:
+      - [0, 90]
+      - [270, 360]
+    downstroke_deg:
+      - [90, 270]
+  mechanism_notes: >
+    Drive phase increases with upstroke positive. The wing stroke angle is defined as
+    theta_wing = 30 deg * sin(phi_drive). Drive phase zero is the sine-argument zero
+    crossing. Theta increase means upstroke, theta decrease means downstroke.
+
+actuators:
+  motor_cmd_0:
+    topic: actuator_motors.control[0]
+    semantics: flapping_drive_command
+  left_elevon:
+    topic: actuator_servos.control[0]
+    positive_deflection: null
+    neutral_trim_norm: 0.0
+  right_elevon:
+    topic: actuator_servos.control[1]
+    positive_deflection: null
+    neutral_trim_norm: 0.0
+  rudder:
+    topic: actuator_servos.control[2]
+    positive_deflection: null
+    neutral_trim_norm: 0.0
+
+sensors:
+  airspeed_sensor_present: true
+  expected_airspeed_source: SOURCE_SENSOR_1
+  rtk_absolute_expected: true
+  moving_baseline_expected: false
+
+label_definition:
+  gravity_m_s2: 9.81
+  force_definition: effective_non_gravity_external_force
+  moment_definition: effective_external_moment_about_cg
+  cg_correction_enabled: false
+  time_varying_inertia_mode: ignored_in_v0_1
+
+open_items:
+  - field: mass_properties.mass_kg.value
+    reason: required_for_force_labels
+  - field: mass_properties.cg_b_m.value
+    reason: required_for_cg_reference_consistency
+  - field: mass_properties.inertia_b_kg_m2.value
+    reason: required_for_moment_labels
+  - field: flapping_drive.encoder_to_drive_sign
+    reason: required_for_correct_drive_phase_direction
+  - field: flapping_drive.drive_phase_zero_offset_rad
+    reason: required_for_absolute_drive_phase_reconstruction
+  - field: actuators.left_elevon.positive_deflection
+    reason: required_for_control_input_semantics
+  - field: actuators.right_elevon.positive_deflection
+    reason: required_for_control_input_semantics
+  - field: actuators.rudder.positive_deflection
+    reason: required_for_control_input_semantics
