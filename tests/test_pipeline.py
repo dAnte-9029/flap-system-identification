@@ -1,3 +1,5 @@
+from pathlib import Path
+
 import numpy as np
 import pandas as pd
 
@@ -231,6 +233,250 @@ def test_assemble_canonical_samples_computes_effective_wrench_labels_from_comple
     np.testing.assert_allclose(samples["my_b"].to_numpy(), np.array([-1.6, -1.6]), atol=1e-6)
     np.testing.assert_allclose(samples["mz_b"].to_numpy(), np.array([0.9, 0.9]), atol=1e-6)
     assert samples["label_valid"].all()
+
+
+def test_compute_smoothed_kinematic_derivatives_by_log():
+    from system_identification.pipeline import compute_smoothed_kinematic_derivatives
+
+    time_s = np.arange(21, dtype=float) * 0.1
+    samples = pd.DataFrame(
+        {
+            "log_id": ["a"] * len(time_s),
+            "time_s": time_s,
+            "vehicle_local_position.vx": 2.0 * time_s + 0.15 * np.sin(50.0 * time_s),
+            "vehicle_local_position.vy": -3.0 * time_s,
+            "vehicle_local_position.vz": 0.5 * time_s,
+            "vehicle_angular_velocity.xyz[0]": 4.0 * time_s + 0.2 * np.sin(45.0 * time_s),
+            "vehicle_angular_velocity.xyz[1]": -2.0 * time_s,
+            "vehicle_angular_velocity.xyz[2]": 0.25 * time_s,
+        }
+    )
+
+    derivatives = compute_smoothed_kinematic_derivatives(samples, window_s=0.5, polyorder=1)
+
+    assert list(derivatives.columns) == [
+        "vehicle_local_position.ax_smooth",
+        "vehicle_local_position.ay_smooth",
+        "vehicle_local_position.az_smooth",
+        "vehicle_angular_velocity.xyz_derivative_smooth[0]",
+        "vehicle_angular_velocity.xyz_derivative_smooth[1]",
+        "vehicle_angular_velocity.xyz_derivative_smooth[2]",
+    ]
+    np.testing.assert_allclose(
+        derivatives["vehicle_local_position.ay_smooth"].iloc[3:-3].to_numpy(),
+        -3.0,
+        atol=1e-6,
+    )
+    np.testing.assert_allclose(
+        derivatives["vehicle_angular_velocity.xyz_derivative_smooth[1]"].iloc[3:-3].to_numpy(),
+        -2.0,
+        atol=1e-6,
+    )
+    assert np.nanstd(derivatives["vehicle_angular_velocity.xyz_derivative_smooth[0]"]) < 2.5
+
+
+def test_compute_effective_wrench_labels_accepts_replacement_derivatives():
+    from system_identification.pipeline import _compute_effective_wrench_labels
+
+    metadata = {
+        "mass_properties": {
+            "mass_kg": {"value": 1.0},
+            "cg_b_m": {"value": [0.0, 0.0, 0.0]},
+            "inertia_b_kg_m2": {"value": [[1.0, 0.0, 0.0], [0.0, 2.0, 0.0], [0.0, 0.0, 3.0]]},
+        },
+    }
+    samples = pd.DataFrame(
+        {
+            "vehicle_local_position.ax": [0.0, 0.0],
+            "vehicle_local_position.ay": [0.0, 0.0],
+            "vehicle_local_position.az": [9.81, 9.81],
+            "vehicle_attitude.q[0]": [1.0, 1.0],
+            "vehicle_attitude.q[1]": [0.0, 0.0],
+            "vehicle_attitude.q[2]": [0.0, 0.0],
+            "vehicle_attitude.q[3]": [0.0, 0.0],
+            "vehicle_angular_velocity.xyz[0]": [0.0, 0.0],
+            "vehicle_angular_velocity.xyz[1]": [0.0, 0.0],
+            "vehicle_angular_velocity.xyz[2]": [0.0, 0.0],
+            "vehicle_angular_velocity.xyz_derivative[0]": [10.0, 10.0],
+            "vehicle_angular_velocity.xyz_derivative[1]": [20.0, 20.0],
+            "vehicle_angular_velocity.xyz_derivative[2]": [30.0, 30.0],
+            "vehicle_angular_velocity.xyz_derivative_smooth[0]": [1.0, 1.0],
+            "vehicle_angular_velocity.xyz_derivative_smooth[1]": [2.0, 2.0],
+            "vehicle_angular_velocity.xyz_derivative_smooth[2]": [3.0, 3.0],
+        }
+    )
+
+    _, moment_b, label_valid = _compute_effective_wrench_labels(
+        samples,
+        metadata,
+        angular_acceleration_columns=[
+            "vehicle_angular_velocity.xyz_derivative_smooth[0]",
+            "vehicle_angular_velocity.xyz_derivative_smooth[1]",
+            "vehicle_angular_velocity.xyz_derivative_smooth[2]",
+        ],
+    )
+
+    np.testing.assert_allclose(moment_b, np.array([[1.0, 4.0, 9.0], [1.0, 4.0, 9.0]]))
+    assert label_valid.all()
+
+
+def test_build_smoothed_label_split_rewrites_labels_and_preserves_split(tmp_path: Path):
+    from scripts.build_smoothed_label_split import build_smoothed_label_split
+
+    split_root = tmp_path / "split"
+    output_root = tmp_path / "smooth_split"
+    split_root.mkdir()
+    metadata_path = tmp_path / "metadata.yaml"
+    metadata_path.write_text(
+        """
+mass_properties:
+  mass_kg:
+    value: 1.0
+  inertia_b_kg_m2:
+    value:
+      - [1.0, 0.0, 0.0]
+      - [0.0, 1.0, 0.0]
+      - [0.0, 0.0, 1.0]
+label_definition:
+  gravity_m_s2: 9.81
+""",
+        encoding="utf-8",
+    )
+
+    time_s = np.arange(9, dtype=float) * 0.1
+    frame = pd.DataFrame(
+        {
+            "time_s": time_s,
+            "log_id": ["log_a"] * len(time_s),
+            "split": ["train"] * len(time_s),
+            "vehicle_local_position.ax": np.zeros(len(time_s)),
+            "vehicle_local_position.ay": np.zeros(len(time_s)),
+            "vehicle_local_position.az": np.full(len(time_s), 9.81),
+            "vehicle_local_position.vx": 0.0 * time_s,
+            "vehicle_local_position.vy": 0.0 * time_s,
+            "vehicle_local_position.vz": 0.0 * time_s,
+            "vehicle_attitude.q[0]": np.ones(len(time_s)),
+            "vehicle_attitude.q[1]": np.zeros(len(time_s)),
+            "vehicle_attitude.q[2]": np.zeros(len(time_s)),
+            "vehicle_attitude.q[3]": np.zeros(len(time_s)),
+            "vehicle_angular_velocity.xyz[0]": 2.0 * time_s,
+            "vehicle_angular_velocity.xyz[1]": np.zeros(len(time_s)),
+            "vehicle_angular_velocity.xyz[2]": -3.0 * time_s,
+            "vehicle_angular_velocity.xyz_derivative[0]": np.full(len(time_s), 99.0),
+            "vehicle_angular_velocity.xyz_derivative[1]": np.zeros(len(time_s)),
+            "vehicle_angular_velocity.xyz_derivative[2]": np.full(len(time_s), 99.0),
+            "fx_b": np.zeros(len(time_s)),
+            "fy_b": np.zeros(len(time_s)),
+            "fz_b": np.zeros(len(time_s)),
+            "mx_b": np.full(len(time_s), 99.0),
+            "my_b": np.zeros(len(time_s)),
+            "mz_b": np.full(len(time_s), 99.0),
+            "label_valid": np.ones(len(time_s), dtype=bool),
+        }
+    )
+
+    for split in ["train", "val", "test"]:
+        split_frame = frame.copy()
+        split_frame["split"] = split
+        split_frame.to_parquet(split_root / f"{split}_samples.parquet", index=False)
+        pd.DataFrame({"log_id": ["log_a"], "split": [split], "valid_sample_count": [len(frame)]}).to_csv(
+            split_root / f"{split}_logs.csv",
+            index=False,
+        )
+    pd.DataFrame({"log_id": ["log_a"], "split": ["train"], "valid_sample_count": [len(frame)]}).to_csv(
+        split_root / "all_logs.csv",
+        index=False,
+    )
+
+    outputs = build_smoothed_label_split(
+        split_root=split_root,
+        metadata_path=metadata_path,
+        output_root=output_root,
+        window_s=0.5,
+        polyorder=1,
+    )
+
+    rewritten = pd.read_parquet(output_root / "train_samples.parquet")
+    assert Path(outputs["manifest_path"]).exists()
+    assert rewritten["split"].eq("train").all()
+    assert not np.allclose(rewritten["mx_b"].to_numpy(), 99.0)
+    assert not np.allclose(rewritten["mz_b"].to_numpy(), 99.0)
+    assert rewritten["label_valid"].all()
+
+
+def test_build_smoothed_label_split_can_keep_raw_force_labels(tmp_path: Path):
+    from scripts.build_smoothed_label_split import build_smoothed_label_split
+
+    split_root = tmp_path / "split"
+    output_root = tmp_path / "raw_force_smooth_moment"
+    split_root.mkdir()
+    metadata_path = tmp_path / "metadata.yaml"
+    metadata_path.write_text(
+        """
+mass_properties:
+  mass_kg:
+    value: 1.0
+  inertia_b_kg_m2:
+    value:
+      - [1.0, 0.0, 0.0]
+      - [0.0, 1.0, 0.0]
+      - [0.0, 0.0, 1.0]
+label_definition:
+  gravity_m_s2: 9.81
+""",
+        encoding="utf-8",
+    )
+
+    time_s = np.arange(9, dtype=float) * 0.1
+    frame = pd.DataFrame(
+        {
+            "time_s": time_s,
+            "log_id": ["log_a"] * len(time_s),
+            "split": ["train"] * len(time_s),
+            "vehicle_local_position.ax": np.full(len(time_s), 5.0),
+            "vehicle_local_position.ay": np.zeros(len(time_s)),
+            "vehicle_local_position.az": np.full(len(time_s), 9.81),
+            "vehicle_local_position.vx": np.zeros(len(time_s)),
+            "vehicle_local_position.vy": np.zeros(len(time_s)),
+            "vehicle_local_position.vz": np.zeros(len(time_s)),
+            "vehicle_attitude.q[0]": np.ones(len(time_s)),
+            "vehicle_attitude.q[1]": np.zeros(len(time_s)),
+            "vehicle_attitude.q[2]": np.zeros(len(time_s)),
+            "vehicle_attitude.q[3]": np.zeros(len(time_s)),
+            "vehicle_angular_velocity.xyz[0]": 2.0 * time_s,
+            "vehicle_angular_velocity.xyz[1]": np.zeros(len(time_s)),
+            "vehicle_angular_velocity.xyz[2]": -3.0 * time_s,
+            "vehicle_angular_velocity.xyz_derivative[0]": np.full(len(time_s), 99.0),
+            "vehicle_angular_velocity.xyz_derivative[1]": np.zeros(len(time_s)),
+            "vehicle_angular_velocity.xyz_derivative[2]": np.full(len(time_s), 99.0),
+            "fx_b": np.zeros(len(time_s)),
+            "fy_b": np.zeros(len(time_s)),
+            "fz_b": np.zeros(len(time_s)),
+            "mx_b": np.full(len(time_s), 99.0),
+            "my_b": np.zeros(len(time_s)),
+            "mz_b": np.full(len(time_s), 99.0),
+            "label_valid": np.ones(len(time_s), dtype=bool),
+        }
+    )
+
+    for split in ["train", "val", "test"]:
+        split_frame = frame.copy()
+        split_frame["split"] = split
+        split_frame.to_parquet(split_root / f"{split}_samples.parquet", index=False)
+
+    build_smoothed_label_split(
+        split_root=split_root,
+        metadata_path=metadata_path,
+        output_root=output_root,
+        window_s=0.5,
+        polyorder=1,
+        force_label_source="raw",
+        moment_label_source="smooth",
+    )
+
+    rewritten = pd.read_parquet(output_root / "train_samples.parquet")
+    np.testing.assert_allclose(rewritten["fx_b"].to_numpy(), 5.0)
+    assert not np.allclose(rewritten["mx_b"].to_numpy(), 99.0)
 
 
 def test_assemble_canonical_samples_prefers_wing_phase_and_emits_corrected_cycle_annotations():

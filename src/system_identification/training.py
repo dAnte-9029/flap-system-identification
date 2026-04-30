@@ -88,10 +88,25 @@ PAPER_NO_ACCEL_V2_ADDED_FEATURE_COLUMNS = [
 
 PAPER_NO_ACCEL_V2_FEATURE_COLUMNS = NO_ACCEL_NO_ALPHA_FEATURE_COLUMNS + PAPER_NO_ACCEL_V2_ADDED_FEATURE_COLUMNS
 
+PAPER_PFNN_10_FEATURE_COLUMNS = [
+    "phase_corrected_rad",
+    "velocity_b.x",
+    "velocity_b.y",
+    "velocity_b.z",
+    "pitch_rad",
+    "roll_rad",
+    "alpha_rad",
+    "beta_rad",
+    "cycle_flap_frequency_hz",
+    "elevator_like",
+    "servo_rudder",
+]
+
 DEFAULT_FEATURE_SETS: dict[str, list[str]] = {
     "full": DEFAULT_FEATURE_COLUMNS,
     "no_accel_no_alpha": NO_ACCEL_NO_ALPHA_FEATURE_COLUMNS,
     "paper_no_accel_v2": PAPER_NO_ACCEL_V2_FEATURE_COLUMNS,
+    "paper_pfnn_10": PAPER_PFNN_10_FEATURE_COLUMNS,
 }
 
 DEFAULT_FEATURE_GROUPS: dict[str, list[str]] = {
@@ -216,6 +231,150 @@ class MLPRegressor(nn.Module):
 
     def forward(self, inputs: torch.Tensor) -> torch.Tensor:
         return self.network(inputs)
+
+
+def cyclic_catmull_rom_weights(
+    phase_radians: torch.Tensor,
+    *,
+    num_control_points: int,
+) -> tuple[torch.Tensor, torch.Tensor]:
+    if num_control_points < 4:
+        raise ValueError("num_control_points must be at least 4 for Catmull-Rom interpolation")
+
+    phase = torch.remainder(phase_radians, 2.0 * math.pi)
+    position = phase * (float(num_control_points) / (2.0 * math.pi))
+    base_index = torch.floor(position).to(torch.long)
+    t = position - base_index.to(position.dtype)
+    t2 = t * t
+    t3 = t2 * t
+
+    indices = torch.stack(
+        [
+            torch.remainder(base_index - 1, num_control_points),
+            torch.remainder(base_index, num_control_points),
+            torch.remainder(base_index + 1, num_control_points),
+            torch.remainder(base_index + 2, num_control_points),
+        ],
+        dim=1,
+    )
+    weights = torch.stack(
+        [
+            -0.5 * t + t2 - 0.5 * t3,
+            1.0 - 2.5 * t2 + 1.5 * t3,
+            0.5 * t + 2.0 * t2 - 1.5 * t3,
+            -0.5 * t2 + 0.5 * t3,
+        ],
+        dim=1,
+    )
+    return indices, weights
+
+
+class PhaseFunctionedLinear(nn.Module):
+    def __init__(self, input_dim: int, output_dim: int, num_control_points: int = 6):
+        super().__init__()
+        if input_dim <= 0 or output_dim <= 0:
+            raise ValueError("input_dim and output_dim must be positive")
+        if num_control_points < 4:
+            raise ValueError("num_control_points must be at least 4")
+
+        self.input_dim = int(input_dim)
+        self.output_dim = int(output_dim)
+        self.num_control_points = int(num_control_points)
+        self.weight_control_points = nn.Parameter(torch.empty(num_control_points, output_dim, input_dim))
+        self.bias_control_points = nn.Parameter(torch.empty(num_control_points, output_dim))
+        self.reset_parameters()
+
+    def reset_parameters(self) -> None:
+        for idx in range(self.num_control_points):
+            nn.init.xavier_uniform_(self.weight_control_points[idx])
+        nn.init.zeros_(self.bias_control_points)
+
+    def forward(self, inputs: torch.Tensor, phase_radians: torch.Tensor) -> torch.Tensor:
+        indices, weights = cyclic_catmull_rom_weights(
+            phase_radians.to(dtype=inputs.dtype),
+            num_control_points=self.num_control_points,
+        )
+        selected_weights = self.weight_control_points[indices]
+        selected_biases = self.bias_control_points[indices]
+        interpolated_weights = torch.sum(weights[:, :, None, None] * selected_weights, dim=1)
+        interpolated_biases = torch.sum(weights[:, :, None] * selected_biases, dim=1)
+        return torch.einsum("boi,bi->bo", interpolated_weights, inputs) + interpolated_biases
+
+
+class HybridPFNNRegressor(nn.Module):
+    def __init__(
+        self,
+        input_dim: int,
+        output_dim: int,
+        hidden_sizes: tuple[int, ...] = (40, 40),
+        *,
+        phase_feature_index: int = 0,
+        expanded_input_dim: int = 45,
+        phase_node_count: int = 5,
+        phase_control_points: int = 6,
+        dropout: float = 0.0,
+    ):
+        super().__init__()
+        if len(hidden_sizes) < 2:
+            raise ValueError("HybridPFNNRegressor requires at least two hidden sizes")
+        if input_dim <= 1:
+            raise ValueError("input_dim must include phase plus at least one state feature")
+        if phase_feature_index < 0 or phase_feature_index >= input_dim:
+            raise ValueError("phase_feature_index is out of range")
+        if expanded_input_dim <= 0 or phase_node_count < 0:
+            raise ValueError("expanded_input_dim must be positive and phase_node_count must be non-negative")
+
+        self.input_dim = int(input_dim)
+        self.output_dim = int(output_dim)
+        self.phase_feature_index = int(phase_feature_index)
+        self.state_dim = int(input_dim - 1)
+        self.expanded_input_dim = int(expanded_input_dim)
+        self.phase_node_count = int(phase_node_count)
+        self.phase_control_points = int(phase_control_points)
+
+        first_hidden = int(hidden_sizes[0])
+        second_hidden = int(hidden_sizes[1])
+        self.input_expansion = nn.Sequential(nn.Linear(self.state_dim, self.expanded_input_dim), nn.ELU())
+        self.phase_node_control_points = nn.Parameter(torch.empty(self.phase_control_points, self.phase_node_count))
+        nn.init.normal_(self.phase_node_control_points, mean=0.0, std=0.02)
+
+        first_input_dim = self.expanded_input_dim + self.phase_node_count + self.state_dim
+        self.first_layer = nn.Linear(first_input_dim, first_hidden)
+        self.phase_layer = PhaseFunctionedLinear(first_hidden + self.state_dim, second_hidden, self.phase_control_points)
+        self.output_layer = nn.Linear(second_hidden + self.state_dim, output_dim)
+        self.activation = nn.ELU()
+        self.dropout = nn.Dropout(dropout) if dropout > 0.0 else nn.Identity()
+
+    def _split_phase_and_state(self, inputs: torch.Tensor) -> tuple[torch.Tensor, torch.Tensor]:
+        phase = inputs[:, self.phase_feature_index]
+        if self.phase_feature_index == 0:
+            state = inputs[:, 1:]
+        elif self.phase_feature_index == inputs.shape[1] - 1:
+            state = inputs[:, :-1]
+        else:
+            state = torch.cat([inputs[:, : self.phase_feature_index], inputs[:, self.phase_feature_index + 1 :]], dim=1)
+        return phase, state
+
+    def _phase_nodes(self, phase_radians: torch.Tensor) -> torch.Tensor:
+        if self.phase_node_count == 0:
+            return phase_radians.new_empty((len(phase_radians), 0))
+        indices, weights = cyclic_catmull_rom_weights(
+            phase_radians,
+            num_control_points=self.phase_control_points,
+        )
+        selected = self.phase_node_control_points[indices]
+        return torch.sum(weights[:, :, None] * selected, dim=1)
+
+    def forward(self, inputs: torch.Tensor) -> torch.Tensor:
+        phase, state = self._split_phase_and_state(inputs)
+        expanded = self.input_expansion(state)
+        phase_nodes = self._phase_nodes(phase.to(dtype=inputs.dtype))
+        hidden1_input = torch.cat([expanded, phase_nodes, state], dim=1)
+        hidden1 = self.dropout(self.activation(self.first_layer(hidden1_input)))
+        hidden2_input = torch.cat([hidden1, state], dim=1)
+        hidden2 = self.dropout(self.activation(self.phase_layer(hidden2_input, phase)))
+        output_input = torch.cat([hidden2, state], dim=1)
+        return self.output_layer(output_input)
 
 
 def _set_random_seed(seed: int) -> None:
@@ -348,13 +507,20 @@ def prepare_feature_target_frames(
     return features, targets
 
 
-def _fit_feature_stats(features: np.ndarray) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
+def _fit_feature_stats(
+    features: np.ndarray,
+    *,
+    raw_feature_indices: list[int] | None = None,
+) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
     medians = np.nanmedian(features, axis=0)
     medians = np.where(np.isfinite(medians), medians, 0.0)
     imputed = np.where(np.isfinite(features), features, medians)
     means = imputed.mean(axis=0)
     stds = imputed.std(axis=0)
     stds = np.where(stds > 1e-8, stds, 1.0)
+    if raw_feature_indices:
+        means[raw_feature_indices] = 0.0
+        stds[raw_feature_indices] = 1.0
     return medians.astype(np.float32), means.astype(np.float32), stds.astype(np.float32)
 
 
@@ -388,7 +554,14 @@ def _as_numpy_array(value: Any) -> np.ndarray:
 
 def _to_serializable_bundle(bundle: dict[str, Any]) -> dict[str, Any]:
     serializable = dict(bundle)
-    for key in ["feature_medians", "feature_means", "feature_stds", "target_means", "target_stds"]:
+    for key in [
+        "feature_medians",
+        "feature_means",
+        "feature_stds",
+        "target_means",
+        "target_stds",
+        "target_loss_weights",
+    ]:
         serializable[key] = torch.as_tensor(bundle[key], dtype=torch.float32)
     return serializable
 
@@ -453,6 +626,59 @@ def _make_loader(
         pin_memory=pin_memory,
         drop_last=False,
     )
+
+
+def resolve_target_loss_weights(
+    target_columns: list[str],
+    target_loss_weights: str | dict[str, float] | list[float] | tuple[float, ...] | np.ndarray | None = None,
+) -> np.ndarray:
+    if target_loss_weights is None or target_loss_weights == "":
+        return np.ones(len(target_columns), dtype=np.float32)
+
+    if isinstance(target_loss_weights, str):
+        parsed: dict[str, float] = {}
+        for item in target_loss_weights.split(","):
+            if not item.strip():
+                continue
+            if "=" not in item:
+                raise ValueError(f"Invalid target loss weight item: {item!r}")
+            target_name, raw_weight = item.split("=", 1)
+            parsed[target_name.strip()] = float(raw_weight.strip())
+        missing = [target for target in target_columns if target not in parsed]
+        unknown = [target for target in parsed if target not in target_columns]
+        if missing or unknown:
+            raise ValueError(f"Target loss weights mismatch; missing={missing}, unknown={unknown}")
+        weights = np.array([parsed[target] for target in target_columns], dtype=np.float32)
+    elif isinstance(target_loss_weights, dict):
+        missing = [target for target in target_columns if target not in target_loss_weights]
+        unknown = [target for target in target_loss_weights if target not in target_columns]
+        if missing or unknown:
+            raise ValueError(f"Target loss weights mismatch; missing={missing}, unknown={unknown}")
+        weights = np.array([target_loss_weights[target] for target in target_columns], dtype=np.float32)
+    else:
+        weights = np.asarray(target_loss_weights, dtype=np.float32)
+        if weights.shape != (len(target_columns),):
+            raise ValueError(f"target_loss_weights must have shape ({len(target_columns)},), got {weights.shape}")
+
+    if not np.isfinite(weights).all() or np.any(weights < 0.0):
+        raise ValueError("target_loss_weights must be finite and non-negative")
+    if float(np.sum(weights)) <= 0.0:
+        raise ValueError("At least one target loss weight must be positive")
+    return weights.astype(np.float32, copy=False)
+
+
+def _target_loss_weights_as_dict(target_columns: list[str], weights: np.ndarray) -> dict[str, float]:
+    return {target: float(weight) for target, weight in zip(target_columns, weights)}
+
+
+def _weighted_scaled_mse(
+    predictions: torch.Tensor,
+    targets: torch.Tensor,
+    target_loss_weights: torch.Tensor,
+) -> torch.Tensor:
+    squared_error = torch.square(predictions - targets)
+    weighted = squared_error * target_loss_weights.to(device=predictions.device, dtype=predictions.dtype)
+    return weighted.sum() / (predictions.shape[0] * torch.clamp(target_loss_weights.sum(), min=1e-8))
 
 
 def _predict_scaled_batches(
@@ -620,6 +846,7 @@ def _evaluate_scaled_loss(
     device: torch.device,
     *,
     use_amp: bool,
+    target_loss_weights: torch.Tensor,
 ) -> float:
     model.eval()
     total_loss = 0.0
@@ -631,11 +858,60 @@ def _evaluate_scaled_loss(
             batch_targets = batch_targets.to(device, non_blocking=True)
             with torch.autocast(device_type=device.type, dtype=torch.float16, enabled=amp_enabled):
                 predictions = model(batch_features)
-                loss = torch.nn.functional.mse_loss(predictions, batch_targets, reduction="mean")
+                loss = _weighted_scaled_mse(predictions, batch_targets, target_loss_weights)
             batch_size = len(batch_features)
             total_loss += float(loss.item()) * batch_size
             total_samples += batch_size
     return total_loss / max(total_samples, 1)
+
+
+def _normalized_model_type(model_type: str | None) -> str:
+    normalized = (model_type or "mlp").lower()
+    if normalized not in {"mlp", "pfnn"}:
+        raise ValueError(f"Unknown model_type: {model_type}")
+    return normalized
+
+
+def _phase_feature_index_for_model(model_type: str, feature_columns: list[str]) -> int | None:
+    if model_type != "pfnn":
+        return None
+    phase_column = "phase_corrected_rad"
+    if phase_column not in feature_columns:
+        raise ValueError(f"PFNN model_type requires feature column: {phase_column}")
+    return feature_columns.index(phase_column)
+
+
+def _build_regressor(
+    *,
+    model_type: str,
+    input_dim: int,
+    output_dim: int,
+    hidden_sizes: tuple[int, ...],
+    dropout: float,
+    phase_feature_index: int | None = None,
+    pfnn_expanded_input_dim: int = 45,
+    pfnn_phase_node_count: int = 5,
+    pfnn_control_points: int = 6,
+) -> nn.Module:
+    if model_type == "mlp":
+        return MLPRegressor(
+            input_dim=input_dim,
+            output_dim=output_dim,
+            hidden_sizes=hidden_sizes,
+            dropout=dropout,
+        )
+    if phase_feature_index is None:
+        raise ValueError("PFNN requires phase_feature_index")
+    return HybridPFNNRegressor(
+        input_dim=input_dim,
+        output_dim=output_dim,
+        hidden_sizes=hidden_sizes,
+        phase_feature_index=phase_feature_index,
+        expanded_input_dim=pfnn_expanded_input_dim,
+        phase_node_count=pfnn_phase_node_count,
+        phase_control_points=pfnn_control_points,
+        dropout=dropout,
+    )
 
 
 def fit_torch_regressor(
@@ -644,6 +920,7 @@ def fit_torch_regressor(
     val_frame: pd.DataFrame,
     feature_columns: list[str] | None = None,
     target_columns: list[str] | None = None,
+    model_type: str = "mlp",
     hidden_sizes: tuple[int, ...] = (256, 256),
     dropout: float = 0.0,
     batch_size: int = 4096,
@@ -655,26 +932,38 @@ def fit_torch_regressor(
     random_seed: int = 42,
     num_workers: int = 0,
     use_amp: bool = True,
+    target_loss_weights: str | dict[str, float] | list[float] | tuple[float, ...] | np.ndarray | None = None,
+    pfnn_expanded_input_dim: int = 45,
+    pfnn_phase_node_count: int = 5,
+    pfnn_control_points: int = 6,
 ) -> dict[str, Any]:
     _set_random_seed(random_seed)
+    resolved_model_type = _normalized_model_type(model_type)
     resolved_device = _resolve_device(device)
     pin_memory = resolved_device.type == "cuda"
 
     train_features_df, train_targets_df = prepare_feature_target_frames(train_frame, feature_columns, target_columns)
     val_features_df, val_targets_df = prepare_feature_target_frames(val_frame, feature_columns, target_columns)
+    phase_feature_index = _phase_feature_index_for_model(resolved_model_type, list(train_features_df.columns))
+    raw_feature_indices = [] if phase_feature_index is None else [phase_feature_index]
 
     train_features = train_features_df.to_numpy(dtype=np.float32, copy=True)
     train_targets = train_targets_df.to_numpy(dtype=np.float32, copy=True)
     val_features = val_features_df.to_numpy(dtype=np.float32, copy=True)
     val_targets = val_targets_df.to_numpy(dtype=np.float32, copy=True)
 
-    feature_medians, feature_means, feature_stds = _fit_feature_stats(train_features)
+    feature_medians, feature_means, feature_stds = _fit_feature_stats(
+        train_features,
+        raw_feature_indices=raw_feature_indices,
+    )
     target_means, target_stds = _fit_target_stats(train_targets)
 
     train_features_scaled = _transform_features(train_features, feature_medians, feature_means, feature_stds)
     val_features_scaled = _transform_features(val_features, feature_medians, feature_means, feature_stds)
     train_targets_scaled = _transform_targets(train_targets, target_means, target_stds)
     val_targets_scaled = _transform_targets(val_targets, target_means, target_stds)
+    target_loss_weights_array = resolve_target_loss_weights(list(train_targets_df.columns), target_loss_weights)
+    target_loss_weights_tensor = torch.as_tensor(target_loss_weights_array, dtype=torch.float32, device=resolved_device)
 
     train_loader = _make_loader(
         train_features_scaled,
@@ -693,11 +982,16 @@ def fit_torch_regressor(
         pin_memory=pin_memory,
     )
 
-    model = MLPRegressor(
+    model = _build_regressor(
+        model_type=resolved_model_type,
         input_dim=train_features_scaled.shape[1],
         output_dim=train_targets_scaled.shape[1],
         hidden_sizes=hidden_sizes,
         dropout=dropout,
+        phase_feature_index=phase_feature_index,
+        pfnn_expanded_input_dim=pfnn_expanded_input_dim,
+        pfnn_phase_node_count=pfnn_phase_node_count,
+        pfnn_control_points=pfnn_control_points,
     ).to(resolved_device)
     optimizer = torch.optim.AdamW(model.parameters(), lr=learning_rate, weight_decay=weight_decay)
     scaler = torch.amp.GradScaler("cuda", enabled=use_amp and resolved_device.type == "cuda")
@@ -721,7 +1015,7 @@ def fit_torch_regressor(
             optimizer.zero_grad(set_to_none=True)
             with torch.autocast(device_type=resolved_device.type, dtype=torch.float16, enabled=amp_enabled):
                 predictions = model(batch_features)
-                loss = torch.nn.functional.mse_loss(predictions, batch_targets, reduction="mean")
+                loss = _weighted_scaled_mse(predictions, batch_targets, target_loss_weights_tensor)
 
             scaler.scale(loss).backward()
             scaler.step(optimizer)
@@ -732,7 +1026,13 @@ def fit_torch_regressor(
             train_sample_count += batch_count
 
         train_loss = train_loss_sum / max(train_sample_count, 1)
-        val_loss = _evaluate_scaled_loss(model, val_loader, resolved_device, use_amp=use_amp)
+        val_loss = _evaluate_scaled_loss(
+            model,
+            val_loader,
+            resolved_device,
+            use_amp=use_amp,
+            target_loss_weights=target_loss_weights_tensor,
+        )
         val_predictions_scaled = _predict_scaled_batches(
             model,
             val_features_scaled,
@@ -775,6 +1075,7 @@ def fit_torch_regressor(
 
     return {
         "model_state_dict": best_state_dict,
+        "model_type": resolved_model_type,
         "feature_columns": list(train_features_df.columns),
         "target_columns": list(train_targets_df.columns),
         "feature_medians": feature_medians,
@@ -782,8 +1083,15 @@ def fit_torch_regressor(
         "feature_stds": feature_stds,
         "target_means": target_means,
         "target_stds": target_stds,
+        "target_loss_weights": target_loss_weights_array,
+        "target_loss_weights_by_name": _target_loss_weights_as_dict(list(train_targets_df.columns), target_loss_weights_array),
         "hidden_sizes": list(hidden_sizes),
         "dropout": float(dropout),
+        "phase_feature_index": phase_feature_index,
+        "phase_feature_column": train_features_df.columns[phase_feature_index] if phase_feature_index is not None else None,
+        "pfnn_expanded_input_dim": int(pfnn_expanded_input_dim),
+        "pfnn_phase_node_count": int(pfnn_phase_node_count),
+        "pfnn_control_points": int(pfnn_control_points),
         "best_epoch": int(best_epoch),
         "best_val_loss": float(best_val_loss),
         "history": history,
@@ -794,11 +1102,20 @@ def fit_torch_regressor(
 
 
 def _build_model_from_bundle(bundle: dict[str, Any], device: torch.device) -> nn.Module:
-    model = MLPRegressor(
+    model_type = _normalized_model_type(bundle.get("model_type", "mlp"))
+    phase_feature_index = bundle.get("phase_feature_index")
+    if phase_feature_index is not None:
+        phase_feature_index = int(phase_feature_index)
+    model = _build_regressor(
+        model_type=model_type,
         input_dim=len(bundle["feature_columns"]),
         output_dim=len(bundle["target_columns"]),
         hidden_sizes=tuple(int(v) for v in bundle["hidden_sizes"]),
         dropout=float(bundle["dropout"]),
+        phase_feature_index=phase_feature_index,
+        pfnn_expanded_input_dim=int(bundle.get("pfnn_expanded_input_dim", 45)),
+        pfnn_phase_node_count=int(bundle.get("pfnn_phase_node_count", 5)),
+        pfnn_control_points=int(bundle.get("pfnn_control_points", 6)),
     ).to(device)
     model.load_state_dict(bundle["model_state_dict"])
     model.eval()
@@ -882,6 +1199,7 @@ def run_training_job(
     feature_set_name: str | None = None,
     feature_columns: list[str] | None = None,
     target_columns: list[str] | None = None,
+    model_type: str = "mlp",
     hidden_sizes: tuple[int, ...] = (256, 256),
     dropout: float = 0.0,
     batch_size: int = 4096,
@@ -893,9 +1211,13 @@ def run_training_job(
     random_seed: int = 42,
     num_workers: int = 0,
     use_amp: bool = True,
+    target_loss_weights: str | dict[str, float] | list[float] | tuple[float, ...] | np.ndarray | None = None,
     max_train_samples: int | None = None,
     max_val_samples: int | None = None,
     max_test_samples: int | None = None,
+    pfnn_expanded_input_dim: int = 45,
+    pfnn_phase_node_count: int = 5,
+    pfnn_control_points: int = 6,
 ) -> dict[str, str]:
     if feature_set_name is not None and feature_columns is not None:
         raise ValueError("feature_set_name and feature_columns cannot both be provided")
@@ -913,6 +1235,7 @@ def run_training_job(
         val_frame=val_frame,
         feature_columns=resolved_feature_columns,
         target_columns=target_columns,
+        model_type=model_type,
         hidden_sizes=hidden_sizes,
         dropout=dropout,
         batch_size=batch_size,
@@ -924,6 +1247,10 @@ def run_training_job(
         random_seed=random_seed,
         num_workers=num_workers,
         use_amp=use_amp,
+        target_loss_weights=target_loss_weights,
+        pfnn_expanded_input_dim=pfnn_expanded_input_dim,
+        pfnn_phase_node_count=pfnn_phase_node_count,
+        pfnn_control_points=pfnn_control_points,
     )
 
     metrics = {
@@ -952,10 +1279,17 @@ def run_training_job(
             {
                 "split_root": str(split_root),
                 "feature_set_name": feature_set_name or ("custom" if feature_columns is not None else "full"),
+                "model_type": bundle["model_type"],
                 "feature_columns": bundle["feature_columns"],
                 "target_columns": bundle["target_columns"],
+                "target_loss_weights": bundle["target_loss_weights_by_name"],
                 "hidden_sizes": list(hidden_sizes),
                 "dropout": float(dropout),
+                "phase_feature_index": bundle["phase_feature_index"],
+                "phase_feature_column": bundle["phase_feature_column"],
+                "pfnn_expanded_input_dim": int(pfnn_expanded_input_dim),
+                "pfnn_phase_node_count": int(pfnn_phase_node_count),
+                "pfnn_control_points": int(pfnn_control_points),
                 "batch_size": int(batch_size),
                 "max_epochs": int(max_epochs),
                 "learning_rate": float(learning_rate),

@@ -8,6 +8,7 @@ from typing import Any
 import numpy as np
 import pandas as pd
 from pyulog import ULog
+from scipy.signal import savgol_filter
 
 from system_identification.metadata import (
     load_aircraft_metadata,
@@ -213,9 +214,110 @@ def _rotation_body_to_world_from_quaternions(quaternions_wxyz: np.ndarray) -> tu
     return rotation, valid
 
 
+def _odd_window_length(sample_period_s: float, window_s: float, sample_count: int) -> int:
+    if sample_count < 3 or not np.isfinite(sample_period_s) or sample_period_s <= 0.0:
+        return 0
+    window = max(3, int(round(window_s / sample_period_s)))
+    if window % 2 == 0:
+        window += 1
+    if window > sample_count:
+        window = sample_count if sample_count % 2 == 1 else sample_count - 1
+    return window if window >= 3 else 0
+
+
+def _smoothed_derivative_for_group(
+    time_s: np.ndarray,
+    values: np.ndarray,
+    *,
+    window_s: float,
+    polyorder: int,
+) -> np.ndarray:
+    derivative = np.full(len(values), np.nan, dtype=float)
+    finite = np.isfinite(time_s) & np.isfinite(values)
+    if int(finite.sum()) < 3:
+        return derivative
+
+    valid_index = np.flatnonzero(finite)
+    valid_time = time_s[finite]
+    valid_values = values[finite]
+    order = np.argsort(valid_time)
+    valid_index = valid_index[order]
+    valid_time = valid_time[order]
+    valid_values = valid_values[order]
+
+    dt = np.diff(valid_time)
+    dt = dt[np.isfinite(dt) & (dt > 0.0)]
+    if len(dt) == 0:
+        return derivative
+    sample_period_s = float(np.median(dt))
+    window = _odd_window_length(sample_period_s, window_s, len(valid_values))
+    if window <= polyorder:
+        estimated = np.gradient(valid_values, valid_time)
+    else:
+        estimated = savgol_filter(
+            valid_values,
+            window_length=window,
+            polyorder=min(polyorder, window - 1),
+            deriv=1,
+            delta=sample_period_s,
+            mode="interp",
+        )
+    derivative[valid_index] = estimated
+    return derivative
+
+
+def compute_smoothed_kinematic_derivatives(
+    samples: pd.DataFrame,
+    *,
+    group_column: str = "log_id",
+    window_s: float = 0.12,
+    polyorder: int = 2,
+) -> pd.DataFrame:
+    required_columns = [
+        "time_s",
+        "vehicle_local_position.vx",
+        "vehicle_local_position.vy",
+        "vehicle_local_position.vz",
+        "vehicle_angular_velocity.xyz[0]",
+        "vehicle_angular_velocity.xyz[1]",
+        "vehicle_angular_velocity.xyz[2]",
+    ]
+    missing = [column for column in required_columns if column not in samples.columns]
+    if missing:
+        raise ValueError(f"Missing columns for smoothed derivatives: {missing}")
+
+    derivative_specs = [
+        ("vehicle_local_position.vx", "vehicle_local_position.ax_smooth"),
+        ("vehicle_local_position.vy", "vehicle_local_position.ay_smooth"),
+        ("vehicle_local_position.vz", "vehicle_local_position.az_smooth"),
+        ("vehicle_angular_velocity.xyz[0]", "vehicle_angular_velocity.xyz_derivative_smooth[0]"),
+        ("vehicle_angular_velocity.xyz[1]", "vehicle_angular_velocity.xyz_derivative_smooth[1]"),
+        ("vehicle_angular_velocity.xyz[2]", "vehicle_angular_velocity.xyz_derivative_smooth[2]"),
+    ]
+    output = pd.DataFrame(index=samples.index)
+    for _, output_column in derivative_specs:
+        output[output_column] = np.nan
+
+    groups = samples.groupby(group_column, sort=False) if group_column in samples.columns else [(None, samples)]
+    for _, group in groups:
+        time_s = group["time_s"].to_numpy(dtype=float)
+        for input_column, output_column in derivative_specs:
+            output.loc[group.index, output_column] = _smoothed_derivative_for_group(
+                time_s,
+                group[input_column].to_numpy(dtype=float),
+                window_s=window_s,
+                polyorder=polyorder,
+            )
+
+    return output
+
+
 def _compute_effective_wrench_labels(
     samples: pd.DataFrame,
     metadata: dict[str, Any],
+    *,
+    linear_acceleration_columns: list[str] | None = None,
+    angular_acceleration_columns: list[str] | None = None,
 ) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
     sample_count = len(samples)
     nan_vectors = np.full((sample_count, 3), np.nan, dtype=float)
@@ -236,10 +338,18 @@ def _compute_effective_wrench_labels(
     if not np.isfinite(mass_kg) or inertia_b.shape != (3, 3) or not np.isfinite(inertia_b).all():
         return nan_vectors.copy(), nan_vectors.copy(), label_valid
 
-    acc_n = _frame_columns_or_none(
-        samples,
-        ["vehicle_local_position.ax", "vehicle_local_position.ay", "vehicle_local_position.az"],
-    )
+    resolved_linear_acceleration_columns = linear_acceleration_columns or [
+        "vehicle_local_position.ax",
+        "vehicle_local_position.ay",
+        "vehicle_local_position.az",
+    ]
+    resolved_angular_acceleration_columns = angular_acceleration_columns or [
+        "vehicle_angular_velocity.xyz_derivative[0]",
+        "vehicle_angular_velocity.xyz_derivative[1]",
+        "vehicle_angular_velocity.xyz_derivative[2]",
+    ]
+
+    acc_n = _frame_columns_or_none(samples, resolved_linear_acceleration_columns)
     quat_nb = _frame_columns_or_none(
         samples,
         [
@@ -257,14 +367,7 @@ def _compute_effective_wrench_labels(
             "vehicle_angular_velocity.xyz[2]",
         ],
     )
-    alpha_b = _frame_columns_or_none(
-        samples,
-        [
-            "vehicle_angular_velocity.xyz_derivative[0]",
-            "vehicle_angular_velocity.xyz_derivative[1]",
-            "vehicle_angular_velocity.xyz_derivative[2]",
-        ],
-    )
+    alpha_b = _frame_columns_or_none(samples, resolved_angular_acceleration_columns)
 
     if acc_n is None or quat_nb is None or omega_b is None or alpha_b is None:
         return nan_vectors.copy(), nan_vectors.copy(), label_valid

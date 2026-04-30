@@ -12,11 +12,15 @@ from system_identification.training import (
     DEFAULT_FEATURE_COLUMNS,
     DEFAULT_FEATURE_GROUPS,
     DEFAULT_TARGET_COLUMNS,
+    HybridPFNNRegressor,
     NO_ACCEL_NO_ALPHA_FEATURE_COLUMNS,
     PAPER_NO_ACCEL_V2_FEATURE_COLUMNS,
+    PAPER_PFNN_10_FEATURE_COLUMNS,
+    cyclic_catmull_rom_weights,
     evaluate_model_bundle,
     fit_torch_regressor,
     prepare_feature_target_frames,
+    resolve_target_loss_weights,
     resolve_feature_set_columns,
     resolve_ablation_variants,
     run_ablation_study,
@@ -292,6 +296,73 @@ def test_paper_no_accel_v2_feature_set_excludes_label_derivative_inputs():
     }.issubset(feature_columns)
 
 
+def test_paper_pfnn_10_feature_set_matches_paper_inputs():
+    excluded = {
+        "vehicle_local_position.ax",
+        "vehicle_local_position.ay",
+        "vehicle_local_position.az",
+        "vehicle_angular_velocity.xyz_derivative[0]",
+        "vehicle_angular_velocity.xyz_derivative[1]",
+        "vehicle_angular_velocity.xyz_derivative[2]",
+        "phase_corrected_sin",
+        "phase_corrected_cos",
+    }
+
+    feature_columns = resolve_feature_set_columns("paper_pfnn_10")
+
+    assert feature_columns == PAPER_PFNN_10_FEATURE_COLUMNS
+    assert feature_columns == [
+        "phase_corrected_rad",
+        "velocity_b.x",
+        "velocity_b.y",
+        "velocity_b.z",
+        "pitch_rad",
+        "roll_rad",
+        "alpha_rad",
+        "beta_rad",
+        "cycle_flap_frequency_hz",
+        "elevator_like",
+        "servo_rudder",
+    ]
+    assert excluded.isdisjoint(feature_columns)
+
+
+def test_cyclic_catmull_rom_weights_are_periodic_and_normalized():
+    phase = torch.tensor([0.0, np.pi / 3.0, 2.0 * np.pi - 0.1], dtype=torch.float32)
+
+    indices, weights = cyclic_catmull_rom_weights(phase, num_control_points=6)
+    shifted_indices, shifted_weights = cyclic_catmull_rom_weights(phase + 2.0 * np.pi, num_control_points=6)
+
+    assert indices.shape == (3, 4)
+    assert weights.shape == (3, 4)
+    torch.testing.assert_close(weights.sum(dim=1), torch.ones(3), atol=1e-6, rtol=1e-6)
+    torch.testing.assert_close(indices, shifted_indices)
+    torch.testing.assert_close(weights, shifted_weights, atol=1e-6, rtol=1e-6)
+
+
+def test_hybrid_pfnn_regressor_forward_shape_and_phase_periodicity():
+    model = HybridPFNNRegressor(
+        input_dim=len(PAPER_PFNN_10_FEATURE_COLUMNS),
+        output_dim=len(DEFAULT_TARGET_COLUMNS),
+        hidden_sizes=(8, 8),
+        phase_feature_index=0,
+        expanded_input_dim=12,
+        phase_node_count=3,
+        phase_control_points=6,
+        dropout=0.0,
+    )
+    inputs = torch.randn(5, len(PAPER_PFNN_10_FEATURE_COLUMNS), dtype=torch.float32)
+    inputs[:, 0] = torch.linspace(0.0, 2.0 * np.pi, 5)
+
+    outputs = model(inputs)
+    shifted = inputs.clone()
+    shifted[:, 0] = shifted[:, 0] + 2.0 * np.pi
+    shifted_outputs = model(shifted)
+
+    assert outputs.shape == (5, len(DEFAULT_TARGET_COLUMNS))
+    torch.testing.assert_close(outputs, shifted_outputs, atol=1e-5, rtol=1e-5)
+
+
 def test_prepare_feature_target_frames_derives_paper_no_accel_v2_features():
     frame = _synthetic_frame(n_rows=1, seed=17)
     frame.loc[:, "vehicle_attitude.q[0]"] = 1.0
@@ -386,3 +457,90 @@ def test_run_training_job_accepts_no_accel_no_alpha_feature_set(tmp_path: Path):
     assert training_config["feature_columns"] == NO_ACCEL_NO_ALPHA_FEATURE_COLUMNS
     assert "vehicle_local_position.ax" not in training_config["feature_columns"]
     assert "vehicle_angular_velocity.xyz_derivative[0]" not in training_config["feature_columns"]
+
+
+def test_resolve_target_loss_weights_from_mapping():
+    weights = resolve_target_loss_weights(
+        DEFAULT_TARGET_COLUMNS,
+        "fx_b=1,fy_b=0.5,fz_b=1,mx_b=0.25,my_b=1,mz_b=0.25",
+    )
+
+    np.testing.assert_allclose(weights, np.array([1.0, 0.5, 1.0, 0.25, 1.0, 0.25], dtype=np.float32))
+
+
+def test_run_training_job_records_target_loss_weights(tmp_path: Path):
+    split_root = tmp_path / "split"
+    split_root.mkdir(parents=True)
+
+    _synthetic_frame(n_rows=96, seed=34).to_parquet(split_root / "train_samples.parquet", index=False)
+    _synthetic_frame(n_rows=64, seed=35).to_parquet(split_root / "val_samples.parquet", index=False)
+    _synthetic_frame(n_rows=64, seed=36).to_parquet(split_root / "test_samples.parquet", index=False)
+
+    output_dir = tmp_path / "artifacts"
+    outputs = run_training_job(
+        split_root=split_root,
+        output_dir=output_dir,
+        feature_set_name="paper_no_accel_v2",
+        hidden_sizes=(16, 16),
+        batch_size=32,
+        max_epochs=1,
+        learning_rate=1e-3,
+        weight_decay=1e-5,
+        device="cpu",
+        random_seed=33,
+        num_workers=0,
+        use_amp=False,
+        target_loss_weights="fx_b=1,fy_b=0.5,fz_b=1,mx_b=0.5,my_b=1,mz_b=0.5",
+    )
+
+    training_config = json.loads(Path(outputs["training_config_path"]).read_text(encoding="utf-8"))
+    payload = torch.load(outputs["model_bundle_path"], map_location="cpu")
+
+    assert training_config["target_loss_weights"] == {
+        "fx_b": 1.0,
+        "fy_b": 0.5,
+        "fz_b": 1.0,
+        "mx_b": 0.5,
+        "my_b": 1.0,
+        "mz_b": 0.5,
+    }
+    np.testing.assert_allclose(payload["target_loss_weights"].numpy(), np.array([1.0, 0.5, 1.0, 0.5, 1.0, 0.5]))
+
+
+def test_run_training_job_accepts_pfnn_model_type(tmp_path: Path):
+    split_root = tmp_path / "split"
+    split_root.mkdir(parents=True)
+
+    _synthetic_frame(n_rows=160, seed=24).to_parquet(split_root / "train_samples.parquet", index=False)
+    _synthetic_frame(n_rows=80, seed=25).to_parquet(split_root / "val_samples.parquet", index=False)
+    _synthetic_frame(n_rows=80, seed=26).to_parquet(split_root / "test_samples.parquet", index=False)
+
+    output_dir = tmp_path / "artifacts"
+    outputs = run_training_job(
+        split_root=split_root,
+        output_dir=output_dir,
+        feature_set_name="paper_pfnn_10",
+        model_type="pfnn",
+        hidden_sizes=(16, 16),
+        batch_size=64,
+        max_epochs=2,
+        learning_rate=1e-3,
+        weight_decay=1e-5,
+        device="cpu",
+        random_seed=23,
+        num_workers=0,
+        use_amp=False,
+        pfnn_expanded_input_dim=18,
+        pfnn_phase_node_count=3,
+        pfnn_control_points=6,
+    )
+
+    training_config = json.loads(Path(outputs["training_config_path"]).read_text(encoding="utf-8"))
+    payload = torch.load(outputs["model_bundle_path"], map_location="cpu")
+
+    assert training_config["feature_set_name"] == "paper_pfnn_10"
+    assert training_config["model_type"] == "pfnn"
+    assert training_config["feature_columns"] == PAPER_PFNN_10_FEATURE_COLUMNS
+    assert training_config["phase_feature_column"] == "phase_corrected_rad"
+    assert payload["model_type"] == "pfnn"
+    assert payload["phase_feature_index"] == 0

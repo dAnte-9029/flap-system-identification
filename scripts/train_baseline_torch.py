@@ -28,10 +28,14 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--feature-set",
         default=None,
-        help="Named feature set: full, no_accel_no_alpha, or paper_no_accel_v2",
+        help="Named feature set: full, no_accel_no_alpha, paper_no_accel_v2, or paper_pfnn_10",
     )
+    parser.add_argument("--model-type", default="mlp", choices=["mlp", "pfnn"], help="Regressor architecture")
     parser.add_argument("--hidden-sizes", type=_parse_hidden_sizes, default=(256, 256), help="Comma-separated MLP hidden sizes")
     parser.add_argument("--dropout", type=float, default=0.0, help="Dropout probability")
+    parser.add_argument("--pfnn-expanded-input-dim", type=int, default=45, help="PFNN input expansion size")
+    parser.add_argument("--pfnn-phase-node-count", type=int, default=5, help="PFNN phase-generated node count")
+    parser.add_argument("--pfnn-control-points", type=int, default=6, help="PFNN cyclic Catmull-Rom control point count")
     parser.add_argument("--batch-size", type=int, default=4096, help="Training batch size")
     parser.add_argument("--max-epochs", type=int, default=50, help="Maximum training epochs")
     parser.add_argument("--learning-rate", type=float, default=1e-3, help="AdamW learning rate")
@@ -41,6 +45,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--random-seed", type=int, default=42, help="Random seed")
     parser.add_argument("--num-workers", type=int, default=0, help="DataLoader worker count")
     parser.add_argument("--disable-amp", action="store_true", help="Disable CUDA automatic mixed precision")
+    parser.add_argument(
+        "--target-loss-weights",
+        default=None,
+        help="Comma-separated target weights, e.g. fx_b=1,fy_b=0.5,fz_b=1,mx_b=0.5,my_b=1,mz_b=0.5",
+    )
     parser.add_argument("--max-train-samples", type=int, default=None, help="Optional train subsample size")
     parser.add_argument("--max-val-samples", type=int, default=None, help="Optional val subsample size")
     parser.add_argument("--max-test-samples", type=int, default=None, help="Optional test subsample size")
@@ -53,6 +62,7 @@ def main() -> None:
         split_root=args.split_root,
         output_dir=args.output_dir,
         feature_set_name=args.feature_set,
+        model_type=args.model_type,
         hidden_sizes=args.hidden_sizes,
         dropout=args.dropout,
         batch_size=args.batch_size,
@@ -64,9 +74,13 @@ def main() -> None:
         random_seed=args.random_seed,
         num_workers=args.num_workers,
         use_amp=not args.disable_amp,
+        target_loss_weights=args.target_loss_weights,
         max_train_samples=args.max_train_samples,
         max_val_samples=args.max_val_samples,
         max_test_samples=args.max_test_samples,
+        pfnn_expanded_input_dim=args.pfnn_expanded_input_dim,
+        pfnn_phase_node_count=args.pfnn_phase_node_count,
+        pfnn_control_points=args.pfnn_control_points,
     )
     for key, value in outputs.items():
         print(f"{key}: {value}")
