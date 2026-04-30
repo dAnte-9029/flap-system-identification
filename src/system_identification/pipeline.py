@@ -16,6 +16,7 @@ from system_identification.metadata import (
     nested_value,
 )
 from system_identification.phase import (
+    annotate_phase_cycles,
     compute_drive_phase_rad,
     compute_wing_stroke_angle_rad,
     compute_wing_stroke_direction,
@@ -44,6 +45,8 @@ LOW_RATE_FRESHNESS_S = {
     "sensor_gps": 0.5,
     "sensor_gnss_relative": 0.5,
 }
+
+PHASE_FRESHNESS_S = 0.1
 
 
 def _sha256_file(path: str | Path) -> str:
@@ -382,6 +385,11 @@ def assemble_canonical_samples(
         grid_us,
     )
 
+    phase_source = np.full(len(samples), "encoder_count_fallback", dtype=object)
+    phase_raw = drive_wrapped.copy()
+    phase_raw_unwrapped = drive_unwrapped.copy()
+    phase_valid = np.isfinite(phase_raw)
+
     if "rpm" in topic_frames and topic_frames["rpm"] is not None:
         rpm_frame = topic_frames["rpm"]
         samples["encoder_rpm_raw"] = linear_resample(
@@ -402,6 +410,53 @@ def assemble_canonical_samples(
             flap_frame["frequency_hz"].to_numpy(),
             grid_us,
         )
+    else:
+        samples["flap_frequency_hz"] = np.nan
+
+    wing_phase_frame = topic_frames.get("wing_phase")
+    if wing_phase_frame is not None and not wing_phase_frame.empty:
+        wing_phase_raw, wing_phase_age_s, wing_phase_topic_valid = zoh_resample(
+            wing_phase_frame["event_time_us"].to_numpy(),
+            wing_phase_frame["phase_rad"].to_numpy(),
+            grid_us,
+            freshness_s=PHASE_FRESHNESS_S,
+        )
+        wing_phase_unwrapped, _, _ = zoh_resample(
+            wing_phase_frame["event_time_us"].to_numpy(),
+            wing_phase_frame["phase_unwrapped_rad"].to_numpy(),
+            grid_us,
+            freshness_s=PHASE_FRESHNESS_S,
+        )
+        wing_phase_valid_raw, _, _ = zoh_resample(
+            wing_phase_frame["event_time_us"].to_numpy(),
+            wing_phase_frame["phase_valid"].to_numpy(),
+            grid_us,
+            freshness_s=PHASE_FRESHNESS_S,
+        )
+
+        phase_source[:] = "wing_phase"
+        phase_raw = wing_phase_raw
+        phase_raw_unwrapped = wing_phase_unwrapped
+        phase_valid = wing_phase_topic_valid & np.isfinite(phase_raw) & (wing_phase_valid_raw > 0.5)
+
+        samples["wing_phase.phase_rad"] = wing_phase_raw
+        samples["wing_phase.phase_unwrapped_rad"] = wing_phase_unwrapped
+        samples["wing_phase.phase_age_s"] = wing_phase_age_s
+        samples["wing_phase.phase_valid"] = phase_valid
+
+    samples["phase_source"] = phase_source
+    samples["phase_raw_rad"] = phase_raw
+    samples["phase_raw_unwrapped_rad"] = phase_raw_unwrapped
+    samples["phase_valid"] = phase_valid
+
+    phase_annotations = annotate_phase_cycles(
+        time_s=samples["time_s"].to_numpy(),
+        phase_rad=phase_raw,
+        flap_frequency_hz=samples["flap_frequency_hz"].to_numpy(),
+        phase_valid=phase_valid,
+    )
+    for column, values in phase_annotations.items():
+        samples[column] = values
 
     if "debug_vect" in topic_frames and topic_frames["debug_vect"] is not None:
         debug_frame = topic_frames["debug_vect"]
@@ -523,6 +578,10 @@ def build_segments(samples: pd.DataFrame) -> pd.DataFrame:
             "sample_count": int(len(group)),
             "label_valid_ratio": float(group["label_valid"].mean()) if "label_valid" in group else 0.0,
         }
+        if "cycle_valid" in group.columns:
+            row["cycle_valid_ratio"] = float(group["cycle_valid"].mean())
+        if "flap_active" in group.columns:
+            row["flap_active_ratio"] = float(group["flap_active"].mean())
         if "vehicle_status.nav_state" in group.columns:
             row["nav_state"] = float(group["vehicle_status.nav_state"].mode(dropna=True).iloc[0])
         segments.append(row)
@@ -550,6 +609,7 @@ def extract_topic_frames_from_ulog(ulog_path: str | Path) -> dict[str, pd.DataFr
         "control_allocator_status": topic_dataframe(ulog, "control_allocator_status"),
         "sensor_gps": topic_dataframe(ulog, "sensor_gps"),
         "sensor_gnss_relative": topic_dataframe(ulog, "sensor_gnss_relative"),
+        "wing_phase": topic_dataframe(ulog, "wing_phase"),
     }
 
 
@@ -586,7 +646,7 @@ def run_ulog_to_canonical(
     segments.to_parquet(segments_path, index=False)
 
     manifest = {
-        "pipeline_version": "ulog_to_canonical_v0.1",
+        "pipeline_version": "ulog_to_canonical_v0.2_preliminary",
         "source_log_path": str(Path(ulg_path).resolve()),
         "source_log_sha256": _sha256_file(ulg_path),
         "source_log_size_bytes": Path(ulg_path).stat().st_size,

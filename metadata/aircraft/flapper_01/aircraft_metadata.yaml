@@ -9,8 +9,8 @@ description: >
 
 px4_firmware:
   repo_path: /home/zn/PX4-Autopilot
-  branch_or_tag: flapping-dataset-logging
-  commit: null
+  branch_or_tag: air
+  commit: 64d88ae4a9d1f4a924b18995ee72fbb1d19787e6
 
 frames:
   body_frame: FRD
@@ -19,33 +19,34 @@ frames:
   cg_reference_origin: imu_origin
 
 log_coverage:
-  has_logged_wing_phase_topic: false
+  has_logged_wing_phase_topic: true
   has_logged_absolute_drive_phase_topic: false
   current_good_log_notes: >
-    Current good log contains encoder_count, rpm, debug_vect, and flap_frequency, but no
-    standalone wing_phase or absolute_drive_phase topic.
+    Current 2026.4.12 good logs contain wing_phase in addition to encoder_count, rpm,
+    debug_vect, and flap_frequency. Older 2026.4.9 and 2026.4.10 good logs do not contain a
+    standalone absolute_drive_phase topic and may rely on encoder-based phase fallback.
 
 mass_properties:
   mass_kg:
-    value: null
+    value: 0.95
     unit: kg
-    status: placeholder
-    source: to_measure
+    status: measured
+    source: user_measured
     uncertainty: null
   cg_b_m:
-    value: [null, null, null]
+    value: [0.027, 0.0, -0.025]
     unit: m
-    status: placeholder
-    source: to_measure
+    status: provisional_user_supplied
+    source: user_provided_relative_to_flight_controller_center_with_lateral_offset_assumed_zero
     uncertainty: [null, null, null]
   inertia_b_kg_m2:
     value:
-      - [null, null, null]
-      - [null, null, null]
-      - [null, null, null]
+      - [0.000100393269, 0.000004069196, -0.000000389614]
+      - [0.000004069196, 0.000172763445, -0.000000237533]
+      - [-0.000000389614, -0.000000237533, 0.000077498594]
     unit: kg*m^2
-    status: placeholder
-    source: cad_initial_then_bench_test
+    status: provisional_cad_seed
+    source: solidworks_center_of_mass_aligned_output_tensor_assuming_output_axes_match_body_frd
     uncertainty: null
 
 flapping_drive:
@@ -62,7 +63,7 @@ flapping_drive:
   drive_phase_zero_definition: sine_argument_zero_crossing
   drive_phase_zero_offset_rad: null
   phase_calibration_method: as5600_relative_angle_plus_hall_index_on_drive_gear
-  phase_logging_status: hall_or_absolute_drive_phase_not_seen_in_current_good_log
+  phase_logging_status: wing_phase_seen_but_absolute_drive_phase_not_logged
   positive_wing_stroke_direction: upstroke
   wing_stroke_model: sinusoidal_from_drive_phase
   wing_stroke_amplitude_rad:
@@ -117,12 +118,6 @@ label_definition:
   time_varying_inertia_mode: ignored_in_v0_1
 
 open_items:
-  - field: mass_properties.mass_kg.value
-    reason: required_for_force_labels
-  - field: mass_properties.cg_b_m.value
-    reason: required_for_cg_reference_consistency
-  - field: mass_properties.inertia_b_kg_m2.value
-    reason: required_for_moment_labels
   - field: flapping_drive.encoder_to_drive_sign
     reason: required_for_correct_drive_phase_direction
   - field: flapping_drive.drive_phase_zero_offset_rad

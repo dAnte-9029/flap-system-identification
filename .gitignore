@@ -3,3 +3,8 @@ __pycache__/
 *.py[cod]
 
 dataset/
+artifacts/
+src/*.egg-info/
+.codex
+.codex/
+docs/papers/

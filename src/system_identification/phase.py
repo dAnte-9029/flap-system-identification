@@ -63,3 +63,100 @@ def encoder_phase_from_counts(
     encoder_phase_unwrapped = 2.0 * np.pi * continuous_count / counts_per_rev
     encoder_phase_wrapped = wrap_to_2pi(encoder_phase_unwrapped)
     return encoder_phase_unwrapped, encoder_phase_wrapped
+
+
+def annotate_phase_cycles(
+    time_s: np.ndarray,
+    phase_rad: np.ndarray,
+    flap_frequency_hz: np.ndarray,
+    phase_valid: np.ndarray | None = None,
+    active_frequency_threshold_hz: float = 0.1,
+    reset_threshold_rad: float = np.pi,
+    min_cycle_samples: int = 4,
+    min_cycle_duration_s: float = 0.05,
+    min_cycle_span_rad: float = 5.0,
+) -> dict[str, np.ndarray]:
+    time_arr = np.asarray(time_s, dtype=float)
+    phase_arr = np.asarray(phase_rad, dtype=float)
+    flap_freq_arr = np.asarray(flap_frequency_hz, dtype=float)
+    n = len(phase_arr)
+
+    if phase_valid is None:
+        phase_valid_arr = np.ones(n, dtype=bool)
+    else:
+        phase_valid_arr = np.asarray(phase_valid, dtype=bool)
+
+    flap_active = np.isfinite(flap_freq_arr) & (flap_freq_arr > float(active_frequency_threshold_hz))
+    usable = np.isfinite(time_arr) & np.isfinite(phase_arr) & phase_valid_arr
+    active_mask = usable & flap_active
+
+    cycle_id = np.full(n, -1, dtype=int)
+    cycle_valid = np.zeros(n, dtype=bool)
+    phase_corrected = np.full(n, np.nan, dtype=float)
+    phase_corrected_unwrapped = np.full(n, np.nan, dtype=float)
+    cycle_duration_s = np.full(n, np.nan, dtype=float)
+    cycle_flap_frequency_hz = np.full(n, np.nan, dtype=float)
+
+    next_cycle_id = 0
+    idx = 0
+
+    while idx < n:
+        if not active_mask[idx]:
+            idx += 1
+            continue
+
+        run_start = idx
+        while idx + 1 < n and active_mask[idx + 1]:
+            idx += 1
+        run_end = idx
+
+        run_phase = phase_arr[run_start : run_end + 1]
+        reset_idx = np.flatnonzero(np.diff(run_phase) < -abs(float(reset_threshold_rad)))
+        cycle_starts = np.r_[0, reset_idx + 1]
+        cycle_ends = np.r_[reset_idx, len(run_phase) - 1]
+
+        for run_cycle_idx, (cycle_start, cycle_end) in enumerate(zip(cycle_starts, cycle_ends)):
+            sample_idx = np.arange(run_start + cycle_start, run_start + cycle_end + 1, dtype=int)
+            segment_phase = phase_arr[sample_idx]
+            segment_time = time_arr[sample_idx]
+            segment_flap_freq = flap_freq_arr[sample_idx]
+
+            cycle_id[sample_idx] = next_cycle_id
+
+            phase_start = float(segment_phase[0])
+            phase_max = float(np.nanmax(segment_phase))
+            phase_span = phase_max - phase_start
+            duration_s = float(segment_time[-1] - segment_time[0]) if len(sample_idx) > 1 else 0.0
+            mean_flap_freq_hz = float(np.nanmean(segment_flap_freq))
+
+            cycle_duration_s[sample_idx] = duration_s
+            cycle_flap_frequency_hz[sample_idx] = mean_flap_freq_hz
+
+            if phase_span > 0.0:
+                corrected = np.clip(2.0 * np.pi * (segment_phase - phase_start) / phase_span, 0.0, 2.0 * np.pi)
+                phase_corrected[sample_idx] = corrected
+                phase_corrected_unwrapped[sample_idx] = next_cycle_id * 2.0 * np.pi + corrected
+
+            monotonic_violation = bool(np.any(np.diff(segment_phase) < -0.25))
+            is_edge_cycle = run_cycle_idx == 0 or run_cycle_idx == len(cycle_starts) - 1
+            is_valid_cycle = (
+                len(sample_idx) >= int(min_cycle_samples)
+                and duration_s >= float(min_cycle_duration_s)
+                and phase_span >= float(min_cycle_span_rad)
+                and not monotonic_violation
+                and not is_edge_cycle
+            )
+            cycle_valid[sample_idx] = is_valid_cycle
+            next_cycle_id += 1
+
+        idx += 1
+
+    return {
+        "flap_active": flap_active,
+        "cycle_id": cycle_id,
+        "cycle_valid": cycle_valid,
+        "phase_corrected_rad": phase_corrected,
+        "phase_corrected_unwrapped_rad": phase_corrected_unwrapped,
+        "cycle_duration_s": cycle_duration_s,
+        "cycle_flap_frequency_hz": cycle_flap_frequency_hz,
+    }

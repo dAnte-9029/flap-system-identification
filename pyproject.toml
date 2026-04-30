@@ -8,6 +8,7 @@ version = "0.1.0"
 description = "Flapping-wing system identification tooling"
 requires-python = ">=3.10"
 dependencies = [
+  "matplotlib",
   "numpy",
   "pandas",
   "pyarrow",
