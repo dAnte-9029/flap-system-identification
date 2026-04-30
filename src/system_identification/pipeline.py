@@ -150,6 +150,7 @@ def _resample_zoh_columns(
     grid_us: np.ndarray,
     columns: list[str],
     freshness_s: float,
+    emit_missing_columns: bool = False,
 ) -> dict[str, np.ndarray]:
     output: dict[str, np.ndarray] = {}
     for column in columns:
@@ -163,6 +164,10 @@ def _resample_zoh_columns(
             output[column] = values
             output[f"{column}_age_s"] = age_s
             output[f"{column}_valid"] = valid
+        elif emit_missing_columns:
+            output[column] = np.full(len(grid_us), np.nan, dtype=float)
+            output[f"{column}_age_s"] = np.full(len(grid_us), np.nan, dtype=float)
+            output[f"{column}_valid"] = np.zeros(len(grid_us), dtype=bool)
     return output
 
 
@@ -520,6 +525,11 @@ def assemble_canonical_samples(
             "indicated_airspeed_m_s",
             "calibrated_airspeed_m_s",
             "true_airspeed_m_s",
+            "calibrated_ground_minus_wind_m_s",
+            "true_ground_minus_wind_m_s",
+            "airspeed_derivative_filtered",
+            "throttle_filtered",
+            "pitch_filtered",
             "airspeed_source",
         ],
         "vehicle_air_data": ["rho"],
@@ -540,7 +550,13 @@ def assemble_canonical_samples(
         if frame is None:
             continue
         freshness = LOW_RATE_FRESHNESS_S.get(topic_name, 0.5)
-        for column, values in _resample_zoh_columns(frame, grid_us, columns, freshness).items():
+        for column, values in _resample_zoh_columns(
+            frame,
+            grid_us,
+            columns,
+            freshness,
+            emit_missing_columns=topic_name == "airspeed_validated",
+        ).items():
             samples[f"{topic_name}.{column}"] = values
 
     force_b, moment_b, label_valid = _compute_effective_wrench_labels(samples=samples, metadata=metadata)

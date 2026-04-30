@@ -51,6 +51,49 @@ DEFAULT_FEATURE_COLUMNS = [
     "wind.windspeed_east",
 ]
 
+NO_ACCEL_NO_ALPHA_EXCLUDED_COLUMNS = [
+    "vehicle_local_position.ax",
+    "vehicle_local_position.ay",
+    "vehicle_local_position.az",
+    "vehicle_angular_velocity.xyz_derivative[0]",
+    "vehicle_angular_velocity.xyz_derivative[1]",
+    "vehicle_angular_velocity.xyz_derivative[2]",
+]
+
+NO_ACCEL_NO_ALPHA_FEATURE_COLUMNS = [
+    column for column in DEFAULT_FEATURE_COLUMNS if column not in set(NO_ACCEL_NO_ALPHA_EXCLUDED_COLUMNS)
+]
+
+PAPER_NO_ACCEL_V2_ADDED_FEATURE_COLUMNS = [
+    "vehicle_local_position.heading",
+    "airspeed_validated.indicated_airspeed_m_s",
+    "airspeed_validated.calibrated_airspeed_m_s",
+    "airspeed_validated.calibrated_ground_minus_wind_m_s",
+    "airspeed_validated.true_ground_minus_wind_m_s",
+    "airspeed_validated.pitch_filtered",
+    "roll_rad",
+    "pitch_rad",
+    "velocity_b.x",
+    "velocity_b.y",
+    "velocity_b.z",
+    "relative_air_velocity_b.x",
+    "relative_air_velocity_b.y",
+    "relative_air_velocity_b.z",
+    "alpha_rad",
+    "beta_rad",
+    "dynamic_pressure_pa",
+    "elevator_like",
+    "aileron_like",
+]
+
+PAPER_NO_ACCEL_V2_FEATURE_COLUMNS = NO_ACCEL_NO_ALPHA_FEATURE_COLUMNS + PAPER_NO_ACCEL_V2_ADDED_FEATURE_COLUMNS
+
+DEFAULT_FEATURE_SETS: dict[str, list[str]] = {
+    "full": DEFAULT_FEATURE_COLUMNS,
+    "no_accel_no_alpha": NO_ACCEL_NO_ALPHA_FEATURE_COLUMNS,
+    "paper_no_accel_v2": PAPER_NO_ACCEL_V2_FEATURE_COLUMNS,
+}
+
 DEFAULT_FEATURE_GROUPS: dict[str, list[str]] = {
     "phase": [
         "phase_corrected_sin",
@@ -103,6 +146,13 @@ DEFAULT_ABLATION_VARIANTS: dict[str, dict[str, list[str]]] = {
     "phase_plus_kinematics": {"include_groups": ["phase", "linear_kinematics", "angular_kinematics"]},
     "kinematics_plus_actuators": {"include_groups": ["linear_kinematics", "angular_kinematics", "actuators"]},
 }
+
+
+def resolve_feature_set_columns(feature_set_name: str | None = None) -> list[str]:
+    resolved_name = feature_set_name or "full"
+    if resolved_name not in DEFAULT_FEATURE_SETS:
+        raise ValueError(f"Unknown feature set: {resolved_name}")
+    return list(DEFAULT_FEATURE_SETS[resolved_name])
 
 
 def _ordered_unique_columns(columns: list[str], reference: list[str]) -> list[str]:
@@ -212,6 +262,69 @@ def _with_derived_columns(frame: pd.DataFrame) -> pd.DataFrame:
         derived["gravity_b.x"] = 2.0 * (x * z - w * y)
         derived["gravity_b.y"] = 2.0 * (y * z + w * x)
         derived["gravity_b.z"] = 1.0 - 2.0 * (x * x + y * y)
+
+        derived["roll_rad"] = np.arctan2(2.0 * (w * x + y * z), 1.0 - 2.0 * (x * x + y * y))
+        pitch_argument = np.clip(2.0 * (w * y - z * x), -1.0, 1.0)
+        derived["pitch_rad"] = np.arcsin(pitch_argument)
+
+        rotation_body_to_ned = np.full((len(derived), 3, 3), np.nan, dtype=float)
+        rotation_body_to_ned[:, 0, 0] = 1.0 - 2.0 * (y * y + z * z)
+        rotation_body_to_ned[:, 0, 1] = 2.0 * (x * y - z * w)
+        rotation_body_to_ned[:, 0, 2] = 2.0 * (x * z + y * w)
+        rotation_body_to_ned[:, 1, 0] = 2.0 * (x * y + z * w)
+        rotation_body_to_ned[:, 1, 1] = 1.0 - 2.0 * (x * x + z * z)
+        rotation_body_to_ned[:, 1, 2] = 2.0 * (y * z - x * w)
+        rotation_body_to_ned[:, 2, 0] = 2.0 * (x * z - y * w)
+        rotation_body_to_ned[:, 2, 1] = 2.0 * (y * z + x * w)
+        rotation_body_to_ned[:, 2, 2] = 1.0 - 2.0 * (x * x + y * y)
+
+        velocity_columns = [
+            "vehicle_local_position.vx",
+            "vehicle_local_position.vy",
+            "vehicle_local_position.vz",
+        ]
+        if all(column in derived.columns for column in velocity_columns):
+            velocity_n = derived.loc[:, velocity_columns].to_numpy(dtype=float, copy=True)
+            velocity_b = np.einsum("nji,nj->ni", rotation_body_to_ned, velocity_n)
+            derived["velocity_b.x"] = velocity_b[:, 0]
+            derived["velocity_b.y"] = velocity_b[:, 1]
+            derived["velocity_b.z"] = velocity_b[:, 2]
+
+            wind_columns = ["wind.windspeed_north", "wind.windspeed_east"]
+            if all(column in derived.columns for column in wind_columns):
+                wind_n = np.zeros_like(velocity_n)
+                wind_n[:, 0] = derived["wind.windspeed_north"].to_numpy(dtype=float)
+                wind_n[:, 1] = derived["wind.windspeed_east"].to_numpy(dtype=float)
+                relative_air_velocity_n = velocity_n - wind_n
+                relative_air_velocity_b = np.einsum("nji,nj->ni", rotation_body_to_ned, relative_air_velocity_n)
+                derived["relative_air_velocity_b.x"] = relative_air_velocity_b[:, 0]
+                derived["relative_air_velocity_b.y"] = relative_air_velocity_b[:, 1]
+                derived["relative_air_velocity_b.z"] = relative_air_velocity_b[:, 2]
+
+                relative_air_speed = np.linalg.norm(relative_air_velocity_b, axis=1)
+                valid_speed = relative_air_speed > 1e-8
+                alpha_rad = np.full(len(derived), np.nan, dtype=float)
+                beta_rad = np.full(len(derived), np.nan, dtype=float)
+                alpha_rad[valid_speed] = np.arctan2(
+                    relative_air_velocity_b[valid_speed, 2],
+                    relative_air_velocity_b[valid_speed, 0],
+                )
+                beta_rad[valid_speed] = np.arcsin(
+                    np.clip(relative_air_velocity_b[valid_speed, 1] / relative_air_speed[valid_speed], -1.0, 1.0)
+                )
+                derived["alpha_rad"] = alpha_rad
+                derived["beta_rad"] = beta_rad
+
+    if {"vehicle_air_data.rho", "airspeed_validated.true_airspeed_m_s"}.issubset(derived.columns):
+        true_airspeed = derived["airspeed_validated.true_airspeed_m_s"].to_numpy(dtype=float)
+        rho = derived["vehicle_air_data.rho"].to_numpy(dtype=float)
+        derived["dynamic_pressure_pa"] = 0.5 * rho * true_airspeed * true_airspeed
+
+    if {"servo_left_elevon", "servo_right_elevon"}.issubset(derived.columns):
+        left = derived["servo_left_elevon"].to_numpy(dtype=float)
+        right = derived["servo_right_elevon"].to_numpy(dtype=float)
+        derived["elevator_like"] = 0.5 * (left + right)
+        derived["aileron_like"] = 0.5 * (left - right)
     return derived
 
 
@@ -766,6 +879,7 @@ def run_training_job(
     *,
     split_root: str | Path,
     output_dir: str | Path,
+    feature_set_name: str | None = None,
     feature_columns: list[str] | None = None,
     target_columns: list[str] | None = None,
     hidden_sizes: tuple[int, ...] = (256, 256),
@@ -783,6 +897,10 @@ def run_training_job(
     max_val_samples: int | None = None,
     max_test_samples: int | None = None,
 ) -> dict[str, str]:
+    if feature_set_name is not None and feature_columns is not None:
+        raise ValueError("feature_set_name and feature_columns cannot both be provided")
+
+    resolved_feature_columns = resolve_feature_set_columns(feature_set_name) if feature_set_name is not None else feature_columns
     output_path = Path(output_dir)
     output_path.mkdir(parents=True, exist_ok=True)
 
@@ -793,7 +911,7 @@ def run_training_job(
     bundle = fit_torch_regressor(
         train_frame=train_frame,
         val_frame=val_frame,
-        feature_columns=feature_columns,
+        feature_columns=resolved_feature_columns,
         target_columns=target_columns,
         hidden_sizes=hidden_sizes,
         dropout=dropout,
@@ -833,6 +951,7 @@ def run_training_job(
         json.dumps(
             {
                 "split_root": str(split_root),
+                "feature_set_name": feature_set_name or ("custom" if feature_columns is not None else "full"),
                 "feature_columns": bundle["feature_columns"],
                 "target_columns": bundle["target_columns"],
                 "hidden_sizes": list(hidden_sizes),

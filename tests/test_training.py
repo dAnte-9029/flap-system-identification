@@ -12,9 +12,12 @@ from system_identification.training import (
     DEFAULT_FEATURE_COLUMNS,
     DEFAULT_FEATURE_GROUPS,
     DEFAULT_TARGET_COLUMNS,
+    NO_ACCEL_NO_ALPHA_FEATURE_COLUMNS,
+    PAPER_NO_ACCEL_V2_FEATURE_COLUMNS,
     evaluate_model_bundle,
     fit_torch_regressor,
     prepare_feature_target_frames,
+    resolve_feature_set_columns,
     resolve_ablation_variants,
     run_ablation_study,
     run_training_job,
@@ -37,6 +40,7 @@ def _synthetic_frame(n_rows: int = 256, seed: int = 0) -> pd.DataFrame:
             "vehicle_local_position.vx": rng.normal(0.4, 0.7, size=n_rows),
             "vehicle_local_position.vy": rng.normal(0.0, 0.7, size=n_rows),
             "vehicle_local_position.vz": rng.normal(-0.1, 0.4, size=n_rows),
+            "vehicle_local_position.heading": rng.normal(0.0, 0.2, size=n_rows),
             "vehicle_local_position.ax": rng.normal(0.0, 1.0, size=n_rows),
             "vehicle_local_position.ay": rng.normal(0.0, 1.0, size=n_rows),
             "vehicle_local_position.az": rng.normal(0.0, 1.2, size=n_rows),
@@ -50,7 +54,12 @@ def _synthetic_frame(n_rows: int = 256, seed: int = 0) -> pd.DataFrame:
             "vehicle_attitude.q[1]": rng.normal(0.0, 0.05, size=n_rows),
             "vehicle_attitude.q[2]": rng.normal(0.0, 0.05, size=n_rows),
             "vehicle_attitude.q[3]": rng.normal(0.0, 0.05, size=n_rows),
+            "airspeed_validated.indicated_airspeed_m_s": rng.normal(7.6, 0.6, size=n_rows),
+            "airspeed_validated.calibrated_airspeed_m_s": rng.normal(7.8, 0.6, size=n_rows),
             "airspeed_validated.true_airspeed_m_s": rng.normal(8.0, 0.6, size=n_rows),
+            "airspeed_validated.calibrated_ground_minus_wind_m_s": rng.normal(7.7, 0.6, size=n_rows),
+            "airspeed_validated.true_ground_minus_wind_m_s": rng.normal(8.1, 0.6, size=n_rows),
+            "airspeed_validated.pitch_filtered": rng.normal(0.05, 0.1, size=n_rows),
             "vehicle_air_data.rho": rng.normal(1.18, 0.02, size=n_rows),
             "wind.windspeed_north": rng.normal(-0.2, 0.4, size=n_rows),
             "wind.windspeed_east": rng.normal(0.1, 0.4, size=n_rows),
@@ -217,6 +226,105 @@ def test_default_ablation_variants_resolve_expected_feature_sets():
     assert "gravity_b.x" not in variants["no_attitude"]
 
 
+def test_no_accel_no_alpha_feature_set_excludes_label_derivative_inputs():
+    excluded = {
+        "vehicle_local_position.ax",
+        "vehicle_local_position.ay",
+        "vehicle_local_position.az",
+        "vehicle_angular_velocity.xyz_derivative[0]",
+        "vehicle_angular_velocity.xyz_derivative[1]",
+        "vehicle_angular_velocity.xyz_derivative[2]",
+    }
+
+    feature_columns = resolve_feature_set_columns("no_accel_no_alpha")
+
+    assert feature_columns == NO_ACCEL_NO_ALPHA_FEATURE_COLUMNS
+    assert excluded.isdisjoint(feature_columns)
+    assert {"phase_corrected_sin", "phase_corrected_cos", "wing_stroke_angle_rad"}.issubset(feature_columns)
+    assert {"motor_cmd_0", "servo_left_elevon", "servo_right_elevon", "servo_rudder"}.issubset(feature_columns)
+    assert {"vehicle_local_position.vx", "vehicle_local_position.vy", "vehicle_local_position.vz"}.issubset(feature_columns)
+    assert {
+        "vehicle_angular_velocity.xyz[0]",
+        "vehicle_angular_velocity.xyz[1]",
+        "vehicle_angular_velocity.xyz[2]",
+    }.issubset(feature_columns)
+    assert {"gravity_b.x", "gravity_b.y", "gravity_b.z"}.issubset(feature_columns)
+    assert {"airspeed_validated.true_airspeed_m_s", "vehicle_air_data.rho"}.issubset(feature_columns)
+
+
+def test_paper_no_accel_v2_feature_set_excludes_label_derivative_inputs():
+    excluded = {
+        "vehicle_local_position.ax",
+        "vehicle_local_position.ay",
+        "vehicle_local_position.az",
+        "vehicle_angular_velocity.xyz_derivative[0]",
+        "vehicle_angular_velocity.xyz_derivative[1]",
+        "vehicle_angular_velocity.xyz_derivative[2]",
+    }
+
+    feature_columns = resolve_feature_set_columns("paper_no_accel_v2")
+
+    assert feature_columns == PAPER_NO_ACCEL_V2_FEATURE_COLUMNS
+    assert excluded.isdisjoint(feature_columns)
+    assert {
+        "airspeed_validated.indicated_airspeed_m_s",
+        "airspeed_validated.calibrated_airspeed_m_s",
+        "airspeed_validated.true_airspeed_m_s",
+        "airspeed_validated.calibrated_ground_minus_wind_m_s",
+        "airspeed_validated.true_ground_minus_wind_m_s",
+        "airspeed_validated.pitch_filtered",
+        "vehicle_local_position.heading",
+    }.issubset(feature_columns)
+    assert {
+        "roll_rad",
+        "pitch_rad",
+        "velocity_b.x",
+        "velocity_b.y",
+        "velocity_b.z",
+        "relative_air_velocity_b.x",
+        "relative_air_velocity_b.y",
+        "relative_air_velocity_b.z",
+        "alpha_rad",
+        "beta_rad",
+        "dynamic_pressure_pa",
+        "elevator_like",
+        "aileron_like",
+    }.issubset(feature_columns)
+
+
+def test_prepare_feature_target_frames_derives_paper_no_accel_v2_features():
+    frame = _synthetic_frame(n_rows=1, seed=17)
+    frame.loc[:, "vehicle_attitude.q[0]"] = 1.0
+    frame.loc[:, "vehicle_attitude.q[1]"] = 0.0
+    frame.loc[:, "vehicle_attitude.q[2]"] = 0.0
+    frame.loc[:, "vehicle_attitude.q[3]"] = 0.0
+    frame.loc[:, "vehicle_local_position.vx"] = 10.0
+    frame.loc[:, "vehicle_local_position.vy"] = 2.0
+    frame.loc[:, "vehicle_local_position.vz"] = -1.0
+    frame.loc[:, "wind.windspeed_north"] = 1.0
+    frame.loc[:, "wind.windspeed_east"] = -1.0
+    frame.loc[:, "airspeed_validated.true_airspeed_m_s"] = 10.0
+    frame.loc[:, "vehicle_air_data.rho"] = 1.2
+    frame.loc[:, "servo_left_elevon"] = 0.4
+    frame.loc[:, "servo_right_elevon"] = 0.2
+
+    features, _ = prepare_feature_target_frames(frame, PAPER_NO_ACCEL_V2_FEATURE_COLUMNS)
+
+    np.testing.assert_allclose(features["roll_rad"].to_numpy(), [0.0], atol=1e-7)
+    np.testing.assert_allclose(features["pitch_rad"].to_numpy(), [0.0], atol=1e-7)
+    np.testing.assert_allclose(features["velocity_b.x"].to_numpy(), [10.0], atol=1e-7)
+    np.testing.assert_allclose(features["velocity_b.y"].to_numpy(), [2.0], atol=1e-7)
+    np.testing.assert_allclose(features["velocity_b.z"].to_numpy(), [-1.0], atol=1e-7)
+    np.testing.assert_allclose(features["relative_air_velocity_b.x"].to_numpy(), [9.0], atol=1e-7)
+    np.testing.assert_allclose(features["relative_air_velocity_b.y"].to_numpy(), [3.0], atol=1e-7)
+    np.testing.assert_allclose(features["relative_air_velocity_b.z"].to_numpy(), [-1.0], atol=1e-7)
+    np.testing.assert_allclose(features["alpha_rad"].to_numpy(), [np.arctan2(-1.0, 9.0)], atol=1e-7)
+    np.testing.assert_allclose(features["beta_rad"].to_numpy(), [np.arcsin(3.0 / np.sqrt(91.0))], atol=1e-7)
+    np.testing.assert_allclose(features["dynamic_pressure_pa"].to_numpy(), [60.0], atol=1e-7)
+    np.testing.assert_allclose(features["elevator_like"].to_numpy(), [0.3], atol=1e-7)
+    np.testing.assert_allclose(features["aileron_like"].to_numpy(), [0.1], atol=1e-7)
+
+
 def test_run_ablation_study_writes_summary_outputs(tmp_path: Path):
     split_root = tmp_path / "split"
     split_root.mkdir(parents=True)
@@ -246,3 +354,35 @@ def test_run_ablation_study_writes_summary_outputs(tmp_path: Path):
     summary = pd.read_csv(outputs["summary_csv_path"])
     assert {"variant_name", "val_overall_r2", "test_overall_r2"}.issubset(summary.columns)
     assert set(summary["variant_name"]) == {"full", "no_phase"}
+
+
+def test_run_training_job_accepts_no_accel_no_alpha_feature_set(tmp_path: Path):
+    split_root = tmp_path / "split"
+    split_root.mkdir(parents=True)
+
+    _synthetic_frame(n_rows=160, seed=14).to_parquet(split_root / "train_samples.parquet", index=False)
+    _synthetic_frame(n_rows=80, seed=15).to_parquet(split_root / "val_samples.parquet", index=False)
+    _synthetic_frame(n_rows=80, seed=16).to_parquet(split_root / "test_samples.parquet", index=False)
+
+    output_dir = tmp_path / "artifacts"
+    outputs = run_training_job(
+        split_root=split_root,
+        output_dir=output_dir,
+        feature_set_name="no_accel_no_alpha",
+        hidden_sizes=(32, 32),
+        batch_size=64,
+        max_epochs=3,
+        learning_rate=1e-3,
+        weight_decay=1e-5,
+        device="cpu",
+        random_seed=22,
+        num_workers=0,
+        use_amp=False,
+    )
+
+    training_config = json.loads(Path(outputs["training_config_path"]).read_text(encoding="utf-8"))
+
+    assert training_config["feature_set_name"] == "no_accel_no_alpha"
+    assert training_config["feature_columns"] == NO_ACCEL_NO_ALPHA_FEATURE_COLUMNS
+    assert "vehicle_local_position.ax" not in training_config["feature_columns"]
+    assert "vehicle_angular_velocity.xyz_derivative[0]" not in training_config["feature_columns"]

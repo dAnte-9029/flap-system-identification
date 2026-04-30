@@ -25,6 +25,11 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Train a baseline PyTorch MLP for effective wrench regression")
     parser.add_argument("--split-root", required=True, help="Dataset split root containing train/val/test parquet files")
     parser.add_argument("--output-dir", required=True, help="Output directory for model artifacts")
+    parser.add_argument(
+        "--feature-set",
+        default=None,
+        help="Named feature set: full, no_accel_no_alpha, or paper_no_accel_v2",
+    )
     parser.add_argument("--hidden-sizes", type=_parse_hidden_sizes, default=(256, 256), help="Comma-separated MLP hidden sizes")
     parser.add_argument("--dropout", type=float, default=0.0, help="Dropout probability")
     parser.add_argument("--batch-size", type=int, default=4096, help="Training batch size")
@@ -47,6 +52,7 @@ def main() -> None:
     outputs = run_training_job(
         split_root=args.split_root,
         output_dir=args.output_dir,
+        feature_set_name=args.feature_set,
         hidden_sizes=args.hidden_sizes,
         dropout=args.dropout,
         batch_size=args.batch_size,

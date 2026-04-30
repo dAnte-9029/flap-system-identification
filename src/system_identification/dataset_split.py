@@ -181,6 +181,38 @@ def assign_cycle_block_splits(
     return assigned
 
 
+def assign_log_splits(
+    logs: pd.DataFrame,
+    *,
+    seed: int = 0,
+    train_ratio: float = 0.7,
+    val_ratio: float = 0.15,
+    test_ratio: float = 0.15,
+) -> pd.DataFrame:
+    if logs.empty:
+        return logs.assign(split=pd.Series(dtype=object))
+
+    assigned = logs.reset_index(drop=True).copy()
+    counts = _split_block_counts(
+        len(assigned),
+        train_ratio=train_ratio,
+        val_ratio=val_ratio,
+        test_ratio=test_ratio,
+    )
+
+    permutation = np.random.default_rng(seed).permutation(len(assigned))
+    split_labels = np.empty(len(assigned), dtype=object)
+
+    cursor = 0
+    for split_name in ("train", "val", "test"):
+        next_cursor = cursor + counts[split_name]
+        split_labels[permutation[cursor:next_cursor]] = split_name
+        cursor = next_cursor
+
+    assigned["split"] = split_labels
+    return assigned
+
+
 def build_train_purge_intervals(assigned_blocks: pd.DataFrame, *, purge_cycles: int = 8) -> pd.DataFrame:
     if assigned_blocks.empty:
         return pd.DataFrame(columns=["dataset_id", "log_id", "cycle_start", "cycle_end"])
@@ -448,6 +480,120 @@ def materialize_cycle_block_split(
         "train_blocks_path": str(train_blocks_path),
         "val_blocks_path": str(val_blocks_path),
         "test_blocks_path": str(test_blocks_path),
+        "train_samples_path": str(train_samples_path),
+        "val_samples_path": str(val_samples_path),
+        "test_samples_path": str(test_samples_path),
+    }
+
+
+def materialize_log_split(
+    *,
+    manifest_paths: list[str | Path],
+    output_root: str | Path,
+    seed: int = 0,
+    train_ratio: float = 0.7,
+    val_ratio: float = 0.15,
+    test_ratio: float = 0.15,
+) -> dict[str, object]:
+    output_dir = Path(output_root)
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    log_records: list[dict[str, str]] = []
+    for manifest_path in manifest_paths:
+        log_records.extend(_load_log_records_from_manifest(manifest_path))
+
+    if not log_records:
+        raise ValueError("No accepted logs found in the provided manifests")
+
+    logs = pd.DataFrame(log_records)
+    assigned_logs = assign_log_splits(
+        logs,
+        seed=seed,
+        train_ratio=train_ratio,
+        val_ratio=val_ratio,
+        test_ratio=test_ratio,
+    )
+
+    split_frames: dict[str, list[pd.DataFrame]] = {"train": [], "val": [], "test": []}
+    valid_sample_counts: list[int] = []
+
+    for row in assigned_logs.itertuples(index=False):
+        samples = pd.read_parquet(row.source_samples_path)
+        valid_samples = samples.loc[_valid_row_mask(samples)].copy()
+        valid_sample_counts.append(int(len(valid_samples)))
+        if valid_samples.empty:
+            continue
+        valid_samples["dataset_id"] = str(row.dataset_id)
+        valid_samples["log_id"] = str(row.log_id)
+        valid_samples["source_samples_path"] = str(row.source_samples_path)
+        valid_samples["split"] = str(row.split)
+        split_frames[str(row.split)].append(valid_samples)
+
+    assigned_logs["valid_sample_count"] = valid_sample_counts
+
+    split_tables: dict[str, pd.DataFrame] = {}
+    for split_name in ("train", "val", "test"):
+        if split_frames[split_name]:
+            split_tables[split_name] = pd.concat(split_frames[split_name], ignore_index=True)
+        else:
+            split_tables[split_name] = pd.DataFrame()
+
+    all_logs_path = output_dir / "all_logs.csv"
+    train_logs_path = output_dir / "train_logs.csv"
+    val_logs_path = output_dir / "val_logs.csv"
+    test_logs_path = output_dir / "test_logs.csv"
+    train_samples_path = output_dir / "train_samples.parquet"
+    val_samples_path = output_dir / "val_samples.parquet"
+    test_samples_path = output_dir / "test_samples.parquet"
+    dataset_manifest_path = output_dir / "dataset_manifest.json"
+
+    assigned_logs.sort_values(["split", "dataset_id", "log_id"]).to_csv(all_logs_path, index=False)
+    assigned_logs.loc[assigned_logs["split"] == "train"].to_csv(train_logs_path, index=False)
+    assigned_logs.loc[assigned_logs["split"] == "val"].to_csv(val_logs_path, index=False)
+    assigned_logs.loc[assigned_logs["split"] == "test"].to_csv(test_logs_path, index=False)
+
+    split_tables["train"].to_parquet(train_samples_path, index=False)
+    split_tables["val"].to_parquet(val_samples_path, index=False)
+    split_tables["test"].to_parquet(test_samples_path, index=False)
+
+    manifest = {
+        "dataset_id": output_dir.name,
+        "created_at_utc": datetime.now(timezone.utc).isoformat(),
+        "output_root": str(output_dir),
+        "split_policy": "whole_log",
+        "source_manifest_paths": [str(Path(path)) for path in manifest_paths],
+        "source_dataset_ids": sorted({record["dataset_id"] for record in log_records}),
+        "input_log_count": int(len(assigned_logs)),
+        "seed": int(seed),
+        "split_ratios": {
+            "train": float(train_ratio),
+            "val": float(val_ratio),
+            "test": float(test_ratio),
+        },
+        "split_log_counts": {
+            split_name: int((assigned_logs["split"] == split_name).sum())
+            for split_name in ("train", "val", "test")
+        },
+        "split_sample_counts": {
+            split_name: int(len(split_tables[split_name]))
+            for split_name in ("train", "val", "test")
+        },
+        "all_logs_csv": str(all_logs_path),
+        "train_logs_csv": str(train_logs_path),
+        "val_logs_csv": str(val_logs_path),
+        "test_logs_csv": str(test_logs_path),
+        "train_samples_parquet": str(train_samples_path),
+        "val_samples_parquet": str(val_samples_path),
+        "test_samples_parquet": str(test_samples_path),
+    }
+    dataset_manifest_path.write_text(json.dumps(manifest, indent=2, sort_keys=True), encoding="utf-8")
+
+    return {
+        "dataset_manifest_path": str(dataset_manifest_path),
+        "all_logs_path": str(all_logs_path),
+        "train_logs_path": str(train_logs_path),
+        "val_logs_path": str(val_logs_path),
+        "test_logs_path": str(test_logs_path),
         "train_samples_path": str(train_samples_path),
         "val_samples_path": str(val_samples_path),
         "test_samples_path": str(test_samples_path),

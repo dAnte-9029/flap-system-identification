@@ -10,6 +10,7 @@ from system_identification.dataset_split import (
     build_train_purge_intervals,
     extract_cycle_blocks,
     materialize_cycle_block_split,
+    materialize_log_split,
 )
 
 
@@ -274,3 +275,77 @@ def test_materialize_split_excludes_landed_samples(tmp_path: Path):
     assert not merged.empty
     assert (merged["vehicle_land_detected.landed"] < 0.5).all()
     assert set(merged["cycle_id"].astype(int).unique()) == {1, 2}
+
+
+def test_materialize_log_split_keeps_logs_disjoint(tmp_path: Path):
+    dataset_root = tmp_path / "cohort_logsplit"
+    accepted_logs = []
+
+    for log_index in range(5):
+        log_id = f"log_{log_index}"
+        log_dir = dataset_root / "aircraft_id=flapper_01" / f"log_id={log_id}"
+        log_dir.mkdir(parents=True)
+        samples = _samples_for_cycles([0, 1, 2, 3], rows_per_cycle=2)
+        samples["feature"] = samples["feature"] + 100.0 * log_index
+        samples.to_parquet(log_dir / "samples.parquet", index=False)
+        accepted_logs.append(
+            {
+                "log_id": log_id,
+                "samples_path": str(log_dir / "samples.parquet"),
+            }
+        )
+
+    accepted_logs_path = dataset_root / "accepted_logs.json"
+    accepted_logs_path.write_text(json.dumps(accepted_logs, indent=2), encoding="utf-8")
+    dataset_manifest_path = dataset_root / "dataset_manifest.json"
+    dataset_manifest_path.write_text(
+        json.dumps(
+            {
+                "dataset_id": "cohort_logsplit",
+                "accepted_logs_json": str(accepted_logs_path),
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    output_root = tmp_path / "logsplit"
+    outputs = materialize_log_split(
+        manifest_paths=[dataset_manifest_path],
+        output_root=output_root,
+        seed=9,
+        train_ratio=0.6,
+        val_ratio=0.2,
+        test_ratio=0.2,
+    )
+
+    assert Path(outputs["dataset_manifest_path"]).exists()
+    assert (output_root / "train_logs.csv").exists()
+    assert (output_root / "val_logs.csv").exists()
+    assert (output_root / "test_logs.csv").exists()
+    assert (output_root / "train_samples.parquet").exists()
+    assert (output_root / "val_samples.parquet").exists()
+    assert (output_root / "test_samples.parquet").exists()
+
+    split_tables = {
+        split_name: pd.read_parquet(output_root / f"{split_name}_samples.parquet")
+        for split_name in ["train", "val", "test"]
+    }
+    logs_by_split = {
+        split_name: set(zip(frame["dataset_id"], frame["log_id"]))
+        for split_name, frame in split_tables.items()
+    }
+
+    assert logs_by_split["train"].isdisjoint(logs_by_split["val"])
+    assert logs_by_split["train"].isdisjoint(logs_by_split["test"])
+    assert logs_by_split["val"].isdisjoint(logs_by_split["test"])
+    assert sum(len(logs) for logs in logs_by_split.values()) == 5
+
+    for split_name, frame in split_tables.items():
+        assert not frame.empty
+        assert frame["split"].eq(split_name).all()
+        assert frame["label_valid"].all()
+        assert frame["cycle_valid"].all()
+        assert frame["flap_active"].all()
+        assert (frame["vehicle_land_detected.landed"] < 0.5).all()
+        assert {"dataset_id", "log_id", "source_samples_path", "split"}.issubset(frame.columns)

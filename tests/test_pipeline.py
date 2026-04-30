@@ -79,6 +79,95 @@ def test_assemble_canonical_samples_emits_phase_and_nan_labels_when_metadata_inc
     assert samples["mx_b"].isna().all()
 
 
+def test_assemble_canonical_samples_resamples_direct_airspeed_fields():
+    grid_us = np.array([0, 10_000, 20_000], dtype=np.int64)
+    metadata = {
+        "mass_properties": {
+            "mass_kg": {"value": None},
+            "cg_b_m": {"value": [None, None, None]},
+            "inertia_b_kg_m2": {"value": [[None, None, None], [None, None, None], [None, None, None]]},
+        },
+        "flapping_drive": {
+            "encoder_counts_per_rev": 4096,
+            "encoder_to_drive_ratio": {"value": 7.5},
+            "encoder_to_drive_sign": 1.0,
+            "drive_phase_zero_offset_rad": 0.0,
+            "wing_stroke_amplitude_rad": {"value": float(np.deg2rad(30.0))},
+            "wing_stroke_phase_offset_rad": {"value": 0.0},
+        },
+    }
+    topic_frames = _base_topic_frames(grid_us)
+    topic_frames["airspeed_validated"] = pd.DataFrame(
+        {
+            "event_time_us": grid_us,
+            "indicated_airspeed_m_s": np.array([4.0, 5.0, 6.0]),
+            "calibrated_airspeed_m_s": np.array([4.1, 5.1, 6.1]),
+            "true_airspeed_m_s": np.array([4.4, 5.4, 6.4]),
+            "calibrated_ground_minus_wind_m_s": np.array([4.2, 5.2, 6.2]),
+            "true_ground_minus_wind_m_s": np.array([4.5, 5.5, 6.5]),
+            "airspeed_derivative_filtered": np.array([0.1, 0.2, 0.3]),
+            "throttle_filtered": np.array([0.45, 0.5, 0.55]),
+            "pitch_filtered": np.array([0.01, 0.02, 0.03]),
+        }
+    )
+
+    samples = assemble_canonical_samples(grid_us=grid_us, topic_frames=topic_frames, metadata=metadata)
+
+    expected_columns = [
+        "airspeed_validated.calibrated_ground_minus_wind_m_s",
+        "airspeed_validated.true_ground_minus_wind_m_s",
+        "airspeed_validated.airspeed_derivative_filtered",
+        "airspeed_validated.throttle_filtered",
+        "airspeed_validated.pitch_filtered",
+    ]
+    assert set(expected_columns).issubset(samples.columns)
+    np.testing.assert_allclose(
+        samples["airspeed_validated.true_ground_minus_wind_m_s"].to_numpy(),
+        np.array([4.5, 5.5, 6.5]),
+    )
+    np.testing.assert_allclose(
+        samples["airspeed_validated.pitch_filtered"].to_numpy(),
+        np.array([0.01, 0.02, 0.03]),
+    )
+    assert samples["airspeed_validated.pitch_filtered_valid"].all()
+
+
+def test_assemble_canonical_samples_emits_nan_for_missing_direct_airspeed_fields():
+    grid_us = np.array([0, 10_000, 20_000], dtype=np.int64)
+    metadata = {
+        "mass_properties": {
+            "mass_kg": {"value": None},
+            "cg_b_m": {"value": [None, None, None]},
+            "inertia_b_kg_m2": {"value": [[None, None, None], [None, None, None], [None, None, None]]},
+        },
+        "flapping_drive": {
+            "encoder_counts_per_rev": 4096,
+            "encoder_to_drive_ratio": {"value": 7.5},
+            "encoder_to_drive_sign": 1.0,
+            "drive_phase_zero_offset_rad": 0.0,
+            "wing_stroke_amplitude_rad": {"value": float(np.deg2rad(30.0))},
+            "wing_stroke_phase_offset_rad": {"value": 0.0},
+        },
+    }
+    topic_frames = _base_topic_frames(grid_us)
+    topic_frames["airspeed_validated"] = pd.DataFrame(
+        {
+            "event_time_us": grid_us,
+            "indicated_airspeed_m_s": np.array([4.0, 5.0, 6.0]),
+            "calibrated_airspeed_m_s": np.array([4.1, 5.1, 6.1]),
+            "true_airspeed_m_s": np.array([4.4, 5.4, 6.4]),
+            "calibrated_ground_minus_wind_m_s": np.array([4.2, 5.2, 6.2]),
+            "pitch_filtered": np.array([0.01, 0.02, 0.03]),
+        }
+    )
+
+    samples = assemble_canonical_samples(grid_us=grid_us, topic_frames=topic_frames, metadata=metadata)
+
+    assert "airspeed_validated.true_ground_minus_wind_m_s" in samples.columns
+    assert samples["airspeed_validated.true_ground_minus_wind_m_s"].isna().all()
+    assert not samples["airspeed_validated.true_ground_minus_wind_m_s_valid"].any()
+
+
 def test_assemble_canonical_samples_computes_effective_wrench_labels_from_complete_metadata():
     grid_us = np.array([0, 10_000], dtype=np.int64)
     metadata = {
