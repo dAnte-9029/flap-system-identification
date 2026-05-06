@@ -36,7 +36,12 @@ def parse_args() -> argparse.Namespace:
         default=None,
         help="Named feature set: full, no_accel_no_alpha, paper_no_accel_v2, or paper_pfnn_10",
     )
-    parser.add_argument("--model-type", default="mlp", choices=["mlp", "pfnn", "causal_gru", "causal_gru_asl"], help="Regressor architecture")
+    parser.add_argument(
+        "--model-type",
+        default="mlp",
+        choices=["mlp", "pfnn", "causal_gru", "causal_gru_asl", "subsection_gru", "subnet_discrete", "ct_subnet_euler"],
+        help="Regressor architecture",
+    )
     parser.add_argument("--hidden-sizes", type=_parse_hidden_sizes, default=(256, 256), help="Comma-separated MLP hidden sizes")
     parser.add_argument("--dropout", type=float, default=0.0, help="Dropout probability")
     parser.add_argument("--pfnn-expanded-input-dim", type=int, default=45, help="PFNN input expansion size")
@@ -70,6 +75,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--max-val-samples", type=int, default=None, help="Optional val subsample size")
     parser.add_argument("--max-test-samples", type=int, default=None, help="Optional test subsample size")
     parser.add_argument("--sequence-history-size", type=int, default=64, help="Causal sequence history length")
+    parser.add_argument("--rollout-size", type=int, default=32, help="Causal rollout target length")
+    parser.add_argument("--rollout-stride", type=int, default=None, help="Stride between rollout subsection starts")
     parser.add_argument(
         "--sequence-feature-mode",
         default="phase_actuator_airdata",
@@ -86,6 +93,9 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--asl-hidden-size", type=int, default=128, help="ASL frequency gate hidden size")
     parser.add_argument("--asl-dropout", type=float, default=0.1, help="ASL dropout probability")
     parser.add_argument("--asl-max-frequency-bins", type=_parse_optional_int, default=None, help="ASL retained RFFT bins, or none")
+    parser.add_argument("--latent-size", type=int, default=16, help="Latent size for SUBNET rollout models")
+    parser.add_argument("--dt-over-tau", type=float, default=0.03, help="Continuous-time latent derivative scale")
+    parser.add_argument("--ct-integrator", default="euler", choices=["euler"], help="Continuous-time rollout integrator")
     return parser.parse_args()
 
 
@@ -120,12 +130,17 @@ def main() -> None:
         pfnn_phase_node_count=args.pfnn_phase_node_count,
         pfnn_control_points=args.pfnn_control_points,
         sequence_history_size=args.sequence_history_size,
+        rollout_size=args.rollout_size,
+        rollout_stride=args.rollout_stride,
         sequence_feature_mode=args.sequence_feature_mode,
         current_feature_mode=args.current_feature_mode,
         gru_num_layers=args.gru_num_layers,
         asl_hidden_size=args.asl_hidden_size,
         asl_dropout=args.asl_dropout,
         asl_max_frequency_bins=args.asl_max_frequency_bins,
+        latent_size=args.latent_size,
+        dt_over_tau=args.dt_over_tau,
+        ct_integrator=args.ct_integrator,
     )
     for key, value in outputs.items():
         print(f"{key}: {value}")

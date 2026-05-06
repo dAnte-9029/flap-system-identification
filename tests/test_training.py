@@ -232,6 +232,56 @@ def test_prepare_causal_sequence_feature_target_frames_aligns_target_to_last_tim
     np.testing.assert_allclose(targets["fx_b"].to_numpy(), [20.0, 30.0, 40.0])
 
 
+def test_prepare_causal_rollout_feature_target_frames_aligns_context_rollout_and_targets():
+    frame = _synthetic_frame(n_rows=8, seed=1)
+    frame["log_id"] = "a"
+    frame["segment_id"] = 0
+    frame["time_s"] = np.arange(8, dtype=float)
+    frame["fx_b"] = frame["time_s"] * 10.0
+
+    context, rollout, current, targets, meta = training_module.prepare_causal_rollout_feature_target_frames(
+        frame,
+        context_feature_columns=["phase_corrected_sin"],
+        rollout_feature_columns=["phase_corrected_sin", "motor_cmd_0"],
+        current_feature_columns=["velocity_b.x"],
+        target_columns=["fx_b"],
+        history_size=3,
+        rollout_size=2,
+        rollout_stride=2,
+    )
+
+    assert context.shape == (2, 3, 1)
+    assert rollout.shape == (2, 2, 2)
+    assert current.shape == (2, 2, 1)
+    assert targets.shape == (2, 2, 1)
+    np.testing.assert_allclose(meta["time_s"].to_numpy(), [3.0, 4.0, 5.0, 6.0])
+    np.testing.assert_allclose(targets.reshape(-1), [30.0, 40.0, 50.0, 60.0])
+
+
+def test_prepare_causal_rollout_feature_target_frames_never_crosses_log_or_segment():
+    frame = _synthetic_frame(n_rows=12, seed=2)
+    frame["log_id"] = ["a"] * 6 + ["b"] * 6
+    frame["segment_id"] = [0] * 3 + [1] * 3 + [0] * 6
+    frame["time_s"] = list(reversed(range(6))) + list(reversed(range(6)))
+
+    context, rollout, current, targets, meta = training_module.prepare_causal_rollout_feature_target_frames(
+        frame,
+        context_feature_columns=["phase_corrected_sin"],
+        rollout_feature_columns=["phase_corrected_sin"],
+        current_feature_columns=[],
+        target_columns=["fx_b", "fz_b"],
+        history_size=2,
+        rollout_size=2,
+        rollout_stride=1,
+    )
+
+    assert context.shape[0] == 3
+    assert current.shape == (3, 2, 0)
+    assert targets.shape == (3, 2, 2)
+    assert set(meta["log_id"]) == {"b"}
+    assert set(meta["segment_id"]) == {0}
+
+
 def test_resolve_sequence_feature_columns_defaults_to_leakage_resistant_history():
     columns = resolve_feature_set_columns("paper_no_accel_v2")
 
@@ -283,6 +333,100 @@ def test_causal_gru_regressor_forward_shape_without_current_features():
     out = model(torch.randn(5, 8, 4), None)
 
     assert out.shape == (5, 6)
+
+
+def test_subsection_gru_regressor_forward_shape():
+    model = training_module.SubsectionGRUWrenchRegressor(
+        context_input_dim=4,
+        rollout_input_dim=4,
+        current_input_dim=3,
+        output_dim=6,
+        hidden_size=16,
+        num_layers=1,
+        dropout=0.0,
+        head_hidden_sizes=(12,),
+    )
+
+    out = model(
+        torch.randn(5, 8, 4),
+        torch.randn(5, 6, 4),
+        torch.randn(5, 6, 3),
+    )
+
+    assert out.shape == (5, 6, 6)
+
+
+def test_subsection_gru_regressor_forward_shape_without_current_features():
+    model = training_module.SubsectionGRUWrenchRegressor(
+        context_input_dim=4,
+        rollout_input_dim=4,
+        current_input_dim=0,
+        output_dim=6,
+        hidden_size=16,
+        num_layers=1,
+        dropout=0.0,
+        head_hidden_sizes=(12,),
+    )
+
+    out = model(torch.randn(5, 8, 4), torch.randn(5, 6, 4), None)
+
+    assert out.shape == (5, 6, 6)
+
+
+def test_discrete_subnet_wrench_regressor_forward_shape():
+    model = training_module.DiscreteSUBNETWrenchRegressor(
+        context_input_dim=4,
+        rollout_input_dim=4,
+        current_input_dim=3,
+        output_dim=6,
+        latent_size=10,
+        hidden_sizes=(16,),
+        dropout=0.0,
+    )
+
+    out = model(
+        torch.randn(5, 8, 4),
+        torch.randn(5, 6, 4),
+        torch.randn(5, 6, 3),
+    )
+
+    assert out.shape == (5, 6, 6)
+
+
+def test_ct_subnet_euler_wrench_regressor_forward_shape_and_tau_config():
+    model = training_module.ContinuousTimeSUBNETWrenchRegressor(
+        context_input_dim=4,
+        rollout_input_dim=4,
+        current_input_dim=3,
+        output_dim=6,
+        latent_size=10,
+        hidden_sizes=(16,),
+        dropout=0.0,
+        dt_over_tau=0.03,
+        integrator="euler",
+    )
+
+    out = model(
+        torch.randn(5, 8, 4),
+        torch.randn(5, 6, 4),
+        torch.randn(5, 6, 3),
+    )
+
+    assert out.shape == (5, 6, 6)
+    assert model.dt_over_tau == pytest.approx(0.03)
+
+
+def test_ct_subnet_euler_rejects_bad_dt_over_tau():
+    with pytest.raises(ValueError, match="dt_over_tau"):
+        training_module.ContinuousTimeSUBNETWrenchRegressor(
+            context_input_dim=4,
+            rollout_input_dim=4,
+            current_input_dim=0,
+            output_dim=6,
+            latent_size=10,
+            hidden_sizes=(16,),
+            dt_over_tau=0.0,
+        )
 
 
 def test_fit_and_evaluate_torch_regressor_smoke():
@@ -382,6 +526,44 @@ def test_run_training_job_supports_causal_gru_model(tmp_path: Path):
     assert cfg["sequence_feature_mode"] == "phase_actuator_airdata"
     assert "velocity_b.x" not in cfg["sequence_feature_columns"]
     assert metrics["test"]["sample_count"] == 41
+
+
+def test_run_training_job_supports_rollout_model_config(tmp_path: Path):
+    split_root = tmp_path / "split"
+    split_root.mkdir(parents=True)
+
+    for split, seed, log_id in [("train", 1, "train_log"), ("val", 2, "val_log"), ("test", 3, "test_log")]:
+        frame = _synthetic_frame(n_rows=80, seed=seed)
+        frame["log_id"] = log_id
+        frame["segment_id"] = 0
+        frame["time_s"] = np.arange(len(frame), dtype=float) * 0.01
+        frame.to_parquet(split_root / f"{split}_samples.parquet", index=False)
+
+    outputs = run_training_job(
+        split_root=split_root,
+        output_dir=tmp_path / "run",
+        feature_set_name="paper_no_accel_v2",
+        model_type="subsection_gru",
+        sequence_history_size=8,
+        rollout_size=4,
+        rollout_stride=4,
+        sequence_feature_mode="phase_actuator_airdata",
+        hidden_sizes=(16,),
+        batch_size=8,
+        max_epochs=1,
+        device="cpu",
+        use_amp=False,
+    )
+
+    cfg = json.loads(Path(outputs["training_config_path"]).read_text(encoding="utf-8"))
+    metrics = json.loads(Path(outputs["metrics_path"]).read_text(encoding="utf-8"))
+
+    assert cfg["model_type"] == "subsection_gru"
+    assert cfg["rollout_size"] == 4
+    assert cfg["rollout_stride"] == 4
+    assert cfg["has_acceleration_inputs"] is False
+    assert cfg["has_velocity_history"] is False
+    assert metrics["test"]["sample_count"] > 0
 
 
 def test_adaptive_spectrum_layer_preserves_sequence_shape():
@@ -850,6 +1032,47 @@ def test_run_baseline_comparison_supports_causal_sequence_recipes(tmp_path: Path
     }
     assert set(summary["model_type"]) == {"causal_gru", "causal_gru_asl"}
     assert {"sequence_history_size", "sequence_feature_mode", "test_overall_r2", "test_fx_b_rmse"}.issubset(
+        summary.columns
+    )
+    assert set(summary["sequence_feature_mode"]) == {"phase_actuator_airdata"}
+
+
+def test_run_baseline_comparison_supports_subnet_rollout_recipes(tmp_path: Path):
+    split_root = tmp_path / "split"
+    split_root.mkdir(parents=True)
+
+    for split, seed, log_id in [("train", 130, "train_log"), ("val", 131, "val_log"), ("test", 132, "test_log")]:
+        frame = _synthetic_frame(n_rows=80, seed=seed)
+        frame["log_id"] = log_id
+        frame["segment_id"] = 0
+        frame["time_s"] = np.arange(len(frame), dtype=float) * 0.01
+        frame.to_parquet(split_root / f"{split}_samples.parquet", index=False)
+
+    outputs = run_baseline_comparison(
+        split_root=split_root,
+        output_dir=tmp_path / "comparison",
+        recipe_names=[
+            "subsection_gru_paper_no_accel_v2_phase_actuator_airdata",
+            "subnet_discrete_paper_no_accel_v2_phase_actuator_airdata",
+            "ct_subnet_euler_paper_no_accel_v2_phase_actuator_airdata",
+        ],
+        hidden_sizes=(16,),
+        batch_size=8,
+        max_epochs=1,
+        device="cpu",
+        random_seed=130,
+        num_workers=0,
+        use_amp=False,
+        sequence_history_size=8,
+        rollout_size=4,
+        rollout_stride=4,
+        latent_size=8,
+    )
+
+    summary = pd.read_csv(outputs["summary_csv_path"])
+
+    assert set(summary["model_type"]) == {"subsection_gru", "subnet_discrete", "ct_subnet_euler"}
+    assert {"rollout_size", "rollout_stride", "latent_size", "test_overall_r2", "test_fx_b_rmse"}.issubset(
         summary.columns
     )
     assert set(summary["sequence_feature_mode"]) == {"phase_actuator_airdata"}

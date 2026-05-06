@@ -202,6 +202,52 @@ BASELINE_COMPARISON_RECIPES: dict[str, dict[str, Any]] = {
         "asl_dropout": 0.1,
         "asl_max_frequency_bins": None,
     },
+    "subsection_gru_paper_no_accel_v2_phase_actuator_airdata": {
+        "feature_set_name": "paper_no_accel_v2",
+        "model_type": "subsection_gru",
+        "loss_type": "huber",
+        "huber_delta": 1.5,
+        "window_mode": "single",
+        "window_radius": 0,
+        "window_feature_mode": "all",
+        "sequence_history_size": 64,
+        "rollout_size": 32,
+        "rollout_stride": 32,
+        "sequence_feature_mode": "phase_actuator_airdata",
+        "current_feature_mode": "remaining_current",
+    },
+    "subnet_discrete_paper_no_accel_v2_phase_actuator_airdata": {
+        "feature_set_name": "paper_no_accel_v2",
+        "model_type": "subnet_discrete",
+        "loss_type": "huber",
+        "huber_delta": 1.5,
+        "window_mode": "single",
+        "window_radius": 0,
+        "window_feature_mode": "all",
+        "sequence_history_size": 64,
+        "rollout_size": 32,
+        "rollout_stride": 32,
+        "sequence_feature_mode": "phase_actuator_airdata",
+        "current_feature_mode": "remaining_current",
+        "latent_size": 16,
+    },
+    "ct_subnet_euler_paper_no_accel_v2_phase_actuator_airdata": {
+        "feature_set_name": "paper_no_accel_v2",
+        "model_type": "ct_subnet_euler",
+        "loss_type": "huber",
+        "huber_delta": 1.5,
+        "window_mode": "single",
+        "window_radius": 0,
+        "window_feature_mode": "all",
+        "sequence_history_size": 64,
+        "rollout_size": 32,
+        "rollout_stride": 32,
+        "sequence_feature_mode": "phase_actuator_airdata",
+        "current_feature_mode": "remaining_current",
+        "latent_size": 16,
+        "dt_over_tau": 0.03,
+        "ct_integrator": "euler",
+    },
 }
 
 DEFAULT_REGIME_BIN_SPECS: dict[str, list[float]] = {
@@ -492,6 +538,275 @@ class CausalGRUASLRegressor(nn.Module):
 
     def forward(self, sequence_inputs: torch.Tensor, current_inputs: torch.Tensor | None = None) -> torch.Tensor:
         return self.regressor(self.asl(sequence_inputs), current_inputs)
+
+
+def _make_mlp_layers(
+    input_dim: int,
+    output_dim: int,
+    hidden_sizes: tuple[int, ...],
+    *,
+    dropout: float = 0.0,
+    activation: type[nn.Module] = nn.ReLU,
+) -> nn.Sequential:
+    layers: list[nn.Module] = []
+    last_dim = int(input_dim)
+    for hidden_dim in hidden_sizes:
+        if hidden_dim <= 0:
+            raise ValueError("hidden_sizes entries must be positive")
+        layers.append(nn.Linear(last_dim, int(hidden_dim)))
+        layers.append(activation())
+        if dropout > 0.0:
+            layers.append(nn.Dropout(float(dropout)))
+        last_dim = int(hidden_dim)
+    layers.append(nn.Linear(last_dim, int(output_dim)))
+    return nn.Sequential(*layers)
+
+
+class SubsectionGRUWrenchRegressor(nn.Module):
+    def __init__(
+        self,
+        *,
+        context_input_dim: int,
+        rollout_input_dim: int,
+        current_input_dim: int,
+        output_dim: int,
+        hidden_size: int = 128,
+        num_layers: int = 1,
+        dropout: float = 0.0,
+        head_hidden_sizes: tuple[int, ...] = (128,),
+    ):
+        super().__init__()
+        if context_input_dim <= 0 or rollout_input_dim <= 0 or output_dim <= 0:
+            raise ValueError("context_input_dim, rollout_input_dim, and output_dim must be positive")
+        if current_input_dim < 0:
+            raise ValueError("current_input_dim must be non-negative")
+        if hidden_size <= 0 or num_layers <= 0:
+            raise ValueError("hidden_size and num_layers must be positive")
+
+        self.context_input_dim = int(context_input_dim)
+        self.rollout_input_dim = int(rollout_input_dim)
+        self.current_input_dim = int(current_input_dim)
+        self.output_dim = int(output_dim)
+        self.hidden_size = int(hidden_size)
+        self.num_layers = int(num_layers)
+
+        gru_dropout = float(dropout) if num_layers > 1 else 0.0
+        self.context_encoder = nn.GRU(
+            input_size=self.context_input_dim,
+            hidden_size=self.hidden_size,
+            num_layers=self.num_layers,
+            dropout=gru_dropout,
+            batch_first=True,
+        )
+        self.rollout_decoder = nn.GRU(
+            input_size=self.rollout_input_dim,
+            hidden_size=self.hidden_size,
+            num_layers=self.num_layers,
+            dropout=gru_dropout,
+            batch_first=True,
+        )
+        self.head = _make_mlp_layers(
+            self.hidden_size + self.current_input_dim,
+            self.output_dim,
+            head_hidden_sizes,
+            dropout=dropout,
+        )
+
+    def forward(
+        self,
+        context_inputs: torch.Tensor,
+        rollout_inputs: torch.Tensor,
+        current_inputs: torch.Tensor | None = None,
+    ) -> torch.Tensor:
+        if context_inputs.ndim != 3 or context_inputs.shape[2] != self.context_input_dim:
+            raise ValueError(f"Expected context_inputs shape [batch, history, {self.context_input_dim}]")
+        if rollout_inputs.ndim != 3 or rollout_inputs.shape[2] != self.rollout_input_dim:
+            raise ValueError(f"Expected rollout_inputs shape [batch, rollout, {self.rollout_input_dim}]")
+        _, hidden = self.context_encoder(context_inputs)
+        decoded, _ = self.rollout_decoder(rollout_inputs, hidden)
+        if self.current_input_dim > 0:
+            if current_inputs is None:
+                raise ValueError("current_inputs are required when current_input_dim is positive")
+            if current_inputs.ndim != 3 or current_inputs.shape[:2] != rollout_inputs.shape[:2]:
+                raise ValueError("current_inputs must have shape [batch, rollout, current_features]")
+            if current_inputs.shape[2] != self.current_input_dim:
+                raise ValueError(f"Expected current feature dim {self.current_input_dim}")
+            decoded = torch.cat([decoded, current_inputs], dim=2)
+        batch_size, rollout_size, feature_dim = decoded.shape
+        flat = decoded.reshape(batch_size * rollout_size, feature_dim)
+        return self.head(flat).reshape(batch_size, rollout_size, self.output_dim)
+
+
+class DiscreteSUBNETWrenchRegressor(nn.Module):
+    def __init__(
+        self,
+        *,
+        context_input_dim: int,
+        rollout_input_dim: int,
+        current_input_dim: int,
+        output_dim: int,
+        latent_size: int = 16,
+        hidden_sizes: tuple[int, ...] = (128, 128),
+        dropout: float = 0.0,
+    ):
+        super().__init__()
+        if context_input_dim <= 0 or rollout_input_dim <= 0 or output_dim <= 0:
+            raise ValueError("context_input_dim, rollout_input_dim, and output_dim must be positive")
+        if current_input_dim < 0:
+            raise ValueError("current_input_dim must be non-negative")
+        if latent_size <= 0:
+            raise ValueError("latent_size must be positive")
+        if not hidden_sizes:
+            raise ValueError("hidden_sizes must not be empty")
+
+        self.context_input_dim = int(context_input_dim)
+        self.rollout_input_dim = int(rollout_input_dim)
+        self.current_input_dim = int(current_input_dim)
+        self.output_dim = int(output_dim)
+        self.latent_size = int(latent_size)
+        encoder_hidden = int(hidden_sizes[0])
+        self.context_encoder = nn.GRU(
+            input_size=self.context_input_dim,
+            hidden_size=encoder_hidden,
+            num_layers=1,
+            batch_first=True,
+        )
+        self.encoder_to_latent = nn.Linear(encoder_hidden, self.latent_size)
+        self.transition_net = _make_mlp_layers(
+            self.latent_size + self.rollout_input_dim,
+            self.latent_size,
+            hidden_sizes,
+            dropout=dropout,
+        )
+        self.output_net = _make_mlp_layers(
+            self.latent_size + self.rollout_input_dim + self.current_input_dim,
+            self.output_dim,
+            hidden_sizes,
+            dropout=dropout,
+        )
+        self.last_latent_rms = 0.0
+        self.last_delta_latent_rms = 0.0
+
+    def _initial_latent(self, context_inputs: torch.Tensor) -> torch.Tensor:
+        _, hidden = self.context_encoder(context_inputs)
+        return self.encoder_to_latent(hidden[-1])
+
+    def _step_delta(self, latent: torch.Tensor, rollout_input: torch.Tensor) -> torch.Tensor:
+        return self.transition_net(torch.cat([latent, rollout_input], dim=1))
+
+    def _output(
+        self,
+        latent: torch.Tensor,
+        rollout_input: torch.Tensor,
+        current_input: torch.Tensor | None,
+    ) -> torch.Tensor:
+        parts = [latent, rollout_input]
+        if self.current_input_dim > 0:
+            if current_input is None:
+                raise ValueError("current_inputs are required when current_input_dim is positive")
+            parts.append(current_input)
+        return self.output_net(torch.cat(parts, dim=1))
+
+    def forward(
+        self,
+        context_inputs: torch.Tensor,
+        rollout_inputs: torch.Tensor,
+        current_inputs: torch.Tensor | None = None,
+    ) -> torch.Tensor:
+        if context_inputs.ndim != 3 or context_inputs.shape[2] != self.context_input_dim:
+            raise ValueError(f"Expected context_inputs shape [batch, history, {self.context_input_dim}]")
+        if rollout_inputs.ndim != 3 or rollout_inputs.shape[2] != self.rollout_input_dim:
+            raise ValueError(f"Expected rollout_inputs shape [batch, rollout, {self.rollout_input_dim}]")
+        if self.current_input_dim > 0:
+            if current_inputs is None or current_inputs.ndim != 3 or current_inputs.shape[:2] != rollout_inputs.shape[:2]:
+                raise ValueError("current_inputs must have shape [batch, rollout, current_features]")
+            if current_inputs.shape[2] != self.current_input_dim:
+                raise ValueError(f"Expected current feature dim {self.current_input_dim}")
+
+        latent = self._initial_latent(context_inputs)
+        outputs: list[torch.Tensor] = []
+        latent_values: list[torch.Tensor] = []
+        delta_values: list[torch.Tensor] = []
+        for step in range(rollout_inputs.shape[1]):
+            rollout_step = rollout_inputs[:, step, :]
+            current_step = current_inputs[:, step, :] if current_inputs is not None and self.current_input_dim > 0 else None
+            outputs.append(self._output(latent, rollout_step, current_step))
+            delta = self._step_delta(latent, rollout_step)
+            latent_values.append(latent)
+            delta_values.append(delta)
+            latent = latent + delta
+        with torch.no_grad():
+            self.last_latent_rms = float(torch.sqrt(torch.mean(torch.square(torch.stack(latent_values)))) .detach().cpu())
+            self.last_delta_latent_rms = float(torch.sqrt(torch.mean(torch.square(torch.stack(delta_values)))) .detach().cpu())
+        return torch.stack(outputs, dim=1)
+
+
+class ContinuousTimeSUBNETWrenchRegressor(DiscreteSUBNETWrenchRegressor):
+    def __init__(
+        self,
+        *,
+        context_input_dim: int,
+        rollout_input_dim: int,
+        current_input_dim: int,
+        output_dim: int,
+        latent_size: int = 16,
+        hidden_sizes: tuple[int, ...] = (128, 128),
+        dropout: float = 0.0,
+        dt_over_tau: float = 0.03,
+        integrator: str = "euler",
+    ):
+        if dt_over_tau <= 0.0 or not math.isfinite(float(dt_over_tau)):
+            raise ValueError("dt_over_tau must be positive and finite")
+        if integrator != "euler":
+            raise ValueError("Only euler integrator is currently supported")
+        super().__init__(
+            context_input_dim=context_input_dim,
+            rollout_input_dim=rollout_input_dim,
+            current_input_dim=current_input_dim,
+            output_dim=output_dim,
+            latent_size=latent_size,
+            hidden_sizes=hidden_sizes,
+            dropout=dropout,
+        )
+        self.dt_over_tau = float(dt_over_tau)
+        self.integrator = integrator
+        self.last_latent_derivative_rms = 0.0
+
+    def forward(
+        self,
+        context_inputs: torch.Tensor,
+        rollout_inputs: torch.Tensor,
+        current_inputs: torch.Tensor | None = None,
+    ) -> torch.Tensor:
+        if context_inputs.ndim != 3 or context_inputs.shape[2] != self.context_input_dim:
+            raise ValueError(f"Expected context_inputs shape [batch, history, {self.context_input_dim}]")
+        if rollout_inputs.ndim != 3 or rollout_inputs.shape[2] != self.rollout_input_dim:
+            raise ValueError(f"Expected rollout_inputs shape [batch, rollout, {self.rollout_input_dim}]")
+        if self.current_input_dim > 0:
+            if current_inputs is None or current_inputs.ndim != 3 or current_inputs.shape[:2] != rollout_inputs.shape[:2]:
+                raise ValueError("current_inputs must have shape [batch, rollout, current_features]")
+            if current_inputs.shape[2] != self.current_input_dim:
+                raise ValueError(f"Expected current feature dim {self.current_input_dim}")
+
+        latent = self._initial_latent(context_inputs)
+        outputs: list[torch.Tensor] = []
+        latent_values: list[torch.Tensor] = []
+        derivative_values: list[torch.Tensor] = []
+        for step in range(rollout_inputs.shape[1]):
+            rollout_step = rollout_inputs[:, step, :]
+            current_step = current_inputs[:, step, :] if current_inputs is not None and self.current_input_dim > 0 else None
+            outputs.append(self._output(latent, rollout_step, current_step))
+            derivative = self._step_delta(latent, rollout_step)
+            latent_values.append(latent)
+            derivative_values.append(derivative)
+            latent = latent + self.dt_over_tau * derivative
+        with torch.no_grad():
+            self.last_latent_rms = float(torch.sqrt(torch.mean(torch.square(torch.stack(latent_values)))) .detach().cpu())
+            self.last_latent_derivative_rms = float(
+                torch.sqrt(torch.mean(torch.square(torch.stack(derivative_values)))).detach().cpu()
+            )
+            self.last_delta_latent_rms = self.dt_over_tau * self.last_latent_derivative_rms
+        return torch.stack(outputs, dim=1)
 
 
 def cyclic_catmull_rom_weights(
@@ -1004,6 +1319,95 @@ def prepare_causal_sequence_feature_target_frames(
     return sequence_features, current_features, targets, metadata
 
 
+def prepare_causal_rollout_feature_target_frames(
+    frame: pd.DataFrame,
+    context_feature_columns: list[str],
+    rollout_feature_columns: list[str],
+    current_feature_columns: list[str],
+    target_columns: list[str],
+    *,
+    history_size: int,
+    rollout_size: int,
+    rollout_stride: int | None = None,
+    group_columns: tuple[str, ...] = ("log_id", "segment_id"),
+    sort_column: str = "time_s",
+) -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray, pd.DataFrame]:
+    if history_size < 1:
+        raise ValueError("history_size must be at least 1")
+    if rollout_size < 1:
+        raise ValueError("rollout_size must be at least 1")
+    resolved_stride = rollout_size if rollout_stride is None else int(rollout_stride)
+    if resolved_stride < 1:
+        raise ValueError("rollout_stride must be at least 1")
+
+    derived = _with_derived_columns(frame)
+    required_columns = (
+        list(context_feature_columns)
+        + list(rollout_feature_columns)
+        + list(current_feature_columns)
+        + list(target_columns)
+    )
+    missing_columns = [column for column in required_columns if column not in derived.columns]
+    if missing_columns:
+        raise ValueError(f"Missing required rollout training columns: {missing_columns}")
+
+    available_group_columns = [column for column in group_columns if column in derived.columns]
+    metadata_columns = [column for column in [*available_group_columns, sort_column] if column in derived.columns]
+    if available_group_columns:
+        groups = derived.groupby(available_group_columns, sort=False, dropna=False).indices.values()
+    else:
+        groups = [np.arange(len(derived))]
+
+    context_parts: list[np.ndarray] = []
+    rollout_parts: list[np.ndarray] = []
+    current_parts: list[np.ndarray] = []
+    target_parts: list[np.ndarray] = []
+    metadata_parts: list[pd.DataFrame] = []
+
+    for indices in groups:
+        group = derived.iloc[np.asarray(indices)].copy()
+        if sort_column in group.columns:
+            group = group.sort_values(sort_column, kind="mergesort")
+        group = group.reset_index(drop=True)
+        if len(group) < history_size + rollout_size:
+            continue
+
+        starts = np.arange(history_size, len(group) - rollout_size + 1, resolved_stride, dtype=np.int64)
+        if len(starts) == 0:
+            continue
+        context_indices = starts[:, None] - history_size + np.arange(history_size, dtype=np.int64)[None, :]
+        rollout_indices = starts[:, None] + np.arange(rollout_size, dtype=np.int64)[None, :]
+
+        group_context = group.loc[:, context_feature_columns].to_numpy(dtype=np.float32, copy=True)
+        group_rollout = group.loc[:, rollout_feature_columns].to_numpy(dtype=np.float32, copy=True)
+        group_targets = group.loc[:, target_columns].to_numpy(dtype=np.float32, copy=True)
+
+        context_parts.append(group_context[context_indices])
+        rollout_parts.append(group_rollout[rollout_indices])
+        target_parts.append(group_targets[rollout_indices])
+        if current_feature_columns:
+            group_current = group.loc[:, current_feature_columns].to_numpy(dtype=np.float32, copy=True)
+            current_parts.append(group_current[rollout_indices])
+        else:
+            current_parts.append(np.empty((len(starts), rollout_size, 0), dtype=np.float32))
+        if metadata_columns:
+            metadata_parts.append(group.loc[:, metadata_columns].iloc[rollout_indices.reshape(-1)].reset_index(drop=True))
+
+    if not context_parts:
+        raise ValueError("No complete causal rollout subsections were produced")
+
+    context_features = np.concatenate(context_parts, axis=0).astype(np.float32, copy=False)
+    rollout_features = np.concatenate(rollout_parts, axis=0).astype(np.float32, copy=False)
+    current_features = np.concatenate(current_parts, axis=0).astype(np.float32, copy=False)
+    target_sequences = np.concatenate(target_parts, axis=0).astype(np.float32, copy=False)
+    metadata = (
+        pd.concat(metadata_parts, ignore_index=True)
+        if metadata_parts
+        else pd.DataFrame(index=range(context_features.shape[0] * rollout_size))
+    )
+    return context_features, rollout_features, current_features, target_sequences, metadata
+
+
 def _fit_feature_stats(
     features: np.ndarray,
     *,
@@ -1058,6 +1462,12 @@ def _to_serializable_bundle(bundle: dict[str, Any]) -> dict[str, Any]:
         "sequence_feature_medians",
         "sequence_feature_means",
         "sequence_feature_stds",
+        "context_feature_medians",
+        "context_feature_means",
+        "context_feature_stds",
+        "rollout_feature_medians",
+        "rollout_feature_means",
+        "rollout_feature_stds",
         "current_feature_medians",
         "current_feature_means",
         "current_feature_stds",
@@ -1149,6 +1559,35 @@ def _make_sequence_loader(
     else:
         target_tensor = torch.from_numpy(targets.astype(np.float32, copy=False))
         dataset = TensorDataset(sequence_tensor, current_tensor, target_tensor)
+    return DataLoader(
+        dataset,
+        batch_size=batch_size,
+        shuffle=shuffle,
+        num_workers=num_workers,
+        pin_memory=pin_memory,
+        drop_last=False,
+    )
+
+
+def _make_rollout_loader(
+    context_features: np.ndarray,
+    rollout_features: np.ndarray,
+    current_features: np.ndarray,
+    targets: np.ndarray | None,
+    *,
+    batch_size: int,
+    shuffle: bool,
+    num_workers: int,
+    pin_memory: bool,
+) -> DataLoader:
+    context_tensor = torch.from_numpy(context_features.astype(np.float32, copy=False))
+    rollout_tensor = torch.from_numpy(rollout_features.astype(np.float32, copy=False))
+    current_tensor = torch.from_numpy(current_features.astype(np.float32, copy=False))
+    if targets is None:
+        dataset = TensorDataset(context_tensor, rollout_tensor, current_tensor)
+    else:
+        target_tensor = torch.from_numpy(targets.astype(np.float32, copy=False))
+        dataset = TensorDataset(context_tensor, rollout_tensor, current_tensor, target_tensor)
     return DataLoader(
         dataset,
         batch_size=batch_size,
@@ -1292,6 +1731,41 @@ def _predict_sequence_scaled_batches(
             current_arg = batch_current if batch_current.shape[1] > 0 else None
             with torch.autocast(device_type=device.type, dtype=torch.float16, enabled=amp_enabled):
                 batch_predictions = model(batch_sequence, current_arg)
+            outputs.append(batch_predictions.detach().cpu().numpy())
+    return np.concatenate(outputs, axis=0)
+
+
+def _predict_rollout_scaled_batches(
+    model: nn.Module,
+    context_features_scaled: np.ndarray,
+    rollout_features_scaled: np.ndarray,
+    current_features_scaled: np.ndarray,
+    *,
+    batch_size: int,
+    device: torch.device,
+    use_amp: bool,
+) -> np.ndarray:
+    loader = _make_rollout_loader(
+        context_features_scaled,
+        rollout_features_scaled,
+        current_features_scaled,
+        None,
+        batch_size=batch_size,
+        shuffle=False,
+        num_workers=0,
+        pin_memory=device.type == "cuda",
+    )
+    outputs: list[np.ndarray] = []
+    amp_enabled = use_amp and device.type == "cuda"
+    model.eval()
+    with torch.no_grad():
+        for batch_context, batch_rollout, batch_current in loader:
+            batch_context = batch_context.to(device, non_blocking=True)
+            batch_rollout = batch_rollout.to(device, non_blocking=True)
+            batch_current = batch_current.to(device, non_blocking=True)
+            current_arg = batch_current if batch_current.shape[2] > 0 else None
+            with torch.autocast(device_type=device.type, dtype=torch.float16, enabled=amp_enabled):
+                batch_predictions = model(batch_context, batch_rollout, current_arg)
             outputs.append(batch_predictions.detach().cpu().numpy())
     return np.concatenate(outputs, axis=0)
 
@@ -1495,15 +1969,63 @@ def _evaluate_sequence_scaled_loss(
     return total_loss / max(total_samples, 1)
 
 
+def _evaluate_rollout_scaled_loss(
+    model: nn.Module,
+    loader: DataLoader,
+    device: torch.device,
+    *,
+    use_amp: bool,
+    target_loss_weights: torch.Tensor,
+    loss_type: str,
+    huber_delta: float,
+) -> float:
+    model.eval()
+    total_loss = 0.0
+    total_samples = 0
+    amp_enabled = use_amp and device.type == "cuda"
+    with torch.no_grad():
+        for batch_context, batch_rollout, batch_current, batch_targets in loader:
+            batch_context = batch_context.to(device, non_blocking=True)
+            batch_rollout = batch_rollout.to(device, non_blocking=True)
+            batch_current = batch_current.to(device, non_blocking=True)
+            batch_targets = batch_targets.to(device, non_blocking=True)
+            current_arg = batch_current if batch_current.shape[2] > 0 else None
+            with torch.autocast(device_type=device.type, dtype=torch.float16, enabled=amp_enabled):
+                predictions = model(batch_context, batch_rollout, current_arg)
+                loss = regression_loss(
+                    predictions.reshape(-1, predictions.shape[-1]),
+                    batch_targets.reshape(-1, batch_targets.shape[-1]),
+                    target_loss_weights=target_loss_weights,
+                    loss_type=loss_type,
+                    huber_delta=huber_delta,
+                )
+            batch_size = len(batch_context)
+            total_loss += float(loss.item()) * batch_size
+            total_samples += batch_size
+    return total_loss / max(total_samples, 1)
+
+
 def _normalized_model_type(model_type: str | None) -> str:
     normalized = (model_type or "mlp").lower()
-    if normalized not in {"mlp", "pfnn", "causal_gru", "causal_gru_asl"}:
+    if normalized not in {
+        "mlp",
+        "pfnn",
+        "causal_gru",
+        "causal_gru_asl",
+        "subsection_gru",
+        "subnet_discrete",
+        "ct_subnet_euler",
+    }:
         raise ValueError(f"Unknown model_type: {model_type}")
     return normalized
 
 
 def _is_sequence_model_type(model_type: str | None) -> bool:
     return _normalized_model_type(model_type) in {"causal_gru", "causal_gru_asl"}
+
+
+def _is_rollout_model_type(model_type: str | None) -> bool:
+    return _normalized_model_type(model_type) in {"subsection_gru", "subnet_discrete", "ct_subnet_euler"}
 
 
 def resolve_current_feature_columns(
@@ -1547,6 +2069,14 @@ def _training_audit_flags(bundle: dict[str, Any], *, split_root: str | Path | No
     if _is_sequence_model_type(model_type):
         history_columns = set(bundle.get("sequence_feature_columns", []))
         input_columns = history_columns | set(bundle.get("current_feature_columns", []))
+        has_centered_window = False
+    elif _is_rollout_model_type(model_type):
+        history_columns = set(bundle.get("context_feature_columns", []))
+        input_columns = (
+            history_columns
+            | set(bundle.get("rollout_feature_columns", []))
+            | set(bundle.get("current_feature_columns", []))
+        )
         has_centered_window = False
     else:
         history_columns = set(bundle.get("window_feature_columns", []))
@@ -1621,6 +2151,22 @@ def _fit_sequence_feature_stats(features: np.ndarray) -> tuple[np.ndarray, np.nd
 
 
 def _transform_sequence_features(
+    features: np.ndarray,
+    medians: np.ndarray,
+    means: np.ndarray,
+    stds: np.ndarray,
+) -> np.ndarray:
+    flat = features.reshape(-1, features.shape[-1])
+    transformed = _transform_features(flat, medians, means, stds)
+    return transformed.reshape(features.shape).astype(np.float32, copy=False)
+
+
+def _fit_rollout_feature_stats(features: np.ndarray) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
+    flat = features.reshape(-1, features.shape[-1])
+    return _fit_feature_stats(flat)
+
+
+def _transform_rollout_features(
     features: np.ndarray,
     medians: np.ndarray,
     means: np.ndarray,
@@ -1908,6 +2454,379 @@ def fit_torch_sequence_regressor(
     }
 
 
+def _build_rollout_regressor(
+    *,
+    model_type: str,
+    context_input_dim: int,
+    rollout_input_dim: int,
+    current_input_dim: int,
+    output_dim: int,
+    hidden_sizes: tuple[int, ...],
+    dropout: float,
+    gru_num_layers: int,
+    latent_size: int,
+    dt_over_tau: float,
+    ct_integrator: str,
+) -> nn.Module:
+    if model_type == "subsection_gru":
+        return SubsectionGRUWrenchRegressor(
+            context_input_dim=context_input_dim,
+            rollout_input_dim=rollout_input_dim,
+            current_input_dim=current_input_dim,
+            output_dim=output_dim,
+            hidden_size=int(hidden_sizes[0]),
+            num_layers=int(gru_num_layers),
+            dropout=dropout,
+            head_hidden_sizes=tuple(int(v) for v in hidden_sizes[1:]) or (int(hidden_sizes[0]),),
+        )
+    if model_type == "subnet_discrete":
+        return DiscreteSUBNETWrenchRegressor(
+            context_input_dim=context_input_dim,
+            rollout_input_dim=rollout_input_dim,
+            current_input_dim=current_input_dim,
+            output_dim=output_dim,
+            latent_size=int(latent_size),
+            hidden_sizes=tuple(int(v) for v in hidden_sizes),
+            dropout=dropout,
+        )
+    if model_type == "ct_subnet_euler":
+        return ContinuousTimeSUBNETWrenchRegressor(
+            context_input_dim=context_input_dim,
+            rollout_input_dim=rollout_input_dim,
+            current_input_dim=current_input_dim,
+            output_dim=output_dim,
+            latent_size=int(latent_size),
+            hidden_sizes=tuple(int(v) for v in hidden_sizes),
+            dropout=dropout,
+            dt_over_tau=float(dt_over_tau),
+            integrator=ct_integrator,
+        )
+    raise ValueError(f"Unknown rollout model_type: {model_type}")
+
+
+def fit_torch_rollout_regressor(
+    *,
+    train_frame: pd.DataFrame,
+    val_frame: pd.DataFrame,
+    feature_columns: list[str] | None = None,
+    target_columns: list[str] | None = None,
+    model_type: str = "subsection_gru",
+    hidden_sizes: tuple[int, ...] = (128, 128),
+    dropout: float = 0.0,
+    batch_size: int = 512,
+    max_epochs: int = 50,
+    learning_rate: float = 1e-3,
+    weight_decay: float = 1e-5,
+    early_stopping_patience: int = 8,
+    device: str | None = None,
+    random_seed: int = 42,
+    num_workers: int = 0,
+    use_amp: bool = True,
+    target_loss_weights: str | dict[str, float] | list[float] | tuple[float, ...] | np.ndarray | None = None,
+    loss_type: str = "mse",
+    huber_delta: float = 1.0,
+    sequence_history_size: int = 64,
+    rollout_size: int = 32,
+    rollout_stride: int | None = None,
+    sequence_feature_mode: str = "phase_actuator_airdata",
+    current_feature_mode: str = "remaining_current",
+    gru_num_layers: int = 1,
+    latent_size: int = 16,
+    dt_over_tau: float = 0.03,
+    ct_integrator: str = "euler",
+) -> dict[str, Any]:
+    _set_random_seed(random_seed)
+    resolved_model_type = _normalized_model_type(model_type)
+    if not _is_rollout_model_type(resolved_model_type):
+        raise ValueError(f"Rollout training requires a rollout model_type, got {model_type}")
+    resolved_loss_type = _normalized_loss_type(loss_type)
+    if huber_delta <= 0.0 or not math.isfinite(float(huber_delta)):
+        raise ValueError("huber_delta must be positive and finite")
+    if sequence_history_size < 1:
+        raise ValueError("sequence_history_size must be at least 1")
+    if rollout_size < 1:
+        raise ValueError("rollout_size must be at least 1")
+    resolved_rollout_stride = rollout_size if rollout_stride is None else int(rollout_stride)
+    if resolved_rollout_stride < 1:
+        raise ValueError("rollout_stride must be at least 1")
+    if not hidden_sizes:
+        raise ValueError("hidden_sizes must not be empty for rollout models")
+
+    resolved_device = _resolve_device(device)
+    pin_memory = resolved_device.type == "cuda"
+    base_feature_columns = feature_columns or DEFAULT_FEATURE_COLUMNS
+    resolved_target_columns = target_columns or DEFAULT_TARGET_COLUMNS
+    context_feature_columns = resolve_sequence_feature_columns(list(base_feature_columns), sequence_feature_mode)
+    rollout_feature_columns = list(context_feature_columns)
+    if not context_feature_columns:
+        raise ValueError("Rollout models require at least one context feature")
+    current_feature_columns = resolve_current_feature_columns(
+        list(base_feature_columns),
+        context_feature_columns,
+        current_feature_mode,
+    )
+
+    train_context, train_rollout, train_current, train_targets, _ = prepare_causal_rollout_feature_target_frames(
+        train_frame,
+        context_feature_columns,
+        rollout_feature_columns,
+        current_feature_columns,
+        resolved_target_columns,
+        history_size=sequence_history_size,
+        rollout_size=rollout_size,
+        rollout_stride=resolved_rollout_stride,
+    )
+    val_context, val_rollout, val_current, val_targets, _ = prepare_causal_rollout_feature_target_frames(
+        val_frame,
+        context_feature_columns,
+        rollout_feature_columns,
+        current_feature_columns,
+        resolved_target_columns,
+        history_size=sequence_history_size,
+        rollout_size=rollout_size,
+        rollout_stride=resolved_rollout_stride,
+    )
+
+    context_feature_medians, context_feature_means, context_feature_stds = _fit_rollout_feature_stats(train_context)
+    rollout_feature_medians, rollout_feature_means, rollout_feature_stds = _fit_rollout_feature_stats(train_rollout)
+    if current_feature_columns:
+        current_feature_medians, current_feature_means, current_feature_stds = _fit_rollout_feature_stats(train_current)
+        train_current_scaled = _transform_rollout_features(
+            train_current,
+            current_feature_medians,
+            current_feature_means,
+            current_feature_stds,
+        )
+        val_current_scaled = _transform_rollout_features(
+            val_current,
+            current_feature_medians,
+            current_feature_means,
+            current_feature_stds,
+        )
+    else:
+        current_feature_medians = np.empty((0,), dtype=np.float32)
+        current_feature_means = np.empty((0,), dtype=np.float32)
+        current_feature_stds = np.empty((0,), dtype=np.float32)
+        train_current_scaled = train_current
+        val_current_scaled = val_current
+
+    flat_train_targets = train_targets.reshape(-1, train_targets.shape[-1])
+    flat_val_targets = val_targets.reshape(-1, val_targets.shape[-1])
+    target_means, target_stds = _fit_target_stats(flat_train_targets)
+    train_context_scaled = _transform_rollout_features(
+        train_context,
+        context_feature_medians,
+        context_feature_means,
+        context_feature_stds,
+    )
+    val_context_scaled = _transform_rollout_features(
+        val_context,
+        context_feature_medians,
+        context_feature_means,
+        context_feature_stds,
+    )
+    train_rollout_scaled = _transform_rollout_features(
+        train_rollout,
+        rollout_feature_medians,
+        rollout_feature_means,
+        rollout_feature_stds,
+    )
+    val_rollout_scaled = _transform_rollout_features(
+        val_rollout,
+        rollout_feature_medians,
+        rollout_feature_means,
+        rollout_feature_stds,
+    )
+    train_targets_scaled = _transform_targets(flat_train_targets, target_means, target_stds).reshape(train_targets.shape)
+    val_targets_scaled = _transform_targets(flat_val_targets, target_means, target_stds).reshape(val_targets.shape)
+    target_loss_weights_array = resolve_target_loss_weights(list(resolved_target_columns), target_loss_weights)
+    target_loss_weights_tensor = torch.as_tensor(target_loss_weights_array, dtype=torch.float32, device=resolved_device)
+
+    train_loader = _make_rollout_loader(
+        train_context_scaled,
+        train_rollout_scaled,
+        train_current_scaled,
+        train_targets_scaled,
+        batch_size=batch_size,
+        shuffle=True,
+        num_workers=num_workers,
+        pin_memory=pin_memory,
+    )
+    val_loader = _make_rollout_loader(
+        val_context_scaled,
+        val_rollout_scaled,
+        val_current_scaled,
+        val_targets_scaled,
+        batch_size=batch_size,
+        shuffle=False,
+        num_workers=num_workers,
+        pin_memory=pin_memory,
+    )
+
+    model = _build_rollout_regressor(
+        model_type=resolved_model_type,
+        context_input_dim=train_context_scaled.shape[2],
+        rollout_input_dim=train_rollout_scaled.shape[2],
+        current_input_dim=train_current_scaled.shape[2],
+        output_dim=train_targets_scaled.shape[2],
+        hidden_sizes=hidden_sizes,
+        dropout=dropout,
+        gru_num_layers=gru_num_layers,
+        latent_size=latent_size,
+        dt_over_tau=dt_over_tau,
+        ct_integrator=ct_integrator,
+    ).to(resolved_device)
+    optimizer = torch.optim.AdamW(model.parameters(), lr=learning_rate, weight_decay=weight_decay)
+    scaler = torch.amp.GradScaler("cuda", enabled=use_amp and resolved_device.type == "cuda")
+
+    best_state_dict = copy.deepcopy(model.state_dict())
+    best_val_loss = math.inf
+    best_epoch = 0
+    epochs_without_improvement = 0
+    history: list[dict[str, float]] = []
+    amp_enabled = use_amp and resolved_device.type == "cuda"
+
+    for epoch in range(1, max_epochs + 1):
+        model.train()
+        train_loss_sum = 0.0
+        train_sample_count = 0
+
+        for batch_context, batch_rollout, batch_current, batch_targets in train_loader:
+            batch_context = batch_context.to(resolved_device, non_blocking=True)
+            batch_rollout = batch_rollout.to(resolved_device, non_blocking=True)
+            batch_current = batch_current.to(resolved_device, non_blocking=True)
+            batch_targets = batch_targets.to(resolved_device, non_blocking=True)
+            current_arg = batch_current if batch_current.shape[2] > 0 else None
+
+            optimizer.zero_grad(set_to_none=True)
+            with torch.autocast(device_type=resolved_device.type, dtype=torch.float16, enabled=amp_enabled):
+                predictions = model(batch_context, batch_rollout, current_arg)
+                loss = regression_loss(
+                    predictions.reshape(-1, predictions.shape[-1]),
+                    batch_targets.reshape(-1, batch_targets.shape[-1]),
+                    target_loss_weights=target_loss_weights_tensor,
+                    loss_type=resolved_loss_type,
+                    huber_delta=huber_delta,
+                )
+
+            scaler.scale(loss).backward()
+            scaler.step(optimizer)
+            scaler.update()
+
+            batch_count = len(batch_context)
+            train_loss_sum += float(loss.item()) * batch_count
+            train_sample_count += batch_count
+
+        train_loss = train_loss_sum / max(train_sample_count, 1)
+        val_loss = _evaluate_rollout_scaled_loss(
+            model,
+            val_loader,
+            resolved_device,
+            use_amp=use_amp,
+            target_loss_weights=target_loss_weights_tensor,
+            loss_type=resolved_loss_type,
+            huber_delta=huber_delta,
+        )
+        val_predictions_scaled = _predict_rollout_scaled_batches(
+            model,
+            val_context_scaled,
+            val_rollout_scaled,
+            val_current_scaled,
+            batch_size=batch_size,
+            device=resolved_device,
+            use_amp=use_amp,
+        )
+        val_predictions = _inverse_transform_targets(
+            val_predictions_scaled.reshape(-1, val_predictions_scaled.shape[-1]),
+            target_means,
+            target_stds,
+        )
+        val_metrics = _metrics_from_arrays(
+            val_targets.reshape(-1, val_targets.shape[-1]).astype(np.float32, copy=False),
+            val_predictions.astype(np.float32, copy=False),
+            target_columns=list(resolved_target_columns),
+            split_name="val",
+        )
+        history_row: dict[str, float] = {
+            "epoch": float(epoch),
+            "train_loss": float(train_loss),
+            "val_loss": float(val_loss),
+            "val_overall_mae": float(val_metrics["overall_mae"]),
+            "val_overall_rmse": float(val_metrics["overall_rmse"]),
+            "val_overall_r2": float(val_metrics["overall_r2"]),
+            "latent_rms": float(getattr(model, "last_latent_rms", 0.0)),
+            "delta_latent_rms": float(getattr(model, "last_delta_latent_rms", 0.0)),
+            "latent_derivative_rms": float(getattr(model, "last_latent_derivative_rms", 0.0)),
+        }
+        for target_name, metrics in val_metrics["per_target"].items():
+            history_row[f"val_{target_name}_mae"] = float(metrics["mae"])
+            history_row[f"val_{target_name}_rmse"] = float(metrics["rmse"])
+            history_row[f"val_{target_name}_r2"] = float(metrics["r2"])
+        history.append(history_row)
+
+        if val_loss < best_val_loss - 1e-8:
+            best_val_loss = val_loss
+            best_epoch = epoch
+            best_state_dict = copy.deepcopy(model.state_dict())
+            epochs_without_improvement = 0
+        else:
+            epochs_without_improvement += 1
+            if epochs_without_improvement >= early_stopping_patience:
+                break
+
+    model.load_state_dict(best_state_dict)
+
+    return {
+        "model_state_dict": best_state_dict,
+        "model_type": resolved_model_type,
+        "feature_columns": list(base_feature_columns),
+        "base_feature_columns": list(base_feature_columns),
+        "target_columns": list(resolved_target_columns),
+        "context_feature_columns": list(context_feature_columns),
+        "rollout_feature_columns": list(rollout_feature_columns),
+        "current_feature_columns": list(current_feature_columns),
+        "context_feature_medians": context_feature_medians,
+        "context_feature_means": context_feature_means,
+        "context_feature_stds": context_feature_stds,
+        "rollout_feature_medians": rollout_feature_medians,
+        "rollout_feature_means": rollout_feature_means,
+        "rollout_feature_stds": rollout_feature_stds,
+        "current_feature_medians": current_feature_medians,
+        "current_feature_means": current_feature_means,
+        "current_feature_stds": current_feature_stds,
+        "target_means": target_means,
+        "target_stds": target_stds,
+        "target_loss_weights": target_loss_weights_array,
+        "target_loss_weights_by_name": _target_loss_weights_as_dict(list(resolved_target_columns), target_loss_weights_array),
+        "loss_type": resolved_loss_type,
+        "huber_delta": float(huber_delta),
+        "sequence_history_size": int(sequence_history_size),
+        "rollout_size": int(rollout_size),
+        "rollout_stride": int(resolved_rollout_stride),
+        "sequence_feature_mode": sequence_feature_mode,
+        "current_feature_mode": current_feature_mode,
+        "sequence_group_columns": ["log_id", "segment_id"],
+        "sequence_sort_column": "time_s",
+        "rollout_sample_count_train": int(len(train_context_scaled)),
+        "rollout_timestep_count_train": int(train_targets.shape[0] * train_targets.shape[1]),
+        "rollout_sample_count_val": int(len(val_context_scaled)),
+        "rollout_timestep_count_val": int(val_targets.shape[0] * val_targets.shape[1]),
+        "hidden_sizes": list(hidden_sizes),
+        "dropout": float(dropout),
+        "gru_hidden_size": int(hidden_sizes[0]),
+        "gru_num_layers": int(gru_num_layers),
+        "latent_size": int(latent_size),
+        "dt_over_tau": float(dt_over_tau),
+        "ct_integrator": ct_integrator,
+        "best_epoch": int(best_epoch),
+        "best_val_loss": float(best_val_loss),
+        "history": history,
+        "device_type": resolved_device.type,
+        "use_amp": bool(amp_enabled),
+        "random_seed": int(random_seed),
+    }
+
+
 def fit_torch_regressor(
     *,
     train_frame: pd.DataFrame,
@@ -2141,6 +3060,8 @@ def _build_model_from_bundle(bundle: dict[str, Any], device: torch.device) -> nn
     model_type = _normalized_model_type(bundle.get("model_type", "mlp"))
     if _is_sequence_model_type(model_type):
         return _build_sequence_model_from_bundle(bundle, device)
+    if _is_rollout_model_type(model_type):
+        return _build_rollout_model_from_bundle(bundle, device)
     phase_feature_index = bundle.get("phase_feature_index")
     if phase_feature_index is not None:
         phase_feature_index = int(phase_feature_index)
@@ -2154,6 +3075,26 @@ def _build_model_from_bundle(bundle: dict[str, Any], device: torch.device) -> nn
         pfnn_expanded_input_dim=int(bundle.get("pfnn_expanded_input_dim", 45)),
         pfnn_phase_node_count=int(bundle.get("pfnn_phase_node_count", 5)),
         pfnn_control_points=int(bundle.get("pfnn_control_points", 6)),
+    ).to(device)
+    model.load_state_dict(bundle["model_state_dict"])
+    model.eval()
+    return model
+
+
+def _build_rollout_model_from_bundle(bundle: dict[str, Any], device: torch.device) -> nn.Module:
+    model_type = _normalized_model_type(bundle.get("model_type", "subsection_gru"))
+    model = _build_rollout_regressor(
+        model_type=model_type,
+        context_input_dim=len(bundle["context_feature_columns"]),
+        rollout_input_dim=len(bundle["rollout_feature_columns"]),
+        current_input_dim=len(bundle["current_feature_columns"]),
+        output_dim=len(bundle["target_columns"]),
+        hidden_sizes=tuple(int(v) for v in bundle.get("hidden_sizes", [128, 128])),
+        dropout=float(bundle.get("dropout", 0.0)),
+        gru_num_layers=int(bundle.get("gru_num_layers", 1)),
+        latent_size=int(bundle.get("latent_size", 16)),
+        dt_over_tau=float(bundle.get("dt_over_tau", 0.03)),
+        ct_integrator=str(bundle.get("ct_integrator", "euler")),
     ).to(device)
     model.load_state_dict(bundle["model_state_dict"])
     model.eval()
@@ -2207,10 +3148,31 @@ def _sequence_arrays_for_bundle(bundle: dict[str, Any], frame: pd.DataFrame) -> 
     return sequence_features, current_features, targets_df
 
 
+def _rollout_arrays_for_bundle(
+    bundle: dict[str, Any],
+    frame: pd.DataFrame,
+) -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray, pd.DataFrame]:
+    return prepare_causal_rollout_feature_target_frames(
+        frame,
+        list(bundle["context_feature_columns"]),
+        list(bundle["rollout_feature_columns"]),
+        list(bundle["current_feature_columns"]),
+        list(bundle["target_columns"]),
+        history_size=int(bundle["sequence_history_size"]),
+        rollout_size=int(bundle["rollout_size"]),
+        rollout_stride=int(bundle.get("rollout_stride", bundle["rollout_size"])),
+        group_columns=tuple(bundle.get("sequence_group_columns", ("log_id", "segment_id"))),
+        sort_column=str(bundle.get("sequence_sort_column", "time_s")),
+    )
+
+
 def _targets_for_bundle(bundle: dict[str, Any], frame: pd.DataFrame) -> pd.DataFrame:
     if _is_sequence_model_type(bundle.get("model_type", "mlp")):
         _, _, targets_df = _sequence_arrays_for_bundle(bundle, frame)
         return targets_df
+    if _is_rollout_model_type(bundle.get("model_type", "mlp")):
+        _, _, _, targets, _ = _rollout_arrays_for_bundle(bundle, frame)
+        return pd.DataFrame(targets.reshape(-1, targets.shape[-1]), columns=bundle["target_columns"])
     _, targets_df = prepare_windowed_feature_target_frames(
         frame,
         bundle.get("base_feature_columns", bundle["feature_columns"]),
@@ -2258,6 +3220,46 @@ def predict_model_bundle(
         )
         predictions = _inverse_transform_targets(
             predictions_scaled_arr,
+            _as_numpy_array(bundle["target_means"]),
+            _as_numpy_array(bundle["target_stds"]),
+        )
+        return pd.DataFrame(predictions, columns=bundle["target_columns"])
+
+    if _is_rollout_model_type(bundle.get("model_type", "mlp")):
+        context_features, rollout_features, current_features, _, _ = _rollout_arrays_for_bundle(bundle, frame)
+        context_scaled = _transform_rollout_features(
+            context_features,
+            _as_numpy_array(bundle["context_feature_medians"]),
+            _as_numpy_array(bundle["context_feature_means"]),
+            _as_numpy_array(bundle["context_feature_stds"]),
+        )
+        rollout_scaled = _transform_rollout_features(
+            rollout_features,
+            _as_numpy_array(bundle["rollout_feature_medians"]),
+            _as_numpy_array(bundle["rollout_feature_means"]),
+            _as_numpy_array(bundle["rollout_feature_stds"]),
+        )
+        if current_features.shape[2] > 0:
+            current_scaled = _transform_rollout_features(
+                current_features,
+                _as_numpy_array(bundle["current_feature_medians"]),
+                _as_numpy_array(bundle["current_feature_means"]),
+                _as_numpy_array(bundle["current_feature_stds"]),
+            )
+        else:
+            current_scaled = current_features.astype(np.float32, copy=False)
+        model = _build_rollout_model_from_bundle(bundle, resolved_device)
+        predictions_scaled_arr = _predict_rollout_scaled_batches(
+            model,
+            context_scaled,
+            rollout_scaled,
+            current_scaled,
+            batch_size=batch_size,
+            device=resolved_device,
+            use_amp=bool(bundle.get("use_amp", False)),
+        )
+        predictions = _inverse_transform_targets(
+            predictions_scaled_arr.reshape(-1, predictions_scaled_arr.shape[-1]),
             _as_numpy_array(bundle["target_means"]),
             _as_numpy_array(bundle["target_stds"]),
         )
@@ -2412,6 +3414,57 @@ def evaluate_model_bundle_by_regime_bins(
     derived = _with_derived_columns(frame)
     rows: list[dict[str, Any]] = []
 
+    if _is_rollout_model_type(bundle.get("model_type", "mlp")):
+        _, _, _, target_sequences, metadata = _rollout_arrays_for_bundle(bundle, frame)
+        targets_df = pd.DataFrame(
+            target_sequences.reshape(-1, target_sequences.shape[-1]),
+            columns=bundle["target_columns"],
+        )
+        predictions_df = predict_model_bundle(bundle, frame, batch_size=batch_size, device=device)
+        join_keys = [column for column in ["log_id", "segment_id", "time_s"] if column in metadata.columns and column in derived.columns]
+        if join_keys:
+            regime_columns = [column for column in resolved_bin_specs if column in derived.columns]
+            meta_with_regimes = metadata.merge(
+                derived.loc[:, [*join_keys, *regime_columns]].drop_duplicates(join_keys),
+                on=join_keys,
+                how="left",
+            )
+        else:
+            meta_with_regimes = metadata.copy()
+            for column in resolved_bin_specs:
+                if column in derived.columns and len(derived) == len(meta_with_regimes):
+                    meta_with_regimes[column] = derived[column].to_numpy()
+
+        for column, raw_edges in resolved_bin_specs.items():
+            if column not in meta_with_regimes.columns:
+                continue
+            edges = _validate_bin_edges(column, raw_edges)
+            values = pd.to_numeric(meta_with_regimes[column], errors="coerce")
+            binned = pd.cut(values, bins=edges, include_lowest=True)
+            for interval in binned.cat.categories:
+                mask = (binned == interval).to_numpy()
+                if int(mask.sum()) < min_samples:
+                    continue
+                metrics = _metrics_from_arrays(
+                    targets_df.to_numpy(dtype=np.float64, copy=False)[mask],
+                    predictions_df.to_numpy(dtype=np.float64, copy=False)[mask],
+                    target_columns=bundle["target_columns"],
+                    split_name=split_name,
+                )
+                row = _metrics_table_row(
+                    metrics,
+                    split_name=split_name,
+                    diagnostic_type="regime_bin",
+                    group_column=column,
+                    group_value=str(interval),
+                )
+                row["regime_column"] = column
+                row["bin_label"] = str(interval)
+                row["bin_left"] = float(interval.left)
+                row["bin_right"] = float(interval.right)
+                rows.append(row)
+        return pd.DataFrame(rows)
+
     for column, raw_edges in resolved_bin_specs.items():
         if column not in derived.columns:
             continue
@@ -2564,10 +3617,15 @@ def run_training_job(
     sequence_history_size: int = 64,
     sequence_feature_mode: str = "phase_actuator_airdata",
     current_feature_mode: str = "remaining_current",
+    rollout_size: int = 32,
+    rollout_stride: int | None = None,
     gru_num_layers: int = 1,
     asl_hidden_size: int = 128,
     asl_dropout: float = 0.1,
     asl_max_frequency_bins: int | None = None,
+    latent_size: int = 16,
+    dt_over_tau: float = 0.03,
+    ct_integrator: str = "euler",
 ) -> dict[str, str]:
     if feature_set_name is not None and feature_columns is not None:
         raise ValueError("feature_set_name and feature_columns cannot both be provided")
@@ -2609,6 +3667,37 @@ def run_training_job(
             asl_hidden_size=asl_hidden_size,
             asl_dropout=asl_dropout,
             asl_max_frequency_bins=asl_max_frequency_bins,
+        )
+    elif _is_rollout_model_type(resolved_model_type):
+        bundle = fit_torch_rollout_regressor(
+            train_frame=train_frame,
+            val_frame=val_frame,
+            feature_columns=resolved_feature_columns,
+            target_columns=target_columns,
+            model_type=resolved_model_type,
+            hidden_sizes=hidden_sizes,
+            dropout=dropout,
+            batch_size=batch_size,
+            max_epochs=max_epochs,
+            learning_rate=learning_rate,
+            weight_decay=weight_decay,
+            early_stopping_patience=early_stopping_patience,
+            device=device,
+            random_seed=random_seed,
+            num_workers=num_workers,
+            use_amp=use_amp,
+            target_loss_weights=target_loss_weights,
+            loss_type=loss_type,
+            huber_delta=huber_delta,
+            sequence_history_size=sequence_history_size,
+            rollout_size=rollout_size,
+            rollout_stride=rollout_stride,
+            sequence_feature_mode=sequence_feature_mode,
+            current_feature_mode=current_feature_mode,
+            gru_num_layers=gru_num_layers,
+            latent_size=latent_size,
+            dt_over_tau=dt_over_tau,
+            ct_integrator=ct_integrator,
         )
     else:
         bundle = fit_torch_regressor(
@@ -2684,6 +3773,14 @@ def run_training_job(
                 "current_feature_columns": bundle.get("current_feature_columns"),
                 "sequence_sample_count_train": bundle.get("sequence_sample_count_train"),
                 "sequence_sample_count_val": bundle.get("sequence_sample_count_val"),
+                "rollout_size": bundle.get("rollout_size"),
+                "rollout_stride": bundle.get("rollout_stride"),
+                "context_feature_columns": bundle.get("context_feature_columns"),
+                "rollout_feature_columns": bundle.get("rollout_feature_columns"),
+                "rollout_sample_count_train": bundle.get("rollout_sample_count_train"),
+                "rollout_timestep_count_train": bundle.get("rollout_timestep_count_train"),
+                "rollout_sample_count_val": bundle.get("rollout_sample_count_val"),
+                "rollout_timestep_count_val": bundle.get("rollout_timestep_count_val"),
                 "sequence_group_columns": bundle.get("sequence_group_columns"),
                 "sequence_sort_column": bundle.get("sequence_sort_column"),
                 "hidden_sizes": list(hidden_sizes),
@@ -2697,6 +3794,9 @@ def run_training_job(
                 "asl_hidden_size": bundle.get("asl_hidden_size"),
                 "asl_dropout": bundle.get("asl_dropout"),
                 "asl_max_frequency_bins": bundle.get("asl_max_frequency_bins"),
+                "latent_size": bundle.get("latent_size"),
+                "dt_over_tau": bundle.get("dt_over_tau"),
+                "ct_integrator": bundle.get("ct_integrator"),
                 "batch_size": int(batch_size),
                 "max_epochs": int(max_epochs),
                 "learning_rate": float(learning_rate),
@@ -2904,17 +4004,29 @@ def _run_single_baseline_recipe(
     sequence_history_size: int,
     sequence_feature_mode: str,
     current_feature_mode: str,
+    rollout_size: int,
+    rollout_stride: int | None,
     gru_num_layers: int,
     asl_hidden_size: int,
     asl_dropout: float,
     asl_max_frequency_bins: int | None,
+    latent_size: int,
+    dt_over_tau: float,
+    ct_integrator: str,
 ) -> dict[str, Any]:
     resolved_sequence_history_size = int(sequence_history_size)
     resolved_sequence_feature_mode = str(sequence_feature_mode)
     resolved_current_feature_mode = str(current_feature_mode)
+    resolved_rollout_size = int(rollout_size)
+    resolved_rollout_stride = rollout_stride
+    if resolved_rollout_stride is not None:
+        resolved_rollout_stride = int(resolved_rollout_stride)
     resolved_asl_hidden_size = int(asl_hidden_size)
     resolved_asl_dropout = float(asl_dropout)
     resolved_asl_max_frequency_bins = asl_max_frequency_bins
+    resolved_latent_size = int(latent_size)
+    resolved_dt_over_tau = float(dt_over_tau)
+    resolved_ct_integrator = str(ct_integrator)
     outputs = run_training_job(
         split_root=split_root,
         output_dir=recipe_output_dir,
@@ -2946,10 +4058,15 @@ def _run_single_baseline_recipe(
         sequence_history_size=resolved_sequence_history_size,
         sequence_feature_mode=resolved_sequence_feature_mode,
         current_feature_mode=resolved_current_feature_mode,
+        rollout_size=resolved_rollout_size,
+        rollout_stride=resolved_rollout_stride,
         gru_num_layers=gru_num_layers,
         asl_hidden_size=resolved_asl_hidden_size,
         asl_dropout=resolved_asl_dropout,
         asl_max_frequency_bins=resolved_asl_max_frequency_bins,
+        latent_size=resolved_latent_size,
+        dt_over_tau=resolved_dt_over_tau,
+        ct_integrator=resolved_ct_integrator,
     )
     metrics = json.loads(Path(outputs["metrics_path"]).read_text(encoding="utf-8"))
     training_config = json.loads(Path(outputs["training_config_path"]).read_text(encoding="utf-8"))
@@ -2968,6 +4085,11 @@ def _run_single_baseline_recipe(
         "sequence_history_size": training_config.get("sequence_history_size"),
         "sequence_feature_mode": training_config.get("sequence_feature_mode"),
         "current_feature_mode": training_config.get("current_feature_mode"),
+        "rollout_size": training_config.get("rollout_size"),
+        "rollout_stride": training_config.get("rollout_stride"),
+        "latent_size": training_config.get("latent_size"),
+        "dt_over_tau": training_config.get("dt_over_tau"),
+        "ct_integrator": training_config.get("ct_integrator"),
         "best_epoch": int(training_config["best_epoch"]),
         "best_val_loss": float(training_config["best_val_loss"]),
     }
@@ -3003,10 +4125,15 @@ def _run_split_axis_baseline_recipe(
     sequence_history_size: int,
     sequence_feature_mode: str,
     current_feature_mode: str,
+    rollout_size: int,
+    rollout_stride: int | None,
     gru_num_layers: int,
     asl_hidden_size: int,
     asl_dropout: float,
     asl_max_frequency_bins: int | None,
+    latent_size: int,
+    dt_over_tau: float,
+    ct_integrator: str,
 ) -> dict[str, Any]:
     target_groups = {name: list(targets) for name, targets in recipe["target_groups"].items()}
     split_group_metrics: dict[str, dict[str, dict[str, Any]]] = {"train": {}, "val": {}, "test": {}}
@@ -3112,10 +4239,15 @@ def run_baseline_comparison(
     sequence_history_size: int = 64,
     sequence_feature_mode: str = "phase_actuator_airdata",
     current_feature_mode: str = "remaining_current",
+    rollout_size: int = 32,
+    rollout_stride: int | None = None,
     gru_num_layers: int = 1,
     asl_hidden_size: int = 128,
     asl_dropout: float = 0.1,
     asl_max_frequency_bins: int | None = None,
+    latent_size: int = 16,
+    dt_over_tau: float = 0.03,
+    ct_integrator: str = "euler",
 ) -> dict[str, str]:
     output_path = Path(output_dir)
     output_path.mkdir(parents=True, exist_ok=True)
@@ -3152,10 +4284,15 @@ def run_baseline_comparison(
             "sequence_history_size": sequence_history_size,
             "sequence_feature_mode": sequence_feature_mode,
             "current_feature_mode": current_feature_mode,
+            "rollout_size": rollout_size,
+            "rollout_stride": rollout_stride,
             "gru_num_layers": gru_num_layers,
             "asl_hidden_size": asl_hidden_size,
             "asl_dropout": asl_dropout,
             "asl_max_frequency_bins": asl_max_frequency_bins,
+            "latent_size": latent_size,
+            "dt_over_tau": dt_over_tau,
+            "ct_integrator": ct_integrator,
         }
         if recipe.get("recipe_type") == "split_axis":
             row = _run_split_axis_baseline_recipe(**common_kwargs)
