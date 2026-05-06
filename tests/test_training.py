@@ -1178,7 +1178,7 @@ def test_sequence_regime_diagnostics_skip_bins_without_complete_history(tmp_path
     )
 
     assert len(diagnostics) == 1
-    assert diagnostics.loc[0, "test_sample_count"] == 17
+    assert diagnostics.loc[0, "test_sample_count"] == 23
 
 
 def test_run_training_job_accepts_no_accel_no_alpha_feature_set(tmp_path: Path):

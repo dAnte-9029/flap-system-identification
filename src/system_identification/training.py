@@ -3136,7 +3136,15 @@ def _build_sequence_model_from_bundle(bundle: dict[str, Any], device: torch.devi
 
 
 def _sequence_arrays_for_bundle(bundle: dict[str, Any], frame: pd.DataFrame) -> tuple[np.ndarray, np.ndarray, pd.DataFrame]:
-    sequence_features, current_features, targets_df, _ = prepare_causal_sequence_feature_target_frames(
+    sequence_features, current_features, targets_df, _ = _sequence_arrays_with_metadata_for_bundle(bundle, frame)
+    return sequence_features, current_features, targets_df
+
+
+def _sequence_arrays_with_metadata_for_bundle(
+    bundle: dict[str, Any],
+    frame: pd.DataFrame,
+) -> tuple[np.ndarray, np.ndarray, pd.DataFrame, pd.DataFrame]:
+    sequence_features, current_features, targets_df, metadata = prepare_causal_sequence_feature_target_frames(
         frame,
         list(bundle["sequence_feature_columns"]),
         list(bundle["current_feature_columns"]),
@@ -3145,7 +3153,7 @@ def _sequence_arrays_for_bundle(bundle: dict[str, Any], frame: pd.DataFrame) -> 
         group_columns=tuple(bundle.get("sequence_group_columns", ("log_id", "segment_id"))),
         sort_column=str(bundle.get("sequence_sort_column", "time_s")),
     )
-    return sequence_features, current_features, targets_df
+    return sequence_features, current_features, targets_df, metadata
 
 
 def _rollout_arrays_for_bundle(
@@ -3414,6 +3422,53 @@ def evaluate_model_bundle_by_regime_bins(
     derived = _with_derived_columns(frame)
     rows: list[dict[str, Any]] = []
 
+    if _is_sequence_model_type(bundle.get("model_type", "mlp")):
+        _, _, targets_df, metadata = _sequence_arrays_with_metadata_for_bundle(bundle, frame)
+        predictions_df = predict_model_bundle(bundle, frame, batch_size=batch_size, device=device)
+        join_keys = [column for column in ["log_id", "segment_id", "time_s"] if column in metadata.columns and column in derived.columns]
+        if join_keys:
+            regime_columns = [column for column in resolved_bin_specs if column in derived.columns and column not in join_keys]
+            meta_with_regimes = metadata.merge(
+                derived.loc[:, [*join_keys, *regime_columns]].drop_duplicates(join_keys),
+                on=join_keys,
+                how="left",
+            )
+        else:
+            meta_with_regimes = metadata.copy()
+            for column in resolved_bin_specs:
+                if column in derived.columns and len(derived) == len(meta_with_regimes):
+                    meta_with_regimes[column] = derived[column].to_numpy()
+
+        for column, raw_edges in resolved_bin_specs.items():
+            if column not in meta_with_regimes.columns:
+                continue
+            edges = _validate_bin_edges(column, raw_edges)
+            values = pd.to_numeric(meta_with_regimes[column], errors="coerce")
+            binned = pd.cut(values, bins=edges, include_lowest=True)
+            for interval in binned.cat.categories:
+                mask = (binned == interval).to_numpy()
+                if int(mask.sum()) < min_samples:
+                    continue
+                metrics = _metrics_from_arrays(
+                    targets_df.to_numpy(dtype=np.float64, copy=False)[mask],
+                    predictions_df.to_numpy(dtype=np.float64, copy=False)[mask],
+                    target_columns=bundle["target_columns"],
+                    split_name=split_name,
+                )
+                row = _metrics_table_row(
+                    metrics,
+                    split_name=split_name,
+                    diagnostic_type="regime_bin",
+                    group_column=column,
+                    group_value=str(interval),
+                )
+                row["regime_column"] = column
+                row["bin_label"] = str(interval)
+                row["bin_left"] = float(interval.left)
+                row["bin_right"] = float(interval.right)
+                rows.append(row)
+        return pd.DataFrame(rows)
+
     if _is_rollout_model_type(bundle.get("model_type", "mlp")):
         _, _, _, target_sequences, metadata = _rollout_arrays_for_bundle(bundle, frame)
         targets_df = pd.DataFrame(
@@ -3423,7 +3478,7 @@ def evaluate_model_bundle_by_regime_bins(
         predictions_df = predict_model_bundle(bundle, frame, batch_size=batch_size, device=device)
         join_keys = [column for column in ["log_id", "segment_id", "time_s"] if column in metadata.columns and column in derived.columns]
         if join_keys:
-            regime_columns = [column for column in resolved_bin_specs if column in derived.columns]
+            regime_columns = [column for column in resolved_bin_specs if column in derived.columns and column not in join_keys]
             meta_with_regimes = metadata.merge(
                 derived.loc[:, [*join_keys, *regime_columns]].drop_duplicates(join_keys),
                 on=join_keys,

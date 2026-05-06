@@ -136,6 +136,39 @@ baseline_comparison_summary.json
 baseline_comparison_summary.png
 ```
 
+## SUBNET-Inspired Forward Rollout Candidates
+
+Beintema et al. 2023 motivates a different system-identification direction: learn from many short causal subsections instead of fitting only one-step/current-time targets. The forward adaptation for this project is not an inverse model and does not use target/wrench history as input.
+
+The rollout candidates are:
+
+```text
+subsection_gru_paper_no_accel_v2_phase_actuator_airdata
+subnet_discrete_paper_no_accel_v2_phase_actuator_airdata
+ct_subnet_euler_paper_no_accel_v2_phase_actuator_airdata
+```
+
+They use:
+
+```text
+context history: phase + actuator + airdata
+rollout inputs: phase + actuator + airdata over the prediction horizon
+current features: remaining non-history point features over the prediction horizon
+targets: six-axis wrench over the rollout horizon
+```
+
+The three-stage interpretation is:
+
+```text
+subsection_gru: GRU context encoder + GRU rollout decoder
+subnet_discrete: encoder initial latent state + discrete residual latent dynamics
+ct_subnet_euler: encoder initial latent state + Euler latent dynamics with dt_over_tau
+```
+
+The CT candidate must sweep `dt_over_tau` before the final comparison. The selected value should minimize validation error while keeping latent derivative RMS numerically reasonable.
+
+Rollout regime diagnostics must be computed from full-split predictions and flattened rollout metadata. Do not filter by regime before constructing rollout subsections; pre-filtering breaks causal history and can make phase-bin diagnostics misleading.
+
 ## Interpretation Rules
 
 Use test metrics only for final comparison after selecting the model by validation loss.
