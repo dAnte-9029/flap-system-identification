@@ -161,6 +161,47 @@ BASELINE_COMPARISON_RECIPES: dict[str, dict[str, Any]] = {
         "window_radius": 6,
         "window_feature_mode": "phase_actuator",
     },
+    "split_axis_mlp_paper_no_accel_v2": {
+        "recipe_type": "split_axis",
+        "feature_set_name": "paper_no_accel_v2",
+        "model_type": "split_axis_mlp",
+        "loss_type": "huber",
+        "huber_delta": 1.5,
+        "window_mode": "single",
+        "window_radius": 0,
+        "window_feature_mode": "all",
+        "target_groups": {
+            "longitudinal": ["fx_b", "fz_b", "my_b"],
+            "lateral": ["fy_b", "mx_b", "mz_b"],
+        },
+    },
+    "causal_gru_paper_no_accel_v2_phase_actuator_airdata": {
+        "feature_set_name": "paper_no_accel_v2",
+        "model_type": "causal_gru",
+        "loss_type": "huber",
+        "huber_delta": 1.5,
+        "window_mode": "single",
+        "window_radius": 0,
+        "window_feature_mode": "all",
+        "sequence_history_size": 64,
+        "sequence_feature_mode": "phase_actuator_airdata",
+        "current_feature_mode": "remaining_current",
+    },
+    "causal_gru_asl_paper_no_accel_v2_phase_actuator_airdata": {
+        "feature_set_name": "paper_no_accel_v2",
+        "model_type": "causal_gru_asl",
+        "loss_type": "huber",
+        "huber_delta": 1.5,
+        "window_mode": "single",
+        "window_radius": 0,
+        "window_feature_mode": "all",
+        "sequence_history_size": 64,
+        "sequence_feature_mode": "phase_actuator_airdata",
+        "current_feature_mode": "remaining_current",
+        "asl_hidden_size": 128,
+        "asl_dropout": 0.1,
+        "asl_max_frequency_bins": None,
+    },
 }
 
 DEFAULT_REGIME_BIN_SPECS: dict[str, list[float]] = {
@@ -291,6 +332,166 @@ class MLPRegressor(nn.Module):
 
     def forward(self, inputs: torch.Tensor) -> torch.Tensor:
         return self.network(inputs)
+
+
+class CausalGRURegressor(nn.Module):
+    def __init__(
+        self,
+        *,
+        sequence_input_dim: int,
+        current_input_dim: int,
+        output_dim: int,
+        hidden_size: int = 128,
+        num_layers: int = 1,
+        dropout: float = 0.0,
+        head_hidden_sizes: tuple[int, ...] = (128,),
+    ):
+        super().__init__()
+        if sequence_input_dim <= 0:
+            raise ValueError("sequence_input_dim must be positive")
+        if current_input_dim < 0:
+            raise ValueError("current_input_dim must be non-negative")
+        if output_dim <= 0:
+            raise ValueError("output_dim must be positive")
+        if hidden_size <= 0:
+            raise ValueError("hidden_size must be positive")
+        if num_layers <= 0:
+            raise ValueError("num_layers must be positive")
+
+        self.sequence_input_dim = int(sequence_input_dim)
+        self.current_input_dim = int(current_input_dim)
+        self.output_dim = int(output_dim)
+        self.hidden_size = int(hidden_size)
+        self.num_layers = int(num_layers)
+
+        gru_dropout = float(dropout) if num_layers > 1 else 0.0
+        self.gru = nn.GRU(
+            input_size=self.sequence_input_dim,
+            hidden_size=self.hidden_size,
+            num_layers=self.num_layers,
+            dropout=gru_dropout,
+            batch_first=True,
+        )
+
+        head_layers: list[nn.Module] = []
+        last_dim = self.hidden_size + self.current_input_dim
+        for hidden_dim in head_hidden_sizes:
+            if hidden_dim <= 0:
+                raise ValueError("head_hidden_sizes entries must be positive")
+            head_layers.append(nn.Linear(last_dim, int(hidden_dim)))
+            head_layers.append(nn.ReLU())
+            if dropout > 0.0:
+                head_layers.append(nn.Dropout(float(dropout)))
+            last_dim = int(hidden_dim)
+        head_layers.append(nn.Linear(last_dim, self.output_dim))
+        self.head = nn.Sequential(*head_layers)
+
+    def forward(self, sequence_inputs: torch.Tensor, current_inputs: torch.Tensor | None = None) -> torch.Tensor:
+        if sequence_inputs.ndim != 3:
+            raise ValueError("sequence_inputs must have shape [batch, history, features]")
+        if sequence_inputs.shape[2] != self.sequence_input_dim:
+            raise ValueError(
+                f"Expected sequence feature dim {self.sequence_input_dim}, got {sequence_inputs.shape[2]}"
+            )
+        _, hidden = self.gru(sequence_inputs)
+        representation = hidden[-1]
+        if self.current_input_dim > 0:
+            if current_inputs is None:
+                raise ValueError("current_inputs are required when current_input_dim is positive")
+            if current_inputs.ndim != 2 or current_inputs.shape[1] != self.current_input_dim:
+                raise ValueError(f"Expected current_inputs shape [batch, {self.current_input_dim}]")
+            representation = torch.cat([representation, current_inputs], dim=1)
+        return self.head(representation)
+
+
+class AdaptiveSpectrumLayer(nn.Module):
+    def __init__(
+        self,
+        *,
+        input_dim: int,
+        hidden_size: int = 128,
+        dropout: float = 0.1,
+        max_frequency_bins: int | None = None,
+    ):
+        super().__init__()
+        if input_dim <= 0:
+            raise ValueError("input_dim must be positive")
+        if hidden_size <= 0:
+            raise ValueError("hidden_size must be positive")
+        if max_frequency_bins is not None and max_frequency_bins <= 0:
+            raise ValueError("max_frequency_bins must be positive when provided")
+        self.input_dim = int(input_dim)
+        self.hidden_size = int(hidden_size)
+        self.max_frequency_bins = None if max_frequency_bins is None else int(max_frequency_bins)
+        self.gate = nn.Sequential(
+            nn.Linear(self.input_dim * 3, self.hidden_size),
+            nn.ReLU(),
+            nn.Dropout(float(dropout)) if dropout > 0.0 else nn.Identity(),
+            nn.Linear(self.hidden_size, self.input_dim),
+            nn.Sigmoid(),
+        )
+
+    def forward(self, sequence_inputs: torch.Tensor) -> torch.Tensor:
+        if sequence_inputs.ndim != 3:
+            raise ValueError("sequence_inputs must have shape [batch, history, features]")
+        if sequence_inputs.shape[2] != self.input_dim:
+            raise ValueError(f"Expected input feature dim {self.input_dim}, got {sequence_inputs.shape[2]}")
+
+        history_size = sequence_inputs.shape[1]
+        spectrum = torch.fft.rfft(sequence_inputs, dim=1)
+        retained_bins = spectrum.shape[1]
+        if self.max_frequency_bins is not None:
+            retained_bins = min(retained_bins, self.max_frequency_bins)
+        retained = spectrum[:, :retained_bins, :]
+
+        magnitude = torch.abs(retained)
+        phase = torch.angle(retained)
+        gate_inputs = torch.cat([magnitude, torch.cos(phase), torch.sin(phase)], dim=2)
+        weights = self.gate(gate_inputs)
+        weighted = retained * weights.to(dtype=retained.dtype)
+
+        if retained_bins < spectrum.shape[1]:
+            padded = torch.zeros_like(spectrum)
+            padded[:, :retained_bins, :] = weighted
+            weighted = padded
+        reconstructed = torch.fft.irfft(weighted, n=history_size, dim=1)
+        return sequence_inputs + reconstructed
+
+
+class CausalGRUASLRegressor(nn.Module):
+    def __init__(
+        self,
+        *,
+        sequence_input_dim: int,
+        current_input_dim: int,
+        output_dim: int,
+        gru_hidden_size: int = 128,
+        gru_num_layers: int = 1,
+        asl_hidden_size: int = 128,
+        asl_dropout: float = 0.1,
+        asl_max_frequency_bins: int | None = None,
+        dropout: float = 0.0,
+        head_hidden_sizes: tuple[int, ...] = (128,),
+    ):
+        super().__init__()
+        self.asl = AdaptiveSpectrumLayer(
+            input_dim=sequence_input_dim,
+            hidden_size=asl_hidden_size,
+            dropout=asl_dropout,
+            max_frequency_bins=asl_max_frequency_bins,
+        )
+        self.regressor = CausalGRURegressor(
+            sequence_input_dim=sequence_input_dim,
+            current_input_dim=current_input_dim,
+            output_dim=output_dim,
+            hidden_size=gru_hidden_size,
+            num_layers=gru_num_layers,
+            dropout=dropout,
+            head_hidden_sizes=head_hidden_sizes,
+        )
+
+    def forward(self, sequence_inputs: torch.Tensor, current_inputs: torch.Tensor | None = None) -> torch.Tensor:
+        return self.regressor(self.asl(sequence_inputs), current_inputs)
 
 
 def cyclic_catmull_rom_weights(
@@ -641,6 +842,13 @@ KINEMATIC_WINDOW_EXCLUDED_COLUMNS = {
     "beta_rad",
 }
 
+SEQUENCE_FEATURE_MODE_COLUMNS: dict[str, list[str]] = {
+    "phase_actuator": WINDOW_FEATURE_MODE_COLUMNS["phase_actuator"],
+    "phase_actuator_airdata": WINDOW_FEATURE_MODE_COLUMNS["phase_actuator"] + WINDOW_FEATURE_MODE_COLUMNS["airdata"],
+}
+
+SEQUENCE_HISTORY_DANGEROUS_COLUMNS = KINEMATIC_WINDOW_EXCLUDED_COLUMNS
+
 
 def resolve_window_feature_columns(feature_columns: list[str], window_feature_mode: str = "all") -> list[str]:
     mode = (window_feature_mode or "all").lower()
@@ -657,6 +865,18 @@ def resolve_window_feature_columns(feature_columns: list[str], window_feature_mo
     if mode == "no_kinematics":
         return [column for column in feature_columns if column not in KINEMATIC_WINDOW_EXCLUDED_COLUMNS]
     raise ValueError(f"Unknown window_feature_mode: {window_feature_mode}")
+
+
+def resolve_sequence_feature_columns(feature_columns: list[str], sequence_feature_mode: str = "phase_actuator_airdata") -> list[str]:
+    mode = (sequence_feature_mode or "phase_actuator_airdata").lower()
+    if mode == "all":
+        return list(feature_columns)
+    if mode == "none":
+        return []
+    if mode in SEQUENCE_FEATURE_MODE_COLUMNS:
+        selected = set(SEQUENCE_FEATURE_MODE_COLUMNS[mode])
+        return [column for column in feature_columns if column in selected]
+    raise ValueError(f"Unknown sequence_feature_mode: {sequence_feature_mode}")
 
 
 def prepare_windowed_feature_target_frames(
@@ -719,6 +939,71 @@ def prepare_windowed_feature_target_frames(
     return pd.concat(windowed_parts, ignore_index=True), pd.concat(target_parts, ignore_index=True)
 
 
+def prepare_causal_sequence_feature_target_frames(
+    frame: pd.DataFrame,
+    sequence_feature_columns: list[str],
+    current_feature_columns: list[str],
+    target_columns: list[str],
+    *,
+    history_size: int,
+    group_columns: tuple[str, ...] = ("log_id", "segment_id"),
+    sort_column: str = "time_s",
+) -> tuple[np.ndarray, np.ndarray, pd.DataFrame, pd.DataFrame]:
+    if history_size < 1:
+        raise ValueError("history_size must be at least 1")
+
+    derived = _with_derived_columns(frame)
+    required_columns = list(sequence_feature_columns) + list(current_feature_columns) + list(target_columns)
+    missing_columns = [column for column in required_columns if column not in derived.columns]
+    if missing_columns:
+        raise ValueError(f"Missing required sequence training columns: {missing_columns}")
+
+    available_group_columns = [column for column in group_columns if column in derived.columns]
+    metadata_columns = [column for column in [*available_group_columns, sort_column] if column in derived.columns]
+    if available_group_columns:
+        groups = derived.groupby(available_group_columns, sort=False, dropna=False).indices.values()
+    else:
+        groups = [np.arange(len(derived))]
+
+    sequence_parts: list[np.ndarray] = []
+    current_parts: list[np.ndarray] = []
+    target_parts: list[pd.DataFrame] = []
+    metadata_parts: list[pd.DataFrame] = []
+
+    for indices in groups:
+        group = derived.iloc[np.asarray(indices)].copy()
+        if sort_column in group.columns:
+            group = group.sort_values(sort_column, kind="mergesort")
+        group = group.reset_index(drop=True)
+        if len(group) < history_size:
+            continue
+
+        group_sequence = group.loc[:, sequence_feature_columns].to_numpy(dtype=np.float32, copy=True)
+        group_current = group.loc[:, current_feature_columns].to_numpy(dtype=np.float32, copy=True)
+        group_targets = group.loc[:, target_columns].copy()
+        group_metadata = group.loc[:, metadata_columns].copy()
+
+        for end_index in range(history_size - 1, len(group)):
+            start_index = end_index - history_size + 1
+            sequence_parts.append(group_sequence[start_index : end_index + 1])
+            if current_feature_columns:
+                current_parts.append(group_current[end_index])
+            target_parts.append(group_targets.iloc[[end_index]].reset_index(drop=True))
+            metadata_parts.append(group_metadata.iloc[[end_index]].reset_index(drop=True))
+
+    if not sequence_parts:
+        raise ValueError("No complete causal sequence samples were produced")
+
+    sequence_features = np.stack(sequence_parts).astype(np.float32, copy=False)
+    if current_feature_columns:
+        current_features = np.stack(current_parts).astype(np.float32, copy=False)
+    else:
+        current_features = np.empty((len(sequence_parts), 0), dtype=np.float32)
+    targets = pd.concat(target_parts, ignore_index=True)
+    metadata = pd.concat(metadata_parts, ignore_index=True) if metadata_parts else pd.DataFrame(index=range(len(sequence_parts)))
+    return sequence_features, current_features, targets, metadata
+
+
 def _fit_feature_stats(
     features: np.ndarray,
     *,
@@ -770,11 +1055,18 @@ def _to_serializable_bundle(bundle: dict[str, Any]) -> dict[str, Any]:
         "feature_medians",
         "feature_means",
         "feature_stds",
+        "sequence_feature_medians",
+        "sequence_feature_means",
+        "sequence_feature_stds",
+        "current_feature_medians",
+        "current_feature_means",
+        "current_feature_stds",
         "target_means",
         "target_stds",
         "target_loss_weights",
     ]:
-        serializable[key] = torch.as_tensor(bundle[key], dtype=torch.float32)
+        if key in bundle:
+            serializable[key] = torch.as_tensor(bundle[key], dtype=torch.float32)
     return serializable
 
 
@@ -830,6 +1122,33 @@ def _make_loader(
     else:
         target_tensor = torch.from_numpy(targets.astype(np.float32, copy=False))
         dataset = TensorDataset(feature_tensor, target_tensor)
+    return DataLoader(
+        dataset,
+        batch_size=batch_size,
+        shuffle=shuffle,
+        num_workers=num_workers,
+        pin_memory=pin_memory,
+        drop_last=False,
+    )
+
+
+def _make_sequence_loader(
+    sequence_features: np.ndarray,
+    current_features: np.ndarray,
+    targets: np.ndarray | None,
+    *,
+    batch_size: int,
+    shuffle: bool,
+    num_workers: int,
+    pin_memory: bool,
+) -> DataLoader:
+    sequence_tensor = torch.from_numpy(sequence_features.astype(np.float32, copy=False))
+    current_tensor = torch.from_numpy(current_features.astype(np.float32, copy=False))
+    if targets is None:
+        dataset = TensorDataset(sequence_tensor, current_tensor)
+    else:
+        target_tensor = torch.from_numpy(targets.astype(np.float32, copy=False))
+        dataset = TensorDataset(sequence_tensor, current_tensor, target_tensor)
     return DataLoader(
         dataset,
         batch_size=batch_size,
@@ -945,6 +1264,38 @@ def _predict_scaled_batches(
     return np.concatenate(outputs, axis=0)
 
 
+def _predict_sequence_scaled_batches(
+    model: nn.Module,
+    sequence_features_scaled: np.ndarray,
+    current_features_scaled: np.ndarray,
+    *,
+    batch_size: int,
+    device: torch.device,
+    use_amp: bool,
+) -> np.ndarray:
+    loader = _make_sequence_loader(
+        sequence_features_scaled,
+        current_features_scaled,
+        None,
+        batch_size=batch_size,
+        shuffle=False,
+        num_workers=0,
+        pin_memory=device.type == "cuda",
+    )
+    outputs: list[np.ndarray] = []
+    amp_enabled = use_amp and device.type == "cuda"
+    model.eval()
+    with torch.no_grad():
+        for batch_sequence, batch_current in loader:
+            batch_sequence = batch_sequence.to(device, non_blocking=True)
+            batch_current = batch_current.to(device, non_blocking=True)
+            current_arg = batch_current if batch_current.shape[1] > 0 else None
+            with torch.autocast(device_type=device.type, dtype=torch.float16, enabled=amp_enabled):
+                batch_predictions = model(batch_sequence, current_arg)
+            outputs.append(batch_predictions.detach().cpu().numpy())
+    return np.concatenate(outputs, axis=0)
+
+
 def _history_frame(history: list[dict[str, float]]) -> pd.DataFrame:
     return pd.DataFrame(history)
 
@@ -992,14 +1343,7 @@ def _save_pred_vs_true_plot(
     batch_size: int,
     device: str | None = None,
 ) -> None:
-    _, targets_df = prepare_windowed_feature_target_frames(
-        frame,
-        bundle.get("base_feature_columns", bundle["feature_columns"]),
-        bundle["target_columns"],
-        window_mode=bundle.get("window_mode", "single"),
-        window_radius=int(bundle.get("window_radius", 0)),
-        window_feature_columns=bundle.get("window_feature_columns"),
-    )
+    targets_df = _targets_for_bundle(bundle, frame)
     predictions_df = predict_model_bundle(bundle, frame, batch_size=batch_size, device=device)
 
     fig, axes = plt.subplots(2, 3, figsize=(15, 9))
@@ -1030,14 +1374,7 @@ def _save_residual_hist_plot(
     batch_size: int,
     device: str | None = None,
 ) -> None:
-    _, targets_df = prepare_windowed_feature_target_frames(
-        frame,
-        bundle.get("base_feature_columns", bundle["feature_columns"]),
-        bundle["target_columns"],
-        window_mode=bundle.get("window_mode", "single"),
-        window_radius=int(bundle.get("window_radius", 0)),
-        window_feature_columns=bundle.get("window_feature_columns"),
-    )
+    targets_df = _targets_for_bundle(bundle, frame)
     predictions_df = predict_model_bundle(bundle, frame, batch_size=batch_size, device=device)
 
     fig, axes = plt.subplots(2, 3, figsize=(15, 9))
@@ -1123,11 +1460,117 @@ def _evaluate_scaled_loss(
     return total_loss / max(total_samples, 1)
 
 
+def _evaluate_sequence_scaled_loss(
+    model: nn.Module,
+    loader: DataLoader,
+    device: torch.device,
+    *,
+    use_amp: bool,
+    target_loss_weights: torch.Tensor,
+    loss_type: str,
+    huber_delta: float,
+) -> float:
+    model.eval()
+    total_loss = 0.0
+    total_samples = 0
+    amp_enabled = use_amp and device.type == "cuda"
+    with torch.no_grad():
+        for batch_sequence, batch_current, batch_targets in loader:
+            batch_sequence = batch_sequence.to(device, non_blocking=True)
+            batch_current = batch_current.to(device, non_blocking=True)
+            batch_targets = batch_targets.to(device, non_blocking=True)
+            current_arg = batch_current if batch_current.shape[1] > 0 else None
+            with torch.autocast(device_type=device.type, dtype=torch.float16, enabled=amp_enabled):
+                predictions = model(batch_sequence, current_arg)
+                loss = regression_loss(
+                    predictions,
+                    batch_targets,
+                    target_loss_weights=target_loss_weights,
+                    loss_type=loss_type,
+                    huber_delta=huber_delta,
+                )
+            batch_size = len(batch_sequence)
+            total_loss += float(loss.item()) * batch_size
+            total_samples += batch_size
+    return total_loss / max(total_samples, 1)
+
+
 def _normalized_model_type(model_type: str | None) -> str:
     normalized = (model_type or "mlp").lower()
-    if normalized not in {"mlp", "pfnn"}:
+    if normalized not in {"mlp", "pfnn", "causal_gru", "causal_gru_asl"}:
         raise ValueError(f"Unknown model_type: {model_type}")
     return normalized
+
+
+def _is_sequence_model_type(model_type: str | None) -> bool:
+    return _normalized_model_type(model_type) in {"causal_gru", "causal_gru_asl"}
+
+
+def resolve_current_feature_columns(
+    base_feature_columns: list[str],
+    sequence_feature_columns: list[str],
+    current_feature_mode: str = "remaining_current",
+) -> list[str]:
+    mode = (current_feature_mode or "remaining_current").lower()
+    if mode == "remaining_current":
+        sequence_set = set(sequence_feature_columns)
+        return [column for column in base_feature_columns if column not in sequence_set]
+    if mode == "all":
+        return list(base_feature_columns)
+    if mode == "none":
+        return []
+    raise ValueError(f"Unknown current_feature_mode: {current_feature_mode}")
+
+
+ACCELERATION_INPUT_COLUMNS = set(NO_ACCEL_NO_ALPHA_EXCLUDED_COLUMNS)
+VELOCITY_HISTORY_COLUMNS = {
+    "vehicle_local_position.vx",
+    "vehicle_local_position.vy",
+    "vehicle_local_position.vz",
+    "velocity_b.x",
+    "velocity_b.y",
+    "velocity_b.z",
+    "relative_air_velocity_b.x",
+    "relative_air_velocity_b.y",
+    "relative_air_velocity_b.z",
+}
+ANGULAR_VELOCITY_HISTORY_COLUMNS = {
+    "vehicle_angular_velocity.xyz[0]",
+    "vehicle_angular_velocity.xyz[1]",
+    "vehicle_angular_velocity.xyz[2]",
+}
+ALPHA_BETA_HISTORY_COLUMNS = {"alpha_rad", "beta_rad"}
+
+
+def _training_audit_flags(bundle: dict[str, Any], *, split_root: str | Path | None = None) -> dict[str, bool]:
+    model_type = bundle.get("model_type", "mlp")
+    if _is_sequence_model_type(model_type):
+        history_columns = set(bundle.get("sequence_feature_columns", []))
+        input_columns = history_columns | set(bundle.get("current_feature_columns", []))
+        has_centered_window = False
+    else:
+        history_columns = set(bundle.get("window_feature_columns", []))
+        input_columns = set(bundle.get("base_feature_columns", bundle.get("feature_columns", [])))
+        has_centered_window = bundle.get("window_mode") == "centered"
+
+    uses_whole_log_split = False
+    if split_root is not None:
+        manifest_path = Path(split_root) / "dataset_manifest.json"
+        if manifest_path.exists():
+            try:
+                manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+                uses_whole_log_split = manifest.get("split_policy") == "whole_log"
+            except json.JSONDecodeError:
+                uses_whole_log_split = False
+
+    return {
+        "has_acceleration_inputs": bool(input_columns & ACCELERATION_INPUT_COLUMNS),
+        "has_velocity_history": bool(history_columns & VELOCITY_HISTORY_COLUMNS),
+        "has_angular_velocity_history": bool(history_columns & ANGULAR_VELOCITY_HISTORY_COLUMNS),
+        "has_alpha_beta_history": bool(history_columns & ALPHA_BETA_HISTORY_COLUMNS),
+        "has_centered_window": bool(has_centered_window),
+        "uses_whole_log_split": bool(uses_whole_log_split),
+    }
 
 
 def _phase_feature_index_for_model(model_type: str, feature_columns: list[str]) -> int | None:
@@ -1170,6 +1613,299 @@ def _build_regressor(
         phase_control_points=pfnn_control_points,
         dropout=dropout,
     )
+
+
+def _fit_sequence_feature_stats(features: np.ndarray) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
+    flat = features.reshape(-1, features.shape[-1])
+    return _fit_feature_stats(flat)
+
+
+def _transform_sequence_features(
+    features: np.ndarray,
+    medians: np.ndarray,
+    means: np.ndarray,
+    stds: np.ndarray,
+) -> np.ndarray:
+    flat = features.reshape(-1, features.shape[-1])
+    transformed = _transform_features(flat, medians, means, stds)
+    return transformed.reshape(features.shape).astype(np.float32, copy=False)
+
+
+def fit_torch_sequence_regressor(
+    *,
+    train_frame: pd.DataFrame,
+    val_frame: pd.DataFrame,
+    feature_columns: list[str] | None = None,
+    target_columns: list[str] | None = None,
+    model_type: str = "causal_gru",
+    hidden_sizes: tuple[int, ...] = (128,),
+    dropout: float = 0.0,
+    batch_size: int = 512,
+    max_epochs: int = 50,
+    learning_rate: float = 1e-3,
+    weight_decay: float = 1e-5,
+    early_stopping_patience: int = 8,
+    device: str | None = None,
+    random_seed: int = 42,
+    num_workers: int = 0,
+    use_amp: bool = True,
+    target_loss_weights: str | dict[str, float] | list[float] | tuple[float, ...] | np.ndarray | None = None,
+    loss_type: str = "mse",
+    huber_delta: float = 1.0,
+    sequence_history_size: int = 64,
+    sequence_feature_mode: str = "phase_actuator_airdata",
+    current_feature_mode: str = "remaining_current",
+    gru_num_layers: int = 1,
+    asl_hidden_size: int = 128,
+    asl_dropout: float = 0.1,
+    asl_max_frequency_bins: int | None = None,
+) -> dict[str, Any]:
+    _set_random_seed(random_seed)
+    resolved_model_type = _normalized_model_type(model_type)
+    if not _is_sequence_model_type(resolved_model_type):
+        raise ValueError(f"Sequence training requires a sequence model_type, got {model_type}")
+    resolved_loss_type = _normalized_loss_type(loss_type)
+    if huber_delta <= 0.0 or not math.isfinite(float(huber_delta)):
+        raise ValueError("huber_delta must be positive and finite")
+    if sequence_history_size < 1:
+        raise ValueError("sequence_history_size must be at least 1")
+    if not hidden_sizes:
+        raise ValueError("hidden_sizes must not be empty for sequence models")
+
+    resolved_device = _resolve_device(device)
+    pin_memory = resolved_device.type == "cuda"
+    base_feature_columns = feature_columns or DEFAULT_FEATURE_COLUMNS
+    resolved_target_columns = target_columns or DEFAULT_TARGET_COLUMNS
+    sequence_feature_columns = resolve_sequence_feature_columns(list(base_feature_columns), sequence_feature_mode)
+    if not sequence_feature_columns:
+        raise ValueError("Sequence models require at least one sequence feature")
+    current_feature_columns = resolve_current_feature_columns(
+        list(base_feature_columns),
+        sequence_feature_columns,
+        current_feature_mode,
+    )
+
+    train_sequence, train_current, train_targets_df, _ = prepare_causal_sequence_feature_target_frames(
+        train_frame,
+        sequence_feature_columns,
+        current_feature_columns,
+        resolved_target_columns,
+        history_size=sequence_history_size,
+    )
+    val_sequence, val_current, val_targets_df, _ = prepare_causal_sequence_feature_target_frames(
+        val_frame,
+        sequence_feature_columns,
+        current_feature_columns,
+        resolved_target_columns,
+        history_size=sequence_history_size,
+    )
+
+    train_targets = train_targets_df.to_numpy(dtype=np.float32, copy=True)
+    val_targets = val_targets_df.to_numpy(dtype=np.float32, copy=True)
+    sequence_feature_medians, sequence_feature_means, sequence_feature_stds = _fit_sequence_feature_stats(train_sequence)
+    if current_feature_columns:
+        current_feature_medians, current_feature_means, current_feature_stds = _fit_feature_stats(train_current)
+        train_current_scaled = _transform_features(train_current, current_feature_medians, current_feature_means, current_feature_stds)
+        val_current_scaled = _transform_features(val_current, current_feature_medians, current_feature_means, current_feature_stds)
+    else:
+        current_feature_medians = np.empty((0,), dtype=np.float32)
+        current_feature_means = np.empty((0,), dtype=np.float32)
+        current_feature_stds = np.empty((0,), dtype=np.float32)
+        train_current_scaled = train_current
+        val_current_scaled = val_current
+
+    target_means, target_stds = _fit_target_stats(train_targets)
+    train_sequence_scaled = _transform_sequence_features(
+        train_sequence,
+        sequence_feature_medians,
+        sequence_feature_means,
+        sequence_feature_stds,
+    )
+    val_sequence_scaled = _transform_sequence_features(
+        val_sequence,
+        sequence_feature_medians,
+        sequence_feature_means,
+        sequence_feature_stds,
+    )
+    train_targets_scaled = _transform_targets(train_targets, target_means, target_stds)
+    val_targets_scaled = _transform_targets(val_targets, target_means, target_stds)
+    target_loss_weights_array = resolve_target_loss_weights(list(train_targets_df.columns), target_loss_weights)
+    target_loss_weights_tensor = torch.as_tensor(target_loss_weights_array, dtype=torch.float32, device=resolved_device)
+
+    train_loader = _make_sequence_loader(
+        train_sequence_scaled,
+        train_current_scaled,
+        train_targets_scaled,
+        batch_size=batch_size,
+        shuffle=True,
+        num_workers=num_workers,
+        pin_memory=pin_memory,
+    )
+    val_loader = _make_sequence_loader(
+        val_sequence_scaled,
+        val_current_scaled,
+        val_targets_scaled,
+        batch_size=batch_size,
+        shuffle=False,
+        num_workers=num_workers,
+        pin_memory=pin_memory,
+    )
+
+    if resolved_model_type == "causal_gru_asl":
+        model = CausalGRUASLRegressor(
+            sequence_input_dim=train_sequence_scaled.shape[2],
+            current_input_dim=train_current_scaled.shape[1],
+            output_dim=train_targets_scaled.shape[1],
+            gru_hidden_size=int(hidden_sizes[0]),
+            gru_num_layers=int(gru_num_layers),
+            asl_hidden_size=int(asl_hidden_size),
+            asl_dropout=float(asl_dropout),
+            asl_max_frequency_bins=asl_max_frequency_bins,
+            dropout=dropout,
+            head_hidden_sizes=tuple(int(v) for v in hidden_sizes[1:]) or (int(hidden_sizes[0]),),
+        ).to(resolved_device)
+    else:
+        model = CausalGRURegressor(
+            sequence_input_dim=train_sequence_scaled.shape[2],
+            current_input_dim=train_current_scaled.shape[1],
+            output_dim=train_targets_scaled.shape[1],
+            hidden_size=int(hidden_sizes[0]),
+            num_layers=int(gru_num_layers),
+            dropout=dropout,
+            head_hidden_sizes=tuple(int(v) for v in hidden_sizes[1:]) or (int(hidden_sizes[0]),),
+        ).to(resolved_device)
+    optimizer = torch.optim.AdamW(model.parameters(), lr=learning_rate, weight_decay=weight_decay)
+    scaler = torch.amp.GradScaler("cuda", enabled=use_amp and resolved_device.type == "cuda")
+
+    best_state_dict = copy.deepcopy(model.state_dict())
+    best_val_loss = math.inf
+    best_epoch = 0
+    epochs_without_improvement = 0
+    history: list[dict[str, float]] = []
+    amp_enabled = use_amp and resolved_device.type == "cuda"
+
+    for epoch in range(1, max_epochs + 1):
+        model.train()
+        train_loss_sum = 0.0
+        train_sample_count = 0
+
+        for batch_sequence, batch_current, batch_targets in train_loader:
+            batch_sequence = batch_sequence.to(resolved_device, non_blocking=True)
+            batch_current = batch_current.to(resolved_device, non_blocking=True)
+            batch_targets = batch_targets.to(resolved_device, non_blocking=True)
+            current_arg = batch_current if batch_current.shape[1] > 0 else None
+
+            optimizer.zero_grad(set_to_none=True)
+            with torch.autocast(device_type=resolved_device.type, dtype=torch.float16, enabled=amp_enabled):
+                predictions = model(batch_sequence, current_arg)
+                loss = regression_loss(
+                    predictions,
+                    batch_targets,
+                    target_loss_weights=target_loss_weights_tensor,
+                    loss_type=resolved_loss_type,
+                    huber_delta=huber_delta,
+                )
+
+            scaler.scale(loss).backward()
+            scaler.step(optimizer)
+            scaler.update()
+
+            batch_count = len(batch_sequence)
+            train_loss_sum += float(loss.item()) * batch_count
+            train_sample_count += batch_count
+
+        train_loss = train_loss_sum / max(train_sample_count, 1)
+        val_loss = _evaluate_sequence_scaled_loss(
+            model,
+            val_loader,
+            resolved_device,
+            use_amp=use_amp,
+            target_loss_weights=target_loss_weights_tensor,
+            loss_type=resolved_loss_type,
+            huber_delta=huber_delta,
+        )
+        val_predictions_scaled = _predict_sequence_scaled_batches(
+            model,
+            val_sequence_scaled,
+            val_current_scaled,
+            batch_size=batch_size,
+            device=resolved_device,
+            use_amp=use_amp,
+        )
+        val_predictions = _inverse_transform_targets(val_predictions_scaled, target_means, target_stds)
+        val_metrics = _metrics_from_arrays(
+            val_targets.astype(np.float32, copy=False),
+            val_predictions.astype(np.float32, copy=False),
+            target_columns=list(train_targets_df.columns),
+            split_name="val",
+        )
+        history_row: dict[str, float] = {
+            "epoch": float(epoch),
+            "train_loss": float(train_loss),
+            "val_loss": float(val_loss),
+            "val_overall_mae": float(val_metrics["overall_mae"]),
+            "val_overall_rmse": float(val_metrics["overall_rmse"]),
+            "val_overall_r2": float(val_metrics["overall_r2"]),
+        }
+        for target_name, metrics in val_metrics["per_target"].items():
+            history_row[f"val_{target_name}_mae"] = float(metrics["mae"])
+            history_row[f"val_{target_name}_rmse"] = float(metrics["rmse"])
+            history_row[f"val_{target_name}_r2"] = float(metrics["r2"])
+        history.append(history_row)
+
+        if val_loss < best_val_loss - 1e-8:
+            best_val_loss = val_loss
+            best_epoch = epoch
+            best_state_dict = copy.deepcopy(model.state_dict())
+            epochs_without_improvement = 0
+        else:
+            epochs_without_improvement += 1
+            if epochs_without_improvement >= early_stopping_patience:
+                break
+
+    model.load_state_dict(best_state_dict)
+
+    return {
+        "model_state_dict": best_state_dict,
+        "model_type": resolved_model_type,
+        "feature_columns": list(base_feature_columns),
+        "base_feature_columns": list(base_feature_columns),
+        "target_columns": list(train_targets_df.columns),
+        "sequence_feature_columns": list(sequence_feature_columns),
+        "current_feature_columns": list(current_feature_columns),
+        "sequence_feature_medians": sequence_feature_medians,
+        "sequence_feature_means": sequence_feature_means,
+        "sequence_feature_stds": sequence_feature_stds,
+        "current_feature_medians": current_feature_medians,
+        "current_feature_means": current_feature_means,
+        "current_feature_stds": current_feature_stds,
+        "target_means": target_means,
+        "target_stds": target_stds,
+        "target_loss_weights": target_loss_weights_array,
+        "target_loss_weights_by_name": _target_loss_weights_as_dict(list(train_targets_df.columns), target_loss_weights_array),
+        "loss_type": resolved_loss_type,
+        "huber_delta": float(huber_delta),
+        "sequence_history_size": int(sequence_history_size),
+        "sequence_feature_mode": sequence_feature_mode,
+        "current_feature_mode": current_feature_mode,
+        "sequence_group_columns": ["log_id", "segment_id"],
+        "sequence_sort_column": "time_s",
+        "sequence_sample_count_train": int(len(train_sequence_scaled)),
+        "sequence_sample_count_val": int(len(val_sequence_scaled)),
+        "hidden_sizes": list(hidden_sizes),
+        "dropout": float(dropout),
+        "gru_hidden_size": int(hidden_sizes[0]),
+        "gru_num_layers": int(gru_num_layers),
+        "asl_hidden_size": int(asl_hidden_size),
+        "asl_dropout": float(asl_dropout),
+        "asl_max_frequency_bins": asl_max_frequency_bins,
+        "best_epoch": int(best_epoch),
+        "best_val_loss": float(best_val_loss),
+        "history": history,
+        "device_type": resolved_device.type,
+        "use_amp": bool(amp_enabled),
+        "random_seed": int(random_seed),
+    }
 
 
 def fit_torch_regressor(
@@ -1403,6 +2139,8 @@ def fit_torch_regressor(
 
 def _build_model_from_bundle(bundle: dict[str, Any], device: torch.device) -> nn.Module:
     model_type = _normalized_model_type(bundle.get("model_type", "mlp"))
+    if _is_sequence_model_type(model_type):
+        return _build_sequence_model_from_bundle(bundle, device)
     phase_feature_index = bundle.get("phase_feature_index")
     if phase_feature_index is not None:
         phase_feature_index = int(phase_feature_index)
@@ -1422,6 +2160,68 @@ def _build_model_from_bundle(bundle: dict[str, Any], device: torch.device) -> nn
     return model
 
 
+def _build_sequence_model_from_bundle(bundle: dict[str, Any], device: torch.device) -> nn.Module:
+    model_type = _normalized_model_type(bundle.get("model_type", "causal_gru"))
+    if model_type == "causal_gru_asl":
+        # The ASL subclass is added in the next task; keep this branch explicit for bundle compatibility.
+        model_cls = globals().get("CausalGRUASLRegressor")
+        if model_cls is None:
+            raise ValueError("CausalGRUASLRegressor is not available")
+        model = model_cls(
+            sequence_input_dim=len(bundle["sequence_feature_columns"]),
+            current_input_dim=len(bundle["current_feature_columns"]),
+            output_dim=len(bundle["target_columns"]),
+            gru_hidden_size=int(bundle.get("gru_hidden_size", bundle["hidden_sizes"][0])),
+            gru_num_layers=int(bundle.get("gru_num_layers", 1)),
+            asl_hidden_size=int(bundle.get("asl_hidden_size", 128)),
+            asl_dropout=float(bundle.get("asl_dropout", 0.1)),
+            asl_max_frequency_bins=bundle.get("asl_max_frequency_bins"),
+            dropout=float(bundle.get("dropout", 0.0)),
+            head_hidden_sizes=tuple(int(v) for v in bundle.get("hidden_sizes", [128])[1:]) or (int(bundle.get("gru_hidden_size", bundle["hidden_sizes"][0])),),
+        ).to(device)
+    else:
+        model = CausalGRURegressor(
+            sequence_input_dim=len(bundle["sequence_feature_columns"]),
+            current_input_dim=len(bundle["current_feature_columns"]),
+            output_dim=len(bundle["target_columns"]),
+            hidden_size=int(bundle.get("gru_hidden_size", bundle["hidden_sizes"][0])),
+            num_layers=int(bundle.get("gru_num_layers", 1)),
+            dropout=float(bundle.get("dropout", 0.0)),
+            head_hidden_sizes=tuple(int(v) for v in bundle.get("hidden_sizes", [128])[1:]) or (int(bundle.get("gru_hidden_size", bundle["hidden_sizes"][0])),),
+        ).to(device)
+    model.load_state_dict(bundle["model_state_dict"])
+    model.eval()
+    return model
+
+
+def _sequence_arrays_for_bundle(bundle: dict[str, Any], frame: pd.DataFrame) -> tuple[np.ndarray, np.ndarray, pd.DataFrame]:
+    sequence_features, current_features, targets_df, _ = prepare_causal_sequence_feature_target_frames(
+        frame,
+        list(bundle["sequence_feature_columns"]),
+        list(bundle["current_feature_columns"]),
+        list(bundle["target_columns"]),
+        history_size=int(bundle["sequence_history_size"]),
+        group_columns=tuple(bundle.get("sequence_group_columns", ("log_id", "segment_id"))),
+        sort_column=str(bundle.get("sequence_sort_column", "time_s")),
+    )
+    return sequence_features, current_features, targets_df
+
+
+def _targets_for_bundle(bundle: dict[str, Any], frame: pd.DataFrame) -> pd.DataFrame:
+    if _is_sequence_model_type(bundle.get("model_type", "mlp")):
+        _, _, targets_df = _sequence_arrays_for_bundle(bundle, frame)
+        return targets_df
+    _, targets_df = prepare_windowed_feature_target_frames(
+        frame,
+        bundle.get("base_feature_columns", bundle["feature_columns"]),
+        bundle["target_columns"],
+        window_mode=bundle.get("window_mode", "single"),
+        window_radius=int(bundle.get("window_radius", 0)),
+        window_feature_columns=bundle.get("window_feature_columns"),
+    )
+    return targets_df
+
+
 def predict_model_bundle(
     bundle: dict[str, Any],
     frame: pd.DataFrame,
@@ -1430,6 +2230,39 @@ def predict_model_bundle(
     device: str | None = None,
 ) -> pd.DataFrame:
     resolved_device = _resolve_device(device or bundle.get("device_type"))
+    if _is_sequence_model_type(bundle.get("model_type", "mlp")):
+        sequence_features, current_features, _ = _sequence_arrays_for_bundle(bundle, frame)
+        sequence_scaled = _transform_sequence_features(
+            sequence_features,
+            _as_numpy_array(bundle["sequence_feature_medians"]),
+            _as_numpy_array(bundle["sequence_feature_means"]),
+            _as_numpy_array(bundle["sequence_feature_stds"]),
+        )
+        if current_features.shape[1] > 0:
+            current_scaled = _transform_features(
+                current_features,
+                _as_numpy_array(bundle["current_feature_medians"]),
+                _as_numpy_array(bundle["current_feature_means"]),
+                _as_numpy_array(bundle["current_feature_stds"]),
+            )
+        else:
+            current_scaled = current_features.astype(np.float32, copy=False)
+        model = _build_sequence_model_from_bundle(bundle, resolved_device)
+        predictions_scaled_arr = _predict_sequence_scaled_batches(
+            model,
+            sequence_scaled,
+            current_scaled,
+            batch_size=batch_size,
+            device=resolved_device,
+            use_amp=bool(bundle.get("use_amp", False)),
+        )
+        predictions = _inverse_transform_targets(
+            predictions_scaled_arr,
+            _as_numpy_array(bundle["target_means"]),
+            _as_numpy_array(bundle["target_stds"]),
+        )
+        return pd.DataFrame(predictions, columns=bundle["target_columns"])
+
     features_df, _ = prepare_windowed_feature_target_frames(
         frame,
         bundle.get("base_feature_columns", bundle["feature_columns"]),
@@ -1483,14 +2316,7 @@ def evaluate_model_bundle(
     batch_size: int = 8192,
     device: str | None = None,
 ) -> dict[str, Any]:
-    _, targets_df = prepare_windowed_feature_target_frames(
-        frame,
-        bundle.get("base_feature_columns", bundle["feature_columns"]),
-        bundle["target_columns"],
-        window_mode=bundle.get("window_mode", "single"),
-        window_radius=int(bundle.get("window_radius", 0)),
-        window_feature_columns=bundle.get("window_feature_columns"),
-    )
+    targets_df = _targets_for_bundle(bundle, frame)
     predictions_df = predict_model_bundle(bundle, frame, batch_size=batch_size, device=device)
 
     y_true = targets_df.to_numpy(dtype=np.float64, copy=False)
@@ -1597,7 +2423,12 @@ def evaluate_model_bundle_by_regime_bins(
             if int(mask.sum()) < min_samples:
                 continue
             group = frame.loc[mask.to_numpy()].copy()
-            metrics = evaluate_model_bundle(bundle, group, split_name=split_name, batch_size=batch_size, device=device)
+            try:
+                metrics = evaluate_model_bundle(bundle, group, split_name=split_name, batch_size=batch_size, device=device)
+            except ValueError as exc:
+                if "No complete causal sequence samples were produced" in str(exc):
+                    continue
+                raise
             row = _metrics_table_row(
                 metrics,
                 split_name=split_name,
@@ -1730,6 +2561,13 @@ def run_training_job(
     pfnn_expanded_input_dim: int = 45,
     pfnn_phase_node_count: int = 5,
     pfnn_control_points: int = 6,
+    sequence_history_size: int = 64,
+    sequence_feature_mode: str = "phase_actuator_airdata",
+    current_feature_mode: str = "remaining_current",
+    gru_num_layers: int = 1,
+    asl_hidden_size: int = 128,
+    asl_dropout: float = 0.1,
+    asl_max_frequency_bins: int | None = None,
 ) -> dict[str, str]:
     if feature_set_name is not None and feature_columns is not None:
         raise ValueError("feature_set_name and feature_columns cannot both be provided")
@@ -1742,33 +2580,64 @@ def run_training_job(
     val_frame = _load_split_frame(split_root, "val", max_val_samples, random_seed + 1)
     test_frame = _load_split_frame(split_root, "test", max_test_samples, random_seed + 2)
 
-    bundle = fit_torch_regressor(
-        train_frame=train_frame,
-        val_frame=val_frame,
-        feature_columns=resolved_feature_columns,
-        target_columns=target_columns,
-        model_type=model_type,
-        hidden_sizes=hidden_sizes,
-        dropout=dropout,
-        batch_size=batch_size,
-        max_epochs=max_epochs,
-        learning_rate=learning_rate,
-        weight_decay=weight_decay,
-        early_stopping_patience=early_stopping_patience,
-        device=device,
-        random_seed=random_seed,
-        num_workers=num_workers,
-        use_amp=use_amp,
-        target_loss_weights=target_loss_weights,
-        loss_type=loss_type,
-        huber_delta=huber_delta,
-        window_mode=window_mode,
-        window_radius=window_radius,
-        window_feature_mode=window_feature_mode,
-        pfnn_expanded_input_dim=pfnn_expanded_input_dim,
-        pfnn_phase_node_count=pfnn_phase_node_count,
-        pfnn_control_points=pfnn_control_points,
-    )
+    resolved_model_type = _normalized_model_type(model_type)
+    if _is_sequence_model_type(resolved_model_type):
+        bundle = fit_torch_sequence_regressor(
+            train_frame=train_frame,
+            val_frame=val_frame,
+            feature_columns=resolved_feature_columns,
+            target_columns=target_columns,
+            model_type=resolved_model_type,
+            hidden_sizes=hidden_sizes,
+            dropout=dropout,
+            batch_size=batch_size,
+            max_epochs=max_epochs,
+            learning_rate=learning_rate,
+            weight_decay=weight_decay,
+            early_stopping_patience=early_stopping_patience,
+            device=device,
+            random_seed=random_seed,
+            num_workers=num_workers,
+            use_amp=use_amp,
+            target_loss_weights=target_loss_weights,
+            loss_type=loss_type,
+            huber_delta=huber_delta,
+            sequence_history_size=sequence_history_size,
+            sequence_feature_mode=sequence_feature_mode,
+            current_feature_mode=current_feature_mode,
+            gru_num_layers=gru_num_layers,
+            asl_hidden_size=asl_hidden_size,
+            asl_dropout=asl_dropout,
+            asl_max_frequency_bins=asl_max_frequency_bins,
+        )
+    else:
+        bundle = fit_torch_regressor(
+            train_frame=train_frame,
+            val_frame=val_frame,
+            feature_columns=resolved_feature_columns,
+            target_columns=target_columns,
+            model_type=resolved_model_type,
+            hidden_sizes=hidden_sizes,
+            dropout=dropout,
+            batch_size=batch_size,
+            max_epochs=max_epochs,
+            learning_rate=learning_rate,
+            weight_decay=weight_decay,
+            early_stopping_patience=early_stopping_patience,
+            device=device,
+            random_seed=random_seed,
+            num_workers=num_workers,
+            use_amp=use_amp,
+            target_loss_weights=target_loss_weights,
+            loss_type=loss_type,
+            huber_delta=huber_delta,
+            window_mode=window_mode,
+            window_radius=window_radius,
+            window_feature_mode=window_feature_mode,
+            pfnn_expanded_input_dim=pfnn_expanded_input_dim,
+            pfnn_phase_node_count=pfnn_phase_node_count,
+            pfnn_control_points=pfnn_control_points,
+        )
 
     metrics = {
         "train": evaluate_model_bundle(bundle, train_frame, split_name="train", batch_size=batch_size, device=device),
@@ -1791,6 +2660,7 @@ def run_training_job(
     _save_training_curves(history, training_curves_path)
     _save_pred_vs_true_plot(bundle, test_frame, pred_vs_true_test_path, batch_size=batch_size, device=device)
     _save_residual_hist_plot(bundle, test_frame, residual_hist_test_path, batch_size=batch_size, device=device)
+    audit_flags = _training_audit_flags(bundle, split_root=split_root)
     training_config_path.write_text(
         json.dumps(
             {
@@ -1803,17 +2673,30 @@ def run_training_job(
                 "target_loss_weights": bundle["target_loss_weights_by_name"],
                 "loss_type": bundle["loss_type"],
                 "huber_delta": bundle["huber_delta"],
-                "window_mode": bundle["window_mode"],
-                "window_radius": bundle["window_radius"],
-                "window_feature_mode": bundle["window_feature_mode"],
-                "window_feature_columns": bundle["window_feature_columns"],
+                "window_mode": bundle.get("window_mode"),
+                "window_radius": bundle.get("window_radius"),
+                "window_feature_mode": bundle.get("window_feature_mode"),
+                "window_feature_columns": bundle.get("window_feature_columns"),
+                "sequence_history_size": bundle.get("sequence_history_size"),
+                "sequence_feature_mode": bundle.get("sequence_feature_mode"),
+                "sequence_feature_columns": bundle.get("sequence_feature_columns"),
+                "current_feature_mode": bundle.get("current_feature_mode"),
+                "current_feature_columns": bundle.get("current_feature_columns"),
+                "sequence_sample_count_train": bundle.get("sequence_sample_count_train"),
+                "sequence_sample_count_val": bundle.get("sequence_sample_count_val"),
+                "sequence_group_columns": bundle.get("sequence_group_columns"),
+                "sequence_sort_column": bundle.get("sequence_sort_column"),
                 "hidden_sizes": list(hidden_sizes),
                 "dropout": float(dropout),
-                "phase_feature_index": bundle["phase_feature_index"],
-                "phase_feature_column": bundle["phase_feature_column"],
+                "phase_feature_index": bundle.get("phase_feature_index"),
+                "phase_feature_column": bundle.get("phase_feature_column"),
                 "pfnn_expanded_input_dim": int(pfnn_expanded_input_dim),
                 "pfnn_phase_node_count": int(pfnn_phase_node_count),
                 "pfnn_control_points": int(pfnn_control_points),
+                "gru_num_layers": bundle.get("gru_num_layers"),
+                "asl_hidden_size": bundle.get("asl_hidden_size"),
+                "asl_dropout": bundle.get("asl_dropout"),
+                "asl_max_frequency_bins": bundle.get("asl_max_frequency_bins"),
                 "batch_size": int(batch_size),
                 "max_epochs": int(max_epochs),
                 "learning_rate": float(learning_rate),
@@ -1829,6 +2712,7 @@ def run_training_job(
                 "max_test_samples": max_test_samples,
                 "best_epoch": bundle["best_epoch"],
                 "best_val_loss": bundle["best_val_loss"],
+                **audit_flags,
             },
             indent=2,
             sort_keys=True,
@@ -1960,6 +2844,248 @@ def _save_baseline_comparison_plot(summary: pd.DataFrame, output_path: str | Pat
     plt.close(fig)
 
 
+def _target_groups_label(target_groups: dict[str, list[str]]) -> str:
+    return ";".join(f"{group_name}:{'|'.join(targets)}" for group_name, targets in target_groups.items())
+
+
+def _combine_disjoint_target_metrics(split_name: str, group_metrics: dict[str, dict[str, Any]]) -> dict[str, Any]:
+    per_target: dict[str, dict[str, float]] = {}
+    sample_counts: list[int] = []
+    for metrics in group_metrics.values():
+        sample_counts.append(int(metrics["sample_count"]))
+        for target_name, target_metrics in metrics["per_target"].items():
+            per_target[target_name] = {
+                "mae": float(target_metrics["mae"]),
+                "rmse": float(target_metrics["rmse"]),
+                "r2": float(target_metrics["r2"]),
+            }
+
+    if not per_target:
+        raise ValueError("Cannot combine split-axis metrics without per-target metrics")
+
+    mae_values = np.array([metrics["mae"] for metrics in per_target.values()], dtype=float)
+    rmse_values = np.array([metrics["rmse"] for metrics in per_target.values()], dtype=float)
+    r2_values = np.array([metrics["r2"] for metrics in per_target.values()], dtype=float)
+
+    return {
+        "split": split_name,
+        "sample_count": int(min(sample_counts)) if sample_counts else 0,
+        "overall_mae": float(np.mean(mae_values)),
+        "overall_rmse": float(np.sqrt(np.mean(np.square(rmse_values)))),
+        "overall_r2": float(np.mean(r2_values)),
+        "per_target": per_target,
+    }
+
+
+def _run_single_baseline_recipe(
+    *,
+    recipe_name: str,
+    recipe: dict[str, Any],
+    recipe_output_dir: Path,
+    split_root: str | Path,
+    hidden_sizes: tuple[int, ...],
+    dropout: float,
+    batch_size: int,
+    max_epochs: int,
+    learning_rate: float,
+    weight_decay: float,
+    early_stopping_patience: int,
+    device: str | None,
+    random_seed: int,
+    num_workers: int,
+    use_amp: bool,
+    target_loss_weights: str | dict[str, float] | list[float] | tuple[float, ...] | np.ndarray | None,
+    max_train_samples: int | None,
+    max_val_samples: int | None,
+    max_test_samples: int | None,
+    pfnn_expanded_input_dim: int,
+    pfnn_phase_node_count: int,
+    pfnn_control_points: int,
+    sequence_history_size: int,
+    sequence_feature_mode: str,
+    current_feature_mode: str,
+    gru_num_layers: int,
+    asl_hidden_size: int,
+    asl_dropout: float,
+    asl_max_frequency_bins: int | None,
+) -> dict[str, Any]:
+    resolved_sequence_history_size = int(sequence_history_size)
+    resolved_sequence_feature_mode = str(sequence_feature_mode)
+    resolved_current_feature_mode = str(current_feature_mode)
+    resolved_asl_hidden_size = int(asl_hidden_size)
+    resolved_asl_dropout = float(asl_dropout)
+    resolved_asl_max_frequency_bins = asl_max_frequency_bins
+    outputs = run_training_job(
+        split_root=split_root,
+        output_dir=recipe_output_dir,
+        feature_set_name=recipe["feature_set_name"],
+        model_type=recipe["model_type"],
+        hidden_sizes=hidden_sizes,
+        dropout=dropout,
+        batch_size=batch_size,
+        max_epochs=max_epochs,
+        learning_rate=learning_rate,
+        weight_decay=weight_decay,
+        early_stopping_patience=early_stopping_patience,
+        device=device,
+        random_seed=random_seed,
+        num_workers=num_workers,
+        use_amp=use_amp,
+        target_loss_weights=target_loss_weights,
+        loss_type=recipe["loss_type"],
+        huber_delta=float(recipe["huber_delta"]),
+        window_mode=recipe["window_mode"],
+        window_radius=int(recipe["window_radius"]),
+        window_feature_mode=recipe["window_feature_mode"],
+        max_train_samples=max_train_samples,
+        max_val_samples=max_val_samples,
+        max_test_samples=max_test_samples,
+        pfnn_expanded_input_dim=pfnn_expanded_input_dim,
+        pfnn_phase_node_count=pfnn_phase_node_count,
+        pfnn_control_points=pfnn_control_points,
+        sequence_history_size=resolved_sequence_history_size,
+        sequence_feature_mode=resolved_sequence_feature_mode,
+        current_feature_mode=resolved_current_feature_mode,
+        gru_num_layers=gru_num_layers,
+        asl_hidden_size=resolved_asl_hidden_size,
+        asl_dropout=resolved_asl_dropout,
+        asl_max_frequency_bins=resolved_asl_max_frequency_bins,
+    )
+    metrics = json.loads(Path(outputs["metrics_path"]).read_text(encoding="utf-8"))
+    training_config = json.loads(Path(outputs["training_config_path"]).read_text(encoding="utf-8"))
+
+    row: dict[str, Any] = {
+        "recipe_name": recipe_name,
+        "output_dir": str(recipe_output_dir),
+        "feature_set_name": recipe["feature_set_name"],
+        "model_type": recipe["model_type"],
+        "loss_type": recipe["loss_type"],
+        "huber_delta": float(recipe["huber_delta"]),
+        "window_mode": recipe["window_mode"],
+        "window_radius": int(recipe["window_radius"]),
+        "window_feature_mode": recipe["window_feature_mode"],
+        "feature_count": len(training_config["feature_columns"]),
+        "sequence_history_size": training_config.get("sequence_history_size"),
+        "sequence_feature_mode": training_config.get("sequence_feature_mode"),
+        "current_feature_mode": training_config.get("current_feature_mode"),
+        "best_epoch": int(training_config["best_epoch"]),
+        "best_val_loss": float(training_config["best_val_loss"]),
+    }
+    for split_name in ["train", "val", "test"]:
+        row.update(_flatten_split_metrics(split_name, metrics[split_name]))
+    return row
+
+
+def _run_split_axis_baseline_recipe(
+    *,
+    recipe_name: str,
+    recipe: dict[str, Any],
+    recipe_output_dir: Path,
+    split_root: str | Path,
+    hidden_sizes: tuple[int, ...],
+    dropout: float,
+    batch_size: int,
+    max_epochs: int,
+    learning_rate: float,
+    weight_decay: float,
+    early_stopping_patience: int,
+    device: str | None,
+    random_seed: int,
+    num_workers: int,
+    use_amp: bool,
+    target_loss_weights: str | dict[str, float] | list[float] | tuple[float, ...] | np.ndarray | None,
+    max_train_samples: int | None,
+    max_val_samples: int | None,
+    max_test_samples: int | None,
+    pfnn_expanded_input_dim: int,
+    pfnn_phase_node_count: int,
+    pfnn_control_points: int,
+    sequence_history_size: int,
+    sequence_feature_mode: str,
+    current_feature_mode: str,
+    gru_num_layers: int,
+    asl_hidden_size: int,
+    asl_dropout: float,
+    asl_max_frequency_bins: int | None,
+) -> dict[str, Any]:
+    target_groups = {name: list(targets) for name, targets in recipe["target_groups"].items()}
+    split_group_metrics: dict[str, dict[str, dict[str, Any]]] = {"train": {}, "val": {}, "test": {}}
+    group_configs: dict[str, dict[str, Any]] = {}
+
+    for group_index, (group_name, targets) in enumerate(target_groups.items()):
+        group_output_dir = recipe_output_dir / group_name
+        group_target_loss_weights = target_loss_weights
+        if target_loss_weights is not None:
+            full_weights = resolve_target_loss_weights(DEFAULT_TARGET_COLUMNS, target_loss_weights)
+            full_weight_map = _target_loss_weights_as_dict(DEFAULT_TARGET_COLUMNS, full_weights)
+            group_target_loss_weights = {target: full_weight_map[target] for target in targets}
+        outputs = run_training_job(
+            split_root=split_root,
+            output_dir=group_output_dir,
+            feature_set_name=recipe["feature_set_name"],
+            target_columns=targets,
+            model_type="mlp",
+            hidden_sizes=hidden_sizes,
+            dropout=dropout,
+            batch_size=batch_size,
+            max_epochs=max_epochs,
+            learning_rate=learning_rate,
+            weight_decay=weight_decay,
+            early_stopping_patience=early_stopping_patience,
+            device=device,
+            random_seed=random_seed + group_index,
+            num_workers=num_workers,
+            use_amp=use_amp,
+            target_loss_weights=group_target_loss_weights,
+            loss_type=recipe["loss_type"],
+            huber_delta=float(recipe["huber_delta"]),
+            window_mode=recipe["window_mode"],
+            window_radius=int(recipe["window_radius"]),
+            window_feature_mode=recipe["window_feature_mode"],
+            max_train_samples=max_train_samples,
+            max_val_samples=max_val_samples,
+            max_test_samples=max_test_samples,
+            pfnn_expanded_input_dim=pfnn_expanded_input_dim,
+            pfnn_phase_node_count=pfnn_phase_node_count,
+            pfnn_control_points=pfnn_control_points,
+        )
+        group_metrics = json.loads(Path(outputs["metrics_path"]).read_text(encoding="utf-8"))
+        group_config = json.loads(Path(outputs["training_config_path"]).read_text(encoding="utf-8"))
+        group_configs[group_name] = group_config
+        for split_name in ["train", "val", "test"]:
+            split_group_metrics[split_name][group_name] = group_metrics[split_name]
+
+    combined_metrics = {
+        split_name: _combine_disjoint_target_metrics(split_name, group_metrics)
+        for split_name, group_metrics in split_group_metrics.items()
+    }
+    feature_counts = {len(config["feature_columns"]) for config in group_configs.values()}
+    best_val_losses = [float(config["best_val_loss"]) for config in group_configs.values()]
+    best_epochs = [int(config["best_epoch"]) for config in group_configs.values()]
+
+    row: dict[str, Any] = {
+        "recipe_name": recipe_name,
+        "output_dir": str(recipe_output_dir),
+        "feature_set_name": recipe["feature_set_name"],
+        "model_type": recipe["model_type"],
+        "loss_type": recipe["loss_type"],
+        "huber_delta": float(recipe["huber_delta"]),
+        "window_mode": recipe["window_mode"],
+        "window_radius": int(recipe["window_radius"]),
+        "window_feature_mode": recipe["window_feature_mode"],
+        "feature_count": int(feature_counts.pop()) if len(feature_counts) == 1 else -1,
+        "best_epoch": int(max(best_epochs)) if best_epochs else 0,
+        "best_val_loss": float(np.mean(best_val_losses)) if best_val_losses else math.nan,
+        "target_groups": _target_groups_label(target_groups),
+    }
+    for group_name, config in group_configs.items():
+        row[f"{group_name}_best_epoch"] = int(config["best_epoch"])
+        row[f"{group_name}_best_val_loss"] = float(config["best_val_loss"])
+    for split_name in ["train", "val", "test"]:
+        row.update(_flatten_split_metrics(split_name, combined_metrics[split_name]))
+    return row
+
+
 def run_baseline_comparison(
     *,
     split_root: str | Path,
@@ -1983,6 +3109,13 @@ def run_baseline_comparison(
     pfnn_expanded_input_dim: int = 45,
     pfnn_phase_node_count: int = 5,
     pfnn_control_points: int = 6,
+    sequence_history_size: int = 64,
+    sequence_feature_mode: str = "phase_actuator_airdata",
+    current_feature_mode: str = "remaining_current",
+    gru_num_layers: int = 1,
+    asl_hidden_size: int = 128,
+    asl_dropout: float = 0.1,
+    asl_max_frequency_bins: int | None = None,
 ) -> dict[str, str]:
     output_path = Path(output_dir)
     output_path.mkdir(parents=True, exist_ok=True)
@@ -1993,54 +3126,41 @@ def run_baseline_comparison(
     for recipe_name in resolved_recipe_names:
         recipe = dict(BASELINE_COMPARISON_RECIPES[recipe_name])
         recipe_output_dir = output_path / recipe_name
-        outputs = run_training_job(
-            split_root=split_root,
-            output_dir=recipe_output_dir,
-            feature_set_name=recipe["feature_set_name"],
-            model_type=recipe["model_type"],
-            hidden_sizes=hidden_sizes,
-            dropout=dropout,
-            batch_size=batch_size,
-            max_epochs=max_epochs,
-            learning_rate=learning_rate,
-            weight_decay=weight_decay,
-            early_stopping_patience=early_stopping_patience,
-            device=device,
-            random_seed=random_seed,
-            num_workers=num_workers,
-            use_amp=use_amp,
-            target_loss_weights=target_loss_weights,
-            loss_type=recipe["loss_type"],
-            huber_delta=float(recipe["huber_delta"]),
-            window_mode=recipe["window_mode"],
-            window_radius=int(recipe["window_radius"]),
-            window_feature_mode=recipe["window_feature_mode"],
-            max_train_samples=max_train_samples,
-            max_val_samples=max_val_samples,
-            max_test_samples=max_test_samples,
-            pfnn_expanded_input_dim=pfnn_expanded_input_dim,
-            pfnn_phase_node_count=pfnn_phase_node_count,
-            pfnn_control_points=pfnn_control_points,
-        )
-        metrics = json.loads(Path(outputs["metrics_path"]).read_text(encoding="utf-8"))
-        training_config = json.loads(Path(outputs["training_config_path"]).read_text(encoding="utf-8"))
-
-        row: dict[str, Any] = {
+        common_kwargs = {
             "recipe_name": recipe_name,
-            "output_dir": str(recipe_output_dir),
-            "feature_set_name": recipe["feature_set_name"],
-            "model_type": recipe["model_type"],
-            "loss_type": recipe["loss_type"],
-            "huber_delta": float(recipe["huber_delta"]),
-            "window_mode": recipe["window_mode"],
-            "window_radius": int(recipe["window_radius"]),
-            "window_feature_mode": recipe["window_feature_mode"],
-            "feature_count": len(training_config["feature_columns"]),
-            "best_epoch": int(training_config["best_epoch"]),
-            "best_val_loss": float(training_config["best_val_loss"]),
+            "recipe": recipe,
+            "recipe_output_dir": recipe_output_dir,
+            "split_root": split_root,
+            "hidden_sizes": hidden_sizes,
+            "dropout": dropout,
+            "batch_size": batch_size,
+            "max_epochs": max_epochs,
+            "learning_rate": learning_rate,
+            "weight_decay": weight_decay,
+            "early_stopping_patience": early_stopping_patience,
+            "device": device,
+            "random_seed": random_seed,
+            "num_workers": num_workers,
+            "use_amp": use_amp,
+            "target_loss_weights": target_loss_weights,
+            "max_train_samples": max_train_samples,
+            "max_val_samples": max_val_samples,
+            "max_test_samples": max_test_samples,
+            "pfnn_expanded_input_dim": pfnn_expanded_input_dim,
+            "pfnn_phase_node_count": pfnn_phase_node_count,
+            "pfnn_control_points": pfnn_control_points,
+            "sequence_history_size": sequence_history_size,
+            "sequence_feature_mode": sequence_feature_mode,
+            "current_feature_mode": current_feature_mode,
+            "gru_num_layers": gru_num_layers,
+            "asl_hidden_size": asl_hidden_size,
+            "asl_dropout": asl_dropout,
+            "asl_max_frequency_bins": asl_max_frequency_bins,
         }
-        for split_name in ["train", "val", "test"]:
-            row.update(_flatten_split_metrics(split_name, metrics[split_name]))
+        if recipe.get("recipe_type") == "split_axis":
+            row = _run_split_axis_baseline_recipe(**common_kwargs)
+        else:
+            row = _run_single_baseline_recipe(**common_kwargs)
         summary_rows.append(row)
 
     summary = pd.DataFrame(summary_rows)

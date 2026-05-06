@@ -21,6 +21,12 @@ def _parse_hidden_sizes(raw: str) -> tuple[int, ...]:
     return values
 
 
+def _parse_optional_int(raw: str) -> int | None:
+    if raw.lower() in {"none", "null"}:
+        return None
+    return int(raw)
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Run leakage-resistant baseline backbone comparisons")
     parser.add_argument("--split-root", required=True, help="Whole-log dataset split root")
@@ -53,6 +59,23 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--pfnn-expanded-input-dim", type=int, default=45, help="PFNN input expansion size")
     parser.add_argument("--pfnn-phase-node-count", type=int, default=5, help="PFNN phase-generated node count")
     parser.add_argument("--pfnn-control-points", type=int, default=6, help="PFNN cyclic Catmull-Rom control point count")
+    parser.add_argument("--sequence-history-size", type=int, default=64, help="Causal sequence history length")
+    parser.add_argument(
+        "--sequence-feature-mode",
+        default="phase_actuator_airdata",
+        choices=["all", "none", "phase_actuator", "phase_actuator_airdata"],
+        help="Feature groups used as sequence history",
+    )
+    parser.add_argument(
+        "--current-feature-mode",
+        default="remaining_current",
+        choices=["remaining_current", "all", "none"],
+        help="Point features concatenated to sequence representation",
+    )
+    parser.add_argument("--gru-num-layers", type=int, default=1, help="Number of GRU layers for sequence models")
+    parser.add_argument("--asl-hidden-size", type=int, default=128, help="ASL frequency gate hidden size")
+    parser.add_argument("--asl-dropout", type=float, default=0.1, help="ASL dropout probability")
+    parser.add_argument("--asl-max-frequency-bins", type=_parse_optional_int, default=None, help="ASL retained RFFT bins, or none")
     return parser.parse_args()
 
 
@@ -80,6 +103,13 @@ def main() -> None:
         pfnn_expanded_input_dim=args.pfnn_expanded_input_dim,
         pfnn_phase_node_count=args.pfnn_phase_node_count,
         pfnn_control_points=args.pfnn_control_points,
+        sequence_history_size=args.sequence_history_size,
+        sequence_feature_mode=args.sequence_feature_mode,
+        current_feature_mode=args.current_feature_mode,
+        gru_num_layers=args.gru_num_layers,
+        asl_hidden_size=args.asl_hidden_size,
+        asl_dropout=args.asl_dropout,
+        asl_max_frequency_bins=args.asl_max_frequency_bins,
     )
     for key, value in outputs.items():
         print(f"{key}: {value}")

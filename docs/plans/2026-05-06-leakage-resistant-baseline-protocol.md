@@ -70,9 +70,52 @@ After the primary MLP baseline is stable, compare backbones under the same whole
 
 ```text
 mlp_paper_no_accel_v2
+split_axis_mlp_paper_no_accel_v2
 mlp_paper_pfnn_10
 pfnn_paper_pfnn_10
 mlp_paper_no_accel_v2_causal_phase_actuator
+causal_gru_paper_no_accel_v2_phase_actuator_airdata
+causal_gru_asl_paper_no_accel_v2_phase_actuator_airdata
+```
+
+`split_axis_mlp_paper_no_accel_v2` trains two independent MLPs under the same feature and split protocol:
+
+```text
+longitudinal targets: fx_b, fz_b, my_b
+lateral targets: fy_b, mx_b, mz_b
+```
+
+The comparison summary merges their disjoint per-target metrics into one row so it can be compared directly against the single six-output MLP.
+
+## Forward Sequence Candidates Inspired by Sharvit et al. 2025
+
+The Sharvit et al. 2025 model is an inverse mapping model, but the useful forward-system-ID idea is to treat flapping flight as a causal, periodic, multivariate time-series problem.
+
+The forward adaptation uses:
+
+```text
+past/current inputs -> current wrench
+sequence history: phase + actuator + airdata
+current features: remaining non-history point features
+targets: fx_b, fy_b, fz_b, mx_b, my_b, mz_b
+```
+
+Primary sequence candidates:
+
+```text
+causal_gru_paper_no_accel_v2_phase_actuator_airdata
+causal_gru_asl_paper_no_accel_v2_phase_actuator_airdata
+```
+
+These are causal forward models, not inverse reproductions. They must not use desired future forces, future labels, or centered windows.
+
+For the primary sequence history, velocity, angular velocity, `alpha_rad`, and `beta_rad` are excluded. They may be kept as current-time point features, but their histories can reintroduce finite-difference shortcuts similar to acceleration leakage. The saved `training_config.json` should therefore be checked for:
+
+```text
+has_velocity_history: false
+has_angular_velocity_history: false
+has_alpha_beta_history: false
+has_acceleration_inputs: false
 ```
 
 Run:

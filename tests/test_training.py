@@ -5,8 +5,10 @@ from pathlib import Path
 
 import numpy as np
 import pandas as pd
+import pytest
 import torch
 
+import system_identification.training as training_module
 from system_identification.training import (
     DEFAULT_ABLATION_VARIANTS,
     DEFAULT_FEATURE_COLUMNS,
@@ -190,6 +192,99 @@ def test_prepare_windowed_feature_target_frames_can_window_only_selected_feature
     np.testing.assert_allclose(targets["fx_b"].to_numpy(), frame["fx_b"].iloc[1:].to_numpy())
 
 
+def test_prepare_causal_sequence_feature_target_frames_keeps_windows_inside_log_and_segment():
+    frame = _synthetic_frame(n_rows=12, seed=1)
+    frame["log_id"] = ["a"] * 6 + ["b"] * 6
+    frame["segment_id"] = [0] * 3 + [1] * 3 + [0] * 6
+    frame["time_s"] = list(reversed(range(6))) + list(reversed(range(6)))
+
+    seq, current, targets, meta = training_module.prepare_causal_sequence_feature_target_frames(
+        frame,
+        sequence_feature_columns=["phase_corrected_sin", "phase_corrected_cos", "motor_cmd_0"],
+        current_feature_columns=["velocity_b.x"],
+        target_columns=["fx_b", "fz_b"],
+        history_size=3,
+    )
+
+    assert seq.shape == (6, 3, 3)
+    assert current.shape == (6, 1)
+    assert list(targets.columns) == ["fx_b", "fz_b"]
+    assert set(meta.columns) >= {"log_id", "segment_id", "time_s"}
+    assert not meta.duplicated(["log_id", "segment_id", "time_s"]).any()
+
+
+def test_prepare_causal_sequence_feature_target_frames_aligns_target_to_last_timestep():
+    frame = _synthetic_frame(n_rows=5, seed=2)
+    frame["log_id"] = "a"
+    frame["segment_id"] = 0
+    frame["time_s"] = np.arange(5, dtype=float)
+    frame["fx_b"] = frame["time_s"] * 10.0
+
+    _, _, targets, meta = training_module.prepare_causal_sequence_feature_target_frames(
+        frame,
+        sequence_feature_columns=["phase_corrected_sin"],
+        current_feature_columns=[],
+        target_columns=["fx_b"],
+        history_size=3,
+    )
+
+    np.testing.assert_allclose(meta["time_s"].to_numpy(), [2.0, 3.0, 4.0])
+    np.testing.assert_allclose(targets["fx_b"].to_numpy(), [20.0, 30.0, 40.0])
+
+
+def test_resolve_sequence_feature_columns_defaults_to_leakage_resistant_history():
+    columns = resolve_feature_set_columns("paper_no_accel_v2")
+
+    sequence_columns = training_module.resolve_sequence_feature_columns(columns, "phase_actuator_airdata")
+
+    assert "phase_corrected_sin" in sequence_columns
+    assert "motor_cmd_0" in sequence_columns
+    assert "airspeed_validated.true_airspeed_m_s" in sequence_columns
+    assert "velocity_b.x" not in sequence_columns
+    assert "vehicle_angular_velocity.xyz[0]" not in sequence_columns
+    assert "alpha_rad" not in sequence_columns
+
+
+def test_resolve_sequence_feature_columns_rejects_unknown_mode():
+    with pytest.raises(ValueError, match="Unknown sequence_feature_mode"):
+        training_module.resolve_sequence_feature_columns(resolve_feature_set_columns("paper_no_accel_v2"), "bad")
+
+
+def test_causal_gru_regressor_forward_shape_with_current_features():
+    model = training_module.CausalGRURegressor(
+        sequence_input_dim=4,
+        current_input_dim=3,
+        output_dim=6,
+        hidden_size=16,
+        num_layers=1,
+        dropout=0.0,
+        head_hidden_sizes=(12,),
+    )
+
+    seq = torch.randn(5, 8, 4)
+    current = torch.randn(5, 3)
+
+    out = model(seq, current)
+
+    assert out.shape == (5, 6)
+
+
+def test_causal_gru_regressor_forward_shape_without_current_features():
+    model = training_module.CausalGRURegressor(
+        sequence_input_dim=4,
+        current_input_dim=0,
+        output_dim=6,
+        hidden_size=16,
+        num_layers=1,
+        dropout=0.0,
+        head_hidden_sizes=(12,),
+    )
+
+    out = model(torch.randn(5, 8, 4), None)
+
+    assert out.shape == (5, 6)
+
+
 def test_fit_and_evaluate_torch_regressor_smoke():
     train_frame = _synthetic_frame(n_rows=192, seed=2)
     val_frame = _synthetic_frame(n_rows=96, seed=3)
@@ -252,6 +347,68 @@ def test_run_training_job_writes_artifacts(tmp_path: Path):
     assert metrics["test"]["sample_count"] == 80
     payload = torch.load(outputs["model_bundle_path"], map_location="cpu")
     assert payload["target_columns"] == DEFAULT_TARGET_COLUMNS
+
+
+def test_run_training_job_supports_causal_gru_model(tmp_path: Path):
+    split_root = tmp_path / "split"
+    split_root.mkdir(parents=True)
+
+    for split, seed, log_id in [("train", 10, "train_log"), ("val", 11, "val_log"), ("test", 12, "test_log")]:
+        frame = _synthetic_frame(n_rows=48, seed=seed)
+        frame["log_id"] = log_id
+        frame["segment_id"] = 0
+        frame["time_s"] = np.arange(len(frame), dtype=float) * 0.01
+        frame.to_parquet(split_root / f"{split}_samples.parquet", index=False)
+
+    outputs = run_training_job(
+        split_root=split_root,
+        output_dir=tmp_path / "run",
+        feature_set_name="paper_no_accel_v2",
+        model_type="causal_gru",
+        sequence_history_size=8,
+        sequence_feature_mode="phase_actuator_airdata",
+        hidden_sizes=(16,),
+        batch_size=16,
+        max_epochs=1,
+        device="cpu",
+        use_amp=False,
+    )
+
+    cfg = json.loads(Path(outputs["training_config_path"]).read_text(encoding="utf-8"))
+    metrics = json.loads(Path(outputs["metrics_path"]).read_text(encoding="utf-8"))
+
+    assert cfg["model_type"] == "causal_gru"
+    assert cfg["sequence_history_size"] == 8
+    assert cfg["sequence_feature_mode"] == "phase_actuator_airdata"
+    assert "velocity_b.x" not in cfg["sequence_feature_columns"]
+    assert metrics["test"]["sample_count"] == 41
+
+
+def test_adaptive_spectrum_layer_preserves_sequence_shape():
+    layer = training_module.AdaptiveSpectrumLayer(input_dim=4, hidden_size=8, dropout=0.0, max_frequency_bins=5)
+    x = torch.randn(3, 16, 4)
+
+    y = layer(x)
+
+    assert y.shape == x.shape
+
+
+def test_causal_gru_asl_regressor_forward_shape():
+    model = training_module.CausalGRUASLRegressor(
+        sequence_input_dim=4,
+        current_input_dim=2,
+        output_dim=6,
+        gru_hidden_size=16,
+        gru_num_layers=1,
+        asl_hidden_size=8,
+        asl_dropout=0.0,
+        asl_max_frequency_bins=5,
+        head_hidden_sizes=(12,),
+    )
+
+    out = model(torch.randn(5, 16, 4), torch.randn(5, 2))
+
+    assert out.shape == (5, 6)
 
 
 def test_run_training_job_writes_history_and_diagnostics(tmp_path: Path):
@@ -612,6 +769,193 @@ def test_run_baseline_comparison_writes_protocol_summary(tmp_path: Path):
     assert summary.loc[0, "model_type"] == "mlp"
     assert summary.loc[0, "loss_type"] == "huber"
     assert {"test_overall_r2", "test_fx_b_rmse"}.issubset(summary.columns)
+
+
+def test_run_baseline_comparison_supports_split_axis_independent_models(tmp_path: Path):
+    split_root = tmp_path / "split"
+    split_root.mkdir(parents=True)
+
+    train = _synthetic_frame(n_rows=144, seed=80)
+    val = _synthetic_frame(n_rows=72, seed=81)
+    test = _synthetic_frame(n_rows=72, seed=82)
+    for frame, log_id in [(train, "train_log"), (val, "val_log"), (test, "test_log")]:
+        frame["log_id"] = log_id
+    train.to_parquet(split_root / "train_samples.parquet", index=False)
+    val.to_parquet(split_root / "val_samples.parquet", index=False)
+    test.to_parquet(split_root / "test_samples.parquet", index=False)
+
+    outputs = run_baseline_comparison(
+        split_root=split_root,
+        output_dir=tmp_path / "comparison",
+        recipe_names=["split_axis_mlp_paper_no_accel_v2"],
+        hidden_sizes=(16, 16),
+        batch_size=64,
+        max_epochs=1,
+        learning_rate=1e-3,
+        weight_decay=1e-5,
+        device="cpu",
+        random_seed=80,
+        num_workers=0,
+        use_amp=False,
+    )
+
+    summary = pd.read_csv(outputs["summary_csv_path"])
+    assert summary.loc[0, "recipe_name"] == "split_axis_mlp_paper_no_accel_v2"
+    assert summary.loc[0, "model_type"] == "split_axis_mlp"
+    assert summary.loc[0, "target_groups"] == "longitudinal:fx_b|fz_b|my_b;lateral:fy_b|mx_b|mz_b"
+    assert {"test_fx_b_r2", "test_fy_b_r2", "test_mz_b_rmse", "test_overall_r2"}.issubset(summary.columns)
+
+    recipe_dir = Path(summary.loc[0, "output_dir"])
+    longitudinal_config = json.loads((recipe_dir / "longitudinal" / "training_config.json").read_text(encoding="utf-8"))
+    lateral_config = json.loads((recipe_dir / "lateral" / "training_config.json").read_text(encoding="utf-8"))
+    assert longitudinal_config["target_columns"] == ["fx_b", "fz_b", "my_b"]
+    assert lateral_config["target_columns"] == ["fy_b", "mx_b", "mz_b"]
+
+
+def test_run_baseline_comparison_supports_causal_sequence_recipes(tmp_path: Path):
+    split_root = tmp_path / "split"
+    split_root.mkdir(parents=True)
+
+    for split, seed, log_id in [("train", 90, "train_log"), ("val", 91, "val_log"), ("test", 92, "test_log")]:
+        frame = _synthetic_frame(n_rows=80, seed=seed)
+        frame["log_id"] = log_id
+        frame["segment_id"] = 0
+        frame["time_s"] = np.arange(len(frame), dtype=float) * 0.01
+        frame.to_parquet(split_root / f"{split}_samples.parquet", index=False)
+
+    outputs = run_baseline_comparison(
+        split_root=split_root,
+        output_dir=tmp_path / "comparison",
+        recipe_names=[
+            "causal_gru_paper_no_accel_v2_phase_actuator_airdata",
+            "causal_gru_asl_paper_no_accel_v2_phase_actuator_airdata",
+        ],
+        hidden_sizes=(16,),
+        batch_size=16,
+        max_epochs=1,
+        device="cpu",
+        random_seed=90,
+        num_workers=0,
+        use_amp=False,
+        max_train_samples=None,
+        max_val_samples=None,
+        max_test_samples=None,
+    )
+
+    summary = pd.read_csv(outputs["summary_csv_path"])
+
+    assert set(summary["recipe_name"]) == {
+        "causal_gru_paper_no_accel_v2_phase_actuator_airdata",
+        "causal_gru_asl_paper_no_accel_v2_phase_actuator_airdata",
+    }
+    assert set(summary["model_type"]) == {"causal_gru", "causal_gru_asl"}
+    assert {"sequence_history_size", "sequence_feature_mode", "test_overall_r2", "test_fx_b_rmse"}.issubset(
+        summary.columns
+    )
+    assert set(summary["sequence_feature_mode"]) == {"phase_actuator_airdata"}
+
+
+def test_run_baseline_comparison_sequence_history_size_overrides_recipe_default(tmp_path: Path):
+    split_root = tmp_path / "split"
+    split_root.mkdir(parents=True)
+
+    for split, seed, log_id in [("train", 94, "train_log"), ("val", 95, "val_log"), ("test", 96, "test_log")]:
+        frame = _synthetic_frame(n_rows=24, seed=seed)
+        frame["log_id"] = log_id
+        frame["segment_id"] = 0
+        frame["time_s"] = np.arange(len(frame), dtype=float) * 0.01
+        frame.to_parquet(split_root / f"{split}_samples.parquet", index=False)
+
+    outputs = run_baseline_comparison(
+        split_root=split_root,
+        output_dir=tmp_path / "comparison",
+        recipe_names=["causal_gru_paper_no_accel_v2_phase_actuator_airdata"],
+        hidden_sizes=(16,),
+        batch_size=8,
+        max_epochs=1,
+        device="cpu",
+        random_seed=94,
+        num_workers=0,
+        use_amp=False,
+        sequence_history_size=8,
+    )
+
+    summary = pd.read_csv(outputs["summary_csv_path"])
+
+    assert int(summary.loc[0, "sequence_history_size"]) == 8
+    assert int(summary.loc[0, "test_sample_count"]) == 17
+
+
+def test_causal_gru_config_records_no_dangerous_history(tmp_path: Path):
+    split_root = tmp_path / "split"
+    split_root.mkdir(parents=True)
+
+    for split, seed, log_id in [("train", 100, "train_log"), ("val", 101, "val_log"), ("test", 102, "test_log")]:
+        frame = _synthetic_frame(n_rows=48, seed=seed)
+        frame["log_id"] = log_id
+        frame["segment_id"] = 0
+        frame["time_s"] = np.arange(len(frame), dtype=float) * 0.01
+        frame.to_parquet(split_root / f"{split}_samples.parquet", index=False)
+
+    outputs = run_training_job(
+        split_root=split_root,
+        output_dir=tmp_path / "run",
+        feature_set_name="paper_no_accel_v2",
+        model_type="causal_gru",
+        sequence_history_size=8,
+        sequence_feature_mode="phase_actuator_airdata",
+        hidden_sizes=(16,),
+        batch_size=16,
+        max_epochs=1,
+        device="cpu",
+        use_amp=False,
+    )
+
+    cfg = json.loads(Path(outputs["training_config_path"]).read_text(encoding="utf-8"))
+
+    assert cfg["has_velocity_history"] is False
+    assert cfg["has_angular_velocity_history"] is False
+    assert cfg["has_alpha_beta_history"] is False
+    assert cfg["has_acceleration_inputs"] is False
+
+
+def test_sequence_regime_diagnostics_skip_bins_without_complete_history(tmp_path: Path):
+    split_root = tmp_path / "split"
+    split_root.mkdir(parents=True)
+
+    for split, seed, log_id in [("train", 110, "train_log"), ("val", 111, "val_log"), ("test", 112, "test_log")]:
+        frame = _synthetic_frame(n_rows=30, seed=seed)
+        frame["log_id"] = log_id
+        frame["segment_id"] = 0
+        frame["time_s"] = np.arange(len(frame), dtype=float) * 0.01
+        frame.to_parquet(split_root / f"{split}_samples.parquet", index=False)
+
+    outputs = run_training_job(
+        split_root=split_root,
+        output_dir=tmp_path / "run",
+        feature_set_name="paper_no_accel_v2",
+        model_type="causal_gru",
+        sequence_history_size=8,
+        sequence_feature_mode="phase_actuator_airdata",
+        hidden_sizes=(16,),
+        batch_size=16,
+        max_epochs=1,
+        device="cpu",
+        use_amp=False,
+    )
+    bundle = torch.load(outputs["model_bundle_path"], map_location="cpu", weights_only=False)
+    test_frame = pd.read_parquet(split_root / "test_samples.parquet")
+
+    diagnostics = evaluate_model_bundle_by_regime_bins(
+        bundle,
+        test_frame,
+        split_name="test",
+        bin_specs={"time_s": [0.0, 0.05, 1.0]},
+        batch_size=16,
+    )
+
+    assert len(diagnostics) == 1
+    assert diagnostics.loc[0, "test_sample_count"] == 17
 
 
 def test_run_training_job_accepts_no_accel_no_alpha_feature_set(tmp_path: Path):
