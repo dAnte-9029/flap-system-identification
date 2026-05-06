@@ -16,13 +16,20 @@ from system_identification.training import (
     NO_ACCEL_NO_ALPHA_FEATURE_COLUMNS,
     PAPER_NO_ACCEL_V2_FEATURE_COLUMNS,
     PAPER_PFNN_10_FEATURE_COLUMNS,
+    LEAKAGE_RESISTANT_BASELINE_PROTOCOL,
     cyclic_catmull_rom_weights,
     evaluate_model_bundle,
+    evaluate_model_bundle_by_log,
+    evaluate_model_bundle_by_regime_bins,
     fit_torch_regressor,
     prepare_feature_target_frames,
+    prepare_windowed_feature_target_frames,
+    regression_loss,
     resolve_target_loss_weights,
     resolve_feature_set_columns,
     resolve_ablation_variants,
+    run_baseline_comparison,
+    run_diagnostic_evaluation,
     run_ablation_study,
     run_training_job,
 )
@@ -110,6 +117,77 @@ def test_prepare_feature_target_frames_derives_sign_invariant_gravity_vector():
     assert "gravity_b.x" in features.columns
     assert "gravity_b.y" in features.columns
     assert "gravity_b.z" in features.columns
+
+
+def test_prepare_windowed_feature_target_frames_keeps_windows_inside_log_and_segment():
+    frame = _synthetic_frame(n_rows=8, seed=17)
+    frame["log_id"] = ["a", "a", "a", "a", "b", "b", "b", "b"]
+    frame["segment_id"] = [0, 0, 1, 1, 0, 0, 0, 0]
+    feature_columns = ["motor_cmd_0", "servo_rudder"]
+    target_columns = ["fx_b"]
+
+    features, targets = prepare_windowed_feature_target_frames(
+        frame,
+        feature_columns,
+        target_columns,
+        window_mode="centered",
+        window_radius=1,
+    )
+
+    assert list(features.columns) == [
+        "motor_cmd_0@t-1",
+        "servo_rudder@t-1",
+        "motor_cmd_0@t+0",
+        "servo_rudder@t+0",
+        "motor_cmd_0@t+1",
+        "servo_rudder@t+1",
+    ]
+    assert len(features) == 2
+    np.testing.assert_allclose(features["motor_cmd_0@t+0"].to_numpy(), frame["motor_cmd_0"].iloc[[5, 6]].to_numpy())
+    np.testing.assert_allclose(targets["fx_b"].to_numpy(), frame["fx_b"].iloc[[5, 6]].to_numpy())
+
+
+def test_prepare_windowed_feature_target_frames_supports_causal_history():
+    frame = _synthetic_frame(n_rows=5, seed=18)
+    frame["log_id"] = ["a"] * len(frame)
+
+    features, targets = prepare_windowed_feature_target_frames(
+        frame,
+        ["motor_cmd_0"],
+        ["fx_b"],
+        window_mode="causal",
+        window_radius=2,
+    )
+
+    assert list(features.columns) == ["motor_cmd_0@t-2", "motor_cmd_0@t-1", "motor_cmd_0@t+0"]
+    assert len(features) == 3
+    np.testing.assert_allclose(features["motor_cmd_0@t+0"].to_numpy(), frame["motor_cmd_0"].iloc[2:].to_numpy())
+    np.testing.assert_allclose(targets["fx_b"].to_numpy(), frame["fx_b"].iloc[2:].to_numpy())
+
+
+def test_prepare_windowed_feature_target_frames_can_window_only_selected_features():
+    frame = _synthetic_frame(n_rows=4, seed=19)
+    frame["log_id"] = ["a"] * len(frame)
+
+    features, targets = prepare_windowed_feature_target_frames(
+        frame,
+        ["motor_cmd_0", "servo_rudder"],
+        ["fx_b"],
+        window_mode="causal",
+        window_radius=1,
+        window_feature_columns=["motor_cmd_0"],
+    )
+
+    assert list(features.columns) == [
+        "motor_cmd_0@t-1",
+        "motor_cmd_0@t+0",
+        "servo_rudder@t+0",
+    ]
+    assert len(features) == 3
+    np.testing.assert_allclose(features["motor_cmd_0@t-1"].to_numpy(), frame["motor_cmd_0"].iloc[:-1].to_numpy())
+    np.testing.assert_allclose(features["motor_cmd_0@t+0"].to_numpy(), frame["motor_cmd_0"].iloc[1:].to_numpy())
+    np.testing.assert_allclose(features["servo_rudder@t+0"].to_numpy(), frame["servo_rudder"].iloc[1:].to_numpy())
+    np.testing.assert_allclose(targets["fx_b"].to_numpy(), frame["fx_b"].iloc[1:].to_numpy())
 
 
 def test_fit_and_evaluate_torch_regressor_smoke():
@@ -427,6 +505,115 @@ def test_run_ablation_study_writes_summary_outputs(tmp_path: Path):
     assert set(summary["variant_name"]) == {"full", "no_phase"}
 
 
+def test_leakage_resistant_baseline_protocol_excludes_label_derivative_inputs():
+    forbidden = set(LEAKAGE_RESISTANT_BASELINE_PROTOCOL["forbidden_feature_columns"])
+
+    assert LEAKAGE_RESISTANT_BASELINE_PROTOCOL["split_policy"] == "whole_log"
+    assert LEAKAGE_RESISTANT_BASELINE_PROTOCOL["model_type"] == "mlp"
+    assert LEAKAGE_RESISTANT_BASELINE_PROTOCOL["feature_set_name"] == "paper_no_accel_v2"
+    assert LEAKAGE_RESISTANT_BASELINE_PROTOCOL["loss_type"] == "huber"
+    assert forbidden.isdisjoint(PAPER_NO_ACCEL_V2_FEATURE_COLUMNS)
+
+
+def test_diagnostic_evaluation_writes_per_log_and_regime_metrics(tmp_path: Path):
+    train_frame = _synthetic_frame(n_rows=160, seed=60)
+    val_frame = _synthetic_frame(n_rows=96, seed=61)
+    test_frame = _synthetic_frame(n_rows=120, seed=62)
+    test_frame["log_id"] = ["test_log_a"] * 60 + ["test_log_b"] * 60
+    test_frame["airspeed_validated.true_airspeed_m_s"] = np.r_[np.full(60, 7.0), np.full(60, 9.0)]
+    test_frame["phase_corrected_rad"] = np.linspace(0.0, 2.0 * np.pi, len(test_frame), endpoint=False)
+
+    bundle = fit_torch_regressor(
+        train_frame=train_frame,
+        val_frame=val_frame,
+        feature_columns=PAPER_NO_ACCEL_V2_FEATURE_COLUMNS,
+        hidden_sizes=(16, 16),
+        batch_size=64,
+        max_epochs=1,
+        learning_rate=1e-3,
+        weight_decay=1e-5,
+        device="cpu",
+        random_seed=60,
+        num_workers=0,
+        use_amp=False,
+        loss_type="huber",
+    )
+
+    per_log = evaluate_model_bundle_by_log(bundle, test_frame, split_name="test", batch_size=64, device="cpu")
+    assert set(per_log["log_id"]) == {"test_log_a", "test_log_b"}
+    assert {"test_fx_b_r2", "test_overall_rmse"}.issubset(per_log.columns)
+
+    per_regime = evaluate_model_bundle_by_regime_bins(
+        bundle,
+        test_frame,
+        split_name="test",
+        bin_specs={
+            "airspeed_validated.true_airspeed_m_s": [0.0, 8.0, 12.0],
+            "phase_corrected_rad": [0.0, np.pi, 2.0 * np.pi],
+        },
+        batch_size=64,
+        device="cpu",
+    )
+    assert set(per_regime["regime_column"]) == {"airspeed_validated.true_airspeed_m_s", "phase_corrected_rad"}
+    assert {"test_fz_b_rmse", "test_overall_r2"}.issubset(per_regime.columns)
+
+    split_root = tmp_path / "split"
+    split_root.mkdir()
+    train_frame.to_parquet(split_root / "train_samples.parquet", index=False)
+    val_frame.to_parquet(split_root / "val_samples.parquet", index=False)
+    test_frame.to_parquet(split_root / "test_samples.parquet", index=False)
+    bundle_path = tmp_path / "model_bundle.pt"
+    torch.save(bundle, bundle_path)
+
+    outputs = run_diagnostic_evaluation(
+        model_bundle_path=bundle_path,
+        split_root=split_root,
+        output_dir=tmp_path / "diagnostics",
+        split_names=("test",),
+        bin_specs={"airspeed_validated.true_airspeed_m_s": [0.0, 8.0, 12.0]},
+        batch_size=64,
+        device="cpu",
+    )
+    assert Path(outputs["per_log_metrics_path"]).exists()
+    assert Path(outputs["per_regime_metrics_path"]).exists()
+
+
+def test_run_baseline_comparison_writes_protocol_summary(tmp_path: Path):
+    split_root = tmp_path / "split"
+    split_root.mkdir(parents=True)
+
+    train = _synthetic_frame(n_rows=128, seed=70)
+    val = _synthetic_frame(n_rows=72, seed=71)
+    test = _synthetic_frame(n_rows=72, seed=72)
+    for frame, log_id in [(train, "train_log"), (val, "val_log"), (test, "test_log")]:
+        frame["log_id"] = log_id
+    train.to_parquet(split_root / "train_samples.parquet", index=False)
+    val.to_parquet(split_root / "val_samples.parquet", index=False)
+    test.to_parquet(split_root / "test_samples.parquet", index=False)
+
+    outputs = run_baseline_comparison(
+        split_root=split_root,
+        output_dir=tmp_path / "comparison",
+        recipe_names=["mlp_paper_no_accel_v2"],
+        hidden_sizes=(16, 16),
+        batch_size=64,
+        max_epochs=1,
+        learning_rate=1e-3,
+        weight_decay=1e-5,
+        device="cpu",
+        random_seed=70,
+        num_workers=0,
+        use_amp=False,
+    )
+
+    summary = pd.read_csv(outputs["summary_csv_path"])
+    assert summary.loc[0, "recipe_name"] == "mlp_paper_no_accel_v2"
+    assert summary.loc[0, "feature_set_name"] == "paper_no_accel_v2"
+    assert summary.loc[0, "model_type"] == "mlp"
+    assert summary.loc[0, "loss_type"] == "huber"
+    assert {"test_overall_r2", "test_fx_b_rmse"}.issubset(summary.columns)
+
+
 def test_run_training_job_accepts_no_accel_no_alpha_feature_set(tmp_path: Path):
     split_root = tmp_path / "split"
     split_root.mkdir(parents=True)
@@ -468,6 +655,23 @@ def test_resolve_target_loss_weights_from_mapping():
     np.testing.assert_allclose(weights, np.array([1.0, 0.5, 1.0, 0.25, 1.0, 0.25], dtype=np.float32))
 
 
+def test_regression_loss_supports_weighted_huber():
+    predictions = torch.tensor([[0.0, 3.0]], dtype=torch.float32)
+    targets = torch.tensor([[0.0, 0.0]], dtype=torch.float32)
+    weights = torch.tensor([1.0, 2.0], dtype=torch.float32)
+
+    loss = regression_loss(
+        predictions,
+        targets,
+        target_loss_weights=weights,
+        loss_type="huber",
+        huber_delta=1.0,
+    )
+
+    expected = (1.0 * 0.0 + 2.0 * 2.5) / (1.0 + 2.0)
+    np.testing.assert_allclose(float(loss.item()), expected, rtol=1e-6)
+
+
 def test_run_training_job_records_target_loss_weights(tmp_path: Path):
     split_root = tmp_path / "split"
     split_root.mkdir(parents=True)
@@ -505,6 +709,89 @@ def test_run_training_job_records_target_loss_weights(tmp_path: Path):
         "mz_b": 0.5,
     }
     np.testing.assert_allclose(payload["target_loss_weights"].numpy(), np.array([1.0, 0.5, 1.0, 0.5, 1.0, 0.5]))
+
+
+def test_run_training_job_records_huber_loss_config(tmp_path: Path):
+    split_root = tmp_path / "split"
+    split_root.mkdir(parents=True)
+
+    _synthetic_frame(n_rows=96, seed=44).to_parquet(split_root / "train_samples.parquet", index=False)
+    _synthetic_frame(n_rows=64, seed=45).to_parquet(split_root / "val_samples.parquet", index=False)
+    _synthetic_frame(n_rows=64, seed=46).to_parquet(split_root / "test_samples.parquet", index=False)
+
+    output_dir = tmp_path / "artifacts"
+    outputs = run_training_job(
+        split_root=split_root,
+        output_dir=output_dir,
+        feature_set_name="paper_no_accel_v2",
+        hidden_sizes=(16, 16),
+        batch_size=32,
+        max_epochs=1,
+        learning_rate=1e-3,
+        weight_decay=1e-5,
+        device="cpu",
+        random_seed=43,
+        num_workers=0,
+        use_amp=False,
+        target_loss_weights="fx_b=1,fy_b=0.5,fz_b=1,mx_b=0.5,my_b=1,mz_b=0.5",
+        loss_type="huber",
+        huber_delta=0.75,
+    )
+
+    training_config = json.loads(Path(outputs["training_config_path"]).read_text(encoding="utf-8"))
+    payload = torch.load(outputs["model_bundle_path"], map_location="cpu")
+
+    assert training_config["loss_type"] == "huber"
+    assert training_config["huber_delta"] == 0.75
+    assert payload["loss_type"] == "huber"
+    assert payload["huber_delta"] == 0.75
+
+
+def test_run_training_job_records_window_config(tmp_path: Path):
+    split_root = tmp_path / "split"
+    split_root.mkdir(parents=True)
+
+    train = _synthetic_frame(n_rows=96, seed=54)
+    val = _synthetic_frame(n_rows=64, seed=55)
+    test = _synthetic_frame(n_rows=64, seed=56)
+    for frame, log_id in [(train, "train_log"), (val, "val_log"), (test, "test_log")]:
+        frame["log_id"] = log_id
+
+    train.to_parquet(split_root / "train_samples.parquet", index=False)
+    val.to_parquet(split_root / "val_samples.parquet", index=False)
+    test.to_parquet(split_root / "test_samples.parquet", index=False)
+
+    output_dir = tmp_path / "artifacts"
+    outputs = run_training_job(
+        split_root=split_root,
+        output_dir=output_dir,
+        feature_set_name="paper_no_accel_v2",
+        hidden_sizes=(16, 16),
+        batch_size=32,
+        max_epochs=1,
+        learning_rate=1e-3,
+        weight_decay=1e-5,
+        device="cpu",
+        random_seed=53,
+        num_workers=0,
+        use_amp=False,
+        window_mode="causal",
+        window_radius=2,
+        window_feature_mode="phase_actuator",
+    )
+
+    training_config = json.loads(Path(outputs["training_config_path"]).read_text(encoding="utf-8"))
+    payload = torch.load(outputs["model_bundle_path"], map_location="cpu")
+
+    assert training_config["window_mode"] == "causal"
+    assert training_config["window_radius"] == 2
+    assert training_config["window_feature_mode"] == "phase_actuator"
+    assert payload["window_mode"] == "causal"
+    assert payload["window_radius"] == 2
+    assert payload["window_feature_mode"] == "phase_actuator"
+    assert "motor_cmd_0@t-2" in training_config["feature_columns"]
+    assert "vehicle_local_position.vx@t-2" not in training_config["feature_columns"]
+    assert "vehicle_local_position.vx@t+0" in training_config["feature_columns"]
 
 
 def test_run_training_job_accepts_pfnn_model_type(tmp_path: Path):

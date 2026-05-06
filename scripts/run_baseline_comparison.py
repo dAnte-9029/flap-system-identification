@@ -11,7 +11,7 @@ SRC_DIR = PROJECT_ROOT / "src"
 if str(SRC_DIR) not in sys.path:
     sys.path.insert(0, str(SRC_DIR))
 
-from system_identification.training import run_training_job
+from system_identification.training import BASELINE_COMPARISON_RECIPES, run_baseline_comparison
 
 
 def _parse_hidden_sizes(raw: str) -> tuple[int, ...]:
@@ -22,35 +22,22 @@ def _parse_hidden_sizes(raw: str) -> tuple[int, ...]:
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Train a baseline PyTorch MLP for effective wrench regression")
-    parser.add_argument("--split-root", required=True, help="Dataset split root containing train/val/test parquet files")
-    parser.add_argument("--output-dir", required=True, help="Output directory for model artifacts")
+    parser = argparse.ArgumentParser(description="Run leakage-resistant baseline backbone comparisons")
+    parser.add_argument("--split-root", required=True, help="Whole-log dataset split root")
+    parser.add_argument("--output-dir", required=True, help="Output directory for comparison artifacts")
     parser.add_argument(
-        "--feature-set",
+        "--recipes",
+        nargs="*",
         default=None,
-        help="Named feature set: full, no_accel_no_alpha, paper_no_accel_v2, or paper_pfnn_10",
+        help=f"Recipe names. Default runs: {', '.join(BASELINE_COMPARISON_RECIPES)}",
     )
-    parser.add_argument("--model-type", default="mlp", choices=["mlp", "pfnn"], help="Regressor architecture")
-    parser.add_argument("--hidden-sizes", type=_parse_hidden_sizes, default=(256, 256), help="Comma-separated MLP hidden sizes")
+    parser.add_argument("--hidden-sizes", type=_parse_hidden_sizes, default=(256, 256), help="Comma-separated hidden sizes")
     parser.add_argument("--dropout", type=float, default=0.0, help="Dropout probability")
-    parser.add_argument("--pfnn-expanded-input-dim", type=int, default=45, help="PFNN input expansion size")
-    parser.add_argument("--pfnn-phase-node-count", type=int, default=5, help="PFNN phase-generated node count")
-    parser.add_argument("--pfnn-control-points", type=int, default=6, help="PFNN cyclic Catmull-Rom control point count")
     parser.add_argument("--batch-size", type=int, default=4096, help="Training batch size")
     parser.add_argument("--max-epochs", type=int, default=50, help="Maximum training epochs")
     parser.add_argument("--learning-rate", type=float, default=1e-3, help="AdamW learning rate")
     parser.add_argument("--weight-decay", type=float, default=1e-5, help="AdamW weight decay")
     parser.add_argument("--early-stopping-patience", type=int, default=8, help="Validation patience in epochs")
-    parser.add_argument("--loss-type", default="mse", choices=["mse", "huber"], help="Training loss in scaled target space")
-    parser.add_argument("--huber-delta", type=float, default=1.0, help="Huber delta in scaled target units")
-    parser.add_argument("--window-mode", default="single", choices=["single", "causal", "centered"], help="Temporal feature window mode")
-    parser.add_argument("--window-radius", type=int, default=0, help="Number of neighboring samples to include")
-    parser.add_argument(
-        "--window-feature-mode",
-        default="all",
-        choices=["all", "none", "phase_actuator", "phase_actuator_airdata", "no_kinematics"],
-        help="Which feature groups receive temporal windows; non-windowed features keep t+0 only",
-    )
     parser.add_argument("--device", default="auto", help="Training device: auto, cpu, cuda, cuda:0, ...")
     parser.add_argument("--random-seed", type=int, default=42, help="Random seed")
     parser.add_argument("--num-workers", type=int, default=0, help="DataLoader worker count")
@@ -63,16 +50,18 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--max-train-samples", type=int, default=None, help="Optional train subsample size")
     parser.add_argument("--max-val-samples", type=int, default=None, help="Optional val subsample size")
     parser.add_argument("--max-test-samples", type=int, default=None, help="Optional test subsample size")
+    parser.add_argument("--pfnn-expanded-input-dim", type=int, default=45, help="PFNN input expansion size")
+    parser.add_argument("--pfnn-phase-node-count", type=int, default=5, help="PFNN phase-generated node count")
+    parser.add_argument("--pfnn-control-points", type=int, default=6, help="PFNN cyclic Catmull-Rom control point count")
     return parser.parse_args()
 
 
 def main() -> None:
     args = parse_args()
-    outputs = run_training_job(
+    outputs = run_baseline_comparison(
         split_root=args.split_root,
         output_dir=args.output_dir,
-        feature_set_name=args.feature_set,
-        model_type=args.model_type,
+        recipe_names=args.recipes,
         hidden_sizes=args.hidden_sizes,
         dropout=args.dropout,
         batch_size=args.batch_size,
@@ -85,11 +74,6 @@ def main() -> None:
         num_workers=args.num_workers,
         use_amp=not args.disable_amp,
         target_loss_weights=args.target_loss_weights,
-        loss_type=args.loss_type,
-        huber_delta=args.huber_delta,
-        window_mode=args.window_mode,
-        window_radius=args.window_radius,
-        window_feature_mode=args.window_feature_mode,
         max_train_samples=args.max_train_samples,
         max_val_samples=args.max_val_samples,
         max_test_samples=args.max_test_samples,

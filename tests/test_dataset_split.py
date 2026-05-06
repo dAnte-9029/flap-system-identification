@@ -349,3 +349,72 @@ def test_materialize_log_split_keeps_logs_disjoint(tmp_path: Path):
         assert frame["flap_active"].all()
         assert (frame["vehicle_land_detected.landed"] < 0.5).all()
         assert {"dataset_id", "log_id", "source_samples_path", "split"}.issubset(frame.columns)
+
+
+def test_materialize_log_split_can_trim_to_altitude_window(tmp_path: Path):
+    dataset_root = tmp_path / "cohort_altitude"
+    accepted_logs = []
+
+    for log_index in range(3):
+        log_id = f"log_{log_index}"
+        log_dir = dataset_root / "aircraft_id=flapper_01" / f"log_id={log_id}"
+        log_dir.mkdir(parents=True)
+        samples = _samples_for_cycles(list(range(8)), rows_per_cycle=1)
+        samples["time_s"] = samples["timestamp_us"] * 1e-6
+        samples["vehicle_local_position.z"] = [
+            -1.0,
+            -4.0,
+            -5.1,
+            -8.0,
+            -3.0,
+            -7.0,
+            -5.2,
+            -2.0,
+        ]
+        samples.to_parquet(log_dir / "samples.parquet", index=False)
+        accepted_logs.append(
+            {
+                "log_id": log_id,
+                "samples_path": str(log_dir / "samples.parquet"),
+            }
+        )
+
+    accepted_logs_path = dataset_root / "accepted_logs.json"
+    accepted_logs_path.write_text(json.dumps(accepted_logs, indent=2), encoding="utf-8")
+    dataset_manifest_path = dataset_root / "dataset_manifest.json"
+    dataset_manifest_path.write_text(
+        json.dumps(
+            {
+                "dataset_id": "cohort_altitude",
+                "accepted_logs_json": str(accepted_logs_path),
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    output_root = tmp_path / "logsplit_altitude"
+    materialize_log_split(
+        manifest_paths=[dataset_manifest_path],
+        output_root=output_root,
+        seed=1,
+        train_ratio=0.34,
+        val_ratio=0.33,
+        test_ratio=0.33,
+        altitude_window_min_m=5.0,
+    )
+
+    merged = pd.concat(
+        [
+            pd.read_parquet(output_root / "train_samples.parquet"),
+            pd.read_parquet(output_root / "val_samples.parquet"),
+            pd.read_parquet(output_root / "test_samples.parquet"),
+        ],
+        ignore_index=True,
+    )
+
+    assert not merged.empty
+    assert set(merged["cycle_id"].astype(int).unique()) == {2, 3, 4, 5, 6}
+
+    for _, group in merged.groupby("log_id"):
+        assert group["cycle_id"].astype(int).tolist() == [2, 3, 4, 5, 6]

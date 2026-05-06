@@ -36,6 +36,31 @@ def _valid_row_mask(samples: pd.DataFrame) -> pd.Series:
     return mask
 
 
+def _apply_altitude_window_trim(samples: pd.DataFrame, altitude_window_min_m: float | None) -> pd.DataFrame:
+    if altitude_window_min_m is None:
+        return samples
+
+    if altitude_window_min_m < 0.0:
+        raise ValueError("altitude_window_min_m must be non-negative")
+
+    altitude_column = "vehicle_local_position.z"
+    if altitude_column not in samples.columns:
+        raise ValueError(f"Missing required column for altitude trim: {altitude_column}")
+
+    if samples.empty:
+        return samples
+
+    ordered = samples.sort_values("timestamp_us").copy() if "timestamp_us" in samples.columns else samples.copy()
+    altitude_m = -pd.to_numeric(ordered[altitude_column], errors="coerce")
+    above_threshold = altitude_m > float(altitude_window_min_m)
+
+    if not above_threshold.any():
+        return ordered.iloc[0:0].copy()
+
+    positions = np.flatnonzero(above_threshold.to_numpy())
+    return ordered.iloc[int(positions[0]) : int(positions[-1]) + 1].copy()
+
+
 def _empty_blocks_frame() -> pd.DataFrame:
     return pd.DataFrame(
         columns=[
@@ -494,6 +519,7 @@ def materialize_log_split(
     train_ratio: float = 0.7,
     val_ratio: float = 0.15,
     test_ratio: float = 0.15,
+    altitude_window_min_m: float | None = None,
 ) -> dict[str, object]:
     output_dir = Path(output_root)
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -520,6 +546,7 @@ def materialize_log_split(
     for row in assigned_logs.itertuples(index=False):
         samples = pd.read_parquet(row.source_samples_path)
         valid_samples = samples.loc[_valid_row_mask(samples)].copy()
+        valid_samples = _apply_altitude_window_trim(valid_samples, altitude_window_min_m)
         valid_sample_counts.append(int(len(valid_samples)))
         if valid_samples.empty:
             continue
@@ -561,6 +588,7 @@ def materialize_log_split(
         "created_at_utc": datetime.now(timezone.utc).isoformat(),
         "output_root": str(output_dir),
         "split_policy": "whole_log",
+        "altitude_window_min_m": altitude_window_min_m,
         "source_manifest_paths": [str(Path(path)) for path in manifest_paths],
         "source_dataset_ids": sorted({record["dataset_id"] for record in log_records}),
         "input_log_count": int(len(assigned_logs)),

@@ -109,6 +109,66 @@ DEFAULT_FEATURE_SETS: dict[str, list[str]] = {
     "paper_pfnn_10": PAPER_PFNN_10_FEATURE_COLUMNS,
 }
 
+LEAKAGE_RESISTANT_BASELINE_PROTOCOL: dict[str, Any] = {
+    "name": "leakage_resistant_mlp_baseline_v1",
+    "split_policy": "whole_log",
+    "feature_set_name": "paper_no_accel_v2",
+    "model_type": "mlp",
+    "loss_type": "huber",
+    "huber_delta": 1.5,
+    "window_mode": "single",
+    "window_radius": 0,
+    "window_feature_mode": "all",
+    "selection_metric": "val_loss",
+    "primary_reported_metrics": ["per_target_mae", "per_target_rmse", "per_target_r2"],
+    "forbidden_feature_columns": NO_ACCEL_NO_ALPHA_EXCLUDED_COLUMNS,
+}
+
+BASELINE_COMPARISON_RECIPES: dict[str, dict[str, Any]] = {
+    "mlp_paper_no_accel_v2": {
+        "feature_set_name": "paper_no_accel_v2",
+        "model_type": "mlp",
+        "loss_type": "huber",
+        "huber_delta": 1.5,
+        "window_mode": "single",
+        "window_radius": 0,
+        "window_feature_mode": "all",
+    },
+    "mlp_paper_pfnn_10": {
+        "feature_set_name": "paper_pfnn_10",
+        "model_type": "mlp",
+        "loss_type": "huber",
+        "huber_delta": 1.5,
+        "window_mode": "single",
+        "window_radius": 0,
+        "window_feature_mode": "all",
+    },
+    "pfnn_paper_pfnn_10": {
+        "feature_set_name": "paper_pfnn_10",
+        "model_type": "pfnn",
+        "loss_type": "huber",
+        "huber_delta": 1.5,
+        "window_mode": "single",
+        "window_radius": 0,
+        "window_feature_mode": "all",
+    },
+    "mlp_paper_no_accel_v2_causal_phase_actuator": {
+        "feature_set_name": "paper_no_accel_v2",
+        "model_type": "mlp",
+        "loss_type": "huber",
+        "huber_delta": 1.5,
+        "window_mode": "causal",
+        "window_radius": 6,
+        "window_feature_mode": "phase_actuator",
+    },
+}
+
+DEFAULT_REGIME_BIN_SPECS: dict[str, list[float]] = {
+    "airspeed_validated.true_airspeed_m_s": [0.0, 6.0, 8.0, 10.0, 12.0, 16.0],
+    "cycle_flap_frequency_hz": [0.0, 3.0, 4.0, 5.0, 6.0, 8.0],
+    "phase_corrected_rad": [0.0, 0.5 * math.pi, math.pi, 1.5 * math.pi, 2.0 * math.pi],
+}
+
 DEFAULT_FEATURE_GROUPS: dict[str, list[str]] = {
     "phase": [
         "phase_corrected_sin",
@@ -507,6 +567,158 @@ def prepare_feature_target_frames(
     return features, targets
 
 
+def _normalized_window_mode(window_mode: str | None) -> str:
+    normalized = (window_mode or "single").lower()
+    if normalized not in {"single", "causal", "centered"}:
+        raise ValueError(f"Unknown window_mode: {window_mode}")
+    return normalized
+
+
+def _window_offsets(window_mode: str, window_radius: int) -> list[int]:
+    if window_radius < 0:
+        raise ValueError("window_radius must be non-negative")
+    resolved_mode = _normalized_window_mode(window_mode)
+    if resolved_mode == "single" or window_radius == 0:
+        return [0]
+    if resolved_mode == "causal":
+        return list(range(-window_radius, 1))
+    return list(range(-window_radius, window_radius + 1))
+
+
+def _window_feature_name(column: str, offset: int) -> str:
+    return f"{column}@t{offset:+d}"
+
+
+WINDOW_FEATURE_MODE_COLUMNS: dict[str, list[str]] = {
+    "phase_actuator": [
+        "phase_corrected_sin",
+        "phase_corrected_cos",
+        "phase_corrected_rad",
+        "wing_stroke_angle_rad",
+        "flap_frequency_hz",
+        "cycle_flap_frequency_hz",
+        "motor_cmd_0",
+        "servo_left_elevon",
+        "servo_right_elevon",
+        "servo_rudder",
+        "elevator_like",
+        "aileron_like",
+    ],
+    "airdata": [
+        "airspeed_validated.indicated_airspeed_m_s",
+        "airspeed_validated.calibrated_airspeed_m_s",
+        "airspeed_validated.true_airspeed_m_s",
+        "airspeed_validated.calibrated_ground_minus_wind_m_s",
+        "airspeed_validated.true_ground_minus_wind_m_s",
+        "airspeed_validated.pitch_filtered",
+        "vehicle_air_data.rho",
+        "wind.windspeed_north",
+        "wind.windspeed_east",
+        "dynamic_pressure_pa",
+    ],
+}
+
+KINEMATIC_WINDOW_EXCLUDED_COLUMNS = {
+    "vehicle_local_position.vx",
+    "vehicle_local_position.vy",
+    "vehicle_local_position.vz",
+    "vehicle_local_position.heading",
+    "vehicle_angular_velocity.xyz[0]",
+    "vehicle_angular_velocity.xyz[1]",
+    "vehicle_angular_velocity.xyz[2]",
+    "gravity_b.x",
+    "gravity_b.y",
+    "gravity_b.z",
+    "roll_rad",
+    "pitch_rad",
+    "velocity_b.x",
+    "velocity_b.y",
+    "velocity_b.z",
+    "relative_air_velocity_b.x",
+    "relative_air_velocity_b.y",
+    "relative_air_velocity_b.z",
+    "alpha_rad",
+    "beta_rad",
+}
+
+
+def resolve_window_feature_columns(feature_columns: list[str], window_feature_mode: str = "all") -> list[str]:
+    mode = (window_feature_mode or "all").lower()
+    available = set(feature_columns)
+    if mode == "all":
+        return list(feature_columns)
+    if mode == "none":
+        return []
+    if mode == "phase_actuator":
+        return [column for column in feature_columns if column in WINDOW_FEATURE_MODE_COLUMNS["phase_actuator"]]
+    if mode == "phase_actuator_airdata":
+        selected = set(WINDOW_FEATURE_MODE_COLUMNS["phase_actuator"]) | set(WINDOW_FEATURE_MODE_COLUMNS["airdata"])
+        return [column for column in feature_columns if column in selected]
+    if mode == "no_kinematics":
+        return [column for column in feature_columns if column not in KINEMATIC_WINDOW_EXCLUDED_COLUMNS]
+    raise ValueError(f"Unknown window_feature_mode: {window_feature_mode}")
+
+
+def prepare_windowed_feature_target_frames(
+    frame: pd.DataFrame,
+    feature_columns: list[str] | None = None,
+    target_columns: list[str] | None = None,
+    *,
+    window_mode: str = "single",
+    window_radius: int = 0,
+    window_feature_columns: list[str] | None = None,
+) -> tuple[pd.DataFrame, pd.DataFrame]:
+    features, targets = prepare_feature_target_frames(frame, feature_columns, target_columns)
+    offsets = _window_offsets(window_mode, window_radius)
+    if offsets == [0]:
+        return features, targets
+    selected_window_features = set(window_feature_columns or list(features.columns))
+    unknown_window_features = selected_window_features - set(features.columns)
+    if unknown_window_features:
+        raise ValueError(f"Unknown window feature columns: {sorted(unknown_window_features)}")
+
+    group_columns = [column for column in ["log_id", "segment_id"] if column in frame.columns]
+    if group_columns:
+        groups = frame.groupby(group_columns, sort=False).indices.values()
+    else:
+        groups = [np.arange(len(frame))]
+
+    windowed_parts: list[pd.DataFrame] = []
+    target_parts: list[pd.DataFrame] = []
+    for indices in groups:
+        index = np.asarray(indices)
+        group_features = features.iloc[index].reset_index(drop=True)
+        group_targets = targets.iloc[index].reset_index(drop=True)
+        if len(group_features) < len(offsets):
+            continue
+
+        shifted_columns: list[pd.DataFrame] = []
+        valid = np.ones(len(group_features), dtype=bool)
+        for offset in offsets:
+            shifted = group_features.loc[:, [column for column in group_features.columns if column in selected_window_features]].shift(
+                periods=-offset
+            )
+            shifted.columns = [_window_feature_name(column, offset) for column in shifted.columns]
+            valid &= shifted.notna().all(axis=1).to_numpy()
+            if len(shifted.columns) > 0:
+                shifted_columns.append(shifted)
+
+        current_only_columns = [column for column in group_features.columns if column not in selected_window_features]
+        if current_only_columns:
+            current = group_features.loc[:, current_only_columns].copy()
+            current.columns = [_window_feature_name(column, 0) for column in current.columns]
+            shifted_columns.append(current)
+
+        if not np.any(valid):
+            continue
+        windowed_parts.append(pd.concat(shifted_columns, axis=1).loc[valid].reset_index(drop=True))
+        target_parts.append(group_targets.loc[valid].reset_index(drop=True))
+
+    if not windowed_parts:
+        raise ValueError("No complete windowed samples were produced")
+    return pd.concat(windowed_parts, ignore_index=True), pd.concat(target_parts, ignore_index=True)
+
+
 def _fit_feature_stats(
     features: np.ndarray,
     *,
@@ -671,14 +883,38 @@ def _target_loss_weights_as_dict(target_columns: list[str], weights: np.ndarray)
     return {target: float(weight) for target, weight in zip(target_columns, weights)}
 
 
-def _weighted_scaled_mse(
+def _normalized_loss_type(loss_type: str | None) -> str:
+    normalized = (loss_type or "mse").lower()
+    if normalized not in {"mse", "huber"}:
+        raise ValueError(f"Unknown loss_type: {loss_type}")
+    return normalized
+
+
+def regression_loss(
     predictions: torch.Tensor,
     targets: torch.Tensor,
+    *,
     target_loss_weights: torch.Tensor,
+    loss_type: str = "mse",
+    huber_delta: float = 1.0,
 ) -> torch.Tensor:
-    squared_error = torch.square(predictions - targets)
-    weighted = squared_error * target_loss_weights.to(device=predictions.device, dtype=predictions.dtype)
-    return weighted.sum() / (predictions.shape[0] * torch.clamp(target_loss_weights.sum(), min=1e-8))
+    resolved_loss_type = _normalized_loss_type(loss_type)
+    if huber_delta <= 0.0 or not math.isfinite(float(huber_delta)):
+        raise ValueError("huber_delta must be positive and finite")
+
+    error = predictions - targets
+    if resolved_loss_type == "mse":
+        per_target_loss = torch.square(error)
+    else:
+        abs_error = torch.abs(error)
+        delta = torch.as_tensor(huber_delta, device=predictions.device, dtype=predictions.dtype)
+        quadratic = torch.minimum(abs_error, delta)
+        linear = abs_error - quadratic
+        per_target_loss = 0.5 * torch.square(quadratic) + delta * linear
+
+    weights = target_loss_weights.to(device=predictions.device, dtype=predictions.dtype)
+    weighted = per_target_loss * weights
+    return weighted.sum() / (predictions.shape[0] * torch.clamp(weights.sum(), min=1e-8))
 
 
 def _predict_scaled_batches(
@@ -756,7 +992,14 @@ def _save_pred_vs_true_plot(
     batch_size: int,
     device: str | None = None,
 ) -> None:
-    _, targets_df = prepare_feature_target_frames(frame, bundle["feature_columns"], bundle["target_columns"])
+    _, targets_df = prepare_windowed_feature_target_frames(
+        frame,
+        bundle.get("base_feature_columns", bundle["feature_columns"]),
+        bundle["target_columns"],
+        window_mode=bundle.get("window_mode", "single"),
+        window_radius=int(bundle.get("window_radius", 0)),
+        window_feature_columns=bundle.get("window_feature_columns"),
+    )
     predictions_df = predict_model_bundle(bundle, frame, batch_size=batch_size, device=device)
 
     fig, axes = plt.subplots(2, 3, figsize=(15, 9))
@@ -787,7 +1030,14 @@ def _save_residual_hist_plot(
     batch_size: int,
     device: str | None = None,
 ) -> None:
-    _, targets_df = prepare_feature_target_frames(frame, bundle["feature_columns"], bundle["target_columns"])
+    _, targets_df = prepare_windowed_feature_target_frames(
+        frame,
+        bundle.get("base_feature_columns", bundle["feature_columns"]),
+        bundle["target_columns"],
+        window_mode=bundle.get("window_mode", "single"),
+        window_radius=int(bundle.get("window_radius", 0)),
+        window_feature_columns=bundle.get("window_feature_columns"),
+    )
     predictions_df = predict_model_bundle(bundle, frame, batch_size=batch_size, device=device)
 
     fig, axes = plt.subplots(2, 3, figsize=(15, 9))
@@ -847,6 +1097,8 @@ def _evaluate_scaled_loss(
     *,
     use_amp: bool,
     target_loss_weights: torch.Tensor,
+    loss_type: str,
+    huber_delta: float,
 ) -> float:
     model.eval()
     total_loss = 0.0
@@ -858,7 +1110,13 @@ def _evaluate_scaled_loss(
             batch_targets = batch_targets.to(device, non_blocking=True)
             with torch.autocast(device_type=device.type, dtype=torch.float16, enabled=amp_enabled):
                 predictions = model(batch_features)
-                loss = _weighted_scaled_mse(predictions, batch_targets, target_loss_weights)
+                loss = regression_loss(
+                    predictions,
+                    batch_targets,
+                    target_loss_weights=target_loss_weights,
+                    loss_type=loss_type,
+                    huber_delta=huber_delta,
+                )
             batch_size = len(batch_features)
             total_loss += float(loss.item()) * batch_size
             total_samples += batch_size
@@ -933,17 +1191,44 @@ def fit_torch_regressor(
     num_workers: int = 0,
     use_amp: bool = True,
     target_loss_weights: str | dict[str, float] | list[float] | tuple[float, ...] | np.ndarray | None = None,
+    loss_type: str = "mse",
+    huber_delta: float = 1.0,
+    window_mode: str = "single",
+    window_radius: int = 0,
+    window_feature_mode: str = "all",
     pfnn_expanded_input_dim: int = 45,
     pfnn_phase_node_count: int = 5,
     pfnn_control_points: int = 6,
 ) -> dict[str, Any]:
     _set_random_seed(random_seed)
     resolved_model_type = _normalized_model_type(model_type)
+    resolved_loss_type = _normalized_loss_type(loss_type)
+    resolved_window_mode = _normalized_window_mode(window_mode)
+    if resolved_model_type == "pfnn" and (resolved_window_mode != "single" or window_radius != 0):
+        raise ValueError("Windowed training is currently supported for MLP models only")
+    if huber_delta <= 0.0 or not math.isfinite(float(huber_delta)):
+        raise ValueError("huber_delta must be positive and finite")
     resolved_device = _resolve_device(device)
     pin_memory = resolved_device.type == "cuda"
 
-    train_features_df, train_targets_df = prepare_feature_target_frames(train_frame, feature_columns, target_columns)
-    val_features_df, val_targets_df = prepare_feature_target_frames(val_frame, feature_columns, target_columns)
+    base_feature_columns = feature_columns or DEFAULT_FEATURE_COLUMNS
+    resolved_target_columns = target_columns or DEFAULT_TARGET_COLUMNS
+    train_features_df, train_targets_df = prepare_windowed_feature_target_frames(
+        train_frame,
+        base_feature_columns,
+        resolved_target_columns,
+        window_mode=resolved_window_mode,
+        window_radius=window_radius,
+        window_feature_columns=resolve_window_feature_columns(list(base_feature_columns), window_feature_mode),
+    )
+    val_features_df, val_targets_df = prepare_windowed_feature_target_frames(
+        val_frame,
+        base_feature_columns,
+        resolved_target_columns,
+        window_mode=resolved_window_mode,
+        window_radius=window_radius,
+        window_feature_columns=resolve_window_feature_columns(list(base_feature_columns), window_feature_mode),
+    )
     phase_feature_index = _phase_feature_index_for_model(resolved_model_type, list(train_features_df.columns))
     raw_feature_indices = [] if phase_feature_index is None else [phase_feature_index]
 
@@ -1015,7 +1300,13 @@ def fit_torch_regressor(
             optimizer.zero_grad(set_to_none=True)
             with torch.autocast(device_type=resolved_device.type, dtype=torch.float16, enabled=amp_enabled):
                 predictions = model(batch_features)
-                loss = _weighted_scaled_mse(predictions, batch_targets, target_loss_weights_tensor)
+                loss = regression_loss(
+                    predictions,
+                    batch_targets,
+                    target_loss_weights=target_loss_weights_tensor,
+                    loss_type=resolved_loss_type,
+                    huber_delta=huber_delta,
+                )
 
             scaler.scale(loss).backward()
             scaler.step(optimizer)
@@ -1032,6 +1323,8 @@ def fit_torch_regressor(
             resolved_device,
             use_amp=use_amp,
             target_loss_weights=target_loss_weights_tensor,
+            loss_type=resolved_loss_type,
+            huber_delta=huber_delta,
         )
         val_predictions_scaled = _predict_scaled_batches(
             model,
@@ -1077,6 +1370,7 @@ def fit_torch_regressor(
         "model_state_dict": best_state_dict,
         "model_type": resolved_model_type,
         "feature_columns": list(train_features_df.columns),
+        "base_feature_columns": list(base_feature_columns),
         "target_columns": list(train_targets_df.columns),
         "feature_medians": feature_medians,
         "feature_means": feature_means,
@@ -1085,6 +1379,12 @@ def fit_torch_regressor(
         "target_stds": target_stds,
         "target_loss_weights": target_loss_weights_array,
         "target_loss_weights_by_name": _target_loss_weights_as_dict(list(train_targets_df.columns), target_loss_weights_array),
+        "loss_type": resolved_loss_type,
+        "huber_delta": float(huber_delta),
+        "window_mode": resolved_window_mode,
+        "window_radius": int(window_radius),
+        "window_feature_mode": window_feature_mode,
+        "window_feature_columns": resolve_window_feature_columns(list(base_feature_columns), window_feature_mode),
         "hidden_sizes": list(hidden_sizes),
         "dropout": float(dropout),
         "phase_feature_index": phase_feature_index,
@@ -1130,7 +1430,14 @@ def predict_model_bundle(
     device: str | None = None,
 ) -> pd.DataFrame:
     resolved_device = _resolve_device(device or bundle.get("device_type"))
-    features_df, _ = prepare_feature_target_frames(frame, bundle["feature_columns"], bundle["target_columns"])
+    features_df, _ = prepare_windowed_feature_target_frames(
+        frame,
+        bundle.get("base_feature_columns", bundle["feature_columns"]),
+        bundle["target_columns"],
+        window_mode=bundle.get("window_mode", "single"),
+        window_radius=int(bundle.get("window_radius", 0)),
+        window_feature_columns=bundle.get("window_feature_columns"),
+    )
     features = features_df.to_numpy(dtype=np.float32, copy=True)
     features_scaled = _transform_features(
         features,
@@ -1176,12 +1483,212 @@ def evaluate_model_bundle(
     batch_size: int = 8192,
     device: str | None = None,
 ) -> dict[str, Any]:
-    _, targets_df = prepare_feature_target_frames(frame, bundle["feature_columns"], bundle["target_columns"])
+    _, targets_df = prepare_windowed_feature_target_frames(
+        frame,
+        bundle.get("base_feature_columns", bundle["feature_columns"]),
+        bundle["target_columns"],
+        window_mode=bundle.get("window_mode", "single"),
+        window_radius=int(bundle.get("window_radius", 0)),
+        window_feature_columns=bundle.get("window_feature_columns"),
+    )
     predictions_df = predict_model_bundle(bundle, frame, batch_size=batch_size, device=device)
 
     y_true = targets_df.to_numpy(dtype=np.float64, copy=False)
     y_pred = predictions_df.to_numpy(dtype=np.float64, copy=False)
     return _metrics_from_arrays(y_true, y_pred, target_columns=bundle["target_columns"], split_name=split_name)
+
+
+def _metrics_table_row(
+    metrics: dict[str, Any],
+    *,
+    split_name: str,
+    diagnostic_type: str,
+    group_column: str,
+    group_value: str,
+) -> dict[str, Any]:
+    row: dict[str, Any] = {
+        "split": split_name,
+        "diagnostic_type": diagnostic_type,
+        "group_column": group_column,
+        "group_value": group_value,
+    }
+    row.update(_flatten_split_metrics(split_name, metrics))
+    return row
+
+
+def evaluate_model_bundle_by_log(
+    bundle: dict[str, Any],
+    frame: pd.DataFrame,
+    *,
+    split_name: str,
+    log_column: str = "log_id",
+    min_samples: int = 1,
+    batch_size: int = 8192,
+    device: str | None = None,
+) -> pd.DataFrame:
+    if min_samples <= 0:
+        raise ValueError("min_samples must be positive")
+
+    if log_column not in frame.columns:
+        metrics = evaluate_model_bundle(bundle, frame, split_name=split_name, batch_size=batch_size, device=device)
+        row = _metrics_table_row(
+            metrics,
+            split_name=split_name,
+            diagnostic_type="per_log",
+            group_column=log_column,
+            group_value="__missing_log_id__",
+        )
+        row["log_id"] = "__missing_log_id__"
+        return pd.DataFrame([row])
+
+    rows: list[dict[str, Any]] = []
+    for log_id, group in frame.groupby(log_column, sort=True):
+        if len(group) < min_samples:
+            continue
+        metrics = evaluate_model_bundle(bundle, group.copy(), split_name=split_name, batch_size=batch_size, device=device)
+        row = _metrics_table_row(
+            metrics,
+            split_name=split_name,
+            diagnostic_type="per_log",
+            group_column=log_column,
+            group_value=str(log_id),
+        )
+        row["log_id"] = str(log_id)
+        rows.append(row)
+    return pd.DataFrame(rows)
+
+
+def _validate_bin_edges(column: str, edges: list[float]) -> list[float]:
+    resolved = [float(edge) for edge in edges]
+    if len(resolved) < 2:
+        raise ValueError(f"Bin spec for {column} must contain at least two edges")
+    if any(not math.isfinite(edge) for edge in resolved):
+        raise ValueError(f"Bin spec for {column} must contain finite edges")
+    if any(right <= left for left, right in zip(resolved, resolved[1:])):
+        raise ValueError(f"Bin edges for {column} must be strictly increasing")
+    return resolved
+
+
+def evaluate_model_bundle_by_regime_bins(
+    bundle: dict[str, Any],
+    frame: pd.DataFrame,
+    *,
+    split_name: str,
+    bin_specs: dict[str, list[float]] | None = None,
+    min_samples: int = 1,
+    batch_size: int = 8192,
+    device: str | None = None,
+) -> pd.DataFrame:
+    if min_samples <= 0:
+        raise ValueError("min_samples must be positive")
+
+    resolved_bin_specs = bin_specs or DEFAULT_REGIME_BIN_SPECS
+    derived = _with_derived_columns(frame)
+    rows: list[dict[str, Any]] = []
+
+    for column, raw_edges in resolved_bin_specs.items():
+        if column not in derived.columns:
+            continue
+        edges = _validate_bin_edges(column, raw_edges)
+        values = pd.to_numeric(derived[column], errors="coerce")
+        binned = pd.cut(values, bins=edges, include_lowest=True)
+        for interval in binned.cat.categories:
+            mask = binned == interval
+            if int(mask.sum()) < min_samples:
+                continue
+            group = frame.loc[mask.to_numpy()].copy()
+            metrics = evaluate_model_bundle(bundle, group, split_name=split_name, batch_size=batch_size, device=device)
+            row = _metrics_table_row(
+                metrics,
+                split_name=split_name,
+                diagnostic_type="regime_bin",
+                group_column=column,
+                group_value=str(interval),
+            )
+            row["regime_column"] = column
+            row["bin_label"] = str(interval)
+            row["bin_left"] = float(interval.left)
+            row["bin_right"] = float(interval.right)
+            rows.append(row)
+
+    return pd.DataFrame(rows)
+
+
+def run_diagnostic_evaluation(
+    *,
+    model_bundle_path: str | Path,
+    split_root: str | Path,
+    output_dir: str | Path,
+    split_names: tuple[str, ...] = ("test",),
+    bin_specs: dict[str, list[float]] | None = None,
+    min_samples: int = 16,
+    batch_size: int = 8192,
+    device: str | None = None,
+) -> dict[str, str]:
+    if not split_names:
+        raise ValueError("split_names must not be empty")
+
+    output_path = Path(output_dir)
+    output_path.mkdir(parents=True, exist_ok=True)
+    bundle = torch.load(model_bundle_path, map_location="cpu", weights_only=False)
+
+    per_log_parts: list[pd.DataFrame] = []
+    per_regime_parts: list[pd.DataFrame] = []
+    for split_name in split_names:
+        frame = _load_split_frame(split_root, split_name, None, 0)
+        per_log_parts.append(
+            evaluate_model_bundle_by_log(
+                bundle,
+                frame,
+                split_name=split_name,
+                min_samples=min_samples,
+                batch_size=batch_size,
+                device=device,
+            )
+        )
+        per_regime_parts.append(
+            evaluate_model_bundle_by_regime_bins(
+                bundle,
+                frame,
+                split_name=split_name,
+                bin_specs=bin_specs,
+                min_samples=min_samples,
+                batch_size=batch_size,
+                device=device,
+            )
+        )
+
+    per_log = pd.concat(per_log_parts, ignore_index=True) if per_log_parts else pd.DataFrame()
+    per_regime = pd.concat(per_regime_parts, ignore_index=True) if per_regime_parts else pd.DataFrame()
+
+    per_log_metrics_path = output_path / "per_log_metrics.csv"
+    per_regime_metrics_path = output_path / "per_regime_metrics.csv"
+    diagnostics_config_path = output_path / "diagnostics_config.json"
+
+    per_log.to_csv(per_log_metrics_path, index=False)
+    per_regime.to_csv(per_regime_metrics_path, index=False)
+    diagnostics_config_path.write_text(
+        json.dumps(
+            {
+                "model_bundle_path": str(model_bundle_path),
+                "split_root": str(split_root),
+                "split_names": list(split_names),
+                "bin_specs": bin_specs or DEFAULT_REGIME_BIN_SPECS,
+                "min_samples": int(min_samples),
+                "batch_size": int(batch_size),
+                "device": device or "auto",
+            },
+            indent=2,
+            sort_keys=True,
+        ),
+        encoding="utf-8",
+    )
+
+    return {
+        "per_log_metrics_path": str(per_log_metrics_path),
+        "per_regime_metrics_path": str(per_regime_metrics_path),
+        "diagnostics_config_path": str(diagnostics_config_path),
+    }
 
 
 def _load_split_frame(split_root: str | Path, split_name: str, max_samples: int | None, sample_seed: int) -> pd.DataFrame:
@@ -1212,6 +1719,11 @@ def run_training_job(
     num_workers: int = 0,
     use_amp: bool = True,
     target_loss_weights: str | dict[str, float] | list[float] | tuple[float, ...] | np.ndarray | None = None,
+    loss_type: str = "mse",
+    huber_delta: float = 1.0,
+    window_mode: str = "single",
+    window_radius: int = 0,
+    window_feature_mode: str = "all",
     max_train_samples: int | None = None,
     max_val_samples: int | None = None,
     max_test_samples: int | None = None,
@@ -1248,6 +1760,11 @@ def run_training_job(
         num_workers=num_workers,
         use_amp=use_amp,
         target_loss_weights=target_loss_weights,
+        loss_type=loss_type,
+        huber_delta=huber_delta,
+        window_mode=window_mode,
+        window_radius=window_radius,
+        window_feature_mode=window_feature_mode,
         pfnn_expanded_input_dim=pfnn_expanded_input_dim,
         pfnn_phase_node_count=pfnn_phase_node_count,
         pfnn_control_points=pfnn_control_points,
@@ -1281,8 +1798,15 @@ def run_training_job(
                 "feature_set_name": feature_set_name or ("custom" if feature_columns is not None else "full"),
                 "model_type": bundle["model_type"],
                 "feature_columns": bundle["feature_columns"],
+                "base_feature_columns": bundle["base_feature_columns"],
                 "target_columns": bundle["target_columns"],
                 "target_loss_weights": bundle["target_loss_weights_by_name"],
+                "loss_type": bundle["loss_type"],
+                "huber_delta": bundle["huber_delta"],
+                "window_mode": bundle["window_mode"],
+                "window_radius": bundle["window_radius"],
+                "window_feature_mode": bundle["window_feature_mode"],
+                "window_feature_columns": bundle["window_feature_columns"],
                 "hidden_sizes": list(hidden_sizes),
                 "dropout": float(dropout),
                 "phase_feature_index": bundle["phase_feature_index"],
@@ -1403,4 +1927,139 @@ def run_ablation_study(
         "summary_csv_path": str(summary_csv_path),
         "summary_json_path": str(summary_json_path),
         "summary_plot_path": str(summary_plot_path),
+    }
+
+
+def _resolve_baseline_recipe_names(recipe_names: list[str] | None = None) -> list[str]:
+    resolved = recipe_names or list(BASELINE_COMPARISON_RECIPES.keys())
+    unknown = [name for name in resolved if name not in BASELINE_COMPARISON_RECIPES]
+    if unknown:
+        raise ValueError(f"Unknown baseline comparison recipes: {unknown}")
+    return list(resolved)
+
+
+def _save_baseline_comparison_plot(summary: pd.DataFrame, output_path: str | Path) -> None:
+    if summary.empty:
+        return
+    fig_width = max(8.0, 1.8 * len(summary))
+    fig, ax = plt.subplots(figsize=(fig_width, 5))
+
+    x = np.arange(len(summary))
+    width = 0.36
+    ax.bar(x - width / 2, summary["val_overall_r2"], width=width, label="val_overall_r2")
+    ax.bar(x + width / 2, summary["test_overall_r2"], width=width, label="test_overall_r2")
+    ax.set_xticks(x)
+    ax.set_xticklabels(summary["recipe_name"], rotation=20, ha="right")
+    ax.set_ylabel("R^2")
+    ax.set_title("Baseline Comparison")
+    ax.grid(True, axis="y", alpha=0.3)
+    ax.legend()
+
+    fig.tight_layout()
+    fig.savefig(output_path, dpi=200, bbox_inches="tight")
+    plt.close(fig)
+
+
+def run_baseline_comparison(
+    *,
+    split_root: str | Path,
+    output_dir: str | Path,
+    recipe_names: list[str] | None = None,
+    hidden_sizes: tuple[int, ...] = (256, 256),
+    dropout: float = 0.0,
+    batch_size: int = 4096,
+    max_epochs: int = 50,
+    learning_rate: float = 1e-3,
+    weight_decay: float = 1e-5,
+    early_stopping_patience: int = 8,
+    device: str | None = None,
+    random_seed: int = 42,
+    num_workers: int = 0,
+    use_amp: bool = True,
+    target_loss_weights: str | dict[str, float] | list[float] | tuple[float, ...] | np.ndarray | None = None,
+    max_train_samples: int | None = None,
+    max_val_samples: int | None = None,
+    max_test_samples: int | None = None,
+    pfnn_expanded_input_dim: int = 45,
+    pfnn_phase_node_count: int = 5,
+    pfnn_control_points: int = 6,
+) -> dict[str, str]:
+    output_path = Path(output_dir)
+    output_path.mkdir(parents=True, exist_ok=True)
+
+    summary_rows: list[dict[str, Any]] = []
+    resolved_recipe_names = _resolve_baseline_recipe_names(recipe_names)
+
+    for recipe_name in resolved_recipe_names:
+        recipe = dict(BASELINE_COMPARISON_RECIPES[recipe_name])
+        recipe_output_dir = output_path / recipe_name
+        outputs = run_training_job(
+            split_root=split_root,
+            output_dir=recipe_output_dir,
+            feature_set_name=recipe["feature_set_name"],
+            model_type=recipe["model_type"],
+            hidden_sizes=hidden_sizes,
+            dropout=dropout,
+            batch_size=batch_size,
+            max_epochs=max_epochs,
+            learning_rate=learning_rate,
+            weight_decay=weight_decay,
+            early_stopping_patience=early_stopping_patience,
+            device=device,
+            random_seed=random_seed,
+            num_workers=num_workers,
+            use_amp=use_amp,
+            target_loss_weights=target_loss_weights,
+            loss_type=recipe["loss_type"],
+            huber_delta=float(recipe["huber_delta"]),
+            window_mode=recipe["window_mode"],
+            window_radius=int(recipe["window_radius"]),
+            window_feature_mode=recipe["window_feature_mode"],
+            max_train_samples=max_train_samples,
+            max_val_samples=max_val_samples,
+            max_test_samples=max_test_samples,
+            pfnn_expanded_input_dim=pfnn_expanded_input_dim,
+            pfnn_phase_node_count=pfnn_phase_node_count,
+            pfnn_control_points=pfnn_control_points,
+        )
+        metrics = json.loads(Path(outputs["metrics_path"]).read_text(encoding="utf-8"))
+        training_config = json.loads(Path(outputs["training_config_path"]).read_text(encoding="utf-8"))
+
+        row: dict[str, Any] = {
+            "recipe_name": recipe_name,
+            "output_dir": str(recipe_output_dir),
+            "feature_set_name": recipe["feature_set_name"],
+            "model_type": recipe["model_type"],
+            "loss_type": recipe["loss_type"],
+            "huber_delta": float(recipe["huber_delta"]),
+            "window_mode": recipe["window_mode"],
+            "window_radius": int(recipe["window_radius"]),
+            "window_feature_mode": recipe["window_feature_mode"],
+            "feature_count": len(training_config["feature_columns"]),
+            "best_epoch": int(training_config["best_epoch"]),
+            "best_val_loss": float(training_config["best_val_loss"]),
+        }
+        for split_name in ["train", "val", "test"]:
+            row.update(_flatten_split_metrics(split_name, metrics[split_name]))
+        summary_rows.append(row)
+
+    summary = pd.DataFrame(summary_rows)
+    summary_csv_path = output_path / "baseline_comparison_summary.csv"
+    summary_json_path = output_path / "baseline_comparison_summary.json"
+    summary_plot_path = output_path / "baseline_comparison_summary.png"
+    protocol_path = output_path / "baseline_protocol.json"
+
+    summary.to_csv(summary_csv_path, index=False)
+    summary_json_path.write_text(json.dumps(summary_rows, indent=2, sort_keys=True), encoding="utf-8")
+    _save_baseline_comparison_plot(summary, summary_plot_path)
+    protocol_path.write_text(
+        json.dumps(LEAKAGE_RESISTANT_BASELINE_PROTOCOL, indent=2, sort_keys=True),
+        encoding="utf-8",
+    )
+
+    return {
+        "summary_csv_path": str(summary_csv_path),
+        "summary_json_path": str(summary_json_path),
+        "summary_plot_path": str(summary_plot_path),
+        "protocol_path": str(protocol_path),
     }

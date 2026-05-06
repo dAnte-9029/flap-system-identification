@@ -27,6 +27,12 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--train-ratio", type=float, default=0.7, help="Train split ratio")
     parser.add_argument("--val-ratio", type=float, default=0.15, help="Validation split ratio")
     parser.add_argument("--test-ratio", type=float, default=0.15, help="Test split ratio")
+    parser.add_argument(
+        "--altitude-window-min-m",
+        type=float,
+        default=None,
+        help="If set, keep each log from the first to last sample with -vehicle_local_position.z above this altitude",
+    )
     return parser.parse_args()
 
 
@@ -39,6 +45,7 @@ def main() -> None:
         train_ratio=args.train_ratio,
         val_ratio=args.val_ratio,
         test_ratio=args.test_ratio,
+        altitude_window_min_m=args.altitude_window_min_m,
     )
     for key, value in outputs.items():
         print(f"{key}: {value}")
