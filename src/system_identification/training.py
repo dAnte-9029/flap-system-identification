@@ -982,25 +982,25 @@ def prepare_causal_sequence_feature_target_frames(
         group_current = group.loc[:, current_feature_columns].to_numpy(dtype=np.float32, copy=True)
         group_targets = group.loc[:, target_columns].copy()
         group_metadata = group.loc[:, metadata_columns].copy()
+        end_indices = np.arange(history_size - 1, len(group), dtype=np.int64)
 
-        for end_index in range(history_size - 1, len(group)):
-            start_index = end_index - history_size + 1
-            sequence_parts.append(group_sequence[start_index : end_index + 1])
-            if current_feature_columns:
-                current_parts.append(group_current[end_index])
-            target_parts.append(group_targets.iloc[[end_index]].reset_index(drop=True))
-            metadata_parts.append(group_metadata.iloc[[end_index]].reset_index(drop=True))
+        group_windows = np.lib.stride_tricks.sliding_window_view(group_sequence, history_size, axis=0)
+        sequence_parts.append(np.swapaxes(group_windows, 1, 2))
+        if current_feature_columns:
+            current_parts.append(group_current[end_indices])
+        target_parts.append(group_targets.iloc[end_indices].reset_index(drop=True))
+        metadata_parts.append(group_metadata.iloc[end_indices].reset_index(drop=True))
 
     if not sequence_parts:
         raise ValueError("No complete causal sequence samples were produced")
 
-    sequence_features = np.stack(sequence_parts).astype(np.float32, copy=False)
+    sequence_features = np.concatenate(sequence_parts, axis=0).astype(np.float32, copy=False)
     if current_feature_columns:
-        current_features = np.stack(current_parts).astype(np.float32, copy=False)
+        current_features = np.concatenate(current_parts, axis=0).astype(np.float32, copy=False)
     else:
-        current_features = np.empty((len(sequence_parts), 0), dtype=np.float32)
+        current_features = np.empty((len(sequence_features), 0), dtype=np.float32)
     targets = pd.concat(target_parts, ignore_index=True)
-    metadata = pd.concat(metadata_parts, ignore_index=True) if metadata_parts else pd.DataFrame(index=range(len(sequence_parts)))
+    metadata = pd.concat(metadata_parts, ignore_index=True) if metadata_parts else pd.DataFrame(index=range(len(sequence_features)))
     return sequence_features, current_features, targets, metadata
 
 
