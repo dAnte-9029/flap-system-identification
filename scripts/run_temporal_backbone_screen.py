@@ -320,6 +320,46 @@ def _final_configs() -> list[ScreenConfig]:
     ]
 
 
+def _tcn_gru_focused_configs(*, final: bool = False) -> list[ScreenConfig]:
+    stage = "tcn_gru_focused_final" if final else "tcn_gru_focused"
+    max_epochs = 50 if final else 20
+    patience = 8 if final else 5
+    specs = [
+        (128, 64, 2, 3, 64),
+        (128, 96, 2, 3, 64),
+        (128, 128, 2, 3, 64),
+        (128, 64, 3, 3, 64),
+        (128, 64, 4, 3, 64),
+        (128, 64, 2, 5, 64),
+        (96, 64, 2, 3, 64),
+        (160, 64, 2, 3, 64),
+        (128, 64, 2, 3, 96),
+        (128, 64, 2, 3, 128),
+        (160, 96, 3, 3, 96),
+        (160, 128, 4, 3, 128),
+    ]
+    configs: list[ScreenConfig] = []
+    for history, channels, blocks, kernel, gru_hidden in specs:
+        configs.append(
+            _config(
+                config_id=f"{stage}_hist{history}_c{channels}_b{blocks}_k{kernel}_gru{gru_hidden}",
+                stage=stage,
+                recipe_name="causal_tcn_gru_paper_no_accel_v2_phase_actuator_airdata",
+                hidden_sizes=(gru_hidden, gru_hidden),
+                sequence_history_size=history,
+                max_epochs=max_epochs,
+                early_stopping_patience=patience,
+                dropout=0.0,
+                extra_args={
+                    "tcn_channels": channels,
+                    "tcn_num_blocks": blocks,
+                    "tcn_kernel_size": kernel,
+                },
+            )
+        )
+    return configs
+
+
 def build_screen_configs(stage: str) -> list[ScreenConfig]:
     resolved_stage = stage.lower()
     if resolved_stage == "quick":
@@ -328,8 +368,18 @@ def build_screen_configs(stage: str) -> list[ScreenConfig]:
         return _sweep_configs()
     if resolved_stage == "final":
         return _final_configs()
+    if resolved_stage == "tcn_gru_focused":
+        return _tcn_gru_focused_configs(final=False)
+    if resolved_stage == "tcn_gru_focused_final":
+        return _tcn_gru_focused_configs(final=True)
     if resolved_stage == "all":
-        return [*_quick_configs(), *_sweep_configs(), *_final_configs()]
+        return [
+            *_quick_configs(),
+            *_sweep_configs(),
+            *_final_configs(),
+            *_tcn_gru_focused_configs(final=False),
+            *_tcn_gru_focused_configs(final=True),
+        ]
     raise ValueError(f"Unknown stage: {stage}")
 
 
@@ -351,7 +401,7 @@ def _config_row(config: ScreenConfig) -> dict[str, Any]:
 def _stage_sample_defaults(stage: str) -> tuple[int | None, int | None, int | None]:
     if stage == "quick":
         return 65536, 32768, 32768
-    if stage == "sweep":
+    if stage in {"sweep", "tcn_gru_focused"}:
         return 131072, 65536, 65536
     return None, None, None
 
@@ -404,7 +454,11 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Run staged screening for deployable temporal backbones")
     parser.add_argument("--split-root", required=True, help="Whole-log dataset split root")
     parser.add_argument("--output-dir", required=True, help="Output directory for screen artifacts")
-    parser.add_argument("--stage", choices=["quick", "sweep", "final", "all"], default="quick")
+    parser.add_argument(
+        "--stage",
+        choices=["quick", "sweep", "final", "tcn_gru_focused", "tcn_gru_focused_final", "all"],
+        default="quick",
+    )
     parser.add_argument("--recipes", nargs="*", default=None, help="Optional recipe-name filter for the chosen stage")
     parser.add_argument("--config-ids", nargs="*", default=None, help="Optional config-id filter for the chosen stage")
     parser.add_argument("--batch-size", type=int, default=512)

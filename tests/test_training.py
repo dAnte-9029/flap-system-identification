@@ -1223,6 +1223,31 @@ def test_classify_temporal_candidate_promotes_clear_rmse_win():
     assert decision == "promote"
 
 
+def test_temporal_screen_tcn_gru_focused_grid_has_12_configs():
+    from scripts.run_temporal_backbone_screen import build_screen_configs
+
+    configs = build_screen_configs(stage="tcn_gru_focused")
+
+    assert len(configs) == 12
+    assert {config.recipe_name for config in configs} == {
+        "causal_tcn_gru_paper_no_accel_v2_phase_actuator_airdata"
+    }
+    assert len({config.config_id for config in configs}) == 12
+    assert all(config.stage == "tcn_gru_focused" for config in configs)
+    assert {config.sequence_history_size for config in configs} == {96, 128, 160}
+
+
+def test_temporal_screen_tcn_gru_focused_final_grid_uses_full_budget():
+    from scripts.run_temporal_backbone_screen import build_screen_configs
+
+    configs = build_screen_configs(stage="tcn_gru_focused_final")
+
+    assert len(configs) == 12
+    assert all(config.max_epochs == 50 for config in configs)
+    assert all(config.early_stopping_patience == 8 for config in configs)
+    assert all(config.dropout == 0.0 for config in configs)
+
+
 def test_run_baseline_comparison_supports_subnet_rollout_recipes(tmp_path: Path):
     split_root = tmp_path / "split"
     split_root.mkdir(parents=True)
