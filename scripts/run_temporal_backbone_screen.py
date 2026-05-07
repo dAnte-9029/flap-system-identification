@@ -360,6 +360,48 @@ def _tcn_gru_focused_configs(*, final: bool = False) -> list[ScreenConfig]:
     return configs
 
 
+def _transformer_focused_configs(*, final: bool = False) -> list[ScreenConfig]:
+    stage = "transformer_focused_final" if final else "transformer_focused"
+    max_epochs = 50 if final else 20
+    patience = 8 if final else 5
+    specs = [
+        (96, 64, 2, 4, 0.0),
+        (128, 64, 2, 4, 0.0),
+        (160, 64, 2, 4, 0.0),
+        (192, 64, 2, 4, 0.0),
+        (128, 64, 1, 4, 0.0),
+        (128, 64, 3, 4, 0.0),
+        (128, 96, 2, 4, 0.0),
+        (160, 96, 2, 4, 0.0),
+        (128, 128, 2, 4, 0.0),
+        (128, 64, 2, 2, 0.0),
+        (128, 64, 2, 8, 0.0),
+        (128, 64, 2, 4, 0.05),
+    ]
+    configs: list[ScreenConfig] = []
+    for history, d_model, layers, heads, dropout in specs:
+        dropout_tag = "do0" if dropout == 0.0 else f"do{int(dropout * 1000):03d}"
+        configs.append(
+            _config(
+                config_id=f"{stage}_hist{history}_d{d_model}_l{layers}_h{heads}_{dropout_tag}",
+                stage=stage,
+                recipe_name="causal_transformer_paper_no_accel_v2_phase_actuator_airdata",
+                hidden_sizes=(d_model, 128),
+                sequence_history_size=history,
+                max_epochs=max_epochs,
+                early_stopping_patience=patience,
+                dropout=dropout,
+                extra_args={
+                    "transformer_d_model": d_model,
+                    "transformer_num_layers": layers,
+                    "transformer_num_heads": heads,
+                    "transformer_dim_feedforward": 2 * d_model,
+                },
+            )
+        )
+    return configs
+
+
 def build_screen_configs(stage: str) -> list[ScreenConfig]:
     resolved_stage = stage.lower()
     if resolved_stage == "quick":
@@ -372,6 +414,10 @@ def build_screen_configs(stage: str) -> list[ScreenConfig]:
         return _tcn_gru_focused_configs(final=False)
     if resolved_stage == "tcn_gru_focused_final":
         return _tcn_gru_focused_configs(final=True)
+    if resolved_stage == "transformer_focused":
+        return _transformer_focused_configs(final=False)
+    if resolved_stage == "transformer_focused_final":
+        return _transformer_focused_configs(final=True)
     if resolved_stage == "all":
         return [
             *_quick_configs(),
@@ -379,6 +425,8 @@ def build_screen_configs(stage: str) -> list[ScreenConfig]:
             *_final_configs(),
             *_tcn_gru_focused_configs(final=False),
             *_tcn_gru_focused_configs(final=True),
+            *_transformer_focused_configs(final=False),
+            *_transformer_focused_configs(final=True),
         ]
     raise ValueError(f"Unknown stage: {stage}")
 
@@ -401,7 +449,7 @@ def _config_row(config: ScreenConfig) -> dict[str, Any]:
 def _stage_sample_defaults(stage: str) -> tuple[int | None, int | None, int | None]:
     if stage == "quick":
         return 65536, 32768, 32768
-    if stage in {"sweep", "tcn_gru_focused"}:
+    if stage in {"sweep", "tcn_gru_focused", "transformer_focused"}:
         return 131072, 65536, 65536
     return None, None, None
 
@@ -419,6 +467,7 @@ def _run_config(
     max_train_samples: int | None,
     max_val_samples: int | None,
     max_test_samples: int | None,
+    skip_test_eval: bool,
 ) -> dict[str, Any]:
     run_dir = output_dir / "runs" / config.config_id
     kwargs: dict[str, Any] = {
@@ -439,6 +488,7 @@ def _run_config(
         "max_train_samples": max_train_samples,
         "max_val_samples": max_val_samples,
         "max_test_samples": max_test_samples,
+        "skip_test_eval": skip_test_eval,
         "sequence_history_size": config.sequence_history_size,
     }
     kwargs.update(config.extra_args)
@@ -456,7 +506,16 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--output-dir", required=True, help="Output directory for screen artifacts")
     parser.add_argument(
         "--stage",
-        choices=["quick", "sweep", "final", "tcn_gru_focused", "tcn_gru_focused_final", "all"],
+        choices=[
+            "quick",
+            "sweep",
+            "final",
+            "tcn_gru_focused",
+            "tcn_gru_focused_final",
+            "transformer_focused",
+            "transformer_focused_final",
+            "all",
+        ],
         default="quick",
     )
     parser.add_argument("--recipes", nargs="*", default=None, help="Optional recipe-name filter for the chosen stage")
@@ -468,6 +527,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--max-train-samples", type=int, default=None)
     parser.add_argument("--max-val-samples", type=int, default=None)
     parser.add_argument("--max-test-samples", type=int, default=None)
+    parser.add_argument(
+        "--include-test-eval",
+        action="store_true",
+        help="Evaluate test metrics during validation-only sweep stages",
+    )
     parser.add_argument("--disable-amp", action="store_true")
     parser.add_argument("--dry-run", action="store_true")
     return parser.parse_args()
@@ -492,6 +556,7 @@ def main() -> None:
     max_train_samples = args.max_train_samples if args.max_train_samples is not None else default_train
     max_val_samples = args.max_val_samples if args.max_val_samples is not None else default_val
     max_test_samples = args.max_test_samples if args.max_test_samples is not None else default_test
+    skip_test_eval = args.stage == "transformer_focused" and not args.include_test_eval
 
     rows: list[dict[str, Any]] = []
     if args.dry_run:
@@ -511,6 +576,7 @@ def main() -> None:
                     max_train_samples=max_train_samples,
                     max_val_samples=max_val_samples,
                     max_test_samples=max_test_samples,
+                    skip_test_eval=skip_test_eval,
                 )
             )
 
@@ -531,6 +597,7 @@ def main() -> None:
                 "max_train_samples": max_train_samples,
                 "max_val_samples": max_val_samples,
                 "max_test_samples": max_test_samples,
+                "skip_test_eval": skip_test_eval,
                 "dry_run": bool(args.dry_run),
                 "selected_config_ids": [config.config_id for config in configs],
             },

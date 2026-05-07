@@ -1248,6 +1248,65 @@ def test_temporal_screen_tcn_gru_focused_final_grid_uses_full_budget():
     assert all(config.dropout == 0.0 for config in configs)
 
 
+def test_temporal_screen_transformer_focused_grid_has_12_configs():
+    from scripts.run_temporal_backbone_screen import build_screen_configs
+
+    configs = build_screen_configs(stage="transformer_focused")
+
+    assert len(configs) == 12
+    assert {config.recipe_name for config in configs} == {
+        "causal_transformer_paper_no_accel_v2_phase_actuator_airdata"
+    }
+    assert len({config.config_id for config in configs}) == 12
+    assert all(config.stage == "transformer_focused" for config in configs)
+    assert {config.sequence_history_size for config in configs} == {96, 128, 160, 192}
+    assert "transformer_focused_hist128_d64_l2_h4_do0" in {config.config_id for config in configs}
+
+
+def test_temporal_screen_transformer_focused_final_grid_uses_full_budget():
+    from scripts.run_temporal_backbone_screen import build_screen_configs
+
+    configs = build_screen_configs(stage="transformer_focused_final")
+
+    assert len(configs) == 12
+    assert all(config.max_epochs == 50 for config in configs)
+    assert all(config.early_stopping_patience == 8 for config in configs)
+    assert "transformer_focused_final_hist128_d64_l2_h4_do0" in {config.config_id for config in configs}
+
+
+def test_run_baseline_comparison_can_skip_test_eval(tmp_path: Path):
+    split_root = tmp_path / "split"
+    split_root.mkdir(parents=True)
+
+    for split, seed, log_id in [("train", 210, "train_log"), ("val", 211, "val_log"), ("test", 212, "test_log")]:
+        frame = _synthetic_frame(n_rows=80, seed=seed)
+        frame["log_id"] = log_id
+        frame["segment_id"] = 0
+        frame["time_s"] = np.arange(len(frame), dtype=float) * 0.01
+        frame.to_parquet(split_root / f"{split}_samples.parquet", index=False)
+
+    outputs = run_baseline_comparison(
+        split_root=split_root,
+        output_dir=tmp_path / "comparison",
+        recipe_names=["causal_transformer_paper_no_accel_v2_phase_actuator_airdata"],
+        hidden_sizes=(16, 8),
+        batch_size=8,
+        max_epochs=1,
+        early_stopping_patience=1,
+        sequence_history_size=4,
+        device="cpu",
+        random_seed=210,
+        num_workers=0,
+        use_amp=False,
+        skip_test_eval=True,
+    )
+
+    summary = pd.read_csv(outputs["summary_csv_path"])
+
+    assert "val_overall_rmse" in summary.columns
+    assert "test_overall_rmse" not in summary.columns
+
+
 def test_run_baseline_comparison_supports_subnet_rollout_recipes(tmp_path: Path):
     split_root = tmp_path / "split"
     split_root.mkdir(parents=True)

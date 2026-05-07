@@ -4191,6 +4191,7 @@ def run_training_job(
     latent_size: int = 16,
     dt_over_tau: float = 0.03,
     ct_integrator: str = "euler",
+    skip_test_eval: bool = False,
 ) -> dict[str, str]:
     if feature_set_name is not None and feature_columns is not None:
         raise ValueError("feature_set_name and feature_columns cannot both be provided")
@@ -4201,7 +4202,7 @@ def run_training_job(
 
     train_frame = _load_split_frame(split_root, "train", max_train_samples, random_seed)
     val_frame = _load_split_frame(split_root, "val", max_val_samples, random_seed + 1)
-    test_frame = _load_split_frame(split_root, "test", max_test_samples, random_seed + 2)
+    test_frame = None if skip_test_eval else _load_split_frame(split_root, "test", max_test_samples, random_seed + 2)
 
     resolved_model_type = _normalized_model_type(model_type)
     if _is_sequence_model_type(resolved_model_type):
@@ -4303,8 +4304,9 @@ def run_training_job(
     metrics = {
         "train": evaluate_model_bundle(bundle, train_frame, split_name="train", batch_size=batch_size, device=device),
         "val": evaluate_model_bundle(bundle, val_frame, split_name="val", batch_size=batch_size, device=device),
-        "test": evaluate_model_bundle(bundle, test_frame, split_name="test", batch_size=batch_size, device=device),
     }
+    if test_frame is not None:
+        metrics["test"] = evaluate_model_bundle(bundle, test_frame, split_name="test", batch_size=batch_size, device=device)
 
     model_bundle_path = output_path / "model_bundle.pt"
     metrics_path = output_path / "metrics.json"
@@ -4319,8 +4321,9 @@ def run_training_job(
     history = _history_frame(bundle["history"])
     history.to_csv(history_path, index=False)
     _save_training_curves(history, training_curves_path)
-    _save_pred_vs_true_plot(bundle, test_frame, pred_vs_true_test_path, batch_size=batch_size, device=device)
-    _save_residual_hist_plot(bundle, test_frame, residual_hist_test_path, batch_size=batch_size, device=device)
+    if test_frame is not None:
+        _save_pred_vs_true_plot(bundle, test_frame, pred_vs_true_test_path, batch_size=batch_size, device=device)
+        _save_residual_hist_plot(bundle, test_frame, residual_hist_test_path, batch_size=batch_size, device=device)
     audit_flags = _training_audit_flags(bundle, split_root=split_root)
     training_config_path.write_text(
         json.dumps(
@@ -4389,6 +4392,7 @@ def run_training_job(
                 "max_train_samples": max_train_samples,
                 "max_val_samples": max_val_samples,
                 "max_test_samples": max_test_samples,
+                "skip_test_eval": bool(skip_test_eval),
                 "best_epoch": bundle["best_epoch"],
                 "best_val_loss": bundle["best_val_loss"],
                 **audit_flags,
@@ -4508,9 +4512,12 @@ def _save_baseline_comparison_plot(summary: pd.DataFrame, output_path: str | Pat
     fig, ax = plt.subplots(figsize=(fig_width, 5))
 
     x = np.arange(len(summary))
-    width = 0.36
-    ax.bar(x - width / 2, summary["val_overall_r2"], width=width, label="val_overall_r2")
-    ax.bar(x + width / 2, summary["test_overall_r2"], width=width, label="test_overall_r2")
+    if "test_overall_r2" in summary.columns:
+        width = 0.36
+        ax.bar(x - width / 2, summary["val_overall_r2"], width=width, label="val_overall_r2")
+        ax.bar(x + width / 2, summary["test_overall_r2"], width=width, label="test_overall_r2")
+    else:
+        ax.bar(x, summary["val_overall_r2"], width=0.48, label="val_overall_r2")
     ax.set_xticks(x)
     ax.set_xticklabels(summary["recipe_name"], rotation=20, ha="right")
     ax.set_ylabel("R^2")
@@ -4599,6 +4606,7 @@ def _run_single_baseline_recipe(
     latent_size: int,
     dt_over_tau: float,
     ct_integrator: str,
+    skip_test_eval: bool,
 ) -> dict[str, Any]:
     resolved_sequence_history_size = int(sequence_history_size)
     resolved_sequence_feature_mode = str(sequence_feature_mode)
@@ -4667,6 +4675,7 @@ def _run_single_baseline_recipe(
         latent_size=resolved_latent_size,
         dt_over_tau=resolved_dt_over_tau,
         ct_integrator=resolved_ct_integrator,
+        skip_test_eval=skip_test_eval,
     )
     metrics = json.loads(Path(outputs["metrics_path"]).read_text(encoding="utf-8"))
     training_config = json.loads(Path(outputs["training_config_path"]).read_text(encoding="utf-8"))
@@ -4701,7 +4710,8 @@ def _run_single_baseline_recipe(
         "best_val_loss": float(training_config["best_val_loss"]),
     }
     for split_name in ["train", "val", "test"]:
-        row.update(_flatten_split_metrics(split_name, metrics[split_name]))
+        if split_name in metrics:
+            row.update(_flatten_split_metrics(split_name, metrics[split_name]))
     return row
 
 
@@ -4748,7 +4758,10 @@ def _run_split_axis_baseline_recipe(
     latent_size: int,
     dt_over_tau: float,
     ct_integrator: str,
+    skip_test_eval: bool,
 ) -> dict[str, Any]:
+    if skip_test_eval:
+        raise ValueError("skip_test_eval is not supported for split-axis baseline recipes")
     target_groups = {name: list(targets) for name, targets in recipe["target_groups"].items()}
     split_group_metrics: dict[str, dict[str, dict[str, Any]]] = {"train": {}, "val": {}, "test": {}}
     group_configs: dict[str, dict[str, Any]] = {}
@@ -4869,6 +4882,7 @@ def run_baseline_comparison(
     latent_size: int = 16,
     dt_over_tau: float = 0.03,
     ct_integrator: str = "euler",
+    skip_test_eval: bool = False,
 ) -> dict[str, str]:
     output_path = Path(output_dir)
     output_path.mkdir(parents=True, exist_ok=True)
@@ -4921,6 +4935,7 @@ def run_baseline_comparison(
             "latent_size": latent_size,
             "dt_over_tau": dt_over_tau,
             "ct_integrator": ct_integrator,
+            "skip_test_eval": skip_test_eval,
         }
         if recipe.get("recipe_type") == "split_axis":
             row = _run_split_axis_baseline_recipe(**common_kwargs)

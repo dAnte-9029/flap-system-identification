@@ -88,6 +88,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--latent-size", type=int, default=16, help="Latent size for SUBNET rollout models")
     parser.add_argument("--dt-over-tau", type=float, default=0.03, help="Continuous-time latent derivative scale")
     parser.add_argument("--ct-integrator", default="euler", choices=["euler"], help="Continuous-time rollout integrator")
+    parser.add_argument("--skip-test-eval", action="store_true", help="Skip test evaluation and test plots")
     return parser.parse_args()
 
 
@@ -134,6 +135,7 @@ def main() -> None:
         latent_size=args.latent_size,
         dt_over_tau=args.dt_over_tau,
         ct_integrator=args.ct_integrator,
+        skip_test_eval=args.skip_test_eval,
     )
     for key, value in outputs.items():
         print(f"{key}: {value}")

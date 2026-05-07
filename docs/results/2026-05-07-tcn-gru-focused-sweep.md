@@ -21,6 +21,14 @@ no past wrench / no past target output
 selection_metric: scaled validation Huber loss
 ```
 
+Protocol note:
+
+```text
+The tables below include test metrics because this was an exploratory completed run.
+For future sweeps, config selection should use validation metrics only.
+The test split should be used only after final configs are locked.
+```
+
 The focused sweep only varies the causal TCN+GRU backbone:
 
 ```text
@@ -93,7 +101,7 @@ tcn_gru_focused_hist128_c64_b3_k3_gru64            1.178049  0.630099 0.200116 0
 tcn_gru_focused_hist160_c128_b4_k3_gru128          1.220657  0.623275 0.188967 0.442351 0.315659   6
 ```
 
-Selected for full-data final:
+Selected for full-data final in this exploratory run:
 
 ```text
 tcn_gru_focused_hist128_c96_b2_k3_gru64
@@ -120,6 +128,8 @@ tcn_gru_focused_final_hist128_c96_b2_k3_gru64       0.504114 0.992244 0.670616 0
 ```
 
 The compact `hist128 c64 b2 k3 gru64` model remains the best TCN+GRU after full-data training. The sampled-data winner did not transfer to the full-data final.
+
+For paper-grade follow-up experiments, this selection should be repeated with validation-only ranking. Test metrics should be reported for locked final models, not used to choose them.
 
 Compared with the earlier final Transformer:
 
