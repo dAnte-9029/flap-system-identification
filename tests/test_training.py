@@ -1195,6 +1195,34 @@ def test_run_baseline_comparison_supports_temporal_backbone_recipes(tmp_path: Pa
     }
 
 
+def test_temporal_screen_quick_grid_contains_reference_and_candidates():
+    from scripts.run_temporal_backbone_screen import build_screen_configs
+
+    configs = build_screen_configs(stage="quick")
+    names = {config.recipe_name for config in configs}
+
+    assert "mlp_paper_no_accel_v2" in names
+    assert "causal_gru_paper_no_accel_v2_phase_actuator_airdata" in names
+    assert "causal_lstm_paper_no_accel_v2_phase_actuator_airdata" in names
+    assert "causal_tcn_paper_no_accel_v2_phase_actuator_airdata" in names
+    assert "causal_transformer_paper_no_accel_v2_phase_actuator_airdata" in names
+
+
+def test_classify_temporal_candidate_promotes_clear_rmse_win():
+    from scripts.run_temporal_backbone_screen import classify_candidate
+
+    decision = classify_candidate(
+        candidate_rmse=0.96,
+        reference_rmse=1.00,
+        candidate_r2=0.72,
+        reference_r2=0.70,
+        hard_target_improvements=0,
+        worst_regime_rmse_improvement=0.0,
+    )
+
+    assert decision == "promote"
+
+
 def test_run_baseline_comparison_supports_subnet_rollout_recipes(tmp_path: Path):
     split_root = tmp_path / "split"
     split_root.mkdir(parents=True)
