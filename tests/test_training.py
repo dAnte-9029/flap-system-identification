@@ -1635,6 +1635,119 @@ def test_run_training_job_records_sequence_training_tricks(tmp_path: Path):
     assert "learning_rate" in history.columns
 
 
+def test_prediction_metadata_frame_for_sequence_bundle_aligns_rows(tmp_path: Path):
+    split_root = tmp_path / "split"
+    split_root.mkdir(parents=True)
+
+    for split, seed, log_id in [("train", 410, "train_log"), ("val", 411, "val_log"), ("test", 412, "test_log")]:
+        frame = _synthetic_frame(n_rows=80, seed=seed)
+        frame["log_id"] = log_id
+        frame["segment_id"] = 0
+        frame["time_s"] = np.arange(len(frame), dtype=float) * 0.01
+        frame.to_parquet(split_root / f"{split}_samples.parquet", index=False)
+
+    outputs = run_training_job(
+        split_root=split_root,
+        output_dir=tmp_path / "model",
+        feature_set_name="paper_no_accel_v2",
+        model_type="causal_transformer",
+        hidden_sizes=(16, 8),
+        batch_size=8,
+        max_epochs=1,
+        early_stopping_patience=1,
+        sequence_history_size=4,
+        transformer_d_model=16,
+        transformer_num_layers=1,
+        transformer_num_heads=4,
+        transformer_dim_feedforward=32,
+        device="cpu",
+        random_seed=410,
+        num_workers=0,
+        use_amp=False,
+    )
+    bundle = torch.load(outputs["model_bundle_path"], map_location="cpu", weights_only=False)
+    test_frame = pd.read_parquet(split_root / "test_samples.parquet")
+
+    aligned = training_module.prediction_metadata_frame_for_bundle(
+        bundle,
+        test_frame,
+        split_name="test",
+        batch_size=16,
+    )
+
+    assert len(aligned) == 77
+    assert {"log_id", "segment_id", "time_s"}.issubset(aligned.columns)
+    assert {"servo_rudder", "airspeed_validated.true_airspeed_m_s", "cycle_flap_frequency_hz"}.issubset(aligned.columns)
+    assert {"true_fy_b", "pred_fy_b", "resid_fy_b"}.issubset(aligned.columns)
+    assert set(aligned["split"]) == {"test"}
+
+
+def test_lateral_diagnostics_compute_target_scale_table():
+    from scripts.run_lateral_diagnostics import compute_target_scale_table
+
+    frame = pd.DataFrame(
+        {
+            "true_fy_b": [0.0, 1.0, -1.0],
+            "pred_fy_b": [0.0, 0.5, -0.5],
+            "true_fx_b": [0.0, 2.0, -2.0],
+            "pred_fx_b": [0.0, 1.0, -1.0],
+        }
+    )
+
+    table = compute_target_scale_table(frame, target_columns=["fy_b", "fx_b"])
+
+    assert set(table["target"]) == {"fy_b", "fx_b"}
+    assert {"true_std", "rmse", "rmse_over_std", "mean_abs_true", "p95_abs_true"}.issubset(table.columns)
+
+
+def test_lateral_diagnostics_compute_per_log_table():
+    from scripts.run_lateral_diagnostics import compute_per_log_lateral_table
+
+    frame = pd.DataFrame(
+        {
+            "log_id": ["a", "a", "b", "b"],
+            "true_fy_b": [0.0, 1.0, 0.0, 2.0],
+            "pred_fy_b": [0.0, 1.0, 0.0, 0.0],
+            "true_mx_b": [0.0, 1.0, 0.0, 1.0],
+            "pred_mx_b": [0.0, 1.0, 0.0, 0.0],
+            "true_mz_b": [0.0, 1.0, 0.0, 1.0],
+            "pred_mz_b": [0.0, 1.0, 0.0, 0.0],
+        }
+    )
+
+    table = compute_per_log_lateral_table(frame, lateral_targets=["fy_b", "mx_b", "mz_b"])
+
+    assert list(table["log_id"]) == ["b", "a"]
+    assert {"fy_b_rmse", "mx_b_r2", "lateral_rmse_mean", "lateral_r2_mean"}.issubset(table.columns)
+    assert table.loc[0, "sample_count"] == 2
+
+
+def test_lateral_diagnostics_compute_regime_table():
+    from scripts.run_lateral_diagnostics import compute_regime_lateral_table
+
+    frame = pd.DataFrame(
+        {
+            "airspeed_validated.true_airspeed_m_s": [5.0, 7.0, 9.0, 11.0],
+            "cycle_flap_frequency_hz": [2.0, 4.0, 6.0, 8.0],
+            "phase_corrected_rad": [0.1, 1.0, 3.0, 5.0],
+            "servo_rudder": [-0.2, 0.0, 0.2, 0.3],
+            "servo_left_elevon": [0.2, 0.1, -0.2, -0.3],
+            "servo_right_elevon": [0.0, 0.1, 0.0, 0.2],
+            "true_fy_b": [0.0, 1.0, 0.0, 2.0],
+            "pred_fy_b": [0.0, 1.0, 0.0, 0.0],
+            "true_mx_b": [0.0, 1.0, 0.0, 1.0],
+            "pred_mx_b": [0.0, 1.0, 0.0, 0.0],
+            "true_mz_b": [0.0, 1.0, 0.0, 1.0],
+            "pred_mz_b": [0.0, 1.0, 0.0, 0.0],
+        }
+    )
+
+    table = compute_regime_lateral_table(frame, lateral_targets=["fy_b", "mx_b", "mz_b"], min_samples=1)
+
+    assert {"regime", "bin", "sample_count", "lateral_rmse_mean", "lateral_r2_mean"}.issubset(table.columns)
+    assert set(table["regime"]) >= {"airspeed_validated.true_airspeed_m_s", "elevon_diff"}
+
+
 def test_run_training_job_records_window_config(tmp_path: Path):
     split_root = tmp_path / "split"
     split_root.mkdir(parents=True)

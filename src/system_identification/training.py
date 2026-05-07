@@ -3771,6 +3771,53 @@ def _targets_for_bundle(bundle: dict[str, Any], frame: pd.DataFrame) -> pd.DataF
     return targets_df
 
 
+def prediction_metadata_frame_for_bundle(
+    bundle: dict[str, Any],
+    frame: pd.DataFrame,
+    *,
+    split_name: str,
+    batch_size: int = 8192,
+    device: str | None = None,
+) -> pd.DataFrame:
+    """Align model predictions, true targets, and row metadata for diagnostics."""
+    predictions_df = predict_model_bundle(bundle, frame, batch_size=batch_size, device=device)
+    targets_df = _targets_for_bundle(bundle, frame)
+    derived = _with_derived_columns(frame)
+
+    if _is_sequence_model_type(bundle.get("model_type", "mlp")):
+        _, _, _, metadata = _sequence_arrays_with_metadata_for_bundle(bundle, frame)
+        join_keys = [column for column in ["log_id", "segment_id", "time_s"] if column in metadata.columns and column in derived.columns]
+        if join_keys:
+            extra_columns = [column for column in derived.columns if column not in metadata.columns]
+            metadata = metadata.merge(
+                derived.loc[:, [*join_keys, *extra_columns]].drop_duplicates(join_keys),
+                on=join_keys,
+                how="left",
+            )
+    elif _is_rollout_model_type(bundle.get("model_type", "mlp")):
+        raise NotImplementedError("prediction metadata alignment is not implemented for rollout model bundles")
+    else:
+        features_df, _ = prepare_windowed_feature_target_frames(
+            derived,
+            bundle.get("base_feature_columns", bundle["feature_columns"]),
+            bundle["target_columns"],
+            window_mode=bundle.get("window_mode", "single"),
+            window_radius=int(bundle.get("window_radius", 0)),
+            window_feature_columns=bundle.get("window_feature_columns"),
+        )
+        metadata = derived.loc[features_df.index].reset_index(drop=True)
+
+    aligned = metadata.reset_index(drop=True).copy()
+    for target in bundle["target_columns"]:
+        true_values = targets_df[target].to_numpy()
+        pred_values = predictions_df[target].to_numpy()
+        aligned[f"true_{target}"] = true_values
+        aligned[f"pred_{target}"] = pred_values
+        aligned[f"resid_{target}"] = true_values - pred_values
+    aligned["split"] = split_name
+    return aligned
+
+
 def predict_model_bundle(
     bundle: dict[str, Any],
     frame: pd.DataFrame,
