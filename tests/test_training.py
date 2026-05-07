@@ -335,6 +335,84 @@ def test_causal_gru_regressor_forward_shape_without_current_features():
     assert out.shape == (5, 6)
 
 
+def test_causal_lstm_regressor_forward_shape_with_current_features():
+    model = training_module.CausalLSTMRegressor(
+        sequence_input_dim=5,
+        current_input_dim=3,
+        output_dim=6,
+        hidden_size=16,
+        num_layers=1,
+        dropout=0.0,
+        head_hidden_sizes=(8,),
+    )
+
+    sequence = torch.randn(4, 64, 5)
+    current = torch.randn(4, 3)
+    output = model(sequence, current)
+
+    assert output.shape == (4, 6)
+
+
+def test_causal_tcn_regressor_forward_shape_with_current_features():
+    model = training_module.CausalTCNRegressor(
+        sequence_input_dim=5,
+        current_input_dim=3,
+        output_dim=6,
+        channels=16,
+        num_blocks=3,
+        kernel_size=3,
+        dropout=0.0,
+        head_hidden_sizes=(8,),
+    )
+
+    sequence = torch.randn(4, 64, 5)
+    current = torch.randn(4, 3)
+    output = model(sequence, current)
+
+    assert output.shape == (4, 6)
+
+
+def test_causal_transformer_regressor_forward_shape_with_current_features():
+    model = training_module.CausalTransformerRegressor(
+        sequence_input_dim=5,
+        current_input_dim=3,
+        output_dim=6,
+        d_model=32,
+        num_layers=1,
+        num_heads=4,
+        dim_feedforward=64,
+        dropout=0.0,
+        head_hidden_sizes=(8,),
+    )
+
+    sequence = torch.randn(4, 64, 5)
+    current = torch.randn(4, 3)
+    output = model(sequence, current)
+
+    assert output.shape == (4, 6)
+
+
+def test_causal_tcn_gru_regressor_forward_shape_with_current_features():
+    model = training_module.CausalTCNGRURegressor(
+        sequence_input_dim=5,
+        current_input_dim=3,
+        output_dim=6,
+        tcn_channels=16,
+        tcn_num_blocks=2,
+        tcn_kernel_size=3,
+        gru_hidden_size=16,
+        gru_num_layers=1,
+        dropout=0.0,
+        head_hidden_sizes=(8,),
+    )
+
+    sequence = torch.randn(4, 64, 5)
+    current = torch.randn(4, 3)
+    output = model(sequence, current)
+
+    assert output.shape == (4, 6)
+
+
 def test_subsection_gru_regressor_forward_shape():
     model = training_module.SubsectionGRUWrenchRegressor(
         context_input_dim=4,
@@ -526,6 +604,46 @@ def test_run_training_job_supports_causal_gru_model(tmp_path: Path):
     assert cfg["sequence_feature_mode"] == "phase_actuator_airdata"
     assert "velocity_b.x" not in cfg["sequence_feature_columns"]
     assert metrics["test"]["sample_count"] == 41
+
+
+@pytest.mark.parametrize(
+    "model_type",
+    ["causal_lstm", "causal_tcn", "causal_transformer", "causal_tcn_gru"],
+)
+def test_run_training_job_supports_temporal_sequence_model_types(tmp_path: Path, model_type: str):
+    split_root = tmp_path / "split"
+    split_root.mkdir(parents=True)
+
+    for split, seed, log_id in [("train", 20, "train_log"), ("val", 21, "val_log"), ("test", 22, "test_log")]:
+        frame = _synthetic_frame(n_rows=48, seed=seed)
+        frame["log_id"] = log_id
+        frame["segment_id"] = 0
+        frame["time_s"] = np.arange(len(frame), dtype=float) * 0.01
+        frame.to_parquet(split_root / f"{split}_samples.parquet", index=False)
+
+    outputs = run_training_job(
+        split_root=split_root,
+        output_dir=tmp_path / model_type,
+        feature_set_name="paper_no_accel_v2",
+        model_type=model_type,
+        hidden_sizes=(16, 8),
+        batch_size=8,
+        max_epochs=1,
+        early_stopping_patience=1,
+        loss_type="huber",
+        huber_delta=1.5,
+        sequence_history_size=4,
+        sequence_feature_mode="phase_actuator_airdata",
+        current_feature_mode="remaining_current",
+        device="cpu",
+        use_amp=False,
+    )
+
+    assert Path(outputs["model_bundle_path"]).exists()
+    cfg = json.loads(Path(outputs["training_config_path"]).read_text(encoding="utf-8"))
+    assert cfg["model_type"] == model_type
+    assert cfg["has_acceleration_inputs"] is False
+    assert cfg["has_centered_window"] is False
 
 
 def test_run_training_job_supports_rollout_model_config(tmp_path: Path):
@@ -1035,6 +1153,46 @@ def test_run_baseline_comparison_supports_causal_sequence_recipes(tmp_path: Path
         summary.columns
     )
     assert set(summary["sequence_feature_mode"]) == {"phase_actuator_airdata"}
+
+
+def test_run_baseline_comparison_supports_temporal_backbone_recipes(tmp_path: Path):
+    split_root = tmp_path / "split"
+    split_root.mkdir(parents=True)
+
+    for split, seed, log_id in [("train", 120, "train_log"), ("val", 121, "val_log"), ("test", 122, "test_log")]:
+        frame = _synthetic_frame(n_rows=80, seed=seed)
+        frame["log_id"] = log_id
+        frame["segment_id"] = 0
+        frame["time_s"] = np.arange(len(frame), dtype=float) * 0.01
+        frame.to_parquet(split_root / f"{split}_samples.parquet", index=False)
+
+    outputs = run_baseline_comparison(
+        split_root=split_root,
+        output_dir=tmp_path / "comparison",
+        recipe_names=[
+            "causal_lstm_paper_no_accel_v2_phase_actuator_airdata",
+            "causal_tcn_paper_no_accel_v2_phase_actuator_airdata",
+            "causal_transformer_paper_no_accel_v2_phase_actuator_airdata",
+            "causal_tcn_gru_paper_no_accel_v2_phase_actuator_airdata",
+        ],
+        hidden_sizes=(16, 8),
+        batch_size=8,
+        max_epochs=1,
+        early_stopping_patience=1,
+        sequence_history_size=4,
+        device="cpu",
+        random_seed=120,
+        num_workers=0,
+        use_amp=False,
+    )
+
+    summary = pd.read_csv(outputs["summary_csv_path"])
+    assert set(summary["model_type"]) == {
+        "causal_lstm",
+        "causal_tcn",
+        "causal_transformer",
+        "causal_tcn_gru",
+    }
 
 
 def test_run_baseline_comparison_supports_subnet_rollout_recipes(tmp_path: Path):

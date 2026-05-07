@@ -12,6 +12,7 @@ import numpy as np
 import pandas as pd
 import torch
 from torch import nn
+import torch.nn.functional as F
 from torch.utils.data import DataLoader, TensorDataset
 
 matplotlib.use("Agg")
@@ -201,6 +202,64 @@ BASELINE_COMPARISON_RECIPES: dict[str, dict[str, Any]] = {
         "asl_hidden_size": 128,
         "asl_dropout": 0.1,
         "asl_max_frequency_bins": None,
+    },
+    "causal_lstm_paper_no_accel_v2_phase_actuator_airdata": {
+        "feature_set_name": "paper_no_accel_v2",
+        "model_type": "causal_lstm",
+        "loss_type": "huber",
+        "huber_delta": 1.5,
+        "window_mode": "single",
+        "window_radius": 0,
+        "window_feature_mode": "all",
+        "sequence_history_size": 64,
+        "sequence_feature_mode": "phase_actuator_airdata",
+        "current_feature_mode": "remaining_current",
+    },
+    "causal_tcn_paper_no_accel_v2_phase_actuator_airdata": {
+        "feature_set_name": "paper_no_accel_v2",
+        "model_type": "causal_tcn",
+        "loss_type": "huber",
+        "huber_delta": 1.5,
+        "window_mode": "single",
+        "window_radius": 0,
+        "window_feature_mode": "all",
+        "sequence_history_size": 64,
+        "sequence_feature_mode": "phase_actuator_airdata",
+        "current_feature_mode": "remaining_current",
+        "tcn_channels": 128,
+        "tcn_num_blocks": 4,
+        "tcn_kernel_size": 3,
+    },
+    "causal_transformer_paper_no_accel_v2_phase_actuator_airdata": {
+        "feature_set_name": "paper_no_accel_v2",
+        "model_type": "causal_transformer",
+        "loss_type": "huber",
+        "huber_delta": 1.5,
+        "window_mode": "single",
+        "window_radius": 0,
+        "window_feature_mode": "all",
+        "sequence_history_size": 64,
+        "sequence_feature_mode": "phase_actuator_airdata",
+        "current_feature_mode": "remaining_current",
+        "transformer_d_model": 64,
+        "transformer_num_layers": 1,
+        "transformer_num_heads": 4,
+        "transformer_dim_feedforward": 128,
+    },
+    "causal_tcn_gru_paper_no_accel_v2_phase_actuator_airdata": {
+        "feature_set_name": "paper_no_accel_v2",
+        "model_type": "causal_tcn_gru",
+        "loss_type": "huber",
+        "huber_delta": 1.5,
+        "window_mode": "single",
+        "window_radius": 0,
+        "window_feature_mode": "all",
+        "sequence_history_size": 64,
+        "sequence_feature_mode": "phase_actuator_airdata",
+        "current_feature_mode": "remaining_current",
+        "tcn_channels": 128,
+        "tcn_num_blocks": 3,
+        "tcn_kernel_size": 3,
     },
     "subsection_gru_paper_no_accel_v2_phase_actuator_airdata": {
         "feature_set_name": "paper_no_accel_v2",
@@ -560,6 +619,339 @@ def _make_mlp_layers(
         last_dim = int(hidden_dim)
     layers.append(nn.Linear(last_dim, int(output_dim)))
     return nn.Sequential(*layers)
+
+
+class CausalLSTMRegressor(nn.Module):
+    def __init__(
+        self,
+        *,
+        sequence_input_dim: int,
+        current_input_dim: int,
+        output_dim: int,
+        hidden_size: int = 128,
+        num_layers: int = 1,
+        dropout: float = 0.0,
+        head_hidden_sizes: tuple[int, ...] = (128,),
+    ):
+        super().__init__()
+        if sequence_input_dim <= 0:
+            raise ValueError("sequence_input_dim must be positive")
+        if current_input_dim < 0:
+            raise ValueError("current_input_dim must be non-negative")
+        if output_dim <= 0:
+            raise ValueError("output_dim must be positive")
+        if hidden_size <= 0:
+            raise ValueError("hidden_size must be positive")
+        if num_layers <= 0:
+            raise ValueError("num_layers must be positive")
+
+        self.sequence_input_dim = int(sequence_input_dim)
+        self.current_input_dim = int(current_input_dim)
+        self.output_dim = int(output_dim)
+        self.hidden_size = int(hidden_size)
+        self.num_layers = int(num_layers)
+
+        lstm_dropout = float(dropout) if num_layers > 1 else 0.0
+        self.lstm = nn.LSTM(
+            input_size=self.sequence_input_dim,
+            hidden_size=self.hidden_size,
+            num_layers=self.num_layers,
+            dropout=lstm_dropout,
+            batch_first=True,
+        )
+        self.head = _make_mlp_layers(
+            self.hidden_size + self.current_input_dim,
+            self.output_dim,
+            tuple(int(v) for v in head_hidden_sizes),
+            dropout=dropout,
+        )
+
+    def forward(self, sequence_inputs: torch.Tensor, current_inputs: torch.Tensor | None = None) -> torch.Tensor:
+        if sequence_inputs.ndim != 3:
+            raise ValueError("sequence_inputs must have shape [batch, history, features]")
+        if sequence_inputs.shape[2] != self.sequence_input_dim:
+            raise ValueError(
+                f"Expected sequence feature dim {self.sequence_input_dim}, got {sequence_inputs.shape[2]}"
+            )
+        _, (hidden, _) = self.lstm(sequence_inputs)
+        representation = hidden[-1]
+        if self.current_input_dim > 0:
+            if current_inputs is None:
+                raise ValueError("current_inputs are required when current_input_dim is positive")
+            if current_inputs.ndim != 2 or current_inputs.shape[1] != self.current_input_dim:
+                raise ValueError(f"Expected current_inputs shape [batch, {self.current_input_dim}]")
+            representation = torch.cat([representation, current_inputs], dim=1)
+        return self.head(representation)
+
+
+class _CausalConvBlock(nn.Module):
+    def __init__(
+        self,
+        *,
+        input_channels: int,
+        output_channels: int,
+        kernel_size: int,
+        dilation: int,
+        dropout: float = 0.0,
+    ):
+        super().__init__()
+        if input_channels <= 0 or output_channels <= 0:
+            raise ValueError("input_channels and output_channels must be positive")
+        if kernel_size <= 0:
+            raise ValueError("kernel_size must be positive")
+        if dilation <= 0:
+            raise ValueError("dilation must be positive")
+        self.left_padding = int((kernel_size - 1) * dilation)
+        self.conv = nn.Conv1d(
+            int(input_channels),
+            int(output_channels),
+            kernel_size=int(kernel_size),
+            dilation=int(dilation),
+        )
+        self.activation = nn.ReLU()
+        self.dropout = nn.Dropout(float(dropout)) if dropout > 0.0 else nn.Identity()
+        self.residual = (
+            nn.Identity()
+            if int(input_channels) == int(output_channels)
+            else nn.Conv1d(int(input_channels), int(output_channels), kernel_size=1)
+        )
+
+    def forward(self, inputs: torch.Tensor) -> torch.Tensor:
+        padded = F.pad(inputs, (self.left_padding, 0))
+        convolved = self.conv(padded)
+        convolved = self.dropout(self.activation(convolved))
+        return self.activation(convolved + self.residual(inputs))
+
+
+class CausalTCNRegressor(nn.Module):
+    def __init__(
+        self,
+        *,
+        sequence_input_dim: int,
+        current_input_dim: int,
+        output_dim: int,
+        channels: int = 128,
+        num_blocks: int = 4,
+        kernel_size: int = 3,
+        dropout: float = 0.0,
+        head_hidden_sizes: tuple[int, ...] = (128,),
+    ):
+        super().__init__()
+        if sequence_input_dim <= 0:
+            raise ValueError("sequence_input_dim must be positive")
+        if current_input_dim < 0:
+            raise ValueError("current_input_dim must be non-negative")
+        if output_dim <= 0:
+            raise ValueError("output_dim must be positive")
+        if channels <= 0:
+            raise ValueError("channels must be positive")
+        if num_blocks <= 0:
+            raise ValueError("num_blocks must be positive")
+        if kernel_size <= 0:
+            raise ValueError("kernel_size must be positive")
+
+        self.sequence_input_dim = int(sequence_input_dim)
+        self.current_input_dim = int(current_input_dim)
+        self.output_dim = int(output_dim)
+        self.channels = int(channels)
+        self.num_blocks = int(num_blocks)
+        self.kernel_size = int(kernel_size)
+        blocks: list[nn.Module] = []
+        input_channels = self.sequence_input_dim
+        for block_idx in range(self.num_blocks):
+            blocks.append(
+                _CausalConvBlock(
+                    input_channels=input_channels,
+                    output_channels=self.channels,
+                    kernel_size=self.kernel_size,
+                    dilation=2**block_idx,
+                    dropout=dropout,
+                )
+            )
+            input_channels = self.channels
+        self.network = nn.Sequential(*blocks)
+        self.head = _make_mlp_layers(
+            self.channels + self.current_input_dim,
+            self.output_dim,
+            tuple(int(v) for v in head_hidden_sizes),
+            dropout=dropout,
+        )
+
+    def encode_sequence(self, sequence_inputs: torch.Tensor) -> torch.Tensor:
+        if sequence_inputs.ndim != 3:
+            raise ValueError("sequence_inputs must have shape [batch, history, features]")
+        if sequence_inputs.shape[2] != self.sequence_input_dim:
+            raise ValueError(
+                f"Expected sequence feature dim {self.sequence_input_dim}, got {sequence_inputs.shape[2]}"
+            )
+        temporal = sequence_inputs.transpose(1, 2)
+        encoded = self.network(temporal)
+        return encoded.transpose(1, 2)
+
+    def forward(self, sequence_inputs: torch.Tensor, current_inputs: torch.Tensor | None = None) -> torch.Tensor:
+        encoded = self.encode_sequence(sequence_inputs)
+        representation = encoded[:, -1, :]
+        if self.current_input_dim > 0:
+            if current_inputs is None:
+                raise ValueError("current_inputs are required when current_input_dim is positive")
+            if current_inputs.ndim != 2 or current_inputs.shape[1] != self.current_input_dim:
+                raise ValueError(f"Expected current_inputs shape [batch, {self.current_input_dim}]")
+            representation = torch.cat([representation, current_inputs], dim=1)
+        return self.head(representation)
+
+
+class CausalTransformerRegressor(nn.Module):
+    def __init__(
+        self,
+        *,
+        sequence_input_dim: int,
+        current_input_dim: int,
+        output_dim: int,
+        d_model: int = 64,
+        num_layers: int = 1,
+        num_heads: int = 4,
+        dim_feedforward: int = 128,
+        dropout: float = 0.0,
+        head_hidden_sizes: tuple[int, ...] = (128,),
+        max_history_size: int = 512,
+    ):
+        super().__init__()
+        if sequence_input_dim <= 0:
+            raise ValueError("sequence_input_dim must be positive")
+        if current_input_dim < 0:
+            raise ValueError("current_input_dim must be non-negative")
+        if output_dim <= 0:
+            raise ValueError("output_dim must be positive")
+        if d_model <= 0:
+            raise ValueError("d_model must be positive")
+        if num_layers <= 0:
+            raise ValueError("num_layers must be positive")
+        if num_heads <= 0:
+            raise ValueError("num_heads must be positive")
+        if d_model % num_heads != 0:
+            raise ValueError("d_model must be divisible by num_heads")
+        if dim_feedforward <= 0:
+            raise ValueError("dim_feedforward must be positive")
+        if max_history_size <= 0:
+            raise ValueError("max_history_size must be positive")
+
+        self.sequence_input_dim = int(sequence_input_dim)
+        self.current_input_dim = int(current_input_dim)
+        self.output_dim = int(output_dim)
+        self.d_model = int(d_model)
+        self.num_layers = int(num_layers)
+        self.num_heads = int(num_heads)
+        self.dim_feedforward = int(dim_feedforward)
+        self.max_history_size = int(max_history_size)
+        self.input_projection = nn.Linear(self.sequence_input_dim, self.d_model)
+        self.position_embedding = nn.Parameter(torch.zeros(1, self.max_history_size, self.d_model))
+        encoder_layer = nn.TransformerEncoderLayer(
+            d_model=self.d_model,
+            nhead=self.num_heads,
+            dim_feedforward=self.dim_feedforward,
+            dropout=float(dropout),
+            batch_first=True,
+            activation="relu",
+        )
+        self.encoder = nn.TransformerEncoder(encoder_layer, num_layers=self.num_layers)
+        self.head = _make_mlp_layers(
+            self.d_model + self.current_input_dim,
+            self.output_dim,
+            tuple(int(v) for v in head_hidden_sizes),
+            dropout=dropout,
+        )
+
+    def forward(self, sequence_inputs: torch.Tensor, current_inputs: torch.Tensor | None = None) -> torch.Tensor:
+        if sequence_inputs.ndim != 3:
+            raise ValueError("sequence_inputs must have shape [batch, history, features]")
+        if sequence_inputs.shape[2] != self.sequence_input_dim:
+            raise ValueError(
+                f"Expected sequence feature dim {self.sequence_input_dim}, got {sequence_inputs.shape[2]}"
+            )
+        history_size = sequence_inputs.shape[1]
+        if history_size > self.max_history_size:
+            raise ValueError(f"history size {history_size} exceeds max_history_size {self.max_history_size}")
+        embedded = self.input_projection(sequence_inputs)
+        embedded = embedded + self.position_embedding[:, :history_size, :]
+        mask = torch.triu(
+            torch.ones(history_size, history_size, dtype=torch.bool, device=sequence_inputs.device),
+            diagonal=1,
+        )
+        encoded = self.encoder(embedded, mask=mask)
+        representation = encoded[:, -1, :]
+        if self.current_input_dim > 0:
+            if current_inputs is None:
+                raise ValueError("current_inputs are required when current_input_dim is positive")
+            if current_inputs.ndim != 2 or current_inputs.shape[1] != self.current_input_dim:
+                raise ValueError(f"Expected current_inputs shape [batch, {self.current_input_dim}]")
+            representation = torch.cat([representation, current_inputs], dim=1)
+        return self.head(representation)
+
+
+class CausalTCNGRURegressor(nn.Module):
+    def __init__(
+        self,
+        *,
+        sequence_input_dim: int,
+        current_input_dim: int,
+        output_dim: int,
+        tcn_channels: int = 128,
+        tcn_num_blocks: int = 3,
+        tcn_kernel_size: int = 3,
+        gru_hidden_size: int = 128,
+        gru_num_layers: int = 1,
+        dropout: float = 0.0,
+        head_hidden_sizes: tuple[int, ...] = (128,),
+    ):
+        super().__init__()
+        if gru_hidden_size <= 0:
+            raise ValueError("gru_hidden_size must be positive")
+        if gru_num_layers <= 0:
+            raise ValueError("gru_num_layers must be positive")
+        self.tcn = CausalTCNRegressor(
+            sequence_input_dim=sequence_input_dim,
+            current_input_dim=0,
+            output_dim=output_dim,
+            channels=tcn_channels,
+            num_blocks=tcn_num_blocks,
+            kernel_size=tcn_kernel_size,
+            dropout=dropout,
+            head_hidden_sizes=head_hidden_sizes,
+        )
+        self.sequence_input_dim = int(sequence_input_dim)
+        self.current_input_dim = int(current_input_dim)
+        self.output_dim = int(output_dim)
+        self.tcn_channels = int(tcn_channels)
+        self.tcn_num_blocks = int(tcn_num_blocks)
+        self.tcn_kernel_size = int(tcn_kernel_size)
+        self.gru_hidden_size = int(gru_hidden_size)
+        self.gru_num_layers = int(gru_num_layers)
+        gru_dropout = float(dropout) if gru_num_layers > 1 else 0.0
+        self.gru = nn.GRU(
+            input_size=self.tcn_channels,
+            hidden_size=self.gru_hidden_size,
+            num_layers=self.gru_num_layers,
+            dropout=gru_dropout,
+            batch_first=True,
+        )
+        self.head = _make_mlp_layers(
+            self.gru_hidden_size + self.current_input_dim,
+            self.output_dim,
+            tuple(int(v) for v in head_hidden_sizes),
+            dropout=dropout,
+        )
+
+    def forward(self, sequence_inputs: torch.Tensor, current_inputs: torch.Tensor | None = None) -> torch.Tensor:
+        encoded = self.tcn.encode_sequence(sequence_inputs)
+        _, hidden = self.gru(encoded)
+        representation = hidden[-1]
+        if self.current_input_dim > 0:
+            if current_inputs is None:
+                raise ValueError("current_inputs are required when current_input_dim is positive")
+            if current_inputs.ndim != 2 or current_inputs.shape[1] != self.current_input_dim:
+                raise ValueError(f"Expected current_inputs shape [batch, {self.current_input_dim}]")
+            representation = torch.cat([representation, current_inputs], dim=1)
+        return self.head(representation)
 
 
 class SubsectionGRUWrenchRegressor(nn.Module):
@@ -2012,6 +2404,10 @@ def _normalized_model_type(model_type: str | None) -> str:
         "pfnn",
         "causal_gru",
         "causal_gru_asl",
+        "causal_lstm",
+        "causal_tcn",
+        "causal_transformer",
+        "causal_tcn_gru",
         "subsection_gru",
         "subnet_discrete",
         "ct_subnet_euler",
@@ -2021,7 +2417,14 @@ def _normalized_model_type(model_type: str | None) -> str:
 
 
 def _is_sequence_model_type(model_type: str | None) -> bool:
-    return _normalized_model_type(model_type) in {"causal_gru", "causal_gru_asl"}
+    return _normalized_model_type(model_type) in {
+        "causal_gru",
+        "causal_gru_asl",
+        "causal_lstm",
+        "causal_tcn",
+        "causal_transformer",
+        "causal_tcn_gru",
+    }
 
 
 def _is_rollout_model_type(model_type: str | None) -> bool:
@@ -2177,6 +2580,104 @@ def _transform_rollout_features(
     return transformed.reshape(features.shape).astype(np.float32, copy=False)
 
 
+def _build_sequence_regressor(
+    *,
+    model_type: str,
+    sequence_input_dim: int,
+    current_input_dim: int,
+    output_dim: int,
+    hidden_sizes: tuple[int, ...],
+    dropout: float,
+    gru_num_layers: int,
+    asl_hidden_size: int = 128,
+    asl_dropout: float = 0.1,
+    asl_max_frequency_bins: int | None = None,
+    tcn_channels: int = 128,
+    tcn_num_blocks: int = 4,
+    tcn_kernel_size: int = 3,
+    transformer_d_model: int = 64,
+    transformer_num_layers: int = 1,
+    transformer_num_heads: int = 4,
+    transformer_dim_feedforward: int = 128,
+) -> nn.Module:
+    if not hidden_sizes:
+        raise ValueError("hidden_sizes must not be empty for sequence models")
+    base_hidden_size = int(hidden_sizes[0])
+    head_hidden_sizes = tuple(int(v) for v in hidden_sizes[1:]) or (base_hidden_size,)
+
+    if model_type == "causal_gru":
+        return CausalGRURegressor(
+            sequence_input_dim=sequence_input_dim,
+            current_input_dim=current_input_dim,
+            output_dim=output_dim,
+            hidden_size=base_hidden_size,
+            num_layers=int(gru_num_layers),
+            dropout=dropout,
+            head_hidden_sizes=head_hidden_sizes,
+        )
+    if model_type == "causal_gru_asl":
+        return CausalGRUASLRegressor(
+            sequence_input_dim=sequence_input_dim,
+            current_input_dim=current_input_dim,
+            output_dim=output_dim,
+            gru_hidden_size=base_hidden_size,
+            gru_num_layers=int(gru_num_layers),
+            asl_hidden_size=int(asl_hidden_size),
+            asl_dropout=float(asl_dropout),
+            asl_max_frequency_bins=asl_max_frequency_bins,
+            dropout=dropout,
+            head_hidden_sizes=head_hidden_sizes,
+        )
+    if model_type == "causal_lstm":
+        return CausalLSTMRegressor(
+            sequence_input_dim=sequence_input_dim,
+            current_input_dim=current_input_dim,
+            output_dim=output_dim,
+            hidden_size=base_hidden_size,
+            num_layers=int(gru_num_layers),
+            dropout=dropout,
+            head_hidden_sizes=head_hidden_sizes,
+        )
+    if model_type == "causal_tcn":
+        return CausalTCNRegressor(
+            sequence_input_dim=sequence_input_dim,
+            current_input_dim=current_input_dim,
+            output_dim=output_dim,
+            channels=int(tcn_channels),
+            num_blocks=int(tcn_num_blocks),
+            kernel_size=int(tcn_kernel_size),
+            dropout=dropout,
+            head_hidden_sizes=head_hidden_sizes,
+        )
+    if model_type == "causal_transformer":
+        transformer_head_sizes = tuple(int(v) for v in hidden_sizes[1:]) or (int(transformer_d_model),)
+        return CausalTransformerRegressor(
+            sequence_input_dim=sequence_input_dim,
+            current_input_dim=current_input_dim,
+            output_dim=output_dim,
+            d_model=int(transformer_d_model),
+            num_layers=int(transformer_num_layers),
+            num_heads=int(transformer_num_heads),
+            dim_feedforward=int(transformer_dim_feedforward),
+            dropout=dropout,
+            head_hidden_sizes=transformer_head_sizes,
+        )
+    if model_type == "causal_tcn_gru":
+        return CausalTCNGRURegressor(
+            sequence_input_dim=sequence_input_dim,
+            current_input_dim=current_input_dim,
+            output_dim=output_dim,
+            tcn_channels=int(tcn_channels),
+            tcn_num_blocks=int(tcn_num_blocks),
+            tcn_kernel_size=int(tcn_kernel_size),
+            gru_hidden_size=base_hidden_size,
+            gru_num_layers=int(gru_num_layers),
+            dropout=dropout,
+            head_hidden_sizes=head_hidden_sizes,
+        )
+    raise ValueError(f"Unknown sequence model_type: {model_type}")
+
+
 def fit_torch_sequence_regressor(
     *,
     train_frame: pd.DataFrame,
@@ -2205,6 +2706,13 @@ def fit_torch_sequence_regressor(
     asl_hidden_size: int = 128,
     asl_dropout: float = 0.1,
     asl_max_frequency_bins: int | None = None,
+    tcn_channels: int = 128,
+    tcn_num_blocks: int = 4,
+    tcn_kernel_size: int = 3,
+    transformer_d_model: int = 64,
+    transformer_num_layers: int = 1,
+    transformer_num_heads: int = 4,
+    transformer_dim_feedforward: int = 128,
 ) -> dict[str, Any]:
     _set_random_seed(random_seed)
     resolved_model_type = _normalized_model_type(model_type)
@@ -2297,29 +2805,25 @@ def fit_torch_sequence_regressor(
         pin_memory=pin_memory,
     )
 
-    if resolved_model_type == "causal_gru_asl":
-        model = CausalGRUASLRegressor(
-            sequence_input_dim=train_sequence_scaled.shape[2],
-            current_input_dim=train_current_scaled.shape[1],
-            output_dim=train_targets_scaled.shape[1],
-            gru_hidden_size=int(hidden_sizes[0]),
-            gru_num_layers=int(gru_num_layers),
-            asl_hidden_size=int(asl_hidden_size),
-            asl_dropout=float(asl_dropout),
-            asl_max_frequency_bins=asl_max_frequency_bins,
-            dropout=dropout,
-            head_hidden_sizes=tuple(int(v) for v in hidden_sizes[1:]) or (int(hidden_sizes[0]),),
-        ).to(resolved_device)
-    else:
-        model = CausalGRURegressor(
-            sequence_input_dim=train_sequence_scaled.shape[2],
-            current_input_dim=train_current_scaled.shape[1],
-            output_dim=train_targets_scaled.shape[1],
-            hidden_size=int(hidden_sizes[0]),
-            num_layers=int(gru_num_layers),
-            dropout=dropout,
-            head_hidden_sizes=tuple(int(v) for v in hidden_sizes[1:]) or (int(hidden_sizes[0]),),
-        ).to(resolved_device)
+    model = _build_sequence_regressor(
+        model_type=resolved_model_type,
+        sequence_input_dim=train_sequence_scaled.shape[2],
+        current_input_dim=train_current_scaled.shape[1],
+        output_dim=train_targets_scaled.shape[1],
+        hidden_sizes=tuple(int(v) for v in hidden_sizes),
+        dropout=dropout,
+        gru_num_layers=gru_num_layers,
+        asl_hidden_size=asl_hidden_size,
+        asl_dropout=asl_dropout,
+        asl_max_frequency_bins=asl_max_frequency_bins,
+        tcn_channels=tcn_channels,
+        tcn_num_blocks=tcn_num_blocks,
+        tcn_kernel_size=tcn_kernel_size,
+        transformer_d_model=transformer_d_model,
+        transformer_num_layers=transformer_num_layers,
+        transformer_num_heads=transformer_num_heads,
+        transformer_dim_feedforward=transformer_dim_feedforward,
+    ).to(resolved_device)
     optimizer = torch.optim.AdamW(model.parameters(), lr=learning_rate, weight_decay=weight_decay)
     scaler = torch.amp.GradScaler("cuda", enabled=use_amp and resolved_device.type == "cuda")
 
@@ -2445,6 +2949,13 @@ def fit_torch_sequence_regressor(
         "asl_hidden_size": int(asl_hidden_size),
         "asl_dropout": float(asl_dropout),
         "asl_max_frequency_bins": asl_max_frequency_bins,
+        "tcn_channels": int(tcn_channels),
+        "tcn_num_blocks": int(tcn_num_blocks),
+        "tcn_kernel_size": int(tcn_kernel_size),
+        "transformer_d_model": int(transformer_d_model),
+        "transformer_num_layers": int(transformer_num_layers),
+        "transformer_num_heads": int(transformer_num_heads),
+        "transformer_dim_feedforward": int(transformer_dim_feedforward),
         "best_epoch": int(best_epoch),
         "best_val_loss": float(best_val_loss),
         "history": history,
@@ -3103,33 +3614,25 @@ def _build_rollout_model_from_bundle(bundle: dict[str, Any], device: torch.devic
 
 def _build_sequence_model_from_bundle(bundle: dict[str, Any], device: torch.device) -> nn.Module:
     model_type = _normalized_model_type(bundle.get("model_type", "causal_gru"))
-    if model_type == "causal_gru_asl":
-        # The ASL subclass is added in the next task; keep this branch explicit for bundle compatibility.
-        model_cls = globals().get("CausalGRUASLRegressor")
-        if model_cls is None:
-            raise ValueError("CausalGRUASLRegressor is not available")
-        model = model_cls(
-            sequence_input_dim=len(bundle["sequence_feature_columns"]),
-            current_input_dim=len(bundle["current_feature_columns"]),
-            output_dim=len(bundle["target_columns"]),
-            gru_hidden_size=int(bundle.get("gru_hidden_size", bundle["hidden_sizes"][0])),
-            gru_num_layers=int(bundle.get("gru_num_layers", 1)),
-            asl_hidden_size=int(bundle.get("asl_hidden_size", 128)),
-            asl_dropout=float(bundle.get("asl_dropout", 0.1)),
-            asl_max_frequency_bins=bundle.get("asl_max_frequency_bins"),
-            dropout=float(bundle.get("dropout", 0.0)),
-            head_hidden_sizes=tuple(int(v) for v in bundle.get("hidden_sizes", [128])[1:]) or (int(bundle.get("gru_hidden_size", bundle["hidden_sizes"][0])),),
-        ).to(device)
-    else:
-        model = CausalGRURegressor(
-            sequence_input_dim=len(bundle["sequence_feature_columns"]),
-            current_input_dim=len(bundle["current_feature_columns"]),
-            output_dim=len(bundle["target_columns"]),
-            hidden_size=int(bundle.get("gru_hidden_size", bundle["hidden_sizes"][0])),
-            num_layers=int(bundle.get("gru_num_layers", 1)),
-            dropout=float(bundle.get("dropout", 0.0)),
-            head_hidden_sizes=tuple(int(v) for v in bundle.get("hidden_sizes", [128])[1:]) or (int(bundle.get("gru_hidden_size", bundle["hidden_sizes"][0])),),
-        ).to(device)
+    model = _build_sequence_regressor(
+        model_type=model_type,
+        sequence_input_dim=len(bundle["sequence_feature_columns"]),
+        current_input_dim=len(bundle["current_feature_columns"]),
+        output_dim=len(bundle["target_columns"]),
+        hidden_sizes=tuple(int(v) for v in bundle.get("hidden_sizes", [128])),
+        dropout=float(bundle.get("dropout", 0.0)),
+        gru_num_layers=int(bundle.get("gru_num_layers", 1)),
+        asl_hidden_size=int(bundle.get("asl_hidden_size", 128)),
+        asl_dropout=float(bundle.get("asl_dropout", 0.1)),
+        asl_max_frequency_bins=bundle.get("asl_max_frequency_bins"),
+        tcn_channels=int(bundle.get("tcn_channels", 128)),
+        tcn_num_blocks=int(bundle.get("tcn_num_blocks", 4)),
+        tcn_kernel_size=int(bundle.get("tcn_kernel_size", 3)),
+        transformer_d_model=int(bundle.get("transformer_d_model", 64)),
+        transformer_num_layers=int(bundle.get("transformer_num_layers", 1)),
+        transformer_num_heads=int(bundle.get("transformer_num_heads", 4)),
+        transformer_dim_feedforward=int(bundle.get("transformer_dim_feedforward", 128)),
+    ).to(device)
     model.load_state_dict(bundle["model_state_dict"])
     model.eval()
     return model
@@ -3678,6 +4181,13 @@ def run_training_job(
     asl_hidden_size: int = 128,
     asl_dropout: float = 0.1,
     asl_max_frequency_bins: int | None = None,
+    tcn_channels: int = 128,
+    tcn_num_blocks: int = 4,
+    tcn_kernel_size: int = 3,
+    transformer_d_model: int = 64,
+    transformer_num_layers: int = 1,
+    transformer_num_heads: int = 4,
+    transformer_dim_feedforward: int = 128,
     latent_size: int = 16,
     dt_over_tau: float = 0.03,
     ct_integrator: str = "euler",
@@ -3722,6 +4232,13 @@ def run_training_job(
             asl_hidden_size=asl_hidden_size,
             asl_dropout=asl_dropout,
             asl_max_frequency_bins=asl_max_frequency_bins,
+            tcn_channels=tcn_channels,
+            tcn_num_blocks=tcn_num_blocks,
+            tcn_kernel_size=tcn_kernel_size,
+            transformer_d_model=transformer_d_model,
+            transformer_num_layers=transformer_num_layers,
+            transformer_num_heads=transformer_num_heads,
+            transformer_dim_feedforward=transformer_dim_feedforward,
         )
     elif _is_rollout_model_type(resolved_model_type):
         bundle = fit_torch_rollout_regressor(
@@ -3849,6 +4366,13 @@ def run_training_job(
                 "asl_hidden_size": bundle.get("asl_hidden_size"),
                 "asl_dropout": bundle.get("asl_dropout"),
                 "asl_max_frequency_bins": bundle.get("asl_max_frequency_bins"),
+                "tcn_channels": bundle.get("tcn_channels"),
+                "tcn_num_blocks": bundle.get("tcn_num_blocks"),
+                "tcn_kernel_size": bundle.get("tcn_kernel_size"),
+                "transformer_d_model": bundle.get("transformer_d_model"),
+                "transformer_num_layers": bundle.get("transformer_num_layers"),
+                "transformer_num_heads": bundle.get("transformer_num_heads"),
+                "transformer_dim_feedforward": bundle.get("transformer_dim_feedforward"),
                 "latent_size": bundle.get("latent_size"),
                 "dt_over_tau": bundle.get("dt_over_tau"),
                 "ct_integrator": bundle.get("ct_integrator"),
@@ -4065,6 +4589,13 @@ def _run_single_baseline_recipe(
     asl_hidden_size: int,
     asl_dropout: float,
     asl_max_frequency_bins: int | None,
+    tcn_channels: int,
+    tcn_num_blocks: int,
+    tcn_kernel_size: int,
+    transformer_d_model: int,
+    transformer_num_layers: int,
+    transformer_num_heads: int,
+    transformer_dim_feedforward: int,
     latent_size: int,
     dt_over_tau: float,
     ct_integrator: str,
@@ -4079,6 +4610,13 @@ def _run_single_baseline_recipe(
     resolved_asl_hidden_size = int(asl_hidden_size)
     resolved_asl_dropout = float(asl_dropout)
     resolved_asl_max_frequency_bins = asl_max_frequency_bins
+    resolved_tcn_channels = int(tcn_channels)
+    resolved_tcn_num_blocks = int(tcn_num_blocks)
+    resolved_tcn_kernel_size = int(tcn_kernel_size)
+    resolved_transformer_d_model = int(transformer_d_model)
+    resolved_transformer_num_layers = int(transformer_num_layers)
+    resolved_transformer_num_heads = int(transformer_num_heads)
+    resolved_transformer_dim_feedforward = int(transformer_dim_feedforward)
     resolved_latent_size = int(latent_size)
     resolved_dt_over_tau = float(dt_over_tau)
     resolved_ct_integrator = str(ct_integrator)
@@ -4119,6 +4657,13 @@ def _run_single_baseline_recipe(
         asl_hidden_size=resolved_asl_hidden_size,
         asl_dropout=resolved_asl_dropout,
         asl_max_frequency_bins=resolved_asl_max_frequency_bins,
+        tcn_channels=resolved_tcn_channels,
+        tcn_num_blocks=resolved_tcn_num_blocks,
+        tcn_kernel_size=resolved_tcn_kernel_size,
+        transformer_d_model=resolved_transformer_d_model,
+        transformer_num_layers=resolved_transformer_num_layers,
+        transformer_num_heads=resolved_transformer_num_heads,
+        transformer_dim_feedforward=resolved_transformer_dim_feedforward,
         latent_size=resolved_latent_size,
         dt_over_tau=resolved_dt_over_tau,
         ct_integrator=resolved_ct_integrator,
@@ -4145,6 +4690,13 @@ def _run_single_baseline_recipe(
         "latent_size": training_config.get("latent_size"),
         "dt_over_tau": training_config.get("dt_over_tau"),
         "ct_integrator": training_config.get("ct_integrator"),
+        "tcn_channels": training_config.get("tcn_channels"),
+        "tcn_num_blocks": training_config.get("tcn_num_blocks"),
+        "tcn_kernel_size": training_config.get("tcn_kernel_size"),
+        "transformer_d_model": training_config.get("transformer_d_model"),
+        "transformer_num_layers": training_config.get("transformer_num_layers"),
+        "transformer_num_heads": training_config.get("transformer_num_heads"),
+        "transformer_dim_feedforward": training_config.get("transformer_dim_feedforward"),
         "best_epoch": int(training_config["best_epoch"]),
         "best_val_loss": float(training_config["best_val_loss"]),
     }
@@ -4186,6 +4738,13 @@ def _run_split_axis_baseline_recipe(
     asl_hidden_size: int,
     asl_dropout: float,
     asl_max_frequency_bins: int | None,
+    tcn_channels: int,
+    tcn_num_blocks: int,
+    tcn_kernel_size: int,
+    transformer_d_model: int,
+    transformer_num_layers: int,
+    transformer_num_heads: int,
+    transformer_dim_feedforward: int,
     latent_size: int,
     dt_over_tau: float,
     ct_integrator: str,
@@ -4300,6 +4859,13 @@ def run_baseline_comparison(
     asl_hidden_size: int = 128,
     asl_dropout: float = 0.1,
     asl_max_frequency_bins: int | None = None,
+    tcn_channels: int = 128,
+    tcn_num_blocks: int = 4,
+    tcn_kernel_size: int = 3,
+    transformer_d_model: int = 64,
+    transformer_num_layers: int = 1,
+    transformer_num_heads: int = 4,
+    transformer_dim_feedforward: int = 128,
     latent_size: int = 16,
     dt_over_tau: float = 0.03,
     ct_integrator: str = "euler",
@@ -4345,6 +4911,13 @@ def run_baseline_comparison(
             "asl_hidden_size": asl_hidden_size,
             "asl_dropout": asl_dropout,
             "asl_max_frequency_bins": asl_max_frequency_bins,
+            "tcn_channels": tcn_channels,
+            "tcn_num_blocks": tcn_num_blocks,
+            "tcn_kernel_size": tcn_kernel_size,
+            "transformer_d_model": transformer_d_model,
+            "transformer_num_layers": transformer_num_layers,
+            "transformer_num_heads": transformer_num_heads,
+            "transformer_dim_feedforward": transformer_dim_feedforward,
             "latent_size": latent_size,
             "dt_over_tau": dt_over_tau,
             "ct_integrator": ct_integrator,

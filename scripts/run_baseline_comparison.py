@@ -78,6 +78,13 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--asl-hidden-size", type=int, default=128, help="ASL frequency gate hidden size")
     parser.add_argument("--asl-dropout", type=float, default=0.1, help="ASL dropout probability")
     parser.add_argument("--asl-max-frequency-bins", type=_parse_optional_int, default=None, help="ASL retained RFFT bins, or none")
+    parser.add_argument("--tcn-channels", type=int, default=128, help="TCN channel count")
+    parser.add_argument("--tcn-num-blocks", type=int, default=4, help="TCN residual block count")
+    parser.add_argument("--tcn-kernel-size", type=int, default=3, help="TCN temporal kernel size")
+    parser.add_argument("--transformer-d-model", type=int, default=64, help="Transformer embedding dimension")
+    parser.add_argument("--transformer-num-layers", type=int, default=1, help="Transformer encoder layer count")
+    parser.add_argument("--transformer-num-heads", type=int, default=4, help="Transformer attention head count")
+    parser.add_argument("--transformer-dim-feedforward", type=int, default=128, help="Transformer feedforward dimension")
     parser.add_argument("--latent-size", type=int, default=16, help="Latent size for SUBNET rollout models")
     parser.add_argument("--dt-over-tau", type=float, default=0.03, help="Continuous-time latent derivative scale")
     parser.add_argument("--ct-integrator", default="euler", choices=["euler"], help="Continuous-time rollout integrator")
@@ -117,6 +124,13 @@ def main() -> None:
         asl_hidden_size=args.asl_hidden_size,
         asl_dropout=args.asl_dropout,
         asl_max_frequency_bins=args.asl_max_frequency_bins,
+        tcn_channels=args.tcn_channels,
+        tcn_num_blocks=args.tcn_num_blocks,
+        tcn_kernel_size=args.tcn_kernel_size,
+        transformer_d_model=args.transformer_d_model,
+        transformer_num_layers=args.transformer_num_layers,
+        transformer_num_heads=args.transformer_num_heads,
+        transformer_dim_feedforward=args.transformer_dim_feedforward,
         latent_size=args.latent_size,
         dt_over_tau=args.dt_over_tau,
         ct_integrator=args.ct_integrator,
