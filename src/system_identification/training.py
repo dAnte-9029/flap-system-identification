@@ -2166,6 +2166,39 @@ def _history_frame(history: list[dict[str, float]]) -> pd.DataFrame:
     return pd.DataFrame(history)
 
 
+def _normalized_lr_scheduler(name: str | None) -> str:
+    resolved = (name or "none").strip().lower()
+    aliases = {"constant": "none", "off": "none", "disabled": "none"}
+    resolved = aliases.get(resolved, resolved)
+    if resolved not in {"none", "warmup_cosine"}:
+        raise ValueError("lr_scheduler must be one of: none, warmup_cosine")
+    return resolved
+
+
+def _warmup_cosine_lr_lambda(*, warmup_steps: int, total_steps: int):
+    resolved_total_steps = max(int(total_steps), 1)
+    resolved_warmup_steps = max(int(warmup_steps), 0)
+
+    def lr_lambda(step_index: int) -> float:
+        step = int(step_index) + 1
+        if resolved_warmup_steps > 0 and step <= resolved_warmup_steps:
+            return max(float(step) / float(resolved_warmup_steps), 1e-8)
+        decay_steps = max(resolved_total_steps - resolved_warmup_steps, 1)
+        progress = min(max((step - resolved_warmup_steps) / decay_steps, 0.0), 1.0)
+        return 0.5 * (1.0 + math.cos(math.pi * progress))
+
+    return lr_lambda
+
+
+def _ema_update_state(ema_state: dict[str, torch.Tensor], model: nn.Module, decay: float) -> None:
+    with torch.no_grad():
+        for name, value in model.state_dict().items():
+            if not torch.is_floating_point(value):
+                ema_state[name] = value.detach().clone()
+                continue
+            ema_state[name].mul_(float(decay)).add_(value.detach(), alpha=1.0 - float(decay))
+
+
 def _save_training_curves(history: pd.DataFrame, output_path: str | Path) -> None:
     fig, axes = plt.subplots(1, 3, figsize=(18, 5))
     epochs = history["epoch"].to_numpy()
@@ -2713,6 +2746,10 @@ def fit_torch_sequence_regressor(
     transformer_num_layers: int = 1,
     transformer_num_heads: int = 4,
     transformer_dim_feedforward: int = 128,
+    lr_scheduler: str | None = None,
+    lr_warmup_ratio: float = 0.0,
+    gradient_clip_norm: float | None = None,
+    ema_decay: float = 0.0,
 ) -> dict[str, Any]:
     _set_random_seed(random_seed)
     resolved_model_type = _normalized_model_type(model_type)
@@ -2725,6 +2762,15 @@ def fit_torch_sequence_regressor(
         raise ValueError("sequence_history_size must be at least 1")
     if not hidden_sizes:
         raise ValueError("hidden_sizes must not be empty for sequence models")
+    resolved_lr_scheduler = _normalized_lr_scheduler(lr_scheduler)
+    if not 0.0 <= float(lr_warmup_ratio) < 1.0:
+        raise ValueError("lr_warmup_ratio must be in [0, 1)")
+    resolved_gradient_clip_norm = None if gradient_clip_norm is None else float(gradient_clip_norm)
+    if resolved_gradient_clip_norm is not None and resolved_gradient_clip_norm <= 0.0:
+        raise ValueError("gradient_clip_norm must be positive when provided")
+    resolved_ema_decay = float(ema_decay)
+    if not 0.0 <= resolved_ema_decay < 1.0:
+        raise ValueError("ema_decay must be in [0, 1)")
 
     resolved_device = _resolve_device(device)
     pin_memory = resolved_device.type == "cuda"
@@ -2825,6 +2871,14 @@ def fit_torch_sequence_regressor(
         transformer_dim_feedforward=transformer_dim_feedforward,
     ).to(resolved_device)
     optimizer = torch.optim.AdamW(model.parameters(), lr=learning_rate, weight_decay=weight_decay)
+    total_training_steps = max(len(train_loader) * int(max_epochs), 1)
+    warmup_steps = int(round(total_training_steps * float(lr_warmup_ratio)))
+    scheduler = None
+    if resolved_lr_scheduler == "warmup_cosine":
+        scheduler = torch.optim.lr_scheduler.LambdaLR(
+            optimizer,
+            lr_lambda=_warmup_cosine_lr_lambda(warmup_steps=warmup_steps, total_steps=total_training_steps),
+        )
     scaler = torch.amp.GradScaler("cuda", enabled=use_amp and resolved_device.type == "cuda")
 
     best_state_dict = copy.deepcopy(model.state_dict())
@@ -2833,6 +2887,9 @@ def fit_torch_sequence_regressor(
     epochs_without_improvement = 0
     history: list[dict[str, float]] = []
     amp_enabled = use_amp and resolved_device.type == "cuda"
+    ema_state = None
+    if resolved_ema_decay > 0.0:
+        ema_state = {name: value.detach().clone() for name, value in model.state_dict().items()}
 
     for epoch in range(1, max_epochs + 1):
         model.train()
@@ -2857,14 +2914,25 @@ def fit_torch_sequence_regressor(
                 )
 
             scaler.scale(loss).backward()
+            if resolved_gradient_clip_norm is not None:
+                scaler.unscale_(optimizer)
+                torch.nn.utils.clip_grad_norm_(model.parameters(), resolved_gradient_clip_norm)
             scaler.step(optimizer)
             scaler.update()
+            if scheduler is not None:
+                scheduler.step()
+            if ema_state is not None:
+                _ema_update_state(ema_state, model, resolved_ema_decay)
 
             batch_count = len(batch_sequence)
             train_loss_sum += float(loss.item()) * batch_count
             train_sample_count += batch_count
 
         train_loss = train_loss_sum / max(train_sample_count, 1)
+        evaluation_state = None
+        if ema_state is not None:
+            evaluation_state = copy.deepcopy(model.state_dict())
+            model.load_state_dict(ema_state)
         val_loss = _evaluate_sequence_scaled_loss(
             model,
             val_loader,
@@ -2889,8 +2957,11 @@ def fit_torch_sequence_regressor(
             target_columns=list(train_targets_df.columns),
             split_name="val",
         )
+        if evaluation_state is not None:
+            model.load_state_dict(evaluation_state)
         history_row: dict[str, float] = {
             "epoch": float(epoch),
+            "learning_rate": float(optimizer.param_groups[0]["lr"]),
             "train_loss": float(train_loss),
             "val_loss": float(val_loss),
             "val_overall_mae": float(val_metrics["overall_mae"]),
@@ -2906,7 +2977,7 @@ def fit_torch_sequence_regressor(
         if val_loss < best_val_loss - 1e-8:
             best_val_loss = val_loss
             best_epoch = epoch
-            best_state_dict = copy.deepcopy(model.state_dict())
+            best_state_dict = copy.deepcopy(ema_state if ema_state is not None else model.state_dict())
             epochs_without_improvement = 0
         else:
             epochs_without_improvement += 1
@@ -2956,6 +3027,11 @@ def fit_torch_sequence_regressor(
         "transformer_num_layers": int(transformer_num_layers),
         "transformer_num_heads": int(transformer_num_heads),
         "transformer_dim_feedforward": int(transformer_dim_feedforward),
+        "lr_scheduler": resolved_lr_scheduler,
+        "lr_warmup_ratio": float(lr_warmup_ratio),
+        "lr_warmup_steps": int(warmup_steps),
+        "gradient_clip_norm": resolved_gradient_clip_norm,
+        "ema_decay": float(resolved_ema_decay),
         "best_epoch": int(best_epoch),
         "best_val_loss": float(best_val_loss),
         "history": history,
@@ -4192,6 +4268,10 @@ def run_training_job(
     dt_over_tau: float = 0.03,
     ct_integrator: str = "euler",
     skip_test_eval: bool = False,
+    lr_scheduler: str | None = None,
+    lr_warmup_ratio: float = 0.0,
+    gradient_clip_norm: float | None = None,
+    ema_decay: float = 0.0,
 ) -> dict[str, str]:
     if feature_set_name is not None and feature_columns is not None:
         raise ValueError("feature_set_name and feature_columns cannot both be provided")
@@ -4240,6 +4320,10 @@ def run_training_job(
             transformer_num_layers=transformer_num_layers,
             transformer_num_heads=transformer_num_heads,
             transformer_dim_feedforward=transformer_dim_feedforward,
+            lr_scheduler=lr_scheduler,
+            lr_warmup_ratio=lr_warmup_ratio,
+            gradient_clip_norm=gradient_clip_norm,
+            ema_decay=ema_decay,
         )
     elif _is_rollout_model_type(resolved_model_type):
         bundle = fit_torch_rollout_regressor(
@@ -4376,6 +4460,11 @@ def run_training_job(
                 "transformer_num_layers": bundle.get("transformer_num_layers"),
                 "transformer_num_heads": bundle.get("transformer_num_heads"),
                 "transformer_dim_feedforward": bundle.get("transformer_dim_feedforward"),
+                "lr_scheduler": bundle.get("lr_scheduler"),
+                "lr_warmup_ratio": bundle.get("lr_warmup_ratio"),
+                "lr_warmup_steps": bundle.get("lr_warmup_steps"),
+                "gradient_clip_norm": bundle.get("gradient_clip_norm"),
+                "ema_decay": bundle.get("ema_decay"),
                 "latent_size": bundle.get("latent_size"),
                 "dt_over_tau": bundle.get("dt_over_tau"),
                 "ct_integrator": bundle.get("ct_integrator"),
@@ -4607,6 +4696,10 @@ def _run_single_baseline_recipe(
     dt_over_tau: float,
     ct_integrator: str,
     skip_test_eval: bool,
+    lr_scheduler: str | None,
+    lr_warmup_ratio: float,
+    gradient_clip_norm: float | None,
+    ema_decay: float,
 ) -> dict[str, Any]:
     resolved_sequence_history_size = int(sequence_history_size)
     resolved_sequence_feature_mode = str(sequence_feature_mode)
@@ -4676,6 +4769,10 @@ def _run_single_baseline_recipe(
         dt_over_tau=resolved_dt_over_tau,
         ct_integrator=resolved_ct_integrator,
         skip_test_eval=skip_test_eval,
+        lr_scheduler=lr_scheduler,
+        lr_warmup_ratio=lr_warmup_ratio,
+        gradient_clip_norm=gradient_clip_norm,
+        ema_decay=ema_decay,
     )
     metrics = json.loads(Path(outputs["metrics_path"]).read_text(encoding="utf-8"))
     training_config = json.loads(Path(outputs["training_config_path"]).read_text(encoding="utf-8"))
@@ -4706,6 +4803,11 @@ def _run_single_baseline_recipe(
         "transformer_num_layers": training_config.get("transformer_num_layers"),
         "transformer_num_heads": training_config.get("transformer_num_heads"),
         "transformer_dim_feedforward": training_config.get("transformer_dim_feedforward"),
+        "lr_scheduler": training_config.get("lr_scheduler"),
+        "lr_warmup_ratio": training_config.get("lr_warmup_ratio"),
+        "lr_warmup_steps": training_config.get("lr_warmup_steps"),
+        "gradient_clip_norm": training_config.get("gradient_clip_norm"),
+        "ema_decay": training_config.get("ema_decay"),
         "best_epoch": int(training_config["best_epoch"]),
         "best_val_loss": float(training_config["best_val_loss"]),
     }
@@ -4759,6 +4861,10 @@ def _run_split_axis_baseline_recipe(
     dt_over_tau: float,
     ct_integrator: str,
     skip_test_eval: bool,
+    lr_scheduler: str | None,
+    lr_warmup_ratio: float,
+    gradient_clip_norm: float | None,
+    ema_decay: float,
 ) -> dict[str, Any]:
     if skip_test_eval:
         raise ValueError("skip_test_eval is not supported for split-axis baseline recipes")
@@ -4883,6 +4989,10 @@ def run_baseline_comparison(
     dt_over_tau: float = 0.03,
     ct_integrator: str = "euler",
     skip_test_eval: bool = False,
+    lr_scheduler: str | None = None,
+    lr_warmup_ratio: float = 0.0,
+    gradient_clip_norm: float | None = None,
+    ema_decay: float = 0.0,
 ) -> dict[str, str]:
     output_path = Path(output_dir)
     output_path.mkdir(parents=True, exist_ok=True)
@@ -4936,6 +5046,10 @@ def run_baseline_comparison(
             "dt_over_tau": dt_over_tau,
             "ct_integrator": ct_integrator,
             "skip_test_eval": skip_test_eval,
+            "lr_scheduler": lr_scheduler,
+            "lr_warmup_ratio": lr_warmup_ratio,
+            "gradient_clip_norm": gradient_clip_norm,
+            "ema_decay": ema_decay,
         }
         if recipe.get("recipe_type") == "split_axis":
             row = _run_split_axis_baseline_recipe(**common_kwargs)

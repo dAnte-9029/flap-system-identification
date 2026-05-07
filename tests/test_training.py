@@ -1584,6 +1584,57 @@ def test_run_training_job_records_huber_loss_config(tmp_path: Path):
     assert payload["huber_delta"] == 0.75
 
 
+def test_run_training_job_records_sequence_training_tricks(tmp_path: Path):
+    split_root = tmp_path / "split"
+    split_root.mkdir(parents=True)
+
+    for split, seed, log_id in [("train", 310, "train_log"), ("val", 311, "val_log"), ("test", 312, "test_log")]:
+        frame = _synthetic_frame(n_rows=96, seed=seed)
+        frame["log_id"] = log_id
+        frame["segment_id"] = 0
+        frame["time_s"] = np.arange(len(frame), dtype=float) * 0.01
+        frame.to_parquet(split_root / f"{split}_samples.parquet", index=False)
+
+    outputs = run_training_job(
+        split_root=split_root,
+        output_dir=tmp_path / "artifacts",
+        feature_set_name="paper_no_accel_v2",
+        model_type="causal_transformer",
+        hidden_sizes=(16, 8),
+        batch_size=16,
+        max_epochs=2,
+        early_stopping_patience=2,
+        learning_rate=1e-3,
+        weight_decay=1e-5,
+        device="cpu",
+        random_seed=310,
+        num_workers=0,
+        use_amp=False,
+        sequence_history_size=4,
+        transformer_d_model=16,
+        transformer_num_layers=1,
+        transformer_num_heads=4,
+        transformer_dim_feedforward=32,
+        lr_scheduler="warmup_cosine",
+        lr_warmup_ratio=0.25,
+        gradient_clip_norm=1.0,
+        ema_decay=0.9,
+    )
+
+    training_config = json.loads(Path(outputs["training_config_path"]).read_text(encoding="utf-8"))
+    history = pd.read_csv(outputs["history_path"])
+    payload = torch.load(outputs["model_bundle_path"], map_location="cpu")
+
+    assert training_config["lr_scheduler"] == "warmup_cosine"
+    assert training_config["lr_warmup_ratio"] == 0.25
+    assert training_config["gradient_clip_norm"] == 1.0
+    assert training_config["ema_decay"] == 0.9
+    assert payload["lr_scheduler"] == "warmup_cosine"
+    assert payload["gradient_clip_norm"] == 1.0
+    assert payload["ema_decay"] == 0.9
+    assert "learning_rate" in history.columns
+
+
 def test_run_training_job_records_window_config(tmp_path: Path):
     split_root = tmp_path / "split"
     split_root.mkdir(parents=True)

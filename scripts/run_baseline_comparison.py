@@ -85,6 +85,10 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--transformer-num-layers", type=int, default=1, help="Transformer encoder layer count")
     parser.add_argument("--transformer-num-heads", type=int, default=4, help="Transformer attention head count")
     parser.add_argument("--transformer-dim-feedforward", type=int, default=128, help="Transformer feedforward dimension")
+    parser.add_argument("--lr-scheduler", default=None, choices=["none", "warmup_cosine"], help="Optional LR scheduler")
+    parser.add_argument("--lr-warmup-ratio", type=float, default=0.0, help="Warmup fraction for warmup_cosine")
+    parser.add_argument("--gradient-clip-norm", type=float, default=None, help="Optional gradient clipping norm")
+    parser.add_argument("--ema-decay", type=float, default=0.0, help="EMA decay for sequence model evaluation")
     parser.add_argument("--latent-size", type=int, default=16, help="Latent size for SUBNET rollout models")
     parser.add_argument("--dt-over-tau", type=float, default=0.03, help="Continuous-time latent derivative scale")
     parser.add_argument("--ct-integrator", default="euler", choices=["euler"], help="Continuous-time rollout integrator")
@@ -132,6 +136,10 @@ def main() -> None:
         transformer_num_layers=args.transformer_num_layers,
         transformer_num_heads=args.transformer_num_heads,
         transformer_dim_feedforward=args.transformer_dim_feedforward,
+        lr_scheduler=args.lr_scheduler,
+        lr_warmup_ratio=args.lr_warmup_ratio,
+        gradient_clip_norm=args.gradient_clip_norm,
+        ema_decay=args.ema_decay,
         latent_size=args.latent_size,
         dt_over_tau=args.dt_over_tau,
         ct_integrator=args.ct_integrator,
