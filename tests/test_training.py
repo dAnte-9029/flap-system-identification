@@ -451,6 +451,93 @@ def test_causal_transformer_regressor_forward_shape_with_current_features():
     assert output.shape == (4, 6)
 
 
+def test_causal_transformer_head_film_forward_shape_with_current_features():
+    model = training_module.CausalTransformerRegressor(
+        sequence_input_dim=5,
+        current_input_dim=3,
+        output_dim=6,
+        d_model=32,
+        num_layers=1,
+        num_heads=4,
+        dim_feedforward=64,
+        dropout=0.0,
+        head_hidden_sizes=(8,),
+        film_mode="head",
+        phase_conditioning_indices=(0, 1),
+        film_hidden_size=16,
+        film_scale=0.1,
+    )
+
+    sequence = torch.randn(4, 64, 5)
+    current = torch.randn(4, 3)
+    output = model(sequence, current)
+
+    assert output.shape == (4, 6)
+
+
+def test_causal_transformer_input_film_forward_shape_with_current_features():
+    model = training_module.CausalTransformerRegressor(
+        sequence_input_dim=5,
+        current_input_dim=3,
+        output_dim=6,
+        d_model=32,
+        num_layers=1,
+        num_heads=4,
+        dim_feedforward=64,
+        dropout=0.0,
+        head_hidden_sizes=(8,),
+        film_mode="input",
+        phase_conditioning_indices=(0, 1),
+        film_hidden_size=16,
+        film_scale=0.1,
+    )
+
+    sequence = torch.randn(4, 64, 5)
+    current = torch.randn(4, 3)
+    output = model(sequence, current)
+
+    assert output.shape == (4, 6)
+
+
+def test_phase_film_zero_initialized_as_identity():
+    torch.manual_seed(12)
+    base = training_module.CausalTransformerRegressor(
+        sequence_input_dim=5,
+        current_input_dim=3,
+        output_dim=6,
+        d_model=32,
+        num_layers=1,
+        num_heads=4,
+        dim_feedforward=64,
+        dropout=0.0,
+        head_hidden_sizes=(8,),
+        film_mode="none",
+    )
+    film = training_module.CausalTransformerRegressor(
+        sequence_input_dim=5,
+        current_input_dim=3,
+        output_dim=6,
+        d_model=32,
+        num_layers=1,
+        num_heads=4,
+        dim_feedforward=64,
+        dropout=0.0,
+        head_hidden_sizes=(8,),
+        film_mode="head",
+        phase_conditioning_indices=(0, 1),
+        film_hidden_size=16,
+        film_scale=0.1,
+    )
+
+    base_state = base.state_dict()
+    compatible = {key: value for key, value in base_state.items() if key in film.state_dict()}
+    film.load_state_dict({**film.state_dict(), **compatible})
+
+    sequence = torch.randn(2, 16, 5)
+    current = torch.randn(2, 3)
+    torch.testing.assert_close(film(sequence, current), base(sequence, current), atol=1e-6, rtol=1e-6)
+
+
 def test_causal_tcn_gru_regressor_forward_shape_with_current_features():
     model = training_module.CausalTCNGRURegressor(
         sequence_input_dim=5,

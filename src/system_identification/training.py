@@ -860,6 +860,37 @@ class CausalTCNRegressor(nn.Module):
         return self.head(representation)
 
 
+class _PhaseFiLM(nn.Module):
+    def __init__(self, *, conditioner_dim: int, feature_dim: int, hidden_size: int = 32, scale: float = 0.1):
+        super().__init__()
+        if conditioner_dim <= 0:
+            raise ValueError("conditioner_dim must be positive")
+        if feature_dim <= 0:
+            raise ValueError("feature_dim must be positive")
+        if hidden_size <= 0:
+            raise ValueError("hidden_size must be positive")
+        if scale < 0.0:
+            raise ValueError("scale must be non-negative")
+        self.conditioner_dim = int(conditioner_dim)
+        self.feature_dim = int(feature_dim)
+        self.hidden_size = int(hidden_size)
+        self.scale = float(scale)
+        self.net = nn.Sequential(
+            nn.Linear(self.conditioner_dim, self.hidden_size),
+            nn.ReLU(),
+            nn.Linear(self.hidden_size, 2 * self.feature_dim),
+        )
+        final = self.net[-1]
+        if isinstance(final, nn.Linear):
+            nn.init.zeros_(final.weight)
+            nn.init.zeros_(final.bias)
+
+    def forward(self, features: torch.Tensor, conditioner: torch.Tensor) -> torch.Tensor:
+        gamma_beta = self.net(conditioner)
+        gamma, beta = gamma_beta.chunk(2, dim=-1)
+        return features * (1.0 + self.scale * torch.tanh(gamma)) + self.scale * torch.tanh(beta)
+
+
 class CausalTransformerRegressor(nn.Module):
     def __init__(
         self,
@@ -874,6 +905,10 @@ class CausalTransformerRegressor(nn.Module):
         dropout: float = 0.0,
         head_hidden_sizes: tuple[int, ...] = (128,),
         max_history_size: int = 512,
+        film_mode: str = "none",
+        phase_conditioning_indices: tuple[int, ...] | None = None,
+        film_hidden_size: int = 32,
+        film_scale: float = 0.1,
     ):
         super().__init__()
         if sequence_input_dim <= 0:
@@ -894,6 +929,19 @@ class CausalTransformerRegressor(nn.Module):
             raise ValueError("dim_feedforward must be positive")
         if max_history_size <= 0:
             raise ValueError("max_history_size must be positive")
+        resolved_film_mode = (film_mode or "none").lower()
+        if resolved_film_mode not in {"none", "head", "input"}:
+            raise ValueError(f"Unknown film_mode: {film_mode}")
+        resolved_phase_conditioning_indices = tuple(int(v) for v in (phase_conditioning_indices or ()))
+        if resolved_film_mode != "none" and not resolved_phase_conditioning_indices:
+            raise ValueError("phase_conditioning_indices are required when film_mode is enabled")
+        for index in resolved_phase_conditioning_indices:
+            if index < 0 or index >= int(sequence_input_dim):
+                raise ValueError(f"phase conditioning index {index} out of bounds")
+        if film_hidden_size <= 0:
+            raise ValueError("film_hidden_size must be positive")
+        if film_scale < 0.0:
+            raise ValueError("film_scale must be non-negative")
 
         self.sequence_input_dim = int(sequence_input_dim)
         self.current_input_dim = int(current_input_dim)
@@ -903,8 +951,28 @@ class CausalTransformerRegressor(nn.Module):
         self.num_heads = int(num_heads)
         self.dim_feedforward = int(dim_feedforward)
         self.max_history_size = int(max_history_size)
+        self.film_mode = resolved_film_mode
+        self.phase_conditioning_indices = resolved_phase_conditioning_indices
+        self.film_hidden_size = int(film_hidden_size)
+        self.film_scale = float(film_scale)
         self.input_projection = nn.Linear(self.sequence_input_dim, self.d_model)
         self.position_embedding = nn.Parameter(torch.zeros(1, self.max_history_size, self.d_model))
+        self.input_film: _PhaseFiLM | None = None
+        self.head_film: _PhaseFiLM | None = None
+        if self.film_mode == "input":
+            self.input_film = _PhaseFiLM(
+                conditioner_dim=len(self.phase_conditioning_indices),
+                feature_dim=self.d_model,
+                hidden_size=self.film_hidden_size,
+                scale=self.film_scale,
+            )
+        elif self.film_mode == "head":
+            self.head_film = _PhaseFiLM(
+                conditioner_dim=len(self.phase_conditioning_indices),
+                feature_dim=self.d_model,
+                hidden_size=self.film_hidden_size,
+                scale=self.film_scale,
+            )
         encoder_layer = nn.TransformerEncoderLayer(
             d_model=self.d_model,
             nhead=self.num_heads,
@@ -932,6 +1000,9 @@ class CausalTransformerRegressor(nn.Module):
         if history_size > self.max_history_size:
             raise ValueError(f"history size {history_size} exceeds max_history_size {self.max_history_size}")
         embedded = self.input_projection(sequence_inputs)
+        if self.input_film is not None:
+            conditioner = sequence_inputs[:, :, list(self.phase_conditioning_indices)]
+            embedded = self.input_film(embedded, conditioner)
         embedded = embedded + self.position_embedding[:, :history_size, :]
         mask = torch.triu(
             torch.ones(history_size, history_size, dtype=torch.bool, device=sequence_inputs.device),
@@ -939,6 +1010,9 @@ class CausalTransformerRegressor(nn.Module):
         )
         encoded = self.encoder(embedded, mask=mask)
         representation = encoded[:, -1, :]
+        if self.head_film is not None:
+            conditioner = sequence_inputs[:, -1, list(self.phase_conditioning_indices)]
+            representation = self.head_film(representation, conditioner)
         if self.current_input_dim > 0:
             if current_inputs is None:
                 raise ValueError("current_inputs are required when current_input_dim is positive")
