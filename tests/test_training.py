@@ -1426,6 +1426,43 @@ def test_run_baseline_comparison_supports_phase_harmonic_transformer_recipe(tmp_
     assert summary.loc[0, "sequence_feature_mode"] == "phase_harmonic_actuator_airdata"
 
 
+def test_run_baseline_comparison_supports_phase_film_transformer_recipes(tmp_path: Path):
+    split_root = tmp_path / "split"
+    split_root.mkdir(parents=True)
+
+    for split, seed, log_id in [("train", 540, "train_log"), ("val", 541, "val_log"), ("test", 542, "test_log")]:
+        frame = _synthetic_frame(n_rows=80, seed=seed)
+        frame["log_id"] = log_id
+        frame["segment_id"] = 0
+        frame["time_s"] = np.arange(len(frame), dtype=float) * 0.01
+        frame.to_parquet(split_root / f"{split}_samples.parquet", index=False)
+
+    outputs = run_baseline_comparison(
+        split_root=split_root,
+        output_dir=tmp_path / "runs",
+        recipe_names=[
+            "causal_transformer_head_film_paper_no_accel_v2_phase_actuator_airdata",
+            "causal_transformer_input_film_paper_no_accel_v2_phase_actuator_airdata",
+        ],
+        hidden_sizes=(16, 8),
+        batch_size=8,
+        max_epochs=1,
+        early_stopping_patience=1,
+        sequence_history_size=4,
+        transformer_d_model=16,
+        transformer_num_layers=1,
+        transformer_num_heads=4,
+        transformer_dim_feedforward=32,
+        device="cpu",
+        num_workers=0,
+        use_amp=False,
+    )
+
+    summary = pd.read_csv(outputs["summary_csv_path"])
+    assert set(summary["model_type"]) == {"causal_transformer_head_film", "causal_transformer_input_film"}
+    assert set(summary["sequence_feature_mode"]) == {"phase_actuator_airdata"}
+
+
 def test_temporal_screen_quick_grid_contains_reference_and_candidates():
     from scripts.run_temporal_backbone_screen import build_screen_configs
 
@@ -1518,6 +1555,21 @@ def test_temporal_screen_phase_harmonic_grid_has_four_ablation_configs():
         "phase_harmonic_sin_cos",
         "phase_harmonic_harmonic3",
     } == {config.config_id for config in configs}
+    assert all(config.sequence_history_size == 128 for config in configs)
+    assert all(config.dropout == 0.05 for config in configs)
+
+
+def test_temporal_screen_phase_film_grid_contains_baseline_head_and_input():
+    from scripts.run_temporal_backbone_screen import build_screen_configs
+
+    configs = build_screen_configs(stage="phase_film")
+
+    assert {
+        "phase_film_baseline",
+        "phase_film_head",
+        "phase_film_input",
+    } == {config.config_id for config in configs}
+    assert {config.stage for config in configs} == {"phase_film"}
     assert all(config.sequence_history_size == 128 for config in configs)
     assert all(config.dropout == 0.05 for config in configs)
 
