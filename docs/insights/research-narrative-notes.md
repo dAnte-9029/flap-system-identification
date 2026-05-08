@@ -224,3 +224,61 @@ uncertainty-aware controller
 可用英文：
 
 > These results motivate a staged roadmap: first validate leakage-resistant one-step wrench estimation, then evaluate short-horizon consistency, and finally integrate the learned model into a control-oriented rollout framework.
+
+## 11. Phase-aware harmonic encoding 消融
+
+已测试 `wingbeat phase-aware harmonic encoding`：
+
+```text
+sin(phi),  cos(phi)
+sin(2phi), cos(2phi)
+sin(3phi), cos(3phi)
+```
+
+validation screen 中 `harmonic3` 最好：
+
+```text
+harmonic3 val RMSE = 1.0305
+existing phase val RMSE = 1.0586
+no phase val RMSE = 1.1726
+```
+
+这说明 phase 信息确实重要，高阶相位谐波也能作为周期性先验被网络利用。
+
+但 full-data final/test 中，`harmonic3` 没有超过现有 phase-actuator Transformer：
+
+```text
+existing phase:
+  test RMSE = 0.8921
+  test R2 = 0.7364
+  mx_b R2 = 0.6209
+  mz_b R2 = 0.6058
+
+harmonic3:
+  test RMSE = 0.8930
+  test R2 = 0.7305
+  mx_b R2 = 0.5940
+  mz_b R2 = 0.5916
+```
+
+`harmonic3` 对 `fy_b` 有轻微帮助：
+
+```text
+fy_b R2: 0.3569 vs 0.3435
+without suspect fy_b R2: 0.5237 vs 0.4944
+```
+
+但从控制重要性看，roll/yaw 比 side force 更关键，因此当前不应把 `harmonic3` 设为默认模型。
+
+可用英文：
+
+> Higher-order wingbeat harmonic features provide a plausible periodic inductive bias and improve the validation-screen result. However, under the locked full-data test protocol, they do not outperform the existing phase-actuator Transformer baseline and slightly degrade the roll/yaw moment predictions.
+
+后续如果继续做 phase novelty，更建议尝试：
+
+```text
+phase-conditioned modulation
+wingbeat-conditioned feature modulation
+```
+
+而不是继续简单堆更高阶 harmonic。

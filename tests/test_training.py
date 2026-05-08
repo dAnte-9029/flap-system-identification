@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import sys
 from pathlib import Path
 
 import numpy as np
@@ -1393,6 +1394,28 @@ def test_temporal_screen_phase_harmonic_grid_has_four_ablation_configs():
     } == {config.config_id for config in configs}
     assert all(config.sequence_history_size == 128 for config in configs)
     assert all(config.dropout == 0.05 for config in configs)
+
+
+def test_train_baseline_torch_cli_supports_phase_harmonic_sequence_mode(monkeypatch):
+    from scripts import train_baseline_torch
+
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        [
+            "train_baseline_torch.py",
+            "--split-root",
+            "split",
+            "--output-dir",
+            "runs",
+            "--sequence-feature-mode",
+            "phase_harmonic_actuator_airdata",
+        ],
+    )
+
+    args = train_baseline_torch.parse_args()
+
+    assert args.sequence_feature_mode == "phase_harmonic_actuator_airdata"
 
 
 def test_run_baseline_comparison_can_skip_test_eval(tmp_path: Path):

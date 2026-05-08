@@ -92,7 +92,16 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--sequence-feature-mode",
         default="phase_actuator_airdata",
-        choices=["all", "none", "phase_actuator", "phase_actuator_airdata"],
+        choices=[
+            "all",
+            "none",
+            "phase_actuator",
+            "phase_actuator_airdata",
+            "phase_harmonic",
+            "phase_harmonic_actuator_airdata",
+            "raw_phase_actuator_airdata",
+            "no_phase_actuator_airdata",
+        ],
         help="Feature groups used as sequence history",
     )
     parser.add_argument(
