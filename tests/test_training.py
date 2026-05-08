@@ -792,6 +792,45 @@ def test_run_training_job_supports_temporal_sequence_model_types(tmp_path: Path,
     assert cfg["has_centered_window"] is False
 
 
+@pytest.mark.parametrize("model_type", ["causal_transformer_head_film", "causal_transformer_input_film"])
+def test_run_training_job_supports_phase_film_transformers(tmp_path: Path, model_type: str):
+    split_root = tmp_path / "split"
+    split_root.mkdir(parents=True)
+
+    for split, seed, log_id in [("train", 520, "train_log"), ("val", 521, "val_log"), ("test", 522, "test_log")]:
+        frame = _synthetic_frame(n_rows=80, seed=seed)
+        frame["log_id"] = log_id
+        frame["segment_id"] = 0
+        frame["time_s"] = np.arange(len(frame), dtype=float) * 0.01
+        frame.to_parquet(split_root / f"{split}_samples.parquet", index=False)
+
+    outputs = run_training_job(
+        split_root=split_root,
+        output_dir=tmp_path / model_type,
+        feature_set_name="paper_no_accel_v2",
+        model_type=model_type,
+        hidden_sizes=(16, 8),
+        batch_size=8,
+        max_epochs=1,
+        early_stopping_patience=1,
+        sequence_history_size=4,
+        transformer_d_model=16,
+        transformer_num_layers=1,
+        transformer_num_heads=4,
+        transformer_dim_feedforward=32,
+        device="cpu",
+        num_workers=0,
+        use_amp=False,
+    )
+
+    cfg = json.loads(Path(outputs["training_config_path"]).read_text(encoding="utf-8"))
+    metrics = json.loads(Path(outputs["metrics_path"]).read_text(encoding="utf-8"))
+    assert cfg["model_type"] == model_type
+    assert cfg["film_mode"] in {"head", "input"}
+    assert cfg["phase_conditioning_columns"] == ["phase_corrected_sin", "phase_corrected_cos"]
+    assert metrics["test"]["sample_count"] > 0
+
+
 def test_run_training_job_supports_rollout_model_config(tmp_path: Path):
     split_root = tmp_path / "split"
     split_root.mkdir(parents=True)
@@ -1503,6 +1542,28 @@ def test_train_baseline_torch_cli_supports_phase_harmonic_sequence_mode(monkeypa
     args = train_baseline_torch.parse_args()
 
     assert args.sequence_feature_mode == "phase_harmonic_actuator_airdata"
+
+
+def test_train_baseline_torch_cli_supports_phase_film_model_type(monkeypatch):
+    from scripts import train_baseline_torch
+
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        [
+            "train_baseline_torch.py",
+            "--split-root",
+            "split",
+            "--output-dir",
+            "runs",
+            "--model-type",
+            "causal_transformer_head_film",
+        ],
+    )
+
+    args = train_baseline_torch.parse_args()
+
+    assert args.model_type == "causal_transformer_head_film"
 
 
 def test_run_baseline_comparison_can_skip_test_eval(tmp_path: Path):

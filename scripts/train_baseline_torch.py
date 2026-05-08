@@ -47,6 +47,8 @@ def parse_args() -> argparse.Namespace:
             "causal_lstm",
             "causal_tcn",
             "causal_transformer",
+            "causal_transformer_head_film",
+            "causal_transformer_input_film",
             "causal_tcn_gru",
             "subsection_gru",
             "subnet_discrete",

@@ -95,6 +95,7 @@ PHASE_HARMONIC_FEATURE_COLUMNS = [
     "phase_corrected_h3_sin",
     "phase_corrected_h3_cos",
 ]
+PHASE_CONDITIONING_COLUMNS = ["phase_corrected_sin", "phase_corrected_cos"]
 
 PAPER_NO_ACCEL_V2_RAW_PHASE_FEATURE_COLUMNS = PAPER_NO_ACCEL_V2_FEATURE_COLUMNS + ["phase_corrected_rad"]
 PAPER_NO_ACCEL_V2_PHASE_HARMONIC_FEATURE_COLUMNS = PAPER_NO_ACCEL_V2_FEATURE_COLUMNS + PHASE_HARMONIC_FEATURE_COLUMNS
@@ -2604,6 +2605,8 @@ def _normalized_model_type(model_type: str | None) -> str:
         "causal_lstm",
         "causal_tcn",
         "causal_transformer",
+        "causal_transformer_head_film",
+        "causal_transformer_input_film",
         "causal_tcn_gru",
         "subsection_gru",
         "subnet_discrete",
@@ -2620,6 +2623,8 @@ def _is_sequence_model_type(model_type: str | None) -> bool:
         "causal_lstm",
         "causal_tcn",
         "causal_transformer",
+        "causal_transformer_head_film",
+        "causal_transformer_input_film",
         "causal_tcn_gru",
     }
 
@@ -2642,6 +2647,13 @@ def resolve_current_feature_columns(
     if mode == "none":
         return []
     raise ValueError(f"Unknown current_feature_mode: {current_feature_mode}")
+
+
+def resolve_phase_conditioning_indices(sequence_feature_columns: list[str]) -> tuple[int, ...]:
+    missing = [column for column in PHASE_CONDITIONING_COLUMNS if column not in sequence_feature_columns]
+    if missing:
+        raise ValueError(f"Phase FiLM requires sequence columns: {missing}")
+    return tuple(sequence_feature_columns.index(column) for column in PHASE_CONDITIONING_COLUMNS)
 
 
 ACCELERATION_INPUT_COLUMNS = set(NO_ACCEL_NO_ALPHA_EXCLUDED_COLUMNS)
@@ -2796,6 +2808,9 @@ def _build_sequence_regressor(
     transformer_num_layers: int = 1,
     transformer_num_heads: int = 4,
     transformer_dim_feedforward: int = 128,
+    phase_conditioning_indices: tuple[int, ...] | None = None,
+    film_hidden_size: int = 32,
+    film_scale: float = 0.1,
 ) -> nn.Module:
     if not hidden_sizes:
         raise ValueError("hidden_sizes must not be empty for sequence models")
@@ -2846,8 +2861,13 @@ def _build_sequence_regressor(
             dropout=dropout,
             head_hidden_sizes=head_hidden_sizes,
         )
-    if model_type == "causal_transformer":
+    if model_type in {"causal_transformer", "causal_transformer_head_film", "causal_transformer_input_film"}:
         transformer_head_sizes = tuple(int(v) for v in hidden_sizes[1:]) or (int(transformer_d_model),)
+        film_mode = "none"
+        if model_type == "causal_transformer_head_film":
+            film_mode = "head"
+        elif model_type == "causal_transformer_input_film":
+            film_mode = "input"
         return CausalTransformerRegressor(
             sequence_input_dim=sequence_input_dim,
             current_input_dim=current_input_dim,
@@ -2858,6 +2878,10 @@ def _build_sequence_regressor(
             dim_feedforward=int(transformer_dim_feedforward),
             dropout=dropout,
             head_hidden_sizes=transformer_head_sizes,
+            film_mode=film_mode,
+            phase_conditioning_indices=phase_conditioning_indices,
+            film_hidden_size=film_hidden_size,
+            film_scale=film_scale,
         )
     if model_type == "causal_tcn_gru":
         return CausalTCNGRURegressor(
@@ -2948,6 +2972,18 @@ def fit_torch_sequence_regressor(
         sequence_feature_columns,
         current_feature_mode,
     )
+    film_mode = "none"
+    if resolved_model_type == "causal_transformer_head_film":
+        film_mode = "head"
+    elif resolved_model_type == "causal_transformer_input_film":
+        film_mode = "input"
+    phase_conditioning_indices: tuple[int, ...] | None = None
+    phase_conditioning_columns: list[str] = []
+    film_hidden_size = 32
+    film_scale = 0.1
+    if film_mode != "none":
+        phase_conditioning_indices = resolve_phase_conditioning_indices(sequence_feature_columns)
+        phase_conditioning_columns = [sequence_feature_columns[index] for index in phase_conditioning_indices]
 
     train_sequence, train_current, train_targets_df, _ = prepare_causal_sequence_feature_target_frames(
         train_frame,
@@ -3033,6 +3069,9 @@ def fit_torch_sequence_regressor(
         transformer_num_layers=transformer_num_layers,
         transformer_num_heads=transformer_num_heads,
         transformer_dim_feedforward=transformer_dim_feedforward,
+        phase_conditioning_indices=phase_conditioning_indices,
+        film_hidden_size=film_hidden_size,
+        film_scale=film_scale,
     ).to(resolved_device)
     optimizer = torch.optim.AdamW(model.parameters(), lr=learning_rate, weight_decay=weight_decay)
     total_training_steps = max(len(train_loader) * int(max_epochs), 1)
@@ -3191,6 +3230,11 @@ def fit_torch_sequence_regressor(
         "transformer_num_layers": int(transformer_num_layers),
         "transformer_num_heads": int(transformer_num_heads),
         "transformer_dim_feedforward": int(transformer_dim_feedforward),
+        "film_mode": film_mode,
+        "phase_conditioning_columns": phase_conditioning_columns,
+        "phase_conditioning_indices": list(phase_conditioning_indices or []),
+        "film_hidden_size": int(film_hidden_size),
+        "film_scale": float(film_scale),
         "lr_scheduler": resolved_lr_scheduler,
         "lr_warmup_ratio": float(lr_warmup_ratio),
         "lr_warmup_steps": int(warmup_steps),
@@ -3872,6 +3916,9 @@ def _build_sequence_model_from_bundle(bundle: dict[str, Any], device: torch.devi
         transformer_num_layers=int(bundle.get("transformer_num_layers", 1)),
         transformer_num_heads=int(bundle.get("transformer_num_heads", 4)),
         transformer_dim_feedforward=int(bundle.get("transformer_dim_feedforward", 128)),
+        phase_conditioning_indices=tuple(int(v) for v in bundle.get("phase_conditioning_indices", [])),
+        film_hidden_size=int(bundle.get("film_hidden_size", 32)),
+        film_scale=float(bundle.get("film_scale", 0.1)),
     ).to(device)
     model.load_state_dict(bundle["model_state_dict"])
     model.eval()
@@ -4671,6 +4718,11 @@ def run_training_job(
                 "transformer_num_layers": bundle.get("transformer_num_layers"),
                 "transformer_num_heads": bundle.get("transformer_num_heads"),
                 "transformer_dim_feedforward": bundle.get("transformer_dim_feedforward"),
+                "film_mode": bundle.get("film_mode"),
+                "phase_conditioning_columns": bundle.get("phase_conditioning_columns"),
+                "phase_conditioning_indices": bundle.get("phase_conditioning_indices"),
+                "film_hidden_size": bundle.get("film_hidden_size"),
+                "film_scale": bundle.get("film_scale"),
                 "lr_scheduler": bundle.get("lr_scheduler"),
                 "lr_warmup_ratio": bundle.get("lr_warmup_ratio"),
                 "lr_warmup_steps": bundle.get("lr_warmup_steps"),
