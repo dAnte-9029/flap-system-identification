@@ -282,3 +282,64 @@ wingbeat-conditioned feature modulation
 ```
 
 而不是继续简单堆更高阶 harmonic。
+
+## 12. Phase-conditioned FiLM no-suspect 结果
+
+后续模型选择改用 no-suspect whole-log split：
+
+```text
+removed suspect log: log_4_2026-4-12-17-43-30
+split_policy: whole_log
+feature_set: paper_no_accel_v2
+no acceleration inputs
+```
+
+在这个协议下，比较了：
+
+```text
+baseline Transformer
+Transformer + head/output FiLM
+Transformer + input-sequence FiLM
+```
+
+最终 no-suspect test：
+
+```text
+baseline:
+  RMSE = 0.8181
+  R2 = 0.7942
+  fy_b R2 = 0.4944
+  mx_b R2 = 0.7144
+  mz_b R2 = 0.6722
+
+head FiLM:
+  RMSE = 0.7928
+  R2 = 0.8003
+  fy_b R2 = 0.5153
+  mx_b R2 = 0.7051
+  mz_b R2 = 0.6882
+
+input FiLM:
+  RMSE = 0.8496
+  R2 = 0.7866
+  fy_b R2 = 0.4939
+  mx_b R2 = 0.6926
+  mz_b R2 = 0.6562
+```
+
+判断：
+
+```text
+Head/output FiLM 是当前 best candidate。
+Input-sequence FiLM 不采用。
+Head FiLM 的整体 RMSE 提升约 3.1%，纵向/俯仰和 yaw 都提升；
+但 roll mx_b R2 小幅下降，需要后续 focused check。
+```
+
+可用英文：
+
+> Under the no-suspect whole-log protocol, phase-conditioned head FiLM achieves the best full-data test performance, indicating that wingbeat phase is more effective when used to modulate the output representation than when it is only concatenated as an input feature.
+
+谨慎句：
+
+> The improvement is not uniform across all moment channels; the roll moment R2 slightly decreases, so subsequent work should verify whether this trade-off is acceptable for control-oriented use.
