@@ -89,6 +89,16 @@ PAPER_NO_ACCEL_V2_ADDED_FEATURE_COLUMNS = [
 
 PAPER_NO_ACCEL_V2_FEATURE_COLUMNS = NO_ACCEL_NO_ALPHA_FEATURE_COLUMNS + PAPER_NO_ACCEL_V2_ADDED_FEATURE_COLUMNS
 
+PHASE_HARMONIC_FEATURE_COLUMNS = [
+    "phase_corrected_h2_sin",
+    "phase_corrected_h2_cos",
+    "phase_corrected_h3_sin",
+    "phase_corrected_h3_cos",
+]
+
+PAPER_NO_ACCEL_V2_RAW_PHASE_FEATURE_COLUMNS = PAPER_NO_ACCEL_V2_FEATURE_COLUMNS + ["phase_corrected_rad"]
+PAPER_NO_ACCEL_V2_PHASE_HARMONIC_FEATURE_COLUMNS = PAPER_NO_ACCEL_V2_FEATURE_COLUMNS + PHASE_HARMONIC_FEATURE_COLUMNS
+
 PAPER_PFNN_10_FEATURE_COLUMNS = [
     "phase_corrected_rad",
     "velocity_b.x",
@@ -107,6 +117,8 @@ DEFAULT_FEATURE_SETS: dict[str, list[str]] = {
     "full": DEFAULT_FEATURE_COLUMNS,
     "no_accel_no_alpha": NO_ACCEL_NO_ALPHA_FEATURE_COLUMNS,
     "paper_no_accel_v2": PAPER_NO_ACCEL_V2_FEATURE_COLUMNS,
+    "paper_no_accel_v2_raw_phase": PAPER_NO_ACCEL_V2_RAW_PHASE_FEATURE_COLUMNS,
+    "paper_no_accel_v2_phase_harmonic": PAPER_NO_ACCEL_V2_PHASE_HARMONIC_FEATURE_COLUMNS,
     "paper_pfnn_10": PAPER_PFNN_10_FEATURE_COLUMNS,
 }
 
@@ -240,6 +252,54 @@ BASELINE_COMPARISON_RECIPES: dict[str, dict[str, Any]] = {
         "window_feature_mode": "all",
         "sequence_history_size": 64,
         "sequence_feature_mode": "phase_actuator_airdata",
+        "current_feature_mode": "remaining_current",
+        "transformer_d_model": 64,
+        "transformer_num_layers": 1,
+        "transformer_num_heads": 4,
+        "transformer_dim_feedforward": 128,
+    },
+    "causal_transformer_paper_no_accel_v2_phase_harmonic_airdata": {
+        "feature_set_name": "paper_no_accel_v2_phase_harmonic",
+        "model_type": "causal_transformer",
+        "loss_type": "huber",
+        "huber_delta": 1.5,
+        "window_mode": "single",
+        "window_radius": 0,
+        "window_feature_mode": "all",
+        "sequence_history_size": 64,
+        "sequence_feature_mode": "phase_harmonic_actuator_airdata",
+        "current_feature_mode": "remaining_current",
+        "transformer_d_model": 64,
+        "transformer_num_layers": 1,
+        "transformer_num_heads": 4,
+        "transformer_dim_feedforward": 128,
+    },
+    "causal_transformer_paper_no_accel_v2_raw_phase_airdata": {
+        "feature_set_name": "paper_no_accel_v2_raw_phase",
+        "model_type": "causal_transformer",
+        "loss_type": "huber",
+        "huber_delta": 1.5,
+        "window_mode": "single",
+        "window_radius": 0,
+        "window_feature_mode": "all",
+        "sequence_history_size": 64,
+        "sequence_feature_mode": "raw_phase_actuator_airdata",
+        "current_feature_mode": "remaining_current",
+        "transformer_d_model": 64,
+        "transformer_num_layers": 1,
+        "transformer_num_heads": 4,
+        "transformer_dim_feedforward": 128,
+    },
+    "causal_transformer_paper_no_accel_v2_no_phase_airdata": {
+        "feature_set_name": "paper_no_accel_v2",
+        "model_type": "causal_transformer",
+        "loss_type": "huber",
+        "huber_delta": 1.5,
+        "window_mode": "single",
+        "window_radius": 0,
+        "window_feature_mode": "all",
+        "sequence_history_size": 64,
+        "sequence_feature_mode": "no_phase_actuator_airdata",
         "current_feature_mode": "remaining_current",
         "transformer_d_model": 64,
         "transformer_num_layers": 1,
@@ -1368,6 +1428,9 @@ def _with_derived_columns(frame: pd.DataFrame) -> pd.DataFrame:
     phase = derived["phase_corrected_rad"].to_numpy(dtype=float)
     derived["phase_corrected_sin"] = np.sin(phase)
     derived["phase_corrected_cos"] = np.cos(phase)
+    for harmonic in (2, 3):
+        derived[f"phase_corrected_h{harmonic}_sin"] = np.sin(float(harmonic) * phase)
+        derived[f"phase_corrected_h{harmonic}_cos"] = np.cos(float(harmonic) * phase)
 
     quaternion_columns = [
         "vehicle_attitude.q[0]",
@@ -1552,6 +1615,33 @@ KINEMATIC_WINDOW_EXCLUDED_COLUMNS = {
 SEQUENCE_FEATURE_MODE_COLUMNS: dict[str, list[str]] = {
     "phase_actuator": WINDOW_FEATURE_MODE_COLUMNS["phase_actuator"],
     "phase_actuator_airdata": WINDOW_FEATURE_MODE_COLUMNS["phase_actuator"] + WINDOW_FEATURE_MODE_COLUMNS["airdata"],
+    "phase_harmonic": WINDOW_FEATURE_MODE_COLUMNS["phase_actuator"] + PHASE_HARMONIC_FEATURE_COLUMNS,
+    "phase_harmonic_actuator_airdata": (
+        WINDOW_FEATURE_MODE_COLUMNS["phase_actuator"] + PHASE_HARMONIC_FEATURE_COLUMNS + WINDOW_FEATURE_MODE_COLUMNS["airdata"]
+    ),
+    "raw_phase_actuator_airdata": [
+        "phase_corrected_rad",
+        "flap_frequency_hz",
+        "cycle_flap_frequency_hz",
+        "motor_cmd_0",
+        "servo_left_elevon",
+        "servo_right_elevon",
+        "servo_rudder",
+        "elevator_like",
+        "aileron_like",
+    ]
+    + WINDOW_FEATURE_MODE_COLUMNS["airdata"],
+    "no_phase_actuator_airdata": [
+        "flap_frequency_hz",
+        "cycle_flap_frequency_hz",
+        "motor_cmd_0",
+        "servo_left_elevon",
+        "servo_right_elevon",
+        "servo_rudder",
+        "elevator_like",
+        "aileron_like",
+    ]
+    + WINDOW_FEATURE_MODE_COLUMNS["airdata"],
 }
 
 SEQUENCE_HISTORY_DANGEROUS_COLUMNS = KINEMATIC_WINDOW_EXCLUDED_COLUMNS
@@ -2733,7 +2823,7 @@ def fit_torch_sequence_regressor(
     loss_type: str = "mse",
     huber_delta: float = 1.0,
     sequence_history_size: int = 64,
-    sequence_feature_mode: str = "phase_actuator_airdata",
+    sequence_feature_mode: str | None = None,
     current_feature_mode: str = "remaining_current",
     gru_num_layers: int = 1,
     asl_hidden_size: int = 128,
@@ -3115,7 +3205,7 @@ def fit_torch_rollout_regressor(
     sequence_history_size: int = 64,
     rollout_size: int = 32,
     rollout_stride: int | None = None,
-    sequence_feature_mode: str = "phase_actuator_airdata",
+    sequence_feature_mode: str | None = None,
     current_feature_mode: str = "remaining_current",
     gru_num_layers: int = 1,
     latent_size: int = 16,
@@ -4724,7 +4814,7 @@ def _run_single_baseline_recipe(
     pfnn_phase_node_count: int,
     pfnn_control_points: int,
     sequence_history_size: int,
-    sequence_feature_mode: str,
+    sequence_feature_mode: str | None,
     current_feature_mode: str,
     rollout_size: int,
     rollout_stride: int | None,
@@ -4749,7 +4839,7 @@ def _run_single_baseline_recipe(
     ema_decay: float,
 ) -> dict[str, Any]:
     resolved_sequence_history_size = int(sequence_history_size)
-    resolved_sequence_feature_mode = str(sequence_feature_mode)
+    resolved_sequence_feature_mode = str(sequence_feature_mode or recipe.get("sequence_feature_mode", "phase_actuator_airdata"))
     resolved_current_feature_mode = str(current_feature_mode)
     resolved_rollout_size = int(rollout_size)
     resolved_rollout_stride = rollout_stride
@@ -5017,7 +5107,7 @@ def run_baseline_comparison(
     pfnn_phase_node_count: int = 5,
     pfnn_control_points: int = 6,
     sequence_history_size: int = 64,
-    sequence_feature_mode: str = "phase_actuator_airdata",
+    sequence_feature_mode: str | None = None,
     current_feature_mode: str = "remaining_current",
     rollout_size: int = 32,
     rollout_stride: int | None = None,

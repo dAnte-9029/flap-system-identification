@@ -101,6 +101,26 @@ def test_prepare_feature_target_frames_adds_phase_encoding():
     np.testing.assert_allclose(features["phase_corrected_cos"].to_numpy(), np.cos(frame["phase_corrected_rad"].to_numpy()))
 
 
+def test_prepare_feature_target_frames_adds_phase_harmonics():
+    frame = _synthetic_frame(n_rows=8, seed=123)
+
+    features, _ = prepare_feature_target_frames(
+        frame,
+        feature_columns=[
+            "phase_corrected_h2_sin",
+            "phase_corrected_h2_cos",
+            "phase_corrected_h3_sin",
+            "phase_corrected_h3_cos",
+        ],
+    )
+
+    phase = frame["phase_corrected_rad"].to_numpy()
+    np.testing.assert_allclose(features["phase_corrected_h2_sin"].to_numpy(), np.sin(2.0 * phase))
+    np.testing.assert_allclose(features["phase_corrected_h2_cos"].to_numpy(), np.cos(2.0 * phase))
+    np.testing.assert_allclose(features["phase_corrected_h3_sin"].to_numpy(), np.sin(3.0 * phase))
+    np.testing.assert_allclose(features["phase_corrected_h3_cos"].to_numpy(), np.cos(3.0 * phase))
+
+
 def test_prepare_feature_target_frames_derives_sign_invariant_gravity_vector():
     frame = _synthetic_frame(n_rows=4, seed=13)
     flipped = frame.copy()
@@ -293,6 +313,44 @@ def test_resolve_sequence_feature_columns_defaults_to_leakage_resistant_history(
     assert "velocity_b.x" not in sequence_columns
     assert "vehicle_angular_velocity.xyz[0]" not in sequence_columns
     assert "alpha_rad" not in sequence_columns
+
+
+def test_resolve_sequence_feature_columns_supports_phase_harmonics():
+    columns = resolve_feature_set_columns("paper_no_accel_v2_phase_harmonic")
+
+    sequence_columns = training_module.resolve_sequence_feature_columns(columns, "phase_harmonic_actuator_airdata")
+
+    assert "phase_corrected_sin" in sequence_columns
+    assert "phase_corrected_h2_sin" in sequence_columns
+    assert "phase_corrected_h3_cos" in sequence_columns
+    assert "motor_cmd_0" in sequence_columns
+    assert "airspeed_validated.true_airspeed_m_s" in sequence_columns
+    assert "velocity_b.x" not in sequence_columns
+
+
+def test_resolve_sequence_feature_columns_supports_raw_phase_airdata():
+    columns = resolve_feature_set_columns("paper_no_accel_v2_raw_phase")
+
+    sequence_columns = training_module.resolve_sequence_feature_columns(columns, "raw_phase_actuator_airdata")
+
+    assert "phase_corrected_rad" in sequence_columns
+    assert "phase_corrected_sin" not in sequence_columns
+    assert "phase_corrected_cos" not in sequence_columns
+    assert "motor_cmd_0" in sequence_columns
+    assert "airspeed_validated.true_airspeed_m_s" in sequence_columns
+
+
+def test_resolve_sequence_feature_columns_supports_no_phase_actuator_airdata():
+    columns = resolve_feature_set_columns("paper_no_accel_v2")
+
+    sequence_columns = training_module.resolve_sequence_feature_columns(columns, "no_phase_actuator_airdata")
+
+    assert "phase_corrected_rad" not in sequence_columns
+    assert "phase_corrected_sin" not in sequence_columns
+    assert "phase_corrected_cos" not in sequence_columns
+    assert "wing_stroke_angle_rad" not in sequence_columns
+    assert "motor_cmd_0" in sequence_columns
+    assert "airspeed_validated.true_airspeed_m_s" in sequence_columns
 
 
 def test_resolve_sequence_feature_columns_rejects_unknown_mode():
@@ -831,6 +889,18 @@ def test_paper_no_accel_v2_feature_set_excludes_label_derivative_inputs():
     }.issubset(feature_columns)
 
 
+def test_paper_no_accel_v2_phase_harmonic_feature_set_adds_harmonics():
+    feature_columns = resolve_feature_set_columns("paper_no_accel_v2_phase_harmonic")
+
+    assert set(PAPER_NO_ACCEL_V2_FEATURE_COLUMNS).issubset(feature_columns)
+    assert {
+        "phase_corrected_h2_sin",
+        "phase_corrected_h2_cos",
+        "phase_corrected_h3_sin",
+        "phase_corrected_h3_cos",
+    }.issubset(feature_columns)
+
+
 def test_paper_pfnn_10_feature_set_matches_paper_inputs():
     excluded = {
         "vehicle_local_position.ax",
@@ -1195,6 +1265,40 @@ def test_run_baseline_comparison_supports_temporal_backbone_recipes(tmp_path: Pa
     }
 
 
+def test_run_baseline_comparison_supports_phase_harmonic_transformer_recipe(tmp_path: Path):
+    split_root = tmp_path / "split"
+    split_root.mkdir(parents=True)
+
+    for split, seed, log_id in [("train", 430, "train_log"), ("val", 431, "val_log"), ("test", 432, "test_log")]:
+        frame = _synthetic_frame(n_rows=80, seed=seed)
+        frame["log_id"] = log_id
+        frame["segment_id"] = 0
+        frame["time_s"] = np.arange(len(frame), dtype=float) * 0.01
+        frame.to_parquet(split_root / f"{split}_samples.parquet", index=False)
+
+    outputs = run_baseline_comparison(
+        split_root=split_root,
+        output_dir=tmp_path / "runs",
+        recipe_names=["causal_transformer_paper_no_accel_v2_phase_harmonic_airdata"],
+        hidden_sizes=(16, 8),
+        batch_size=8,
+        max_epochs=1,
+        early_stopping_patience=1,
+        sequence_history_size=4,
+        transformer_d_model=16,
+        transformer_num_layers=1,
+        transformer_num_heads=4,
+        transformer_dim_feedforward=32,
+        device="cpu",
+        num_workers=0,
+        use_amp=False,
+    )
+
+    summary = pd.read_csv(outputs["summary_csv_path"])
+    assert summary.loc[0, "feature_set_name"] == "paper_no_accel_v2_phase_harmonic"
+    assert summary.loc[0, "sequence_feature_mode"] == "phase_harmonic_actuator_airdata"
+
+
 def test_temporal_screen_quick_grid_contains_reference_and_candidates():
     from scripts.run_temporal_backbone_screen import build_screen_configs
 
@@ -1272,6 +1376,23 @@ def test_temporal_screen_transformer_focused_final_grid_uses_full_budget():
     assert all(config.max_epochs == 50 for config in configs)
     assert all(config.early_stopping_patience == 8 for config in configs)
     assert "transformer_focused_final_hist128_d64_l2_h4_do0" in {config.config_id for config in configs}
+
+
+def test_temporal_screen_phase_harmonic_grid_has_four_ablation_configs():
+    from scripts.run_temporal_backbone_screen import build_screen_configs
+
+    configs = build_screen_configs(stage="phase_harmonic")
+
+    assert len(configs) == 4
+    assert {config.stage for config in configs} == {"phase_harmonic"}
+    assert {
+        "phase_harmonic_no_phase",
+        "phase_harmonic_raw_phase",
+        "phase_harmonic_sin_cos",
+        "phase_harmonic_harmonic3",
+    } == {config.config_id for config in configs}
+    assert all(config.sequence_history_size == 128 for config in configs)
+    assert all(config.dropout == 0.05 for config in configs)
 
 
 def test_run_baseline_comparison_can_skip_test_eval(tmp_path: Path):

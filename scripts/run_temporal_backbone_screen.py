@@ -402,6 +402,39 @@ def _transformer_focused_configs(*, final: bool = False) -> list[ScreenConfig]:
     return configs
 
 
+def _phase_harmonic_configs(*, final: bool = False) -> list[ScreenConfig]:
+    stage = "phase_harmonic_final" if final else "phase_harmonic"
+    max_epochs = 50 if final else 20
+    patience = 8 if final else 5
+    specs = [
+        ("no_phase", "causal_transformer_paper_no_accel_v2_no_phase_airdata"),
+        ("raw_phase", "causal_transformer_paper_no_accel_v2_raw_phase_airdata"),
+        ("sin_cos", "causal_transformer_paper_no_accel_v2_phase_actuator_airdata"),
+        ("harmonic3", "causal_transformer_paper_no_accel_v2_phase_harmonic_airdata"),
+    ]
+    configs: list[ScreenConfig] = []
+    for label, recipe_name in specs:
+        configs.append(
+            _config(
+                config_id=f"{stage}_{label}",
+                stage=stage,
+                recipe_name=recipe_name,
+                hidden_sizes=(64, 128),
+                sequence_history_size=128,
+                max_epochs=max_epochs,
+                early_stopping_patience=patience,
+                dropout=0.05,
+                extra_args={
+                    "transformer_d_model": 64,
+                    "transformer_num_layers": 2,
+                    "transformer_num_heads": 4,
+                    "transformer_dim_feedforward": 128,
+                },
+            )
+        )
+    return configs
+
+
 def build_screen_configs(stage: str) -> list[ScreenConfig]:
     resolved_stage = stage.lower()
     if resolved_stage == "quick":
@@ -418,6 +451,10 @@ def build_screen_configs(stage: str) -> list[ScreenConfig]:
         return _transformer_focused_configs(final=False)
     if resolved_stage == "transformer_focused_final":
         return _transformer_focused_configs(final=True)
+    if resolved_stage == "phase_harmonic":
+        return _phase_harmonic_configs(final=False)
+    if resolved_stage == "phase_harmonic_final":
+        return _phase_harmonic_configs(final=True)
     if resolved_stage == "all":
         return [
             *_quick_configs(),
@@ -427,6 +464,8 @@ def build_screen_configs(stage: str) -> list[ScreenConfig]:
             *_tcn_gru_focused_configs(final=True),
             *_transformer_focused_configs(final=False),
             *_transformer_focused_configs(final=True),
+            *_phase_harmonic_configs(final=False),
+            *_phase_harmonic_configs(final=True),
         ]
     raise ValueError(f"Unknown stage: {stage}")
 
@@ -449,7 +488,7 @@ def _config_row(config: ScreenConfig) -> dict[str, Any]:
 def _stage_sample_defaults(stage: str) -> tuple[int | None, int | None, int | None]:
     if stage == "quick":
         return 65536, 32768, 32768
-    if stage in {"sweep", "tcn_gru_focused", "transformer_focused"}:
+    if stage in {"sweep", "tcn_gru_focused", "transformer_focused", "phase_harmonic"}:
         return 131072, 65536, 65536
     return None, None, None
 
@@ -514,6 +553,8 @@ def parse_args() -> argparse.Namespace:
             "tcn_gru_focused_final",
             "transformer_focused",
             "transformer_focused_final",
+            "phase_harmonic",
+            "phase_harmonic_final",
             "all",
         ],
         default="quick",
@@ -556,7 +597,7 @@ def main() -> None:
     max_train_samples = args.max_train_samples if args.max_train_samples is not None else default_train
     max_val_samples = args.max_val_samples if args.max_val_samples is not None else default_val
     max_test_samples = args.max_test_samples if args.max_test_samples is not None else default_test
-    skip_test_eval = args.stage == "transformer_focused" and not args.include_test_eval
+    skip_test_eval = args.stage in {"transformer_focused", "phase_harmonic"} and not args.include_test_eval
 
     rows: list[dict[str, Any]] = []
     if args.dry_run:
