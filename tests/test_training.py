@@ -1748,6 +1748,83 @@ def test_lateral_diagnostics_compute_regime_table():
     assert set(table["regime"]) >= {"airspeed_validated.true_airspeed_m_s", "elevon_diff"}
 
 
+def test_lateral_diagnostics_compute_with_without_suspect_log_table():
+    from scripts.run_lateral_diagnostics import compute_with_without_suspect_log_table
+
+    frame = pd.DataFrame(
+        {
+            "log_id": ["bad", "bad", "good", "good"],
+            "true_fy_b": [0.0, 2.0, 0.0, 2.0],
+            "pred_fy_b": [0.0, 0.0, 0.0, 2.0],
+            "true_mx_b": [0.0, 1.0, 0.0, 1.0],
+            "pred_mx_b": [0.0, 0.0, 0.0, 1.0],
+            "true_mz_b": [0.0, 1.0, 0.0, 1.0],
+            "pred_mz_b": [0.0, 0.0, 0.0, 1.0],
+        }
+    )
+
+    table = compute_with_without_suspect_log_table(frame, suspect_logs=["bad"], target_columns=["fy_b", "mx_b", "mz_b"])
+
+    assert set(table["case"]) == {"all", "without_suspect", "suspect_only"}
+    assert table.loc[table["case"] == "without_suspect", "fy_b_r2"].iloc[0] == pytest.approx(1.0)
+    assert table.loc[table["case"] == "suspect_only", "fy_b_r2"].iloc[0] < 0.0
+
+
+def test_lateral_diagnostics_estimates_integer_lag():
+    from scripts.run_lateral_diagnostics import estimate_best_lag
+
+    true = np.sin(np.linspace(0.0, 4.0 * np.pi, 80))
+    pred = np.roll(true, 3)
+
+    result = estimate_best_lag(true, pred, max_lag=8)
+
+    assert result["best_lag"] == 3
+    assert result["best_corr"] > result["zero_lag_corr"]
+    assert result["best_rmse"] < result["zero_lag_rmse"]
+
+
+def test_lateral_diagnostics_phase_lag_table_preserves_log_ids():
+    from scripts.run_lateral_diagnostics import compute_phase_lag_lateral_table
+
+    frame = pd.DataFrame(
+        {
+            "log_id": ["log_a"] * 8 + ["log_b"] * 8,
+            "segment_id": [0] * 16,
+            "time_s": list(range(8)) + list(range(8)),
+            "true_fy_b": [0, 0, 1, 0, 0, 0, 0, 0] * 2,
+            "pred_fy_b": [0, 0, 0, 1, 0, 0, 0, 0] * 2,
+        }
+    )
+
+    table = compute_phase_lag_lateral_table(frame, lateral_targets=["fy_b"], max_lag=2)
+
+    assert set(table["log_id"]) == {"log_a", "log_b"}
+    assert set(table["best_lag"]) == {1}
+
+
+def test_lateral_diagnostics_residual_correlation_table():
+    from scripts.run_lateral_diagnostics import compute_residual_correlation_table
+
+    feature = np.linspace(-1.0, 1.0, 20)
+    frame = pd.DataFrame(
+        {
+            "servo_rudder": feature,
+            "phase_corrected_rad": np.linspace(0.0, 2.0 * np.pi, 20),
+            "true_fy_b": feature,
+            "pred_fy_b": np.zeros_like(feature),
+            "true_mx_b": np.ones_like(feature),
+            "pred_mx_b": np.ones_like(feature),
+        }
+    )
+
+    table = compute_residual_correlation_table(frame, targets=["fy_b", "mx_b"], feature_columns=["servo_rudder"])
+
+    top = table.sort_values("abs_corr", ascending=False).iloc[0]
+    assert top["target"] == "fy_b"
+    assert top["feature"] == "servo_rudder"
+    assert top["corr"] == pytest.approx(1.0)
+
+
 def test_run_training_job_records_window_config(tmp_path: Path):
     split_root = tmp_path / "split"
     split_root.mkdir(parents=True)
