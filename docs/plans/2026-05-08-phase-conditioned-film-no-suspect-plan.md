@@ -22,6 +22,7 @@ Source split:
 
 ```text
 dataset/canonical_v0.2_training_ready_split_hq_v3_direct_airspeed_logsplit_paper_v1
+split_policy: whole_log
 ```
 
 Filtered split to create and use for all model selection:
@@ -48,6 +49,24 @@ diagnostics:
 ```
 
 Do not silently compare against the previous all-test numbers as the main result. Report the old all-test baseline only as legacy context.
+
+No-acceleration and log-split invariants:
+
+```text
+The split must be by whole log, not by random samples or time windows.
+The filtered no-suspect split must preserve split_policy=whole_log.
+Train, val, and test log_id sets must be disjoint.
+All model recipes must use paper_no_accel_v2.
+Acceleration columns must not appear in sequence_feature_columns or current_feature_columns.
+```
+
+Implementation note:
+
+```text
+The parquet split may keep raw acceleration columns for traceability.
+The no-acceleration rule is enforced at training-feature selection time through paper_no_accel_v2
+and through explicit checks on model bundle input columns.
+```
 
 Primary model-comparison metrics:
 
@@ -427,13 +446,19 @@ import pandas as pd
 
 root = Path("dataset/canonical_v0.2_training_ready_split_hq_v3_direct_airspeed_logsplit_paper_v1_no_suspect_log")
 bad = "log_4_2026-4-12-17-43-30"
+log_sets = {}
 for split in ("train", "val", "test"):
     frame = pd.read_parquet(root / f"{split}_samples.parquet")
     print(split, len(frame), sorted(frame["log_id"].astype(str).unique()))
     assert bad not in set(frame["log_id"].astype(str))
+    log_sets[split] = set(frame["log_id"].astype(str))
 manifest = json.loads((root / "dataset_manifest.json").read_text(encoding="utf-8"))
 print(manifest["removed_sample_counts_by_split"])
 assert manifest["excluded_log_ids"] == [bad]
+assert manifest["split_policy"] == "whole_log"
+assert log_sets["train"].isdisjoint(log_sets["val"])
+assert log_sets["train"].isdisjoint(log_sets["test"])
+assert log_sets["val"].isdisjoint(log_sets["test"])
 PY
 ```
 
@@ -441,6 +466,8 @@ Expected:
 
 ```text
 bad log absent from train/val/test
+train/val/test log_id sets are disjoint
+manifest split_policy is whole_log
 test removed sample count should be 17721 if the current split matches previous diagnostics
 ```
 
@@ -1119,7 +1146,42 @@ python scripts/run_temporal_backbone_screen.py \
 
 Do not pass `--include-test-eval`.
 
-**Step 3: Verify no test columns exist**
+**Step 3: Verify no acceleration inputs in all screen bundles**
+
+After the screen finishes, verify every trained bundle uses `paper_no_accel_v2` and does not feed acceleration columns:
+
+```bash
+python - <<'PY'
+from pathlib import Path
+import torch
+
+root = Path("artifacts/20260508_phase_film_screen_no_suspect/runs")
+accel = {
+    "vehicle_local_position.ax",
+    "vehicle_local_position.ay",
+    "vehicle_local_position.az",
+    "acceleration_b.x",
+    "acceleration_b.y",
+    "acceleration_b.z",
+}
+for bundle_path in sorted(root.glob("*/**/model_bundle.pt")):
+    bundle = torch.load(bundle_path, map_location="cpu", weights_only=False)
+    input_columns = set(bundle.get("sequence_feature_columns", [])) | set(bundle.get("current_feature_columns", []))
+    bad = sorted(input_columns & accel)
+    print(bundle_path, "feature_set", bundle.get("feature_set_name"), "bad_accel", bad)
+    assert bundle.get("feature_set_name") == "paper_no_accel_v2"
+    assert not bad
+PY
+```
+
+Expected:
+
+```text
+bad_accel []
+feature_set paper_no_accel_v2
+```
+
+**Step 4: Verify no test columns exist**
 
 ```bash
 python - <<'PY'
@@ -1136,7 +1198,7 @@ Expected:
 test columns: []
 ```
 
-**Step 4: Rank by validation**
+**Step 5: Rank by validation**
 
 ```bash
 python - <<'PY'
@@ -1170,7 +1232,7 @@ If head or input wins validation:
   final runs all three configs, then default selection uses final no-suspect test metrics
 ```
 
-**Step 5: Commit code before final training**
+**Step 6: Commit code before final training**
 
 Run verification first:
 
@@ -1248,7 +1310,35 @@ print(summary[cols].sort_values("test_overall_rmse").to_string(index=False))
 PY
 ```
 
-**Step 3: Decide default model**
+**Step 3: Verify final bundles still use no-acceleration inputs**
+
+```bash
+python - <<'PY'
+from pathlib import Path
+import torch
+
+root = Path("artifacts/20260508_phase_film_final_no_suspect/runs")
+accel = {
+    "vehicle_local_position.ax",
+    "vehicle_local_position.ay",
+    "vehicle_local_position.az",
+    "acceleration_b.x",
+    "acceleration_b.y",
+    "acceleration_b.z",
+}
+for bundle_path in sorted(root.glob("*/**/model_bundle.pt")):
+    bundle = torch.load(bundle_path, map_location="cpu", weights_only=False)
+    input_columns = set(bundle.get("sequence_feature_columns", [])) | set(bundle.get("current_feature_columns", []))
+    bad = sorted(input_columns & accel)
+    print(bundle_path, "feature_set", bundle.get("feature_set_name"), "bad_accel", bad)
+    assert bundle.get("feature_set_name") == "paper_no_accel_v2"
+    assert not bad
+PY
+```
+
+Expected: no acceleration columns in any final model bundle.
+
+**Step 4: Decide default model**
 
 Default selection:
 
@@ -1478,4 +1568,3 @@ Guardrail: filtered split is explicit, manifest records removed log, old origina
 
 Risk: A FiLM variant only improves `fy_b`.
 Guardrail: control-priority decision rejects variants that degrade `mx_b` or `mz_b` materially.
-
