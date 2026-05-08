@@ -825,7 +825,9 @@ def test_run_training_job_supports_phase_film_transformers(tmp_path: Path, model
 
     cfg = json.loads(Path(outputs["training_config_path"]).read_text(encoding="utf-8"))
     metrics = json.loads(Path(outputs["metrics_path"]).read_text(encoding="utf-8"))
+    bundle = torch.load(outputs["model_bundle_path"], map_location="cpu", weights_only=False)
     assert cfg["model_type"] == model_type
+    assert bundle["feature_set_name"] == "paper_no_accel_v2"
     assert cfg["film_mode"] in {"head", "input"}
     assert cfg["phase_conditioning_columns"] == ["phase_corrected_sin", "phase_corrected_cos"]
     assert metrics["test"]["sample_count"] > 0

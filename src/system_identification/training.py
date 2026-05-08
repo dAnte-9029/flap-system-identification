@@ -4690,6 +4690,7 @@ def run_training_job(
     pred_vs_true_test_path = output_path / "pred_vs_true_test.png"
     residual_hist_test_path = output_path / "residual_hist_test.png"
 
+    bundle["feature_set_name"] = feature_set_name or ("custom" if feature_columns is not None else "full")
     torch.save(_to_serializable_bundle(bundle), model_bundle_path)
     metrics_path.write_text(json.dumps(metrics, indent=2, sort_keys=True), encoding="utf-8")
     history = _history_frame(bundle["history"])
