@@ -1,3 +1,4 @@
+import json
 from pathlib import Path
 
 import numpy as np
@@ -45,6 +46,59 @@ def _base_topic_frames(grid_us: np.ndarray) -> dict[str, pd.DataFrame]:
             }
         ),
     }
+
+
+def test_filter_split_logs_removes_excluded_log_from_all_split_files(tmp_path: Path):
+    from scripts.filter_split_logs import filter_split_logs
+
+    input_root = tmp_path / "input_split"
+    output_root = tmp_path / "filtered_split"
+    input_root.mkdir()
+
+    frames = {
+        "train": pd.DataFrame({"log_id": ["good_train", "bad_log"], "value": [1.0, 2.0]}),
+        "val": pd.DataFrame({"log_id": ["good_val", "bad_log"], "value": [3.0, 4.0]}),
+        "test": pd.DataFrame({"log_id": ["good_test", "bad_log"], "value": [5.0, 6.0]}),
+    }
+    for split, frame in frames.items():
+        frame.to_parquet(input_root / f"{split}_samples.parquet", index=False)
+        pd.DataFrame({"log_id": frame["log_id"].unique(), "split": split}).to_csv(
+            input_root / f"{split}_logs.csv",
+            index=False,
+        )
+
+    pd.concat(
+        [pd.DataFrame({"log_id": frame["log_id"].unique(), "split": split}) for split, frame in frames.items()],
+        ignore_index=True,
+    ).to_csv(input_root / "all_logs.csv", index=False)
+    (input_root / "dataset_manifest.json").write_text(
+        json.dumps({"split_policy": "whole_log", "note": "source"}, indent=2),
+        encoding="utf-8",
+    )
+
+    outputs = filter_split_logs(
+        input_root=input_root,
+        output_root=output_root,
+        exclude_log_ids=["bad_log"],
+        reason="unit-test bad log",
+    )
+
+    assert Path(outputs["dataset_manifest_path"]).exists()
+    for split in ("train", "val", "test"):
+        filtered = pd.read_parquet(output_root / f"{split}_samples.parquet")
+        assert "bad_log" not in set(filtered["log_id"])
+        logs = pd.read_csv(output_root / f"{split}_logs.csv")
+        assert "bad_log" not in set(logs["log_id"])
+
+    all_logs = pd.read_csv(output_root / "all_logs.csv")
+    assert "bad_log" not in set(all_logs["log_id"])
+    manifest = json.loads((output_root / "dataset_manifest.json").read_text(encoding="utf-8"))
+    assert manifest["split_policy"] == "whole_log"
+    assert manifest["filtered_from_split_root"].endswith("input_split")
+    assert manifest["excluded_log_ids"] == ["bad_log"]
+    assert manifest["removed_sample_counts_by_split"]["train"] == 1
+    assert manifest["removed_sample_counts_by_split"]["val"] == 1
+    assert manifest["removed_sample_counts_by_split"]["test"] == 1
 
 
 def test_assemble_canonical_samples_emits_phase_and_nan_labels_when_metadata_incomplete():
