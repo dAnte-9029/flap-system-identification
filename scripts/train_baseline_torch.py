@@ -66,6 +66,10 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--learning-rate", type=float, default=1e-3, help="AdamW learning rate")
     parser.add_argument("--weight-decay", type=float, default=1e-5, help="AdamW weight decay")
     parser.add_argument("--early-stopping-patience", type=int, default=8, help="Validation patience in epochs")
+    parser.add_argument("--lr-scheduler", default=None, choices=["warmup_cosine"], help="Optional learning-rate schedule")
+    parser.add_argument("--lr-warmup-ratio", type=float, default=0.0, help="Warmup fraction for scheduled learning rates")
+    parser.add_argument("--gradient-clip-norm", type=float, default=None, help="Optional gradient clipping norm")
+    parser.add_argument("--ema-decay", type=float, default=0.0, help="Optional EMA decay for evaluation weights")
     parser.add_argument("--loss-type", default="mse", choices=["mse", "huber"], help="Training loss in scaled target space")
     parser.add_argument("--huber-delta", type=float, default=1.0, help="Huber delta in scaled target units")
     parser.add_argument("--window-mode", default="single", choices=["single", "causal", "centered"], help="Temporal feature window mode")
@@ -143,6 +147,10 @@ def main() -> None:
         learning_rate=args.learning_rate,
         weight_decay=args.weight_decay,
         early_stopping_patience=args.early_stopping_patience,
+        lr_scheduler=args.lr_scheduler,
+        lr_warmup_ratio=args.lr_warmup_ratio,
+        gradient_clip_norm=args.gradient_clip_norm,
+        ema_decay=args.ema_decay,
         device=args.device,
         random_seed=args.random_seed,
         num_workers=args.num_workers,
