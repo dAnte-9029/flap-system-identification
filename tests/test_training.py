@@ -451,6 +451,43 @@ def test_causal_transformer_regressor_forward_shape_with_current_features():
     assert output.shape == (4, 6)
 
 
+def test_causal_transformer_regressor_can_disable_positional_encoding():
+    model = training_module.CausalTransformerRegressor(
+        sequence_input_dim=5,
+        current_input_dim=3,
+        output_dim=6,
+        d_model=32,
+        num_layers=1,
+        num_heads=4,
+        dim_feedforward=64,
+        dropout=0.0,
+        head_hidden_sizes=(8,),
+        use_positional_encoding=False,
+    )
+
+    sequence = torch.randn(4, 64, 5)
+    current = torch.randn(4, 3)
+    output = model(sequence, current)
+
+    assert output.shape == (4, 6)
+    assert model.use_positional_encoding is False
+
+
+def test_apply_sequence_order_ablation_supports_reverse_and_deterministic_shuffle():
+    sequence = np.arange(2 * 4 * 1, dtype=np.float32).reshape(2, 4, 1)
+
+    normal = training_module.apply_sequence_order_ablation(sequence, "normal")
+    reverse = training_module.apply_sequence_order_ablation(sequence, "reverse")
+    shuffle_a = training_module.apply_sequence_order_ablation(sequence, "shuffle", seed=7)
+    shuffle_b = training_module.apply_sequence_order_ablation(sequence, "shuffle", seed=7)
+
+    np.testing.assert_array_equal(normal, sequence)
+    np.testing.assert_array_equal(reverse[:, :, 0], np.array([[3, 2, 1, 0], [7, 6, 5, 4]], dtype=np.float32))
+    np.testing.assert_array_equal(shuffle_a, shuffle_b)
+    assert not np.array_equal(shuffle_a, sequence)
+    assert set(shuffle_a[0, :, 0]) == set(sequence[0, :, 0])
+
+
 def test_causal_transformer_head_film_forward_shape_with_current_features():
     model = training_module.CausalTransformerRegressor(
         sequence_input_dim=5,
@@ -1542,6 +1579,40 @@ def test_temporal_screen_transformer_focused_final_grid_uses_full_budget():
     assert all(config.max_epochs == 50 for config in configs)
     assert all(config.early_stopping_patience == 8 for config in configs)
     assert "transformer_focused_final_hist128_d64_l2_h4_do0" in {config.config_id for config in configs}
+
+
+def test_temporal_screen_history_length_grid_spans_backbones_and_histories():
+    from scripts.run_temporal_backbone_screen import build_screen_configs
+
+    configs = build_screen_configs(stage="history_length")
+
+    assert {config.sequence_history_size for config in configs} == {1, 16, 32, 64, 128, 256}
+    assert {
+        "mlp_paper_no_accel_v2",
+        "causal_gru_paper_no_accel_v2_phase_actuator_airdata",
+        "causal_tcn_paper_no_accel_v2_phase_actuator_airdata",
+        "causal_transformer_paper_no_accel_v2_phase_actuator_airdata",
+    }.issubset({config.recipe_name for config in configs})
+    assert all(config.stage == "history_length" for config in configs)
+
+
+def test_temporal_screen_temporal_order_grid_has_locked_transformer_configs():
+    from scripts.run_temporal_backbone_screen import build_screen_configs
+
+    configs = build_screen_configs(stage="temporal_order")
+
+    assert {
+        "temporal_order_normal_hist128",
+        "temporal_order_no_pos_hist128",
+        "temporal_order_h1",
+    } == {config.config_id for config in configs}
+    assert {config.recipe_name for config in configs} == {
+        "causal_transformer_paper_no_accel_v2_phase_actuator_airdata"
+    }
+    assert {config.sequence_history_size for config in configs} == {1, 128}
+    assert all(config.stage == "temporal_order" for config in configs)
+    no_pos = next(config for config in configs if config.config_id == "temporal_order_no_pos_hist128")
+    assert no_pos.extra_args["transformer_use_positional_encoding"] is False
 
 
 def test_temporal_screen_phase_harmonic_grid_has_four_ablation_configs():

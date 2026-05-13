@@ -11,14 +11,79 @@ Date: 2026-05-11
 因此，单个 train/val/test split 的结果容易受到 test log composition 影响。为了避免 split cherry-picking，主结果应使用：
 
 ```text
-whole-log group K-fold cross-validation
+date-stratified whole-log group K-fold cross-validation
 ```
 
-也就是按 `log_id` 分组做 K-fold。每条 log 必须完整属于某一个 fold 的 test set，不能把同一条 log 的样本打散进 train/test。
+也就是按 `log_id` 分组做 K-fold，同时尽量按 flight date / session 均衡分配。每条 log 必须完整属于某一个 fold 的 test set，不能把同一条 log 的样本打散进 train/test。
 
 可用英文：
 
-> To avoid temporal leakage and reduce sensitivity to a particular held-out log composition, we report whole-log group K-fold cross-validation, where all samples from the same flight log are assigned to the same fold.
+> To avoid temporal leakage and reduce sensitivity to a particular held-out log composition, we report date-stratified whole-log group K-fold cross-validation, where all samples from the same flight log are assigned to the same fold while flight dates are balanced across folds.
+
+## Date-Stratified Fold Construction
+
+不要简单按日志编号连续切分，例如：
+
+```text
+fold 1: logs 1-6
+fold 2: logs 7-12
+...
+```
+
+这种做法可能导致某个 fold 的 test set 主要来自某一天，而 train set 缺少该日期的环境和实机状态。对于实机飞行数据，日期之间可能存在：
+
+```text
+airframe condition changes
+battery / actuator condition changes
+wind and weather changes
+logging / calibration differences
+controller or mission differences
+```
+
+所以 fold construction 应尽量满足：
+
+```text
+1. group by log_id: 同一条 flight log 不拆分
+2. stratify by flight date/session: 每个 fold 的 test logs 尽量覆盖所有日期
+3. train coverage: 每个 fold 的 train logs 也尽量覆盖所有日期
+```
+
+例如有四个日期：
+
+```text
+2026-04-12
+2026-04-14
+2026-04-15
+2026-04-16
+```
+
+5-fold 时更理想的 test 分配是：
+
+```text
+fold 1 test: 04-12 log A, 04-14 log A, 04-15 log A, 04-16 log A
+fold 2 test: 04-12 log B, 04-14 log B, 04-15 log B, 04-16 log B
+...
+```
+
+这样每个 fold 都是跨日期 held-out logs，而不是“某一天整块被拿来测试”。如果某个日期 log 数量太少，无法完美均衡，要在文中说明：
+
+> Folds are approximately date-stratified subject to the available number of logs per flight date.
+
+主结果建议使用 date-stratified whole-log group K-fold。另一个更难的 stress test 可以是：
+
+```text
+leave-one-date-out
+```
+
+区别是：
+
+```text
+date-stratified group K-fold:
+  测试普通跨 log 泛化，train 覆盖所有日期。
+
+leave-one-date-out:
+  测试跨日期 / 跨环境泛化，难度更高，作为 robustness check。
+```
 
 ## Main Result
 

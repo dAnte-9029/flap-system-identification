@@ -467,6 +467,109 @@ def _phase_film_configs(*, final: bool = False) -> list[ScreenConfig]:
     return configs
 
 
+def _history_length_configs() -> list[ScreenConfig]:
+    histories = (1, 16, 32, 64, 128, 256)
+    configs: list[ScreenConfig] = [
+        _config(
+            config_id="history_mlp_current",
+            stage="history_length",
+            recipe_name="mlp_paper_no_accel_v2",
+            hidden_sizes=(128, 128),
+            sequence_history_size=1,
+            max_epochs=20,
+            early_stopping_patience=5,
+            dropout=0.05,
+        )
+    ]
+    for history in histories:
+        configs.extend(
+            [
+                _config(
+                    config_id=f"history_gru_h128_hist{history}",
+                    stage="history_length",
+                    recipe_name="causal_gru_paper_no_accel_v2_phase_actuator_airdata",
+                    hidden_sizes=(128, 128),
+                    sequence_history_size=history,
+                    max_epochs=20,
+                    early_stopping_patience=5,
+                    dropout=0.05,
+                ),
+                _config(
+                    config_id=f"history_tcn_c128_b4_k3_hist{history}",
+                    stage="history_length",
+                    recipe_name="causal_tcn_paper_no_accel_v2_phase_actuator_airdata",
+                    hidden_sizes=(128, 128),
+                    sequence_history_size=history,
+                    max_epochs=20,
+                    early_stopping_patience=5,
+                    dropout=0.05,
+                    extra_args={"tcn_channels": 128, "tcn_num_blocks": 4, "tcn_kernel_size": 3},
+                ),
+                _config(
+                    config_id=f"history_transformer_d64_l2_h4_hist{history}",
+                    stage="history_length",
+                    recipe_name="causal_transformer_paper_no_accel_v2_phase_actuator_airdata",
+                    hidden_sizes=(64, 128),
+                    sequence_history_size=history,
+                    max_epochs=20,
+                    early_stopping_patience=5,
+                    dropout=0.05,
+                    extra_args={
+                        "transformer_d_model": 64,
+                        "transformer_num_layers": 2,
+                        "transformer_num_heads": 4,
+                        "transformer_dim_feedforward": 128,
+                    },
+                ),
+            ]
+        )
+    return configs
+
+
+def _temporal_order_configs() -> list[ScreenConfig]:
+    base_extra_args = {
+        "transformer_d_model": 64,
+        "transformer_num_layers": 2,
+        "transformer_num_heads": 4,
+        "transformer_dim_feedforward": 128,
+    }
+    return [
+        _config(
+            config_id="temporal_order_normal_hist128",
+            stage="temporal_order",
+            recipe_name="causal_transformer_paper_no_accel_v2_phase_actuator_airdata",
+            hidden_sizes=(64, 128),
+            sequence_history_size=128,
+            max_epochs=20,
+            early_stopping_patience=5,
+            dropout=0.05,
+            extra_args=base_extra_args,
+        ),
+        _config(
+            config_id="temporal_order_no_pos_hist128",
+            stage="temporal_order",
+            recipe_name="causal_transformer_paper_no_accel_v2_phase_actuator_airdata",
+            hidden_sizes=(64, 128),
+            sequence_history_size=128,
+            max_epochs=20,
+            early_stopping_patience=5,
+            dropout=0.05,
+            extra_args={**base_extra_args, "transformer_use_positional_encoding": False},
+        ),
+        _config(
+            config_id="temporal_order_h1",
+            stage="temporal_order",
+            recipe_name="causal_transformer_paper_no_accel_v2_phase_actuator_airdata",
+            hidden_sizes=(64, 128),
+            sequence_history_size=1,
+            max_epochs=20,
+            early_stopping_patience=5,
+            dropout=0.05,
+            extra_args=base_extra_args,
+        ),
+    ]
+
+
 def build_screen_configs(stage: str) -> list[ScreenConfig]:
     resolved_stage = stage.lower()
     if resolved_stage == "quick":
@@ -491,6 +594,10 @@ def build_screen_configs(stage: str) -> list[ScreenConfig]:
         return _phase_film_configs(final=False)
     if resolved_stage == "phase_film_final":
         return _phase_film_configs(final=True)
+    if resolved_stage == "history_length":
+        return _history_length_configs()
+    if resolved_stage == "temporal_order":
+        return _temporal_order_configs()
     if resolved_stage == "all":
         return [
             *_quick_configs(),
@@ -504,6 +611,8 @@ def build_screen_configs(stage: str) -> list[ScreenConfig]:
             *_phase_harmonic_configs(final=True),
             *_phase_film_configs(final=False),
             *_phase_film_configs(final=True),
+            *_history_length_configs(),
+            *_temporal_order_configs(),
         ]
     raise ValueError(f"Unknown stage: {stage}")
 
@@ -526,7 +635,15 @@ def _config_row(config: ScreenConfig) -> dict[str, Any]:
 def _stage_sample_defaults(stage: str) -> tuple[int | None, int | None, int | None]:
     if stage == "quick":
         return 65536, 32768, 32768
-    if stage in {"sweep", "tcn_gru_focused", "transformer_focused", "phase_harmonic", "phase_film"}:
+    if stage in {
+        "sweep",
+        "tcn_gru_focused",
+        "transformer_focused",
+        "phase_harmonic",
+        "phase_film",
+        "history_length",
+        "temporal_order",
+    }:
         return 131072, 65536, 65536
     return None, None, None
 
@@ -595,6 +712,8 @@ def parse_args() -> argparse.Namespace:
             "phase_harmonic_final",
             "phase_film",
             "phase_film_final",
+            "history_length",
+            "temporal_order",
             "all",
         ],
         default="quick",
@@ -637,7 +756,13 @@ def main() -> None:
     max_train_samples = args.max_train_samples if args.max_train_samples is not None else default_train
     max_val_samples = args.max_val_samples if args.max_val_samples is not None else default_val
     max_test_samples = args.max_test_samples if args.max_test_samples is not None else default_test
-    skip_test_eval = args.stage in {"transformer_focused", "phase_harmonic", "phase_film"} and not args.include_test_eval
+    skip_test_eval = args.stage in {
+        "transformer_focused",
+        "phase_harmonic",
+        "phase_film",
+        "history_length",
+        "temporal_order",
+    } and not args.include_test_eval
 
     rows: list[dict[str, Any]] = []
     if args.dry_run:

@@ -942,6 +942,7 @@ class CausalTransformerRegressor(nn.Module):
         phase_conditioning_indices: tuple[int, ...] | None = None,
         film_hidden_size: int = 32,
         film_scale: float = 0.1,
+        use_positional_encoding: bool = True,
     ):
         super().__init__()
         if sequence_input_dim <= 0:
@@ -988,6 +989,7 @@ class CausalTransformerRegressor(nn.Module):
         self.phase_conditioning_indices = resolved_phase_conditioning_indices
         self.film_hidden_size = int(film_hidden_size)
         self.film_scale = float(film_scale)
+        self.use_positional_encoding = bool(use_positional_encoding)
         self.input_projection = nn.Linear(self.sequence_input_dim, self.d_model)
         self.position_embedding = nn.Parameter(torch.zeros(1, self.max_history_size, self.d_model))
         self.input_film: _PhaseFiLM | None = None
@@ -1036,7 +1038,8 @@ class CausalTransformerRegressor(nn.Module):
         if self.input_film is not None:
             conditioner = sequence_inputs[:, :, list(self.phase_conditioning_indices)]
             embedded = self.input_film(embedded, conditioner)
-        embedded = embedded + self.position_embedding[:, :history_size, :]
+        if self.use_positional_encoding:
+            embedded = embedded + self.position_embedding[:, :history_size, :]
         mask = torch.triu(
             torch.ones(history_size, history_size, dtype=torch.bool, device=sequence_inputs.device),
             diagonal=1,
@@ -2805,6 +2808,21 @@ def _transform_sequence_features(
     return transformed.reshape(features.shape).astype(np.float32, copy=False)
 
 
+def apply_sequence_order_ablation(sequence_features: np.ndarray, mode: str, *, seed: int = 42) -> np.ndarray:
+    normalized = (mode or "normal").lower()
+    if normalized == "normal":
+        return sequence_features.astype(np.float32, copy=True)
+    if normalized == "reverse":
+        return sequence_features[:, ::-1, :].astype(np.float32, copy=True)
+    if normalized == "shuffle":
+        shuffled = sequence_features.astype(np.float32, copy=True)
+        rng = np.random.default_rng(seed)
+        for sample_idx in range(shuffled.shape[0]):
+            shuffled[sample_idx] = shuffled[sample_idx, rng.permutation(shuffled.shape[1]), :]
+        return shuffled
+    raise ValueError(f"Unknown sequence order ablation mode: {mode}")
+
+
 def _fit_rollout_feature_stats(features: np.ndarray) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
     flat = features.reshape(-1, features.shape[-1])
     return _fit_feature_stats(flat)
@@ -2843,6 +2861,7 @@ def _build_sequence_regressor(
     phase_conditioning_indices: tuple[int, ...] | None = None,
     film_hidden_size: int = 32,
     film_scale: float = 0.1,
+    transformer_use_positional_encoding: bool = True,
 ) -> nn.Module:
     if not hidden_sizes:
         raise ValueError("hidden_sizes must not be empty for sequence models")
@@ -2914,6 +2933,7 @@ def _build_sequence_regressor(
             phase_conditioning_indices=phase_conditioning_indices,
             film_hidden_size=film_hidden_size,
             film_scale=film_scale,
+            use_positional_encoding=transformer_use_positional_encoding,
         )
     if model_type == "causal_tcn_gru":
         return CausalTCNGRURegressor(
@@ -2966,6 +2986,7 @@ def fit_torch_sequence_regressor(
     transformer_num_layers: int = 1,
     transformer_num_heads: int = 4,
     transformer_dim_feedforward: int = 128,
+    transformer_use_positional_encoding: bool = True,
     lr_scheduler: str | None = None,
     lr_warmup_ratio: float = 0.0,
     gradient_clip_norm: float | None = None,
@@ -3104,6 +3125,7 @@ def fit_torch_sequence_regressor(
         phase_conditioning_indices=phase_conditioning_indices,
         film_hidden_size=film_hidden_size,
         film_scale=film_scale,
+        transformer_use_positional_encoding=transformer_use_positional_encoding,
     ).to(resolved_device)
     optimizer = torch.optim.AdamW(model.parameters(), lr=learning_rate, weight_decay=weight_decay)
     total_training_steps = max(len(train_loader) * int(max_epochs), 1)
@@ -3262,6 +3284,7 @@ def fit_torch_sequence_regressor(
         "transformer_num_layers": int(transformer_num_layers),
         "transformer_num_heads": int(transformer_num_heads),
         "transformer_dim_feedforward": int(transformer_dim_feedforward),
+        "transformer_use_positional_encoding": bool(transformer_use_positional_encoding),
         "film_mode": film_mode,
         "phase_conditioning_columns": phase_conditioning_columns,
         "phase_conditioning_indices": list(phase_conditioning_indices or []),
@@ -3951,6 +3974,7 @@ def _build_sequence_model_from_bundle(bundle: dict[str, Any], device: torch.devi
         phase_conditioning_indices=tuple(int(v) for v in bundle.get("phase_conditioning_indices", [])),
         film_hidden_size=int(bundle.get("film_hidden_size", 32)),
         film_scale=float(bundle.get("film_scale", 0.1)),
+        transformer_use_positional_encoding=bool(bundle.get("transformer_use_positional_encoding", True)),
     ).to(device)
     model.load_state_dict(bundle["model_state_dict"])
     model.eval()
@@ -4554,6 +4578,7 @@ def run_training_job(
     transformer_num_layers: int = 1,
     transformer_num_heads: int = 4,
     transformer_dim_feedforward: int = 128,
+    transformer_use_positional_encoding: bool = True,
     latent_size: int = 16,
     dt_over_tau: float = 0.03,
     ct_integrator: str = "euler",
@@ -4610,6 +4635,7 @@ def run_training_job(
             transformer_num_layers=transformer_num_layers,
             transformer_num_heads=transformer_num_heads,
             transformer_dim_feedforward=transformer_dim_feedforward,
+            transformer_use_positional_encoding=transformer_use_positional_encoding,
             lr_scheduler=lr_scheduler,
             lr_warmup_ratio=lr_warmup_ratio,
             gradient_clip_norm=gradient_clip_norm,
@@ -4751,6 +4777,7 @@ def run_training_job(
                 "transformer_num_layers": bundle.get("transformer_num_layers"),
                 "transformer_num_heads": bundle.get("transformer_num_heads"),
                 "transformer_dim_feedforward": bundle.get("transformer_dim_feedforward"),
+                "transformer_use_positional_encoding": bundle.get("transformer_use_positional_encoding"),
                 "film_mode": bundle.get("film_mode"),
                 "phase_conditioning_columns": bundle.get("phase_conditioning_columns"),
                 "phase_conditioning_indices": bundle.get("phase_conditioning_indices"),
@@ -4988,6 +5015,7 @@ def _run_single_baseline_recipe(
     transformer_num_layers: int,
     transformer_num_heads: int,
     transformer_dim_feedforward: int,
+    transformer_use_positional_encoding: bool,
     latent_size: int,
     dt_over_tau: float,
     ct_integrator: str,
@@ -5014,6 +5042,7 @@ def _run_single_baseline_recipe(
     resolved_transformer_num_layers = int(transformer_num_layers)
     resolved_transformer_num_heads = int(transformer_num_heads)
     resolved_transformer_dim_feedforward = int(transformer_dim_feedforward)
+    resolved_transformer_use_positional_encoding = bool(transformer_use_positional_encoding)
     resolved_latent_size = int(latent_size)
     resolved_dt_over_tau = float(dt_over_tau)
     resolved_ct_integrator = str(ct_integrator)
@@ -5061,6 +5090,7 @@ def _run_single_baseline_recipe(
         transformer_num_layers=resolved_transformer_num_layers,
         transformer_num_heads=resolved_transformer_num_heads,
         transformer_dim_feedforward=resolved_transformer_dim_feedforward,
+        transformer_use_positional_encoding=resolved_transformer_use_positional_encoding,
         latent_size=resolved_latent_size,
         dt_over_tau=resolved_dt_over_tau,
         ct_integrator=resolved_ct_integrator,
@@ -5099,6 +5129,7 @@ def _run_single_baseline_recipe(
         "transformer_num_layers": training_config.get("transformer_num_layers"),
         "transformer_num_heads": training_config.get("transformer_num_heads"),
         "transformer_dim_feedforward": training_config.get("transformer_dim_feedforward"),
+        "transformer_use_positional_encoding": training_config.get("transformer_use_positional_encoding"),
         "lr_scheduler": training_config.get("lr_scheduler"),
         "lr_warmup_ratio": training_config.get("lr_warmup_ratio"),
         "lr_warmup_steps": training_config.get("lr_warmup_steps"),
@@ -5153,6 +5184,7 @@ def _run_split_axis_baseline_recipe(
     transformer_num_layers: int,
     transformer_num_heads: int,
     transformer_dim_feedforward: int,
+    transformer_use_positional_encoding: bool,
     latent_size: int,
     dt_over_tau: float,
     ct_integrator: str,
@@ -5281,6 +5313,7 @@ def run_baseline_comparison(
     transformer_num_layers: int = 1,
     transformer_num_heads: int = 4,
     transformer_dim_feedforward: int = 128,
+    transformer_use_positional_encoding: bool = True,
     latent_size: int = 16,
     dt_over_tau: float = 0.03,
     ct_integrator: str = "euler",
@@ -5338,6 +5371,7 @@ def run_baseline_comparison(
             "transformer_num_layers": transformer_num_layers,
             "transformer_num_heads": transformer_num_heads,
             "transformer_dim_feedforward": transformer_dim_feedforward,
+            "transformer_use_positional_encoding": transformer_use_positional_encoding,
             "latent_size": latent_size,
             "dt_over_tau": dt_over_tau,
             "ct_integrator": ct_integrator,
