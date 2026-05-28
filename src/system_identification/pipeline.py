@@ -31,6 +31,10 @@ from system_identification.resample import (
     linear_resample,
     zoh_resample,
 )
+from system_identification.signal_preprocessing import (
+    groupwise_cubic_spline_derivative,
+    groupwise_savgol_derivative,
+)
 
 
 TARGET_RATE_HZ = 100.0
@@ -273,6 +277,23 @@ def compute_smoothed_kinematic_derivatives(
     window_s: float = 0.12,
     polyorder: int = 2,
 ) -> pd.DataFrame:
+    return compute_kinematic_derivatives(
+        samples,
+        method="savgol",
+        window_s=window_s,
+        polyorder=polyorder,
+        group_columns=[group_column],
+    )
+
+
+def compute_kinematic_derivatives(
+    samples: pd.DataFrame,
+    *,
+    method: str = "savgol",
+    window_s: float = 0.12,
+    polyorder: int = 2,
+    group_columns: list[str] | None = None,
+) -> pd.DataFrame:
     required_columns = [
         "time_s",
         "vehicle_local_position.vx",
@@ -287,27 +308,53 @@ def compute_smoothed_kinematic_derivatives(
         raise ValueError(f"Missing columns for smoothed derivatives: {missing}")
 
     derivative_specs = [
-        ("vehicle_local_position.vx", "vehicle_local_position.ax_smooth"),
-        ("vehicle_local_position.vy", "vehicle_local_position.ay_smooth"),
-        ("vehicle_local_position.vz", "vehicle_local_position.az_smooth"),
-        ("vehicle_angular_velocity.xyz[0]", "vehicle_angular_velocity.xyz_derivative_smooth[0]"),
-        ("vehicle_angular_velocity.xyz[1]", "vehicle_angular_velocity.xyz_derivative_smooth[1]"),
-        ("vehicle_angular_velocity.xyz[2]", "vehicle_angular_velocity.xyz_derivative_smooth[2]"),
+        ("vehicle_local_position.vx", "vehicle_local_position.ax_smooth", "vehicle_local_position.ax"),
+        ("vehicle_local_position.vy", "vehicle_local_position.ay_smooth", "vehicle_local_position.ay"),
+        ("vehicle_local_position.vz", "vehicle_local_position.az_smooth", "vehicle_local_position.az"),
+        (
+            "vehicle_angular_velocity.xyz[0]",
+            "vehicle_angular_velocity.xyz_derivative_smooth[0]",
+            "vehicle_angular_velocity.xyz_derivative[0]",
+        ),
+        (
+            "vehicle_angular_velocity.xyz[1]",
+            "vehicle_angular_velocity.xyz_derivative_smooth[1]",
+            "vehicle_angular_velocity.xyz_derivative[1]",
+        ),
+        (
+            "vehicle_angular_velocity.xyz[2]",
+            "vehicle_angular_velocity.xyz_derivative_smooth[2]",
+            "vehicle_angular_velocity.xyz_derivative[2]",
+        ),
     ]
     output = pd.DataFrame(index=samples.index)
-    for _, output_column in derivative_specs:
+    for _, output_column, _ in derivative_specs:
         output[output_column] = np.nan
 
-    groups = samples.groupby(group_column, sort=False) if group_column in samples.columns else [(None, samples)]
-    for _, group in groups:
-        time_s = group["time_s"].to_numpy(dtype=float)
-        for input_column, output_column in derivative_specs:
-            output.loc[group.index, output_column] = _smoothed_derivative_for_group(
-                time_s,
-                group[input_column].to_numpy(dtype=float),
+    if method == "raw":
+        for _, output_column, raw_column in derivative_specs:
+            if raw_column in samples.columns:
+                output[output_column] = samples[raw_column].to_numpy(dtype=float)
+        return output
+
+    resolved_groups = ["log_id", "segment_id"] if group_columns is None else group_columns
+    for input_column, output_column, _ in derivative_specs:
+        if method == "savgol":
+            output[output_column] = groupwise_savgol_derivative(
+                samples,
+                input_column,
                 window_s=window_s,
                 polyorder=polyorder,
+                group_columns=resolved_groups,
             )
+        elif method == "cubic_spline":
+            output[output_column] = groupwise_cubic_spline_derivative(
+                samples,
+                input_column,
+                group_columns=resolved_groups,
+            )
+        else:
+            raise ValueError(f"Unknown kinematic derivative method: {method}")
 
     return output
 
