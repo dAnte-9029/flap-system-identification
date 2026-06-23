@@ -47,6 +47,13 @@ MODEL_FORM_PREFERENCE = {
     "direct_residual": 2,
 }
 VALIDATION_TIE_TOLERANCE = 1.0e-12
+RATIO8_PHASE_SCALE = 7.5 / 8.0
+TWO_PI = 2.0 * np.pi
+PHASE_METADATA_COLUMNS = (
+    "phase_ratio8_rad",
+    "phase_ratio8_clipped_rad",
+    "phase_corrected_rad",
+)
 
 BASE_FEATURES = (
     "phase_sin_1",
@@ -212,6 +219,43 @@ def _numeric_series(frame: pd.DataFrame, column: str | None, default: float = 0.
     return pd.to_numeric(frame[column], errors="coerce").astype(float)
 
 
+def ensure_ratio8_phase_columns(frame: pd.DataFrame) -> pd.DataFrame:
+    """Return a frame with the offline ratio-8 phase columns used by the paper rerun."""
+
+    if "phase_ratio8_clipped_rad" in frame.columns and "phase_ratio8_rad" in frame.columns:
+        return frame
+
+    source_column = _first_existing(("wing_phase.phase_unwrapped_rad", "phase_raw_unwrapped_rad"), frame)
+    if source_column is None:
+        return frame
+
+    out = frame.copy()
+    if "phase_ratio8_rad" not in out.columns:
+        out["phase_ratio8_rad"] = _numeric_series(out, source_column) * RATIO8_PHASE_SCALE
+    if "phase_ratio8_clipped_rad" not in out.columns:
+        out["phase_ratio8_clipped_rad"] = np.minimum(
+            out["phase_ratio8_rad"].to_numpy(dtype=float),
+            np.nextafter(TWO_PI, 0.0),
+        )
+    return out
+
+
+def _resolve_phase_column(frame: pd.DataFrame) -> tuple[str | None, pd.Series]:
+    with_ratio8 = ensure_ratio8_phase_columns(frame)
+    phase_column = _first_existing(
+        (
+            "phase_ratio8_clipped_rad",
+            "wing_phase.phase_rad",
+            "drive_phase_rad",
+            "encoder_phase_rad",
+            "phase_raw_rad",
+            "phase_corrected_rad",
+        ),
+        with_ratio8,
+    )
+    return phase_column, _numeric_series(with_ratio8, phase_column)
+
+
 def _body_velocity_from_attitude(frame: pd.DataFrame) -> tuple[pd.Series, pd.Series, pd.Series] | None:
     q_columns = [f"vehicle_attitude.q[{idx}]" for idx in range(4)]
     v_columns = ["vehicle_local_position.vx", "vehicle_local_position.vy", "vehicle_local_position.vz"]
@@ -272,6 +316,7 @@ def _derive_alpha_rad(frame: pd.DataFrame) -> tuple[pd.Series, str]:
 def build_v2_feature_frame(frame: pd.DataFrame) -> tuple[pd.DataFrame, dict[str, object]]:
     """Build deployable v2 feature columns from raw samples or already-derived frames."""
 
+    frame = ensure_ratio8_phase_columns(frame)
     if all(column in frame.columns for column in BASE_FEATURES):
         features = frame.loc[:, [column for column in (*BASE_FEATURES, *RATE_FEATURES, *CONTROL_FEATURES, *LATERAL_FEATURES, *INTERACTION_FEATURES) if column in frame.columns]].copy()
         return features, {
@@ -282,7 +327,7 @@ def build_v2_feature_frame(frame: pd.DataFrame) -> tuple[pd.DataFrame, dict[str,
         }
 
     spec: dict[str, object] = {"uses_true_force": False, "warnings": [], "feature_sources": {}}
-    phase_column = _first_existing(("phase_corrected_rad", "wing_phase.phase_rad", "drive_phase_rad", "encoder_phase_rad", "phase_raw_rad"), frame)
+    phase_column, phase = _resolve_phase_column(frame)
     frequency_column = _first_existing(("cycle_flap_frequency_hz", "flap_frequency_hz", "encoder_rpm_est"), frame)
     airspeed_column = _first_existing(
         (
@@ -294,7 +339,6 @@ def build_v2_feature_frame(frame: pd.DataFrame) -> tuple[pd.DataFrame, dict[str,
         frame,
     )
     density_column = _first_existing(("vehicle_air_data.rho", "rho"), frame)
-    phase = _numeric_series(frame, phase_column)
     flap_frequency = _numeric_series(frame, frequency_column)
     if frequency_column == "encoder_rpm_est":
         flap_frequency = flap_frequency / 60.0
@@ -810,12 +854,17 @@ def _load_v1_force(root: Path, split: str, n: int) -> np.ndarray:
 
 def _load_cli_split(split: str, split_root: Path, prior_root: Path, force_v1_root: Path) -> pd.DataFrame:
     samples = pd.read_parquet(split_root / f"{split}_samples.parquet")
+    samples = ensure_ratio8_phase_columns(samples)
     prior = pd.read_parquet(prior_root / f"{split}_predictions.parquet")
     if len(samples) != len(prior):
         raise ValueError(f"{split} row mismatch: samples={len(samples)} prior={len(prior)}")
     features, _ = build_v2_feature_frame(samples)
     frame = features.copy()
-    metadata_columns = [column for column in ("timestamp_us", "time_s", "log_id", "segment_id", "cycle_id", "phase_corrected_rad", "split") if column in samples.columns]
+    metadata_columns = [
+        column
+        for column in ("timestamp_us", "time_s", "log_id", "segment_id", "cycle_id", *PHASE_METADATA_COLUMNS, "split")
+        if column in samples.columns
+    ]
     for column in metadata_columns:
         frame[column] = samples[column].to_numpy()
     if "split" not in frame:
@@ -843,7 +892,7 @@ def _write_predictions(output_root: Path, split_frames: dict[str, pd.DataFrame],
     prediction_dir = output_root / "prediction_parquets"
     prediction_dir.mkdir(parents=True, exist_ok=True)
     paths: dict[str, Path] = {}
-    metadata_columns = ("timestamp_us", "time_s", "log_id", "segment_id", "cycle_id", "phase_corrected_rad", "split")
+    metadata_columns = ("timestamp_us", "time_s", "log_id", "segment_id", "cycle_id", *PHASE_METADATA_COLUMNS, "split")
     for split, frame in split_frames.items():
         out = frame.loc[:, [column for column in metadata_columns if column in frame.columns]].copy()
         force_v2 = force_model.predict_force(frame)

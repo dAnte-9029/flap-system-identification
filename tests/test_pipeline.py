@@ -111,7 +111,7 @@ def test_assemble_canonical_samples_emits_phase_and_nan_labels_when_metadata_inc
         },
         "flapping_drive": {
             "encoder_counts_per_rev": 4096,
-            "encoder_to_drive_ratio": {"value": 7.5},
+            "encoder_to_drive_ratio": {"value": 8.0},
             "encoder_to_drive_sign": 1.0,
             "drive_phase_zero_offset_rad": 0.0,
             "wing_stroke_amplitude_rad": {"value": float(np.deg2rad(30.0))},
@@ -129,8 +129,13 @@ def test_assemble_canonical_samples_emits_phase_and_nan_labels_when_metadata_inc
     assert "cycle_id" in samples.columns
     assert "cycle_valid" in samples.columns
     assert "wing_stroke_angle_rad" in samples.columns
+    assert "flap_frequency_topic_hz" in samples.columns
+    assert "flap_frequency_hz_source" in samples.columns
     assert "motor_cmd_0" in samples.columns
     assert samples["phase_source"].eq("encoder_count_fallback").all()
+    np.testing.assert_allclose(samples["flap_frequency_topic_hz"].to_numpy(), 2.0)
+    np.testing.assert_allclose(samples["flap_frequency_hz"].to_numpy(), 95.0 / (60.0 * 8.0))
+    assert samples["flap_frequency_hz_source"].eq("encoder_rpm_est_metadata_ratio").all()
     assert samples["fx_b"].isna().all()
     assert samples["mx_b"].isna().all()
 
@@ -145,7 +150,7 @@ def test_assemble_canonical_samples_resamples_direct_airspeed_fields():
         },
         "flapping_drive": {
             "encoder_counts_per_rev": 4096,
-            "encoder_to_drive_ratio": {"value": 7.5},
+            "encoder_to_drive_ratio": {"value": 8.0},
             "encoder_to_drive_sign": 1.0,
             "drive_phase_zero_offset_rad": 0.0,
             "wing_stroke_amplitude_rad": {"value": float(np.deg2rad(30.0))},
@@ -198,7 +203,7 @@ def test_assemble_canonical_samples_emits_nan_for_missing_direct_airspeed_fields
         },
         "flapping_drive": {
             "encoder_counts_per_rev": 4096,
-            "encoder_to_drive_ratio": {"value": 7.5},
+            "encoder_to_drive_ratio": {"value": 8.0},
             "encoder_to_drive_sign": 1.0,
             "drive_phase_zero_offset_rad": 0.0,
             "wing_stroke_amplitude_rad": {"value": float(np.deg2rad(30.0))},
@@ -234,7 +239,7 @@ def test_assemble_canonical_samples_computes_effective_wrench_labels_from_comple
         },
         "flapping_drive": {
             "encoder_counts_per_rev": 4096,
-            "encoder_to_drive_ratio": {"value": 7.5},
+            "encoder_to_drive_ratio": {"value": 8.0},
             "encoder_to_drive_sign": 1.0,
             "drive_phase_zero_offset_rad": 0.0,
             "wing_stroke_amplitude_rad": {"value": float(np.deg2rad(30.0))},
@@ -543,7 +548,7 @@ def test_assemble_canonical_samples_prefers_wing_phase_and_emits_corrected_cycle
         },
         "flapping_drive": {
             "encoder_counts_per_rev": 4096,
-            "encoder_to_drive_ratio": {"value": 7.5},
+            "encoder_to_drive_ratio": {"value": 8.0},
             "encoder_to_drive_sign": 1.0,
             "drive_phase_zero_offset_rad": 0.0,
             "wing_stroke_amplitude_rad": {"value": float(np.deg2rad(30.0))},
@@ -574,6 +579,15 @@ def test_assemble_canonical_samples_prefers_wing_phase_and_emits_corrected_cycle
     samples = assemble_canonical_samples(grid_us=grid_us, topic_frames=topic_frames, metadata=metadata)
 
     assert samples["phase_source"].eq("wing_phase").all()
+    assert samples["mechanical_phase_source"].eq("wing_phase").all()
+    np.testing.assert_allclose(samples["mechanical_phase_rad"].to_numpy(), samples["wing_phase.phase_rad"].to_numpy())
+    assert samples["flap_frequency_hz_source"].eq("wing_phase.flap_frequency_hz").all()
+    np.testing.assert_allclose(samples["flap_frequency_topic_hz"].to_numpy(), np.array([0.0] + [4.8] * 10))
+    np.testing.assert_allclose(samples["flap_frequency_hz"].to_numpy(), np.array([0.0] + [4.8] * 10))
+    np.testing.assert_allclose(
+        samples["wing_stroke_angle_rad"].to_numpy(),
+        float(np.deg2rad(30.0)) * np.sin(samples["phase_raw_rad"].to_numpy()),
+    )
     assert samples["cycle_id"].tolist() == [-1, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2]
     assert samples["cycle_valid"].tolist() == [False, False, False, False, True, True, True, True, False, False, False]
     expected_corrected = 2.0 * np.pi * np.array([0.0, 2.0, 4.1, 6.3]) / 6.3

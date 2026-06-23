@@ -502,16 +502,13 @@ def assemble_canonical_samples(
         drive_phase_zero_offset_rad=drive_phase_zero_offset_rad,
     )
 
-    wing_stroke = compute_wing_stroke_angle_rad(
-        drive_phase_rad=drive_wrapped,
-        wing_stroke_amplitude_rad=_as_float(
-            nested_value(metadata, "flapping_drive", "wing_stroke_amplitude_rad"),
-            default=float(np.deg2rad(30.0)),
-        ),
-        wing_stroke_phase_offset_rad=_as_float(
-            nested_value(metadata, "flapping_drive", "wing_stroke_phase_offset_rad"),
-            default=0.0,
-        ),
+    wing_stroke_amplitude_rad = _as_float(
+        nested_value(metadata, "flapping_drive", "wing_stroke_amplitude_rad"),
+        default=float(np.deg2rad(30.0)),
+    )
+    wing_stroke_phase_offset_rad = _as_float(
+        nested_value(metadata, "flapping_drive", "wing_stroke_phase_offset_rad"),
+        default=0.0,
     )
 
     samples["encoder_phase_rad"] = encoder_resampled_wrapped
@@ -520,15 +517,6 @@ def assemble_canonical_samples(
     samples["drive_phase_unwrapped_rad"] = drive_unwrapped
     samples["drive_phase_sin"] = np.sin(drive_wrapped)
     samples["drive_phase_cos"] = np.cos(drive_wrapped)
-    samples["wing_stroke_angle_rad"] = wing_stroke
-    samples["wing_stroke_angle_deg"] = np.rad2deg(wing_stroke)
-    samples["wing_stroke_direction"] = compute_wing_stroke_direction(
-        drive_phase_rad=drive_wrapped,
-        wing_stroke_phase_offset_rad=_as_float(
-            nested_value(metadata, "flapping_drive", "wing_stroke_phase_offset_rad"),
-            default=0.0,
-        ),
-    )
     samples["encoder_total_count"] = linear_resample(
         encoder_frame["event_time_us"].to_numpy(),
         encoder_frame["total_count"].to_numpy(),
@@ -560,15 +548,16 @@ def assemble_canonical_samples(
 
     if "flap_frequency" in topic_frames and topic_frames["flap_frequency"] is not None:
         flap_frame = topic_frames["flap_frequency"]
-        samples["flap_frequency_hz"] = linear_resample(
+        samples["flap_frequency_topic_hz"] = linear_resample(
             flap_frame["event_time_us"].to_numpy(),
             flap_frame["frequency_hz"].to_numpy(),
             grid_us,
         )
     else:
-        samples["flap_frequency_hz"] = np.nan
+        samples["flap_frequency_topic_hz"] = np.nan
 
     wing_phase_frame = topic_frames.get("wing_phase")
+    wing_phase_frequency_hz: np.ndarray | None = None
     if wing_phase_frame is not None and not wing_phase_frame.empty:
         wing_phase_raw, wing_phase_age_s, wing_phase_topic_valid = zoh_resample(
             wing_phase_frame["event_time_us"].to_numpy(),
@@ -598,11 +587,59 @@ def assemble_canonical_samples(
         samples["wing_phase.phase_unwrapped_rad"] = wing_phase_unwrapped
         samples["wing_phase.phase_age_s"] = wing_phase_age_s
         samples["wing_phase.phase_valid"] = phase_valid
+        if "flap_frequency_hz" in wing_phase_frame.columns:
+            wing_phase_frequency_hz, wing_phase_frequency_age_s, wing_phase_frequency_valid = zoh_resample(
+                wing_phase_frame["event_time_us"].to_numpy(),
+                wing_phase_frame["flap_frequency_hz"].to_numpy(),
+                grid_us,
+                freshness_s=PHASE_FRESHNESS_S,
+            )
+            wing_phase_frequency_hz = np.where(wing_phase_frequency_valid, wing_phase_frequency_hz, np.nan)
+            samples["wing_phase.flap_frequency_hz"] = wing_phase_frequency_hz
+            samples["wing_phase.flap_frequency_age_s"] = wing_phase_frequency_age_s
 
     samples["phase_source"] = phase_source
     samples["phase_raw_rad"] = phase_raw
     samples["phase_raw_unwrapped_rad"] = phase_raw_unwrapped
     samples["phase_valid"] = phase_valid
+    samples["mechanical_phase_rad"] = phase_raw
+    samples["mechanical_phase_unwrapped_rad"] = phase_raw_unwrapped
+    samples["mechanical_phase_source"] = phase_source
+
+    n_samples = len(samples)
+    flap_frequency = np.full(n_samples, np.nan, dtype=float)
+    flap_frequency_source = np.full(n_samples, "missing", dtype=object)
+
+    topic_frequency = samples["flap_frequency_topic_hz"].to_numpy(dtype=float)
+    topic_mask = np.isfinite(topic_frequency)
+    flap_frequency[topic_mask] = topic_frequency[topic_mask]
+    flap_frequency_source[topic_mask] = "flap_frequency_topic_fallback_unverified"
+
+    if "encoder_rpm_est" in samples.columns:
+        encoder_frequency = np.abs(samples["encoder_rpm_est"].to_numpy(dtype=float)) / (60.0 * encoder_to_drive_ratio)
+        encoder_mask = np.isfinite(encoder_frequency)
+        flap_frequency[encoder_mask] = encoder_frequency[encoder_mask]
+        flap_frequency_source[encoder_mask] = "encoder_rpm_est_metadata_ratio"
+
+    if wing_phase_frequency_hz is not None:
+        wing_frequency = np.asarray(wing_phase_frequency_hz, dtype=float)
+        wing_mask = np.isfinite(wing_frequency)
+        flap_frequency[wing_mask] = wing_frequency[wing_mask]
+        flap_frequency_source[wing_mask] = "wing_phase.flap_frequency_hz"
+
+    samples["flap_frequency_hz"] = flap_frequency
+    samples["flap_frequency_hz_source"] = flap_frequency_source
+    wing_stroke = compute_wing_stroke_angle_rad(
+        drive_phase_rad=phase_raw,
+        wing_stroke_amplitude_rad=wing_stroke_amplitude_rad,
+        wing_stroke_phase_offset_rad=wing_stroke_phase_offset_rad,
+    )
+    samples["wing_stroke_angle_rad"] = wing_stroke
+    samples["wing_stroke_angle_deg"] = np.rad2deg(wing_stroke)
+    samples["wing_stroke_direction"] = compute_wing_stroke_direction(
+        drive_phase_rad=phase_raw,
+        wing_stroke_phase_offset_rad=wing_stroke_phase_offset_rad,
+    )
 
     phase_annotations = annotate_phase_cycles(
         time_s=samples["time_s"].to_numpy(),

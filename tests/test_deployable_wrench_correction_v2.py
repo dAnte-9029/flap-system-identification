@@ -14,6 +14,7 @@ from scripts.train_deployable_wrench_correction_v2 import (
     FORCE_TARGETS,
     MOMENT_TARGETS,
     build_v2_feature_frame,
+    ensure_ratio8_phase_columns,
     cross_arm_force,
     fit_force_correction_models,
     fit_moment_correction_models,
@@ -24,6 +25,44 @@ from scripts.train_deployable_wrench_correction_v2 import (
     predict_moment_model,
     v2_feature_groups,
 )
+
+
+def test_build_v2_feature_frame_prefers_ratio8_phase_over_cycle_corrected_phase() -> None:
+    frame = pd.DataFrame(
+        {
+            "phase_ratio8_clipped_rad": [np.pi / 2.0, np.pi],
+            "phase_corrected_rad": [0.0, 0.0],
+            "cycle_flap_frequency_hz": [4.0, 5.0],
+            "airspeed_validated.true_airspeed_m_s": [10.0, 12.0],
+            "vehicle_air_data.rho": [1.2, 1.1],
+            "alpha_rad": [0.1, 0.2],
+        }
+    )
+
+    features, spec = build_v2_feature_frame(frame)
+
+    assert spec["phase_column"] == "phase_ratio8_clipped_rad"
+    np.testing.assert_allclose(features["phase_sin_1"].to_numpy(), [1.0, 0.0], atol=1e-12)
+    np.testing.assert_allclose(features["phase_cos_1"].to_numpy(), [0.0, -1.0], atol=1e-12)
+
+
+def test_ensure_ratio8_phase_columns_rescales_logged_wing_phase_without_modulo() -> None:
+    two_pi = 2.0 * np.pi
+    frame = pd.DataFrame(
+        {
+            "wing_phase.phase_unwrapped_rad": [0.0, two_pi, two_pi * 8.0 / 7.5],
+        }
+    )
+
+    out = ensure_ratio8_phase_columns(frame)
+
+    expected_clip = np.nextafter(two_pi, 0.0)
+    np.testing.assert_allclose(out["phase_ratio8_rad"].to_numpy(), [0.0, two_pi * 7.5 / 8.0, two_pi])
+    np.testing.assert_allclose(
+        out["phase_ratio8_clipped_rad"].to_numpy(),
+        [0.0, two_pi * 7.5 / 8.0, expected_clip],
+    )
+    assert out["phase_ratio8_clipped_rad"].iloc[-1] < two_pi
 
 
 def test_build_v2_feature_frame_adds_rates_controls_lateral_and_interactions() -> None:

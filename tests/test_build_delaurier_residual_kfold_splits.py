@@ -122,9 +122,11 @@ def test_build_residual_kfold_splits_materializes_log_level_residuals(tmp_path: 
         n_folds=3,
         seed=3,
         prior_name="unit_prior",
+        allow_row_order_fallback=True,
     )
 
     assert manifest["n_folds"] == 3
+    assert manifest["allow_row_order_fallback"] is True
     seen_test_logs: set[str] = set()
     for fold_index in range(3):
         fold_root = output_root / f"fold_{fold_index:02d}"

@@ -34,6 +34,20 @@ def test_compute_drive_phase_rad_uses_ratio_sign_and_offset():
     assert np.allclose(drive_wrapped, np.array([0.0, np.pi / 2.0, np.pi]))
 
 
+def test_current_aircraft_encoder_ratio_eight_maps_encoder_to_drive_phase():
+    encoder_phase_unwrapped = np.array([0.0, 8.0 * np.pi / 2.0, 8.0 * np.pi])
+
+    drive_unwrapped, drive_wrapped = compute_drive_phase_rad(
+        encoder_phase_unwrapped_rad=encoder_phase_unwrapped,
+        encoder_to_drive_ratio=8.0,
+        encoder_to_drive_sign=1.0,
+        drive_phase_zero_offset_rad=0.0,
+    )
+
+    assert np.allclose(drive_unwrapped, np.array([0.0, np.pi / 2.0, np.pi]))
+    assert np.allclose(drive_wrapped, np.array([0.0, np.pi / 2.0, np.pi]))
+
+
 def test_compute_wing_stroke_angle_and_direction_follow_user_convention():
     drive_phase = np.array([0.0, np.pi / 4.0, np.pi, 7.0 * np.pi / 4.0])
 

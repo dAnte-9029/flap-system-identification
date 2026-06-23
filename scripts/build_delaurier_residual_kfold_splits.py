@@ -99,14 +99,25 @@ def split_date_coverage(fold_logs: pd.DataFrame) -> pd.DataFrame:
     return coverage
 
 
-def _read_residual_source(split_root: Path, prior_root: Path, *, prior_name: str) -> pd.DataFrame:
+def _read_residual_source(
+    split_root: Path,
+    prior_root: Path,
+    *,
+    prior_name: str,
+    allow_row_order_fallback: bool,
+) -> pd.DataFrame:
     frames: list[pd.DataFrame] = []
     for split in SPLITS:
         samples_path = split_root / f"{split}_samples.parquet"
         prior_path = prior_root / f"{split}_predictions.parquet"
         samples = pd.read_parquet(samples_path)
         prior = pd.read_parquet(prior_path)
-        residual = build_residual_frame(samples, prior, prior_name=prior_name)
+        residual = build_residual_frame(
+            samples,
+            prior,
+            prior_name=prior_name,
+            allow_row_order_fallback=allow_row_order_fallback,
+        )
         residual["source_split"] = split
         frames.append(residual)
     if not frames:
@@ -143,6 +154,7 @@ def build_residual_kfold_splits(
     n_folds: int,
     seed: int,
     prior_name: str,
+    allow_row_order_fallback: bool = False,
 ) -> dict[str, object]:
     """Materialize residual train/val/test parquet files for log-level k-fold evaluation."""
 
@@ -150,7 +162,12 @@ def build_residual_kfold_splits(
     if not all_logs_path.exists():
         raise FileNotFoundError(f"missing log table: {all_logs_path}")
     assigned_logs = assign_balanced_log_folds(pd.read_csv(all_logs_path), n_folds=n_folds, seed=seed)
-    residual_source = _read_residual_source(split_root, prior_root, prior_name=prior_name)
+    residual_source = _read_residual_source(
+        split_root,
+        prior_root,
+        prior_name=prior_name,
+        allow_row_order_fallback=allow_row_order_fallback,
+    )
     output_root.mkdir(parents=True, exist_ok=True)
     assigned_logs.to_csv(output_root / "fold_assignments.csv", index=False)
 
@@ -199,6 +216,7 @@ def build_residual_kfold_splits(
         "n_folds": int(n_folds),
         "seed": int(seed),
         "prior_name": str(prior_name),
+        "allow_row_order_fallback": bool(allow_row_order_fallback),
         "fold_policy": "whole-log approximately date-stratified sample-balanced folds",
         "folds": fold_manifests,
     }
@@ -214,6 +232,11 @@ def _parse_args() -> argparse.Namespace:
     parser.add_argument("--n-folds", type=int, default=5)
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--prior-name", default="delaurier_physical_calibrated_v1")
+    parser.add_argument(
+        "--allow-row-order-fallback",
+        action="store_true",
+        help="Allow legacy prior parquets without sample keys to be paired by row order.",
+    )
     return parser.parse_args()
 
 
@@ -226,6 +249,7 @@ def main() -> None:
         n_folds=args.n_folds,
         seed=args.seed,
         prior_name=args.prior_name,
+        allow_row_order_fallback=args.allow_row_order_fallback,
     )
     print(json.dumps(manifest, indent=2, sort_keys=True))
 

@@ -27,6 +27,7 @@ from scripts.analyze_delaurier_residual_frequency import (
     frequency_residual_summary_table,
 )
 from scripts.analyze_delaurier_residual_phase import phase_bin_table, phase_summary_table
+from scripts.build_delaurier_residual_split import align_prior_to_samples
 
 FORCE_COLUMNS = ("fx_b", "fy_b", "fz_b")
 SPLITS = ("train", "val", "test")
@@ -226,14 +227,23 @@ def force_metrics_table(
     return rows
 
 
-def _load_split_frames(split_root: Path, prior_root: Path, split: str) -> tuple[pd.DataFrame, pd.DataFrame]:
+def _load_split_frames(
+    split_root: Path,
+    prior_root: Path,
+    split: str,
+    *,
+    allow_row_order_fallback: bool,
+) -> tuple[pd.DataFrame, pd.DataFrame, dict[str, object]]:
     samples = pd.read_parquet(split_root / f"{split}_samples.parquet")
-    prior = pd.read_parquet(prior_root / f"{split}_predictions.parquet")
-    if len(samples) != len(prior):
-        raise ValueError(f"{split} row mismatch: samples={len(samples)} prior={len(prior)}")
+    raw_prior = pd.read_parquet(prior_root / f"{split}_predictions.parquet")
+    prior, alignment_info = align_prior_to_samples(
+        samples,
+        raw_prior,
+        allow_row_order_fallback=allow_row_order_fallback,
+    )
     _check_force_columns(samples, label=f"{split} samples")
     _check_force_columns(prior, label=f"{split} prior")
-    return samples, prior
+    return samples, prior, alignment_info
 
 
 def _aligned_frame(samples: pd.DataFrame, prior: pd.DataFrame, corrected: pd.DataFrame) -> pd.DataFrame:
@@ -316,11 +326,17 @@ def run_force_recalibration(
     condition_bins: int = 5,
     min_condition_samples: int = 500,
     skip_frequency: bool = False,
+    allow_row_order_fallback: bool = False,
 ) -> dict[str, str]:
     """Fit train-only force wrappers and evaluate all splits."""
 
     output_root.mkdir(parents=True, exist_ok=True)
-    train_samples, train_prior = _load_split_frames(split_root, prior_root, "train")
+    train_samples, train_prior, train_alignment = _load_split_frames(
+        split_root,
+        prior_root,
+        "train",
+        allow_row_order_fallback=allow_row_order_fallback,
+    )
     models = [
         identity_force_model(),
         fit_per_channel_affine(train_prior, train_samples),
@@ -335,9 +351,19 @@ def run_force_recalibration(
     frequency_tables: list[pd.DataFrame] = []
     frequency_summaries: list[pd.DataFrame] = []
     row_counts: dict[str, int] = {}
+    alignment: dict[str, object] = {"train": train_alignment}
 
     for split in SPLITS:
-        samples, prior = (train_samples, train_prior) if split == "train" else _load_split_frames(split_root, prior_root, split)
+        if split == "train":
+            samples, prior = train_samples, train_prior
+        else:
+            samples, prior, split_alignment = _load_split_frames(
+                split_root,
+                prior_root,
+                split,
+                allow_row_order_fallback=allow_row_order_fallback,
+            )
+            alignment[split] = split_alignment
         row_counts[split] = int(len(samples))
         for model in models:
             corrected = apply_force_model(prior, model)
@@ -438,6 +464,7 @@ def run_force_recalibration(
             "They are not IsaacLab internal DeLaurier aerodynamic parameter recalibrations."
         ),
         "skip_frequency": bool(skip_frequency),
+        "alignment": alignment,
     }
     paths["manifest"].write_text(json.dumps(manifest, indent=2, sort_keys=True), encoding="utf-8")
     _write_readme(paths["readme"], manifest, summary)
@@ -524,6 +551,11 @@ def _parse_args() -> argparse.Namespace:
     parser.add_argument("--condition-bins", type=int, default=5)
     parser.add_argument("--min-condition-samples", type=int, default=500)
     parser.add_argument("--skip-frequency", action="store_true")
+    parser.add_argument(
+        "--allow-row-order-fallback",
+        action="store_true",
+        help="Allow legacy prior parquets without sample keys to be paired by row order.",
+    )
     return parser.parse_args()
 
 
@@ -538,6 +570,7 @@ def main() -> None:
         condition_bins=args.condition_bins,
         min_condition_samples=args.min_condition_samples,
         skip_frequency=args.skip_frequency,
+        allow_row_order_fallback=args.allow_row_order_fallback,
     )
     print(json.dumps(outputs, indent=2, sort_keys=True))
 
