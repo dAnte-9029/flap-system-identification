@@ -2139,6 +2139,7 @@ def _make_sequence_loader(
     current_features: np.ndarray,
     targets: np.ndarray | None,
     *,
+    prior_targets: np.ndarray | None = None,
     batch_size: int,
     shuffle: bool,
     num_workers: int,
@@ -2147,10 +2148,16 @@ def _make_sequence_loader(
     sequence_tensor = torch.from_numpy(sequence_features.astype(np.float32, copy=False))
     current_tensor = torch.from_numpy(current_features.astype(np.float32, copy=False))
     if targets is None:
+        if prior_targets is not None:
+            raise ValueError("prior_targets require supervised targets")
         dataset = TensorDataset(sequence_tensor, current_tensor)
     else:
         target_tensor = torch.from_numpy(targets.astype(np.float32, copy=False))
-        dataset = TensorDataset(sequence_tensor, current_tensor, target_tensor)
+        if prior_targets is None:
+            dataset = TensorDataset(sequence_tensor, current_tensor, target_tensor)
+        else:
+            prior_tensor = torch.from_numpy(prior_targets.astype(np.float32, copy=False))
+            dataset = TensorDataset(sequence_tensor, current_tensor, target_tensor, prior_tensor)
     return DataLoader(
         dataset,
         batch_size=batch_size,
@@ -2970,6 +2977,8 @@ def fit_torch_sequence_regressor(
     num_workers: int = 0,
     use_amp: bool = True,
     target_loss_weights: str | dict[str, float] | list[float] | tuple[float, ...] | np.ndarray | None = None,
+    prior_target_columns: list[str] | None = None,
+    prior_loss_weight: float = 0.0,
     loss_type: str = "mse",
     huber_delta: float = 1.0,
     sequence_history_size: int = 64,
@@ -2997,6 +3006,12 @@ def fit_torch_sequence_regressor(
     if not _is_sequence_model_type(resolved_model_type):
         raise ValueError(f"Sequence training requires a sequence model_type, got {model_type}")
     resolved_loss_type = _normalized_loss_type(loss_type)
+    resolved_prior_loss_weight = float(prior_loss_weight)
+    if not math.isfinite(resolved_prior_loss_weight) or resolved_prior_loss_weight < 0.0:
+        raise ValueError("prior_loss_weight must be finite and nonnegative")
+    resolved_prior_target_columns = list(prior_target_columns or [])
+    if resolved_prior_loss_weight > 0.0 and not resolved_prior_target_columns:
+        raise ValueError("prior_target_columns are required when prior_loss_weight is positive")
     if huber_delta <= 0.0 or not math.isfinite(float(huber_delta)):
         raise ValueError("huber_delta must be positive and finite")
     if sequence_history_size < 1:
@@ -3017,6 +3032,8 @@ def fit_torch_sequence_regressor(
     pin_memory = resolved_device.type == "cuda"
     base_feature_columns = feature_columns or DEFAULT_FEATURE_COLUMNS
     resolved_target_columns = target_columns or DEFAULT_TARGET_COLUMNS
+    if resolved_prior_target_columns and len(resolved_prior_target_columns) != len(resolved_target_columns):
+        raise ValueError("prior_target_columns must have the same length as target_columns")
     sequence_feature_columns = resolve_sequence_feature_columns(list(base_feature_columns), sequence_feature_mode)
     if not sequence_feature_columns:
         raise ValueError("Sequence models require at least one sequence feature")
@@ -3052,6 +3069,17 @@ def fit_torch_sequence_regressor(
         resolved_target_columns,
         history_size=sequence_history_size,
     )
+    train_prior_targets_df: pd.DataFrame | None = None
+    if resolved_prior_target_columns:
+        _, _, train_prior_targets_df, _ = prepare_causal_sequence_feature_target_frames(
+            train_frame,
+            sequence_feature_columns,
+            current_feature_columns,
+            resolved_prior_target_columns,
+            history_size=sequence_history_size,
+        )
+        if len(train_prior_targets_df) != len(train_targets_df):
+            raise ValueError("prior target rows do not align with supervised target rows")
 
     train_targets = train_targets_df.to_numpy(dtype=np.float32, copy=True)
     val_targets = val_targets_df.to_numpy(dtype=np.float32, copy=True)
@@ -3082,6 +3110,11 @@ def fit_torch_sequence_regressor(
     )
     train_targets_scaled = _transform_targets(train_targets, target_means, target_stds)
     val_targets_scaled = _transform_targets(val_targets, target_means, target_stds)
+    train_prior_targets_scaled = (
+        _transform_targets(train_prior_targets_df.to_numpy(dtype=np.float32, copy=True), target_means, target_stds)
+        if train_prior_targets_df is not None
+        else None
+    )
     target_loss_weights_array = resolve_target_loss_weights(list(train_targets_df.columns), target_loss_weights)
     target_loss_weights_tensor = torch.as_tensor(target_loss_weights_array, dtype=torch.float32, device=resolved_device)
 
@@ -3089,6 +3122,7 @@ def fit_torch_sequence_regressor(
         train_sequence_scaled,
         train_current_scaled,
         train_targets_scaled,
+        prior_targets=train_prior_targets_scaled,
         batch_size=batch_size,
         shuffle=True,
         num_workers=num_workers,
@@ -3151,24 +3185,42 @@ def fit_torch_sequence_regressor(
     for epoch in range(1, max_epochs + 1):
         model.train()
         train_loss_sum = 0.0
+        train_supervised_loss_sum = 0.0
+        train_prior_loss_sum = 0.0
         train_sample_count = 0
 
-        for batch_sequence, batch_current, batch_targets in train_loader:
+        for batch in train_loader:
+            batch_sequence, batch_current, batch_targets = batch[:3]
+            batch_prior_targets = batch[3] if len(batch) == 4 else None
             batch_sequence = batch_sequence.to(resolved_device, non_blocking=True)
             batch_current = batch_current.to(resolved_device, non_blocking=True)
             batch_targets = batch_targets.to(resolved_device, non_blocking=True)
+            if batch_prior_targets is not None:
+                batch_prior_targets = batch_prior_targets.to(resolved_device, non_blocking=True)
             current_arg = batch_current if batch_current.shape[1] > 0 else None
 
             optimizer.zero_grad(set_to_none=True)
             with torch.autocast(device_type=resolved_device.type, dtype=torch.float16, enabled=amp_enabled):
                 predictions = model(batch_sequence, current_arg)
-                loss = regression_loss(
+                supervised_loss = regression_loss(
                     predictions,
                     batch_targets,
                     target_loss_weights=target_loss_weights_tensor,
                     loss_type=resolved_loss_type,
                     huber_delta=huber_delta,
                 )
+                prior_loss = (
+                    regression_loss(
+                        predictions,
+                        batch_prior_targets,
+                        target_loss_weights=target_loss_weights_tensor,
+                        loss_type=resolved_loss_type,
+                        huber_delta=huber_delta,
+                    )
+                    if batch_prior_targets is not None
+                    else torch.zeros((), dtype=predictions.dtype, device=predictions.device)
+                )
+                loss = supervised_loss + resolved_prior_loss_weight * prior_loss
 
             scaler.scale(loss).backward()
             if resolved_gradient_clip_norm is not None:
@@ -3183,9 +3235,13 @@ def fit_torch_sequence_regressor(
 
             batch_count = len(batch_sequence)
             train_loss_sum += float(loss.item()) * batch_count
+            train_supervised_loss_sum += float(supervised_loss.item()) * batch_count
+            train_prior_loss_sum += float(prior_loss.item()) * batch_count
             train_sample_count += batch_count
 
         train_loss = train_loss_sum / max(train_sample_count, 1)
+        train_supervised_loss = train_supervised_loss_sum / max(train_sample_count, 1)
+        train_prior_loss = train_prior_loss_sum / max(train_sample_count, 1)
         evaluation_state = None
         if ema_state is not None:
             evaluation_state = copy.deepcopy(model.state_dict())
@@ -3220,6 +3276,9 @@ def fit_torch_sequence_regressor(
             "epoch": float(epoch),
             "learning_rate": float(optimizer.param_groups[0]["lr"]),
             "train_loss": float(train_loss),
+            "train_total_loss": float(train_loss),
+            "train_supervised_loss": float(train_supervised_loss),
+            "train_prior_loss": float(train_prior_loss),
             "val_loss": float(val_loss),
             "val_overall_mae": float(val_metrics["overall_mae"]),
             "val_overall_rmse": float(val_metrics["overall_rmse"]),
@@ -3261,6 +3320,8 @@ def fit_torch_sequence_regressor(
         "target_stds": target_stds,
         "target_loss_weights": target_loss_weights_array,
         "target_loss_weights_by_name": _target_loss_weights_as_dict(list(train_targets_df.columns), target_loss_weights_array),
+        "prior_target_columns": resolved_prior_target_columns,
+        "prior_loss_weight": float(resolved_prior_loss_weight),
         "loss_type": resolved_loss_type,
         "huber_delta": float(huber_delta),
         "sequence_history_size": int(sequence_history_size),

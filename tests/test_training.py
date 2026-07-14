@@ -25,6 +25,7 @@ from system_identification.training import (
     evaluate_model_bundle_by_log,
     evaluate_model_bundle_by_regime_bins,
     fit_torch_regressor,
+    fit_torch_sequence_regressor,
     prepare_feature_target_frames,
     prepare_windowed_feature_target_frames,
     regression_loss,
@@ -827,6 +828,47 @@ def test_run_training_job_supports_temporal_sequence_model_types(tmp_path: Path,
     assert cfg["model_type"] == model_type
     assert cfg["has_acceleration_inputs"] is False
     assert cfg["has_centered_window"] is False
+
+
+def test_sequence_regressor_records_scaled_prior_anchor_loss() -> None:
+    train = _synthetic_frame(n_rows=48, seed=901)
+    val = _synthetic_frame(n_rows=40, seed=902)
+    for frame, log_id in ((train, "train_log"), (val, "val_log")):
+        frame["log_id"] = log_id
+        frame["segment_id"] = 0
+        frame["time_s"] = np.arange(len(frame), dtype=float) * 0.01
+        frame["prior_fx_b"] = frame["fx_b"] - 0.4
+        frame["prior_fz_b"] = frame["fz_b"] + 0.6
+
+    bundle = fit_torch_sequence_regressor(
+        train_frame=train,
+        val_frame=val,
+        feature_columns=["phase_corrected_sin", "motor_cmd_0"],
+        target_columns=["fx_b", "fz_b"],
+        prior_target_columns=["prior_fx_b", "prior_fz_b"],
+        prior_loss_weight=0.1,
+        model_type="causal_tcn",
+        hidden_sizes=(8,),
+        batch_size=16,
+        max_epochs=1,
+        early_stopping_patience=1,
+        sequence_history_size=4,
+        sequence_feature_mode="all",
+        current_feature_mode="remaining_current",
+        tcn_channels=8,
+        tcn_num_blocks=1,
+        device="cpu",
+        use_amp=False,
+        random_seed=903,
+    )
+
+    assert bundle["prior_target_columns"] == ["prior_fx_b", "prior_fz_b"]
+    assert bundle["prior_loss_weight"] == pytest.approx(0.1)
+    history_row = bundle["history"][0]
+    assert np.isfinite(history_row["train_supervised_loss"])
+    assert np.isfinite(history_row["train_prior_loss"])
+    assert np.isfinite(history_row["train_total_loss"])
+    assert history_row["train_total_loss"] > history_row["train_supervised_loss"]
 
 
 @pytest.mark.parametrize("model_type", ["causal_transformer_head_film", "causal_transformer_input_film"])
