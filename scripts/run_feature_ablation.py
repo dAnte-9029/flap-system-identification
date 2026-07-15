@@ -11,7 +11,7 @@ SRC_DIR = PROJECT_ROOT / "src"
 if str(SRC_DIR) not in sys.path:
     sys.path.insert(0, str(SRC_DIR))
 
-from system_identification.training import run_ablation_study
+from system_identification.training.orchestration import run_ablation_study
 
 
 def _parse_hidden_sizes(raw: str) -> tuple[int, ...]:

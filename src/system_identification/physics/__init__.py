@@ -1,18 +1,18 @@
 """Pure numerical physics used by offline system-identification analyses."""
 
-from .delaurier_airflow import (
+from .delaurier.airflow import (
     ReconstructedBodyAirflow,
     body_air_velocity_to_delaurier_section_velocity,
     compute_delaurier_axis_incidence,
     quaternion_wxyz_to_rotation_body_to_ned,
     reconstruct_body_airflow_from_ned,
 )
-from .delaurier_dynamic_twist import (
+from .delaurier.dynamic_twist import (
     DeLaurierTwistKinematics,
     compute_delaurier_dynamic_twist,
     map_canonical_phase_to_delaurier,
 )
-from .delaurier_strip_wrench import (
+from .delaurier.strip_wrench import (
     DeLaurierParams,
     DeLaurierStripLoads,
     DeLaurierStripWrench,

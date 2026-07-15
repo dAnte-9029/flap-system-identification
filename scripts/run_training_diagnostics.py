@@ -11,7 +11,7 @@ SRC_DIR = PROJECT_ROOT / "src"
 if str(SRC_DIR) not in sys.path:
     sys.path.insert(0, str(SRC_DIR))
 
-from system_identification.training import DEFAULT_REGIME_BIN_SPECS, run_diagnostic_evaluation
+from system_identification.evaluation.diagnostics import DEFAULT_REGIME_BIN_SPECS, run_diagnostic_evaluation
 
 
 def _parse_split_names(raw: str) -> tuple[str, ...]:
