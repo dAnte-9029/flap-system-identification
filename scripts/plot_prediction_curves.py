@@ -21,6 +21,8 @@ SRC_DIR = PROJECT_ROOT / "src"
 if str(SRC_DIR) not in sys.path:
     sys.path.insert(0, str(SRC_DIR))
 
+from system_identification.plotting import split_frame_on_plot_breaks
+
 DEFAULT_TARGET_COLUMNS = ["fx_b", "fy_b", "fz_b", "mx_b", "my_b", "mz_b"]
 
 
@@ -52,37 +54,6 @@ def _window_around_index(frame: pd.DataFrame, center_index: int, window_size: in
     start = max(0, min(center_index - half, len(frame) - window_size))
     end = start + window_size
     return frame.iloc[start:end].copy()
-
-
-def split_frame_on_plot_breaks(
-    frame: pd.DataFrame,
-    *,
-    time_column: str = "time_s",
-    segment_column: str = "segment_id",
-    gap_multiplier: float = 8.0,
-) -> list[pd.DataFrame]:
-    """Split a plotted time series so line plots do not bridge missing intervals."""
-    if len(frame) <= 1:
-        return [frame.copy()]
-
-    break_before = np.zeros(len(frame), dtype=bool)
-    if segment_column in frame.columns:
-        segment_values = frame[segment_column].to_numpy()
-        break_before[1:] |= segment_values[1:] != segment_values[:-1]
-
-    if time_column in frame.columns:
-        time_values = frame[time_column].to_numpy(dtype=float)
-        dt = np.diff(time_values)
-        valid_dt = dt[np.isfinite(dt) & (dt > 0.0)]
-        if len(valid_dt):
-            nominal_dt = float(np.nanmedian(valid_dt))
-            if np.isfinite(nominal_dt) and nominal_dt > 0.0:
-                break_before[1:] |= dt > gap_multiplier * nominal_dt
-
-    split_indices = np.flatnonzero(break_before)
-    starts = [0, *split_indices.tolist()]
-    ends = [*split_indices.tolist(), len(frame)]
-    return [frame.iloc[start:end].copy() for start, end in zip(starts, ends) if end > start]
 
 
 def _worst_residual_window(frame: pd.DataFrame, targets: tuple[str, ...], window_size: int) -> pd.DataFrame:
