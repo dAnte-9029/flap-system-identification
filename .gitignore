@@ -4,6 +4,8 @@ __pycache__/
 
 dataset/
 artifacts/
+!src/system_identification/artifacts/
+!src/system_identification/artifacts/*.py
 src/*.egg-info/
 .codex
 .codex/

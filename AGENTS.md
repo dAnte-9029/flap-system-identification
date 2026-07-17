@@ -26,3 +26,23 @@ When working in this repository:
 - Keep context tight: read only the minimum skill content needed for the current task.
 - If a task is purely IsaacSim/PX4 coding, default to the core process skills only.
 - If a task is paper-writing related, add only the specific writing or citation skills needed for that document step.
+
+## DeLaurier prior policy
+
+For new longitudinal-force analysis, resolve the DeLaurier prior through
+`configs/physics/delaurier_prior_registry.yaml`. Use the entry selected by
+`default_prior_id` unless the user explicitly requests a newer manifest-backed
+active prior.
+
+- Do not use entries marked `legacy` or `superseded` except for explicitly
+  requested historical reproduction.
+- Do not infer authority from a dated directory name or from an older
+  correction artifact that happens to reference a prior.
+- If the authoritative prior artifact is missing for the requested train or
+  validation partition, fail and report the missing artifact. Never fall back
+  to a legacy prior.
+- Before analysis, record the resolved prior ID, absolute path, lifecycle
+  status, physics source commit, frame/airflow/phase contracts, and partition
+  coverage in the run manifest.
+- Test-window diagnostic outputs are not training-ready prior artifacts and
+  must not be used to choose a correction structure.

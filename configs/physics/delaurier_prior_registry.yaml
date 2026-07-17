@@ -1,0 +1,30 @@
+schema_version: delaurier_prior_registry_v1
+default_prior_id: delaurier_attitude_aware_3b5d4ec_trainval_v1
+
+priors:
+  delaurier_attitude_aware_3b5d4ec_trainval_v1:
+    lifecycle_status: active
+    authoritative_for: longitudinal_force_analysis
+    artifact_root: artifacts/20260717_delaurier_attitude_aware_3b5d4ec_trainval_v1
+    physics_source_commit: 3b5d4ec1d28f1384cf042402992ad7ea59995f49
+    frame_contract: body_frd_force_at_imu_origin_moment_about_cg
+    airflow_contract: attitude_ground_wind_3d
+    phase_contract: canonical_mechanical_phase_to_delaurier_v1
+    required_partitions: [train, validation]
+    notes: >-
+      Frozen July-14 attached-flow candidate with separation disabled and
+      prescribed dynamic twist disabled (zero tip amplitude).
+
+  delaurier_separation_20260604_v1:
+    lifecycle_status: legacy
+    authoritative_for: historical_reproduction_only
+    artifact_root: >-
+      artifacts/20260604_delaurier_other_parameter_sweep_fixed_twist10_ratio8_sg0p03_v1/priors/separation__twist_eta_max_deg_10p0__alpha0_deg_4p0__eta_s_0p65__cd_f_0p0__enable_separation_sep_on__alpha_stall_max_deg_18p0__cd_cf_1p2__xi_1p0
+    physics_source_commit: 7fb2fc1821947d8ac1a1dc6c590afed089856022
+    frame_contract: legacy_scalar_airspeed_pitch_proxy
+    airflow_contract: legacy_scalar_true_airspeed
+    phase_contract: legacy_q_equals_a_sin_phi
+    superseded_by: delaurier_attitude_aware_3b5d4ec_trainval_v1
+    notes: >-
+      Retained only to reproduce the June-04 and June-23 correction pipeline.
+      The source worktree was dirty at export time.

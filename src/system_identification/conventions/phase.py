@@ -6,8 +6,7 @@ import numpy as np
 def wrap_to_2pi(values: np.ndarray | float) -> np.ndarray:
     values_arr = np.asarray(values, dtype=float)
     wrapped = np.mod(values_arr, 2.0 * np.pi)
-    wrapped[np.isclose(wrapped, 2.0 * np.pi)] = 0.0
-    return wrapped
+    return np.where(np.isclose(wrapped, 2.0 * np.pi), 0.0, wrapped)
 
 
 def compute_drive_phase_rad(

@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
-"""Sweep internal DeLaurier exporter parameters against fx/fz flight-log labels."""
+"""Legacy historical sweep of the pre-3b5d4ec DeLaurier prior contract.
+
+Do not use this pipeline for new longitudinal-force analysis. It is retained
+only for reproduction of dated June-2026 artifacts; active priors are resolved
+through ``configs/physics/delaurier_prior_registry.yaml``.
+"""
 
 from __future__ import annotations
 

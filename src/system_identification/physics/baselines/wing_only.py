@@ -18,7 +18,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 import math
 from pathlib import Path
-from typing import Iterable
+from typing import Iterable, Mapping
 
 import numpy as np
 import pandas as pd
@@ -288,6 +288,8 @@ def _chunk_result(
     config: WingOnlyBaselineConfig,
     phase_acceleration_mode: str,
     phase_acceleration_rad_s2: np.ndarray,
+    spanwise_regions: Mapping[str, tuple[float, float]] | None = None,
+    include_detailed_diagnostics: bool = False,
 ) -> pd.DataFrame:
     geometry = load_wing_geometry_csv(
         geometry_path,
@@ -356,7 +358,9 @@ def _chunk_result(
     total_moment = left_moment + right_moment
     result = pd.DataFrame(index=frame.index)
     result["theta_tip_deg"] = float(theta_tip_deg)
-    result["dynamic_twist_mode"] = "delaurier_linear_spanwise"
+    result["dynamic_twist_mode"] = (
+        "disabled" if math.isclose(float(theta_tip_deg), 0.0, abs_tol=1.0e-12) else "delaurier_linear_spanwise"
+    )
     result["baseline_filter_mode"] = "baseline_raw"
     result["phase_acceleration_mode"] = phase_acceleration_mode
     result["airflow_mode"] = str(config.airflow_mode)
@@ -402,6 +406,7 @@ def _chunk_result(
         "dD_camber": wrench.moment_from_dD_camber_wang,
         "dD_f": wrench.moment_from_dD_f_wang,
     }
+    diagnostic_columns: dict[str, np.ndarray] = {}
     for name, force_wang in force_components.items():
         lf, lm, rf, rm = _component_wrench_in_body(
             force_wang,
@@ -412,9 +417,12 @@ def _chunk_result(
             translate_force_moment=True,
         )
         for index, axis in enumerate(FORCE_AXES):
-            result[f"component_{name}_{axis}"] = (lf + rf)[:, index]
+            diagnostic_columns[f"component_{name}_{axis}"] = (lf + rf)[:, index]
+            if include_detailed_diagnostics:
+                diagnostic_columns[f"component_{name}_left_{axis}"] = lf[:, index]
+                diagnostic_columns[f"component_{name}_right_{axis}"] = rf[:, index]
         for index, axis in enumerate(MOMENT_AXES):
-            result[f"component_{name}_{axis}"] = (lm + rm)[:, index]
+            diagnostic_columns[f"component_{name}_{axis}"] = (lm + rm)[:, index]
 
     zero_force = np.zeros_like(wrench.force_wang)
     free_moments = {
@@ -434,20 +442,57 @@ def _chunk_result(
         component = lm + rm
         free_total += component
         for index, axis in enumerate(MOMENT_AXES):
-            result[f"component_{name}_{axis}"] = component[:, index]
+            diagnostic_columns[f"component_{name}_{axis}"] = component[:, index]
     force_arm_total = total_moment - free_total
     for index, axis in enumerate(MOMENT_AXES):
-        result[f"component_r_cross_f_{axis}"] = force_arm_total[:, index]
-        result[f"component_free_couple_{axis}"] = free_total[:, index]
+        diagnostic_columns[f"component_r_cross_f_{axis}"] = force_arm_total[:, index]
+        diagnostic_columns[f"component_free_couple_{axis}"] = free_total[:, index]
     for name in ("dN_c", "dN_a", "dT_s", "dD_camber", "dD_f", "dM_ac", "dM_a"):
         values = getattr(loads, name)
-        result[f"strip_sum_{name}"] = np.sum(values, axis=1)
-    result["separation_ratio"] = np.average(
+        diagnostic_columns[f"strip_sum_{name}"] = np.sum(values, axis=1)
+    diagnostic_columns["separation_ratio"] = np.average(
         loads.separation_weight,
         axis=1,
         weights=loads.chord * loads.strip_width,
     )
-    return result
+    if spanwise_regions:
+        span_fraction = geometry.x_mid / geometry.semi_span_m
+        strip_force_components = {
+            "dN_c": np.stack((np.zeros_like(loads.dN_c), loads.dN_c, np.zeros_like(loads.dN_c)), axis=-1),
+            "dN_a": np.stack((np.zeros_like(loads.dN_a), loads.dN_a, np.zeros_like(loads.dN_a)), axis=-1),
+            "dT_s": np.stack((np.zeros_like(loads.dT_s), np.zeros_like(loads.dT_s), loads.dT_s), axis=-1),
+            "dD_camber": np.stack(
+                (np.zeros_like(loads.dD_camber), np.zeros_like(loads.dD_camber), -loads.dD_camber), axis=-1
+            ),
+            "dD_f": np.stack((np.zeros_like(loads.dD_f), np.zeros_like(loads.dD_f), -loads.dD_f), axis=-1),
+        }
+        zero_moment = np.zeros_like(wrench.moment_wang_about_wing_origin)
+        for region_name, (lower, upper) in spanwise_regions.items():
+            if not 0.0 <= float(lower) < float(upper) <= 1.0:
+                raise ValueError(f"Invalid spanwise region {region_name!r}: {(lower, upper)}")
+            region_mask = (span_fraction >= float(lower)) & (
+                span_fraction <= float(upper) if math.isclose(float(upper), 1.0) else span_fraction < float(upper)
+            )
+            if not region_mask.any():
+                raise ValueError(f"Spanwise region {region_name!r} contains no strips")
+            region_total = np.zeros_like(total_force)
+            for name, strip_force in strip_force_components.items():
+                force_wang = np.sum(strip_force[:, region_mask, :], axis=1)
+                left_region, _lm, right_region, _rm = _component_wrench_in_body(
+                    force_wang,
+                    zero_moment,
+                    left_transform=left_transform,
+                    right_transform=right_transform,
+                    config=config,
+                    translate_force_moment=False,
+                )
+                component_region = left_region + right_region
+                region_total += component_region
+                for index, axis in enumerate(FORCE_AXES):
+                    diagnostic_columns[f"span_{region_name}_component_{name}_{axis}"] = component_region[:, index]
+            for index, axis in enumerate(FORCE_AXES):
+                diagnostic_columns[f"span_{region_name}_pred_{axis}"] = region_total[:, index]
+    return pd.concat([result, pd.DataFrame(diagnostic_columns, index=result.index)], axis=1)
 
 
 def evaluate_wing_only_delaurier_segment(
@@ -457,6 +502,8 @@ def evaluate_wing_only_delaurier_segment(
     geometry_path: str | Path,
     config: WingOnlyBaselineConfig | None = None,
     phase_acceleration_mode: str = "constant_frequency_step",
+    spanwise_regions: Mapping[str, tuple[float, float]] | None = None,
+    include_detailed_diagnostics: bool = False,
 ) -> pd.DataFrame:
     """Evaluate a complete canonical ``log_id + segment_id`` in long format.
 
@@ -520,6 +567,8 @@ def evaluate_wing_only_delaurier_segment(
                     config=resolved,
                     phase_acceleration_mode=phase_acceleration_mode,
                     phase_acceleration_rad_s2=acceleration[start:stop],
+                    spanwise_regions=spanwise_regions,
+                    include_detailed_diagnostics=include_detailed_diagnostics,
                 )
             )
         physics = pd.concat(chunks).loc[ordered.index]
