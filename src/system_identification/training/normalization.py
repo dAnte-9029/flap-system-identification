@@ -4,6 +4,28 @@ from __future__ import annotations
 
 import numpy as np
 
+
+def fit_feature_stats(
+    features: np.ndarray,
+    *,
+    raw_feature_indices: list[int] | None = None,
+) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
+    """Fit the existing train-derived feature statistics through a public API."""
+
+    return _fit_feature_stats(features, raw_feature_indices=raw_feature_indices)
+
+
+def transform_features(
+    features: np.ndarray,
+    medians: np.ndarray,
+    means: np.ndarray,
+    stds: np.ndarray,
+) -> np.ndarray:
+    """Apply frozen feature statistics without refitting them."""
+
+    return _transform_features(features, medians, means, stds)
+
+
 def _fit_feature_stats(
     features: np.ndarray,
     *,

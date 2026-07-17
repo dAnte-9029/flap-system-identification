@@ -1,0 +1,44 @@
+schema_version: longitudinal_force_correction_contract_v1
+target_scope: provisional_effective_longitudinal_force
+force_components: [fx, fz]
+allowed_partitions: [train, validation]
+test_labels_allowed: false
+
+cycle:
+  phase_bins: 72
+  minimum_cycle_samples: 12
+  minimum_phase_coverage_rad: 5.5
+  maximum_phase_gap_rad: 0.8
+  minimum_accepted_cycle_fraction: 0.30
+  phase_endpoint_policy: remove_duplicate_wrapped_zero_endpoints_after_quality_accounting
+
+decomposition:
+  reconstruction_tolerance: 1.0e-10
+  zero_mean_tolerance: 1.0e-10
+  harmonic_max_order: 4
+  centered_basis: true
+
+conditions:
+  aggregation: arithmetic_mean_per_complete_cycle
+  columns:
+    - alpha_mean_rad
+    - flapping_frequency_mean_hz
+    - airspeed_mean_mps
+    - rho_mean_kgpm3
+    - dynamic_pressure_mean_pa
+
+normalization:
+  source_partition: train
+  standard_deviation_epsilon: 1.0e-8
+  zero_variance_policy: replace_std_with_1.0
+
+alignment:
+  keys: [log_id, timestamp_us]
+  maximum_missing_fraction: 0.0
+  row_order_allowed: false
+
+weights:
+  generate: [equal_cycle, equal_log, equal_date]
+  select_strategy: false
+
+random_seed: 20260717

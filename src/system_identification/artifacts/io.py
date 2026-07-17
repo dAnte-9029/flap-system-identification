@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import hashlib
+import json
 from pathlib import Path
 from typing import Any
 
@@ -11,10 +13,49 @@ import pandas as pd
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
-from system_identification.evaluation.diagnostics import _targets_for_bundle, predict_model_bundle
-from system_identification.training.data_preparation import DEFAULT_TARGET_COLUMNS
+def sha256_file(path: str | Path) -> str:
+    """Hash one artifact without interpreting or modifying it."""
+
+    digest = hashlib.sha256()
+    with Path(path).open("rb") as stream:
+        for chunk in iter(lambda: stream.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
+def write_json(path: str | Path, value: Any) -> Path:
+    """Write deterministic JSON while refusing to overwrite an existing file."""
+
+    destination = Path(path)
+    if destination.exists():
+        raise FileExistsError(f"Refusing to overwrite artifact: {destination}")
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    destination.write_text(
+        json.dumps(value, indent=2, sort_keys=True, ensure_ascii=False) + "\n",
+        encoding="utf-8",
+    )
+    return destination
+
+
+def write_table(path: str | Path, frame: pd.DataFrame) -> Path:
+    """Write CSV or Parquet by suffix while refusing overwrite."""
+
+    destination = Path(path)
+    if destination.exists():
+        raise FileExistsError(f"Refusing to overwrite artifact: {destination}")
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    if destination.suffix.lower() == ".parquet":
+        frame.to_parquet(destination, index=False)
+    elif destination.suffix.lower() == ".csv":
+        frame.to_csv(destination, index=False)
+    else:
+        raise ValueError(f"Unsupported table suffix: {destination.suffix}")
+    return destination
+
 
 def _save_training_curves(history: pd.DataFrame, output_path: str | Path) -> None:
+    from system_identification.training.data_preparation import DEFAULT_TARGET_COLUMNS
+
     fig, axes = plt.subplots(1, 3, figsize=(18, 5))
     epochs = history["epoch"].to_numpy()
 
@@ -57,6 +98,8 @@ def _save_pred_vs_true_plot(
     batch_size: int,
     device: str | None = None,
 ) -> None:
+    from system_identification.evaluation.diagnostics import _targets_for_bundle, predict_model_bundle
+
     targets_df = _targets_for_bundle(bundle, frame)
     predictions_df = predict_model_bundle(bundle, frame, batch_size=batch_size, device=device)
 
@@ -88,6 +131,8 @@ def _save_residual_hist_plot(
     batch_size: int,
     device: str | None = None,
 ) -> None:
+    from system_identification.evaluation.diagnostics import _targets_for_bundle, predict_model_bundle
+
     targets_df = _targets_for_bundle(bundle, frame)
     predictions_df = predict_model_bundle(bundle, frame, batch_size=batch_size, device=device)
 
