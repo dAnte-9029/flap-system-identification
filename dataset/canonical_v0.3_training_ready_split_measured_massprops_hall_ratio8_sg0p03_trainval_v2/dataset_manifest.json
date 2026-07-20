@@ -1,0 +1,47 @@
+{
+  "accepted_logs_csv": "/home/zn/flap-system-identification/dataset/canonical_v0.2_seed_labels_measured_massprops_ratio8_v1/accepted_logs.csv",
+  "counts_per_encoder_revolution": 4096.0,
+  "counts_per_wing_cycle": 32768.0,
+  "created_at_utc": "2026-07-17T11:59:45.671861+00:00",
+  "dataset_id": "canonical_v0.3_training_ready_split_measured_massprops_hall_ratio8_sg0p03_trainval_v2",
+  "excluded_partitions": [
+    "test"
+  ],
+  "frequency_column": "flap_frequency_hz",
+  "frequency_formula": "logged_flap_frequency_hz * logged_ratio / true_ratio",
+  "git": {
+    "branch": "feat/correction-contract-and-dataset",
+    "commit": "3983e8c78e624372384f503b0ac3bfd55af8ee57",
+    "dirty": true
+  },
+  "included_partitions": [
+    "train",
+    "validation"
+  ],
+  "input_hashes": {
+    "/home/zn/flap-system-identification/dataset/canonical_v0.2_seed_labels_measured_massprops_ratio8_v1/accepted_logs.csv": "6328c211e0c277226ff93217404a2dc3400a8ae2bd3d343ef6ec22fea958170c",
+    "/home/zn/flap-system-identification/dataset/canonical_v0.2_training_ready_split_measured_massprops_ratio8_sg0p03_v1/dataset_manifest.json": "1583b40ce98eefb69f3a04adb777e0163c19bbc81323f8781e2e7a1ec3e8944c",
+    "/home/zn/flap-system-identification/dataset/canonical_v0.2_training_ready_split_measured_massprops_ratio8_sg0p03_v1/train_samples.parquet": "ee48a661541c0e6bf91f356058aae330b23e0200b06ccf062f76eb59dec9f199",
+    "/home/zn/flap-system-identification/dataset/canonical_v0.2_training_ready_split_measured_massprops_ratio8_sg0p03_v1/val_samples.parquet": "b2393fd9ece046e5ab859fd525de09ac58f4bf8b9fa431b8afe0f2f80a029829"
+  },
+  "legacy_phase_columns_exported": false,
+  "logged_ratio": 7.5,
+  "maximum_cycle_count_relative_error": 0.01,
+  "phase_column": "mechanical_phase_rad",
+  "phase_endpoint_policy": "left_closed_right_open",
+  "phase_fallback_method": "Hall zero count recovered from logged phase, then inverted on encoder total_count",
+  "phase_frequency_quality_csv": "/home/zn/flap-system-identification/dataset/canonical_v0.3_training_ready_split_measured_massprops_hall_ratio8_sg0p03_trainval_v2/phase_frequency_quality.csv",
+  "phase_primary_method": "Hall timestamp plus interpolated encoder total_count",
+  "phase_range": "[0, 2*pi)",
+  "phase_zero": "Hall event: neutral wing position starting upstroke",
+  "python_version": "3.11.14 (main, Oct 21 2025, 18:31:21) [GCC 11.2.0]",
+  "quality_checks_json": "/home/zn/flap-system-identification/dataset/canonical_v0.3_training_ready_split_measured_massprops_hall_ratio8_sg0p03_trainval_v2/quality_checks.json",
+  "schema_version": "canonical_hall_ratio8_phase_frequency_v1",
+  "source_dataset_root": "/home/zn/flap-system-identification/dataset/canonical_v0.2_training_ready_split_measured_massprops_ratio8_sg0p03_v1",
+  "split_sample_counts": {
+    "train": 308702,
+    "validation": 79587
+  },
+  "test_labels_loaded": false,
+  "true_ratio": 8.0
+}

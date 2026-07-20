@@ -1,0 +1,11 @@
+{
+  "all_exported_cycles_valid": true,
+  "all_frequency_rows_finite": true,
+  "all_phase_methods_known": true,
+  "all_phase_rows_finite": true,
+  "all_phase_rows_in_half_open_range": true,
+  "input_hashes_unchanged": true,
+  "only_one_phase_column": true,
+  "pass": true,
+  "test_labels_loaded": false
+}

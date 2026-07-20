@@ -1,0 +1,1 @@
+dataset/canonical_v0.3_training_ready_split_measured_massprops_hall_ratio8_sg0p03_trainval_v2/*.parquet filter=lfs diff=lfs merge=lfs -text
