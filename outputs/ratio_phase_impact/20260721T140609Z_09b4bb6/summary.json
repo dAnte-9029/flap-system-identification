@@ -1,0 +1,116 @@
+{
+  "deterministic_regeneration": {
+    "test_samples.parquet": {
+      "rows_equal": true,
+      "schema_equal": true,
+      "values_equal_excluding_immutable_dataset_id": true
+    },
+    "train_predictions.parquet": {
+      "keys_equal": true,
+      "physics_predictions_bitwise_equal": true,
+      "rows_equal": true
+    },
+    "train_samples.parquet": {
+      "rows_equal": true,
+      "schema_equal": true,
+      "values_equal_excluding_immutable_dataset_id": true
+    },
+    "val_predictions.parquet": {
+      "keys_equal": true,
+      "physics_predictions_bitwise_equal": true,
+      "rows_equal": true
+    },
+    "val_samples.parquet": {
+      "rows_equal": true,
+      "schema_equal": true,
+      "values_equal_excluding_immutable_dataset_id": true
+    }
+  },
+  "downstream_train_validation": {
+    "ratio75": {
+      "maximum_hz": 5.806608200073242,
+      "mean_flapping_frequency_hz": 4.285333399681597,
+      "minimum_hz": 0.6291800737380981,
+      "std_flapping_frequency_hz": 0.45043694556492536
+    },
+    "ratio8": {
+      "maximum_hz": 5.4436951875686646,
+      "mean_flapping_frequency_hz": 4.0175000622014965,
+      "minimum_hz": 0.589856319129467,
+      "std_flapping_frequency_hz": 0.4222846364671175
+    }
+  },
+  "key_columns": [
+    "log_id",
+    "timestamp_us"
+  ],
+  "new_dataset_id": "canonical_v0.4_training_ready_split_measured_massprops_ratio8_phasefix_v3",
+  "old_dataset_id": "canonical_v0.2_training_ready_split_measured_massprops_ratio8_sg0p03_v1",
+  "overall": {
+    "cycle_boundaries": {
+      "exact_intersection": 2460,
+      "exact_match_fraction_old": 0.1361297105860218,
+      "nearest_abs_delay_max_ms": 300.0,
+      "nearest_abs_delay_median_ms": 10.0,
+      "nearest_abs_delay_p95_ms": 20.0,
+      "new_count": 18084,
+      "old_count": 18071
+    },
+    "frequency_difference_mean_hz": -0.2683022834787096,
+    "label_max_abs_difference_n": {
+      "fx_b": 0.0,
+      "fz_b": 0.0
+    },
+    "matched_rows": 448960,
+    "new_rows": 448960,
+    "old_rows": 448960,
+    "phase_circular_abs_difference_max_rad": 1.9331146988294492,
+    "phase_circular_abs_difference_median_rad": 0.167316968971015,
+    "phase_circular_abs_difference_p95_rad": 0.39879828712482013,
+    "phase_circular_difference_mean_rad": -0.05750900315562125,
+    "phase_circular_difference_std_rad": 0.20907564417574112
+  },
+  "partitions": {
+    "test": {
+      "frequency_difference_mean_hz": -0.27130349613144666,
+      "frequency_ratio_median": 0.9375,
+      "matched_rows": 60671,
+      "new_only_rows": 0,
+      "new_phase_finite_fraction": 1.0,
+      "new_rows": 60671,
+      "old_only_rows": 0,
+      "old_phase_finite_fraction": 1.0,
+      "old_rows": 60671,
+      "phase_circular_abs_difference_median_rad": 0.16057644902281698,
+      "phase_circular_abs_difference_p95_rad": 0.3684864840179547
+    },
+    "train": {
+      "frequency_difference_mean_hz": -0.2675988652109084,
+      "frequency_ratio_median": 0.9375,
+      "matched_rows": 308702,
+      "new_only_rows": 0,
+      "new_phase_finite_fraction": 1.0,
+      "new_rows": 308702,
+      "old_only_rows": 0,
+      "old_phase_finite_fraction": 1.0,
+      "old_rows": 308702,
+      "phase_circular_abs_difference_median_rad": 0.17037448398386035,
+      "phase_circular_abs_difference_p95_rad": 0.41068368108540043
+    },
+    "validation": {
+      "frequency_difference_mean_hz": -0.2687428083540354,
+      "frequency_ratio_median": 0.9375,
+      "matched_rows": 79587,
+      "new_only_rows": 0,
+      "new_phase_finite_fraction": 1.0,
+      "new_rows": 79587,
+      "old_only_rows": 0,
+      "old_phase_finite_fraction": 1.0,
+      "old_rows": 79587,
+      "phase_circular_abs_difference_median_rad": 0.16146581970018992,
+      "phase_circular_abs_difference_p95_rad": 0.37673421726439765
+    }
+  },
+  "schema_version": "ratio75_vs_ratio8_phase_impact_v1",
+  "test_used_for_downstream_analysis": false
+}

@@ -153,9 +153,13 @@ def resolve_delaurier_prior(
     manifest_path = artifact_root / "manifest.json"
     manifest = _read_mapping(manifest_path)
     selected_id = str(selected_id or manifest.get("artifact_id") or artifact_root.name)
+    # Registry lifecycle is authoritative after promotion/supersession. An
+    # immutable historical manifest legitimately retains the status it had at
+    # creation, so preferring that field would silently reactivate a prior the
+    # registry has superseded.
     lifecycle_status = str(
-        manifest.get("lifecycle_status")
-        or entry.get("lifecycle_status")
+        entry.get("lifecycle_status")
+        or manifest.get("lifecycle_status")
         or "legacy_unclassified"
     )
     is_legacy = lifecycle_status in LEGACY_STATUSES or lifecycle_status == "legacy_unclassified"

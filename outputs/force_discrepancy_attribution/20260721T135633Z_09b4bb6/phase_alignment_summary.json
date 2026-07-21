@@ -1,0 +1,24 @@
+{
+  "fx_b": {
+    "H0_no_shift_rmse_rad": 0.5580546431704279,
+    "H1_fixed_phase_offset_rad": -0.5539124200233562,
+    "H1_rmse_rad": 0.06761698946820523,
+    "H2_fixed_delay_s": -0.021675460815718885,
+    "H2_rmse_rad": 0.057649337435143576,
+    "cycle_count": 15526,
+    "grid_resolution_rad": 0.08726646259971647,
+    "median_equivalent_delay_s": -0.02135778324214738,
+    "median_max_correlation": 0.9601520813128469
+  },
+  "fz_b": {
+    "H0_no_shift_rmse_rad": 0.1913539460245264,
+    "H1_fixed_phase_offset_rad": -0.15896662282226373,
+    "H1_rmse_rad": 0.10634487147030482,
+    "H2_fixed_delay_s": -0.0063820600824051905,
+    "H2_rmse_rad": 0.09952899265314753,
+    "cycle_count": 15526,
+    "grid_resolution_rad": 0.08726646259971647,
+    "median_equivalent_delay_s": -0.0059134143826174565,
+    "median_max_correlation": 0.9803958321379966
+  }
+}

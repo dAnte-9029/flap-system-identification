@@ -1,0 +1,34 @@
+{
+  "condition_features_recommended": [
+    "angle_of_attack",
+    "flapping_frequency"
+  ],
+  "dynamic_model_needed": "yes",
+  "fix_fixed_delay_first": "no",
+  "fix_phase_convention_first": "no",
+  "harmonic_order_range_recommended": [
+    2,
+    4
+  ],
+  "label_uncertainty_blocks_correction": "no",
+  "mean_correction_fx": "no",
+  "mean_correction_fz": "yes",
+  "phase_correction_fx": "yes",
+  "phase_correction_fz": "yes",
+  "physical_parameter_adjustment_candidate": [
+    "normal_force_scale"
+  ],
+  "prior_has_incremental_value": "no",
+  "tcn_needed": "no",
+  "thresholds": {
+    "condition_probe_gain_threshold": 0.05,
+    "history_probe_gain_threshold": 0.05,
+    "label_uncertainty_ratio_threshold": 1.5,
+    "mean_energy_threshold": 0.15,
+    "phase_component_agreement_threshold_rad": 0.17453292519943295,
+    "phase_energy_threshold": 0.3,
+    "phase_offset_threshold_rad": 0.17453292519943295,
+    "physical_similarity_threshold": 0.7,
+    "prior_gain_threshold": 0.02
+  }
+}

@@ -1,0 +1,440 @@
+{
+  "cycle_table": [
+    {
+      "dtype": "object",
+      "name": "cycle_id"
+    },
+    {
+      "dtype": "object",
+      "name": "partition"
+    },
+    {
+      "dtype": "object",
+      "name": "log_id"
+    },
+    {
+      "dtype": "object",
+      "name": "flight_date"
+    },
+    {
+      "dtype": "int64",
+      "name": "cycle_index_within_log"
+    },
+    {
+      "dtype": "int64",
+      "name": "start_timestamp_us"
+    },
+    {
+      "dtype": "int64",
+      "name": "end_timestamp_us"
+    },
+    {
+      "dtype": "int64",
+      "name": "sample_count"
+    },
+    {
+      "dtype": "float64",
+      "name": "phase_coverage_rad"
+    },
+    {
+      "dtype": "float64",
+      "name": "maximum_phase_gap_rad"
+    },
+    {
+      "dtype": "float64",
+      "name": "duration_s"
+    },
+    {
+      "dtype": "float64",
+      "name": "cycle_frequency_hz_from_duration"
+    },
+    {
+      "dtype": "object",
+      "name": "quality_status"
+    },
+    {
+      "dtype": "object",
+      "name": "rejection_reason"
+    },
+    {
+      "dtype": "float64",
+      "name": "alpha_mean_rad"
+    },
+    {
+      "dtype": "float64",
+      "name": "flapping_frequency_mean_hz"
+    },
+    {
+      "dtype": "float64",
+      "name": "airspeed_mean_mps"
+    },
+    {
+      "dtype": "float64",
+      "name": "rho_mean_kgpm3"
+    },
+    {
+      "dtype": "float64",
+      "name": "dynamic_pressure_mean_pa"
+    },
+    {
+      "dtype": "float64",
+      "name": "airspeed_negative_fraction"
+    },
+    {
+      "dtype": "float64",
+      "name": "airspeed_min_mps"
+    },
+    {
+      "dtype": "bool",
+      "name": "airspeed_condition_valid"
+    },
+    {
+      "dtype": "bool",
+      "name": "dynamic_pressure_condition_valid"
+    },
+    {
+      "dtype": "float64",
+      "name": "label_fx_mean_n"
+    },
+    {
+      "dtype": "float64",
+      "name": "prior_fx_mean_n"
+    },
+    {
+      "dtype": "float64",
+      "name": "residual_fx_mean_n"
+    },
+    {
+      "dtype": "float64",
+      "name": "label_fz_mean_n"
+    },
+    {
+      "dtype": "float64",
+      "name": "prior_fz_mean_n"
+    },
+    {
+      "dtype": "float64",
+      "name": "residual_fz_mean_n"
+    },
+    {
+      "dtype": "float64",
+      "name": "weight_equal_cycle"
+    },
+    {
+      "dtype": "float64",
+      "name": "weight_equal_log"
+    },
+    {
+      "dtype": "float64",
+      "name": "weight_equal_date"
+    },
+    {
+      "dtype": "float32",
+      "name": "alpha_mean_std"
+    },
+    {
+      "dtype": "float32",
+      "name": "flapping_frequency_mean_std"
+    },
+    {
+      "dtype": "float32",
+      "name": "airspeed_mean_std"
+    },
+    {
+      "dtype": "float32",
+      "name": "rho_mean_std"
+    },
+    {
+      "dtype": "float32",
+      "name": "dynamic_pressure_mean_std"
+    }
+  ],
+  "identity_keys": {
+    "cycle": [
+      "cycle_id"
+    ],
+    "waveform": [
+      "cycle_id",
+      "timestamp_us"
+    ]
+  },
+  "schema_version": "longitudinal_correction_ready_v1",
+  "waveform_table": [
+    {
+      "dtype": "object",
+      "name": "cycle_id"
+    },
+    {
+      "dtype": "object",
+      "name": "partition"
+    },
+    {
+      "dtype": "object",
+      "name": "log_id"
+    },
+    {
+      "dtype": "object",
+      "name": "flight_date"
+    },
+    {
+      "dtype": "int64",
+      "name": "timestamp_us"
+    },
+    {
+      "dtype": "int64",
+      "name": "sample_index_within_cycle"
+    },
+    {
+      "dtype": "float64",
+      "name": "phase_rad"
+    },
+    {
+      "dtype": "float64",
+      "name": "phase_fraction"
+    },
+    {
+      "dtype": "object",
+      "name": "half_stroke_id"
+    },
+    {
+      "dtype": "bool",
+      "name": "label_valid"
+    },
+    {
+      "dtype": "object",
+      "name": "label_variant"
+    },
+    {
+      "dtype": "bool",
+      "name": "label_reconstruction_valid"
+    },
+    {
+      "dtype": "float64",
+      "name": "prior_fx_b"
+    },
+    {
+      "dtype": "float64",
+      "name": "prior_fz_b"
+    },
+    {
+      "dtype": "float64",
+      "name": "label_fx_b"
+    },
+    {
+      "dtype": "float64",
+      "name": "residual_fx_b"
+    },
+    {
+      "dtype": "float64",
+      "name": "label_fz_b"
+    },
+    {
+      "dtype": "float64",
+      "name": "residual_fz_b"
+    },
+    {
+      "dtype": "float64",
+      "name": "alpha_mean_rad"
+    },
+    {
+      "dtype": "float64",
+      "name": "flapping_frequency_mean_hz"
+    },
+    {
+      "dtype": "float64",
+      "name": "airspeed_mean_mps"
+    },
+    {
+      "dtype": "float64",
+      "name": "rho_mean_kgpm3"
+    },
+    {
+      "dtype": "float64",
+      "name": "dynamic_pressure_mean_pa"
+    },
+    {
+      "dtype": "float64",
+      "name": "airspeed_negative_fraction"
+    },
+    {
+      "dtype": "float64",
+      "name": "airspeed_min_mps"
+    },
+    {
+      "dtype": "bool",
+      "name": "airspeed_condition_valid"
+    },
+    {
+      "dtype": "bool",
+      "name": "dynamic_pressure_condition_valid"
+    },
+    {
+      "dtype": "float64",
+      "name": "label_fx_n"
+    },
+    {
+      "dtype": "float64",
+      "name": "prior_fx_n"
+    },
+    {
+      "dtype": "float64",
+      "name": "label_fx_mean_n"
+    },
+    {
+      "dtype": "float64",
+      "name": "prior_fx_mean_n"
+    },
+    {
+      "dtype": "float64",
+      "name": "label_fx_waveform_n"
+    },
+    {
+      "dtype": "float64",
+      "name": "prior_fx_waveform_n"
+    },
+    {
+      "dtype": "float64",
+      "name": "residual_fx_n"
+    },
+    {
+      "dtype": "float64",
+      "name": "residual_fx_mean_n"
+    },
+    {
+      "dtype": "float64",
+      "name": "residual_fx_waveform_n"
+    },
+    {
+      "dtype": "float64",
+      "name": "label_fz_n"
+    },
+    {
+      "dtype": "float64",
+      "name": "prior_fz_n"
+    },
+    {
+      "dtype": "float64",
+      "name": "label_fz_mean_n"
+    },
+    {
+      "dtype": "float64",
+      "name": "prior_fz_mean_n"
+    },
+    {
+      "dtype": "float64",
+      "name": "label_fz_waveform_n"
+    },
+    {
+      "dtype": "float64",
+      "name": "prior_fz_waveform_n"
+    },
+    {
+      "dtype": "float64",
+      "name": "residual_fz_n"
+    },
+    {
+      "dtype": "float64",
+      "name": "residual_fz_mean_n"
+    },
+    {
+      "dtype": "float64",
+      "name": "residual_fz_waveform_n"
+    },
+    {
+      "dtype": "float64",
+      "name": "sin_1_phase"
+    },
+    {
+      "dtype": "float64",
+      "name": "sin_1_phase_centered"
+    },
+    {
+      "dtype": "float64",
+      "name": "cos_1_phase"
+    },
+    {
+      "dtype": "float64",
+      "name": "cos_1_phase_centered"
+    },
+    {
+      "dtype": "float64",
+      "name": "sin_2_phase"
+    },
+    {
+      "dtype": "float64",
+      "name": "sin_2_phase_centered"
+    },
+    {
+      "dtype": "float64",
+      "name": "cos_2_phase"
+    },
+    {
+      "dtype": "float64",
+      "name": "cos_2_phase_centered"
+    },
+    {
+      "dtype": "float64",
+      "name": "sin_3_phase"
+    },
+    {
+      "dtype": "float64",
+      "name": "sin_3_phase_centered"
+    },
+    {
+      "dtype": "float64",
+      "name": "cos_3_phase"
+    },
+    {
+      "dtype": "float64",
+      "name": "cos_3_phase_centered"
+    },
+    {
+      "dtype": "float64",
+      "name": "sin_4_phase"
+    },
+    {
+      "dtype": "float64",
+      "name": "sin_4_phase_centered"
+    },
+    {
+      "dtype": "float64",
+      "name": "cos_4_phase"
+    },
+    {
+      "dtype": "float64",
+      "name": "cos_4_phase_centered"
+    },
+    {
+      "dtype": "float64",
+      "name": "weight_equal_cycle_sample"
+    },
+    {
+      "dtype": "float64",
+      "name": "weight_equal_log_sample"
+    },
+    {
+      "dtype": "float64",
+      "name": "weight_equal_date_sample"
+    },
+    {
+      "dtype": "float32",
+      "name": "alpha_mean_std"
+    },
+    {
+      "dtype": "float32",
+      "name": "flapping_frequency_mean_std"
+    },
+    {
+      "dtype": "float32",
+      "name": "airspeed_mean_std"
+    },
+    {
+      "dtype": "float32",
+      "name": "rho_mean_std"
+    },
+    {
+      "dtype": "float32",
+      "name": "dynamic_pressure_mean_std"
+    }
+  ]
+}

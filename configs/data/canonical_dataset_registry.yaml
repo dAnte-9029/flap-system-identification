@@ -1,10 +1,49 @@
 schema_version: canonical_dataset_registry_v1
-default_dataset_id: canonical_v0.3_training_ready_split_measured_massprops_hall_ratio8_sg0p03_trainval_v2
+default_dataset_id: canonical_v0.4_training_ready_split_measured_massprops_ratio8_phasefix_v3
 
 datasets:
-  canonical_v0.3_training_ready_split_measured_massprops_hall_ratio8_sg0p03_trainval_v2:
+  canonical_v0.4_training_ready_split_measured_massprops_ratio8_phasefix_v3:
     lifecycle_status: active
     intended_use: all_new_experiments_requiring_canonical_flight_samples
+    repository_relative_root: dataset/canonical_v0.4_training_ready_split_measured_massprops_ratio8_phasefix_v3
+    manifest_path: dataset/canonical_v0.4_training_ready_split_measured_massprops_ratio8_phasefix_v3/dataset_manifest.json
+    manifest_sha256: aa12aa66f762390ab1a356b94916694f5ed9689af670f313544aeb57a250cc07
+    dataset_content_sha256: 35a4adae8d9ae686c14f04359d820da84e92b21b4a824198dfde8ade155e6145
+    generator_commit: 09b4bb6e497a677b5da871e3b600f4ebd6e1dd39
+    storage: local_reproducible_artifact_not_committed
+    key_columns: [log_id, timestamp_us]
+    partitions:
+      included: [train, validation, test]
+      downstream_default: [train, validation]
+      test_requires_explicit_gate: true
+    sample_counts:
+      train: 308702
+      validation: 79587
+      test: 60671
+    ratio_contract:
+      wing_transmission_ratio: 8.0
+      ratio_contract_version: ratio8_v1
+      ratio_source: confirmed_physical_hardware
+    phase_contract:
+      version: hall_indexed_mechanical_phase_ratio8_v1
+      column: mechanical_phase_rad
+      range: "[0, 2*pi)"
+      zero: Hall event, neutral wing position starting upstroke
+      counts_per_encoder_revolution: 4096
+      counts_per_wing_cycle: 32768
+    frequency_contract:
+      version: flap_frequency_ratio8_v1
+      column: flap_frequency_hz
+      logged_ratio_source: ULog initial parameter FLAP_RATIO
+      hardware_ratio: 8.0
+    artifact_sha256:
+      train_samples.parquet: fe50d4a6c609be7c27cabc604a2587d78e8be21c34af61592af5c6e33f2de70e
+      val_samples.parquet: 839e02a3600f3aa1d12d5d933f10872022f424481fff754614bc798ca5d6b93e
+      test_samples.parquet: 1b207bf0b29235da075da2c800d5166289f58e7e55c931afbebdfa85c008d41c
+
+  canonical_v0.3_training_ready_split_measured_massprops_hall_ratio8_sg0p03_trainval_v2:
+    lifecycle_status: superseded
+    intended_use: historical_reproduction_only
     repository_relative_root: dataset/canonical_v0.3_training_ready_split_measured_massprops_hall_ratio8_sg0p03_trainval_v2
     manifest_path: dataset/canonical_v0.3_training_ready_split_measured_massprops_hall_ratio8_sg0p03_trainval_v2/dataset_manifest.json
     manifest_sha256: b10e8e4dc46f3af53465d35cd9a5eddfa6e43edfe85a02f57da9bfe12cde03a3
@@ -18,6 +57,8 @@ datasets:
     sample_counts:
       train: 308702
       validation: 79587
+    superseded_by: canonical_v0.4_training_ready_split_measured_massprops_ratio8_phasefix_v3
+    superseded_reason: incomplete partition artifact and pre-versioned ratio contract provenance
     phase_contract:
       column: mechanical_phase_rad
       range: "[0, 2*pi)"
@@ -42,5 +83,6 @@ policy:
   silent_fallback_allowed: false
   historical_reproduction_requires_explicit_dataset_id: true
   superseded_for_new_experiments:
+    - canonical_v0.3_training_ready_split_measured_massprops_hall_ratio8_sg0p03_trainval_v2
     - canonical_v0.3_training_ready_split_measured_massprops_hall_ratio8_sg0p03_trainval_v1
     - canonical_v0.2_training_ready_split_measured_massprops_ratio8_sg0p03_v1

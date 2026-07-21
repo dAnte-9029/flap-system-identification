@@ -26,7 +26,7 @@ Correction 只预测 body frame 下的纵向力
 
 ## 2. Authoritative DeLaurier prior
 
-每次运行必须通过 `configs/physics/delaurier_prior_registry.yaml` 解析 prior。省略 `--prior-id` 时使用 registry 的 `default_prior_id`。当前默认值为 `delaurier_attitude_aware_3b5d4ec_trainval_v1`，其 active artifact 是 `artifacts/20260717_delaurier_attitude_aware_3b5d4ec_trainval_v1`。
+每次运行必须通过 `configs/physics/delaurier_prior_registry.yaml` 解析 prior。省略 `--prior-id` 时使用 registry 的 `default_prior_id`。当前默认值为 `delaurier_attitude_aware_3b5d4ec_ratio8_phasefix_trainval_v4`，其 active artifact 是 `artifacts/20260721_delaurier_attitude_aware_3b5d4ec_ratio8_phasefix_trainval_v4`。
 
 解析规则为 fail closed：
 

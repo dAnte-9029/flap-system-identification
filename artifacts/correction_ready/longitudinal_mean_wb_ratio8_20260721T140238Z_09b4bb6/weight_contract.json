@@ -1,0 +1,10 @@
+{
+  "normalization_scope": "each partition/log or partition/date group sums to one independently",
+  "selection_status": "weights_generated_only_no_strategy_selected",
+  "weight_equal_cycle": "1 per cycle row",
+  "weight_equal_cycle_sample": "1 / number_of_samples_in_cycle",
+  "weight_equal_date": "1 / number_of_accepted_cycles_in_(partition,date) per cycle row",
+  "weight_equal_date_sample": "1 / (accepted_cycles_in_(partition,date) * samples_in_cycle)",
+  "weight_equal_log": "1 / number_of_accepted_cycles_in_(partition,log) per cycle row",
+  "weight_equal_log_sample": "1 / (accepted_cycles_in_(partition,log) * samples_in_cycle)"
+}

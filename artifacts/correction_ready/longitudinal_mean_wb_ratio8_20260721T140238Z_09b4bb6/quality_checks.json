@@ -1,0 +1,169 @@
+{
+  "c2_readiness": "READY WITH LIMITATIONS",
+  "checks": {
+    "alignment_does_not_use_row_order": {
+      "detail": {
+        "train": false,
+        "validation": false
+      },
+      "passed": true
+    },
+    "alignment_keys_unique": {
+      "detail": 0,
+      "passed": true
+    },
+    "artifact_rebuild_deterministic": {
+      "detail": true,
+      "passed": true
+    },
+    "authoritative_active_prior_resolved": {
+      "detail": "active",
+      "passed": true
+    },
+    "centered_harmonic_basis_zero_mean_per_cycle": {
+      "detail": 5.352861011585576e-17,
+      "passed": true
+    },
+    "cycle_phase_quality_passes": {
+      "detail": {
+        "accepted_fraction": 0.97765896505633,
+        "minimum": 0.3
+      },
+      "passed": true
+    },
+    "cycles_do_not_cross_logs": {
+      "detail": 1,
+      "passed": true
+    },
+    "cycles_do_not_cross_partitions": {
+      "detail": 1,
+      "passed": true
+    },
+    "input_artifacts_unmodified": {
+      "detail": true,
+      "passed": true
+    },
+    "label_decomposition_conserved": {
+      "detail": {
+        "label_fx": 0.0,
+        "label_fz": 0.0,
+        "prior_fx": 0.0,
+        "prior_fz": 0.0,
+        "residual_fx": 3.552713678800501e-15,
+        "residual_fz": 7.105427357601002e-15
+      },
+      "passed": true
+    },
+    "label_waveform_zero_mean_per_cycle": {
+      "detail": 2.0080555575828917e-15,
+      "passed": true
+    },
+    "legacy_prior_not_used": {
+      "detail": "delaurier_attitude_aware_3b5d4ec_ratio8_phasefix_trainval_v4",
+      "passed": true
+    },
+    "normalization_uses_train_only": {
+      "detail": {
+        "airspeed_mean_mps": "train",
+        "alpha_mean_rad": "train",
+        "dynamic_pressure_mean_pa": "train",
+        "flapping_frequency_mean_hz": "train",
+        "rho_mean_kgpm3": "train"
+      },
+      "passed": true
+    },
+    "partition_aware_weights_equalized": {
+      "detail": {
+        "equal_cycle_total_range": [
+          1.0,
+          1.0
+        ],
+        "equal_date_total_range_within_partition": [
+          1.0,
+          1.0
+        ],
+        "equal_log_total_range_within_partition": [
+          1.0,
+          1.0
+        ]
+      },
+      "passed": true
+    },
+    "phase_endpoint_not_repeated": {
+      "detail": 0,
+      "passed": true
+    },
+    "prior_artifact_hash_matches": {
+      "detail": {
+        "train": "8df283f2a877124979545c5b255fd9d5799b4edf11cd0c657a9f6b19801669fb",
+        "validation": "3f253f36c41bddc537cc377d7003c141058f2316a5876f4b16dd174ea848002c"
+      },
+      "passed": true
+    },
+    "prior_decomposition_conserved": {
+      "detail": {
+        "label_fx": 0.0,
+        "label_fz": 0.0,
+        "prior_fx": 0.0,
+        "prior_fz": 0.0,
+        "residual_fx": 3.552713678800501e-15,
+        "residual_fz": 7.105427357601002e-15
+      },
+      "passed": true
+    },
+    "prior_waveform_zero_mean_per_cycle": {
+      "detail": 3.4381100117424204e-15,
+      "passed": true
+    },
+    "production_delaurier_predictions_unmodified": {
+      "detail": true,
+      "passed": true
+    },
+    "residual_mean_waveform_conserved": {
+      "detail": {
+        "label_fx": 0.0,
+        "label_fz": 0.0,
+        "prior_fx": 0.0,
+        "prior_fz": 0.0,
+        "residual_fx": 3.552713678800501e-15,
+        "residual_fz": 7.105427357601002e-15
+      },
+      "passed": true
+    },
+    "residual_waveform_zero_mean_per_cycle": {
+      "detail": 4.381680203853951e-15,
+      "passed": true
+    },
+    "test_label_not_loaded": {
+      "detail": false,
+      "passed": true
+    },
+    "train_validation_prior_coverage_complete": {
+      "detail": {
+        "missing_rows": 0
+      },
+      "passed": true
+    },
+    "validation_not_used_for_normalization": {
+      "detail": {
+        "training_cycle_count": 12168
+      },
+      "passed": true
+    },
+    "weights_finite_and_nonnegative": {
+      "detail": [
+        "weight_equal_cycle_sample",
+        "weight_equal_log_sample",
+        "weight_equal_date_sample"
+      ],
+      "passed": true
+    }
+  },
+  "readiness_limitations": [
+    "some_validation_cycles_outside_training_condition_range"
+  ],
+  "schema_version": "longitudinal_correction_ready_v1.quality_checks",
+  "status": "passed",
+  "strict_failure_count": 0,
+  "strict_failures": []
+}

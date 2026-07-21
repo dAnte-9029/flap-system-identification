@@ -1,0 +1,213 @@
+{
+  "accepted_logs_csv": "/home/zn/flap-system-identification/dataset/canonical_v0.2_seed_labels_measured_massprops_ratio8_v1/accepted_logs.csv",
+  "artifact_sha256": {
+    "phase_frequency_quality.csv": "268259cc642709a236fb08c421c5cbdfc45c79d7dd0e7b83d3053677ff0d39d6",
+    "test_samples.parquet": "1b207bf0b29235da075da2c800d5166289f58e7e55c931afbebdfa85c008d41c",
+    "train_samples.parquet": "fe50d4a6c609be7c27cabc604a2587d78e8be21c34af61592af5c6e33f2de70e",
+    "val_samples.parquet": "839e02a3600f3aa1d12d5d933f10872022f424481fff754614bc798ca5d6b93e"
+  },
+  "counts_per_encoder_revolution": 4096.0,
+  "counts_per_wing_cycle": 32768.0,
+  "created_at_utc": "2026-07-21T13:56:09.663382+00:00",
+  "dataset_content_sha256": "35a4adae8d9ae686c14f04359d820da84e92b21b4a824198dfde8ade155e6145",
+  "dataset_id": "canonical_v0.4_training_ready_split_measured_massprops_ratio8_phasefix_v3",
+  "excluded_partitions": [],
+  "frequency_column": "flap_frequency_hz",
+  "frequency_contract_version": "flap_frequency_ratio8_v1",
+  "frequency_formula": "logged_flap_frequency_hz * logged_ratio / true_ratio",
+  "git": {
+    "branch": "fix/ratio8-phase-regeneration",
+    "commit": "09b4bb6e497a677b5da871e3b600f4ebd6e1dd39",
+    "dirty": false
+  },
+  "included_partitions": [
+    "train",
+    "validation",
+    "test"
+  ],
+  "input_hashes": {
+    "/home/zn/flap-system-identification/dataset/canonical_v0.2_seed_labels_measured_massprops_ratio8_v1/accepted_logs.csv": "6328c211e0c277226ff93217404a2dc3400a8ae2bd3d343ef6ec22fea958170c",
+    "/home/zn/flap-system-identification/dataset/canonical_v0.2_training_ready_split_measured_massprops_ratio8_sg0p03_v1/dataset_manifest.json": "1583b40ce98eefb69f3a04adb777e0163c19bbc81323f8781e2e7a1ec3e8944c",
+    "/home/zn/flap-system-identification/dataset/canonical_v0.2_training_ready_split_measured_massprops_ratio8_sg0p03_v1/test_samples.parquet": "bec9e01318f24dfc0efb29059268ce0eeab805006b9c67668a19e6d403c092d7",
+    "/home/zn/flap-system-identification/dataset/canonical_v0.2_training_ready_split_measured_massprops_ratio8_sg0p03_v1/train_samples.parquet": "ee48a661541c0e6bf91f356058aae330b23e0200b06ccf062f76eb59dec9f199",
+    "/home/zn/flap-system-identification/dataset/canonical_v0.2_training_ready_split_measured_massprops_ratio8_sg0p03_v1/val_samples.parquet": "b2393fd9ece046e5ab859fd525de09ac58f4bf8b9fa431b8afe0f2f80a029829"
+  },
+  "legacy_phase_columns_exported": false,
+  "logged_ratio_source": "ULog initial parameter FLAP_RATIO, validated positive per log",
+  "mass_property_version": {
+    "cg_b_m": {
+      "source": "combined body_plus_two_wings CG in U_FRD is [-0.12154, 0.00541, -0.01298] m; IMU origin in U_FRD is approximated as [0.0, 0.0, 0.030] m, with xy offset neglected because the CG projection lies inside the flight-controller footprint.\n",
+      "status": "measured_combined_neutral_wings_relative_to_imu_origin",
+      "uncertainty": [
+        "pending",
+        "pending",
+        "pending"
+      ],
+      "unit": "m",
+      "value": [
+        -0.12154,
+        0.00541,
+        -0.04298
+      ]
+    },
+    "inertia_b_kg_m2": {
+      "source": "body bifilar measurements plus mirrored right-wing mass properties, combined about the neutral-wing whole-aircraft CG with the parallel-axis theorem; off-diagonal products of inertia are neglected for the current low-dimensional label model.\n",
+      "status": "measured_and_combined_neutral_wings_diagonal_approximation",
+      "uncertainty": "pending_repeatability_and_wing_inertia_estimation_summary",
+      "unit": "kg*m^2",
+      "value": [
+        [
+          0.02329,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.02573,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0427
+        ]
+      ]
+    },
+    "mass_kg": {
+      "source": "body_four_point_weighing_plus_measured_right_wing_mirrored_left_wing",
+      "status": "measured_combined_neutral_wings",
+      "uncertainty": "pending_repeatability_summary",
+      "unit": "kg",
+      "value": 0.90415
+    },
+    "metadata_schema": "aircraft_metadata_v0.1"
+  },
+  "maximum_cycle_count_relative_error": 0.01,
+  "metadata_path": "/home/zn/flap-system-identification/metadata/aircraft/flapper_01/aircraft_metadata.yaml",
+  "phase_column": "mechanical_phase_rad",
+  "phase_contract_version": "hall_indexed_mechanical_phase_ratio8_v1",
+  "phase_endpoint_policy": "left_closed_right_open",
+  "phase_fallback_method": "Hall zero count recovered from logged phase, then inverted on encoder total_count",
+  "phase_frequency_quality_csv": "/home/zn/flap-system-identification/dataset/canonical_v0.4_training_ready_split_measured_massprops_ratio8_phasefix_v3/phase_frequency_quality.csv",
+  "phase_primary_method": "Hall timestamp plus interpolated encoder total_count",
+  "phase_range": "[0, 2*pi)",
+  "phase_zero": "Hall event: neutral wing position starting upstroke",
+  "preprocessing_version": {
+    "derivative": {
+      "angular_acceleration_columns": [
+        "vehicle_angular_velocity.xyz_derivative_smooth[0]",
+        "vehicle_angular_velocity.xyz_derivative_smooth[1]",
+        "vehicle_angular_velocity.xyz_derivative_smooth[2]"
+      ],
+      "force_label_source": "smooth",
+      "linear_acceleration_columns": [
+        "vehicle_local_position.ax_smooth",
+        "vehicle_local_position.ay_smooth",
+        "vehicle_local_position.az_smooth"
+      ],
+      "method": "savgol",
+      "moment_label_source": "smooth",
+      "polyorder": 3,
+      "window_s": 0.03
+    },
+    "input_filtering": {
+      "config": {
+        "airspeed_validated.true_airspeed_m_s": {
+          "cutoff_hz": 5.0,
+          "method": "butterworth",
+          "order": 2
+        },
+        "flap_frequency_hz": {
+          "cutoff_hz": 12.0,
+          "method": "butterworth",
+          "order": 2
+        },
+        "servo_left_elevon": {
+          "method": "first_order",
+          "time_constant_s": 0.04
+        },
+        "servo_right_elevon": {
+          "method": "first_order",
+          "time_constant_s": 0.04
+        },
+        "servo_rudder": {
+          "method": "first_order",
+          "time_constant_s": 0.04
+        }
+      },
+      "enabled": true
+    },
+    "label_policy": "effective wrench recomputed from pre-smoothed kinematic derivatives"
+  },
+  "python_version": "3.11.14 (main, Oct 21 2025, 18:31:21) [GCC 11.2.0]",
+  "quality_checks_json": "/home/zn/flap-system-identification/dataset/canonical_v0.4_training_ready_split_measured_massprops_ratio8_phasefix_v3/quality_checks.json",
+  "ratio_contract_metadata_path": "/home/zn/flap-system-identification/metadata/aircraft/flapper_01/aircraft_metadata.yaml",
+  "ratio_contract_metadata_sha256": "9c5c6f500792b358319558691d348520e5c22ec8f65b504d2b934ef813a49914",
+  "ratio_contract_version": "ratio8_v1",
+  "ratio_source": "confirmed_physical_hardware",
+  "row_inclusion_exclusion": {
+    "excluded_rows": {
+      "test": 0,
+      "train": 0,
+      "validation": 0
+    },
+    "included_rows": {
+      "test": 60671,
+      "train": 308702,
+      "validation": 79587
+    },
+    "policy": "preserve every keyed source row; phase validity is explicit"
+  },
+  "schema_version": "canonical_hall_ratio8_phase_frequency_v2",
+  "source_dataset_root": "/home/zn/flap-system-identification/dataset/canonical_v0.2_training_ready_split_measured_massprops_ratio8_sg0p03_v1",
+  "source_manifest_path": "/home/zn/flap-system-identification/dataset/canonical_v0.2_training_ready_split_measured_massprops_ratio8_sg0p03_v1/dataset_manifest.json",
+  "source_partition_sample_counts": {
+    "test": 60671,
+    "train": 308702,
+    "validation": 79587
+  },
+  "split_lineage": {
+    "test": [
+      "log_18_2026-4-15-12-56-08",
+      "log_34_2026-4-16-19-13-30",
+      "log_4_2026-4-12-17-43-30",
+      "log_4_2026-4-14-12-30-12"
+    ],
+    "train": [
+      "log_0_2026-4-14-10-21-28",
+      "log_0_2026-4-14-11-50-14",
+      "log_10_2026-4-15-11-37-24",
+      "log_12_2026-4-15-11-57-08",
+      "log_17_2026-4-15-12-47-22",
+      "log_1_2026-4-12-16-33-22",
+      "log_1_2026-4-14-12-01-42",
+      "log_20_2026-4-15-13-12-34",
+      "log_24_2026-4-16-09-49-52",
+      "log_25_2026-4-16-09-57-28",
+      "log_26_2026-4-16-10-09-34",
+      "log_27_2026-4-16-10-17-56",
+      "log_30_2026-4-16-10-36-20",
+      "log_31_2026-4-16-18-41-26",
+      "log_32_2026-4-16-18-53-24",
+      "log_38_2026-4-16-19-37-00",
+      "log_3_2026-4-14-12-19-22",
+      "log_5_2026-4-15-10-30-38",
+      "log_6_2026-4-15-10-48-46",
+      "log_8_2026-4-15-11-23-44"
+    ],
+    "validation": [
+      "log_13_2026-4-15-12-04-42",
+      "log_19_2026-4-15-13-02-32",
+      "log_36_2026-4-16-19-24-20",
+      "log_3_2026-4-14-10-52-38",
+      "log_5_2026-4-12-17-51-44"
+    ]
+  },
+  "split_sample_counts": {
+    "test": 60671,
+    "train": 308702,
+    "validation": 79587
+  },
+  "test_labels_loaded": true,
+  "wing_transmission_ratio": 8.0
+}

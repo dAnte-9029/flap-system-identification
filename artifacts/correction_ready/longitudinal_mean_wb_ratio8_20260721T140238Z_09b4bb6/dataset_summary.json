@@ -1,0 +1,140 @@
+{
+  "accepted_cycle_count": 15360,
+  "airspeed_validity": {
+    "airspeed_condition_valid_cycle_count": 15063,
+    "airspeed_min_mps": -10.157984733581543,
+    "airspeed_negative_fraction": 0.006206717161701722,
+    "c2_first_round_condition_policy": "exclude_airspeed_and_dynamic_pressure_pending_validity_study",
+    "dynamic_pressure_condition_valid_cycle_count": 15063,
+    "negative_value_policy": "preserved_without_abs_or_clipping"
+  },
+  "aligned_sample_count": 388289,
+  "condition_coverage": {
+    "train": {
+      "airspeed_mean_mps": {
+        "maximum": 12.047450643597227,
+        "mean": 7.914653009592628,
+        "minimum": -2.2209997940063477,
+        "std": 1.2892007914371217
+      },
+      "alpha_mean_rad": {
+        "maximum": 0.7377110984695042,
+        "mean": 0.3574927247960692,
+        "minimum": 0.017034121963794526,
+        "std": 0.07462032122743605
+      },
+      "dynamic_pressure_mean_pa": {
+        "maximum": 82.98969567709771,
+        "mean": 37.42060217723554,
+        "minimum": 5.375997219288658,
+        "std": 10.209722091901478
+      },
+      "flapping_frequency_mean_hz": {
+        "maximum": 5.077538050711155,
+        "mean": 4.052103651003245,
+        "minimum": 2.267928136778729,
+        "std": 0.3776224605048955
+      },
+      "rho_mean_kgpm3": {
+        "maximum": 1.1537322004636128,
+        "mean": 1.1379730824026983,
+        "minimum": 1.109805221142976,
+        "std": 0.007960790266775226
+      }
+    },
+    "validation": {
+      "airspeed_mean_mps": {
+        "maximum": 12.2466668287913,
+        "mean": 7.911873554035909,
+        "minimum": -2.8077724705571714,
+        "std": 1.4084174377221608
+      },
+      "alpha_mean_rad": {
+        "maximum": 0.567816205298712,
+        "mean": 0.35338234482172676,
+        "minimum": 0.15026498105477987,
+        "std": 0.06970598968801177
+      },
+      "dynamic_pressure_mean_pa": {
+        "maximum": 86.52894207695107,
+        "mean": 37.81496914109535,
+        "minimum": 5.805761641609807,
+        "std": 10.852010050372117
+      },
+      "flapping_frequency_mean_hz": {
+        "maximum": 4.866291603871754,
+        "mean": 4.0767302738193285,
+        "minimum": 2.576098047398232,
+        "std": 0.4033101011957027
+      },
+      "rho_mean_kgpm3": {
+        "maximum": 1.1513054370880127,
+        "mean": 1.1370757703010603,
+        "minimum": 1.123142264507435,
+        "std": 0.006923004066619981
+      }
+    },
+    "validation_outside_training_range": {
+      "airspeed_mean_mps": 2,
+      "alpha_mean_rad": 0,
+      "dynamic_pressure_mean_pa": 1,
+      "flapping_frequency_mean_hz": 0,
+      "rho_mean_kgpm3": 0
+    }
+  },
+  "dataset_id": "canonical_v0.4_training_ready_split_measured_massprops_ratio8_phasefix_v3",
+  "label_uncertainty": "not_available_no_reliable_keyed_sample_uncertainty_artifact",
+  "partitions": [
+    "train",
+    "validation"
+  ],
+  "per_date_cycle_count": {
+    "2026-04-12": 1128,
+    "2026-04-14": 3583,
+    "2026-04-15": 5604,
+    "2026-04-16": 5045
+  },
+  "per_log_cycle_count": {
+    "log_0_2026-4-14-10-21-28": 720,
+    "log_0_2026-4-14-11-50-14": 745,
+    "log_10_2026-4-15-11-37-24": 569,
+    "log_12_2026-4-15-11-57-08": 665,
+    "log_13_2026-4-15-12-04-42": 618,
+    "log_17_2026-4-15-12-47-22": 634,
+    "log_19_2026-4-15-13-02-32": 679,
+    "log_1_2026-4-12-16-33-22": 418,
+    "log_1_2026-4-14-12-01-42": 756,
+    "log_20_2026-4-15-13-12-34": 747,
+    "log_24_2026-4-16-09-49-52": 617,
+    "log_25_2026-4-16-09-57-28": 621,
+    "log_26_2026-4-16-10-09-34": 555,
+    "log_27_2026-4-16-10-17-56": 492,
+    "log_30_2026-4-16-10-36-20": 580,
+    "log_31_2026-4-16-18-41-26": 580,
+    "log_32_2026-4-16-18-53-24": 534,
+    "log_36_2026-4-16-19-24-20": 552,
+    "log_38_2026-4-16-19-37-00": 514,
+    "log_3_2026-4-14-10-52-38": 633,
+    "log_3_2026-4-14-12-19-22": 729,
+    "log_5_2026-4-12-17-51-44": 710,
+    "log_5_2026-4-15-10-30-38": 578,
+    "log_6_2026-4-15-10-48-46": 525,
+    "log_8_2026-4-15-11-23-44": 589
+  },
+  "per_partition_cycle_count": {
+    "train": 12168,
+    "validation": 3192
+  },
+  "rejected_cycle_count": 351,
+  "rejection_reason_counts": {
+    "incomplete_phase_coverage": 185,
+    "maximum_phase_gap_exceeded": 184,
+    "non_finite_label_prior_or_state": 168,
+    "non_monotonic_timestamp": 18,
+    "phase_unwrap_not_monotonic": 1,
+    "too_few_samples": 113
+  },
+  "test_labels_loaded": false,
+  "total_cycle_count": 15711,
+  "waveform_sample_count": 382297
+}

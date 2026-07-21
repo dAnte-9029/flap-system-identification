@@ -1,0 +1,72 @@
+{
+  "duplicate_keys": 0,
+  "key_columns": [
+    "log_id",
+    "timestamp_us"
+  ],
+  "matched_rows": 388289,
+  "missing_label_rows": 0,
+  "missing_prior_rows": 0,
+  "partitions": {
+    "train": {
+      "aligned_rows": 308702,
+      "alignment_keys": [
+        "log_id",
+        "timestamp_us"
+      ],
+      "condition_sources": {
+        "condition_airspeed_m_s": "airspeed_validated.true_airspeed_m_s",
+        "condition_alpha_rad": "attitude_ground_minus_horizontal_wind_body_FRD_atan2(w,u)",
+        "condition_dynamic_pressure_pa": "0.5*vehicle_air_data.rho*airspeed_validated.true_airspeed_m_s^2",
+        "condition_frequency_hz": "flap_frequency_hz",
+        "condition_reduced_frequency": "pi*f*c_bar/U with c_bar=0.025 m (diagnostic only)",
+        "condition_rho_kgpm3": "vehicle_air_data.rho"
+      },
+      "duplicate_keys": 0,
+      "keyed_alignment": true,
+      "maximum_missing_fraction": 0.0,
+      "missing_label_rows": 0,
+      "missing_prior_fraction": 0.0,
+      "missing_prior_rows": 0,
+      "orphan_prior_rows": 0,
+      "partition": "train",
+      "prior_rows": 308702,
+      "row_order_used": false,
+      "sample_rows": 308702,
+      "status": "ok",
+      "test_rows_loaded": 0
+    },
+    "validation": {
+      "aligned_rows": 79587,
+      "alignment_keys": [
+        "log_id",
+        "timestamp_us"
+      ],
+      "condition_sources": {
+        "condition_airspeed_m_s": "airspeed_validated.true_airspeed_m_s",
+        "condition_alpha_rad": "attitude_ground_minus_horizontal_wind_body_FRD_atan2(w,u)",
+        "condition_dynamic_pressure_pa": "0.5*vehicle_air_data.rho*airspeed_validated.true_airspeed_m_s^2",
+        "condition_frequency_hz": "flap_frequency_hz",
+        "condition_reduced_frequency": "pi*f*c_bar/U with c_bar=0.025 m (diagnostic only)",
+        "condition_rho_kgpm3": "vehicle_air_data.rho"
+      },
+      "duplicate_keys": 0,
+      "keyed_alignment": true,
+      "maximum_missing_fraction": 0.0,
+      "missing_label_rows": 0,
+      "missing_prior_fraction": 0.0,
+      "missing_prior_rows": 0,
+      "orphan_prior_rows": 0,
+      "partition": "validation",
+      "prior_rows": 79587,
+      "row_order_used": false,
+      "sample_rows": 79587,
+      "status": "ok",
+      "test_rows_loaded": 0
+    }
+  },
+  "row_order_used": false,
+  "schema_version": "longitudinal_correction_ready_v1.alignment",
+  "status": "ok",
+  "test_labels_loaded": false
+}

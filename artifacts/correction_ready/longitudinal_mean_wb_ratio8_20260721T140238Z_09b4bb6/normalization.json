@@ -1,0 +1,67 @@
+{
+  "airspeed_mean_mps": {
+    "maximum": 12.047450643597227,
+    "mean": 7.9146528244018555,
+    "median_for_imputation": 8.03708267211914,
+    "minimum": -2.2209997940063477,
+    "near_zero_std_policy": "replace_with_1.0_when_std_le_1e-8",
+    "raw_std": 1.2892007914371217,
+    "source_partition": "train",
+    "std": 1.289200782775879,
+    "training_cycle_count": 12168,
+    "training_row_count": 12168,
+    "zero_variance": false
+  },
+  "alpha_mean_rad": {
+    "maximum": 0.7377110984695042,
+    "mean": 0.35749271512031555,
+    "median_for_imputation": 0.36256110668182373,
+    "minimum": 0.017034121963794526,
+    "near_zero_std_policy": "replace_with_1.0_when_std_le_1e-8",
+    "raw_std": 0.07462032122743605,
+    "source_partition": "train",
+    "std": 0.074620321393013,
+    "training_cycle_count": 12168,
+    "training_row_count": 12168,
+    "zero_variance": false
+  },
+  "dynamic_pressure_mean_pa": {
+    "maximum": 82.98969567709771,
+    "mean": 37.42060089111328,
+    "median_for_imputation": 37.31120300292969,
+    "minimum": 5.375997219288658,
+    "near_zero_std_policy": "replace_with_1.0_when_std_le_1e-8",
+    "raw_std": 10.209722091901478,
+    "source_partition": "train",
+    "std": 10.209722518920898,
+    "training_cycle_count": 12168,
+    "training_row_count": 12168,
+    "zero_variance": false
+  },
+  "flapping_frequency_mean_hz": {
+    "maximum": 5.077538050711155,
+    "mean": 4.052103519439697,
+    "median_for_imputation": 4.103966236114502,
+    "minimum": 2.267928136778729,
+    "near_zero_std_policy": "replace_with_1.0_when_std_le_1e-8",
+    "raw_std": 0.3776224605048955,
+    "source_partition": "train",
+    "std": 0.37762245535850525,
+    "training_cycle_count": 12168,
+    "training_row_count": 12168,
+    "zero_variance": false
+  },
+  "rho_mean_kgpm3": {
+    "maximum": 1.1537322004636128,
+    "mean": 1.1379730701446533,
+    "median_for_imputation": 1.1395280361175537,
+    "minimum": 1.109805221142976,
+    "near_zero_std_policy": "replace_with_1.0_when_std_le_1e-8",
+    "raw_std": 0.007960790266775226,
+    "source_partition": "train",
+    "std": 0.00796078983694315,
+    "training_cycle_count": 12168,
+    "training_row_count": 12168,
+    "zero_variance": false
+  }
+}

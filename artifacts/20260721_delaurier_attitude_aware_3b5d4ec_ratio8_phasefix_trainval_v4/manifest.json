@@ -1,0 +1,175 @@
+{
+  "airflow_mode": "attitude_ground_wind_3d",
+  "alignment_keys": [
+    "log_id",
+    "timestamp_us"
+  ],
+  "artifact_id": "delaurier_attitude_aware_3b5d4ec_ratio8_phasefix_trainval_v4",
+  "authoritative_for": "longitudinal_force_analysis",
+  "baseline_config": {
+    "aircraft_cg_b_m": [
+      -0.12154,
+      0.00541,
+      -0.04298
+    ],
+    "airflow_mode": "attitude_ground_wind_3d",
+    "chunk_size": 4096,
+    "left_wing_fixed_roll_rad": -0.019391,
+    "left_wing_root_b_m": [
+      0.0,
+      -0.056,
+      -0.03
+    ],
+    "mean_pitch_offset_rad": 0.0,
+    "minimum_airspeed_m_s": 0.5,
+    "num_strips": 80,
+    "params": {
+      "alpha0_rad": 0.0,
+      "alpha_stall_max_rad": 0.20943951023931956,
+      "alpha_stall_min_rad": -0.20943951023931956,
+      "c_mac": 0.0,
+      "cd_cf": 1.95,
+      "cd_f": 0.028,
+      "eta_s": 0.65,
+      "nu": 1.5e-05,
+      "stall_smoothing_width_rad": 0.0,
+      "xi": 0.0
+    },
+    "right_wing_fixed_roll_rad": 0.019391,
+    "right_wing_root_b_m": [
+      0.0,
+      0.056,
+      -0.03
+    ],
+    "stroke_amplitude_rad": 0.5235987756
+  },
+  "chunk_size": 4096,
+  "contracts": {
+    "airflow_contract": "attitude_ground_wind_3d",
+    "dynamic_twist_contract": "disabled_zero_tip_amplitude",
+    "frame_contract": "body_frd_force_at_imu_origin_moment_about_cg",
+    "phase_contract": "canonical_mechanical_phase_to_delaurier_v1",
+    "separation_contract": "disabled_attached_flow",
+    "stroke_contract": "q=A*cos(phi_D), phi_D=canonical mechanical phase"
+  },
+  "dataset_id": "canonical_v0.4_training_ready_split_measured_massprops_ratio8_phasefix_v3",
+  "dataset_manifest": "/home/zn/flap-system-identification/dataset/canonical_v0.4_training_ready_split_measured_massprops_ratio8_phasefix_v3/dataset_manifest.json",
+  "dataset_manifest_sha256": "aa12aa66f762390ab1a356b94916694f5ed9689af670f313544aeb57a250cc07",
+  "delaurier_parameters": {
+    "alpha0_deg": 0.0,
+    "alpha_stall_max_deg": 12.000000000000002,
+    "alpha_stall_min_deg": -12.000000000000002,
+    "c_mac": 0.0,
+    "cd_cf": 1.95,
+    "cd_f": 0.028,
+    "enable_separation": false,
+    "eta_s": 0.65,
+    "theta_w_deg": 0.0,
+    "twist_eta_max_deg": 0.0,
+    "xi": 0.0
+  },
+  "dynamic_twist_mode": "disabled",
+  "enable_separation": false,
+  "execution_backend": "numpy_cpu_vectorized",
+  "force_prior_semantics": "two-wing attached-flow DeLaurier force in body FRD at IMU origin",
+  "frequency_contract_version": "flap_frequency_ratio8_v1",
+  "generated_at_utc": "2026-07-21T13:56:24.015186+00:00",
+  "generator_git": {
+    "branch": "fix/ratio8-phase-regeneration",
+    "commit": "09b4bb6e497a677b5da871e3b600f4ebd6e1dd39",
+    "dirty": false,
+    "dirty_paths": []
+  },
+  "legacy": false,
+  "lifecycle_status": "active",
+  "log_ids": {
+    "train": [
+      "log_0_2026-4-14-10-21-28",
+      "log_0_2026-4-14-11-50-14",
+      "log_10_2026-4-15-11-37-24",
+      "log_12_2026-4-15-11-57-08",
+      "log_17_2026-4-15-12-47-22",
+      "log_1_2026-4-12-16-33-22",
+      "log_1_2026-4-14-12-01-42",
+      "log_20_2026-4-15-13-12-34",
+      "log_24_2026-4-16-09-49-52",
+      "log_25_2026-4-16-09-57-28",
+      "log_26_2026-4-16-10-09-34",
+      "log_27_2026-4-16-10-17-56",
+      "log_30_2026-4-16-10-36-20",
+      "log_31_2026-4-16-18-41-26",
+      "log_32_2026-4-16-18-53-24",
+      "log_38_2026-4-16-19-37-00",
+      "log_3_2026-4-14-12-19-22",
+      "log_5_2026-4-15-10-30-38",
+      "log_6_2026-4-15-10-48-46",
+      "log_8_2026-4-15-11-23-44"
+    ],
+    "validation": [
+      "log_13_2026-4-15-12-04-42",
+      "log_19_2026-4-15-13-02-32",
+      "log_36_2026-4-16-19-24-20",
+      "log_3_2026-4-14-10-52-38",
+      "log_5_2026-4-12-17-51-44"
+    ]
+  },
+  "metadata_path": "/home/zn/flap-system-identification/metadata/aircraft/flapper_01/aircraft_metadata.yaml",
+  "metadata_sha256": "9c5c6f500792b358319558691d348520e5c22ec8f65b504d2b934ef813a49914",
+  "moment_prior_semantics": "two-wing strip-integrated DeLaurier moment in body FRD about measured CG",
+  "partitions": [
+    "train",
+    "validation"
+  ],
+  "phase_acceleration_mode": "constant_frequency_step",
+  "phase_contract_version": "hall_indexed_mechanical_phase_ratio8_v1",
+  "physics_source": {
+    "branch": "flapping_rl",
+    "commit": "3b5d4ec1d28f1384cf042402992ad7ea59995f49",
+    "dirty": true,
+    "local_checkout": {
+      "dirty": true,
+      "dirty_paths": [
+        "M source/flapping_bot/flapping_bot/analysis/__init__.py",
+        "?? artifacts/",
+        "?? docs/papers/ocr/",
+        "?? scripts/aerodynamics/audit_wing_tail_longitudinal.py",
+        "?? source/flapping_bot/flapping_bot/analysis/wing_tail_longitudinal_audit.py",
+        "?? source/flapping_bot/flapping_bot/analysis/wing_tail_longitudinal_plots.py",
+        "?? tests/analysis/test_wing_tail_longitudinal_audit.py"
+      ],
+      "head": "eedbec9674decb976bd5e3cbcbf4c555f485b964",
+      "path": "/home/zn/IsaacLab"
+    },
+    "repository": "https://github.com/dAnte-9029/IsaacLab"
+  },
+  "prediction_columns": [
+    "fx_b",
+    "fy_b",
+    "fz_b",
+    "mx_b",
+    "my_b",
+    "mz_b"
+  ],
+  "prediction_sha256": {
+    "train": "8df283f2a877124979545c5b255fd9d5799b4edf11cd0c657a9f6b19801669fb",
+    "validation": "3f253f36c41bddc537cc377d7003c141058f2316a5876f4b16dd174ea848002c"
+  },
+  "ratio_contract_version": "ratio8_v1",
+  "ratio_source": "confirmed_physical_hardware",
+  "row_counts": {
+    "train": 308702,
+    "validation": 79587
+  },
+  "schema_version": "delaurier_keyed_prior_v2",
+  "source_dataset_root": "/home/zn/flap-system-identification/dataset/canonical_v0.4_training_ready_split_measured_massprops_ratio8_phasefix_v3",
+  "source_partition_sha256": {
+    "train": "fe50d4a6c609be7c27cabc604a2587d78e8be21c34af61592af5c6e33f2de70e",
+    "validation": "839e02a3600f3aa1d12d5d933f10872022f424481fff754614bc798ca5d6b93e"
+  },
+  "test_partition_loaded": false,
+  "test_rows_loaded": 0,
+  "theta_tip_deg": 0.0,
+  "wing_geom_csv": "/home/zn/flap-system-identification/metadata/aircraft/flapper_01/wing_geometry_isaaclab_3b5d4ec.csv",
+  "wing_geom_sha256": "7f78ee64a852d76bc6402f30d08024a006a1636d94dfdb817def7ff7464f9601",
+  "wing_transmission_ratio": 8.0
+}

@@ -1,0 +1,252 @@
+{
+  "alignment_keys": [
+    "log_id",
+    "timestamp_us"
+  ],
+  "availability": {
+    "component_attribution": "available_opt_in_frozen_diagnostic",
+    "label_robustness": "available",
+    "physical_sensitivity": "available_bounded_local_probe",
+    "tail_subtracted_residual": "not_available_no_authoritative_keyed_tail_artifact",
+    "trim_impact": "not_computed_missing_wt1_sensitivity"
+  },
+  "branch": "fix/ratio8-phase-regeneration",
+  "chinese_report_path": "/home/zn/flap-system-identification/docs/analysis/2026-07-21_force_discrepancy_attribution_audit_ratio8.md",
+  "component_diagnostic_contract": {
+    "airflow_mode": "attitude_ground_wind_3d",
+    "geometry": "/home/zn/flap-system-identification/metadata/aircraft/flapper_01/wing_geometry_isaaclab_3b5d4ec.csv",
+    "metadata": "/home/zn/flap-system-identification/metadata/aircraft/flapper_01/aircraft_metadata.yaml",
+    "primary_prior_may_use_different_exporter": false,
+    "primary_scalar_parameters_applied": {
+      "alpha0_deg": 0.0,
+      "alpha_stall_max_deg": 12.000000000000002,
+      "alpha_stall_min_deg": -12.000000000000002,
+      "c_mac": 0.0,
+      "cd_cf": 1.95,
+      "cd_f": 0.028,
+      "enable_separation": false,
+      "eta_s": 0.65,
+      "theta_w_deg": 0.0,
+      "twist_eta_max_deg": 0.0,
+      "xi": 0.0
+    },
+    "separation_component_policy": "attached-flow closure matching active primary prior",
+    "theta_tip_deg": 0.0
+  },
+  "condition_variables": {
+    "condition_airspeed_m_s": "airspeed_validated.true_airspeed_m_s",
+    "condition_alpha_rad": "attitude_ground_minus_horizontal_wind_body_FRD_atan2(w,u)",
+    "condition_dynamic_pressure_pa": "0.5*vehicle_air_data.rho*airspeed_validated.true_airspeed_m_s^2",
+    "condition_frequency_hz": "flap_frequency_hz",
+    "condition_reduced_frequency": "pi*f*c_bar/U with c_bar=0.025 m (diagnostic only)"
+  },
+  "cycle_quality_thresholds": {
+    "frequency_range_hz": [
+      0.5,
+      20.0
+    ],
+    "maximum_missing_fraction": 0.0,
+    "minimum_cycle_samples": 12,
+    "minimum_phase_coverage_rad": 5.5
+  },
+  "dataset_manifest": "/home/zn/flap-system-identification/dataset/canonical_v0.4_training_ready_split_measured_massprops_ratio8_phasefix_v3/dataset_manifest.json",
+  "dataset_manifest_hash": "aa12aa66f762390ab1a356b94916694f5ed9689af670f313544aeb57a250cc07",
+  "dataset_path": "/home/zn/flap-system-identification/dataset/canonical_v0.4_training_ready_split_measured_massprops_ratio8_phasefix_v3",
+  "decision_thresholds": {
+    "condition_probe_gain_threshold": 0.05,
+    "history_probe_gain_threshold": 0.05,
+    "label_uncertainty_ratio_threshold": 1.5,
+    "mean_energy_threshold": 0.15,
+    "phase_component_agreement_threshold_rad": 0.17453292519943295,
+    "phase_energy_threshold": 0.3,
+    "phase_offset_threshold_rad": 0.17453292519943295,
+    "physical_similarity_threshold": 0.7,
+    "prior_gain_threshold": 0.02
+  },
+  "diagnostic_probe_settings": {
+    "deployable_model_written": false,
+    "evaluation_partition": "validation",
+    "fit_partition": "train",
+    "harmonic_max_order": 4,
+    "history_lengths_samples": [
+      1,
+      2,
+      4
+    ],
+    "ridge_alphas": [
+      0.0,
+      0.1,
+      1.0,
+      10.0,
+      100.0
+    ],
+    "sample_weighting": "equal-log then equal-cycle then equal-sample"
+  },
+  "dirty_status_before_run": [],
+  "excluded_log_ids": [],
+  "figures": [
+    "/home/zn/flap-system-identification/outputs/force_discrepancy_attribution/20260721T135633Z_09b4bb6/figures/figure_01_phase_curves.png",
+    "/home/zn/flap-system-identification/outputs/force_discrepancy_attribution/20260721T135633Z_09b4bb6/figures/figure_02_phase_shift_delay.png",
+    "/home/zn/flap-system-identification/outputs/force_discrepancy_attribution/20260721T135633Z_09b4bb6/figures/figure_03_cycle_mean_residual.png",
+    "/home/zn/flap-system-identification/outputs/force_discrepancy_attribution/20260721T135633Z_09b4bb6/figures/figure_04_zero_mean_waveform.png",
+    "/home/zn/flap-system-identification/outputs/force_discrepancy_attribution/20260721T135633Z_09b4bb6/figures/figure_05_half_stroke_attribution.png",
+    "/home/zn/flap-system-identification/outputs/force_discrepancy_attribution/20260721T135633Z_09b4bb6/figures/figure_06_component_phase.png",
+    "/home/zn/flap-system-identification/outputs/force_discrepancy_attribution/20260721T135633Z_09b4bb6/figures/figure_07_spanwise_attribution.png",
+    "/home/zn/flap-system-identification/outputs/force_discrepancy_attribution/20260721T135633Z_09b4bb6/figures/figure_08_physical_sensitivity.png",
+    "/home/zn/flap-system-identification/outputs/force_discrepancy_attribution/20260721T135633Z_09b4bb6/figures/figure_09_harmonic_energy.png",
+    "/home/zn/flap-system-identification/outputs/force_discrepancy_attribution/20260721T135633Z_09b4bb6/figures/figure_10_condition_dependence.png",
+    "/home/zn/flap-system-identification/outputs/force_discrepancy_attribution/20260721T135633Z_09b4bb6/figures/figure_11_cross_log_correlations.png",
+    "/home/zn/flap-system-identification/outputs/force_discrepancy_attribution/20260721T135633Z_09b4bb6/figures/figure_12_cross_date.png",
+    "/home/zn/flap-system-identification/outputs/force_discrepancy_attribution/20260721T135633Z_09b4bb6/figures/figure_13_label_robustness.png",
+    "/home/zn/flap-system-identification/outputs/force_discrepancy_attribution/20260721T135633Z_09b4bb6/figures/figure_14_static_history.png",
+    "/home/zn/flap-system-identification/outputs/force_discrepancy_attribution/20260721T135633Z_09b4bb6/figures/figure_15_prior_value.png",
+    "/home/zn/flap-system-identification/outputs/force_discrepancy_attribution/20260721T135633Z_09b4bb6/figures/figure_16_decision_summary.png"
+  ],
+  "frequency_contract_version": "flap_frequency_ratio8_v1",
+  "git_commit": "09b4bb6e497a677b5da871e3b600f4ebd6e1dd39",
+  "git_short_sha": "09b4bb6",
+  "implementation_inventory": {
+    "legacy_duplicates_not_removed": [
+      "scripts/analyze_delaurier_residual_phase.py",
+      "scripts/analyze_delaurier_residual_frequency.py",
+      "scripts/analyze_delaurier_residual_conditions.py",
+      "scripts/analyze_component_residual_attribution.py",
+      "legacy label diagnostic scripts"
+    ],
+    "migrated": [
+      "phase/condition diagnostic patterns into authoritative analysis package",
+      "component residual attribution away from script-only orchestration"
+    ],
+    "new": [
+      "active/legacy prior registry with fail-closed resolution",
+      "attitude-aware train/validation keyed prior materialization",
+      "strict keyed audit alignment",
+      "phase-delay hypotheses",
+      "mean/WB decomposition",
+      "authoritative half-stroke, harmonic, repeatability, probes, decision matrix"
+    ],
+    "reused": [
+      "conventions.phase wrap/direction",
+      "physics.delaurier airflow/dynamic-twist/strip-wrench",
+      "physics.baselines.wing_only aggregate component diagnostics",
+      "canonical dataset phase/cycle/sample identity"
+    ]
+  },
+  "input_hashes_unchanged": true,
+  "label_artifact": "/home/zn/flap-system-identification/dataset/canonical_v0.4_training_ready_split_measured_massprops_ratio8_phasefix_v3",
+  "label_variant_roots": [
+    "/home/zn/flap-system-identification/dataset/canonical_v0.2_training_ready_split_measured_massprops_ratio8_v1"
+  ],
+  "output_schema_version": "eda0.force_discrepancy_attribution.v1",
+  "phase_column": "mechanical_phase_rad",
+  "phase_contract_version": "hall_indexed_mechanical_phase_ratio8_v1",
+  "phase_grid": {
+    "bins": 72,
+    "endpoint": false,
+    "interval_rad": [
+      0.0,
+      6.283185307179586
+    ]
+  },
+  "prior_artifact": "/home/zn/flap-system-identification/artifacts/20260721_delaurier_attitude_aware_3b5d4ec_ratio8_phasefix_trainval_v4",
+  "prior_contracts": {
+    "airflow_contract": "attitude_ground_wind_3d",
+    "frame_contract": "body_frd_force_at_imu_origin_moment_about_cg",
+    "phase_contract": "canonical_mechanical_phase_to_delaurier_v1"
+  },
+  "prior_id": "delaurier_attitude_aware_3b5d4ec_ratio8_phasefix_trainval_v4",
+  "prior_is_legacy": false,
+  "prior_lifecycle_status": "active",
+  "prior_manifest_hash": "c86b34ea10328207b1867b117d44656eacf54b751e883a1ee99de0656695200c",
+  "prior_registry": "/home/zn/flap-system-identification/configs/physics/delaurier_prior_registry.yaml",
+  "prior_source_commit": "3b5d4ec1d28f1384cf042402992ad7ea59995f49",
+  "python_package_versions": {
+    "matplotlib": "3.10.3",
+    "numpy": "1.26.0",
+    "pandas": "2.3.3",
+    "pyarrow": "23.0.1",
+    "python": "3.11.14",
+    "scipy": "1.15.3"
+  },
+  "random_seed": 20260717,
+  "ratio_contract_version": "ratio8_v1",
+  "ratio_source": "confirmed_physical_hardware",
+  "run_id": "20260721T135633Z_09b4bb6",
+  "schema_version": "eda0.force_discrepancy_attribution.v1",
+  "sensitivity_steps": {
+    "dynamic_twist_tip_deg": 1.0,
+    "mean_incidence_deg": 1.0,
+    "phase_offset_deg": 2.0,
+    "scale_probe": 0.05
+  },
+  "split_identity": "canonical_v0.4_training_ready_split_measured_massprops_ratio8_phasefix_v3",
+  "split_manifest": "/home/zn/flap-system-identification/dataset/canonical_v0.4_training_ready_split_measured_massprops_ratio8_phasefix_v3/dataset_manifest.json",
+  "split_manifest_hash": "aa12aa66f762390ab1a356b94916694f5ed9689af670f313544aeb57a250cc07",
+  "strict_failure_count": 0,
+  "strict_failures": [],
+  "test_partition_loaded": false,
+  "test_rows_loaded": 0,
+  "timestamp": "2026-07-21T13:56:33.653263+00:00",
+  "used_log_ids": [
+    "log_0_2026-4-14-10-21-28",
+    "log_0_2026-4-14-11-50-14",
+    "log_10_2026-4-15-11-37-24",
+    "log_12_2026-4-15-11-57-08",
+    "log_13_2026-4-15-12-04-42",
+    "log_17_2026-4-15-12-47-22",
+    "log_19_2026-4-15-13-02-32",
+    "log_1_2026-4-12-16-33-22",
+    "log_1_2026-4-14-12-01-42",
+    "log_20_2026-4-15-13-12-34",
+    "log_24_2026-4-16-09-49-52",
+    "log_25_2026-4-16-09-57-28",
+    "log_26_2026-4-16-10-09-34",
+    "log_27_2026-4-16-10-17-56",
+    "log_30_2026-4-16-10-36-20",
+    "log_31_2026-4-16-18-41-26",
+    "log_32_2026-4-16-18-53-24",
+    "log_36_2026-4-16-19-24-20",
+    "log_38_2026-4-16-19-37-00",
+    "log_3_2026-4-14-10-52-38",
+    "log_3_2026-4-14-12-19-22",
+    "log_5_2026-4-12-17-51-44",
+    "log_5_2026-4-15-10-30-38",
+    "log_6_2026-4-15-10-48-46",
+    "log_8_2026-4-15-11-23-44"
+  ],
+  "used_partitions": [
+    "train",
+    "val"
+  ],
+  "wing_transmission_ratio": 8.0,
+  "written_tables": {
+    "alignment_mismatches": "/home/zn/flap-system-identification/outputs/force_discrepancy_attribution/20260721T135633Z_09b4bb6/alignment_mismatches.csv",
+    "component_contract_checks": "/home/zn/flap-system-identification/outputs/force_discrepancy_attribution/20260721T135633Z_09b4bb6/component_contract_checks.csv",
+    "component_half_stroke_summary": "/home/zn/flap-system-identification/outputs/force_discrepancy_attribution/20260721T135633Z_09b4bb6/component_half_stroke_summary.csv",
+    "component_phase_contributions": "/home/zn/flap-system-identification/outputs/force_discrepancy_attribution/20260721T135633Z_09b4bb6/component_phase_contributions.csv",
+    "component_residual_similarity": "/home/zn/flap-system-identification/outputs/force_discrepancy_attribution/20260721T135633Z_09b4bb6/component_residual_similarity.csv",
+    "component_spanwise_summary": "/home/zn/flap-system-identification/outputs/force_discrepancy_attribution/20260721T135633Z_09b4bb6/component_spanwise_summary.csv",
+    "condition_dependence": "/home/zn/flap-system-identification/outputs/force_discrepancy_attribution/20260721T135633Z_09b4bb6/condition_dependence.csv",
+    "condition_probe_metrics": "/home/zn/flap-system-identification/outputs/force_discrepancy_attribution/20260721T135633Z_09b4bb6/condition_probe_metrics.csv",
+    "cycle_mean_residuals": "/home/zn/flap-system-identification/outputs/force_discrepancy_attribution/20260721T135633Z_09b4bb6/cycle_mean_residuals.csv",
+    "cycle_quality": "/home/zn/flap-system-identification/outputs/force_discrepancy_attribution/20260721T135633Z_09b4bb6/cycle_quality.csv",
+    "cycle_rejection_reasons": "/home/zn/flap-system-identification/outputs/force_discrepancy_attribution/20260721T135633Z_09b4bb6/cycle_rejection_reasons.csv",
+    "date_level_summary": "/home/zn/flap-system-identification/outputs/force_discrepancy_attribution/20260721T135633Z_09b4bb6/date_level_summary.csv",
+    "half_stroke_residuals": "/home/zn/flap-system-identification/outputs/force_discrepancy_attribution/20260721T135633Z_09b4bb6/half_stroke_residuals.csv",
+    "half_stroke_summary_by_log": "/home/zn/flap-system-identification/outputs/force_discrepancy_attribution/20260721T135633Z_09b4bb6/half_stroke_summary_by_log.csv",
+    "harmonic_by_log": "/home/zn/flap-system-identification/outputs/force_discrepancy_attribution/20260721T135633Z_09b4bb6/harmonic_by_log.csv",
+    "harmonic_cycle_summary": "/home/zn/flap-system-identification/outputs/force_discrepancy_attribution/20260721T135633Z_09b4bb6/harmonic_cycle_summary.csv",
+    "label_robustness": "/home/zn/flap-system-identification/outputs/force_discrepancy_attribution/20260721T135633Z_09b4bb6/label_robustness.csv",
+    "label_uncertainty_phase": "/home/zn/flap-system-identification/outputs/force_discrepancy_attribution/20260721T135633Z_09b4bb6/label_uncertainty_phase.csv",
+    "log_waveform_correlations": "/home/zn/flap-system-identification/outputs/force_discrepancy_attribution/20260721T135633Z_09b4bb6/log_waveform_correlations.csv",
+    "matched_capacity_prior_probe": "/home/zn/flap-system-identification/outputs/force_discrepancy_attribution/20260721T135633Z_09b4bb6/matched_capacity_prior_probe.csv",
+    "phase_alignment_by_log": "/home/zn/flap-system-identification/outputs/force_discrepancy_attribution/20260721T135633Z_09b4bb6/phase_alignment_by_log.csv",
+    "phase_alignment_cycles": "/home/zn/flap-system-identification/outputs/force_discrepancy_attribution/20260721T135633Z_09b4bb6/phase_alignment_cycles.csv",
+    "phase_waveform": "/home/zn/flap-system-identification/outputs/force_discrepancy_attribution/20260721T135633Z_09b4bb6/phase_binned_waveform.csv",
+    "physical_sensitivity_similarity": "/home/zn/flap-system-identification/outputs/force_discrepancy_attribution/20260721T135633Z_09b4bb6/physical_sensitivity_similarity.csv",
+    "static_history_probe_metrics": "/home/zn/flap-system-identification/outputs/force_discrepancy_attribution/20260721T135633Z_09b4bb6/static_history_probe_metrics.csv",
+    "trim_impact_estimate": "/home/zn/flap-system-identification/outputs/force_discrepancy_attribution/20260721T135633Z_09b4bb6/trim_impact_estimate.csv",
+    "waveform_repeatability": "/home/zn/flap-system-identification/outputs/force_discrepancy_attribution/20260721T135633Z_09b4bb6/waveform_repeatability.csv",
+    "wingbeat_waveform_metrics": "/home/zn/flap-system-identification/outputs/force_discrepancy_attribution/20260721T135633Z_09b4bb6/wingbeat_waveform_metrics.csv"
+  }
+}

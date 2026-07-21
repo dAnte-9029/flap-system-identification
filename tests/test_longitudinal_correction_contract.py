@@ -100,9 +100,16 @@ def _dataset_contract() -> tuple[dict[str, object], dict[str, object]]:
 
 def test_default_registry_resolves_active_authoritative_prior() -> None:
     resolution = resolve_delaurier_prior(requested_partitions=("train", "validation"))
-    assert resolution.prior_id == "delaurier_attitude_aware_3b5d4ec_trainval_v1"
+    assert resolution.prior_id == "delaurier_attitude_aware_3b5d4ec_ratio8_phasefix_trainval_v4"
     assert resolution.lifecycle_status == "active"
     assert resolution.physics_source_commit == "3b5d4ec1d28f1384cf042402992ad7ea59995f49"
+    assert resolution.manifest["wing_transmission_ratio"] == 8.0
+    assert resolution.manifest["ratio_contract_version"] == "ratio8_v1"
+
+
+def test_superseded_ratio75_prior_is_not_active() -> None:
+    with pytest.raises(ValueError, match="Refusing legacy"):
+        resolve_delaurier_prior(prior_id="delaurier_attitude_aware_3b5d4ec_trainval_v1")
 
 
 def test_legacy_prior_is_not_silently_used(tmp_path: Path) -> None:

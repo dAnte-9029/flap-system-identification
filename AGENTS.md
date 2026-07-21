@@ -55,7 +55,7 @@ For all new experiments, resolve the canonical dataset through
 historical reproduction.
 
 - The current authoritative dataset is
-  `canonical_v0.3_training_ready_split_measured_massprops_hall_ratio8_sg0p03_trainval_v2`.
+  `canonical_v0.4_training_ready_split_measured_massprops_ratio8_phasefix_v3`.
 - Do not select a dataset by directory timestamp, modification time, or a
   legacy script default.
 - Do not use the corresponding `v1` rebuild: its two no-`hall_event` logs used
@@ -66,9 +66,10 @@ historical reproduction.
 - Use `mechanical_phase_rad` as the only phase coordinate and
   `flap_frequency_hz` as the ratio-8 corrected frequency. Do not reconstruct a
   parallel phase from legacy columns.
-- This dataset contains train and validation rows only. It must not be treated
-  as containing test labels; a future test artifact requires an explicit,
-  versioned registry entry after the applicable test gate.
+- This immutable dataset contains the preserved whole-log train, validation,
+  and test assignments. EDA0/C1 and all pre-C7 correction work must request
+  train/validation explicitly and must not load the test Parquet; test remains
+  locked until the applicable gate.
 - Record the resolved dataset ID, repository-relative path, manifest hash,
   sample artifact hashes, partitions, phase contract, and frequency contract
   in every downstream run manifest.

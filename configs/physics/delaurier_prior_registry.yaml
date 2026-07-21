@@ -1,16 +1,38 @@
 schema_version: delaurier_prior_registry_v1
-default_prior_id: delaurier_attitude_aware_3b5d4ec_trainval_v1
+default_prior_id: delaurier_attitude_aware_3b5d4ec_ratio8_phasefix_trainval_v4
 
 priors:
-  delaurier_attitude_aware_3b5d4ec_trainval_v1:
+  delaurier_attitude_aware_3b5d4ec_ratio8_phasefix_trainval_v4:
     lifecycle_status: active
     authoritative_for: longitudinal_force_analysis
+    artifact_root: artifacts/20260721_delaurier_attitude_aware_3b5d4ec_ratio8_phasefix_trainval_v4
+    artifact_manifest_sha256: c86b34ea10328207b1867b117d44656eacf54b751e883a1ee99de0656695200c
+    physics_source_commit: 3b5d4ec1d28f1384cf042402992ad7ea59995f49
+    dataset_id: canonical_v0.4_training_ready_split_measured_massprops_ratio8_phasefix_v3
+    dataset_manifest_sha256: aa12aa66f762390ab1a356b94916694f5ed9689af670f313544aeb57a250cc07
+    wing_transmission_ratio: 8.0
+    ratio_contract_version: ratio8_v1
+    phase_contract_version: hall_indexed_mechanical_phase_ratio8_v1
+    frequency_contract_version: flap_frequency_ratio8_v1
+    frame_contract: body_frd_force_at_imu_origin_moment_about_cg
+    airflow_contract: attitude_ground_wind_3d
+    phase_contract: canonical_mechanical_phase_to_delaurier_v1
+    required_partitions: [train, validation]
+    notes: >-
+      Frozen 3b5d4ec attached-flow prior rematerialized on the authoritative
+      Hall-indexed RATIO=8 phase/frequency dataset. Test rows are absent.
+
+  delaurier_attitude_aware_3b5d4ec_trainval_v1:
+    lifecycle_status: superseded
+    authoritative_for: historical_reproduction_only
     artifact_root: artifacts/20260717_delaurier_attitude_aware_3b5d4ec_trainval_v1
     physics_source_commit: 3b5d4ec1d28f1384cf042402992ad7ea59995f49
     frame_contract: body_frd_force_at_imu_origin_moment_about_cg
     airflow_contract: attitude_ground_wind_3d
     phase_contract: canonical_mechanical_phase_to_delaurier_v1
     required_partitions: [train, validation]
+    superseded_by: delaurier_attitude_aware_3b5d4ec_ratio8_phasefix_trainval_v4
+    superseded_reason: incorrect wing transmission ratio 7.5; physical ratio confirmed as 8.0
     notes: >-
       Frozen July-14 attached-flow candidate with separation disabled and
       prescribed dynamic twist disabled (zero tip amplitude).
@@ -24,7 +46,7 @@ priors:
     frame_contract: legacy_scalar_airspeed_pitch_proxy
     airflow_contract: legacy_scalar_true_airspeed
     phase_contract: legacy_q_equals_a_sin_phi
-    superseded_by: delaurier_attitude_aware_3b5d4ec_trainval_v1
+    superseded_by: delaurier_attitude_aware_3b5d4ec_ratio8_phasefix_trainval_v4
     notes: >-
       Retained only to reproduce the June-04 and June-23 correction pipeline.
       The source worktree was dirty at export time.
