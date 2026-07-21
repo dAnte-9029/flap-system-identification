@@ -1,0 +1,46 @@
+schema_version: canonical_dataset_registry_v1
+default_dataset_id: canonical_v0.3_training_ready_split_measured_massprops_hall_ratio8_sg0p03_trainval_v2
+
+datasets:
+  canonical_v0.3_training_ready_split_measured_massprops_hall_ratio8_sg0p03_trainval_v2:
+    lifecycle_status: active
+    intended_use: all_new_experiments_requiring_canonical_flight_samples
+    repository_relative_root: dataset/canonical_v0.3_training_ready_split_measured_massprops_hall_ratio8_sg0p03_trainval_v2
+    manifest_path: dataset/canonical_v0.3_training_ready_split_measured_massprops_hall_ratio8_sg0p03_trainval_v2/dataset_manifest.json
+    manifest_sha256: b10e8e4dc46f3af53465d35cd9a5eddfa6e43edfe85a02f57da9bfe12cde03a3
+    generator_commit: 9e8aaa06c5be74cce0073809543da0e306fab975
+    storage: git_lfs
+    key_columns: [log_id, timestamp_us]
+    partitions:
+      included: [train, validation]
+      excluded: [test]
+      test_labels_loaded: false
+    sample_counts:
+      train: 308702
+      validation: 79587
+    phase_contract:
+      column: mechanical_phase_rad
+      range: "[0, 2*pi)"
+      zero: Hall event, neutral wing position starting upstroke
+      counts_per_encoder_revolution: 4096
+      true_ratio: 8.0
+      counts_per_wing_cycle: 32768
+      primary_method: Hall timestamp plus interpolated encoder total_count
+      fallback_method: Hall zero count recovered from logged phase, then inverted on encoder total_count
+    frequency_contract:
+      column: flap_frequency_hz
+      formula: logged_flap_frequency_hz * 7.5 / 8.0
+      logged_ratio: 7.5
+      true_ratio: 8.0
+    artifact_sha256:
+      train_samples.parquet: b0ee4d524bf8d952f3f3c328ac49c7d6928412141a0e7ecffdf42f0d60e21e3c
+      val_samples.parquet: e4c72ce1d78712a695206ad6b2bd4eb8b03bc7d49386a0c7e0276ee3bbfb014d
+
+policy:
+  new_experiments_must_use_default: true
+  infer_authority_from_directory_date: false
+  silent_fallback_allowed: false
+  historical_reproduction_requires_explicit_dataset_id: true
+  superseded_for_new_experiments:
+    - canonical_v0.3_training_ready_split_measured_massprops_hall_ratio8_sg0p03_trainval_v1
+    - canonical_v0.2_training_ready_split_measured_massprops_ratio8_sg0p03_v1

@@ -46,3 +46,31 @@ active prior.
   coverage in the run manifest.
 - Test-window diagnostic outputs are not training-ready prior artifacts and
   must not be used to choose a correction structure.
+
+## Canonical dataset policy
+
+For all new experiments, resolve the canonical dataset through
+`configs/data/canonical_dataset_registry.yaml`. Use the entry selected by
+`default_dataset_id` unless the user explicitly requests a versioned
+historical reproduction.
+
+- The current authoritative dataset is
+  `canonical_v0.3_training_ready_split_measured_massprops_hall_ratio8_sg0p03_trainval_v2`.
+- Do not select a dataset by directory timestamp, modification time, or a
+  legacy script default.
+- Do not use the corresponding `v1` rebuild: its two no-`hall_event` logs used
+  an inaccurate fallback near the Hall crossing.
+- Do not use the source v0.2 ratio-8 dataset directly for new experiments. It
+  remains provenance input only; its logged phase/frequency contract is
+  superseded by the v0.3 dataset.
+- Use `mechanical_phase_rad` as the only phase coordinate and
+  `flap_frequency_hz` as the ratio-8 corrected frequency. Do not reconstruct a
+  parallel phase from legacy columns.
+- This dataset contains train and validation rows only. It must not be treated
+  as containing test labels; a future test artifact requires an explicit,
+  versioned registry entry after the applicable test gate.
+- Record the resolved dataset ID, repository-relative path, manifest hash,
+  sample artifact hashes, partitions, phase contract, and frequency contract
+  in every downstream run manifest.
+- Fail if the registered manifest or Git LFS sample artifacts are missing or
+  their hashes do not match. Never fall back silently to an older dataset.
