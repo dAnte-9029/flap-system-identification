@@ -38,6 +38,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--wing-geometry", type=Path, default=DEFAULT_GEOMETRY)
     parser.add_argument("--partitions", nargs="+", default=("train", "validation"))
     parser.add_argument("--chunk-size", type=int, default=4096)
+    parser.add_argument("--physics-repository-root", type=Path)
     return parser
 
 
@@ -45,10 +46,13 @@ def main() -> int:
     args = build_parser().parse_args()
     registry_path, registry = load_prior_registry(args.prior_registry)
     entries = registry["priors"]
-    if args.prior_id not in entries:
-        raise ValueError(f"Unknown prior ID {args.prior_id!r} in {registry_path}")
-    entry = entries[args.prior_id]
-    if entry.get("lifecycle_status") != "active":
+    entry = entries.get(args.prior_id)
+    if entry is None and args.output_root is None:
+        raise ValueError(
+            f"Unknown prior ID {args.prior_id!r} in {registry_path}; "
+            "an explicit --output-root is required before registry promotion"
+        )
+    if entry is not None and entry.get("lifecycle_status") != "active":
         raise ValueError(f"Materializer only writes active priors, got {entry.get('lifecycle_status')!r}")
     output_root = args.output_root or Path(str(entry["artifact_root"]))
     manifest = materialize_authoritative_delaurier_prior(
@@ -59,6 +63,8 @@ def main() -> int:
         partitions=args.partitions,
         chunk_size=args.chunk_size,
         project_root=PROJECT_ROOT,
+        artifact_id=args.prior_id,
+        physics_repository_root=args.physics_repository_root,
     )
     print(f"artifact_id: {manifest['artifact_id']}")
     print(f"output_root: {Path(output_root).resolve()}")

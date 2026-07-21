@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import hashlib
 import json
-import shutil
 import subprocess
 import sys
 from datetime import datetime, timezone
@@ -12,11 +11,21 @@ from typing import Any, Iterable
 import numpy as np
 import pandas as pd
 from pyulog import ULog
+import yaml
+
+from system_identification.conventions.phase import (
+    WingPhaseRatioContract,
+    load_wing_phase_ratio_contract,
+)
 
 
 TWO_PI = 2.0 * np.pi
-DEFAULT_PARTITIONS = ("train", "validation")
-PARTITION_FILENAMES = {"train": "train_samples.parquet", "validation": "val_samples.parquet"}
+DEFAULT_PARTITIONS = ("train", "validation", "test")
+PARTITION_FILENAMES = {
+    "train": "train_samples.parquet",
+    "validation": "val_samples.parquet",
+    "test": "test_samples.parquet",
+}
 
 # These columns are alternative phase coordinates or features derived from the
 # stale logged phase.  The rebuilt table exposes one phase coordinate only:
@@ -332,15 +341,14 @@ def reconstruct_log_phase_frequency(
     *,
     ulog_path: str | Path,
     target_timestamp_us: Iterable[int],
-    logged_ratio: float = 7.5,
-    true_ratio: float = 8.0,
-    counts_per_encoder_revolution: float = 4096.0,
+    ratio_contract: WingPhaseRatioContract,
     maximum_cycle_count_relative_error: float = 0.01,
 ) -> tuple[pd.DataFrame, dict[str, Any]]:
     """Reconstruct one Hall-indexed phase and one corrected flapping frequency."""
 
-    if logged_ratio <= 0.0 or true_ratio <= 0.0:
-        raise ValueError("logged_ratio and true_ratio must be positive")
+    ratio_contract.validate()
+    true_ratio = ratio_contract.wing_transmission_ratio
+    counts_per_encoder_revolution = ratio_contract.encoder_counts_per_revolution
     target = np.asarray(list(target_timestamp_us), dtype=np.int64)
     if target.ndim != 1 or len(target) == 0:
         raise ValueError("target_timestamp_us must be a non-empty one-dimensional sequence")
@@ -354,8 +362,9 @@ def reconstruct_log_phase_frequency(
         disable_str_exceptions=True,
     )
     parameter_ratio = float(ulog.initial_parameters.get("FLAP_RATIO", np.nan))
-    if not np.isfinite(parameter_ratio) or not np.isclose(parameter_ratio, logged_ratio, rtol=0.0, atol=1.0e-6):
-        raise ValueError(f"{path.name}: ULog FLAP_RATIO={parameter_ratio!r}, expected {logged_ratio}")
+    if not np.isfinite(parameter_ratio) or parameter_ratio <= 0.0:
+        raise ValueError(f"{path.name}: ULog has invalid historical FLAP_RATIO={parameter_ratio!r}")
+    logged_ratio = parameter_ratio
 
     encoder = _topic_frame(ulog, "encoder_count")
     wing_phase = _topic_frame(ulog, "wing_phase")
@@ -421,7 +430,7 @@ def _rewrite_sample_frame(frame: pd.DataFrame, rebuilt: pd.DataFrame, *, dataset
     if len(output) != len(frame):
         raise ValueError("phase/frequency rewrite changed row count")
     output["dataset_id"] = dataset_id
-    output["flap_frequency_hz_source"] = "ulog_flap_frequency_scaled_7p5_to_8p0"
+    output["flap_frequency_hz_source"] = "canonical_logged_frequency_scaled_by_ulog_ratio_to_hardware_ratio"
     output["wing_stroke_angle_rad"] = np.deg2rad(30.0) * np.sin(output["mechanical_phase_rad"])
     output["wing_stroke_angle_deg"] = np.rad2deg(output["wing_stroke_angle_rad"])
     derivative = np.cos(output["mechanical_phase_rad"].to_numpy(dtype=float))
@@ -448,26 +457,24 @@ def build_hall_ratio8_dataset(
     source_dataset_root: str | Path,
     accepted_logs_csv: str | Path,
     output_root: str | Path,
+    aircraft_metadata: str | Path,
     partitions: Iterable[str] = DEFAULT_PARTITIONS,
-    logged_ratio: float = 7.5,
-    true_ratio: float = 8.0,
-    counts_per_encoder_revolution: float = 4096.0,
     maximum_cycle_count_relative_error: float = 0.01,
-    overwrite: bool = False,
 ) -> dict[str, Path]:
-    """Rewrite train/validation samples with one corrected mechanical phase."""
+    """Rewrite canonical partitions with one corrected mechanical phase."""
 
     source_root = Path(source_dataset_root).resolve()
     accepted_path = Path(accepted_logs_csv).resolve()
     output = Path(output_root).resolve()
+    ratio_contract = load_wing_phase_ratio_contract(aircraft_metadata)
+    true_ratio = ratio_contract.wing_transmission_ratio
+    counts_per_encoder_revolution = ratio_contract.encoder_counts_per_revolution
     selected = tuple(str(item) for item in partitions)
     if not selected or any(item not in PARTITION_FILENAMES for item in selected):
-        raise ValueError("partitions must be a non-empty subset of train/validation; test is forbidden")
-    if output.exists() and any(output.iterdir()):
-        if not overwrite:
-            raise FileExistsError(f"output root already exists and is not empty: {output}")
-        shutil.rmtree(output)
-    output.mkdir(parents=True, exist_ok=True)
+        raise ValueError("partitions must be a non-empty subset of train/validation/test")
+    if output.exists():
+        raise FileExistsError(f"refusing to overwrite immutable dataset root: {output}")
+    output.mkdir(parents=True, exist_ok=False)
 
     accepted = pd.read_csv(accepted_path)
     required_accepted = {"log_id", "source_log_path"}
@@ -481,8 +488,10 @@ def build_hall_ratio8_dataset(
     quality_rows: list[dict[str, Any]] = []
     split_counts: dict[str, int] = {}
     source_manifest = source_root / "dataset_manifest.json"
+    source_manifest_payload: dict[str, Any] = {}
     if source_manifest.exists():
         input_hashes[str(source_manifest)] = _sha256_file(source_manifest)
+        source_manifest_payload = json.loads(source_manifest.read_text(encoding="utf-8"))
 
     for partition in selected:
         filename = PARTITION_FILENAMES[partition]
@@ -503,16 +512,14 @@ def build_hall_ratio8_dataset(
             rebuilt, quality = reconstruct_log_phase_frequency(
                 ulog_path=log_paths[log_key],
                 target_timestamp_us=ordered["timestamp_us"].to_numpy(dtype=np.int64),
-                logged_ratio=logged_ratio,
-                true_ratio=true_ratio,
-                counts_per_encoder_revolution=counts_per_encoder_revolution,
+                ratio_contract=ratio_contract,
                 maximum_cycle_count_relative_error=maximum_cycle_count_relative_error,
             )
             if "flap_frequency_hz" not in ordered.columns:
                 raise ValueError(f"{source_path} missing canonical logged flap_frequency_hz")
             corrected_frequency = (
                 pd.to_numeric(ordered["flap_frequency_hz"], errors="coerce").to_numpy(dtype=float)
-                * float(logged_ratio)
+                * float(quality["logged_ratio"])
                 / float(true_ratio)
             )
             rebuilt["flap_frequency_hz"] = corrected_frequency
@@ -530,7 +537,7 @@ def build_hall_ratio8_dataset(
         output_paths[partition] = output_path
         split_counts[partition] = int(len(output_frame))
 
-    for filename in ("all_logs.csv", "train_logs.csv", "val_logs.csv"):
+    for filename in ("all_logs.csv", "train_logs.csv", "val_logs.csv", "test_logs.csv"):
         source = source_root / filename
         if source.exists():
             logs = pd.read_csv(source)
@@ -573,26 +580,48 @@ def build_hall_ratio8_dataset(
         ).all()),
         "all_frequency_rows_finite": bool((quality["frequency_finite_row_count"] == quality["row_count"]).all()),
         "input_hashes_unchanged": input_hashes_unchanged,
-        "test_labels_loaded": False,
+        "test_partition_materialization_matches_request": (
+            ("test" in selected) == ("test" in output_paths)
+        ),
     }
-    strict_checks["pass"] = bool(
-        all(bool(value) for key, value in strict_checks.items() if key != "test_labels_loaded")
-        and strict_checks["test_labels_loaded"] is False
-    )
+    strict_checks["pass"] = bool(all(strict_checks.values()))
     checks_path = output / "quality_checks.json"
     checks_path.write_text(json.dumps(strict_checks, indent=2, sort_keys=True), encoding="utf-8")
 
     project_root = Path(__file__).resolve().parents[3]
+    metadata_payload = yaml.safe_load(ratio_contract.metadata_path.read_text(encoding="utf-8"))
+    mass = metadata_payload.get("mass_properties", {}) if isinstance(metadata_payload, dict) else {}
     manifest = {
-        "schema_version": "canonical_hall_ratio8_phase_frequency_v1",
+        "schema_version": "canonical_hall_ratio8_phase_frequency_v2",
         "dataset_id": output.name,
         "created_at_utc": datetime.now(timezone.utc).isoformat(),
         "source_dataset_root": str(source_root),
+        "source_manifest_path": str(source_manifest.resolve()),
         "accepted_logs_csv": str(accepted_path),
+        "metadata_path": str(ratio_contract.metadata_path),
         "included_partitions": list(selected),
         "excluded_partitions": [item for item in ("train", "validation", "test") if item not in selected],
-        "test_labels_loaded": False,
+        "test_labels_loaded": "test" in selected,
         "split_sample_counts": split_counts,
+        "source_partition_sample_counts": split_counts,
+        "preprocessing_version": {
+            "label_policy": source_manifest_payload.get("label_policy", "unknown"),
+            "derivative": source_manifest_payload.get("derivative", "unknown"),
+            "input_filtering": source_manifest_payload.get("input_filtering", "unknown"),
+        },
+        "mass_property_version": {
+            "metadata_schema": metadata_payload.get("schema_version", "unknown"),
+            "mass_kg": mass.get("mass_kg", "unknown") if isinstance(mass, dict) else "unknown",
+            "cg_b_m": mass.get("cg_b_m", "unknown") if isinstance(mass, dict) else "unknown",
+            "inertia_b_kg_m2": (
+                mass.get("inertia_b_kg_m2", "unknown") if isinstance(mass, dict) else "unknown"
+            ),
+        },
+        "row_inclusion_exclusion": {
+            "policy": "preserve every keyed source row; phase validity is explicit",
+            "included_rows": split_counts,
+            "excluded_rows": {partition: 0 for partition in selected},
+        },
         "phase_column": "mechanical_phase_rad",
         "phase_range": "[0, 2*pi)",
         "phase_zero": "Hall event: neutral wing position starting upstroke",
@@ -602,8 +631,14 @@ def build_hall_ratio8_dataset(
         "legacy_phase_columns_exported": False,
         "frequency_column": "flap_frequency_hz",
         "frequency_formula": "logged_flap_frequency_hz * logged_ratio / true_ratio",
-        "logged_ratio": float(logged_ratio),
-        "true_ratio": float(true_ratio),
+        "logged_ratio_source": "ULog initial parameter FLAP_RATIO, validated positive per log",
+        "wing_transmission_ratio": float(true_ratio),
+        "ratio_contract_version": ratio_contract.ratio_contract_version,
+        "ratio_source": ratio_contract.ratio_source,
+        "phase_contract_version": ratio_contract.phase_contract_version,
+        "frequency_contract_version": ratio_contract.frequency_contract_version,
+        "ratio_contract_metadata_path": str(ratio_contract.metadata_path),
+        "ratio_contract_metadata_sha256": _sha256_file(ratio_contract.metadata_path),
         "counts_per_encoder_revolution": float(counts_per_encoder_revolution),
         "counts_per_wing_cycle": float(counts_per_encoder_revolution * true_ratio),
         "maximum_cycle_count_relative_error": float(maximum_cycle_count_relative_error),
@@ -612,6 +647,25 @@ def build_hall_ratio8_dataset(
         "input_hashes": input_hashes,
         "git": _git_identity(project_root),
         "python_version": sys.version,
+    }
+    artifact_hashes = {
+        path.name: _sha256_file(path)
+        for path in [*output_paths.values(), quality_path]
+    }
+    manifest["artifact_sha256"] = artifact_hashes
+    manifest["dataset_content_sha256"] = hashlib.sha256(
+        json.dumps(artifact_hashes, sort_keys=True).encode("utf-8")
+    ).hexdigest()
+    manifest["split_lineage"] = {
+        partition: sorted(
+            pd.read_csv(output / filename)["log_id"].astype(str).unique().tolist()
+        )
+        for partition, filename in (
+            ("train", "train_logs.csv"),
+            ("validation", "val_logs.csv"),
+            ("test", "test_logs.csv"),
+        )
+        if (output / filename).is_file()
     }
     manifest_path = output / "dataset_manifest.json"
     manifest_path.write_text(json.dumps(manifest, indent=2, sort_keys=True), encoding="utf-8")

@@ -137,7 +137,17 @@ def test_materializer_writes_keyed_train_validation_without_test(tmp_path: Path)
     validation.to_parquet(dataset / "val_samples.parquet", index=False)
     test.to_parquet(dataset / "test_samples.parquet", index=False)
     (dataset / "dataset_manifest.json").write_text(
-        json.dumps({"dataset_id": "synthetic"}), encoding="utf-8"
+        json.dumps(
+            {
+                "dataset_id": "synthetic",
+                "wing_transmission_ratio": 8.0,
+                "ratio_contract_version": "ratio8_v1",
+                "ratio_source": "confirmed_physical_hardware",
+                "phase_contract_version": "hall_indexed_mechanical_phase_ratio8_v1",
+                "frequency_contract_version": "flap_frequency_ratio8_v1",
+            }
+        ),
+        encoding="utf-8",
     )
     output = tmp_path / "prior"
 
@@ -154,6 +164,8 @@ def test_materializer_writes_keyed_train_validation_without_test(tmp_path: Path)
     assert manifest["lifecycle_status"] == "active"
     assert manifest["test_partition_loaded"] is False
     assert manifest["test_rows_loaded"] == 0
+    assert manifest["wing_transmission_ratio"] == 8.0
+    assert manifest["ratio_contract_version"] == "ratio8_v1"
     assert manifest["contracts"]["airflow_contract"] == "attitude_ground_wind_3d"
     assert manifest["contracts"]["dynamic_twist_contract"] == "disabled_zero_tip_amplitude"
     assert not (output / "test_predictions.parquet").exists()

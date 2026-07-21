@@ -409,7 +409,16 @@ def _write_cli_fixture(root: Path) -> tuple[Path, Path]:
     prior_root = root / "prior"
     dataset.mkdir()
     prior_root.mkdir()
-    (dataset / "dataset_manifest.json").write_text(json.dumps({"dataset_id": "synthetic"}), encoding="utf-8")
+    ratio_contract = {
+        "wing_transmission_ratio": 8.0,
+        "ratio_contract_version": "ratio8_v1",
+        "ratio_source": "confirmed_physical_hardware",
+        "phase_contract_version": "hall_indexed_mechanical_phase_ratio8_v1",
+        "frequency_contract_version": "flap_frequency_ratio8_v1",
+    }
+    (dataset / "dataset_manifest.json").write_text(
+        json.dumps({"dataset_id": "synthetic", **ratio_contract}), encoding="utf-8"
+    )
     (prior_root / "manifest.json").write_text(
         json.dumps(
             {
@@ -417,6 +426,7 @@ def _write_cli_fixture(root: Path) -> tuple[Path, Path]:
                 "lifecycle_status": "active",
                 "partitions": ["train", "validation"],
                 "test_partition_loaded": False,
+                **ratio_contract,
                 "physics_source": {"commit": "synthetic"},
                 "airflow_mode": "legacy_scalar_true_airspeed",
                 "contracts": {

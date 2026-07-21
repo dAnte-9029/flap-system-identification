@@ -1,6 +1,68 @@
 from __future__ import annotations
 
+from dataclasses import dataclass
+from pathlib import Path
+
 import numpy as np
+import yaml
+
+
+@dataclass(frozen=True)
+class WingPhaseRatioContract:
+    """Versioned hardware contract shared by phase and frequency reconstruction."""
+
+    wing_transmission_ratio: float
+    encoder_counts_per_revolution: float
+    ratio_contract_version: str
+    ratio_source: str
+    phase_contract_version: str
+    frequency_contract_version: str
+    metadata_path: Path
+
+    def validate(self) -> None:
+        if not np.isfinite(self.wing_transmission_ratio) or self.wing_transmission_ratio <= 0.0:
+            raise ValueError("wing transmission ratio must be finite and positive")
+        if (
+            not np.isfinite(self.encoder_counts_per_revolution)
+            or self.encoder_counts_per_revolution <= 0.0
+        ):
+            raise ValueError("encoder counts per revolution must be finite and positive")
+        for name in (
+            "ratio_contract_version",
+            "ratio_source",
+            "phase_contract_version",
+            "frequency_contract_version",
+        ):
+            if not str(getattr(self, name)).strip():
+                raise ValueError(f"missing ratio contract field: {name}")
+
+
+def load_wing_phase_ratio_contract(metadata_path: str | Path) -> WingPhaseRatioContract:
+    """Resolve the sole production ratio value from aircraft metadata, fail closed."""
+
+    path = Path(metadata_path).resolve()
+    if not path.is_file():
+        raise FileNotFoundError(f"aircraft metadata not found: {path}")
+    payload = yaml.safe_load(path.read_text(encoding="utf-8"))
+    if not isinstance(payload, dict) or not isinstance(payload.get("flapping_drive"), dict):
+        raise ValueError(f"aircraft metadata has no flapping_drive contract: {path}")
+    drive = payload["flapping_drive"]
+    ratio_field = drive.get("encoder_to_drive_ratio")
+    if not isinstance(ratio_field, dict) or "value" not in ratio_field:
+        raise ValueError("missing authoritative encoder_to_drive_ratio.value")
+    contract = WingPhaseRatioContract(
+        wing_transmission_ratio=float(ratio_field["value"]),
+        encoder_counts_per_revolution=float(drive["encoder_counts_per_rev"]),
+        ratio_contract_version=str(drive.get("ratio_contract_version", "")),
+        ratio_source=str(drive.get("ratio_source", "")),
+        phase_contract_version=str(drive.get("phase_contract_version", "")),
+        frequency_contract_version=str(drive.get("frequency_contract_version", "")),
+        metadata_path=path,
+    )
+    contract.validate()
+    if str(ratio_field.get("status", "")).lower() != "confirmed":
+        raise ValueError("authoritative wing transmission ratio is not confirmed")
+    return contract
 
 
 def wrap_to_2pi(values: np.ndarray | float) -> np.ndarray:

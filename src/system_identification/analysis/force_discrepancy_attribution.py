@@ -28,7 +28,8 @@ from system_identification.physics.delaurier.airflow import reconstruct_body_air
 FORCE_COMPONENTS = ("fx_b", "fz_b")
 PARTITION_ALIASES = {"train": "train", "validation": "val", "val": "val"}
 DEFAULT_ALIGNMENT_KEYS = ("log_id", "timestamp_us")
-DEFAULT_PHASE_COLUMN = "phase_corrected_rad"
+DEFAULT_PHASE_COLUMN = "mechanical_phase_rad"
+LEGACY_PHASE_COLUMN = "phase_corrected_rad"
 DEFAULT_FREQUENCY_COLUMN = "cycle_flap_frequency_hz"
 DEFAULT_AIRSPEED_COLUMN = "airspeed_validated.true_airspeed_m_s"
 DEFAULT_RHO_COLUMN = "vehicle_air_data.rho"
@@ -180,6 +181,11 @@ def keyed_align_label_and_prior(
     """
 
     normalized = normalize_partitions((partition,))[0]
+    samples = samples.copy()
+    if DEFAULT_PHASE_COLUMN not in samples.columns and LEGACY_PHASE_COLUMN in samples.columns:
+        # Explicit historical compatibility at the analysis boundary. New
+        # canonical artifacts export only mechanical_phase_rad.
+        samples[DEFAULT_PHASE_COLUMN] = samples[LEGACY_PHASE_COLUMN]
     key_columns = tuple(keys)
     _require_columns(samples, [*key_columns, *FORCE_COMPONENTS], label="samples")
     _require_columns(prior, [*key_columns, *FORCE_COMPONENTS], label="prior")

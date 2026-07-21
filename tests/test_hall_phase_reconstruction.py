@@ -1,8 +1,13 @@
 from __future__ import annotations
 
+from pathlib import Path
+
 import numpy as np
 import pandas as pd
+import pytest
+import yaml
 
+from system_identification.conventions.phase import load_wing_phase_ratio_contract
 from system_identification.data.hall_phase import (
     TWO_PI,
     _fallback_reconstruction,
@@ -152,17 +157,60 @@ def test_fallback_recovers_hall_zero_count_without_reset_latency() -> None:
     assert quality["median_reset_publication_delay_ms"] == 10.0
 
 
-def test_dataset_builder_rejects_test_partition_before_loading(tmp_path) -> None:
+def test_ratio_contract_is_loaded_from_metadata_and_missing_contract_fails(tmp_path) -> None:
     from system_identification.data.hall_phase import build_hall_ratio8_dataset
 
-    try:
+    metadata = tmp_path / "metadata.yaml"
+    metadata.write_text(
+        yaml.safe_dump(
+            {
+                "flapping_drive": {
+                    "ratio_contract_version": "ratio8_v1",
+                    "ratio_source": "confirmed_physical_hardware",
+                    "phase_contract_version": "phase_ratio8_v1",
+                    "frequency_contract_version": "frequency_ratio8_v1",
+                    "encoder_counts_per_rev": 4096,
+                    "encoder_to_drive_ratio": {"value": 8.0, "status": "confirmed"},
+                }
+            }
+        ),
+        encoding="utf-8",
+    )
+    contract = load_wing_phase_ratio_contract(metadata)
+    assert contract.wing_transmission_ratio == 8.0
+    assert contract.ratio_contract_version == "ratio8_v1"
+    with pytest.raises(FileNotFoundError, match="aircraft metadata"):
         build_hall_ratio8_dataset(
             source_dataset_root=tmp_path / "missing",
             accepted_logs_csv=tmp_path / "missing.csv",
             output_root=tmp_path / "out",
+            aircraft_metadata=tmp_path / "missing-metadata.yaml",
             partitions=["test"],
         )
-    except ValueError as exc:
-        assert "test is forbidden" in str(exc)
-    else:  # pragma: no cover
-        raise AssertionError("test partition was not rejected")
+
+
+def test_nonpositive_ratio_contract_fails(tmp_path) -> None:
+    metadata = tmp_path / "metadata.yaml"
+    metadata.write_text(
+        yaml.safe_dump(
+            {
+                "flapping_drive": {
+                    "ratio_contract_version": "bad",
+                    "ratio_source": "test",
+                    "phase_contract_version": "bad",
+                    "frequency_contract_version": "bad",
+                    "encoder_counts_per_rev": 4096,
+                    "encoder_to_drive_ratio": {"value": 0.0, "status": "confirmed"},
+                }
+            }
+        ),
+        encoding="utf-8",
+    )
+    with pytest.raises(ValueError, match="positive"):
+        load_wing_phase_ratio_contract(metadata)
+
+
+def test_production_phase_reconstruction_has_no_hardcoded_legacy_ratio() -> None:
+    source = Path("src/system_identification/data/hall_phase.py").read_text(encoding="utf-8")
+    assert "logged_ratio: float = 7.5" not in source
+    assert "true_ratio: float = 8.0" not in source

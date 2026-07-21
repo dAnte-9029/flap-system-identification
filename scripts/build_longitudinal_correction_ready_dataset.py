@@ -32,6 +32,10 @@ def _parser() -> argparse.ArgumentParser:
         "--prior-registry", default="configs/physics/delaurier_prior_registry.yaml"
     )
     parser.add_argument("--prior-id")
+    parser.add_argument(
+        "--prior-root",
+        help="Explicit active manifest-backed prior root before registry promotion",
+    )
     parser.add_argument("--partitions", nargs="+", default=["train", "validation"])
     parser.add_argument("--output-root", default="artifacts/correction_ready")
     parser.add_argument("--config", default=str(DEFAULT_CONFIG))
@@ -89,6 +93,7 @@ def main(argv: list[str] | None = None) -> int:
         partitions = normalize_correction_partitions(args.partitions)
         config = _config(args)
         prior = resolve_delaurier_prior(
+            prior_root=args.prior_root,
             prior_id=args.prior_id,
             registry_path=args.prior_registry,
             requested_partitions=partitions,

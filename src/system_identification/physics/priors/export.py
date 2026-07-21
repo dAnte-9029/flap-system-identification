@@ -28,6 +28,7 @@ from system_identification.physics.baselines.wing_only import (
     baseline_config_from_aircraft_metadata,
     evaluate_wing_only_delaurier_segment,
 )
+from system_identification.conventions.phase import load_wing_phase_ratio_contract
 
 
 AUTHORITATIVE_PRIOR_ID = "delaurier_attitude_aware_3b5d4ec_trainval_v1"
@@ -145,6 +146,8 @@ def materialize_authoritative_delaurier_prior(
     partitions: Sequence[str] = ("train", "validation"),
     chunk_size: int = 4096,
     project_root: str | Path | None = None,
+    artifact_id: str = AUTHORITATIVE_PRIOR_ID,
+    physics_repository_root: str | Path | None = None,
 ) -> dict[str, object]:
     """Write immutable train/validation keyed predictions and their manifest."""
 
@@ -167,6 +170,47 @@ def materialize_authoritative_delaurier_prior(
             raise FileNotFoundError(f"{label} not found: {path}")
     if output.exists():
         raise FileExistsError(f"Refusing to overwrite prior artifact: {output}")
+    dataset_manifest = dataset / "dataset_manifest.json"
+    if not dataset_manifest.is_file():
+        raise FileNotFoundError(f"dataset manifest not found: {dataset_manifest}")
+    dataset_contract = json.loads(dataset_manifest.read_text(encoding="utf-8"))
+    ratio_contract = load_wing_phase_ratio_contract(metadata)
+    required_contract_fields = (
+        "wing_transmission_ratio",
+        "ratio_contract_version",
+        "phase_contract_version",
+        "frequency_contract_version",
+    )
+    missing_contract = [key for key in required_contract_fields if not dataset_contract.get(key)]
+    if missing_contract:
+        raise ValueError(f"dataset manifest missing ratio contract fields: {missing_contract}")
+    if not np.isclose(
+        float(dataset_contract["wing_transmission_ratio"]),
+        ratio_contract.wing_transmission_ratio,
+        atol=0.0,
+        rtol=0.0,
+    ):
+        raise ValueError("dataset ratio does not match aircraft metadata")
+    for key in ("ratio_contract_version", "phase_contract_version", "frequency_contract_version"):
+        if str(dataset_contract[key]) != str(getattr(ratio_contract, key)):
+            raise ValueError(f"dataset {key} does not match aircraft metadata")
+
+    physics_checkout: dict[str, object] = {"path": None, "dirty": "not_checked"}
+    if physics_repository_root is not None:
+        physics_path = Path(physics_repository_root).resolve()
+        if not physics_path.is_dir():
+            raise FileNotFoundError(f"physics repository root not found: {physics_path}")
+        status = subprocess.check_output(
+            ["git", "status", "--porcelain=v1"], cwd=physics_path, text=True
+        ).strip()
+        physics_checkout = {
+            "path": str(physics_path),
+            "head": subprocess.check_output(
+                ["git", "rev-parse", "HEAD"], cwd=physics_path, text=True
+            ).strip(),
+            "dirty": bool(status),
+            "dirty_paths": status.splitlines(),
+        }
     output.mkdir(parents=True, exist_ok=False)
 
     row_counts: dict[str, int] = {}
@@ -193,7 +237,6 @@ def materialize_authoritative_delaurier_prior(
             prediction_hashes[partition] = _sha256(prediction_path)
             source_hashes[partition] = _sha256(source_path)
 
-        dataset_manifest = dataset / "dataset_manifest.json"
         config = baseline_config_from_aircraft_metadata(
             metadata,
             chunk_size=int(chunk_size),
@@ -201,12 +244,13 @@ def materialize_authoritative_delaurier_prior(
         )
         manifest: dict[str, object] = {
             "schema_version": OUTPUT_SCHEMA_VERSION,
-            "artifact_id": AUTHORITATIVE_PRIOR_ID,
+            "artifact_id": str(artifact_id),
             "lifecycle_status": "active",
             "authoritative_for": "longitudinal_force_analysis",
             "legacy": False,
             "generated_at_utc": datetime.now(timezone.utc).isoformat(),
             "source_dataset_root": str(dataset),
+            "dataset_id": str(dataset_contract["dataset_id"]),
             "dataset_manifest": str(dataset_manifest.resolve()),
             "dataset_manifest_sha256": _sha256(dataset_manifest),
             "source_partition_sha256": source_hashes,
@@ -215,6 +259,11 @@ def materialize_authoritative_delaurier_prior(
             "log_ids": log_ids,
             "test_partition_loaded": False,
             "test_rows_loaded": 0,
+            "wing_transmission_ratio": ratio_contract.wing_transmission_ratio,
+            "ratio_contract_version": ratio_contract.ratio_contract_version,
+            "ratio_source": ratio_contract.ratio_source,
+            "phase_contract_version": ratio_contract.phase_contract_version,
+            "frequency_contract_version": ratio_contract.frequency_contract_version,
             "alignment_keys": ["log_id", "timestamp_us"],
             "prediction_columns": list(TARGETS),
             "prediction_sha256": prediction_hashes,
@@ -224,6 +273,8 @@ def materialize_authoritative_delaurier_prior(
                 "repository": ISAACLAB_SOURCE_REPOSITORY,
                 "branch": ISAACLAB_SOURCE_BRANCH,
                 "commit": ISAACLAB_SOURCE_COMMIT,
+                "dirty": physics_checkout["dirty"],
+                "local_checkout": physics_checkout,
             },
             "contracts": {
                 "frame_contract": "body_frd_force_at_imu_origin_moment_about_cg",

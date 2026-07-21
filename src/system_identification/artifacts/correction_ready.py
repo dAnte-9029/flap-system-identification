@@ -334,6 +334,22 @@ def _quality_checks(
     weight_columns = [column for column in waveform if column.startswith("weight_")]
     weights = waveform[weight_columns].to_numpy(dtype=float)
     record("weights_finite_and_nonnegative", bool(np.isfinite(weights).all() and (weights >= 0).all()), weight_columns)
+    equal_cycle_totals = waveform.groupby("cycle_id")["weight_equal_cycle_sample"].sum()
+    equal_log_totals = waveform.groupby(["partition", "log_id"])["weight_equal_log_sample"].sum()
+    equal_date_totals = waveform.groupby(["partition", "flight_date"])["weight_equal_date_sample"].sum()
+    record(
+        "partition_aware_weights_equalized",
+        bool(
+            np.allclose(equal_cycle_totals, 1.0)
+            and np.allclose(equal_log_totals, 1.0)
+            and np.allclose(equal_date_totals, 1.0)
+        ),
+        {
+            "equal_cycle_total_range": [float(equal_cycle_totals.min()), float(equal_cycle_totals.max())],
+            "equal_log_total_range_within_partition": [float(equal_log_totals.min()), float(equal_log_totals.max())],
+            "equal_date_total_range_within_partition": [float(equal_date_totals.min()), float(equal_date_totals.max())],
+        },
+    )
     record("artifact_rebuild_deterministic", deterministic, deterministic)
     record("input_artifacts_unmodified", inputs_unchanged, inputs_unchanged)
     record("production_delaurier_predictions_unmodified", production_prior_unchanged, production_prior_unchanged)
@@ -385,6 +401,9 @@ def build_longitudinal_correction_ready_artifact(
     metadata_path = _metadata_path(chain, project_root=root)
     metadata = _read_mapping(metadata_path)
     contract = validate_correction_contract(prior, dataset_manifest, metadata)
+    dataset_preprocessing = dataset_manifest.get("preprocessing_version", {})
+    if not isinstance(dataset_preprocessing, Mapping):
+        dataset_preprocessing = {}
     if set(prior.required_partitions) < {"train", "validation"}:
         raise ValueError("Authoritative prior does not cover train and validation")
     expected_dataset_hash = prior.manifest.get("dataset_manifest_sha256")
@@ -529,11 +548,28 @@ def build_longitudinal_correction_ready_artifact(
             str(key): int(value) for key, value in cycle_table.groupby("flight_date")["cycle_id"].nunique().items()
         },
         "condition_coverage": condition_coverage,
+        "airspeed_validity": {
+            "airspeed_negative_fraction": float(
+                (pd.to_numeric(aligned_frame["condition_airspeed_m_s"], errors="coerce") < 0.0).mean()
+            ),
+            "airspeed_min_mps": float(
+                pd.to_numeric(aligned_frame["condition_airspeed_m_s"], errors="coerce").min()
+            ),
+            "airspeed_condition_valid_cycle_count": int(cycle_table["airspeed_condition_valid"].sum()),
+            "dynamic_pressure_condition_valid_cycle_count": int(
+                cycle_table["dynamic_pressure_condition_valid"].sum()
+            ),
+            "negative_value_policy": "preserved_without_abs_or_clipping",
+            "c2_first_round_condition_policy": "exclude_airspeed_and_dynamic_pressure_pending_validity_study",
+        },
         "label_uncertainty": "not_available_no_reliable_keyed_sample_uncertainty_artifact",
     }
     git = _git_state(root)
     created_at = datetime.now(timezone.utc)
-    artifact_id = f"longitudinal_mean_wb_{created_at.strftime('%Y%m%dT%H%M%SZ')}_{str(git['commit'])[:7]}"
+    artifact_id = (
+        f"longitudinal_mean_wb_ratio8_{created_at.strftime('%Y%m%dT%H%M%SZ')}_"
+        f"{str(git['commit'])[:7]}"
+    )
     output_dir = output_parent / artifact_id
     if output_dir.exists():
         raise FileExistsError(f"Refusing to overwrite correction-ready artifact: {output_dir}")
@@ -561,9 +597,15 @@ def build_longitudinal_correction_ready_artifact(
             "mass_status": metadata.get("mass_properties", {}).get("mass_kg", {}).get("status", "unknown"),
         },
         "preprocessing_version": {
-            "label_policy": dataset_manifest.get("label_policy", "unknown"),
-            "derivative": dataset_manifest.get("derivative", "unknown"),
-            "input_filtering": dataset_manifest.get("input_filtering", "unknown"),
+            "label_policy": dataset_preprocessing.get(
+                "label_policy", dataset_manifest.get("label_policy", "unknown")
+            ),
+            "derivative": dataset_preprocessing.get(
+                "derivative", dataset_manifest.get("derivative", "unknown")
+            ),
+            "input_filtering": dataset_preprocessing.get(
+                "input_filtering", dataset_manifest.get("input_filtering", "unknown")
+            ),
         },
         "split_manifest": str(split_path),
         "split_hash": sha256_file(split_path),
@@ -601,6 +643,8 @@ def build_longitudinal_correction_ready_artifact(
         "condition_columns": list(CONDITION_COLUMNS),
         "condition_aggregation": config.condition_aggregation,
         "normalization_source_partition": "train",
+        "condition_validity": dataset_summary["airspeed_validity"],
+        "c2_first_round_condition_candidates": ["alpha_mean_rad", "flapping_frequency_mean_hz"],
         "target_scope": "provisional_effective_longitudinal_force",
         "tail_subtracted": False,
         "body_subtracted": False,
@@ -623,11 +667,12 @@ def build_longitudinal_correction_ready_artifact(
     }
     weight_contract = {
         "weight_equal_cycle": "1 per cycle row",
-        "weight_equal_log": "1 / number_of_accepted_cycles_in_log per cycle row",
-        "weight_equal_date": "1 / number_of_accepted_cycles_on_date per cycle row",
+        "weight_equal_log": "1 / number_of_accepted_cycles_in_(partition,log) per cycle row",
+        "weight_equal_date": "1 / number_of_accepted_cycles_in_(partition,date) per cycle row",
         "weight_equal_cycle_sample": "1 / number_of_samples_in_cycle",
-        "weight_equal_log_sample": "1 / (accepted_cycles_in_log * samples_in_cycle)",
-        "weight_equal_date_sample": "1 / (accepted_cycles_on_date * samples_in_cycle)",
+        "weight_equal_log_sample": "1 / (accepted_cycles_in_(partition,log) * samples_in_cycle)",
+        "weight_equal_date_sample": "1 / (accepted_cycles_in_(partition,date) * samples_in_cycle)",
+        "normalization_scope": "each partition/log or partition/date group sums to one independently",
         "selection_status": "weights_generated_only_no_strategy_selected",
     }
     write_json(output_dir / "manifest.json", manifest)

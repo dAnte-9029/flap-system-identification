@@ -171,6 +171,44 @@ def test_mean_waveform_harmonic_basis_and_weights_contract() -> None:
     assert np.isfinite(cycle_table.select_dtypes(include=[np.number])).all().all()
 
 
+def test_partition_aware_weights_isolate_train_from_validation() -> None:
+    _, train_rows, _ = _prepared("train")
+    _, validation_rows, _ = _prepared("validation")
+    _, train_waveform = build_correction_tables(train_rows, CorrectionReadyConfig())
+    combined_cycles, combined_waveform = build_correction_tables(
+        pd.concat([train_rows, validation_rows], ignore_index=True), CorrectionReadyConfig()
+    )
+    train_only = combined_waveform.loc[combined_waveform["partition"] == "train"]
+    np.testing.assert_allclose(
+        train_waveform["weight_equal_log_sample"], train_only["weight_equal_log_sample"]
+    )
+    assert np.allclose(
+        combined_waveform.groupby(["partition", "log_id"])["weight_equal_log_sample"].sum(),
+        1.0,
+    )
+    assert np.allclose(
+        combined_waveform.groupby(["partition", "flight_date"])["weight_equal_date_sample"].sum(),
+        1.0,
+    )
+    assert np.allclose(
+        combined_cycles.groupby(["partition", "log_id"])["weight_equal_log"].sum(), 1.0
+    )
+
+
+def test_negative_airspeed_is_preserved_and_marked_invalid() -> None:
+    samples = _samples()
+    samples["airspeed_validated.true_airspeed_m_s"] = -2.5
+    aligned = align_correction_partition(samples, _prior(samples), partition="train")
+    selection = segment_complete_cycles(aligned.aligned, CorrectionReadyConfig())
+    cycles, waveform = build_correction_tables(selection.accepted_rows, CorrectionReadyConfig())
+    assert (cycles["airspeed_mean_mps"] == -2.5).all()
+    assert (waveform["airspeed_mean_mps"] == -2.5).all()
+    assert (cycles["airspeed_min_mps"] == -2.5).all()
+    assert (cycles["airspeed_negative_fraction"] == 1.0).all()
+    assert not cycles["airspeed_condition_valid"].any()
+    assert not cycles["dynamic_pressure_condition_valid"].any()
+
+
 def test_phase_wrap_and_nonuniform_sampling_keep_centered_basis_zero() -> None:
     _, accepted, _ = _prepared()
     accepted = accepted.loc[accepted.groupby("correction_cycle_id").cumcount() % 3 != 0].copy()
@@ -233,6 +271,28 @@ def test_cli_rejects_test_partition() -> None:
     assert "test" in result.stderr.lower()
 
 
+def test_cli_rejects_prior_root_and_prior_id_together() -> None:
+    result = subprocess.run(
+        [
+            sys.executable,
+            "scripts/build_longitudinal_correction_ready_dataset.py",
+            "--dataset-root",
+            "missing",
+            "--split-manifest",
+            "missing.json",
+            "--prior-root",
+            "missing-prior",
+            "--prior-id",
+            "also-missing",
+        ],
+        text=True,
+        capture_output=True,
+        check=False,
+    )
+    assert result.returncode == 1
+    assert "at most one" in result.stderr.lower()
+
+
 def _artifact_fixture(tmp_path: Path) -> tuple[Path, Path, Path]:
     dataset = tmp_path / "dataset"
     prior_root = tmp_path / "prior"
@@ -254,6 +314,16 @@ def _artifact_fixture(tmp_path: Path) -> tuple[Path, Path, Path]:
     )
     manifest = {
         "dataset_id": "synthetic-ratio8",
+        "wing_transmission_ratio": 8.0,
+        "ratio_contract_version": "ratio8_v1",
+        "ratio_source": "confirmed_physical_hardware",
+        "phase_contract_version": "hall_indexed_mechanical_phase_ratio8_v1",
+        "frequency_contract_version": "flap_frequency_ratio8_v1",
+        "preprocessing_version": {
+            "label_policy": "synthetic reconstructed effective force",
+            "derivative": {"method": "analytic"},
+            "input_filtering": {"enabled": False},
+        },
         "metadata_path": str(metadata),
         "label_policy": "synthetic reconstructed effective force",
         "derivative": {"method": "analytic"},
@@ -287,6 +357,11 @@ def _artifact_fixture(tmp_path: Path) -> tuple[Path, Path, Path]:
         "partitions": ["train", "validation"],
         "row_counts": row_counts,
         "test_partition_loaded": False,
+        "wing_transmission_ratio": 8.0,
+        "ratio_contract_version": "ratio8_v1",
+        "ratio_source": "confirmed_physical_hardware",
+        "phase_contract_version": "hall_indexed_mechanical_phase_ratio8_v1",
+        "frequency_contract_version": "flap_frequency_ratio8_v1",
         "dataset_manifest_sha256": sha256_file(manifest_path),
         "source_partition_sha256": source_hashes,
         "prediction_sha256": prediction_hashes,
@@ -371,6 +446,7 @@ def test_cli_headless_artifact_schema_and_strict_exit(tmp_path: Path) -> None:
     assert manifest["resolved_prior_id"] == "synthetic-active-prior"
     assert manifest["test_labels_loaded"] is False
     assert manifest["target_scope"] == "provisional_effective_longitudinal_force"
+    assert manifest["preprocessing_version"]["derivative"] == {"method": "analytic"}
     assert {"cycle_table", "waveform_table", "identity_keys"}.issubset(schema)
 
     strict_config = yaml.safe_load(

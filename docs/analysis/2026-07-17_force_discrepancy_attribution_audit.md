@@ -1,5 +1,10 @@
 # EDA0 — DeLaurier 纵向力模型误差归因审查
 
+> **Superseded：本文基于错误的 wing transmission ratio=7.5。**
+> 真实硬件 ratio 已确认为 8.0。本文仅用于历史复现，不得用于后续 correction 结构选择。
+> 新结果见：[RATIO=8 EDA0 报告](2026-07-21_force_discrepancy_attribution_audit_ratio8.md) 与
+> [ratio 影响对比](2026-07-21_ratio75_vs_ratio8_phase_impact.md)。
+
 日期：2026-07-17T05:49:23.187258+00:00
 
 状态：analysis-only；未训练正式 correction model；test partition 未读取

@@ -165,6 +165,24 @@ def validate_correction_contract(
     dataset_id = str(dataset_manifest.get("dataset_id", ""))
     if not dataset_id:
         raise ValueError("dataset manifest has no dataset_id")
+    required_ratio_fields = (
+        "wing_transmission_ratio",
+        "ratio_contract_version",
+        "ratio_source",
+        "phase_contract_version",
+        "frequency_contract_version",
+    )
+    missing_ratio = [key for key in required_ratio_fields if not dataset_manifest.get(key)]
+    if missing_ratio:
+        raise ValueError(f"dataset manifest missing ratio contract fields: {missing_ratio}")
+    prior_ratio = prior.manifest.get("wing_transmission_ratio")
+    if prior_ratio is None or not np.isclose(
+        float(prior_ratio), float(dataset_manifest["wing_transmission_ratio"]), atol=0.0, rtol=0.0
+    ):
+        raise ValueError("prior/dataset wing transmission ratio mismatch")
+    for key in ("ratio_contract_version", "phase_contract_version", "frequency_contract_version"):
+        if str(prior.manifest.get(key, "")) != str(dataset_manifest[key]):
+            raise ValueError(f"prior/dataset {key} mismatch")
     label_definition = str(
         _nested(
             aircraft_metadata,
@@ -203,6 +221,7 @@ def validate_correction_contract(
         "attitude_quaternion_convention": "wxyz body_FRD_to_NED",
         "timestamp_units": "integer_microseconds",
         "target_scope": "provisional_effective_longitudinal_force",
+        **{key: dataset_manifest[key] for key in required_ratio_fields},
     }
 
 
@@ -497,6 +516,12 @@ def build_correction_tables(
     }
     for output, source in condition_sources.items():
         frame[output] = group[source].transform("mean")
+    frame["airspeed_negative_fraction"] = group["condition_airspeed_m_s"].transform(
+        lambda values: float((pd.to_numeric(values, errors="coerce") < 0.0).mean())
+    )
+    frame["airspeed_min_mps"] = group["condition_airspeed_m_s"].transform("min")
+    frame["airspeed_condition_valid"] = frame["airspeed_negative_fraction"].eq(0.0)
+    frame["dynamic_pressure_condition_valid"] = frame["airspeed_condition_valid"]
 
     for output_component, source_component in zip(FORCE_COMPONENTS, SOURCE_FORCE_COMPONENTS):
         frame[f"label_{output_component}_n"] = frame[f"label_{source_component}"].astype(float)
@@ -530,8 +555,8 @@ def build_correction_tables(
             frame[raw_column] = values
             frame[centered_column] = frame[raw_column] - group[raw_column].transform("mean")
 
-    cycle_counts_log = frame.groupby("log_id")["correction_cycle_id"].transform("nunique")
-    cycle_counts_date = frame.groupby("flight_date")["correction_cycle_id"].transform("nunique")
+    cycle_counts_log = frame.groupby(["partition", "log_id"])["correction_cycle_id"].transform("nunique")
+    cycle_counts_date = frame.groupby(["partition", "flight_date"])["correction_cycle_id"].transform("nunique")
     frame["weight_equal_cycle_sample"] = 1.0 / frame["sample_count"]
     frame["weight_equal_log_sample"] = 1.0 / (cycle_counts_log * frame["sample_count"])
     frame["weight_equal_date_sample"] = 1.0 / (cycle_counts_date * frame["sample_count"])
@@ -557,12 +582,19 @@ def build_correction_tables(
     )
     for column in CONDITION_COLUMNS:
         cycle_table[column] = first[column]
+    for column in (
+        "airspeed_negative_fraction",
+        "airspeed_min_mps",
+        "airspeed_condition_valid",
+        "dynamic_pressure_condition_valid",
+    ):
+        cycle_table[column] = first[column]
     for component in FORCE_COMPONENTS:
         cycle_table[f"label_{component}_mean_n"] = first[f"label_{component}_mean_n"]
         cycle_table[f"prior_{component}_mean_n"] = first[f"prior_{component}_mean_n"]
         cycle_table[f"residual_{component}_mean_n"] = first[f"residual_{component}_mean_n"]
-    cycles_per_log = cycle_table.groupby("log_id")["cycle_id"].transform("size")
-    cycles_per_date = cycle_table.groupby("flight_date")["cycle_id"].transform("size")
+    cycles_per_log = cycle_table.groupby(["partition", "log_id"])["cycle_id"].transform("size")
+    cycles_per_date = cycle_table.groupby(["partition", "flight_date"])["cycle_id"].transform("size")
     cycle_table["weight_equal_cycle"] = 1.0
     cycle_table["weight_equal_log"] = 1.0 / cycles_per_log
     cycle_table["weight_equal_date"] = 1.0 / cycles_per_date
@@ -583,6 +615,12 @@ def build_correction_tables(
         for column in frame.columns
         if column.startswith(("label_", "prior_", "residual_", "sin_", "cos_", "weight_"))
         or column in CONDITION_COLUMNS
+        or column in {
+            "airspeed_negative_fraction",
+            "airspeed_min_mps",
+            "airspeed_condition_valid",
+            "dynamic_pressure_condition_valid",
+        }
     )
     waveform = frame.loc[:, list(dict.fromkeys(waveform_columns))].rename(
         columns={"correction_cycle_id": "cycle_id"}

@@ -28,6 +28,11 @@ def _write_prior(
         "lifecycle_status": lifecycle,
         "partitions": list(partitions),
         "test_partition_loaded": False,
+        "wing_transmission_ratio": 8.0,
+        "ratio_contract_version": "ratio8_v1",
+        "ratio_source": "confirmed_physical_hardware",
+        "phase_contract_version": "hall_indexed_mechanical_phase_ratio8_v1",
+        "frequency_contract_version": "flap_frequency_ratio8_v1",
         "physics_source": {
             "repository": "https://example.invalid/physics",
             "commit": "abc123",
@@ -67,6 +72,11 @@ def _write_prior(
 def _dataset_contract() -> tuple[dict[str, object], dict[str, object]]:
     manifest = {
         "dataset_id": "synthetic-ratio8",
+        "wing_transmission_ratio": 8.0,
+        "ratio_contract_version": "ratio8_v1",
+        "ratio_source": "confirmed_physical_hardware",
+        "phase_contract_version": "hall_indexed_mechanical_phase_ratio8_v1",
+        "frequency_contract_version": "flap_frequency_ratio8_v1",
         "label_policy": "effective wrench recomputed from pre-smoothed kinematic derivatives",
         "derivative": {"method": "savgol", "window_s": 0.03, "polyorder": 3},
         "split_sample_counts": {"train": 20, "val": 20, "test": 10},
@@ -76,6 +86,10 @@ def _dataset_contract() -> tuple[dict[str, object], dict[str, object]]:
         "frames": {"body_frame": "FRD", "local_frame": "NED"},
         "mass_properties": {"mass_kg": {"status": "measured-v1"}},
         "flapping_drive": {
+            "ratio_contract_version": "ratio8_v1",
+            "ratio_source": "confirmed_physical_hardware",
+            "phase_contract_version": "hall_indexed_mechanical_phase_ratio8_v1",
+            "frequency_contract_version": "flap_frequency_ratio8_v1",
             "encoder_to_drive_ratio": {"value": 8.0},
             "drive_phase_zero_definition": "sine_argument_zero_crossing",
         },

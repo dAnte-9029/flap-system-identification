@@ -19,12 +19,13 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--source-dataset-root", type=Path, required=True)
     parser.add_argument("--accepted-logs-csv", type=Path, required=True)
     parser.add_argument("--output-root", type=Path, required=True)
-    parser.add_argument("--partitions", nargs="+", default=["train", "validation"])
-    parser.add_argument("--logged-ratio", type=float, default=7.5)
-    parser.add_argument("--true-ratio", type=float, default=8.0)
-    parser.add_argument("--counts-per-encoder-revolution", type=float, default=4096.0)
+    parser.add_argument(
+        "--aircraft-metadata",
+        type=Path,
+        default=Path("metadata/aircraft/flapper_01/aircraft_metadata.yaml"),
+    )
+    parser.add_argument("--partitions", nargs="+", default=["train", "validation", "test"])
     parser.add_argument("--maximum-cycle-count-relative-error", type=float, default=0.01)
-    parser.add_argument("--overwrite", action="store_true")
     return parser.parse_args()
 
 
@@ -35,12 +36,9 @@ def main() -> None:
             source_dataset_root=args.source_dataset_root,
             accepted_logs_csv=args.accepted_logs_csv,
             output_root=args.output_root,
+            aircraft_metadata=args.aircraft_metadata,
             partitions=args.partitions,
-            logged_ratio=args.logged_ratio,
-            true_ratio=args.true_ratio,
-            counts_per_encoder_revolution=args.counts_per_encoder_revolution,
             maximum_cycle_count_relative_error=args.maximum_cycle_count_relative_error,
-            overwrite=args.overwrite,
         )
     except Exception as exc:
         print(f"error: {exc}", file=sys.stderr)

@@ -1,5 +1,11 @@
 # 纵向力修正 contract
 
+> RATIO=8 phase contract 补充：所有新实验必须使用 aircraft metadata 中唯一的
+> `flapping_drive.encoder_to_drive_ratio.value=8.0`。数据、prior、EDA0 与 C1 manifest
+> 必须共同记录 `ratio_contract_version=ratio8_v1`、`ratio_source=confirmed_physical_hardware`、
+> `phase_contract_version=hall_indexed_mechanical_phase_ratio8_v1` 与
+> `frequency_contract_version=flap_frequency_ratio8_v1`；任一字段缺失或不一致均 fail closed。
+
 状态：active contract
 
 版本：`longitudinal_force_correction_contract_v1`
@@ -146,7 +152,7 @@ Label、prior、state、phase 与 metadata 以 `log_id + timestamp_us` 做 one-t
 
 ## 9. 完整 cycle contract
 
-Cycle segmentation 复用 canonical `cycle_id`、`phase_corrected_rad`、`cycle_valid` 与 Phase-0 complete-cycle selector。每个 cycle 必须：
+Cycle segmentation 复用 canonical `cycle_id`、唯一相位列 `mechanical_phase_rad`、`cycle_valid` 与 Phase-0 complete-cycle selector。每个 cycle 必须：
 
 - 位于一个 log、一个 partition 与一个 segment；
 - timestamp 严格单调；

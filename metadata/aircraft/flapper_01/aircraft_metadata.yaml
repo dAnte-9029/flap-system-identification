@@ -56,6 +56,10 @@ mass_properties:
     uncertainty: pending_repeatability_and_wing_inertia_estimation_summary
 
 flapping_drive:
+  ratio_contract_version: ratio8_v1
+  ratio_source: confirmed_physical_hardware
+  phase_contract_version: hall_indexed_mechanical_phase_ratio8_v1
+  frequency_contract_version: flap_frequency_ratio8_v1
   encoder_sensor: AS5600
   encoder_location: upstream_gear
   absolute_phase_reference_sensor: hall_index_on_drive_gear

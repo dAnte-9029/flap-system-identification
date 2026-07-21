@@ -1,5 +1,10 @@
 # C0/C1 — 纵向力修正 contract 与 correction-ready dataset
 
+> **Superseded：本文基于错误的 wing transmission ratio=7.5。**
+> 真实硬件 ratio 已确认为 8.0。本文仅用于历史复现，不得用于后续 correction 结构选择。
+> 新结果见：[RATIO=8 C1 报告](2026-07-21_longitudinal_correction_ready_dataset_ratio8.md) 与
+> [ratio 影响对比](2026-07-21_ratio75_vs_ratio8_phase_impact.md)。
+
 日期：2026-07-17
 
 状态：C0/C1 data preparation complete；未训练 correction model

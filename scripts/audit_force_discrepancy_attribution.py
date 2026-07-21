@@ -99,6 +99,29 @@ def _parse_csv_numbers(raw: str, *, integer: bool = False) -> tuple[float, ...] 
     return tuple(int(value) for value in values) if integer else tuple(float(value) for value in values)
 
 
+def _validate_ratio_contract(
+    dataset_manifest: dict[str, object], prior_manifest: dict[str, object]
+) -> dict[str, object]:
+    keys = (
+        "wing_transmission_ratio",
+        "ratio_contract_version",
+        "ratio_source",
+        "phase_contract_version",
+        "frequency_contract_version",
+    )
+    missing_dataset = [key for key in keys if not dataset_manifest.get(key)]
+    missing_prior = [key for key in keys if not prior_manifest.get(key)]
+    if missing_dataset or missing_prior:
+        raise ValueError(
+            "ratio contract missing from EDA0 inputs: "
+            f"dataset={missing_dataset}, prior={missing_prior}"
+        )
+    for key in ("wing_transmission_ratio", "ratio_contract_version", "phase_contract_version", "frequency_contract_version"):
+        if str(dataset_manifest[key]) != str(prior_manifest[key]):
+            raise ValueError(f"dataset/prior ratio contract mismatch for {key}")
+    return {key: dataset_manifest[key] for key in keys}
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--dataset-root", type=Path, default=DEFAULT_DATASET)
@@ -182,6 +205,7 @@ def _main(args: argparse.Namespace) -> int:
     dataset_manifest = _read_json(dataset_manifest_path)
     prior_manifest_path = prior_root / "manifest.json"
     prior_manifest = _read_json(prior_manifest_path)
+    ratio_contract = _validate_ratio_contract(dataset_manifest, prior_manifest)
     component_airflow_mode = str(
         prior_manifest.get("airflow_mode")
         or prior_resolution.airflow_contract
@@ -299,6 +323,8 @@ def _main(args: argparse.Namespace) -> int:
         "split_manifest": str(split_manifest),
         "split_manifest_hash": input_hashes_before["split_manifest"],
         "split_identity": dataset_manifest.get("dataset_id", dataset_root.name),
+        **ratio_contract,
+        "phase_column": dataset_manifest.get("phase_column", "mechanical_phase_rad"),
         "used_partitions": used_partitions,
         "test_partition_loaded": False,
         "test_rows_loaded": 0,
