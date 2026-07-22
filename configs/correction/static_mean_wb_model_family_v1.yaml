@@ -1,0 +1,42 @@
+schema_version: static_mean_wb_family_v1
+
+force_components:
+  - fx
+  - fz
+
+model_types:
+  - raw_prior
+  - gain_bias
+  - physical_component_scale
+  - fixed_prior_mean_wb
+  - shaped_prior_mean_wb
+  - no_prior_mean_wb
+
+harmonic_orders: [1, 2, 3, 4]
+condition_sets: [none, alpha, frequency, alpha_frequency]
+prior_retention_values: [0.0, 0.25, 0.5, 0.75, 1.0]
+ridge_values_for_future_c3: [1.0e-6, 1.0e-4, 1.0e-2, 1.0, 100.0]
+allowed_fit_partitions: [train]
+forbidden_features: [airspeed, dynamic_pressure, history, future_state]
+
+authority:
+  dataset_registry_path: configs/data/canonical_dataset_registry.yaml
+  prior_registry_path: configs/physics/delaurier_prior_registry.yaml
+  correction_ready_manifest_sha256: 5298c1c3ef8aabaa96fc439335883d333b4d9c60608e60c6a2194f779bfa0ad2
+  dataset_id: canonical_v0.4_training_ready_split_measured_massprops_ratio8_phasefix_v3
+  dataset_manifest_sha256: aa12aa66f762390ab1a356b94916694f5ed9689af670f313544aeb57a250cc07
+  prior_id: delaurier_attitude_aware_3b5d4ec_ratio8_phasefix_trainval_v4
+  prior_manifest_sha256: c86b34ea10328207b1867b117d44656eacf54b751e883a1ee99de0656695200c
+  ratio_contract_version: ratio8_v1
+  phase_contract_version: hall_indexed_mechanical_phase_ratio8_v1
+  frequency_contract_version: flap_frequency_ratio8_v1
+
+smoke_defaults:
+  harmonic_order: 2
+  condition_set: alpha_frequency
+  mean_prior_retention: 0.5
+  waveform_prior_retention: 0.5
+  ridge_lambda_mean: 1.0e-4
+  ridge_lambda_waveform: 1.0e-4
+  mean_weighting: equal_log
+  waveform_weighting: equal_log
