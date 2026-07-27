@@ -1,5 +1,33 @@
 # Repository Guidelines
 
+## Repository Startup
+
+At the start of every task in this repository, before running project commands
+or editing files:
+
+1. Discover every `AGENTS.md` file in the repository and read each one in full.
+   Do this even when Codex was started from the repository root and the task
+   initially appears to concern only one directory.
+2. Apply the root instructions repository-wide. Apply each nested
+   `AGENTS.md` to work within its directory subtree. If instructions conflict,
+   the more specific nested file takes precedence for that subtree.
+3. Use the `flap-train-gpu` Conda environment for project Python commands,
+   tests, analysis, and training. Prefer the environment interpreter directly:
+
+   ```bash
+   /home/zn/anaconda3/envs/flap-train-gpu/bin/python
+   ```
+
+   For example, run the full test suite with:
+
+   ```bash
+   /home/zn/anaconda3/envs/flap-train-gpu/bin/python -m pytest -q
+   ```
+
+4. Do not install or change project dependencies unless the user explicitly
+   authorizes that scope. If the environment is missing or unusable, stop and
+   report the problem instead of silently falling back to another interpreter.
+
 ## Skill Policy
 
 For work in this repository, treat the following skills as the default allowed set. These should stay enabled by default because they match the main workflows here: IsaacSim simulation development, PX4/control code work, and robotics paper writing.
