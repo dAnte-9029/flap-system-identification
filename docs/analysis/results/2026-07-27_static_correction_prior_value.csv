@@ -1,0 +1,5 @@
+component,prior_model_type,mean_retention,waveform_retention,macro_prior_gain,validation_log_wins,validation_log_losses,worst_log_change_n,verdict
+fx,shaped_prior_mean_wb,0.0,0.25,-0.013535,0,5,0.014947,No stable incremental predictive value demonstrated
+fx,fixed_prior_mean_wb,1.0,1.0,-0.219829,0,5,0.242703,No stable incremental predictive value demonstrated
+fz,shaped_prior_mean_wb,0.5,0.5,-0.270156,0,5,0.618386,No stable incremental predictive value demonstrated
+fz,fixed_prior_mean_wb,1.0,1.0,-0.941837,0,5,2.196411,No stable incremental predictive value demonstrated

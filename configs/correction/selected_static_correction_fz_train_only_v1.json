@@ -1,0 +1,59 @@
+{
+  "schema_version": "selected_static_correction_train_only_v1",
+  "status": "selected_static_train_only",
+  "selection_run_id": "20260727T080823Z_b49d61b",
+  "implementation_git_commit": "b49d61bb00895c2d8c3ab653882b28bd10a17334",
+  "selected_candidate_id": "complete_61ead6598f5c",
+  "model_type": "no_prior_mean_wb",
+  "force_component": "fz",
+  "mean_prior_retention": 0.0,
+  "waveform_prior_retention": 0.0,
+  "mean_condition_set": "none",
+  "waveform_condition_set": "frequency",
+  "harmonic_order": 4,
+  "ridge_lambda_mean": 100.0,
+  "ridge_lambda_waveform": 0.01,
+  "mean_weighting": "equal_log",
+  "waveform_weighting": "equal_cycle",
+  "feature_schema": {
+    "mean": [
+      "intercept"
+    ],
+    "waveform": [
+      "sin_1_phase_centered",
+      "cos_1_phase_centered",
+      "frequency_x_sin_1",
+      "frequency_x_cos_1",
+      "sin_2_phase_centered",
+      "cos_2_phase_centered",
+      "frequency_x_sin_2",
+      "frequency_x_cos_2",
+      "sin_3_phase_centered",
+      "cos_3_phase_centered",
+      "frequency_x_sin_3",
+      "frequency_x_cos_3",
+      "sin_4_phase_centered",
+      "cos_4_phase_centered",
+      "frequency_x_sin_4",
+      "frequency_x_cos_4"
+    ]
+  },
+  "normalization_contract": {
+    "source": "full_train_partition_from_C1",
+    "validation_participated": false
+  },
+  "selection_reason": "Validation best was 1.846483 N; SE=0.118523 N and one-SE threshold=1.965006 N. This 17-coefficient candidate was the simplest eligible model and retained an intercept-only mean branch for trim-relevant Fz.",
+  "selection_stability": {
+    "leave_one_validation_log_out_selected_count": 5,
+    "leave_one_validation_log_out_total": 5,
+    "primary_metric_range_n": [
+      1.7873542436846466,
+      1.9616058231594795
+    ],
+    "single_log_dominated": false,
+    "selection_uncertainty": false
+  },
+  "prior_value_verdict": "No stable incremental predictive value demonstrated",
+  "test_labels_loaded": false,
+  "dynamic_audit_pending": true
+}

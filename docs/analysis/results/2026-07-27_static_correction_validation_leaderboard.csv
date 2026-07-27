@@ -1,0 +1,14 @@
+component,validation_rank,candidate_id,model_type,macro_total_rmse_n,macro_mean_rmse_n,macro_waveform_rmse_n,worst_log_total_rmse_n,coefficient_count,selected
+fx,1,complete_96f7b37445d7,no_prior_mean_wb,0.992762,0.458987,0.865040,1.204803,27,false
+fx,2,complete_7ecd182bd659,shaped_prior_mean_wb,1.006199,0.458987,0.879390,1.219750,27,false
+fx,3,complete_7809de4d75fb,no_prior_mean_wb,1.037476,0.524933,0.878885,1.329400,18,true
+fx,4,complete_a97786b91877,fixed_prior_mean_wb,1.211000,0.671564,0.982987,1.447506,27,false
+fx,5,complete_2fbd66b2a155,gain_bias,3.346303,0.657626,3.254924,3.712972,2,false
+fx,6,complete_aebd9a0e75ed,raw_prior,3.853953,1.331667,3.589341,4.189808,0,false
+fz,1,complete_c5a65afb9957,shaped_prior_mean_wb,1.846483,0.789512,1.632566,2.165537,19,false
+fz,2,complete_61ead6598f5c,no_prior_mean_wb,1.866459,0.837172,1.628469,2.182876,17,true
+fz,3,complete_b7cabb1110b0,no_prior_mean_wb,1.867189,0.829009,1.632566,2.202428,18,false
+fz,4,complete_3bd562d21e06,shaped_prior_mean_wb,2.371622,1.288214,1.913307,2.820814,18,false
+fz,5,complete_049b684bdff9,gain_bias,3.334145,1.371225,2.874877,3.677715,2,false
+fz,6,complete_a25b38b82d75,fixed_prior_mean_wb,3.625777,2.558376,2.429605,4.398839,18,false
+fz,7,complete_c5a74dce2f0e,raw_prior,8.487986,5.102716,6.672256,9.284675,0,false
