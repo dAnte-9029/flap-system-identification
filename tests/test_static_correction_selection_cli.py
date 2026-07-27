@@ -60,3 +60,14 @@ def test_wrong_stage_partition_fails_before_file_reads(
 def test_stage_b_requires_selected_bundle_root() -> None:
     result = subprocess.run([PYTHON, STAGE_B, "--help"], text=True, capture_output=True)
     assert "--selected-bundle-root" in result.stdout
+
+
+def test_stage_manifests_have_non_overlapping_lifecycle_names() -> None:
+    stage_a_source = Path(
+        "src/system_identification/training/correction/static_selection.py"
+    ).read_text()
+    stage_b_source = Path(
+        "src/system_identification/evaluation/static_correction_validation.py"
+    ).read_text()
+    assert 'output / "stage_a_manifest.json"' in stage_a_source
+    assert 'output / "selection_manifest.json"' in stage_b_source

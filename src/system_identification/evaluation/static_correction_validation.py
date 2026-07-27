@@ -568,8 +568,9 @@ def run_validation_selection(
         "dynamic_model_trained": False,
     }
     write_json(output / "quality_checks.json", quality)
+    stage_a_manifest_path = output / "stage_a_manifest.json"
     selection_manifest_path = output / "selection_manifest.json"
-    manifest = json.loads(selection_manifest_path.read_text(encoding="utf-8"))
+    manifest = json.loads(stage_a_manifest_path.read_text(encoding="utf-8"))
     manifest.update(
         {
             "run_stage": "stage_b_validation_complete",

@@ -815,7 +815,7 @@ def run_train_cv_selection(
         "validation_labels_loaded": False,
         "test_labels_loaded": False,
     }
-    write_json(output / "selection_manifest.json", selection_manifest)
+    write_json(output / "stage_a_manifest.json", selection_manifest)
     if sha256_file(config_file) != config_before or sha256_file(artifact_manifest_path) != artifact_before:
         raise ValueError("Stage A input config or correction-ready artifact changed during execution")
     return {
