@@ -66,6 +66,10 @@ def test_leave_one_log_out_does_not_retrain() -> None:
     result = leave_one_log_out_selection(candidates, component="fx")
     assert len(result["leave_one_log_out"]) == 5
     assert sum(result["selection_counts"].values()) == 5
+    selected_metrics = [
+        item["selected_macro_total_rmse"] for item in result["leave_one_log_out"]
+    ]
+    assert result["primary_metric_range"] == [min(selected_metrics), max(selected_metrics)]
 
 
 def test_empty_selection_fails() -> None:

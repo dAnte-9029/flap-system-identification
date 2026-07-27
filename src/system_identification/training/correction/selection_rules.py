@@ -107,21 +107,23 @@ def leave_one_log_out_selection(
             copy["macro_total_rmse"] = float(np.mean(list(values.values())))
             reduced.append(copy)
         result = select_one_se(reduced, component=component)
+        selected_metric = next(
+            float(item["macro_total_rmse"])
+            for item in reduced
+            if str(item["candidate_id"]) == str(result["selected_candidate_id"])
+        )
         selections.append(
             {
                 "omitted_log_id": omitted,
                 "selected_candidate_id": result["selected_candidate_id"],
+                "selected_macro_total_rmse": selected_metric,
                 "one_se_threshold": result["one_se_threshold"],
             }
         )
     counts = Counter(str(item["selected_candidate_id"]) for item in selections)
     all_selected = str(all_result["selected_candidate_id"])
     selected_frequency = int(counts.get(all_selected, 0))
-    primary_values = [
-        float(item["macro_total_rmse"])
-        for item in candidates
-        if str(item["candidate_id"]) == all_selected
-    ]
+    primary_values = [float(item["selected_macro_total_rmse"]) for item in selections]
     return {
         "component": component,
         "all_log_selected_model": all_selected,
