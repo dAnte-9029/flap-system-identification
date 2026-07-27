@@ -11,7 +11,7 @@ from system_identification.models.correction.specifications import StaticCorrect
 from system_identification.models.correction.static_models import RidgeSolution
 
 
-ALLOWED_BUNDLE_STATUSES = frozenset({"candidate", "smoke_test"})
+ALLOWED_BUNDLE_STATUSES = frozenset({"candidate", "smoke_test", "selected_static_train_only"})
 
 
 def _solution_payload(solution: RidgeSolution | None) -> dict[str, object]:

@@ -156,6 +156,56 @@ def _validate_provenance(provenance: Mapping[str, object]) -> dict[str, object]:
     return result
 
 
+def fit_mean_branch(
+    spec: StaticCorrectionSpec,
+    cycle_frame: pd.DataFrame,
+) -> RidgeSolution:
+    """Fit only the mean branch of a mean/WB specification."""
+
+    _train_only(cycle_frame, "cycle_frame")
+    if spec.model_type not in MEAN_WB_TYPES:
+        raise ValueError("Mean branch fitting requires a mean/WB candidate")
+    design = build_mean_design(cycle_frame, spec)
+    target = _checked_target(cycle_frame, f"label_{spec.force_component}_mean_n")
+    if spec.mean_prior_retention != 0.0:
+        target = target - float(spec.mean_prior_retention) * _checked_target(
+            cycle_frame, f"prior_{spec.force_component}_mean_n"
+        )
+    return fit_weighted_ridge(
+        design.values,
+        target,
+        _weights(cycle_frame, spec.mean_weighting, MEAN_WEIGHT_COLUMNS),
+        spec.ridge_lambda_mean,
+        design.feature_names,
+        np.array([name != "intercept" for name in design.feature_names], dtype=bool),
+    )
+
+
+def fit_waveform_branch(
+    spec: StaticCorrectionSpec,
+    waveform_frame: pd.DataFrame,
+) -> RidgeSolution:
+    """Fit only the zero-mean waveform branch of a mean/WB specification."""
+
+    _train_only(waveform_frame, "waveform_frame")
+    if spec.model_type not in MEAN_WB_TYPES:
+        raise ValueError("Waveform branch fitting requires a mean/WB candidate")
+    design = build_waveform_design(waveform_frame, spec)
+    target = _checked_target(waveform_frame, f"label_{spec.force_component}_waveform_n")
+    if spec.waveform_prior_retention != 0.0:
+        target = target - float(spec.waveform_prior_retention) * _checked_target(
+            waveform_frame, f"prior_{spec.force_component}_waveform_n"
+        )
+    return fit_weighted_ridge(
+        design.values,
+        target,
+        _weights(waveform_frame, spec.waveform_weighting, WAVEFORM_WEIGHT_COLUMNS),
+        spec.ridge_lambda_waveform,
+        design.feature_names,
+        np.ones(len(design.feature_names), dtype=bool),
+    )
+
+
 def _make_bundle(
     spec: StaticCorrectionSpec,
     mean_solution: RidgeSolution | None,
@@ -208,35 +258,8 @@ def fit_candidate(
     component = spec.force_component
 
     if spec.model_type in MEAN_WB_TYPES:
-        mean_design = build_mean_design(cycle_frame, spec)
-        mean_target = _checked_target(cycle_frame, f"label_{component}_mean_n")
-        if spec.mean_prior_retention != 0.0:
-            mean_target = mean_target - float(spec.mean_prior_retention) * _checked_target(
-                cycle_frame, f"prior_{component}_mean_n"
-            )
-        mean_solution = fit_weighted_ridge(
-            mean_design.values,
-            mean_target,
-            _weights(cycle_frame, spec.mean_weighting, MEAN_WEIGHT_COLUMNS),
-            spec.ridge_lambda_mean,
-            mean_design.feature_names,
-            np.array([name != "intercept" for name in mean_design.feature_names], dtype=bool),
-        )
-
-        waveform_design = build_waveform_design(waveform_frame, spec)
-        waveform_target = _checked_target(waveform_frame, f"label_{component}_waveform_n")
-        if spec.waveform_prior_retention != 0.0:
-            waveform_target = waveform_target - float(spec.waveform_prior_retention) * _checked_target(
-                waveform_frame, f"prior_{component}_waveform_n"
-            )
-        waveform_solution = fit_weighted_ridge(
-            waveform_design.values,
-            waveform_target,
-            _weights(waveform_frame, spec.waveform_weighting, WAVEFORM_WEIGHT_COLUMNS),
-            spec.ridge_lambda_waveform,
-            waveform_design.feature_names,
-            np.ones(len(waveform_design.feature_names), dtype=bool),
-        )
+        mean_solution = fit_mean_branch(spec, cycle_frame)
+        waveform_solution = fit_waveform_branch(spec, waveform_frame)
     elif spec.model_type == "gain_bias":
         prior = _checked_target(waveform_frame, f"prior_{component}_n")
         target = _checked_target(waveform_frame, f"label_{component}_n")
@@ -278,7 +301,7 @@ def fit_candidate(
         "train_waveform_row_count": int(len(waveform_frame)),
         "coefficient_count": int(coefficient_count),
         "finite_checks": True,
-        "selection_performed": False,
+        "selection_performed": status == "selected_static_train_only",
     }
     return _make_bundle(
         spec,

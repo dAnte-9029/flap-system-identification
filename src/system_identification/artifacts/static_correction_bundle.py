@@ -58,6 +58,8 @@ def _manifest(bundle: StaticCorrectionBundle) -> dict[str, object]:
         "force_component": spec.force_component,
         "harmonic_order": spec.harmonic_order,
         "condition_set": spec.condition_set,
+        "mean_condition_set": spec.mean_condition_set,
+        "waveform_condition_set": spec.waveform_condition_set,
         "mean_prior_retention": spec.mean_prior_retention,
         "waveform_prior_retention": spec.waveform_prior_retention,
         "ridge_lambda_mean": spec.ridge_lambda_mean,
@@ -134,7 +136,8 @@ def load_static_bundle(path: str | Path) -> StaticCorrectionBundle:
     if missing:
         raise ValueError(f"Static model bundle is incomplete; missing={missing}")
     manifest = _read_json(root / "bundle_manifest.json")
-    spec = StaticCorrectionSpec.from_dict(_read_json(root / "model_spec.json"))
+    raw_spec = _read_json(root / "model_spec.json")
+    spec = StaticCorrectionSpec.from_dict(raw_spec)
     mean = _solution(_read_json(root / "mean_coefficients.json"))
     waveform_payload = _read_json(root / "waveform_coefficients.json")
     waveform = _solution(waveform_payload)
@@ -169,5 +172,13 @@ def load_static_bundle(path: str | Path) -> StaticCorrectionBundle:
     )
     actual_hash = compute_bundle_hash(bundle.hash_payload())
     if actual_hash != bundle.bundle_hash:
-        raise ValueError(f"Static model bundle hash mismatch: expected={bundle.bundle_hash}, actual={actual_hash}")
+        legacy_payload = bundle.hash_payload()
+        if "mean_condition_set" not in raw_spec and "waveform_condition_set" not in raw_spec:
+            legacy_spec = dict(legacy_payload["spec"])
+            legacy_spec.pop("mean_condition_set", None)
+            legacy_spec.pop("waveform_condition_set", None)
+            legacy_payload["spec"] = legacy_spec
+        legacy_hash = compute_bundle_hash(legacy_payload)
+        if legacy_hash != bundle.bundle_hash:
+            raise ValueError(f"Static model bundle hash mismatch: expected={bundle.bundle_hash}, actual={actual_hash}")
     return bundle

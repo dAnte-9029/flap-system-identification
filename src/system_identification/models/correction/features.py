@@ -44,7 +44,7 @@ def _condition_columns(condition_set: str) -> tuple[str, ...]:
 def build_mean_design(frame: pd.DataFrame, spec: StaticCorrectionSpec) -> DesignMatrix:
     if spec.model_type not in MEAN_WB_TYPES:
         raise ValueError(f"Mean design is not defined for {spec.model_type}")
-    condition_columns = _condition_columns(spec.condition_set)
+    condition_columns = _condition_columns(str(spec.mean_condition_set))
     _require_columns(frame, list(condition_columns))
     columns: list[np.ndarray] = []
     names: list[str] = []
@@ -63,7 +63,7 @@ def build_waveform_design(frame: pd.DataFrame, spec: StaticCorrectionSpec) -> De
         raise ValueError(f"Waveform design is not defined for {spec.model_type}")
     if spec.harmonic_order is None:
         raise ValueError("harmonic_order is required")
-    condition_columns = _condition_columns(spec.condition_set)
+    condition_columns = _condition_columns(str(spec.waveform_condition_set))
     required = list(condition_columns)
     for harmonic in range(1, spec.harmonic_order + 1):
         required.extend([f"sin_{harmonic}_phase_centered", f"cos_{harmonic}_phase_centered"])

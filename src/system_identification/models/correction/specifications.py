@@ -31,7 +31,9 @@ class StaticCorrectionSpec:
     model_type: str
     force_component: str
     harmonic_order: int | None = None
-    condition_set: str = "none"
+    condition_set: str | None = None
+    mean_condition_set: str | None = None
+    waveform_condition_set: str | None = None
     mean_prior_retention: float | None = None
     waveform_prior_retention: float | None = None
     ridge_lambda_mean: float = 0.0
@@ -48,8 +50,27 @@ class StaticCorrectionSpec:
             raise ValueError(f"Unknown model_type: {self.model_type!r}")
         if self.force_component not in FORCE_COMPONENTS:
             raise ValueError(f"force_component must be one of {sorted(FORCE_COMPONENTS)}")
-        if self.condition_set not in CONDITION_SETS:
-            raise ValueError(f"condition_set must be one of {sorted(CONDITION_SETS)}")
+        legacy_condition = self.condition_set
+        mean_condition = self.mean_condition_set
+        waveform_condition = self.waveform_condition_set
+        if legacy_condition is not None:
+            if legacy_condition not in CONDITION_SETS:
+                raise ValueError(f"condition_set must be one of {sorted(CONDITION_SETS)}")
+            if mean_condition is not None and mean_condition != legacy_condition:
+                raise ValueError("condition_set conflicts with mean_condition_set")
+            if waveform_condition is not None and waveform_condition != legacy_condition:
+                raise ValueError("condition_set conflicts with waveform_condition_set")
+            mean_condition = legacy_condition
+            waveform_condition = legacy_condition
+        else:
+            mean_condition = "none" if mean_condition is None else mean_condition
+            waveform_condition = "none" if waveform_condition is None else waveform_condition
+        if mean_condition not in CONDITION_SETS:
+            raise ValueError(f"mean_condition_set must be one of {sorted(CONDITION_SETS)}")
+        if waveform_condition not in CONDITION_SETS:
+            raise ValueError(f"waveform_condition_set must be one of {sorted(CONDITION_SETS)}")
+        object.__setattr__(self, "mean_condition_set", mean_condition)
+        object.__setattr__(self, "waveform_condition_set", waveform_condition)
         if self.mean_weighting not in MEAN_WEIGHTINGS:
             raise ValueError(f"mean_weighting must be one of {sorted(MEAN_WEIGHTINGS)}")
         if self.waveform_weighting not in WAVEFORM_WEIGHTINGS:
@@ -89,7 +110,7 @@ class StaticCorrectionSpec:
         else:
             if self.harmonic_order is not None:
                 raise ValueError(f"{self.model_type} does not accept harmonic_order")
-            if self.condition_set != "none":
+            if mean_condition != "none" or waveform_condition != "none":
                 raise ValueError(f"{self.model_type} does not accept condition features")
             if self.mean_prior_retention is not None or self.waveform_prior_retention is not None:
                 raise ValueError(f"{self.model_type} does not accept mean/WB retention")

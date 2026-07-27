@@ -44,6 +44,11 @@ Mean branch 只使用 `cycle_table.parquet` 的每-cycle 行；WB branch 只使�
 - `frequency`；
 - `alpha_frequency`。
 
+C3 起 specification 支持 branch-specific
+`mean_condition_set` 与 `waveform_condition_set`。旧 bundle 中单一
+`condition_set` 会等价映射到两个 branch；新 specification 可以分别冻结
+mean 与 waveform conditions。若旧字段与任一新字段冲突则 fail closed。
+
 禁止 airspeed、dynamic pressure、history、future state、timestamp delay、自由 phase offset 与任何并行重建的 phase。Prediction 直接消费 C1 已冻结的 `alpha_mean_std`、`flapping_frequency_mean_std` 和 centered Fourier columns，不重估 normalization，不重算 phase、cycle、mean/WB decomposition 或 harmonic basis。
 
 Mean correction 为
@@ -121,7 +126,7 @@ Fx/Fz bundle 独立。Prediction 保留 waveform input row order，通过 `cycle
 - `training_provenance.json`；
 - `fit_diagnostics.json`。
 
-Bundle hash 排除 creation timestamp，并覆盖 specification、coefficient、feature order、normalization、train-only provenance、diagnostics summary 与 status；相同输入产生相同 hash。Bundle 只允许 `candidate` 或 `smoke_test`，不得标记 `selected`、`approved`、`production` 或 `final`。
+Bundle hash 排除 creation timestamp，并覆盖 specification、coefficient、feature order、normalization、train-only provenance、diagnostics summary 与 status；相同输入产生相同 hash。C2 bundle 只允许 `candidate` 或 `smoke_test`。C3 通过 sealed shortlist 与 validation one-SE rule 后，可以保存状态严格为 `selected_static_train_only` 的 train-fitted bundle；该状态不表示 `approved`、`production`、`approved_for_simulation` 或 `final`。
 
 ## 8. C2 partition policy 与阶段边界
 
