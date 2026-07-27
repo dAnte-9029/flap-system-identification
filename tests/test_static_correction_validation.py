@@ -117,6 +117,24 @@ def test_validation_residual_identity() -> None:
     np.testing.assert_allclose(residual, [0.5, -1.0, 0.5])
 
 
+def test_normalized_validation_waveform_label_can_feed_per_log_metric() -> None:
+    table = pd.DataFrame(
+        {
+            "log_id": ["a", "a"],
+            "cycle_id": ["c", "c"],
+            "label_waveform_n": [1.0, -1.0],
+            "predicted_waveform_n": [0.5, -0.5],
+        }
+    )
+    metric_frame = table.rename(columns={"label_waveform_n": "label_fx_waveform_n"})
+    metric = per_log_waveform_metrics(
+        metric_frame,
+        table["predicted_waveform_n"].to_numpy(),
+        "fx",
+    )
+    assert metric.iloc[0]["waveform_rmse"] == pytest.approx(0.5)
+
+
 def test_matched_prior_comparison_can_report_stable_value() -> None:
     common_spec = {
         "force_component": "fx",

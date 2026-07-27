@@ -117,8 +117,13 @@ def _candidate_metrics(
         .to_numpy(dtype=np.float64)
     )
     mean = per_log_mean_metrics(cycle_frame, cycle_prediction, spec.force_component)
+    waveform_metric_frame = table.rename(
+        columns={"label_waveform_n": f"label_{spec.force_component}_waveform_n"}
+    )
     waveform = per_log_waveform_metrics(
-        table, table["predicted_waveform_n"].to_numpy(dtype=np.float64), spec.force_component
+        waveform_metric_frame,
+        table["predicted_waveform_n"].to_numpy(dtype=np.float64),
+        spec.force_component,
     )
     secondary = waveform_secondary_metrics(
         table.rename(columns={"label_waveform_n": f"label_{spec.force_component}_waveform_n"}),
