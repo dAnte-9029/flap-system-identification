@@ -1,0 +1,93 @@
+schema_version: quadratic2_twist_sweep_v1
+experiment_id: quadratic2_twist_sweep_v1
+random_seed: 20260728
+
+registries:
+  canonical_dataset: configs/data/canonical_dataset_registry.yaml
+  delaurier_prior: configs/physics/delaurier_prior_registry.yaml
+
+data:
+  dataset_id: canonical_v0.4_training_ready_split_measured_massprops_ratio8_phasefix_v3
+  dataset_root: dataset/canonical_v0.4_training_ready_split_measured_massprops_ratio8_phasefix_v3
+  correction_ready_root: artifacts/correction_ready/longitudinal_mean_wb_ratio8_20260721T140238Z_09b4bb6
+  prior_id: delaurier_attitude_aware_3b5d4ec_ratio8_phasefix_trainval_v4
+  partitions: [train, validation]
+  sealed_partitions: [test]
+  alignment_keys: [log_id, timestamp_us]
+  sample_filter: correction_ready_accepted_cycles
+
+physics:
+  aircraft_metadata: metadata/aircraft/flapper_01/aircraft_metadata.yaml
+  wing_geometry: metadata/aircraft/flapper_01/wing_geometry_isaaclab_3b5d4ec.csv
+  phase_coordinate: mechanical_phase_rad
+  phase_mapping: phi_delaurier_equals_wrap_phi_mechanical_minus_pi_over_2
+  phase_acceleration_mode: constant_frequency_step
+  frame: body_FRD
+  force_sign: "+Fx forward, +Fz down"
+  separation_enabled: false
+  baseline:
+    profile_name: legacy_linear
+    A_tip_deg: 0.0
+    kappa: 0.0
+    psi_theta_deg: 0.0
+    static_twist_offset_deg: 0.0
+  candidate_profile_name: quadratic2_phase
+  allowed:
+    A_tip_deg: [0.0, 40.0]
+    kappa: [-1.0, 1.0]
+    psi_theta_deg: [-90.0, 90.0]
+    static_twist_offset_deg: [-10.0, 10.0]
+
+airflow:
+  main_mode: attitude_ground_wind_3d
+  sensitivity_mode: attitude_ground_velocity_3d_zero_wind
+  vertical_wind_m_s: 0.0
+
+phase_binning:
+  bins: 72
+  endpoint: left_closed_right_open
+  aggregation: per_log_mean_then_equal_log_macro
+  primary_fx_interval_deg: [180.0, 270.0]
+  smoothing:
+    method: periodic_savgol_zero_phase
+    window_bins: 7
+    polynomial_order: 3
+  report_unsmoothed: true
+
+sweep:
+  oat:
+    A_tip_deg: [0.0, 5.0, 10.0, 15.0, 20.0, 25.0, 30.0, 35.0, 40.0]
+    kappa: [-1.0, -0.75, -0.5, -0.25, 0.0, 0.25, 0.5, 0.75, 1.0]
+    psi_theta_deg: [-90.0, -75.0, -60.0, -45.0, -30.0, -15.0, 0.0, 15.0, 30.0, 45.0, 60.0, 75.0, 90.0]
+    static_twist_offset_deg: [-10.0, -5.0, 0.0, 5.0, 10.0]
+  coarse:
+    A_tip_deg: [0.0, 5.0, 10.0, 15.0, 20.0, 25.0, 30.0, 35.0, 40.0]
+    kappa: [-1.0, -0.75, -0.5, -0.25, 0.0, 0.25, 0.5, 0.75, 1.0]
+    psi_theta_deg: [-90.0, -75.0, -60.0, -45.0, -30.0, -15.0, 0.0, 15.0, 30.0, 45.0, 60.0, 75.0, 90.0]
+  refine:
+    maximum_pareto_seeds: 10
+    A_tip_step_deg: 2.5
+    kappa_step: 0.125
+    psi_theta_step_deg: 5.0
+    neighbor_steps: 1
+
+selection:
+  require_train_validation_same_fx_phase_direction: true
+  maximum_validation_fx_rmse_degradation_fraction: 0.10
+  maximum_validation_fz_rmse_degradation_fraction: 0.10
+  maximum_fz_minimum_amplitude_error_fraction: 0.25
+  minimum_fx_peak_half_height_width_deg: 10.0
+  maximum_zero_wind_phase_reversal_deg: 15.0
+  maximum_shortlist_size: 10
+
+runtime:
+  default_workers: 4
+  chunk_size: 16384
+  candidate_batch_size: 1
+  progress_update_seconds: 5.0
+
+output:
+  root: outputs/analysis/quadratic2_twist_sweep_v1
+  compact_result_format: jsonl
+  table_format: parquet
+  figure_dpi: 180

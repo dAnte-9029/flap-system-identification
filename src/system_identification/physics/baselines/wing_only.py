@@ -43,8 +43,14 @@ ISAACLAB_SOURCE_COMMIT = "3b5d4ec1d28f1384cf042402992ad7ea59995f49"
 TARGETS = ("fx_b", "fy_b", "fz_b", "mx_b", "my_b", "mz_b")
 FORCE_AXES = ("fx_b", "fy_b", "fz_b")
 MOMENT_AXES = ("mx_b", "my_b", "mz_b")
-AIRFLOW_MODES = frozenset({"legacy_scalar_true_airspeed", "attitude_ground_wind_3d"})
-ATTITUDE_AIRFLOW_REQUIRED_COLUMNS = (
+AIRFLOW_MODES = frozenset(
+    {
+        "legacy_scalar_true_airspeed",
+        "attitude_ground_wind_3d",
+        "attitude_ground_velocity_3d_zero_wind",
+    }
+)
+ATTITUDE_KINEMATICS_REQUIRED_COLUMNS = (
     "vehicle_attitude.q[0]",
     "vehicle_attitude.q[1]",
     "vehicle_attitude.q[2]",
@@ -52,6 +58,9 @@ ATTITUDE_AIRFLOW_REQUIRED_COLUMNS = (
     "vehicle_local_position.vx",
     "vehicle_local_position.vy",
     "vehicle_local_position.vz",
+)
+ATTITUDE_AIRFLOW_REQUIRED_COLUMNS = (
+    *ATTITUDE_KINEMATICS_REQUIRED_COLUMNS,
     "wind.windspeed_north",
     "wind.windspeed_east",
 )
@@ -65,6 +74,9 @@ class WingOnlyBaselineConfig:
     stroke_amplitude_rad: float = 0.5235987756
     minimum_airspeed_m_s: float = 0.5
     mean_pitch_offset_rad: float = 0.0
+    twist_profile_name: str = "legacy_linear"
+    twist_kappa: float = 0.0
+    twist_phase_offset_rad: float = 0.0
     airflow_mode: str = "legacy_scalar_true_airspeed"
     params: DeLaurierParams = field(
         default_factory=lambda: DeLaurierParams(
@@ -136,6 +148,8 @@ def required_columns_for_airflow_mode(airflow_mode: str) -> set[str]:
         return {"airspeed_validated.true_airspeed_m_s"}
     if airflow_mode == "attitude_ground_wind_3d":
         return set(ATTITUDE_AIRFLOW_REQUIRED_COLUMNS)
+    if airflow_mode == "attitude_ground_velocity_3d_zero_wind":
+        return set(ATTITUDE_KINEMATICS_REQUIRED_COLUMNS)
     raise ValueError(f"Unsupported airflow_mode {airflow_mode!r}; expected one of {sorted(AIRFLOW_MODES)}")
 
 
@@ -163,18 +177,21 @@ def _resolve_airflow_inputs(
             "forward_speed": forward,
             "attitude_pitch": np.full(len(frame), np.nan),
         }
-    if mode != "attitude_ground_wind_3d":
+    if mode not in {"attitude_ground_wind_3d", "attitude_ground_velocity_3d_zero_wind"}:
         raise ValueError(f"Unsupported airflow_mode {mode!r}; expected one of {sorted(AIRFLOW_MODES)}")
     ground_velocity_ned = frame[
         ["vehicle_local_position.vx", "vehicle_local_position.vy", "vehicle_local_position.vz"]
     ].to_numpy(dtype=float)
-    wind_velocity_ned = np.column_stack(
-        (
-            frame["wind.windspeed_north"].to_numpy(dtype=float),
-            frame["wind.windspeed_east"].to_numpy(dtype=float),
-            np.zeros(len(frame), dtype=float),
+    if mode == "attitude_ground_wind_3d":
+        wind_velocity_ned = np.column_stack(
+            (
+                frame["wind.windspeed_north"].to_numpy(dtype=float),
+                frame["wind.windspeed_east"].to_numpy(dtype=float),
+                np.zeros(len(frame), dtype=float),
+            )
         )
-    )
+    else:
+        wind_velocity_ned = np.zeros_like(ground_velocity_ned)
     quaternion = frame[[f"vehicle_attitude.q[{index}]" for index in range(4)]].to_numpy(dtype=float)
     airflow = reconstruct_body_airflow_from_ned(
         ground_velocity_ned_m_s=ground_velocity_ned,
@@ -325,6 +342,9 @@ def _chunk_result(
         phase_rate_rad_s=phase_rate,
         phase_acceleration_rad_s2=phase_acceleration_rad_s2,
         enabled=True,
+        profile_name=config.twist_profile_name,
+        kappa=config.twist_kappa,
+        phase_offset_rad=config.twist_phase_offset_rad,
     )
     airspeed = airflow["forward_speed"]
     rho = frame["vehicle_air_data.rho"].to_numpy(dtype=float)
@@ -361,6 +381,9 @@ def _chunk_result(
     result["dynamic_twist_mode"] = (
         "disabled" if math.isclose(float(theta_tip_deg), 0.0, abs_tol=1.0e-12) else "delaurier_linear_spanwise"
     )
+    result["twist_profile_name"] = str(config.twist_profile_name)
+    result["twist_kappa"] = float(config.twist_kappa)
+    result["twist_phase_offset_rad"] = float(config.twist_phase_offset_rad)
     result["baseline_filter_mode"] = "baseline_raw"
     result["phase_acceleration_mode"] = phase_acceleration_mode
     result["airflow_mode"] = str(config.airflow_mode)

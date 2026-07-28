@@ -8,7 +8,9 @@ from .delaurier.airflow import (
     reconstruct_body_airflow_from_ned,
 )
 from .delaurier.dynamic_twist import (
+    TWIST_PROFILE_NAMES,
     DeLaurierTwistKinematics,
+    TwistProfileName,
     compute_delaurier_dynamic_twist,
     map_canonical_phase_to_delaurier,
 )
@@ -30,6 +32,8 @@ __all__ = [
     "DeLaurierStripWrench",
     "DeLaurierTwistKinematics",
     "ReconstructedBodyAirflow",
+    "TWIST_PROFILE_NAMES",
+    "TwistProfileName",
     "WingGeometry",
     "body_air_velocity_to_delaurier_section_velocity",
     "compute_delaurier_axis_incidence",

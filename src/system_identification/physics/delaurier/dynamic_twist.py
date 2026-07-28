@@ -8,8 +8,12 @@ the theoretical geometric tip ``y=R``, not at the last strip center.
 from __future__ import annotations
 
 from dataclasses import dataclass
+from typing import Literal
 
 import numpy as np
+
+TwistProfileName = Literal["legacy_linear", "quadratic2_phase"]
+TWIST_PROFILE_NAMES = frozenset({"legacy_linear", "quadratic2_phase"})
 
 
 @dataclass(frozen=True)
@@ -69,15 +73,40 @@ def compute_delaurier_dynamic_twist(
     phase_acceleration_rad_s2: np.ndarray,
     enabled: bool,
     semi_span_m: np.ndarray | float | None = None,
+    profile_name: TwistProfileName = "legacy_linear",
+    kappa: float = 0.0,
+    phase_offset_rad: float = 0.0,
 ) -> DeLaurierTwistKinematics:
-    """Compute linear-span prescribed dynamic twist and analytic derivatives."""
+    """Compute prescribed dynamic twist and its analytic derivatives.
+
+    ``phase_rad`` retains the frozen DeLaurier phase coordinate. For
+    ``quadratic2_phase``, ``phase_offset_rad=0`` is intentionally parity with
+    the legacy timing; the offset is an advance/lag relative to that timing.
+    """
 
     span = _strip_matrix(strip_span_m, name="strip_span_m")
     width = _strip_matrix(strip_width_m, name="strip_width_m")
     if span.shape[-1] != width.shape[-1]:
         raise ValueError("strip_span_m and strip_width_m must have the same strip count")
-    if np.any(span < 0.0) or np.any(width <= 0.0):
-        raise ValueError("strip spans must be non-negative and widths positive")
+    if not np.isfinite(span).all() or not np.isfinite(width).all():
+        raise ValueError("strip spans and widths must be finite")
+    if np.any(width <= 0.0):
+        raise ValueError("strip widths must be positive")
+    if profile_name not in TWIST_PROFILE_NAMES:
+        raise ValueError(
+            f"Unsupported twist profile {profile_name!r}; expected one of {sorted(TWIST_PROFILE_NAMES)}"
+        )
+    curvature = float(kappa)
+    offset = float(phase_offset_rad)
+    if not np.isfinite(curvature) or not -1.0 <= curvature <= 1.0:
+        raise ValueError("quadratic2 kappa must be finite and within [-1, 1]")
+    if not np.isfinite(offset):
+        raise ValueError("twist phase offset must be finite")
+    if profile_name == "legacy_linear" and (
+        not np.isclose(curvature, 0.0, atol=0.0, rtol=0.0)
+        or not np.isclose(offset, 0.0, atol=0.0, rtol=0.0)
+    ):
+        raise ValueError("legacy_linear requires kappa=0 and phase_offset_rad=0")
 
     pitch = np.asarray(mean_pitch_rad, dtype=float)
     if pitch.ndim == 0:
@@ -103,22 +132,39 @@ def compute_delaurier_dynamic_twist(
         expand,
         (span, width, pitch, tip, phase, rate, acceleration),
     )
+    if not all(
+        np.isfinite(values).all()
+        for values in (pitch, tip, phase, rate, acceleration)
+    ):
+        raise ValueError("twist kinematic inputs must be finite")
+    if np.any(tip < 0.0):
+        raise ValueError("tip_twist_amplitude_rad must be non-negative")
     pitch = np.broadcast_to(pitch, (batch, span.shape[1]))
+    absolute_span = np.abs(span)
     if semi_span_m is None:
-        semi_span = np.max(span + 0.5 * width, axis=1, keepdims=True)
+        semi_span = np.max(absolute_span + 0.5 * width, axis=1, keepdims=True)
     else:
         semi_span = expand(_batch_column(semi_span_m, name="semi_span_m"))
-    if np.any(semi_span <= 0.0):
-        raise ValueError("semi_span_m must be positive")
-    fraction = span / semi_span
+    if not np.isfinite(semi_span).all() or np.any(semi_span <= 0.0):
+        raise ValueError("semi_span_m must be finite and positive")
+    fraction = absolute_span / semi_span
     if np.any(fraction > 1.0 + 1.0e-6):
         raise ValueError("A strip center lies beyond the geometric semi-span")
+    if profile_name == "legacy_linear":
+        shape = fraction
+        phase_argument = phase
+    else:
+        shape = (1.0 - curvature) * fraction + curvature * np.square(fraction)
+        if np.any(shape < -1.0e-12):
+            raise ValueError("quadratic2 span profile has an internal physical sign reversal")
+        phase_argument = phase - offset
 
     if enabled:
-        delta = -tip * fraction * np.sin(phase)
-        delta_dot = -tip * fraction * np.cos(phase) * rate
-        delta_ddot = tip * fraction * (
-            np.sin(phase) * np.square(rate) - np.cos(phase) * acceleration
+        delta = -tip * shape * np.sin(phase_argument)
+        delta_dot = -tip * shape * np.cos(phase_argument) * rate
+        delta_ddot = tip * shape * (
+            np.sin(phase_argument) * np.square(rate)
+            - np.cos(phase_argument) * acceleration
         )
     else:
         delta = np.zeros_like(fraction)
