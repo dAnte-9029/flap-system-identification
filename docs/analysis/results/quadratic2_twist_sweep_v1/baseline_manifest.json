@@ -1,0 +1,125 @@
+{
+  "active_prior_parity": {
+    "train_fx_maximum_absolute_difference_n": 0.0,
+    "train_fz_maximum_absolute_difference_n": 0.0,
+    "validation_fx_maximum_absolute_difference_n": 0.0,
+    "validation_fz_maximum_absolute_difference_n": 0.0
+  },
+  "airflow_mode": "attitude_ground_wind_3d",
+  "baseline_candidate": {
+    "A_tip_deg": 0.0,
+    "family": "legacy_baseline",
+    "kappa": 0.0,
+    "profile_name": "legacy_linear",
+    "psi_theta_deg": 0.0,
+    "stage": "baseline",
+    "static_twist_offset_deg": 0.0
+  },
+  "baseline_full_cycle_fx_peak_deg": {
+    "train": 177.5,
+    "validation": 177.5
+  },
+  "baseline_gate_passed": true,
+  "baseline_parameter_hash": "052fcd3c9e773abf",
+  "baseline_primary_interval_fx_peak_deg": {
+    "train": 182.5,
+    "validation": 182.5
+  },
+  "config_path": "/home/zn/flap-system-identification/configs/delaurier/quadratic2_twist_sweep_v1.yaml",
+  "config_sha256": "05c6bdc82aa13ee2c6cc3e994242e2af9d273dd77747b4259d988ace2eae87d7",
+  "contracts": {
+    "frame": "body_FRD: +Fx forward, +Fz down",
+    "frequency_column": "flap_frequency_hz",
+    "phase_coordinate": "mechanical_phase_rad",
+    "phase_mapping": "phi_delaurier_equals_wrap_phi_mechanical_minus_pi_over_2",
+    "separation_enabled": false,
+    "test_sealed": true
+  },
+  "correction_ready": {
+    "accepted_cycle_count": 15360,
+    "alignment_keys": [
+      "log_id",
+      "timestamp_us"
+    ],
+    "manifest_sha256": "5298c1c3ef8aabaa96fc439335883d333b4d9c60608e60c6a2194f779bfa0ad2",
+    "root": "/home/zn/flap-system-identification/artifacts/correction_ready/longitudinal_mean_wb_ratio8_20260721T140238Z_09b4bb6"
+  },
+  "data_primary_interval_fx_peak_deg": {
+    "train": 212.5,
+    "validation": 217.49999999999997
+  },
+  "dataset": {
+    "frequency_contract": "flap_frequency_ratio8_v1",
+    "id": "canonical_v0.4_training_ready_split_measured_massprops_ratio8_phasefix_v3",
+    "manifest_path": "/home/zn/flap-system-identification/dataset/canonical_v0.4_training_ready_split_measured_massprops_ratio8_phasefix_v3/dataset_manifest.json",
+    "manifest_sha256": "aa12aa66f762390ab1a356b94916694f5ed9689af670f313544aeb57a250cc07",
+    "partitions_loaded": [
+      "train",
+      "validation"
+    ],
+    "phase_contract": "hall_indexed_mechanical_phase_ratio8_v1",
+    "repository_relative_path": "dataset/canonical_v0.4_training_ready_split_measured_massprops_ratio8_phasefix_v3",
+    "root": "/home/zn/flap-system-identification/dataset/canonical_v0.4_training_ready_split_measured_massprops_ratio8_phasefix_v3",
+    "sample_sha256": {
+      "train": "fe50d4a6c609be7c27cabc604a2587d78e8be21c34af61592af5c6e33f2de70e",
+      "validation": "839e02a3600f3aa1d12d5d933f10872022f424481fff754614bc798ca5d6b93e"
+    },
+    "test_partition_loaded": false,
+    "test_rows_loaded": 0
+  },
+  "experiment_id": "quadratic2_twist_sweep_v1",
+  "generated_at_utc": "2026-07-28T09:45:37.261311+00:00",
+  "git": {
+    "branch": "exp/quadratic2-twist-sweep",
+    "commit": "59d90e62c9468aaafab36d1c7393ff5cfe06e64d",
+    "dirty": true
+  },
+  "prior": {
+    "airflow_contract": "attitude_ground_wind_3d",
+    "frame_contract": "body_frd_force_at_imu_origin_moment_about_cg",
+    "id": "delaurier_attitude_aware_3b5d4ec_ratio8_phasefix_trainval_v4",
+    "lifecycle_status": "active",
+    "manifest_sha256": "c86b34ea10328207b1867b117d44656eacf54b751e883a1ee99de0656695200c",
+    "partition_coverage": [
+      "train",
+      "validation"
+    ],
+    "phase_contract": "canonical_mechanical_phase_to_delaurier_v1",
+    "physics_source_commit": "3b5d4ec1d28f1384cf042402992ad7ea59995f49",
+    "prediction_sha256": {
+      "train": "8df283f2a877124979545c5b255fd9d5799b4edf11cd0c657a9f6b19801669fb",
+      "validation": "3f253f36c41bddc537cc377d7003c141058f2316a5876f4b16dd174ea848002c"
+    },
+    "root": "/home/zn/flap-system-identification/artifacts/20260721_delaurier_attitude_aware_3b5d4ec_ratio8_phasefix_trainval_v4"
+  },
+  "random_seed": 20260728,
+  "schema_version": "quadratic2_twist_sweep_v1",
+  "smoothing": {
+    "method": "periodic_savgol_zero_phase",
+    "polynomial_order": 3,
+    "window_bins": 7
+  },
+  "stage": "baseline",
+  "wind_used": true,
+  "zero_wind_sensitivity": {
+    "airflow_mode": "attitude_ground_velocity_3d_zero_wind",
+    "maximum_phase_difference_from_reference_deg": {
+      "train": 0.0,
+      "validation": 0.0
+    },
+    "peak_summary": {
+      "train": {
+        "fx_full_cycle_peak_deg": 177.5,
+        "fx_primary_interval_peak_deg": 182.5,
+        "fz_minimum_phase_deg": 162.5
+      },
+      "validation": {
+        "fx_full_cycle_peak_deg": 177.5,
+        "fx_primary_interval_peak_deg": 182.5,
+        "fz_minimum_phase_deg": 167.5
+      }
+    },
+    "reference_output": "outputs/delaurier_airflow_comparison/20260727T111450Z_59d90e6",
+    "trend_gate_passed": true
+  }
+}
