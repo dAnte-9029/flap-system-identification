@@ -1,0 +1,72 @@
+{
+  "builder_git_head": "4d9e1b7a41e27c232f63e7bba86562a1b7435b8f",
+  "dataset_version": "trajectory_dataset_v1",
+  "generated_at": "2026-09-02T19:36:58.964169+08:00",
+  "partitions": {
+    "train": {
+      "airdata_valid_on_core_ratio": 0.9477498434284691,
+      "log_count": 6,
+      "observed_horizon_error_s_max": 0.011036999999999964,
+      "samples_file": "samples_train.parquet",
+      "segment_count": 32,
+      "source_sample_count": 93684,
+      "valid_duration_s": 893.4782710000001,
+      "valid_sample_count": 44708,
+      "window_count": 4214,
+      "windows_file": "windows_train.parquet"
+    },
+    "validation": {
+      "airdata_valid_on_core_ratio": 0.98445205645847,
+      "log_count": 5,
+      "observed_horizon_error_s_max": 0.011079000000000061,
+      "samples_file": "samples_validation.parquet",
+      "segment_count": 23,
+      "source_sample_count": 59401,
+      "valid_duration_s": 822.774261,
+      "valid_sample_count": 41163,
+      "window_count": 3920,
+      "windows_file": "windows_validation.parquet"
+    }
+  },
+  "sampling": {
+    "alignment": "past-only zero-order hold with per-signal freshness limits",
+    "event_time": "timestamp_sample when valid, otherwise timestamp",
+    "history_steps": 0,
+    "horizon_s": 2.0,
+    "horizon_steps": 100,
+    "maximum_gap_s": 0.05,
+    "nominal_rate_hz": 50.0,
+    "reference_topic": "vehicle_local_position",
+    "stride_s": 0.2,
+    "stride_steps": 10
+  },
+  "source": {
+    "primary_cohort": {
+      "configuration_group": "C4",
+      "firmware_group": "F5"
+    },
+    "qgclogs_git_head": "9db63ebac045ea93dd7144d47bb235e9a02df13f",
+    "qgclogs_root": "/home/zn/QgcLogs",
+    "step0_audit_path": "/home/zn/flap-system-identification/docs/audits/results/2026-09-02_august_ulg_audit_summary.json",
+    "step0_audit_version": "august_ulg_audit_v1",
+    "step0_generated_at": "2026-09-02T16:58:25.054778+08:00"
+  },
+  "split_contract": {
+    "materialized_partitions": [
+      "train",
+      "validation"
+    ],
+    "sealed_test_opened": false,
+    "split_dates": {
+      "sealed_test": [
+        "2026-08-26"
+      ],
+      "train": [
+        "2026-08-19"
+      ],
+      "validation": [
+        "2026-08-20"
+      ]
+    }
+  }
+}
