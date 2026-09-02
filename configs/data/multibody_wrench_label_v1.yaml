@@ -1,0 +1,55 @@
+schema_version: multibody_wrench_label_v1
+label_model_id: measured_three_body_fixed_neutral_com_v1
+
+source_contract:
+  canonical_dataset_id: canonical_v0.4_training_ready_split_measured_massprops_ratio8_phasefix_v3
+  partitions: [train, validation]
+  test_locked: true
+
+frame_contract:
+  body_frame: FRD
+  local_frame: NED
+  fixed_body_origin: imu_origin
+  force_definition: whole_aircraft_non_gravity_external_force
+  force_unit: N
+  moment_definition: whole_aircraft_non_gravity_external_moment
+  moment_reference: body_fixed_whole_aircraft_com_at_neutral_wing_pose
+  moment_unit: N*m
+
+phase_contract:
+  phase_column: mechanical_phase_rad
+  frequency_crosscheck_column: flap_frequency_hz
+  position_formula: q_rad = amplitude_rad * sin(mechanical_phase_rad)
+  positive_position: symmetric_upstroke
+  amplitude_rad: 0.5235987755982988
+  derivative_method: logged_frequency_with_groupwise_savgol_frequency_derivative
+  derivative_window_s: 0.07
+  derivative_polyorder: 3
+  group_columns: [log_id, segment_id]
+  position_phase_rate_crosscheck: groupwise_unwrapped_phase_savgol_first_derivative
+
+mass_property_provenance:
+  isaaclab_source_commit: 1200ca8df1f907a515aafde6deac03cf06d0418a
+  isaaclab_mass_properties_module_sha256: 3a74f2a20de4dacc658a41615d4cd2217937101d015d98841978a33f1983c826
+  measured_workbook_name: "质量 重心位置 惯量.xlsx"
+  measured_workbook_sha256: 4673fdee7be187278bf6ae9957b78645c781330007a43e20a4f24f5dfd24831b
+  imu_origin_in_u_frd_m: [0.0, 0.0, 0.030]
+  body_inertia_policy: isaaclab_triangle_cone_projection
+
+model:
+  neutral_dihedral_rad: -0.019391
+  body:
+    mass_kg: 0.78261
+    com_from_imu_frd_m: [-0.13103, 0.00625, -0.04500]
+    inertia_about_com_frd_kg_m2:
+      - [0.0030833333333333333, 0.0, 0.0]
+      - [0.0, 0.023056666666666666, 0.0]
+      - [0.0, 0.0, 0.019973333333333333]
+  wing_each:
+    mass_kg: 0.06077
+    pivot_from_imu_frd_m: [0.0, 0.0, -0.03000]
+    right_com_from_pivot_neutral_frame_frd_m: [-0.06040, 0.29394, 0.0]
+    inertia_about_com_neutral_frame_frd_kg_m2:
+      - [0.00270, 0.0, 0.0]
+      - [0.0, 0.00101, 0.0]
+      - [0.0, 0.0, 0.00371]

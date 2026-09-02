@@ -1362,7 +1362,7 @@ def run_candidates(
     done_at_start = len(completed)
     batch_size = (
         int(resolved.config["runtime"]["candidate_batch_size"])
-        if stage in {"coarse", "refine"}
+        if stage in {"coarse", "refine", "conditional"}
         else 1
     )
     batches = [
