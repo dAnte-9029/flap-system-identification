@@ -1,0 +1,164 @@
+{
+  "artifact_root": "/home/zn/flap-system-identification/artifacts/trajectory_main_v1",
+  "artifacts": {
+    "figure": "rollout_errors.png",
+    "horizon_metrics": "validation_horizon_metrics.csv",
+    "matched_ablation_gains": "matched_ablation_gains.csv",
+    "per_log_metrics": "validation_per_log_metrics.csv",
+    "training_history": "training_history.csv",
+    "window_metrics": "validation_window_metrics.parquet"
+  },
+  "dataset": {
+    "builder_git_head": "4d9e1b7a41e27c232f63e7bba86562a1b7435b8f",
+    "dataset_version": "trajectory_dataset_v1",
+    "partitions_read": [
+      "train",
+      "validation"
+    ],
+    "primary_cohort": {
+      "configuration_group": "C4",
+      "firmware_group": "F5"
+    },
+    "root": "/home/zn/flap-system-identification/dataset/trajectory_v1_august_f5_c4",
+    "sealed_test_opened": false
+  },
+  "evaluation": {
+    "horizon_steps": {
+      "0.1": 5,
+      "0.2": 10,
+      "0.5": 25,
+      "1.0": 50,
+      "2.0": 100
+    },
+    "primary_aggregation": "equal-log macro of per-log window RMSE",
+    "same_validation_window_count_per_model_horizon": 3920
+  },
+  "experiment": "trajectory_main_v1",
+  "final_train_trajectory_loss": {
+    "history_controlled_local": 0.0673895688399524,
+    "history_no_control_multistep": 0.610094124296575,
+    "main_v1_history_controlled_multistep": 0.4699346159638304,
+    "no_history_controlled_multistep": 0.5435259526919911
+  },
+  "generated_at": "2026-09-03T09:42:02.068186+08:00",
+  "git_head": "2e0fd1852334f66e30061258f54456ef58686e06",
+  "history_contract": {
+    "boundary": "same log and segment; left padding ignored by explicit mask",
+    "future_forbidden": [
+      "position_ned_m_x",
+      "position_ned_m_y",
+      "position_ned_m_z",
+      "velocity_ned_m_s_x",
+      "velocity_ned_m_s_y",
+      "velocity_ned_m_s_z",
+      "attitude_q_w",
+      "attitude_q_x",
+      "attitude_q_y",
+      "attitude_q_z",
+      "angular_velocity_body_rad_s_x",
+      "angular_velocity_body_rad_s_y",
+      "angular_velocity_body_rad_s_z",
+      "relative_flap_phase_rad",
+      "relative_flap_phase_sin",
+      "relative_flap_phase_cos",
+      "flap_frequency_hz",
+      "true_airspeed_m_s",
+      "wind_ned_m_s_n",
+      "wind_ned_m_s_e",
+      "absolute_flap_phase_rad",
+      "absolute_flap_phase_sin",
+      "absolute_flap_phase_cos",
+      "hall_reference_valid"
+    ],
+    "future_known": [
+      "control_flap_motor_normalized",
+      "control_left_elevon_normalized",
+      "control_right_elevon_normalized",
+      "control_rudder_normalized"
+    ],
+    "history_steps_including_t0": 26,
+    "nominal_history_s": 0.5,
+    "observations": "past rigid-body state, relative flap state, and matched past controls",
+    "phase": "sin/cos(relative_phase - phase_at_t0); invariant to log-local zero offset",
+    "same_step1_window_ids": true,
+    "version": "trajectory_history_context_v1"
+  },
+  "models": [
+    "ridge_no_control",
+    "history_controlled_local",
+    "no_history_controlled_multistep",
+    "history_no_control_multistep",
+    "main_v1_history_controlled_multistep"
+  ],
+  "success_gate": {
+    "beats_ridge_all_metrics_at_0p5_1p0_2p0_s": false,
+    "control_gain_all_metrics_at_0p5_1p0_2p0_s": false,
+    "history_no_control_beats_ridge_all_metrics_at_0p5_1p0_2p0_s": true,
+    "multistep_gain_all_metrics_at_0p5_1p0_2p0_s": false,
+    "recommend_enter_h1_h2": false
+  },
+  "training": {
+    "configs": [
+      {
+        "batch_size": 256,
+        "epochs": 40,
+        "gradient_clip_norm": 5.0,
+        "hidden_size": 64,
+        "learning_rate": 0.0003,
+        "model_name": "history_controlled_local",
+        "objective_steps": 1,
+        "seed": 17,
+        "use_controls": true,
+        "use_history": true,
+        "weight_decay": 1e-05
+      },
+      {
+        "batch_size": 256,
+        "epochs": 40,
+        "gradient_clip_norm": 5.0,
+        "hidden_size": 64,
+        "learning_rate": 0.0003,
+        "model_name": "no_history_controlled_multistep",
+        "objective_steps": 50,
+        "seed": 17,
+        "use_controls": true,
+        "use_history": false,
+        "weight_decay": 1e-05
+      },
+      {
+        "batch_size": 256,
+        "epochs": 40,
+        "gradient_clip_norm": 5.0,
+        "hidden_size": 64,
+        "learning_rate": 0.0003,
+        "model_name": "history_no_control_multistep",
+        "objective_steps": 50,
+        "seed": 17,
+        "use_controls": false,
+        "use_history": true,
+        "weight_decay": 1e-05
+      },
+      {
+        "batch_size": 256,
+        "epochs": 40,
+        "gradient_clip_norm": 5.0,
+        "hidden_size": 64,
+        "learning_rate": 0.0003,
+        "model_name": "main_v1_history_controlled_multistep",
+        "objective_steps": 50,
+        "seed": 17,
+        "use_controls": true,
+        "use_history": true,
+        "weight_decay": 1e-05
+      }
+    ],
+    "device": "cuda:0",
+    "normalization": "fit on train histories, controls, and transitions only",
+    "ridge_transition_count": 44676,
+    "train_rollout_s_nominal": 1.0,
+    "train_rollout_steps": 50,
+    "train_window_count": 4214,
+    "validation_used_for_fitting_tuning_or_early_stopping": false,
+    "validation_window_count": 3920
+  }
+}

@@ -8,6 +8,7 @@ from system_identification.models.trajectory import InitialTrajectoryState
 from system_identification.models.trajectory_main_v1 import (
     CausalHistoryTrajectoryModel,
     TorchTrajectoryPrediction,
+    offset_invariant_dynamics_features,
 )
 from system_identification.training.trajectory_main_v1 import (
     assemble_history_trajectory_windows,
@@ -75,6 +76,27 @@ def test_history_windows_are_causal_offset_invariant_and_mask_left_padding() -> 
     np.testing.assert_allclose(batch.history_state_features[:, -1, 9:11], [[0.0, 1.0], [0.0, 1.0]])
     assert batch.history_state_features[1, -1, 0] == 11.0
     assert batch.trajectory.window_ids.tolist() == ["w0", "w1"]
+
+
+def test_centered_phase_features_ignore_log_local_zero_offset() -> None:
+    common = {
+        "velocity_n": np.array([[1.0, 0.0, 0.0], [1.1, 0.0, 0.0]]),
+        "quaternion_nb": np.array([[1.0, 0.0, 0.0, 0.0]] * 2),
+        "angular_velocity_b": np.zeros((2, 3)),
+        "flap_frequency_hz": np.full(2, 4.0),
+    }
+    first = offset_invariant_dynamics_features(
+        **common,
+        relative_phase_rad=np.array([0.2, 0.5]),
+        phase_anchor_rad=np.full(2, 0.5),
+    )
+    shifted = offset_invariant_dynamics_features(
+        **common,
+        relative_phase_rad=np.array([2.1, 2.4]),
+        phase_anchor_rad=np.full(2, 2.4),
+    )
+
+    np.testing.assert_allclose(first, shifted, atol=1.0e-12)
 
 
 def _initial(batch_size: int = 2) -> InitialTrajectoryState:
