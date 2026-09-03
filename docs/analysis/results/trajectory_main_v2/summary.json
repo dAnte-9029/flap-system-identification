@@ -1,0 +1,210 @@
+{
+  "architecture": {
+    "base": "frozen Step 3 history-only GRU and derivative head",
+    "drive": "0.10 s causal first-order motor state; residual restricted to flap-frequency rate",
+    "fallback": "frozen history-only base plus zero-initialized-small control residuals; gated tail starts at 0.05",
+    "tail": "0.04 s causal states for symmetric, differential, rudder controls",
+    "tail_output_masks": {
+      "differential": [
+        "roll_acceleration"
+      ],
+      "rudder": [
+        "body_acceleration_y",
+        "yaw_acceleration"
+      ],
+      "symmetric": [
+        "body_acceleration_x",
+        "body_acceleration_z",
+        "pitch_acceleration"
+      ]
+    }
+  },
+  "artifact_root": "/home/zn/flap-system-identification/artifacts/trajectory_main_v2",
+  "artifacts": {
+    "flap_frequency_metrics": "flap_frequency_metrics.csv",
+    "gain_figure": "main_v2_control_gains.png",
+    "horizon_metrics": "validation_horizon_metrics.csv",
+    "matched_ablation_gains": "matched_ablation_gains.csv",
+    "per_log_improvement_counts": "per_log_improvement_counts.csv",
+    "per_log_metrics": "validation_per_log_metrics.csv",
+    "rollout_figure": "rollout_errors.png",
+    "training_history": "training_history.csv",
+    "window_metrics": "validation_window_metrics.parquet"
+  },
+  "contract": {
+    "control_path": "future commands update causal actuator states; no realized future actuator state input",
+    "future_forbidden": [
+      "position_ned_m_x",
+      "position_ned_m_y",
+      "position_ned_m_z",
+      "velocity_ned_m_s_x",
+      "velocity_ned_m_s_y",
+      "velocity_ned_m_s_z",
+      "attitude_q_w",
+      "attitude_q_x",
+      "attitude_q_y",
+      "attitude_q_z",
+      "angular_velocity_body_rad_s_x",
+      "angular_velocity_body_rad_s_y",
+      "angular_velocity_body_rad_s_z",
+      "relative_flap_phase_rad",
+      "relative_flap_phase_sin",
+      "relative_flap_phase_cos",
+      "flap_frequency_hz",
+      "true_airspeed_m_s",
+      "wind_ned_m_s_n",
+      "wind_ned_m_s_e",
+      "absolute_flap_phase_rad",
+      "absolute_flap_phase_sin",
+      "absolute_flap_phase_cos",
+      "hall_reference_valid"
+    ],
+    "future_known": [
+      "control_flap_motor_normalized",
+      "control_left_elevon_normalized",
+      "control_right_elevon_normalized",
+      "control_rudder_normalized"
+    ],
+    "history_steps_including_t0": 26,
+    "history_version": "trajectory_history_context_v1",
+    "relative_phase": "sin/cos(relative_phase - phase_at_t0); no cross-log zero assumption"
+  },
+  "dataset": {
+    "builder_git_head": "4d9e1b7a41e27c232f63e7bba86562a1b7435b8f",
+    "dataset_version": "trajectory_dataset_v1",
+    "partitions_read": [
+      "train",
+      "validation"
+    ],
+    "primary_cohort": {
+      "configuration_group": "C4",
+      "firmware_group": "F5"
+    },
+    "root": "/home/zn/flap-system-identification/dataset/trajectory_v1_august_f5_c4",
+    "sealed_test_opened": false
+  },
+  "evaluation": {
+    "horizon_steps": {
+      "0.1": 5,
+      "0.2": 10,
+      "0.5": 25,
+      "1.0": 50,
+      "2.0": 100
+    },
+    "primary_aggregation": "equal-log macro of per-log window RMSE",
+    "reference_reproduction_max_abs_difference": {
+      "attitude_rmse_deg_per_log_macro": 0.0,
+      "body_rate_rmse_rad_s_per_log_macro": 0.0,
+      "position_rmse_m_per_log_macro": 9.71445146547012e-17,
+      "velocity_rmse_m_s_per_log_macro": 0.0
+    }
+  },
+  "experiment": "trajectory_main_v2",
+  "final_tail_gates_symmetric_differential_rudder": {
+    "main_v2_drive_tail_gated": [
+      0.06053569167852402,
+      0.059721071273088455,
+      0.05228615179657936
+    ],
+    "v2_drive_tail_ungated": [
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  "final_train_losses": {
+    "history_no_control_multistep": 0.610094124296575,
+    "main_v2_drive_tail_gated": 0.5581748935358186,
+    "v2_drive_state": 0.5785530754102028,
+    "v2_drive_tail_ungated": 0.5541592241182223
+  },
+  "generated_at": "2026-09-03T14:24:21.634135+08:00",
+  "git_head": "13dcc19d3f6d69b0825dad74852ee33ac280e453",
+  "step4_baseline_head": "fcc661e6ec3a8441d679a4ed0820c234d0458d7b",
+  "success_gate": {
+    "drive_gain_all_metrics_at_0p5_1p0_2p0_s": false,
+    "gated_tail_gain_all_metrics_at_0p5_1p0_2p0_s": false,
+    "main_v2_control_gain_all_metrics_at_0p5_1p0_2p0_s": false,
+    "main_v2_improves_at_least_3_of_5_logs_every_metric_horizon": false,
+    "recommend_enter_h1_h2": false
+  },
+  "training": {
+    "actuator_configs": [
+      {
+        "batch_size": 256,
+        "drive_supervision_weight": 0.2,
+        "drive_tau_s": 0.1,
+        "epochs": 25,
+        "gated_tail": false,
+        "gradient_clip_norm": 5.0,
+        "initial_tail_gate": 0.05,
+        "learning_rate": 0.0005,
+        "model_name": "v2_drive_state",
+        "objective_steps": 50,
+        "residual_l2": 0.001,
+        "seed": 29,
+        "tail_gate_l1": 0.01,
+        "tail_tau_s": 0.04,
+        "use_drive": true,
+        "use_tail": false,
+        "weight_decay": 1e-05
+      },
+      {
+        "batch_size": 256,
+        "drive_supervision_weight": 0.2,
+        "drive_tau_s": 0.1,
+        "epochs": 25,
+        "gated_tail": false,
+        "gradient_clip_norm": 5.0,
+        "initial_tail_gate": 0.05,
+        "learning_rate": 0.0005,
+        "model_name": "v2_drive_tail_ungated",
+        "objective_steps": 50,
+        "residual_l2": 0.001,
+        "seed": 29,
+        "tail_gate_l1": 0.0,
+        "tail_tau_s": 0.04,
+        "use_drive": true,
+        "use_tail": true,
+        "weight_decay": 1e-05
+      },
+      {
+        "batch_size": 256,
+        "drive_supervision_weight": 0.2,
+        "drive_tau_s": 0.1,
+        "epochs": 25,
+        "gated_tail": true,
+        "gradient_clip_norm": 5.0,
+        "initial_tail_gate": 0.05,
+        "learning_rate": 0.0005,
+        "model_name": "main_v2_drive_tail_gated",
+        "objective_steps": 50,
+        "residual_l2": 0.001,
+        "seed": 29,
+        "tail_gate_l1": 0.01,
+        "tail_tau_s": 0.04,
+        "use_drive": true,
+        "use_tail": true,
+        "weight_decay": 1e-05
+      }
+    ],
+    "base_config": {
+      "batch_size": 256,
+      "epochs": 40,
+      "gradient_clip_norm": 5.0,
+      "hidden_size": 64,
+      "learning_rate": 0.0003,
+      "model_name": "history_no_control_multistep",
+      "objective_steps": 50,
+      "seed": 17,
+      "use_controls": false,
+      "use_history": true,
+      "weight_decay": 1e-05
+    },
+    "device": "cuda:0",
+    "normalization": "train only",
+    "train_windows": 4214,
+    "validation_used_for_fitting_tuning_or_early_stopping": false,
+    "validation_windows": 3920
+  }
+}
