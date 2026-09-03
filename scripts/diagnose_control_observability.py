@@ -465,6 +465,29 @@ def _distribution_shift(train_samples: pd.DataFrame, validation_samples: pd.Data
     return pd.DataFrame(rows)
 
 
+def _control_cross_correlations(samples_by_split: dict[str, pd.DataFrame]) -> pd.DataFrame:
+    rows = []
+    for split_name, samples in samples_by_split.items():
+        core = samples.loc[samples["valid_core"]]
+        for left_index, left_name in enumerate(CONTROL_NAMES):
+            for right_index in range(left_index + 1, len(CONTROL_NAMES)):
+                right_name = CONTROL_NAMES[right_index]
+                per_log = [
+                    _correlation(group[CONTROL_COLUMNS[left_index]], group[CONTROL_COLUMNS[right_index]])
+                    for _, group in core.groupby("log_id", sort=True)
+                ]
+                rows.append(
+                    {
+                        "split": split_name,
+                        "control_left": left_name,
+                        "control_right": right_name,
+                        "correlation_fisher_equal_log_macro": _fisher_macro(per_log),
+                        "log_count": len(per_log),
+                    }
+                )
+    return pd.DataFrame(rows)
+
+
 def _step3_shift_impact(
     train_samples: pd.DataFrame,
     validation_samples: pd.DataFrame,
@@ -690,6 +713,7 @@ def main() -> None:
         alpha=args.ridge_alpha, maximum_lag_s=args.maximum_lag_s
     )
     shift = _distribution_shift(samples["train"], samples["validation"])
+    control_cross_correlation = _control_cross_correlations(samples)
     shift_impact, shift_associations = _step3_shift_impact(
         samples["train"], samples["validation"], args.step3_per_log_metrics.resolve()
     )
@@ -706,6 +730,7 @@ def main() -> None:
         "lag_correlation_curves.csv": lag_curves,
         "lag_summary.csv": lag_summary,
         "control_distribution_shift.csv": shift,
+        "control_cross_correlation.csv": control_cross_correlation,
         "validation_log_shift_step3_impact.csv": shift_impact,
         "shift_step3_associations.csv": shift_associations,
         "rpm_proxy_audit.csv": rpm_proxy,
@@ -767,6 +792,7 @@ def main() -> None:
         for filename in (
             "incremental_information_metrics.csv", "incremental_information_gains.csv",
             "control_predictability.csv", "lag_summary.csv", "control_distribution_shift.csv",
+            "control_cross_correlation.csv",
             "validation_log_shift_step3_impact.csv", "shift_step3_associations.csv",
             "rpm_proxy_audit.csv", "pwm_proxy_audit.csv", "control_response_lags.png",
             "incremental_control_gain.png", "manifest.json"
