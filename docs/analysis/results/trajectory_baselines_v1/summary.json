@@ -1,0 +1,175 @@
+{
+  "artifact_root": "/home/zn/flap-system-identification/artifacts/trajectory_baselines_v1",
+  "artifacts": {
+    "control_gain": "control_gain.csv",
+    "figure": "rollout_errors.png",
+    "horizon_metrics": "validation_horizon_metrics.csv",
+    "per_log_metrics": "validation_per_log_metrics.csv",
+    "window_metrics": "validation_window_metrics.parquet"
+  },
+  "dataset": {
+    "builder_git_head": "4d9e1b7a41e27c232f63e7bba86562a1b7435b8f",
+    "dataset_version": "trajectory_dataset_v1",
+    "partitions_read": [
+      "train",
+      "validation"
+    ],
+    "primary_cohort": {
+      "configuration_group": "C4",
+      "firmware_group": "F5"
+    },
+    "root": "/home/zn/flap-system-identification/dataset/trajectory_v1_august_f5_c4",
+    "sealed_test_opened": false
+  },
+  "dynamics_contract": {
+    "base_features": [
+      "velocity_body_frd_m_s[3]",
+      "angular_velocity_body_frd_rad_s[3]",
+      "gravity_body_frd_m_s2[3]",
+      "relative_phase_sin_cos[2]",
+      "flap_frequency_hz"
+    ],
+    "controlled_features_append": [
+      "control_flap_motor_normalized",
+      "control_left_elevon_normalized",
+      "control_right_elevon_normalized",
+      "control_rudder_normalized"
+    ],
+    "frequency_constraint_hz": [
+      0.5,
+      20.0
+    ],
+    "integration": "actual per-window dt; midpoint body-rate quaternion update",
+    "one_step_targets": [
+      "net_kinematic_acceleration_body_frd_m_s2[3]",
+      "angular_acceleration_body_frd_rad_s2[3]",
+      "flap_frequency_rate_hz_s"
+    ]
+  },
+  "experiment": "trajectory_baselines_v1",
+  "generated_at": "2026-09-03T08:57:31.682412+08:00",
+  "git_head": "c41cc9ca245f77a23d7db75d1dea1e29540605dd",
+  "horizon_steps": {
+    "0.1": 5,
+    "0.2": 10,
+    "0.5": 25,
+    "1.0": 50,
+    "2.0": 100
+  },
+  "models": [
+    "persistence",
+    "constant_twist",
+    "ridge_no_control",
+    "ridge_controlled",
+    "mlp_no_control",
+    "mlp_controlled"
+  ],
+  "primary_aggregation": "equal-log macro of per-log window RMSE",
+  "task": {
+    "absolute_phase_reserved_columns_all_invalid_in_august": [
+      "absolute_flap_phase_rad",
+      "absolute_flap_phase_sin",
+      "absolute_flap_phase_cos",
+      "hall_reference_valid"
+    ],
+    "future_forbidden_as_input": [
+      "position_ned_m_x",
+      "position_ned_m_y",
+      "position_ned_m_z",
+      "velocity_ned_m_s_x",
+      "velocity_ned_m_s_y",
+      "velocity_ned_m_s_z",
+      "attitude_q_w",
+      "attitude_q_x",
+      "attitude_q_y",
+      "attitude_q_z",
+      "angular_velocity_body_rad_s_x",
+      "angular_velocity_body_rad_s_y",
+      "angular_velocity_body_rad_s_z",
+      "relative_flap_phase_rad",
+      "relative_flap_phase_sin",
+      "relative_flap_phase_cos",
+      "flap_frequency_hz",
+      "true_airspeed_m_s",
+      "wind_ned_m_s_n",
+      "wind_ned_m_s_e",
+      "absolute_flap_phase_rad",
+      "absolute_flap_phase_sin",
+      "absolute_flap_phase_cos",
+      "hall_reference_valid"
+    ],
+    "initial_flap_state_at_t0": [
+      "relative_flap_phase_rad",
+      "relative_flap_phase_sin",
+      "relative_flap_phase_cos",
+      "flap_frequency_hz"
+    ],
+    "initial_state_at_t0": [
+      "position_ned_m_x",
+      "position_ned_m_y",
+      "position_ned_m_z",
+      "velocity_ned_m_s_x",
+      "velocity_ned_m_s_y",
+      "velocity_ned_m_s_z",
+      "attitude_q_w",
+      "attitude_q_x",
+      "attitude_q_y",
+      "attitude_q_z",
+      "angular_velocity_body_rad_s_x",
+      "angular_velocity_body_rad_s_y",
+      "angular_velocity_body_rad_s_z"
+    ],
+    "known_future_control_t0_to_tT_exclusive": [
+      "control_flap_motor_normalized",
+      "control_left_elevon_normalized",
+      "control_right_elevon_normalized",
+      "control_rudder_normalized"
+    ],
+    "optional_initial_context_at_t0": [
+      "true_airspeed_m_s",
+      "wind_ned_m_s_n",
+      "wind_ned_m_s_e"
+    ],
+    "trajectory_target_t0_to_tT_inclusive": [
+      "position_ned_m_x",
+      "position_ned_m_y",
+      "position_ned_m_z",
+      "velocity_ned_m_s_x",
+      "velocity_ned_m_s_y",
+      "velocity_ned_m_s_z",
+      "attitude_q_w",
+      "attitude_q_x",
+      "attitude_q_y",
+      "attitude_q_z",
+      "angular_velocity_body_rad_s_x",
+      "angular_velocity_body_rad_s_y",
+      "angular_velocity_body_rad_s_z",
+      "relative_flap_phase_rad",
+      "relative_flap_phase_sin",
+      "relative_flap_phase_cos",
+      "flap_frequency_hz"
+    ]
+  },
+  "training": {
+    "device": "cpu",
+    "mlp_batch_size": 1024,
+    "mlp_epochs": 40,
+    "mlp_hidden_sizes": [
+      64,
+      64
+    ],
+    "mlp_learning_rate": 0.001,
+    "mlp_weight_decay": 0.0001,
+    "normalization": "fit on train transitions only",
+    "ridge_alpha": 1.0,
+    "seed": 17,
+    "torch_threads": 4,
+    "train_transition_count": 44676,
+    "validation_used_for_fitting_or_tuning": false
+  },
+  "training_final_standardized_mse": {
+    "mlp_controlled": 0.36381922638910463,
+    "mlp_no_control": 0.4665765394449597
+  },
+  "validation_window_count": 3920
+}
