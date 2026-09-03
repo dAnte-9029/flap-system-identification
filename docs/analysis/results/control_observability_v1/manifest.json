@@ -1,0 +1,81 @@
+{
+  "experiment": "control_observability_v1",
+  "generated_at": "2026-09-03T10:27:55.691120+08:00",
+  "git_head": "24806fcea88cf1fd536e9157b8538ede5073a5e2",
+  "step3_baseline_head": "46f261856d1eaf1cd56443913b2e46c9acdd1fbd",
+  "dataset": {
+    "root": "/home/zn/flap-system-identification/dataset/trajectory_v1_august_f5_c4",
+    "dataset_version": "trajectory_dataset_v1",
+    "builder_git_head": "4d9e1b7a41e27c232f63e7bba86562a1b7435b8f",
+    "partitions_read": [
+      "train",
+      "validation"
+    ],
+    "sealed_test_opened": false
+  },
+  "method": {
+    "history_steps_including_t0": 26,
+    "history_taps_s": [
+      -0.5,
+      -0.2,
+      -0.1,
+      0.0
+    ],
+    "ridge_alpha_fixed_without_validation_tuning": 10.0,
+    "horizons_s": [
+      0.1,
+      0.2,
+      0.5,
+      1.0,
+      2.0
+    ],
+    "lag_range_s": [
+      -0.5,
+      0.5
+    ],
+    "lag_derivative_span_s_nominal": 0.08,
+    "bootstrap_unit": "flight log",
+    "bootstrap_draws": 5000,
+    "sample_level_p_values_used": false,
+    "shift_impact_association": "Spearman across five validation logs; descriptive only",
+    "future_state_phase_frequency_airdata_or_wind_used_as_input": false
+  },
+  "counts": {
+    "train": {
+      "sample_rows": 93684,
+      "valid_core_rows": 44708,
+      "step1_windows": 4214,
+      "full_history_windows": 4151,
+      "logs": 6
+    },
+    "validation": {
+      "sample_rows": 59401,
+      "valid_core_rows": 41163,
+      "step1_windows": 3920,
+      "full_history_windows": 3860,
+      "logs": 5
+    }
+  },
+  "limitations": {
+    "phase": "log-local relative phase only; history features subtract phase at t0",
+    "servo_feedback": "no measured servo position/current topic in admitted logs",
+    "pwm": "actuator_outputs is commanded electrical output, not measured surface state",
+    "rpm_estimate": "filtered encoder-derived signal and not independent of dataset flap_frequency_hz"
+  },
+  "artifacts": {
+    "incremental_information_metrics.csv": "incremental_information_metrics.csv",
+    "incremental_information_per_log.csv": "incremental_information_per_log.csv",
+    "incremental_information_gains.csv": "incremental_information_gains.csv",
+    "control_predictability.csv": "control_predictability.csv",
+    "lag_correlation_curves.csv": "lag_correlation_curves.csv",
+    "lag_summary.csv": "lag_summary.csv",
+    "control_distribution_shift.csv": "control_distribution_shift.csv",
+    "control_cross_correlation.csv": "control_cross_correlation.csv",
+    "validation_log_shift_step3_impact.csv": "validation_log_shift_step3_impact.csv",
+    "shift_step3_associations.csv": "shift_step3_associations.csv",
+    "rpm_proxy_audit.csv": "rpm_proxy_audit.csv",
+    "pwm_proxy_audit.csv": "pwm_proxy_audit.csv",
+    "lag_figure": "control_response_lags.png",
+    "incremental_gain_figure": "incremental_control_gain.png"
+  }
+}

@@ -1,0 +1,13 @@
+split,control_left,control_right,correlation_fisher_equal_log_macro,log_count
+train,flap_motor,left_elevon,-0.09535283321474924,6
+train,flap_motor,right_elevon,-0.18394423022961717,6
+train,flap_motor,rudder,0.2579108581608283,6
+train,left_elevon,right_elevon,-0.6482431515426557,6
+train,left_elevon,rudder,-0.21618598131672104,6
+train,right_elevon,rudder,-0.04581002852975397,6
+validation,flap_motor,left_elevon,-0.2133285704807669,5
+validation,flap_motor,right_elevon,0.06330824007668896,5
+validation,flap_motor,rudder,0.37429166168789096,5
+validation,left_elevon,right_elevon,-0.8373506851204383,5
+validation,left_elevon,rudder,-0.05001521613770838,5
+validation,right_elevon,rudder,0.11507272468241794,5
