@@ -49,6 +49,10 @@ MODEL_ORDER = (
 
 COMPARISONS = {
     "versus_ridge_no_control": ("ridge_no_control", "main_v1_history_controlled_multistep"),
+    "history_no_control_versus_ridge": (
+        "ridge_no_control",
+        "history_no_control_multistep",
+    ),
     "history_gain": (
         "no_history_controlled_multistep",
         "main_v1_history_controlled_multistep",
@@ -137,10 +141,14 @@ def _success_gate(gains: pd.DataFrame) -> dict[str, bool]:
         return len(selected) == 3 and bool((selected[columns] > 0.0).all().all())
 
     beats_ridge = all_positive("versus_ridge_no_control")
+    history_no_control_beats_ridge = all_positive("history_no_control_versus_ridge")
     control_gain = all_positive("control_gain")
     multistep_gain = all_positive("multistep_objective_gain")
     return {
         "beats_ridge_all_metrics_at_0p5_1p0_2p0_s": beats_ridge,
+        "history_no_control_beats_ridge_all_metrics_at_0p5_1p0_2p0_s": (
+            history_no_control_beats_ridge
+        ),
         "control_gain_all_metrics_at_0p5_1p0_2p0_s": control_gain,
         "multistep_gain_all_metrics_at_0p5_1p0_2p0_s": multistep_gain,
         "recommend_enter_h1_h2": beats_ridge and control_gain and multistep_gain,
