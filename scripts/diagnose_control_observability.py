@@ -17,7 +17,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 from pyulog import ULog
-from scipy.stats import ks_2samp
+from scipy.stats import ks_2samp, spearmanr
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
@@ -465,6 +465,70 @@ def _distribution_shift(train_samples: pd.DataFrame, validation_samples: pd.Data
     return pd.DataFrame(rows)
 
 
+def _step3_shift_impact(
+    train_samples: pd.DataFrame,
+    validation_samples: pd.DataFrame,
+    step3_per_log_path: Path,
+) -> tuple[pd.DataFrame, pd.DataFrame]:
+    """Relate per-flight control shift to the already-frozen Step 3 degradation."""
+    train = train_samples.loc[train_samples["valid_core"]]
+    validation = validation_samples.loc[validation_samples["valid_core"]]
+    train_mean = train[list(CONTROL_COLUMNS)].mean().to_numpy(dtype=float)
+    train_std = train[list(CONTROL_COLUMNS)].std(ddof=0).to_numpy(dtype=float)
+    train_std = np.where(train_std > 1e-8, train_std, 1.0)
+    shift_rows = []
+    for log_id, group in validation.groupby("log_id", sort=True):
+        standardized = (
+            group[list(CONTROL_COLUMNS)].mean().to_numpy(dtype=float) - train_mean
+        ) / train_std
+        shift_rows.append(
+            {
+                "log_id": str(log_id),
+                **{
+                    f"{name}_standardized_mean_shift": float(value)
+                    for name, value in zip(CONTROL_NAMES, standardized, strict=True)
+                },
+                "control_mean_shift_l2": float(np.linalg.norm(standardized)),
+            }
+        )
+    shifts = pd.DataFrame(shift_rows)
+    step3 = pd.read_csv(step3_per_log_path)
+    no_control = step3.loc[step3["model"] == "history_no_control_multistep"]
+    controlled = step3.loc[step3["model"] == "main_v1_history_controlled_multistep"]
+    keys = ["split", "horizon_s", "log_id"]
+    merged = no_control.merge(controlled, on=keys, suffixes=("_no_control", "_controlled"))
+    if len(merged) != 25 or set(merged["split"]) != {"validation"}:
+        raise ValueError("unexpected frozen Step 3 per-log metric contract")
+    metric_names = (
+        "position_rmse_m",
+        "velocity_rmse_m_s",
+        "attitude_rmse_deg",
+        "body_rate_rmse_rad_s",
+    )
+    impact = merged[keys].merge(shifts, on="log_id")
+    for metric in metric_names:
+        impact[f"{metric}_controlled_minus_no_control"] = (
+            merged[f"{metric}_controlled"] - merged[f"{metric}_no_control"]
+        )
+    associations = []
+    for horizon_s, group in impact.groupby("horizon_s", sort=True):
+        for metric in metric_names:
+            result = spearmanr(
+                group["control_mean_shift_l2"],
+                group[f"{metric}_controlled_minus_no_control"],
+            )
+            associations.append(
+                {
+                    "horizon_s": float(horizon_s),
+                    "step3_metric": metric,
+                    "spearman_shift_vs_controlled_degradation": float(result.statistic),
+                    "validation_log_count": int(len(group)),
+                    "interpretation": "descriptive_only_no_sample_level_inference",
+                }
+            )
+    return impact, pd.DataFrame(associations)
+
+
 def _raw_proxy_diagnostics(
     samples_by_split: dict[str, pd.DataFrame],
     assignments: dict[str, list[str]],
@@ -578,6 +642,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--log-root", type=Path, default=Path("/home/zn/QgcLogs"))
     parser.add_argument("--output-root", type=Path, default=PROJECT_ROOT / "artifacts/control_observability_v1")
     parser.add_argument("--summary-root", type=Path)
+    parser.add_argument(
+        "--step3-per-log-metrics",
+        type=Path,
+        default=PROJECT_ROOT / "docs/analysis/results/trajectory_main_v1/validation_per_log_metrics.csv",
+    )
     parser.add_argument("--ridge-alpha", type=float, default=10.0)
     parser.add_argument("--maximum-lag-s", type=float, default=0.5)
     parser.add_argument("--bootstrap-draws", type=int, default=5000)
@@ -621,6 +690,9 @@ def main() -> None:
         alpha=args.ridge_alpha, maximum_lag_s=args.maximum_lag_s
     )
     shift = _distribution_shift(samples["train"], samples["validation"])
+    shift_impact, shift_associations = _step3_shift_impact(
+        samples["train"], samples["validation"], args.step3_per_log_metrics.resolve()
+    )
     rpm_proxy, pwm_proxy = _raw_proxy_diagnostics(
         samples, manifest["split_contract"]["assignments"], log_root=args.log_root.resolve()
     )
@@ -634,6 +706,8 @@ def main() -> None:
         "lag_correlation_curves.csv": lag_curves,
         "lag_summary.csv": lag_summary,
         "control_distribution_shift.csv": shift,
+        "validation_log_shift_step3_impact.csv": shift_impact,
+        "shift_step3_associations.csv": shift_associations,
         "rpm_proxy_audit.csv": rpm_proxy,
         "pwm_proxy_audit.csv": pwm_proxy,
     }
@@ -663,6 +737,7 @@ def main() -> None:
             "bootstrap_unit": "flight log",
             "bootstrap_draws": args.bootstrap_draws,
             "sample_level_p_values_used": False,
+            "shift_impact_association": "Spearman across five validation logs; descriptive only",
             "future_state_phase_frequency_airdata_or_wind_used_as_input": False,
         },
         "counts": {
@@ -692,6 +767,7 @@ def main() -> None:
         for filename in (
             "incremental_information_metrics.csv", "incremental_information_gains.csv",
             "control_predictability.csv", "lag_summary.csv", "control_distribution_shift.csv",
+            "validation_log_shift_step3_impact.csv", "shift_step3_associations.csv",
             "rpm_proxy_audit.csv", "pwm_proxy_audit.csv", "control_response_lags.png",
             "incremental_control_gain.png", "manifest.json"
         ):
