@@ -1,0 +1,17 @@
+schema_version: trajectory_dataset_registry_v1
+default_dataset_id: trajectory_v2_september_phase_observed
+datasets:
+  trajectory_v2_september_phase_observed:
+    lifecycle_status: active_observed_phase_physical_zero_unconfirmed
+    intended_use: September neural trajectory surrogate train_validation
+    manifest_path: dataset/trajectory_v2_september_phase_observed/manifest.json
+    manifest_sha256: a3b831f1eaff24f8efb71a2ff895ae851a191122c912dca3540f39a84e92f9c0
+    config_path: configs/data/trajectory_september_v2.yaml
+    partitions_materialized:
+    - train
+    - validation
+    sealed_test_requires_separate_gate: true
+policy:
+  silent_fallback_allowed: false
+  verify_manifest_and_artifact_hashes: true
+  april_canonical_registry_unchanged: true

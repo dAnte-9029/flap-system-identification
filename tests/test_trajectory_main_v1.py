@@ -13,6 +13,7 @@ from system_identification.models.trajectory_main_v1 import (
 from system_identification.training.trajectory_main_v1 import (
     assemble_history_trajectory_windows,
     trajectory_rollout_loss,
+    weighted_prefix_loss,
 )
 
 
@@ -183,3 +184,65 @@ def test_multistep_objective_penalizes_late_rollout_error() -> None:
 
     assert local.item() == 0.0
     assert multistep.item() > 0.0
+
+
+def test_joint_prefix_loss_weights_early_error_and_preserves_late_gradients() -> None:
+    prediction = _rollout(_model(use_controls=True), torch.zeros((2, 4, 4)))
+    truth = TorchTrajectoryPrediction(**{name: value.detach().clone()
+                                       for name, value in vars(prediction).items()})
+    truth.position_n[:, 1:, 0] += 1.0
+    joint = weighted_prefix_loss(prediction, truth, objective_steps=4,
+                                 prefix_loss_weights=((2, .5), (4, .5)))
+    early = trajectory_rollout_loss(prediction, truth, objective_steps=2)
+    full = trajectory_rollout_loss(prediction, truth, objective_steps=4)
+    torch.testing.assert_close(joint, .5 * early + .5 * full)
+    torch.testing.assert_close(weighted_prefix_loss(prediction, truth, objective_steps=4), full)
+    gradient = torch.autograd.grad(joint, prediction.position_n)[0]
+    torch.testing.assert_close(gradient[:, 1:3, 0], 3 * gradient[:, 3:5, 0])
+    assert (gradient[:, 3:5, 0] != 0).all()
+    truth.position_n[:, 3:, 0] += 10.0
+    torch.testing.assert_close(trajectory_rollout_loss(prediction, truth, objective_steps=2), early)
+    assert weighted_prefix_loss(prediction, truth, objective_steps=4,
+                                prefix_loss_weights=((2, .5), (4, .5))) > joint
+
+
+def test_checkpoint_callback_preserves_training_result() -> None:
+    from system_identification.training.trajectory_main_v1 import (
+        MainV1Config, fit_main_v1_stats, fit_history_trajectory_model,
+    )
+    batch = assemble_history_trajectory_windows(_samples(), _windows(), history_steps=3)
+    stats = fit_main_v1_stats(_samples(), batch)
+    config = MainV1Config(model_name='callback_test', use_history=True,
+                         use_controls=True, objective_steps=2, hidden_size=8,
+                         epochs=3, batch_size=2)
+    original, history = fit_history_trajectory_model(batch, stats, config, device='cpu')
+    epochs = []
+    def capture(epoch, model, optimizer, generator, rows):
+        epochs.append(epoch)
+        assert len(rows) == epoch
+        assert optimizer.state_dict()['state']
+        assert generator.get_state().numel() > 0
+        _ = {k: v.detach().cpu().clone() for k, v in model.state_dict().items()}
+    observed, observed_history = fit_history_trajectory_model(
+        batch, stats, config, device='cpu', epoch_callback=capture)
+    assert epochs == [1, 2, 3]
+    pd.testing.assert_frame_equal(history, observed_history)
+    for name, value in original.state_dict().items():
+        torch.testing.assert_close(value, observed.state_dict()[name], rtol=0, atol=0)
+
+
+def test_body_z_rate_weight_only_changes_z_supervision_and_gradient():
+    import pytest
+    prediction = _rollout(_model(use_controls=True), torch.zeros((2, 4, 4)))
+    truth = TorchTrajectoryPrediction(**{name: value.detach().clone() for name, value in vars(prediction).items()})
+    truth.angular_velocity_b[:, 1:, :] += 1.0
+    old = trajectory_rollout_loss(prediction, truth, objective_steps=4)
+    changed = trajectory_rollout_loss(prediction, truth, objective_steps=4, body_rate_axis_weights=(1,1,4))
+    torch.testing.assert_close(changed-old, torch.tensor(.75))
+    g0=torch.autograd.grad(old,prediction.angular_velocity_b,retain_graph=True)[0]
+    g1=torch.autograd.grad(changed,prediction.angular_velocity_b)[0]
+    torch.testing.assert_close(g0[...,:2],g1[...,:2])
+    torch.testing.assert_close(4*g0[...,2],g1[...,2])
+    for invalid in [(1,1,0),(1,1,float('nan')),(1,1)]:
+        with pytest.raises(ValueError):
+            trajectory_rollout_loss(prediction,truth,objective_steps=4,body_rate_axis_weights=invalid)

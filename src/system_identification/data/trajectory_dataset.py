@@ -232,11 +232,18 @@ def extract_trajectory_samples(
     transmission_ratio: float,
     expected_rate_hz: float = 50.0,
     maximum_gap_s: float = 0.05,
+    timestamp_basis: str = "event",
 ) -> pd.DataFrame:
     """Extract one causally aligned sample table from a Step 0 admitted ULog."""
     if expected_rate_hz <= 0.0 or maximum_gap_s <= 0.0:
         raise ValueError("expected_rate_hz and maximum_gap_s must be positive")
+    if timestamp_basis not in {"event", "publication"}:
+        raise ValueError("timestamp_basis must be event or publication")
     ulog = ULog(str(ulg_path))
+    if timestamp_basis == "publication":
+        # Change only this in-memory parse. August v1 retains its event-time default.
+        for topic in ulog.data_list:
+            topic.data.pop("timestamp_sample", None)
     local = _dataset(ulog, "vehicle_local_position")
     if local is None:
         raise ValueError(f"vehicle_local_position missing: {ulg_path}")

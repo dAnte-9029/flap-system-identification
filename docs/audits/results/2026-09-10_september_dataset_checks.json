@@ -1,0 +1,20 @@
+{
+  "all_checks_passed": true,
+  "windows_checked": 128244,
+  "processed_log_count": 15,
+  "sealed_test_opened": false,
+  "checks": [
+    "registry_manifest_and_artifact_hashes",
+    "unique_sample_and_window_identity",
+    "window_horizon_and_control_length",
+    "source_core_segment_isolation",
+    "positive_time_increments_up_to_50ms",
+    "phase_cohort_validity",
+    "publication_time_phase_causality",
+    "hall_available_at_phase_packet_time",
+    "absolute_phase_not_claimed",
+    "processed_sources_equal_train_validation_inventory"
+  ],
+  "targeted_tests_passed": 16,
+  "trajectory_regression_tests_passed": 15
+}

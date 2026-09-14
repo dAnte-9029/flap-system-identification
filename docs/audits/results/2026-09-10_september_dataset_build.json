@@ -1,0 +1,797 @@
+{
+  "dataset_id": "trajectory_v2_september_phase_observed",
+  "dataset_version": "trajectory_dataset_v2_september",
+  "created_at": "2026-09-10T08:52:13.569313+00:00",
+  "split_contract": {
+    "assignments": {
+      "sealed_test": [
+        "2026.9.8/log_0_2026-9-8-05-42-48.ulg",
+        "2026.9.8/log_1_2026-9-8-05-49-28.ulg",
+        "2026.9.8/log_2_2026-9-8-05-56-46.ulg",
+        "2026.9.8/log_4_2026-9-8-06-38-56.ulg",
+        "2026.9.8/log_6_2026-9-8-06-46-18.ulg",
+        "2026.9.8/log_7_2026-9-8-06-55-26.ulg"
+      ],
+      "train": [
+        "2026.9.6/log_24_2026-9-6-06-28-38.ulg",
+        "2026.9.6/log_28_2026-9-6-07-01-38.ulg",
+        "2026.9.6/log_17_2026-9-6-18-34-06.ulg",
+        "2026.9.6/log_18_2026-9-6-18-46-20.ulg",
+        "2026.9.6/log_19_2026-9-6-18-52-30.ulg",
+        "2026.9.6/log_20_2026-9-6-18-58-10.ulg"
+      ],
+      "validation": [
+        "2026.9.7/log_21_2026-9-7-05-54-56.ulg",
+        "2026.9.7/log_22_2026-9-7-06-01-40.ulg",
+        "2026.9.7/log_23_2026-9-7-06-09-22.ulg",
+        "2026.9.7/log_24_2026-9-7-06-16-04.ulg",
+        "2026.9.7/log_26_2026-9-7-06-30-26.ulg",
+        "2026.9.7/log_27_2026-9-7-06-37-24.ulg",
+        "2026.9.7/log_28_2026-9-7-06-44-02.ulg",
+        "2026.9.7/log_29_2026-9-7-06-51-04.ulg",
+        "2026.9.7/log_30_2026-9-7-06-58-22.ulg"
+      ]
+    },
+    "materialized_partitions": [
+      "train",
+      "validation"
+    ],
+    "sealed_test_opened": false,
+    "split_dates": {
+      "sealed_test": [
+        "2026-09-08"
+      ],
+      "train": [
+        "2026-09-06"
+      ],
+      "validation": [
+        "2026-09-07"
+      ]
+    },
+    "test_prior_exposure": "2026-09-08 descriptive quality audit only; now sealed"
+  },
+  "phase_contract": {
+    "definition": "logged wing_phase zero; Hall consistency is checked separately",
+    "installation_consistency": "not_confirmed",
+    "status": "unconfirmed_physical_pose"
+  },
+  "frequency_contract": {
+    "column": "flap_frequency_hz",
+    "ratio": 7.909090995788574,
+    "rescaling": "none; September logged ratio, not April ratio8"
+  },
+  "sampling": {
+    "alignment": "past-only zero-order hold",
+    "horizons_s": [
+      1,
+      2,
+      3,
+      5
+    ],
+    "initial_history_requirement_s": 0,
+    "maximum_gap_s": 0.05,
+    "nominal_rate_hz": 50,
+    "stride_s": 0.2,
+    "timestamp_basis": "publication"
+  },
+  "partitions": {
+    "train": {
+      "cohorts": {
+        "core": {
+          "segment_count": 35,
+          "valid_duration_s": 923.20484,
+          "windows": {
+            "1": {
+              "count": 4463,
+              "file": "windows_train_core_1s.parquet",
+              "max_horizon_error_s": 0.012169000000000096,
+              "with_0p5s_history": 4363,
+              "with_1s_history": 4273
+            },
+            "2": {
+              "count": 4297,
+              "file": "windows_train_core_2s.parquet",
+              "max_horizon_error_s": 0.011239999999999917,
+              "with_0p5s_history": 4198,
+              "with_1s_history": 4110
+            },
+            "3": {
+              "count": 4134,
+              "file": "windows_train_core_3s.parquet",
+              "max_horizon_error_s": 0.0073110000000000674,
+              "with_0p5s_history": 4038,
+              "with_1s_history": 3952
+            },
+            "5": {
+              "count": 3826,
+              "file": "windows_train_core_5s.parquet",
+              "max_horizon_error_s": 0.010387999999999842,
+              "with_0p5s_history": 3742,
+              "with_1s_history": 3665
+            }
+          }
+        },
+        "hall_phase": {
+          "segment_count": 22,
+          "valid_duration_s": 619.7584229999999,
+          "windows": {
+            "1": {
+              "count": 3004,
+              "file": "windows_train_hall_phase_1s.parquet",
+              "max_horizon_error_s": 0.012169000000000096,
+              "with_0p5s_history": 2941,
+              "with_1s_history": 2883
+            },
+            "2": {
+              "count": 2899,
+              "file": "windows_train_hall_phase_2s.parquet",
+              "max_horizon_error_s": 0.011239999999999917,
+              "with_0p5s_history": 2836,
+              "with_1s_history": 2778
+            },
+            "3": {
+              "count": 2794,
+              "file": "windows_train_hall_phase_3s.parquet",
+              "max_horizon_error_s": 0.0073110000000000674,
+              "with_0p5s_history": 2731,
+              "with_1s_history": 2675
+            },
+            "5": {
+              "count": 2595,
+              "file": "windows_train_hall_phase_5s.parquet",
+              "max_horizon_error_s": 0.010322000000000386,
+              "with_0p5s_history": 2541,
+              "with_1s_history": 2491
+            }
+          }
+        },
+        "logged_phase": {
+          "segment_count": 31,
+          "valid_duration_s": 777.1866369999999,
+          "windows": {
+            "1": {
+              "count": 3750,
+              "file": "windows_train_logged_phase_1s.parquet",
+              "max_horizon_error_s": 0.012169000000000096,
+              "with_0p5s_history": 3662,
+              "with_1s_history": 3583
+            },
+            "2": {
+              "count": 3604,
+              "file": "windows_train_logged_phase_2s.parquet",
+              "max_horizon_error_s": 0.011239999999999917,
+              "with_0p5s_history": 3517,
+              "with_1s_history": 3438
+            },
+            "3": {
+              "count": 3459,
+              "file": "windows_train_logged_phase_3s.parquet",
+              "max_horizon_error_s": 0.0073110000000000674,
+              "with_0p5s_history": 3372,
+              "with_1s_history": 3295
+            },
+            "5": {
+              "count": 3181,
+              "file": "windows_train_logged_phase_5s.parquet",
+              "max_horizon_error_s": 0.010387999999999842,
+              "with_0p5s_history": 3106,
+              "with_1s_history": 3038
+            }
+          }
+        }
+      },
+      "log_count": 6,
+      "samples_file": "samples_train.parquet",
+      "source_rows": 59367,
+      "valid_rows": 46196
+    },
+    "validation": {
+      "cohorts": {
+        "core": {
+          "segment_count": 32,
+          "valid_duration_s": 1509.3925559999998,
+          "windows": {
+            "1": {
+              "count": 7418,
+              "file": "windows_validation_core_1s.parquet",
+              "max_horizon_error_s": 0.012314000000000047,
+              "with_0p5s_history": 7334,
+              "with_1s_history": 7261
+            },
+            "2": {
+              "count": 7279,
+              "file": "windows_validation_core_2s.parquet",
+              "max_horizon_error_s": 0.015814999999999912,
+              "with_0p5s_history": 7198,
+              "with_1s_history": 7129
+            },
+            "3": {
+              "count": 7145,
+              "file": "windows_validation_core_3s.parquet",
+              "max_horizon_error_s": 0.008983999999999881,
+              "with_0p5s_history": 7072,
+              "with_1s_history": 7009
+            },
+            "5": {
+              "count": 6904,
+              "file": "windows_validation_core_5s.parquet",
+              "max_horizon_error_s": 0.010724000000000622,
+              "with_0p5s_history": 6835,
+              "with_1s_history": 6775
+            }
+          }
+        },
+        "hall_phase": {
+          "segment_count": 32,
+          "valid_duration_s": 1509.3925559999998,
+          "windows": {
+            "1": {
+              "count": 7418,
+              "file": "windows_validation_hall_phase_1s.parquet",
+              "max_horizon_error_s": 0.012314000000000047,
+              "with_0p5s_history": 7334,
+              "with_1s_history": 7261
+            },
+            "2": {
+              "count": 7279,
+              "file": "windows_validation_hall_phase_2s.parquet",
+              "max_horizon_error_s": 0.015814999999999912,
+              "with_0p5s_history": 7198,
+              "with_1s_history": 7129
+            },
+            "3": {
+              "count": 7145,
+              "file": "windows_validation_hall_phase_3s.parquet",
+              "max_horizon_error_s": 0.008983999999999881,
+              "with_0p5s_history": 7072,
+              "with_1s_history": 7009
+            },
+            "5": {
+              "count": 6904,
+              "file": "windows_validation_hall_phase_5s.parquet",
+              "max_horizon_error_s": 0.010724000000000622,
+              "with_0p5s_history": 6835,
+              "with_1s_history": 6775
+            }
+          }
+        },
+        "logged_phase": {
+          "segment_count": 32,
+          "valid_duration_s": 1509.3925559999998,
+          "windows": {
+            "1": {
+              "count": 7418,
+              "file": "windows_validation_logged_phase_1s.parquet",
+              "max_horizon_error_s": 0.012314000000000047,
+              "with_0p5s_history": 7334,
+              "with_1s_history": 7261
+            },
+            "2": {
+              "count": 7279,
+              "file": "windows_validation_logged_phase_2s.parquet",
+              "max_horizon_error_s": 0.015814999999999912,
+              "with_0p5s_history": 7198,
+              "with_1s_history": 7129
+            },
+            "3": {
+              "count": 7145,
+              "file": "windows_validation_logged_phase_3s.parquet",
+              "max_horizon_error_s": 0.008983999999999881,
+              "with_0p5s_history": 7072,
+              "with_1s_history": 7009
+            },
+            "5": {
+              "count": 6904,
+              "file": "windows_validation_logged_phase_5s.parquet",
+              "max_horizon_error_s": 0.010724000000000622,
+              "with_0p5s_history": 6835,
+              "with_1s_history": 6775
+            }
+          }
+        }
+      },
+      "log_count": 9,
+      "samples_file": "samples_validation.parquet",
+      "source_rows": 98208,
+      "valid_rows": 75502
+    }
+  },
+  "manifest_path": "dataset/trajectory_v2_september_phase_observed/manifest.json",
+  "manifest_sha256": "a3b831f1eaff24f8efb71a2ff895ae851a191122c912dca3540f39a84e92f9c0",
+  "per_log": [
+    {
+      "core_rows": 7305,
+      "exclusion_counts": {
+        "invalid_control": 3,
+        "invalid_control|invalid_phase": 800,
+        "invalid_control|invalid_phase|mode_boundary": 1,
+        "invalid_control|invalid_phase|not_airborne_or_failsafe": 1514,
+        "invalid_control|invalid_phase|not_airborne_or_failsafe|reset_boundary": 14,
+        "invalid_control|invalid_phase|reset_boundary": 31,
+        "invalid_phase|not_airborne_or_failsafe": 5,
+        "invalid_state|invalid_control|invalid_phase|not_airborne_or_failsafe": 2,
+        "mode_boundary": 3,
+        "not_airborne_or_failsafe": 297
+      },
+      "hall": {
+        "events": 0,
+        "status": "no_logged_hall"
+      },
+      "hall_phase_on_core_ratio": 0.0,
+      "log_id": "2026.9.6/log_24_2026-9-6-06-28-38.ulg",
+      "logged_phase_on_core_ratio": 0.0,
+      "partition": "train",
+      "source_rows": 9975,
+      "valid_duration_s": 146.018203
+    },
+    {
+      "core_rows": 7881,
+      "exclusion_counts": {
+        "invalid_control": 4,
+        "invalid_control|invalid_phase": 315,
+        "invalid_control|invalid_phase|not_airborne_or_failsafe": 2085,
+        "invalid_control|invalid_phase|not_airborne_or_failsafe|mode_boundary": 1,
+        "invalid_control|invalid_phase|not_airborne_or_failsafe|reset_boundary": 50,
+        "invalid_control|invalid_phase|reset_boundary": 15,
+        "invalid_phase|not_airborne_or_failsafe": 8,
+        "invalid_phase|not_airborne_or_failsafe|reset_boundary": 1,
+        "invalid_state|invalid_control|invalid_phase|not_airborne_or_failsafe": 2,
+        "mode_boundary": 8,
+        "not_airborne_or_failsafe": 231
+      },
+      "hall": {
+        "events": 0,
+        "status": "no_logged_hall"
+      },
+      "hall_phase_on_core_ratio": 0.0,
+      "log_id": "2026.9.6/log_28_2026-9-6-07-01-38.ulg",
+      "logged_phase_on_core_ratio": 1.0,
+      "partition": "train",
+      "source_rows": 10601,
+      "valid_duration_s": 157.42821399999997
+    },
+    {
+      "core_rows": 9289,
+      "exclusion_counts": {
+        "invalid_control": 3,
+        "invalid_control|invalid_phase": 469,
+        "invalid_control|invalid_phase|mode_boundary": 1,
+        "invalid_control|invalid_phase|not_airborne_or_failsafe": 1333,
+        "invalid_control|invalid_phase|not_airborne_or_failsafe|reset_boundary": 275,
+        "invalid_control|invalid_phase|reset_boundary": 64,
+        "invalid_control|reset_boundary": 1,
+        "invalid_phase|not_airborne_or_failsafe": 6,
+        "invalid_state|invalid_control|invalid_phase|not_airborne_or_failsafe": 2,
+        "mode_boundary": 4,
+        "not_airborne_or_failsafe": 232
+      },
+      "hall": {
+        "cycle_count": 708,
+        "events": 709,
+        "revolutions_p01_p50_p99": [
+          7.903014587938478,
+          7.909133978281119,
+          7.9149272558765515
+        ],
+        "status": "median_ratio_consistent",
+        "use": "offline provenance diagnostic only; not input or selection mask"
+      },
+      "hall_phase_on_core_ratio": 1.0,
+      "log_id": "2026.9.6/log_17_2026-9-6-18-34-06.ulg",
+      "logged_phase_on_core_ratio": 1.0,
+      "partition": "train",
+      "source_rows": 11679,
+      "valid_duration_s": 185.679359
+    },
+    {
+      "core_rows": 7453,
+      "exclusion_counts": {
+        "invalid_control": 3,
+        "invalid_control|invalid_phase": 898,
+        "invalid_control|invalid_phase|mode_boundary": 1,
+        "invalid_control|invalid_phase|not_airborne_or_failsafe": 131,
+        "invalid_control|invalid_phase|not_airborne_or_failsafe|reset_boundary": 5,
+        "invalid_control|invalid_phase|reset_boundary": 173,
+        "invalid_control|reset_boundary": 2,
+        "invalid_phase|not_airborne_or_failsafe": 8,
+        "invalid_state|invalid_control|invalid_phase|not_airborne_or_failsafe": 2,
+        "mode_boundary": 6,
+        "not_airborne_or_failsafe": 212
+      },
+      "hall": {
+        "cycle_count": 570,
+        "events": 571,
+        "revolutions_p01_p50_p99": [
+          7.903174331743176,
+          7.90909104920047,
+          7.914238430588316
+        ],
+        "status": "median_ratio_consistent",
+        "use": "offline provenance diagnostic only; not input or selection mask"
+      },
+      "hall_phase_on_core_ratio": 1.0,
+      "log_id": "2026.9.6/log_18_2026-9-6-18-46-20.ulg",
+      "logged_phase_on_core_ratio": 1.0,
+      "partition": "train",
+      "source_rows": 8894,
+      "valid_duration_s": 148.917277
+    },
+    {
+      "core_rows": 7953,
+      "exclusion_counts": {
+        "invalid_control": 4,
+        "invalid_control|invalid_phase": 506,
+        "invalid_control|invalid_phase|mode_boundary": 1,
+        "invalid_control|invalid_phase|not_airborne_or_failsafe": 1007,
+        "invalid_control|invalid_phase|not_airborne_or_failsafe|reset_boundary": 156,
+        "invalid_control|invalid_phase|reset_boundary": 34,
+        "invalid_phase|not_airborne_or_failsafe": 6,
+        "invalid_state|invalid_control|invalid_phase|not_airborne_or_failsafe": 2,
+        "mode_boundary": 2,
+        "not_airborne_or_failsafe": 174
+      },
+      "hall": {
+        "cycle_count": 601,
+        "events": 602,
+        "revolutions_p01_p50_p99": [
+          7.904394109669738,
+          7.90894837443966,
+          7.914038099796471
+        ],
+        "status": "median_ratio_consistent",
+        "use": "offline provenance diagnostic only; not input or selection mask"
+      },
+      "hall_phase_on_core_ratio": 1.0,
+      "log_id": "2026.9.6/log_19_2026-9-6-18-52-30.ulg",
+      "logged_phase_on_core_ratio": 1.0,
+      "partition": "train",
+      "source_rows": 9845,
+      "valid_duration_s": 159.00119999999998
+    },
+    {
+      "core_rows": 6315,
+      "exclusion_counts": {
+        "invalid_control|invalid_phase": 932,
+        "invalid_control|invalid_phase|mode_boundary": 1,
+        "invalid_control|invalid_phase|not_airborne_or_failsafe": 676,
+        "invalid_control|invalid_phase|not_airborne_or_failsafe|reset_boundary": 11,
+        "invalid_control|invalid_phase|reset_boundary": 196,
+        "invalid_phase": 11,
+        "invalid_phase|not_airborne_or_failsafe": 5,
+        "invalid_state|invalid_control|invalid_phase|not_airborne_or_failsafe": 1,
+        "invalid_state|invalid_control|invalid_phase|not_airborne_or_failsafe|reset_boundary": 1,
+        "mode_boundary": 6,
+        "not_airborne_or_failsafe": 218
+      },
+      "hall": {
+        "cycle_count": 490,
+        "events": 491,
+        "revolutions_p01_p50_p99": [
+          7.9032898410790136,
+          7.909058584474167,
+          7.91543920586004
+        ],
+        "status": "median_ratio_consistent",
+        "use": "offline provenance diagnostic only; not input or selection mask"
+      },
+      "hall_phase_on_core_ratio": 1.0,
+      "log_id": "2026.9.6/log_20_2026-9-6-18-58-10.ulg",
+      "logged_phase_on_core_ratio": 1.0,
+      "partition": "train",
+      "source_rows": 8373,
+      "valid_duration_s": 126.160587
+    },
+    {
+      "core_rows": 8468,
+      "exclusion_counts": {
+        "invalid_control": 3,
+        "invalid_control|invalid_phase": 492,
+        "invalid_control|invalid_phase|mode_boundary": 1,
+        "invalid_control|invalid_phase|not_airborne_or_failsafe": 1205,
+        "invalid_control|invalid_phase|not_airborne_or_failsafe|reset_boundary": 35,
+        "invalid_control|invalid_phase|reset_boundary": 54,
+        "invalid_phase|not_airborne_or_failsafe": 6,
+        "invalid_state|invalid_control|invalid_phase|not_airborne_or_failsafe": 2,
+        "not_airborne_or_failsafe": 227
+      },
+      "hall": {
+        "cycle_count": 650,
+        "events": 651,
+        "revolutions_p01_p50_p99": [
+          7.901635570920535,
+          7.908994849755118,
+          7.915702083810074
+        ],
+        "status": "median_ratio_consistent",
+        "use": "offline provenance diagnostic only; not input or selection mask"
+      },
+      "hall_phase_on_core_ratio": 1.0,
+      "log_id": "2026.9.7/log_21_2026-9-7-05-54-56.ulg",
+      "logged_phase_on_core_ratio": 1.0,
+      "partition": "validation",
+      "source_rows": 10493,
+      "valid_duration_s": 169.335964
+    },
+    {
+      "core_rows": 9234,
+      "exclusion_counts": {
+        "invalid_control": 4,
+        "invalid_control|invalid_phase": 432,
+        "invalid_control|invalid_phase|mode_boundary": 1,
+        "invalid_control|invalid_phase|not_airborne_or_failsafe": 800,
+        "invalid_control|invalid_phase|not_airborne_or_failsafe|reset_boundary": 36,
+        "invalid_control|invalid_phase|reset_boundary": 32,
+        "invalid_state": 17,
+        "invalid_state|invalid_control|invalid_phase|not_airborne_or_failsafe": 159,
+        "invalid_state|invalid_control|invalid_phase|not_airborne_or_failsafe|reset_boundary": 1,
+        "invalid_state|invalid_phase|not_airborne_or_failsafe": 6,
+        "invalid_state|not_airborne_or_failsafe": 268,
+        "reset_boundary": 5
+      },
+      "hall": {
+        "cycle_count": 700,
+        "events": 701,
+        "revolutions_p01_p50_p99": [
+          7.9040229514156115,
+          7.909039533092823,
+          7.914458825526826
+        ],
+        "status": "median_ratio_consistent",
+        "use": "offline provenance diagnostic only; not input or selection mask"
+      },
+      "hall_phase_on_core_ratio": 1.0,
+      "log_id": "2026.9.7/log_22_2026-9-7-06-01-40.ulg",
+      "logged_phase_on_core_ratio": 1.0,
+      "partition": "validation",
+      "source_rows": 10995,
+      "valid_duration_s": 184.631224
+    },
+    {
+      "core_rows": 8211,
+      "exclusion_counts": {
+        "invalid_control": 1,
+        "invalid_control|invalid_phase": 229,
+        "invalid_control|invalid_phase|mode_boundary": 1,
+        "invalid_control|invalid_phase|not_airborne_or_failsafe": 1625,
+        "invalid_control|invalid_phase|not_airborne_or_failsafe|reset_boundary": 291,
+        "invalid_control|invalid_phase|reset_boundary": 22,
+        "invalid_control|reset_boundary": 2,
+        "invalid_state|invalid_control|invalid_phase|not_airborne_or_failsafe": 85,
+        "invalid_state|invalid_control|invalid_phase|not_airborne_or_failsafe|reset_boundary": 11,
+        "invalid_state|invalid_phase|not_airborne_or_failsafe": 5,
+        "invalid_state|invalid_phase|not_airborne_or_failsafe|reset_boundary": 1,
+        "invalid_state|not_airborne_or_failsafe": 93,
+        "mode_boundary": 3,
+        "not_airborne_or_failsafe": 71,
+        "not_airborne_or_failsafe|reset_boundary": 2
+      },
+      "hall": {
+        "cycle_count": 619,
+        "events": 620,
+        "revolutions_p01_p50_p99": [
+          7.902698310090631,
+          7.909136720922561,
+          7.915299920428131
+        ],
+        "status": "median_ratio_consistent",
+        "use": "offline provenance diagnostic only; not input or selection mask"
+      },
+      "hall_phase_on_core_ratio": 1.0,
+      "log_id": "2026.9.7/log_23_2026-9-7-06-09-22.ulg",
+      "logged_phase_on_core_ratio": 1.0,
+      "partition": "validation",
+      "source_rows": 10653,
+      "valid_duration_s": 164.146475
+    },
+    {
+      "core_rows": 8220,
+      "exclusion_counts": {
+        "invalid_control": 1,
+        "invalid_control|invalid_phase": 257,
+        "invalid_control|invalid_phase|mode_boundary": 1,
+        "invalid_control|invalid_phase|not_airborne_or_failsafe": 902,
+        "invalid_control|invalid_phase|not_airborne_or_failsafe|reset_boundary": 45,
+        "invalid_control|invalid_phase|reset_boundary": 39,
+        "invalid_control|not_airborne_or_failsafe": 2,
+        "invalid_control|not_airborne_or_failsafe|reset_boundary": 2,
+        "invalid_phase|not_airborne_or_failsafe": 10,
+        "invalid_state|invalid_control|invalid_phase": 147,
+        "invalid_state|invalid_control|invalid_phase|not_airborne_or_failsafe": 159,
+        "invalid_state|invalid_control|invalid_phase|not_airborne_or_failsafe|reset_boundary": 5,
+        "invalid_state|invalid_control|invalid_phase|reset_boundary": 24,
+        "mode_boundary": 3,
+        "not_airborne_or_failsafe": 427,
+        "not_airborne_or_failsafe|reset_boundary": 2
+      },
+      "hall": {
+        "cycle_count": 644,
+        "events": 646,
+        "revolutions_p01_p50_p99": [
+          7.903873951144783,
+          7.909083087524095,
+          7.914889459739321
+        ],
+        "status": "median_ratio_consistent",
+        "use": "offline provenance diagnostic only; not input or selection mask"
+      },
+      "hall_phase_on_core_ratio": 1.0,
+      "log_id": "2026.9.7/log_24_2026-9-7-06-16-04.ulg",
+      "logged_phase_on_core_ratio": 1.0,
+      "partition": "validation",
+      "source_rows": 10246,
+      "valid_duration_s": 164.322125
+    },
+    {
+      "core_rows": 7566,
+      "exclusion_counts": {
+        "invalid_control": 7,
+        "invalid_control|invalid_phase": 377,
+        "invalid_control|invalid_phase|not_airborne_or_failsafe": 1526,
+        "invalid_control|invalid_phase|not_airborne_or_failsafe|invalid_nav_state": 13,
+        "invalid_control|invalid_phase|not_airborne_or_failsafe|invalid_nav_state|reset_boundary": 1,
+        "invalid_control|invalid_phase|not_airborne_or_failsafe|mode_boundary": 4,
+        "invalid_control|invalid_phase|not_airborne_or_failsafe|reset_boundary": 173,
+        "invalid_control|invalid_phase|reset_boundary": 141,
+        "invalid_control|invalid_phase|reset_boundary|mode_boundary": 1,
+        "invalid_control|reset_boundary": 3,
+        "invalid_phase|not_airborne_or_failsafe": 12,
+        "invalid_state|invalid_control|invalid_phase|not_airborne_or_failsafe|invalid_nav_state": 2,
+        "mode_boundary": 1,
+        "not_airborne_or_failsafe": 224
+      },
+      "hall": {
+        "cycle_count": 564,
+        "events": 566,
+        "revolutions_p01_p50_p99": [
+          7.90406746927623,
+          7.909142370984796,
+          7.913850634939279
+        ],
+        "status": "median_ratio_consistent",
+        "use": "offline provenance diagnostic only; not input or selection mask"
+      },
+      "hall_phase_on_core_ratio": 1.0,
+      "log_id": "2026.9.7/log_26_2026-9-7-06-30-26.ulg",
+      "logged_phase_on_core_ratio": 1.0,
+      "partition": "validation",
+      "source_rows": 10051,
+      "valid_duration_s": 151.282726
+    },
+    {
+      "core_rows": 7866,
+      "exclusion_counts": {
+        "invalid_control": 2,
+        "invalid_control|invalid_phase": 594,
+        "invalid_control|invalid_phase|not_airborne_or_failsafe": 1359,
+        "invalid_control|invalid_phase|not_airborne_or_failsafe|reset_boundary": 93,
+        "invalid_control|invalid_phase|reset_boundary": 213,
+        "invalid_control|invalid_phase|reset_boundary|mode_boundary": 1,
+        "invalid_state": 55,
+        "invalid_state|invalid_control|invalid_phase|not_airborne_or_failsafe": 124,
+        "invalid_state|invalid_control|invalid_phase|not_airborne_or_failsafe|reset_boundary": 3,
+        "invalid_state|invalid_control|not_airborne_or_failsafe": 2,
+        "invalid_state|invalid_phase|not_airborne_or_failsafe": 11,
+        "invalid_state|invalid_phase|not_airborne_or_failsafe|reset_boundary": 1,
+        "invalid_state|not_airborne_or_failsafe": 251,
+        "reset_boundary": 5
+      },
+      "hall": {
+        "cycle_count": 602,
+        "events": 603,
+        "revolutions_p01_p50_p99": [
+          7.904477069854022,
+          7.909120563044098,
+          7.914339661088862
+        ],
+        "status": "median_ratio_consistent",
+        "use": "offline provenance diagnostic only; not input or selection mask"
+      },
+      "hall_phase_on_core_ratio": 1.0,
+      "log_id": "2026.9.7/log_27_2026-9-7-06-37-24.ulg",
+      "logged_phase_on_core_ratio": 1.0,
+      "partition": "validation",
+      "source_rows": 10580,
+      "valid_duration_s": 157.257613
+    },
+    {
+      "core_rows": 7336,
+      "exclusion_counts": {
+        "invalid_control": 2,
+        "invalid_control|invalid_phase": 425,
+        "invalid_control|invalid_phase|mode_boundary": 1,
+        "invalid_control|invalid_phase|not_airborne_or_failsafe": 1256,
+        "invalid_control|invalid_phase|not_airborne_or_failsafe|reset_boundary": 13,
+        "invalid_control|invalid_phase|reset_boundary": 31,
+        "invalid_phase|not_airborne_or_failsafe": 5,
+        "invalid_state": 18,
+        "invalid_state|invalid_control|invalid_phase|not_airborne_or_failsafe": 2,
+        "mode_boundary": 4,
+        "not_airborne_or_failsafe": 168,
+        "reset_boundary": 3
+      },
+      "hall": {
+        "cycle_count": 554,
+        "events": 555,
+        "revolutions_p01_p50_p99": [
+          7.903913705214577,
+          7.909090160811957,
+          7.914322981048092
+        ],
+        "status": "median_ratio_consistent",
+        "use": "offline provenance diagnostic only; not input or selection mask"
+      },
+      "hall_phase_on_core_ratio": 1.0,
+      "log_id": "2026.9.7/log_28_2026-9-7-06-44-02.ulg",
+      "logged_phase_on_core_ratio": 1.0,
+      "partition": "validation",
+      "source_rows": 9264,
+      "valid_duration_s": 146.56302
+    },
+    {
+      "core_rows": 10263,
+      "exclusion_counts": {
+        "invalid_control": 5,
+        "invalid_control|invalid_phase": 790,
+        "invalid_control|invalid_phase|mode_boundary": 1,
+        "invalid_control|invalid_phase|not_airborne_or_failsafe": 1376,
+        "invalid_control|invalid_phase|not_airborne_or_failsafe|reset_boundary": 16,
+        "invalid_control|invalid_phase|reset_boundary": 73,
+        "invalid_phase|not_airborne_or_failsafe": 4,
+        "invalid_state|invalid_control|invalid_phase|not_airborne_or_failsafe": 2,
+        "mode_boundary": 4,
+        "not_airborne_or_failsafe": 199
+      },
+      "hall": {
+        "cycle_count": 776,
+        "events": 777,
+        "revolutions_p01_p50_p99": [
+          7.903366337374109,
+          7.909201279329409,
+          7.913867543728884
+        ],
+        "status": "median_ratio_consistent",
+        "use": "offline provenance diagnostic only; not input or selection mask"
+      },
+      "hall_phase_on_core_ratio": 1.0,
+      "log_id": "2026.9.7/log_29_2026-9-7-06-51-04.ulg",
+      "logged_phase_on_core_ratio": 1.0,
+      "partition": "validation",
+      "source_rows": 12733,
+      "valid_duration_s": 205.15679599999999
+    },
+    {
+      "core_rows": 8338,
+      "exclusion_counts": {
+        "invalid_control|invalid_phase": 811,
+        "invalid_control|invalid_phase|mode_boundary": 1,
+        "invalid_control|invalid_phase|not_airborne_or_failsafe": 3197,
+        "invalid_control|invalid_phase|not_airborne_or_failsafe|reset_boundary": 163,
+        "invalid_control|invalid_phase|reset_boundary": 144,
+        "invalid_phase": 2,
+        "invalid_state": 57,
+        "invalid_state|invalid_control|invalid_phase|not_airborne_or_failsafe": 151,
+        "invalid_state|invalid_control|invalid_phase|not_airborne_or_failsafe|reset_boundary": 138,
+        "invalid_state|invalid_phase|not_airborne_or_failsafe": 10,
+        "invalid_state|not_airborne_or_failsafe": 177,
+        "reset_boundary": 4
+      },
+      "hall": {
+        "cycle_count": 637,
+        "events": 639,
+        "revolutions_p01_p50_p99": [
+          7.903633852555049,
+          7.909110162989691,
+          7.914358001416859
+        ],
+        "status": "median_ratio_consistent",
+        "use": "offline provenance diagnostic only; not input or selection mask"
+      },
+      "hall_phase_on_core_ratio": 1.0,
+      "log_id": "2026.9.7/log_30_2026-9-7-06-58-22.ulg",
+      "logged_phase_on_core_ratio": 1.0,
+      "partition": "validation",
+      "source_rows": 13193,
+      "valid_duration_s": 166.69661299999999
+    }
+  ]
+}

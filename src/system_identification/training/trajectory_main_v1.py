@@ -56,6 +56,8 @@ class MainV1Config:
     weight_decay: float = 1.0e-5
     gradient_clip_norm: float = 5.0
     seed: int = 17
+    prefix_loss_weights: tuple[tuple[int, float], ...] = ()
+    body_rate_axis_weights: tuple[float, float, float] = (1.0, 1.0, 1.0)
 
 
 def assemble_history_trajectory_windows(
@@ -168,6 +170,7 @@ def trajectory_rollout_loss(
     truth: TorchTrajectoryPrediction,
     *,
     objective_steps: int,
+    body_rate_axis_weights: tuple[float, float, float] = (1.0, 1.0, 1.0),
 ) -> torch.Tensor:
     if objective_steps < 1 or prediction.position_n.shape[1] < objective_steps + 1:
         raise ValueError("objective_steps exceed prediction")
@@ -189,15 +192,14 @@ def trajectory_rollout_loss(
     true_q = true_q / torch.linalg.vector_norm(true_q, dim=-1, keepdim=True).clamp_min(1.0e-8)
     quaternion_dot = torch.sum(predicted_q * true_q, dim=-1)
     attitude_loss = torch.mean(4.0 * (1.0 - torch.square(quaternion_dot)) / (0.35**2))
-    rate_loss = torch.mean(
-        torch.sum(
-            torch.square(
-                (prediction.angular_velocity_b[:, selected] - truth.angular_velocity_b[:, selected])
-                / 2.0
-            ),
-            dim=-1,
-        )
+    if len(body_rate_axis_weights) != 3 or any(not np.isfinite(w) or w <= 0 for w in body_rate_axis_weights):
+        raise ValueError("body-rate axis weights must be three finite positive values")
+    rate_square = torch.square(
+        (prediction.angular_velocity_b[:, selected] - truth.angular_velocity_b[:, selected]) / 2.0
     )
+    if tuple(body_rate_axis_weights) != (1.0, 1.0, 1.0):
+        rate_square = rate_square * rate_square.new_tensor(body_rate_axis_weights)
+    rate_loss = torch.mean(torch.sum(rate_square, dim=-1))
     phase_delta = prediction.relative_phase_rad[:, selected] - truth.relative_phase_rad[:, selected]
     phase_loss = torch.mean(2.0 - 2.0 * torch.cos(phase_delta))
     frequency_loss = torch.mean(
@@ -250,12 +252,29 @@ def _model_call(
     return prediction, truth
 
 
+def weighted_prefix_loss(prediction, truth, *, objective_steps, prefix_loss_weights=(),
+                         body_rate_axis_weights=(1.0, 1.0, 1.0)):
+    """Average predeclared prefix losses on the same free-running prediction."""
+    if not prefix_loss_weights:
+        return trajectory_rollout_loss(prediction, truth, objective_steps=objective_steps,
+                                       body_rate_axis_weights=body_rate_axis_weights)
+    if (max(step for step, _ in prefix_loss_weights) != objective_steps
+            or any(step < 1 or not np.isfinite(weight) or weight <= 0
+                   for step, weight in prefix_loss_weights)
+            or not np.isclose(sum(weight for _, weight in prefix_loss_weights), 1.0)):
+        raise ValueError("prefix weights must be positive, sum to one, and cover objective_steps")
+    return sum(weight * trajectory_rollout_loss(prediction, truth, objective_steps=step,
+                                                body_rate_axis_weights=body_rate_axis_weights)
+               for step, weight in prefix_loss_weights)
+
+
 def fit_history_trajectory_model(
     train_batch: HistoryTrajectoryWindowBatch,
     stats: MainV1Stats,
     config: MainV1Config,
     *,
     device: str,
+    epoch_callback=None,
 ) -> tuple[CausalHistoryTrajectoryModel, pd.DataFrame]:
     if config.objective_steps < 1 or config.objective_steps > train_batch.trajectory.controls.shape[1]:
         raise ValueError("objective_steps outside available training horizon")
@@ -295,8 +314,10 @@ def fit_history_trajectory_model(
                 rollout_steps=config.objective_steps,
                 device=torch.device(device),
             )
-            loss = trajectory_rollout_loss(
-                prediction, truth, objective_steps=config.objective_steps
+            loss = weighted_prefix_loss(
+                prediction, truth, objective_steps=config.objective_steps,
+                prefix_loss_weights=config.prefix_loss_weights,
+                body_rate_axis_weights=config.body_rate_axis_weights,
             )
             if not torch.isfinite(loss):
                 raise ValueError(f"non-finite training loss for {config.model_name}")
@@ -314,6 +335,8 @@ def fit_history_trajectory_model(
                 "last_gradient_norm": float(gradient_norm.detach().cpu()),
             }
         )
+        if epoch_callback is not None:
+            epoch_callback(epoch + 1, model, optimizer, generator, pd.DataFrame(history))
     return model.cpu().eval(), pd.DataFrame(history)
 
 
