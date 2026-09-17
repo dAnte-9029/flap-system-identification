@@ -1,0 +1,20 @@
+{
+  "oracle_relative_gain": {
+    "angular": 0.0031784226951724337,
+    "linear": 0.023417949076327993
+  },
+  "causal_relative_gain": {
+    "angular": 0.010387878136204454,
+    "linear": 0.018175571340174557
+  },
+  "oracle_pass": false,
+  "causal_pass": true,
+  "full_training_authorized_by_gate": false,
+  "rule": "oracle angular increment RMSE >=5percent lower, no linear increment >5percent worse, all seeds angular improve; causal recovers >=50percent oracle angular gain and no linear >5percent worse; no complete-model training unless both pass",
+  "scope": "local diagnostic probe; NOT full simulator upper bound",
+  "seeds": [
+    415,
+    416,
+    417
+  ]
+}

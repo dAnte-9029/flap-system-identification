@@ -1,0 +1,162 @@
+{
+  "experiments": [
+    {
+      "name": "A0_baseline_retrain",
+      "steps": 50,
+      "prefix_weights": [],
+      "delta_weight": 0.0
+    },
+    {
+      "name": "A1_longer_rollout",
+      "steps": 100,
+      "prefix_weights": [],
+      "delta_weight": 0.0
+    },
+    {
+      "name": "A2_multi_horizon",
+      "steps": 100,
+      "prefix_weights": [
+        [
+          10,
+          0.40026808460712626
+        ],
+        [
+          25,
+          0.3195496420498283
+        ],
+        [
+          50,
+          0.20841277832705898
+        ],
+        [
+          100,
+          0.07176949501598646
+        ]
+      ],
+      "delta_weight": 0.0
+    },
+    {
+      "name": "A3_dynamic_delta",
+      "steps": 100,
+      "prefix_weights": [
+        [
+          10,
+          0.40026808460712626
+        ],
+        [
+          25,
+          0.3195496420498283
+        ],
+        [
+          50,
+          0.20841277832705898
+        ],
+        [
+          100,
+          0.07176949501598646
+        ]
+      ],
+      "delta_weight": 0.5819227674796867
+    }
+  ],
+  "delta_lag": 2,
+  "train_loss_component_means": {
+    "10": {
+      "position": 0.0033299738358820823,
+      "velocity": 0.07959833476193166,
+      "attitude": 0.020946761410798563,
+      "body_rate": 0.17668298286261014,
+      "phase": 0.002286083276201092,
+      "frequency": 0.00038659154556293916
+    },
+    "25": {
+      "position": 0.015310777216842451,
+      "velocity": 0.08731835012890625,
+      "attitude": 0.05657331372812847,
+      "body_rate": 0.18982041481229447,
+      "phase": 0.005384470451354331,
+      "frequency": 0.00036766307672107525
+    },
+    "50": {
+      "position": 0.07778721237459128,
+      "velocity": 0.13762855637319302,
+      "attitude": 0.11281841263635864,
+      "body_rate": 0.20004959296934383,
+      "phase": 0.015289267304247768,
+      "frequency": 0.0003869870198126939
+    },
+    "100": {
+      "position": 0.7202590998915053,
+      "velocity": 0.35430716346834124,
+      "attitude": 0.24600577584861477,
+      "body_rate": 0.2135359202463602,
+      "phase": 0.045105164025708536,
+      "frequency": 0.00040257327617429484
+    }
+  },
+  "delta_weight_rule": "match added delta loss to existing weighted body-rate contribution on frozen train predictions",
+  "prefix_rule": "inverse frozen-train prefix total loss, normalized to sum one; no state weights changed",
+  "delta_scale": 0.3237471910470991,
+  "body_rate_scale": 0.18839586137790276,
+  "train_windows": 4214,
+  "train_horizon_seconds": {
+    "50": {
+      "count": 4214,
+      "min": 0.9880099999999999,
+      "max": 1.0081399999999998,
+      "p1": 0.98810213,
+      "p99": 1.0080868699999999,
+      "mean": 1.000021011627907,
+      "median": 0.998039
+    },
+    "100": {
+      "count": 4214,
+      "min": 1.9910850000000002,
+      "max": 2.0110370000000004,
+      "p1": 1.9911470000000002,
+      "p99": 2.0062770000000003,
+      "mean": 2.000069920740389,
+      "median": 1.9962755
+    }
+  },
+  "seeds": {
+    "base": 17,
+    "actuator": 29
+  },
+  "epochs": {
+    "base": 40,
+    "actuator": 25
+  },
+  "batch_size": 256,
+  "optimizer": "AdamW",
+  "learning_rates": {
+    "base": 0.0003,
+    "actuator": 0.0005
+  },
+  "weight_decay": 1e-05,
+  "gradient_clip_norm": 5.0,
+  "checkpoint_criterion": "fixed final epoch; no best-epoch tuning",
+  "actuator_constants": {
+    "drive": 0.1,
+    "tail": 0.04
+  },
+  "frozen_validation_windows_sha256": "c4ce42a6dbfac148aa790a85ead3d3e4a473c79b595e2d26d632832949641929",
+  "architecture_changed": false,
+  "simulator_changed": false,
+  "sealed_test_opened": false,
+  "three_second_training": "not in primary matrix: fixed original 4214 windows contain 100 steps; avoid a changed cohort confound",
+  "baseline_hashes": {
+    "artifacts/trajectory_main_v2/models/main_v2_drive_tail_gated.pt": "0ca42b8a3cca07f507b4a52a910daf130bd98da31d590669bf6c47b6ac3031ff",
+    "dataset/trajectory_v1_august_f5_c4/manifest.json": "8877de54775f93aa2b594f77e7692a3d592c94e9697dfc75a742c0b5b6847100",
+    "dataset/trajectory_v1_august_f5_c4/samples_train.parquet": "68500c6e4913323ec68edd4c91e0ceca4a1d110f06d95eba4372b9cf80bea5e6",
+    "dataset/trajectory_v1_august_f5_c4/samples_validation.parquet": "9ca8bf1a182ea581f564a48ce47588d05a9a943bec08755c07d6acc61a0574a9",
+    "scripts/run_main_v2_free_running.py": "23ad0959c3914656886815c123a547fa37f7a8a950e37b54bb9f4835f60d817f",
+    "src/system_identification/models/main_v2_simulator.py": "1559e61f8d612d4821d70fc9806ff20e97d72d4593ac5366ce35c60bbc69ef66",
+    "scripts/report_main_v2_free_running.py": "f31fba74e0fdb5bf2c098f7edaee9e243aeb2e1c0e73e5f27480942dc64ce343",
+    "src/system_identification/models/trajectory_main_v2.py": "e599cf0fd34cdbe47b8f3dce406e40ffbac70039eb33d157da0a667310b1707f",
+    "src/system_identification/models/trajectory_main_v1.py": "b61dd09701b3bfe0176f1a406e4c511b58092fb080b47af115aa4c54681a7e5a",
+    "src/system_identification/evaluation/main_v2_free_running.py": "32c0d09f902597b982b6c62e94a4b75690f9fc30020f7c36d7d20cfc179e6c39",
+    "src/system_identification/evaluation/trajectory.py": "595189df1f994ed2aabfebd88e7b0c04ac38dbb6180579e461345a8fe1e64bd8",
+    "src/system_identification/training/trajectory_main_v1.py": "76c028ff176724194f7ecfafe916424ded0c6417fbbf04322593c01c7e5ef4c9"
+  }
+}

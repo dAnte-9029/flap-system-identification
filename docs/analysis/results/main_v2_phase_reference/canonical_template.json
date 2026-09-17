@@ -1,0 +1,59 @@
+{
+  "coefficients": [
+    [
+      9.177378826820224,
+      1.1816834875625644
+    ],
+    [
+      -11.259390847857665,
+      14.291874394807948
+    ],
+    [
+      1.1341129826313672,
+      -0.9298836871582092
+    ],
+    [
+      -18.906143613495054,
+      -0.5453251281361943
+    ],
+    [
+      7.906960844388128,
+      0.36470474383143703
+    ],
+    [
+      9.831261569609817,
+      2.174846430497795
+    ]
+  ],
+  "scales": [
+    22.585869699750635,
+    10.760903200241126
+  ],
+  "train_reference_offsets": {
+    "2026.8.10-8.20/log_14_2026-8-19-06-27-52.ulg": 0.0,
+    "2026.8.10-8.20/log_15_2026-8-19-06-52-42.ulg": 2.7576202181510405,
+    "2026.8.10-8.20/log_18_2026-8-19-07-03-30.ulg": 2.0943951023931953,
+    "2026.8.10-8.20/log_1_2026-8-19-17-20-36.ulg": 3.9095375244672983,
+    "2026.8.10-8.20/log_5_2026-8-19-18-31-42.ulg": 1.6580627893946132,
+    "2026.8.10-8.20/log_6_2026-8-19-18-40-42.ulg": 4.066617157146788
+  },
+  "gauge": "first sorted train log has offset0; statistical canonical gauge, NOT verified mechanical zero",
+  "fit": "first70percent minus2s of train logs only",
+  "cuts": {
+    "2026.8.10-8.20/log_14_2026-8-19-06-27-52.ulg": 826.380416,
+    "2026.8.10-8.20/log_15_2026-8-19-06-52-42.ulg": 193.262591,
+    "2026.8.10-8.20/log_18_2026-8-19-07-03-30.ulg": 193.851101,
+    "2026.8.10-8.20/log_1_2026-8-19-17-20-36.ulg": 653.2832307,
+    "2026.8.10-8.20/log_5_2026-8-19-18-31-42.ulg": 184.45213999999999,
+    "2026.8.10-8.20/log_6_2026-8-19-18-40-42.ulg": 176.830594
+  },
+  "order": 3,
+  "grid_degrees": 1,
+  "matching": "positive per-channel gain and DC nuisance; inverse train variance weights",
+  "derivative": "backward native state difference; template interval-average harmonics assumes linear phase within interval; no temporal filter",
+  "filter_delay": "backward difference represents its measured interval, not its right endpoint; exact sinc correction under interval-linear phase",
+  "channels": [
+    "q_dot from body rates",
+    "az_n from navigation velocity, not accelerometer specific force"
+  ]
+}

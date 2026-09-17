@@ -1,0 +1,19 @@
+{
+  "status": "verified",
+  "regression": "60 passed in 4.57s",
+  "regression_command": "/home/zn/anaconda3/envs/flap-train-gpu/bin/python -m pytest -q tests/test_main_v2_objectives.py tests/test_main_v2_simulator.py tests/test_main_v2_free_running.py tests/test_trajectory*.py tests/test_september_trajectory.py",
+  "git_diff_check": "passed",
+  "baseline_hashes_verified": true,
+  "all_rollout_arrays_finite": true,
+  "common_origins": 722,
+  "sealed_test_opened": false,
+  "source_hashes": {
+    "scripts/diagnose_main_v2_objectives.py": "38376d3478ff0ac380607b642518b767b9b0de53fa2e69a6d834408c44716104",
+    "scripts/evaluate_main_v2_objectives.py": "fcea5cf75d2408d15a61258ff2495f8b4145d84b948a44300fd6d855de4024cf",
+    "scripts/report_main_v2_objectives.py": "2dc435ec4ddf53e3e0f313735e08e2b6fd19dd75d2688a0e9e9039e32f0f3062",
+    "scripts/run_main_v2_objective_ablation.py": "9ae27399d23fd32cc992faebe0d0db994d53b3343375700d4277dd6eb7569e9b",
+    "scripts/run_main_v2_step3.py": "94b35b0f4ae705a79ee0f191fa38c3847e530602943a9c57871e620eb3f27a29",
+    "src/system_identification/training/main_v2_objectives.py": "27d6fd231a71feaa6f6e16c0059b1d67f51f655d18c6c2d0de0a529535a8aef7",
+    "tests/test_main_v2_objectives.py": "2e8402fa540208f273150a9637edf907adbb6e747f35ff8e6972ec68488a5e9d"
+  }
+}

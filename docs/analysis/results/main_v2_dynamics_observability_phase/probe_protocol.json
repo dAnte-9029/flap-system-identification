@@ -1,0 +1,40 @@
+{
+  "purpose": "diagnostic only; not Main V3",
+  "architecture": "MLP input420 ->64 SiLU ->64 SiLU ->6",
+  "input": "26-point raw causal history plus commands and actuator proxies; no pretrained GRU to contaminate temporal holdout",
+  "seeds": [
+    415,
+    416,
+    417
+  ],
+  "epochs": 30,
+  "batch_size": 512,
+  "optimizer": "AdamW lr0.001 weight_decay0.00001",
+  "target_normalization": "same raw-train scales in every cell",
+  "phase_normalization": "fixed sin/cos mean0 std1 for both representations",
+  "phase_correction": "train earlier-half constant offsets; validation offset unknown and set0; no validation offset calibration",
+  "fit_scope": "first70percent each train log minus2s; temporal heldout last30percent plus2s; fit_stride2",
+  "n_train": 14796,
+  "n_temporal_holdout": 12318,
+  "n_validation": 40085,
+  "filter_use": "no filtered state as input",
+  "cells": {
+    "B0": [
+      "current_phase",
+      "D0_raw"
+    ],
+    "B1": [
+      "current_phase",
+      "increment2"
+    ],
+    "B2": [
+      "log_phase_train_offset",
+      "D0_raw"
+    ],
+    "B3": [
+      "log_phase_train_offset",
+      "increment2"
+    ]
+  },
+  "sealed_test_opened": false
+}

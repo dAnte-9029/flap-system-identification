@@ -1,0 +1,29 @@
+{
+  "seed": 717,
+  "device": "cuda:1",
+  "n_origins": 722,
+  "checkpoint_sha256": "0ca42b8a3cca07f507b4a52a910daf130bd98da31d590669bf6c47b6ac3031ff",
+  "step_contract": "250 native steps, no resampling",
+  "dt_min": 0.009855,
+  "dt_max": 0.029945,
+  "dt_mean": 0.020000129108033237,
+  "duration_min": 4.989626,
+  "duration_max": 5.010254000000001,
+  "teacher_modes": "A_native/A_fixed/B/C/C_native NOT DEPLOYABLE",
+  "anchor_control": "A_native reanchors each history. A_fixed/B/C/D preserve original t0 anchor. C_native supplementary changes hidden and anchor.",
+  "proxies": "all modes same causal command-driven proxies; no reinitialization after t0",
+  "physical_teacher": "all six physical fields including frequency and encoder phase; NOT DEPLOYABLE",
+  "bank": "real train histories stride10, eight equally spaced anchor gauges; no validation fitting",
+  "ood": "train-standardized k5 RMS Euclidean and ridge covariance Mahalanobis; no certified safety interpretation",
+  "probe": "train-only ridge1 with train-only scales, fixed small linear information probe; not simulator training",
+  "jacobian": "full64x64 frozen-input local Jacobian at deterministic per-log points; singular norm and spectral radius distinct",
+  "resumed": true,
+  "source_hashes": {
+    "scripts/run_main_v2_recurrent_audit.py": "fd5a53b172eba81c5328d269ef9672a46909f21b1cba1ea703c053449392bf99",
+    "src/system_identification/models/rolling_history_simulator.py": "5be0f5c7e947e348f506af95dd275a0cc2d387537c472de8b2e1e0006e6bcec1",
+    "src/system_identification/evaluation/recurrent_representation.py": "2cc7e6e7babc873c56a634f0f7ade663a279359a3200c9c3a08d98a810414951",
+    "scripts/analyze_main_v2_recurrent.py": "5c788232b3e8a5fb67b5af462cf75fc4b7e37dc23c7d090069f6944935b6f172",
+    "scripts/report_main_v2_recurrent.py": "c081f95252a9f03f45fbff5372adecd83fc85a6c319e0589303db1d088184d53",
+    "tests/test_recurrent_representation.py": "9bb4e7b8acdf71ad5e58606f451527c532aa2f112d843095262abae03fcad507"
+  }
+}

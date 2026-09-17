@@ -1,0 +1,13 @@
+{
+  "experiment": "A0_baseline_retrain",
+  "checkpoint_sha256": "cfbff6f384fffe7f04a2735861bc729f7c276022ff09271827d3170c960904ff",
+  "window_count": 722,
+  "window_sha256": "c4ce42a6dbfac148aa790a85ead3d3e4a473c79b595e2d26d632832949641929",
+  "numeric_failures": 0,
+  "support_failures": 255,
+  "clipping_failures": 0,
+  "high_frequency_cutoff_hz_train95": 13.122682010077684,
+  "omega_high_frequency_energy_ratio": 4.9232264171713244e-05,
+  "omega_spectral_l1_relative": 0.9670219418927282,
+  "sealed_test_opened": false
+}

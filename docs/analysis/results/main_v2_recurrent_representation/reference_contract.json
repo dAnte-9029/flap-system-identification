@@ -1,0 +1,28 @@
+{
+  "n_bank": 34448,
+  "gauges": 8,
+  "knn_k": 5,
+  "calibration": "1024 linspace train-bank rows; self excluded; secondary excludes all same-log rows",
+  "native_thresholds": {
+    "hidden": {
+      "knn_p99": 0.7688530015945434,
+      "mahalanobis_p99": 1.9193130838871002
+    },
+    "physical": {
+      "knn_p99": 0.7672041761875152,
+      "mahalanobis_p99": 1.6476603186130523
+    }
+  },
+  "covariance_ridge": 0.001,
+  "hidden_leave_log_p99": 0.8239199233055112,
+  "physical_leave_log_p99": 1.0783198130130767,
+  "hidden_knn_p99": 0.35929007083177567,
+  "hidden_mahalanobis_p99": 1.7943045556545256,
+  "physical_knn_p99": 0.43889543414115906,
+  "physical_mahalanobis_p99": 1.7649128556251525,
+  "hidden_pca_explained_ratio": [
+    0.1860300451517105,
+    0.17242269217967987,
+    0.1619621068239212
+  ]
+}

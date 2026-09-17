@@ -1,0 +1,14 @@
+{
+  "result": "R-B",
+  "n_origins": 722,
+  "training_performed": false,
+  "max_B_vs_A_angular_relative_gap": 0.0004138661688314338,
+  "simulator_structural_readiness": 100,
+  "dynamics_fidelity_readiness": 60,
+  "rl_ready": false,
+  "hidden_distance_5s_median": 2.33438503742218,
+  "hidden_cosine_5s_median": 0.3778861612081527,
+  "C_5s_velocity_change_pct": 8.899219052641127,
+  "C_5s_attitude_change_pct": 47.94278084200694,
+  "verdict_scope": "S0 frozen Main V2; no claim about all recurrent architectures or arbitrary rolling cadence"
+}

@@ -1,0 +1,9 @@
+{
+  "train_only": true,
+  "train_increment_mean_relative_improvement": 0.584873323849957,
+  "final_median_gradient_ratio": 0.04343449315964375,
+  "s2_triggered": false,
+  "rule": "only if S1 final train incremental loss improvement <5% AND median weighted increment/original gradient norm <0.1; S2 uses exactly 4x S1 weights with all original terms retained",
+  "s3_trained": false,
+  "s3_reason": "optional follow-up omitted from bounded primary experiment"
+}

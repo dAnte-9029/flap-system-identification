@@ -1,0 +1,45 @@
+{
+  "train": {
+    "windows": 776,
+    "local_origins": 43884,
+    "one_step_dt_s": {
+      "count": 43884,
+      "min": 0.009855,
+      "max": 0.029951,
+      "p1": 0.009857999999999999,
+      "p99": 0.029942,
+      "mean": 0.02000014349193328,
+      "median": 0.01996
+    }
+  },
+  "validation": {
+    "windows": 722,
+    "local_origins": 40603,
+    "one_step_dt_s": {
+      "count": 40603,
+      "min": 0.009855,
+      "max": 0.029945,
+      "p1": 0.009857999999999999,
+      "p99": 0.029939999999999998,
+      "mean": 0.019999614240327073,
+      "median": 0.019958999999999998
+    }
+  },
+  "device": "cuda:1",
+  "sealed_test_opened": false,
+  "training_performed": false,
+  "baseline_hashes": {
+    "artifacts/trajectory_main_v2/models/main_v2_drive_tail_gated.pt": "0ca42b8a3cca07f507b4a52a910daf130bd98da31d590669bf6c47b6ac3031ff",
+    "dataset/trajectory_v1_august_f5_c4/manifest.json": "8877de54775f93aa2b594f77e7692a3d592c94e9697dfc75a742c0b5b6847100",
+    "dataset/trajectory_v1_august_f5_c4/samples_train.parquet": "68500c6e4913323ec68edd4c91e0ceca4a1d110f06d95eba4372b9cf80bea5e6",
+    "dataset/trajectory_v1_august_f5_c4/samples_validation.parquet": "9ca8bf1a182ea581f564a48ce47588d05a9a943bec08755c07d6acc61a0574a9",
+    "scripts/run_main_v2_free_running.py": "23ad0959c3914656886815c123a547fa37f7a8a950e37b54bb9f4835f60d817f",
+    "src/system_identification/models/main_v2_simulator.py": "1559e61f8d612d4821d70fc9806ff20e97d72d4593ac5366ce35c60bbc69ef66",
+    "scripts/report_main_v2_free_running.py": "f31fba74e0fdb5bf2c098f7edaee9e243aeb2e1c0e73e5f27480942dc64ce343",
+    "src/system_identification/models/trajectory_main_v2.py": "e599cf0fd34cdbe47b8f3dce406e40ffbac70039eb33d157da0a667310b1707f",
+    "src/system_identification/models/trajectory_main_v1.py": "b61dd09701b3bfe0176f1a406e4c511b58092fb080b47af115aa4c54681a7e5a",
+    "src/system_identification/evaluation/main_v2_free_running.py": "32c0d09f902597b982b6c62e94a4b75690f9fc30020f7c36d7d20cfc179e6c39",
+    "src/system_identification/evaluation/trajectory.py": "595189df1f994ed2aabfebd88e7b0c04ac38dbb6180579e461345a8fe1e64bd8",
+    "src/system_identification/training/trajectory_main_v1.py": "76c028ff176724194f7ecfafe916424ded0c6417fbbf04322593c01c7e5ef4c9"
+  }
+}

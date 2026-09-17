@@ -1,0 +1,22 @@
+{
+  "pytest_returncode": 0,
+  "git_diff_check_returncode": 0,
+  "new_source_whitespace_clean": true,
+  "historical_hashes_unchanged": true,
+  "validation_absolute_error_not_claimed": true,
+  "sealed_test_opened": false,
+  "oracle_isolated": true,
+  "old_checkpoints_unchanged": true,
+  "p0_probe_reproduces_step4": true,
+  "p0_metric_max_difference": 3.552713678800501e-15,
+  "p0_csv_absolute_tolerance": 1e-12,
+  "source_hashes": {
+    "scripts/run_main_v2_phase_reference.py": "afff4a7380cbc74d12e891ed609725dd648b268b90f3c20f091c255550595458",
+    "scripts/report_main_v2_phase_reference.py": "ca0088399e674135b89cb70739e8cf834269f3adf694f572f7a8c0861b1852bc",
+    "scripts/diagnose_main_v2_phase_reference.py": "08d82865bf63cef87a1dc0087908db5a5816497546f7380d8cffc5262460a72b",
+    "scripts/prepare_main_v2_phase_reference.py": "cd0a949bfb7f46af687e33e4f364de326b133f8859314d3ff6929acb683ead5b",
+    "scripts/train_main_v2_phase_probes.py": "ec51ff446f47ed9410b9cec70476c675db7fdd0009272fd8d34456908a72db96",
+    "src/system_identification/models/phase_reference.py": "b8923eb0e9a9478b75fb07f00cda71b6e378f6242669f9889d2adb4bb3a63c6a",
+    "tests/test_main_v2_phase_reference.py": "9f1d82698cd6a143e0653ea94218bedf2c8fc36c25920c3b2d3d51b0a1f6bb21"
+  }
+}

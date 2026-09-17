@@ -1,0 +1,5 @@
+{
+  "method": "E2",
+  "history_steps": 50,
+  "selection": "train temporal holdout median+p90 offset reference error; validation not used"
+}

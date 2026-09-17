@@ -1,0 +1,20 @@
+{
+  "pytest_returncode": 0,
+  "pytest_output": ".................................................................        [100%]\n65 passed in 7.24s\n",
+  "git_diff_check_returncode": 0,
+  "baseline_and_step3_hashes_unchanged": true,
+  "sealed_test_opened": false,
+  "sources": {
+    "scripts/run_main_v2_step4_all.py": "d5b787550afde1059d0654cd8fd192db60e1db1bd01013ae0623aafbbb452783",
+    "scripts/train_main_v2_step4_probes.py": "2f1abf8650f6a05ddb6b373f3ad0533775748f0167ea3923b02dd4d0d8387d3d",
+    "scripts/extend_main_v2_step4.py": "ff7a18ed89096b27e4fa6628fe19fd6c435017df0f6596ff84d4559061ac8146",
+    "scripts/run_main_v2_step4.py": "2106eebe77e86c916b879a6ba0bb3b0d678738280afce79b896380a79139b6ab",
+    "scripts/main_v2_step4_tools.py": "9e432f5812741442693b30af8d49d12539755429b6b101e4f3ab1d8677c346bd",
+    "scripts/report_main_v2_step4.py": "a8692969fd617ddbafbef2009bea20718761fc74cfa2f78906f3a5a938b1042b",
+    "tests/test_main_v2_step4.py": "303d81cbf9a16fd25d36855622e2dc416627591398fd7ad277a6b096dd6b998a",
+    "docs/audits/2026-09-15_main_v2_phase_observability_audit.md": "bc5ebeb4e9ac56cabed092e5c959895d8137303b7fe2c50a41a6301f8a6867e2"
+  },
+  "final_inventory_verified": true,
+  "report_sha256": "2eecda7c9c0a74ae5b7bdb1f2c7232751395e7994b9cca1d515e2e98aa77884a",
+  "source_note": "Final change added complete topic inventory; prior 65-pass regression remains applicable."
+}

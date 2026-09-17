@@ -1,0 +1,7 @@
+experiment,label,window_id,selection,attitude_error
+A0_baseline_retrain,best,validation:2026.8.10-8.20/log_17_2026-8-20-06-29-34.ulg:3:4675:5s,own 5s attitude error rank,2.74787185972694
+A0_baseline_retrain,median,validation:2026.8.10-8.20/log_16_2026-8-20-06-20-52.ulg:1:2675:5s,own 5s attitude error rank,29.855907770861062
+A0_baseline_retrain,worst,validation:2026.8.10-8.20/log_22_2026-8-20-07-09-54.ulg:1:425:5s,own 5s attitude error rank,167.6657760886824
+A3_dynamic_delta,best,validation:2026.8.10-8.20/log_15_2026-8-20-06-08-16.ulg:2:1825:5s,own 5s attitude error rank,2.1344793655958534
+A3_dynamic_delta,median,validation:2026.8.10-8.20/log_16_2026-8-20-06-20-52.ulg:1:525:5s,own 5s attitude error rank,28.183351311953565
+A3_dynamic_delta,worst,validation:2026.8.10-8.20/log_22_2026-8-20-07-09-54.ulg:1:425:5s,own 5s attitude error rank,176.39302099155427

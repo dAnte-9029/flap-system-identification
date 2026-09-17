@@ -1,0 +1,12 @@
+{
+  "regression_tests_passed": 56,
+  "regression_wall_time_s": 9.84,
+  "git_diff_check_passed": true,
+  "legacy_model_sources_unchanged": true,
+  "source_and_result_hashes_verified": true,
+  "repeated_full_run_core_csv_bitwise_identical": true,
+  "benchmark_exit_code": 2,
+  "benchmark_exit_meaning": "completed, observed-support gate FAIL; not execution error",
+  "sealed_test_opened": false,
+  "training_performed": false
+}

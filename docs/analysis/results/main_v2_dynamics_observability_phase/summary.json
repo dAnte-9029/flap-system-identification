@@ -1,0 +1,141 @@
+{
+  "first_priority": "P2 derivative/state-transition target",
+  "second_priority": "P1 phase representation with deployable reference",
+  "phase_consistency_broken": "YES",
+  "identifiability": "PARTIAL",
+  "command_sensitivity_trusted": "PARTIAL",
+  "structural_readiness": 100,
+  "dynamics_fidelity_readiness": 60,
+  "rl_ready": false,
+  "sealed_test_opened": false,
+  "step3_changed": false,
+  "teacher_angular_pred_std_validation": 12.075227737426758,
+  "probe_changes": [
+    {
+      "scope": "train_temporal_holdout",
+      "candidate": "B1",
+      "reference": "B0",
+      "target": "increment2",
+      "signal": "linear",
+      "mean_change_pct": -6.354317520476457,
+      "seed_min": -7.635249693028079,
+      "seed_max": -5.16844888005501
+    },
+    {
+      "scope": "train_temporal_holdout",
+      "candidate": "B1",
+      "reference": "B0",
+      "target": "increment2",
+      "signal": "angular",
+      "mean_change_pct": -22.3303719863008,
+      "seed_min": -23.183446777244466,
+      "seed_max": -21.740089415639275
+    },
+    {
+      "scope": "train_temporal_holdout",
+      "candidate": "B2",
+      "reference": "B0",
+      "target": "D0_raw",
+      "signal": "linear",
+      "mean_change_pct": 2.611402106981623,
+      "seed_min": 2.213489600947205,
+      "seed_max": 3.225581269887101
+    },
+    {
+      "scope": "train_temporal_holdout",
+      "candidate": "B2",
+      "reference": "B0",
+      "target": "D0_raw",
+      "signal": "angular",
+      "mean_change_pct": -0.2990103559779578,
+      "seed_min": -1.7465752872022011,
+      "seed_max": 0.9538563442530013
+    },
+    {
+      "scope": "train_temporal_holdout",
+      "candidate": "B3",
+      "reference": "B1",
+      "target": "increment2",
+      "signal": "linear",
+      "mean_change_pct": -2.6632673683222494,
+      "seed_min": -6.209209600934518,
+      "seed_max": -0.22882545653234443
+    },
+    {
+      "scope": "train_temporal_holdout",
+      "candidate": "B3",
+      "reference": "B1",
+      "target": "increment2",
+      "signal": "angular",
+      "mean_change_pct": 2.351633669445293,
+      "seed_min": 1.267174819458372,
+      "seed_max": 3.044858468109357
+    },
+    {
+      "scope": "validation_unknown_offset",
+      "candidate": "B1",
+      "reference": "B0",
+      "target": "increment2",
+      "signal": "linear",
+      "mean_change_pct": -20.833924371444397,
+      "seed_min": -23.36399192568338,
+      "seed_max": -19.166036661843012
+    },
+    {
+      "scope": "validation_unknown_offset",
+      "candidate": "B1",
+      "reference": "B0",
+      "target": "increment2",
+      "signal": "angular",
+      "mean_change_pct": -20.169328840809055,
+      "seed_min": -22.919806270786935,
+      "seed_max": -18.454437626217224
+    },
+    {
+      "scope": "validation_unknown_offset",
+      "candidate": "B2",
+      "reference": "B0",
+      "target": "D0_raw",
+      "signal": "linear",
+      "mean_change_pct": 24.021625015407256,
+      "seed_min": 19.430825690206866,
+      "seed_max": 27.475353923653458
+    },
+    {
+      "scope": "validation_unknown_offset",
+      "candidate": "B2",
+      "reference": "B0",
+      "target": "D0_raw",
+      "signal": "angular",
+      "mean_change_pct": 10.603957743268952,
+      "seed_min": 9.214701989187857,
+      "seed_max": 12.43704633207583
+    },
+    {
+      "scope": "validation_unknown_offset",
+      "candidate": "B3",
+      "reference": "B1",
+      "target": "increment2",
+      "signal": "linear",
+      "mean_change_pct": 28.754350031200776,
+      "seed_min": 25.70206415309695,
+      "seed_max": 32.08012334820576
+    },
+    {
+      "scope": "validation_unknown_offset",
+      "candidate": "B3",
+      "reference": "B1",
+      "target": "increment2",
+      "signal": "angular",
+      "mean_change_pct": 8.022211850568418,
+      "seed_min": 3.745671695098274,
+      "seed_max": 14.706484005658261
+    }
+  ],
+  "limitations": [
+    "phase synchronous measurement is not independent physical truth",
+    "no nearly-identical k20 queries at RMS radius0.25",
+    "validation offsets unknown",
+    "local probes not autonomous simulators"
+  ]
+}

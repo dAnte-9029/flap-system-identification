@@ -1,0 +1,12 @@
+{
+  "position_n": 4.57763671875e-05,
+  "velocity_n": 7.62939453125e-06,
+  "quaternion_nb": 5.830079317092896e-07,
+  "angular_velocity_b": 2.2649765014648438e-06,
+  "relative_phase_rad": 5.7220458984375e-06,
+  "flap_frequency_hz": 4.76837158203125e-07,
+  "gru_hidden": 2.119690179824829e-06,
+  "drive_state": 0.0,
+  "tail_state": 0.0,
+  "phase_anchor": 0.0
+}

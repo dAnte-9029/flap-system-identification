@@ -1,0 +1,451 @@
+{
+  "schema": "main_v2_free_running_5s_v1",
+  "git_head": "1482b874757f157cba67c9987146168729535644",
+  "source_hashes": {
+    "artifacts/trajectory_main_v2/models/main_v2_drive_tail_gated.pt": "0ca42b8a3cca07f507b4a52a910daf130bd98da31d590669bf6c47b6ac3031ff",
+    "dataset/trajectory_v1_august_f5_c4/manifest.json": "8877de54775f93aa2b594f77e7692a3d592c94e9697dfc75a742c0b5b6847100",
+    "dataset/trajectory_v1_august_f5_c4/samples_train.parquet": "68500c6e4913323ec68edd4c91e0ceca4a1d110f06d95eba4372b9cf80bea5e6",
+    "dataset/trajectory_v1_august_f5_c4/samples_validation.parquet": "9ca8bf1a182ea581f564a48ce47588d05a9a943bec08755c07d6acc61a0574a9",
+    "scripts/run_main_v2_free_running.py": "23ad0959c3914656886815c123a547fa37f7a8a950e37b54bb9f4835f60d817f",
+    "src/system_identification/models/main_v2_simulator.py": "1559e61f8d612d4821d70fc9806ff20e97d72d4593ac5366ce35c60bbc69ef66",
+    "scripts/report_main_v2_free_running.py": "f31fba74e0fdb5bf2c098f7edaee9e243aeb2e1c0e73e5f27480942dc64ce343",
+    "src/system_identification/models/trajectory_main_v2.py": "e599cf0fd34cdbe47b8f3dce406e40ffbac70039eb33d157da0a667310b1707f",
+    "src/system_identification/models/trajectory_main_v1.py": "b61dd09701b3bfe0176f1a406e4c511b58092fb080b47af115aa4c54681a7e5a",
+    "src/system_identification/evaluation/main_v2_free_running.py": "32c0d09f902597b982b6c62e94a4b75690f9fc30020f7c36d7d20cfc179e6c39",
+    "src/system_identification/evaluation/trajectory.py": "595189df1f994ed2aabfebd88e7b0c04ac38dbb6180579e461345a8fe1e64bd8",
+    "src/system_identification/training/trajectory_main_v1.py": "76c028ff176724194f7ecfafe916424ded0c6417fbbf04322593c01c7e5ef4c9"
+  },
+  "checkpoint_unchanged": true,
+  "partitions_read": [
+    "train_for_observed_envelope_only",
+    "validation"
+  ],
+  "sealed_test_opened": false,
+  "training_performed": false,
+  "dataset_contract": {
+    "builder_git_head": "4d9e1b7a41e27c232f63e7bba86562a1b7435b8f",
+    "dataset_version": "trajectory_dataset_v1",
+    "frames": {
+      "angular_velocity": "body FRD rad/s",
+      "attitude": "unit quaternion q_wxyz rotating body FRD vectors into local NED",
+      "control": "dimensionless normalized post-allocation actuator outputs",
+      "position_velocity_wind": "PX4 local NED; z and vz positive down",
+      "relative_phase": "log-local [0, 2pi); arbitrary zero from first finite encoder total_count"
+    },
+    "generated_at": "2026-09-02T19:36:58.964169+08:00",
+    "normalization": "not fitted or applied by the builder",
+    "partitions": {
+      "train": {
+        "airdata_valid_on_core_ratio": 0.9477498434284691,
+        "log_count": 6,
+        "observed_horizon_error_s_max": 0.011036999999999964,
+        "samples_file": "samples_train.parquet",
+        "segment_count": 32,
+        "source_sample_count": 93684,
+        "valid_duration_s": 893.4782710000001,
+        "valid_sample_count": 44708,
+        "window_count": 4214,
+        "windows_file": "windows_train.parquet"
+      },
+      "validation": {
+        "airdata_valid_on_core_ratio": 0.98445205645847,
+        "log_count": 5,
+        "observed_horizon_error_s_max": 0.011079000000000061,
+        "samples_file": "samples_validation.parquet",
+        "segment_count": 23,
+        "source_sample_count": 59401,
+        "valid_duration_s": 822.774261,
+        "valid_sample_count": 41163,
+        "window_count": 3920,
+        "windows_file": "windows_validation.parquet"
+      }
+    },
+    "roles": {
+      "absolute_phase_reserved_columns_all_invalid_in_august": [
+        "absolute_flap_phase_rad",
+        "absolute_flap_phase_sin",
+        "absolute_flap_phase_cos",
+        "hall_reference_valid"
+      ],
+      "future_forbidden_as_input": [
+        "position_ned_m_x",
+        "position_ned_m_y",
+        "position_ned_m_z",
+        "velocity_ned_m_s_x",
+        "velocity_ned_m_s_y",
+        "velocity_ned_m_s_z",
+        "attitude_q_w",
+        "attitude_q_x",
+        "attitude_q_y",
+        "attitude_q_z",
+        "angular_velocity_body_rad_s_x",
+        "angular_velocity_body_rad_s_y",
+        "angular_velocity_body_rad_s_z",
+        "relative_flap_phase_rad",
+        "relative_flap_phase_sin",
+        "relative_flap_phase_cos",
+        "flap_frequency_hz",
+        "true_airspeed_m_s",
+        "wind_ned_m_s_n",
+        "wind_ned_m_s_e",
+        "absolute_flap_phase_rad",
+        "absolute_flap_phase_sin",
+        "absolute_flap_phase_cos",
+        "hall_reference_valid"
+      ],
+      "initial_flap_state_at_t0": [
+        "relative_flap_phase_rad",
+        "relative_flap_phase_sin",
+        "relative_flap_phase_cos",
+        "flap_frequency_hz"
+      ],
+      "initial_state_at_t0": [
+        "position_ned_m_x",
+        "position_ned_m_y",
+        "position_ned_m_z",
+        "velocity_ned_m_s_x",
+        "velocity_ned_m_s_y",
+        "velocity_ned_m_s_z",
+        "attitude_q_w",
+        "attitude_q_x",
+        "attitude_q_y",
+        "attitude_q_z",
+        "angular_velocity_body_rad_s_x",
+        "angular_velocity_body_rad_s_y",
+        "angular_velocity_body_rad_s_z"
+      ],
+      "known_future_control_t0_to_tT_exclusive": [
+        "control_flap_motor_normalized",
+        "control_left_elevon_normalized",
+        "control_right_elevon_normalized",
+        "control_rudder_normalized"
+      ],
+      "optional_initial_context_at_t0": [
+        "true_airspeed_m_s",
+        "wind_ned_m_s_n",
+        "wind_ned_m_s_e"
+      ],
+      "trajectory_target_t0_to_tT_inclusive": [
+        "position_ned_m_x",
+        "position_ned_m_y",
+        "position_ned_m_z",
+        "velocity_ned_m_s_x",
+        "velocity_ned_m_s_y",
+        "velocity_ned_m_s_z",
+        "attitude_q_w",
+        "attitude_q_x",
+        "attitude_q_y",
+        "attitude_q_z",
+        "angular_velocity_body_rad_s_x",
+        "angular_velocity_body_rad_s_y",
+        "angular_velocity_body_rad_s_z",
+        "relative_flap_phase_rad",
+        "relative_flap_phase_sin",
+        "relative_flap_phase_cos",
+        "flap_frequency_hz"
+      ]
+    },
+    "sampling": {
+      "alignment": "past-only zero-order hold with per-signal freshness limits",
+      "event_time": "timestamp_sample when valid, otherwise timestamp",
+      "history_steps": 0,
+      "horizon_s": 2.0,
+      "horizon_steps": 100,
+      "maximum_gap_s": 0.05,
+      "nominal_rate_hz": 50.0,
+      "reference_topic": "vehicle_local_position",
+      "stride_s": 0.2,
+      "stride_steps": 10
+    },
+    "source": {
+      "primary_cohort": {
+        "configuration_group": "C4",
+        "firmware_group": "F5"
+      },
+      "qgclogs_git_head": "9db63ebac045ea93dd7144d47bb235e9a02df13f",
+      "qgclogs_root": "/home/zn/QgcLogs",
+      "step0_audit_path": "/home/zn/flap-system-identification/docs/audits/results/2026-09-02_august_ulg_audit_summary.json",
+      "step0_audit_version": "august_ulg_audit_v1",
+      "step0_generated_at": "2026-09-02T16:58:25.054778+08:00"
+    },
+    "split_contract": {
+      "assignments": {
+        "sealed_test": [
+          "2026.8.10-8.20/2026-08-26_054812_log12.ulg",
+          "2026.8.10-8.20/2026-08-26_060614_log09.ulg",
+          "2026.8.10-8.20/2026-08-26_063046_log13.ulg"
+        ],
+        "train": [
+          "2026.8.10-8.20/log_14_2026-8-19-06-27-52.ulg",
+          "2026.8.10-8.20/log_15_2026-8-19-06-52-42.ulg",
+          "2026.8.10-8.20/log_18_2026-8-19-07-03-30.ulg",
+          "2026.8.10-8.20/log_1_2026-8-19-17-20-36.ulg",
+          "2026.8.10-8.20/log_5_2026-8-19-18-31-42.ulg",
+          "2026.8.10-8.20/log_6_2026-8-19-18-40-42.ulg"
+        ],
+        "validation": [
+          "2026.8.10-8.20/log_15_2026-8-20-06-08-16.ulg",
+          "2026.8.10-8.20/log_16_2026-8-20-06-20-52.ulg",
+          "2026.8.10-8.20/log_17_2026-8-20-06-29-34.ulg",
+          "2026.8.10-8.20/log_19_2026-8-20-06-51-18.ulg",
+          "2026.8.10-8.20/log_22_2026-8-20-07-09-54.ulg"
+        ]
+      },
+      "materialized_partitions": [
+        "train",
+        "validation"
+      ],
+      "ood_holdout_materialized": false,
+      "sealed_test_opened": false,
+      "split_dates": {
+        "sealed_test": [
+          "2026-08-26"
+        ],
+        "train": [
+          "2026-08-19"
+        ],
+        "validation": [
+          "2026-08-20"
+        ]
+      }
+    }
+  },
+  "device": "cpu",
+  "torch_version": "2.7.0+cu128",
+  "initialization_modes": [
+    "warm26",
+    "warm13",
+    "warm5",
+    "cold_single",
+    "cold_zero",
+    "cold_repeated26"
+  ],
+  "window_count": 722,
+  "flight_count": 5,
+  "stride_steps": 50,
+  "smoke_only": false,
+  "actual_dt_s": {
+    "count": 180500,
+    "min": 0.009855,
+    "max": 0.029945,
+    "p1": 0.009857999999999999,
+    "p99": 0.029939999999999998,
+    "mean": 0.020000129108033237,
+    "median": 0.019958999999999998
+  },
+  "history_duration_s": {
+    "count": 722,
+    "min": 0.488983,
+    "max": 0.509019,
+    "p1": 0.48900046999999996,
+    "p99": 0.508993,
+    "mean": 0.5000246814404432,
+    "median": 0.49899099999999996
+  },
+  "history_filter_dt_s": 0.02,
+  "bin_edges_train_tertiles": {
+    "vertical_speed": [
+      -0.4917822579542796,
+      0.30235158403714496
+    ],
+    "abs_body_yaw_rate": [
+      0.14150231579939523,
+      0.31481460730234784
+    ],
+    "abs_roll_deg": [
+      6.242118525196147,
+      13.641610403555285
+    ],
+    "pitch_deg": [
+      12.581461855761564,
+      17.579768048931676
+    ],
+    "motor_command": [
+      0.6498799920082092,
+      0.7378357450167338
+    ],
+    "tail_command_magnitude": [
+      0.31867464710654,
+      0.5263807801666808
+    ]
+  },
+  "transition_edges_validation_descriptive_only": [
+    7.02392112111105,
+    7.502351131748837
+  ],
+  "probes": {
+    "future_labels_nan_bitwise_equal": true,
+    "legacy_250_step_max_abs_difference": {
+      "position_n": 0.0,
+      "velocity_n": 0.0,
+      "quaternion_nb": 0.0,
+      "angular_velocity_b": 0.0,
+      "relative_phase_rad": 0.0,
+      "flap_frequency_hz": 0.0
+    },
+    "resume_all_state_bitwise_equal": true
+  },
+  "gates": {
+    "0.2": {
+      "n_rollouts": 722,
+      "n_valid": 720,
+      "n_failed": 2,
+      "failure_pct": 0.2770083102493075,
+      "numerical_failure_pct": 0.0,
+      "envelope_failure_pct": 0.2770083102493075,
+      "clipping_failure_pct": 0.0,
+      "truth_envelope_failure_pct": 0.0,
+      "actual_horizon_s": {
+        "count": 722,
+        "min": 0.18960999999999997,
+        "max": 0.20959100000000003,
+        "p1": 0.19713621,
+        "p99": 0.209579,
+        "mean": 0.19996028116343492,
+        "median": 0.199593
+      }
+    },
+    "0.5": {
+      "n_rollouts": 722,
+      "n_valid": 705,
+      "n_failed": 17,
+      "failure_pct": 2.3545706371191137,
+      "numerical_failure_pct": 0.0,
+      "envelope_failure_pct": 2.3545706371191137,
+      "clipping_failure_pct": 0.0,
+      "truth_envelope_failure_pct": 0.0,
+      "actual_horizon_s": {
+        "count": 722,
+        "min": 0.48898499999999995,
+        "max": 0.5090110000000001,
+        "p1": 0.489002,
+        "p99": 0.50898879,
+        "mean": 0.4999555858725761,
+        "median": 0.49899
+      }
+    },
+    "1.0": {
+      "n_rollouts": 722,
+      "n_valid": 682,
+      "n_failed": 40,
+      "failure_pct": 5.540166204986149,
+      "numerical_failure_pct": 0.0,
+      "envelope_failure_pct": 5.540166204986149,
+      "clipping_failure_pct": 0.0,
+      "truth_envelope_failure_pct": 0.0,
+      "actual_horizon_s": {
+        "count": 722,
+        "min": 0.9879460000000001,
+        "max": 1.008057,
+        "p1": 0.99554142,
+        "p99": 1.00801295,
+        "mean": 1.0000074570637119,
+        "median": 0.997981
+      }
+    },
+    "2.0": {
+      "n_rollouts": 722,
+      "n_valid": 630,
+      "n_failed": 92,
+      "failure_pct": 12.742382271468145,
+      "numerical_failure_pct": 0.0,
+      "envelope_failure_pct": 12.742382271468145,
+      "clipping_failure_pct": 0.0,
+      "truth_envelope_failure_pct": 0.0,
+      "actual_horizon_s": {
+        "count": 722,
+        "min": 1.9910760000000005,
+        "max": 2.011076,
+        "p1": 1.99115247,
+        "p99": 2.00611958,
+        "mean": 1.9999869155124654,
+        "median": 1.996114
+      }
+    },
+    "3.0": {
+      "n_rollouts": 722,
+      "n_valid": 569,
+      "n_failed": 153,
+      "failure_pct": 21.191135734072024,
+      "numerical_failure_pct": 0.0,
+      "envelope_failure_pct": 21.191135734072024,
+      "clipping_failure_pct": 0.0,
+      "truth_envelope_failure_pct": 0.0,
+      "actual_horizon_s": {
+        "count": 722,
+        "min": 2.993774,
+        "max": 3.0068239999999995,
+        "p1": 2.99378,
+        "p99": 3.00669612,
+        "mean": 3.00002093767313,
+        "median": 3.0037700000000003
+      }
+    },
+    "5.0": {
+      "n_rollouts": 722,
+      "n_valid": 467,
+      "n_failed": 255,
+      "failure_pct": 35.3185595567867,
+      "numerical_failure_pct": 0.0,
+      "envelope_failure_pct": 35.3185595567867,
+      "clipping_failure_pct": 0.0,
+      "truth_envelope_failure_pct": 0.13850415512465375,
+      "actual_horizon_s": {
+        "count": 722,
+        "min": 4.989626,
+        "max": 5.010254000000001,
+        "p1": 4.989658,
+        "p99": 5.01001048,
+        "mean": 5.0000322770083105,
+        "median": 4.9997975
+      }
+    }
+  },
+  "gate_policy": {
+    "numeric": "all persistent state/derivatives finite; quaternion norm deviation <= 1e-4",
+    "observed_support": "all five magnitudes within train min/max; p1/p99 excursions separate",
+    "clipping": "any actual pre-clamp clipping is a failure signal; count component events and affected steps",
+    "failed": "union of numeric, observed_support and clipping; finite failed rollouts retained in metrics",
+    "not_certified_safety_envelope": true
+  },
+  "warm5s_diagnostics": {
+    "unsupported_equilibrium_suspect": 0.002770083102493075,
+    "angular_damping_suspect": 1.0,
+    "energy_growth_suspect": 0.015235457063711912
+  },
+  "benchmark_gate_pass": false,
+  "wall_time_s": 36.2182183265686,
+  "output_sha256": {
+    "command_transition_bins.csv": "71f93c3597518c36d384bbaf1c21bcfd9f8283f77465edb697931917e60f432a",
+    "constant_twist_baseline.csv": "9a815caa92e96a405a9d417ff3db586ba0e764e9b71f45427e11ed2b4e69c65d",
+    "error_vs_horizon_attitude.png": "6979292889448cb9475e31913eb230e592f791d77614bca57b05db814332ae20",
+    "error_vs_horizon_body_rate.png": "47bd357407fe70f3026a2674f75828c3b965ad78142c1f3b2d15ba3dbb33c057",
+    "error_vs_horizon_frequency.png": "5a1d119e485733fb7098a3b6608ead07be3904e186f69fc9e982f1cb51e8ad01",
+    "error_vs_horizon_position.png": "e273f9a798ca0ffbf262b7165770965ff975173ac9467475cec6a8cf27fb11d8",
+    "error_vs_horizon_velocity.png": "bc6c303200634ffb81a85dd17bc23dc801319817e59f2f446ab0fa0b15fc13f0",
+    "failure_cases.csv": "2949df074ec452a526401de20679ae73278e745e7cd6a6b8dca23b1e2e6fc7a2",
+    "heatmap_log_15_2026-8-20-06-08-16.png": "f0189863158915ed9565a1b6e530e47848e8de5cf9307ce55f8003e73d7c53f0",
+    "heatmap_log_16_2026-8-20-06-20-52.png": "e58594afe5207f075a622af664ca0962c4ffe78a70485ba401e57c649bc2084e",
+    "heatmap_log_17_2026-8-20-06-29-34.png": "b339a882b6f9cb975014729a37a503283b6fc824d39726ff0b655e0e6752b993",
+    "heatmap_log_19_2026-8-20-06-51-18.png": "9fbab3025e9f8c25b2f9b97a79538d3d2d2383e40ea868b27d247f87afad90d6",
+    "heatmap_log_22_2026-8-20-07-09-54.png": "a4693a9881b20f7fbff1dc13887976076326e2a1dab2c5d34e712c5fc0f4d2b0",
+    "initialization_ablation.csv": "1713abd722e14f1fa152ab832accde45f06f244839a46711f6a59e086549d3a1",
+    "observed_envelope.json": "c792b1d10d4c4e1f46ab3990dca5a069742954cccf170ac6c8b1b77c74b509ce",
+    "per_flight.csv": "7954b6494298833ce8ed3167660073135f39b882d8b5fc15b1d9d34b22e32387",
+    "per_horizon.csv": "1713abd722e14f1fa152ab832accde45f06f244839a46711f6a59e086549d3a1",
+    "per_rollout.csv": "2fa4185cd56cd20ec2b06f08bd2fe86476e9cc49fce077e65cd5ee5a48a24089",
+    "regime_bins.csv": "094bb657e9187d48494d3904b50469d689f48da41e3e136a8b2e51d24dd810e3",
+    "segment_coverage.csv": "8254d675b4839fd003e7152e33b6d570c02128c540103023e33d78e19f9e0224",
+    "trajectory_diagnostics.csv": "17c67bded27704f9a8fa90fe07399ff58869f3cf56109e8324146c793fdd6b43",
+    "windows.csv": "c4ce42a6dbfac148aa790a85ead3d3e4a473c79b595e2d26d632832949641929"
+  },
+  "trajectory_files": {
+    "artifacts/main_v2_free_running_5s_verified/resume_state.pt": "c2e6f6ce6aeffd17a229802d4c4e1070ff3f1c11b94d96aac021e035904fd6ec",
+    "artifacts/main_v2_free_running_5s_verified/warm26_00000.npz": "c107c383cdc8124cb135a618aa66c892985644639d9e26e93e7a207ff0c6cce1",
+    "artifacts/main_v2_free_running_5s_verified/warm26_00128.npz": "092495af074cbb60ef2596f76e68556f86c7ec430b14969fc31c5eaf928d4f3d",
+    "artifacts/main_v2_free_running_5s_verified/warm26_00256.npz": "8fa0d25cc0121b2d0ef27c2aa74e510d734110232a48b1d0194720213e58dbce",
+    "artifacts/main_v2_free_running_5s_verified/warm26_00384.npz": "0ff3af15a564a03a38ef815fffbd2db86573d7ee95993527d320227f61e0ec9e",
+    "artifacts/main_v2_free_running_5s_verified/warm26_00512.npz": "a9bcb7ff3670e45abd5309b95cb9ab8830e6f9401b56071e682909885edee202",
+    "artifacts/main_v2_free_running_5s_verified/warm26_00640.npz": "29f6e657be66eee361bbe99439202d54b2b110c8468ebed4d2e6ce7dcf2553c7"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "best_by_predeclared_long_velocity_attitude_score": "A3_dynamic_delta",
+  "long_score_log_ratio": {
+    "A1_longer_rollout": 0.06996904631355656,
+    "A2_multi_horizon": 0.02965164274690996,
+    "A3_dynamic_delta": 0.02340222907079117
+  },
+  "all_six_long_cells_improved": false,
+  "all_six_cluster_bootstrap_ci_upper_below_zero": false,
+  "variation_prefix5": 0.2909754428170579,
+  "variation_last1s": 0.1069860340740807,
+  "noise_guard_pass": true,
+  "short_horizon_warning": false,
+  "frequency_warning": false,
+  "conclusion": "C",
+  "sealed_test_opened": false,
+  "rl_ready": false,
+  "structural_readiness": 100,
+  "fidelity_readiness_note": "same Step 2 checklist; recomputed below, not a probability",
+  "dynamics_fidelity_readiness": 60
+}

@@ -1,0 +1,8 @@
+{
+  "phase_fit": "3 harmonics+DC; >=1 observed cycle, condition number<1000; otherwise lag not identifiable and left NaN; lag_supported also requires predicted harmonic RMS >=10percent truth, a descriptive weak-signal flag",
+  "lag_sign": "positive lag means prediction must be evaluated at phi+lag to match truth; circular/periodic aliases remain possible",
+  "decomposition": "exact harmonic-domain MSE = amplitude + phase + DC on uniform full phase grid; native residual is separate, not claimed additive under nonuniform partial coverage",
+  "frequency_slow": "offline centered51-native-interval boxcar (~1s); residual demeaned per rollout; NOT an input/correction or proof of white measurement noise",
+  "autonomous_contract": "no encoder update after t0; online observed-phase predictor and RL internal phase are different use cases",
+  "sealed_test_opened": false
+}

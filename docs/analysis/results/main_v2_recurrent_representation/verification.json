@@ -1,0 +1,47 @@
+{
+  "historical_hashes_unchanged": true,
+  "pytest_exit": 0,
+  "git_diff_exit": 0,
+  "git_diff_output": "",
+  "new_file_diff_checks": {
+    "scripts/run_main_v2_recurrent_audit.py": {
+      "exit_code": 1,
+      "output": "",
+      "clean": true
+    },
+    "scripts/analyze_main_v2_recurrent.py": {
+      "exit_code": 1,
+      "output": "",
+      "clean": true
+    },
+    "scripts/report_main_v2_recurrent.py": {
+      "exit_code": 1,
+      "output": "",
+      "clean": true
+    },
+    "src/system_identification/models/rolling_history_simulator.py": {
+      "exit_code": 1,
+      "output": "",
+      "clean": true
+    },
+    "src/system_identification/evaluation/recurrent_representation.py": {
+      "exit_code": 1,
+      "output": "",
+      "clean": true
+    },
+    "tests/test_recurrent_representation.py": {
+      "exit_code": 1,
+      "output": "",
+      "clean": true
+    }
+  },
+  "wall_seconds": 76.29159116744995,
+  "wall_time_scope": "this invocation",
+  "trace_cache_reused": true,
+  "source_hashes": {
+    "scripts/run_main_v2_recurrent_audit.py": "fd5a53b172eba81c5328d269ef9672a46909f21b1cba1ea703c053449392bf99",
+    "scripts/analyze_main_v2_recurrent.py": "5c788232b3e8a5fb67b5af462cf75fc4b7e37dc23c7d090069f6944935b6f172",
+    "scripts/report_main_v2_recurrent.py": "c081f95252a9f03f45fbff5372adecd83fc85a6c319e0589303db1d088184d53",
+    "tests/test_recurrent_representation.py": "9bb4e7b8acdf71ad5e58606f451527c532aa2f112d843095262abae03fcad507"
+  }
+}

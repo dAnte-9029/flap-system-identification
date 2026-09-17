@@ -1,0 +1,13 @@
+{
+  "experiment": "S1",
+  "checkpoint_sha256": "a1de4f0476033fa3e27abd230c57abfbf14514387804d6f4d70b1f5c1c4da2f0",
+  "window_count": 722,
+  "window_sha256": "c4ce42a6dbfac148aa790a85ead3d3e4a473c79b595e2d26d632832949641929",
+  "numeric_failures": 0,
+  "support_failures": 40,
+  "clipping_failures": 0,
+  "high_frequency_cutoff_hz_train95": 13.122682010077684,
+  "omega_high_frequency_energy_ratio": 0.0008384486612492731,
+  "omega_spectral_l1_relative": 0.800405083762569,
+  "sealed_test_opened": false
+}

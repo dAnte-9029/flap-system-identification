@@ -1,0 +1,18 @@
+{
+  "structural_percent": 100,
+  "dynamics_fidelity_percent": 60,
+  "rl_ready": false,
+  "fidelity_checklist": {
+    "all_5s_numeric_pass": true,
+    "all_5s_observed_support_pass": false,
+    "all_5s_no_clipping": true,
+    "beats_constant_twist_every_horizon_velocity_m_s": true,
+    "beats_constant_twist_every_horizon_attitude_deg": true,
+    "beats_constant_twist_every_horizon_body_rate_rad_s": true,
+    "beats_constant_twist_every_horizon_frequency_hz": true,
+    "no_finite_but_wrong_suspects": false,
+    "external_absolute_accuracy_acceptance_met": false,
+    "counterfactual_action_response_validated": false
+  },
+  "score_meaning": "predeclared evidence checklist, not probability or safety certification"
+}

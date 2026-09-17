@@ -1,0 +1,6 @@
+{
+  "triggered": false,
+  "max_c_improvement": -0.08899219052641127,
+  "max_b_angular_gap": -2.5151200127027096e-05,
+  "rule": "C long improvement >5% OR B angular gap >5%; diagnostic only"
+}

@@ -1,0 +1,117 @@
+{
+  "result": "C",
+  "result_scope": "Current constant-offset template reference and matched local probes; NOT a measured negative full-simulator oracle result",
+  "full_models_trained": false,
+  "reason": "User-required probe gate failed; do not train full Main V2 without oracle benefit",
+  "selected_estimator": {
+    "method": "E2",
+    "history_steps": 50,
+    "selection": "train temporal holdout median+p90 offset reference error; validation not used"
+  },
+  "probe_gate": {
+    "oracle_relative_gain": {
+      "angular": 0.0031784226951724337,
+      "linear": 0.023417949076327993
+    },
+    "causal_relative_gain": {
+      "angular": 0.010387878136204454,
+      "linear": 0.018175571340174557
+    },
+    "oracle_pass": false,
+    "causal_pass": true,
+    "full_training_authorized_by_gate": false,
+    "rule": "oracle angular increment RMSE >=5percent lower, no linear increment >5percent worse, all seeds angular improve; causal recovers >=50percent oracle angular gain and no linear >5percent worse; no complete-model training unless both pass",
+    "scope": "local diagnostic probe; NOT full simulator upper bound",
+    "seeds": [
+      415,
+      416,
+      417
+    ]
+  },
+  "unknown_cross_log_zero_deployability": "PARTIAL",
+  "structural_readiness": 100,
+  "dynamics_fidelity_readiness": 60,
+  "rl_ready": false,
+  "sealed_test_opened": false,
+  "validation_oracle_exception": "Full-log truth used only for labelled oracle offsets/probes; never for P2 templates, weights, estimator selection or reset",
+  "local_increment_results": [
+    {
+      "contract": "P1",
+      "trained_target": "increment2",
+      "evaluation_target": "increment2_state",
+      "signal": "angular",
+      "baseline_rmse": 0.5761583440269148,
+      "candidate_rmse": 0.5862124477874545,
+      "change_pct": 1.745024412953744,
+      "ci95_low": 0.5105771944286186,
+      "ci95_high": 2.960285454202436,
+      "improved_flights": 0,
+      "oracle_not_deployable": false
+    },
+    {
+      "contract": "P2",
+      "trained_target": "increment2",
+      "evaluation_target": "increment2_state",
+      "signal": "angular",
+      "baseline_rmse": 0.5761583440269148,
+      "candidate_rmse": 0.570173281362006,
+      "change_pct": -1.0387878136204232,
+      "ci95_low": -2.1972045122851114,
+      "ci95_high": -0.025158198541430643,
+      "improved_flights": 4,
+      "oracle_not_deployable": false
+    },
+    {
+      "contract": "P_oracle",
+      "trained_target": "increment2",
+      "evaluation_target": "increment2_state",
+      "signal": "angular",
+      "baseline_rmse": 0.5761583440269148,
+      "candidate_rmse": 0.5743270692702469,
+      "change_pct": -0.31784226951719896,
+      "ci95_low": -1.373116132398844,
+      "ci95_high": 0.7206221017780123,
+      "improved_flights": 3,
+      "oracle_not_deployable": true
+    },
+    {
+      "contract": "P1",
+      "trained_target": "increment2",
+      "evaluation_target": "increment2_state",
+      "signal": "linear",
+      "baseline_rmse": 0.1566636884263612,
+      "candidate_rmse": 0.16047456093835893,
+      "change_pct": 2.43251805844531,
+      "ci95_low": 1.2573117037128823,
+      "ci95_high": 3.4076006617423715,
+      "improved_flights": 0,
+      "oracle_not_deployable": false
+    },
+    {
+      "contract": "P2",
+      "trained_target": "increment2",
+      "evaluation_target": "increment2_state",
+      "signal": "linear",
+      "baseline_rmse": 0.1566636884263612,
+      "candidate_rmse": 0.15381623638095301,
+      "change_pct": -1.8175571340174335,
+      "ci95_low": -2.9683517884406374,
+      "ci95_high": -0.762607028194795,
+      "improved_flights": 5,
+      "oracle_not_deployable": false
+    },
+    {
+      "contract": "P_oracle",
+      "trained_target": "increment2",
+      "evaluation_target": "increment2_state",
+      "signal": "linear",
+      "baseline_rmse": 0.1566636884263612,
+      "candidate_rmse": 0.15299494614868295,
+      "change_pct": -2.3417949076327993,
+      "ci95_low": -3.866101434986824,
+      "ci95_high": -0.9907813207048588,
+      "improved_flights": 5,
+      "oracle_not_deployable": true
+    }
+  ]
+}

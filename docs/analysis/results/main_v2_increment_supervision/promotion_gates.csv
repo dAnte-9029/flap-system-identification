@@ -1,0 +1,2 @@
+experiment,gate1_local_increment,gate2_long_velocity_or_attitude,gate3_variation,gate4_short_accuracy,gate5_frequency,gate6_failures,noise_guard,result
+S1,True,False,True,True,True,True,True,B

@@ -1,0 +1,13 @@
+{
+  "experiment": "A3_dynamic_delta",
+  "checkpoint_sha256": "2d143ac04c6e0bab894e2f795e13172a2652ef822eef5781395ec6ed43ccd4be",
+  "window_count": 722,
+  "window_sha256": "c4ce42a6dbfac148aa790a85ead3d3e4a473c79b595e2d26d632832949641929",
+  "numeric_failures": 0,
+  "support_failures": 231,
+  "clipping_failures": 0,
+  "high_frequency_cutoff_hz_train95": 13.122682010077684,
+  "omega_high_frequency_energy_ratio": 0.00012735899098504662,
+  "omega_spectral_l1_relative": 0.9371087388899307,
+  "sealed_test_opened": false
+}

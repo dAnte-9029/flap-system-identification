@@ -1,0 +1,17 @@
+{
+  "summary_sha256": "db4011582725f44372a90a152d54eb105f9808c50f7ae13ec65d4b33363ef521",
+  "report_source_sha256": "f31fba74e0fdb5bf2c098f7edaee9e243aeb2e1c0e73e5f27480942dc64ce343",
+  "report_sha256": "efe9a8f7411173ca7f6cf7a1f6b26f052dcfcec67c3dd78fd83e1e7d2c4bbf59",
+  "output_sha256": {
+    "heatmap_log_19_2026-8-20-06-51-18.png": "436d8b1a0d7390291c867fb874a0d2e1e87458dd8b175aa6de7bd5351fcdd44f",
+    "prefix_variation.csv": "c1688317fd07df8689f4ed5164678d9bbf43b72af750d993db87a18525b63d9f",
+    "heatmap_log_16_2026-8-20-06-20-52.png": "dd157b320addbc84ce8c782ac9d25ee664e245f04026446c97756ba5aa214f29",
+    "heatmap_log_22_2026-8-20-07-09-54.png": "75fbb90bd9855b2d4e75fde908948bf6170ca2bf3b992123480e4a2e30a5e9c0",
+    "heatmap_log_17_2026-8-20-06-29-34.png": "1c439336f25307d440967368584c394423396c1723b1eb95e38e1af134ebadb3",
+    "support_failure_direction.csv": "f0ea2ef614ca6fada24383a6b8371524de6ddbc4228f4ed8015076b4a57ec5eb",
+    "heatmap_log_15_2026-8-20-06-08-16.png": "f2374872d5ed913bf60b9cf4ae7be115671a28db38066f0f5e809ab97fe26368",
+    "readiness.json": "86f896371ec4e1eb0043599c729ab2d022fad2de60edca9b1953198d12b46558",
+    "worst_velocity_trace.png": "c36a380ea5526345cf54b70fed5d8c8956ac3489e41cb03d59dd7e236efe6e22"
+  },
+  "sealed_test_opened": false
+}

@@ -1,0 +1,5 @@
+{
+  "training_authorized_by_evidence": false,
+  "training_performed": false,
+  "frozen_reencode_reason": "User-required predicted-history negative controls K13/K26; NOT a positive gate or new training"
+}

@@ -1,0 +1,24 @@
+{
+  "checkpoint": "/home/zn/flap-system-identification/artifacts/trajectory_main_v2/models/main_v2_drive_tail_gated.pt",
+  "checkpoint_sha256": "0ca42b8a3cca07f507b4a52a910daf130bd98da31d590669bf6c47b6ac3031ff",
+  "window_ids": [
+    "validation:2026.8.10-8.20/log_15_2026-8-20-06-08-16.ulg:0:50",
+    "validation:2026.8.10-8.20/log_16_2026-8-20-06-20-52.ulg:0:50",
+    "validation:2026.8.10-8.20/log_17_2026-8-20-06-29-34.ulg:0:50",
+    "validation:2026.8.10-8.20/log_19_2026-8-20-06-51-18.ulg:0:50",
+    "validation:2026.8.10-8.20/log_22_2026-8-20-07-09-54.ulg:0:50"
+  ],
+  "log_ids": [
+    "2026.8.10-8.20/log_15_2026-8-20-06-08-16.ulg",
+    "2026.8.10-8.20/log_16_2026-8-20-06-20-52.ulg",
+    "2026.8.10-8.20/log_17_2026-8-20-06-29-34.ulg",
+    "2026.8.10-8.20/log_19_2026-8-20-06-51-18.ulg",
+    "2026.8.10-8.20/log_22_2026-8-20-07-09-54.ulg"
+  ],
+  "future_truth_nan_prediction_bitwise_equal": true,
+  "fixed_dt_250_step_all_outputs_finite": true,
+  "quaternion_max_norm_error": 1.1920928955078125e-07,
+  "command_contract": "hold t0 command for 250 steps; causal history initialization; runtime smoke only, no 5s accuracy or envelope claim",
+  "sealed_test_opened": false,
+  "device": "cpu"
+}

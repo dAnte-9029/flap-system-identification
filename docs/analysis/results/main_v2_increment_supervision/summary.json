@@ -1,0 +1,123 @@
+{
+  "selected_by_long_score": "S1",
+  "long_log_rmse_scores": {
+    "S1": 0.05752187827136143
+  },
+  "result": "B",
+  "gates": [
+    {
+      "experiment": "S1",
+      "gate1_local_increment": true,
+      "gate2_long_velocity_or_attitude": false,
+      "gate3_variation": true,
+      "gate4_short_accuracy": true,
+      "gate5_frequency": true,
+      "gate6_failures": true,
+      "noise_guard": true,
+      "result": "B"
+    }
+  ],
+  "teacher_increment_changes": [
+    {
+      "experiment": "S1",
+      "signal": "velocity",
+      "s0_rmse": 0.39022262031982285,
+      "candidate_rmse": 0.14488737807314866,
+      "change_pct": -62.87058450009886,
+      "ci95_low": -63.326290559234565,
+      "ci95_high": -62.32495501038826,
+      "x_or_p_change_pct": -28.928859667923856,
+      "y_or_q_change_pct": -30.58723738341079,
+      "z_or_r_change_pct": -70.40581093497795
+    },
+    {
+      "experiment": "S1",
+      "signal": "omega",
+      "s0_rmse": 0.6780148811033939,
+      "candidate_rmse": 0.6225405492813181,
+      "change_pct": -8.181875260878869,
+      "ci95_low": -9.308407927382333,
+      "ci95_high": -7.419670761314457,
+      "x_or_p_change_pct": -0.9920584119278208,
+      "y_or_q_change_pct": -15.556008564028723,
+      "z_or_r_change_pct": -0.09597489361528044
+    }
+  ],
+  "free_running_relative_changes": [
+    {
+      "experiment": "S1",
+      "horizon_s": 0.2,
+      "position_m_change_pct": -43.70641628149604,
+      "velocity_m_s_change_pct": -35.322893100724826,
+      "attitude_deg_change_pct": 0.47420529026704905,
+      "body_rate_rad_s_change_pct": -5.197406286225881,
+      "frequency_hz_change_pct": -20.04667250102077,
+      "phase_rad_change_pct": -19.614212871432724
+    },
+    {
+      "experiment": "S1",
+      "horizon_s": 0.5,
+      "position_m_change_pct": -15.209314417941954,
+      "velocity_m_s_change_pct": -6.547291111408471,
+      "attitude_deg_change_pct": -2.364573364440925,
+      "body_rate_rad_s_change_pct": -5.696340286685331,
+      "frequency_hz_change_pct": -11.59687022465048,
+      "phase_rad_change_pct": -7.87775383763366
+    },
+    {
+      "experiment": "S1",
+      "horizon_s": 1.0,
+      "position_m_change_pct": -0.6663028761007217,
+      "velocity_m_s_change_pct": -1.40410930535807,
+      "attitude_deg_change_pct": -0.8453967661807393,
+      "body_rate_rad_s_change_pct": -4.575601281848007,
+      "frequency_hz_change_pct": -10.243981777085587,
+      "phase_rad_change_pct": -2.2140797100811183
+    },
+    {
+      "experiment": "S1",
+      "horizon_s": 2.0,
+      "position_m_change_pct": 4.87945755544632,
+      "velocity_m_s_change_pct": 6.101418993166408,
+      "attitude_deg_change_pct": 4.59937824960559,
+      "body_rate_rad_s_change_pct": -0.6032431312294362,
+      "frequency_hz_change_pct": -6.049466502746926,
+      "phase_rad_change_pct": -0.6051789142858865
+    },
+    {
+      "experiment": "S1",
+      "horizon_s": 3.0,
+      "position_m_change_pct": 6.618428130910381,
+      "velocity_m_s_change_pct": 7.160020895070818,
+      "attitude_deg_change_pct": 6.0681726392488144,
+      "body_rate_rad_s_change_pct": 1.326246631425021,
+      "frequency_hz_change_pct": -0.9585350290809758,
+      "phase_rad_change_pct": -0.5914161929241546
+    },
+    {
+      "experiment": "S1",
+      "horizon_s": 5.0,
+      "position_m_change_pct": 7.005969850723459,
+      "velocity_m_s_change_pct": 7.041497570778832,
+      "attitude_deg_change_pct": 4.584724761183168,
+      "body_rate_rad_s_change_pct": 4.057885903215763,
+      "frequency_hz_change_pct": 6.613686120578821,
+      "phase_rad_change_pct": 1.8755629415074804
+    }
+  ],
+  "omega_variation_5s": {
+    "S0": {
+      "prefix": 0.2458189002250995,
+      "last1s": 0.0741098181869122
+    },
+    "S1": {
+      "prefix": 0.447915649648947,
+      "last1s": 0.4072386230834273
+    }
+  },
+  "sealed_test_opened": false,
+  "structural_readiness": 100,
+  "dynamics_fidelity_readiness": 60,
+  "rl_ready": false,
+  "limitation": "Single paired seed policy; five flights; local success does not certify RL or arbitrary commands"
+}

@@ -1,0 +1,11 @@
+{
+  "declared_before_S1_validation": true,
+  "gate1": "both teacher increment paired-flight CI upper below zero",
+  "gate2": "velocity or attitude improved at 2/3/5s; at least two CIs below zero",
+  "gate3": "prefix5 and last1s median variation closer to1",
+  "gate4": "0.2/0.5s velocity attitude body-rate degradation under10percent",
+  "gate5": "frequency degradation under10percent",
+  "gate6": "numeric clipping support failure counts do not increase",
+  "noise": "omega spectral L1, free incremental omega RMSE, angular acceleration RMSE do not worsen",
+  "uncertainty": "five-flight exact empirical cluster bootstrap; conditional single-seed evidence"
+}

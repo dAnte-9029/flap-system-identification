@@ -1,0 +1,40 @@
+{
+  "teacher_origins": 40085,
+  "teacher_ids_sha256": "8dc35792e1147e6b359fdb3cc0d0f9da7b47a9f37f8332f4c309540358fe5136",
+  "free_origins": 722,
+  "teacher_increment_duration_s": {
+    "count": 40085,
+    "min": 0.029568999999999998,
+    "max": 0.049907,
+    "p1": 0.029575999999999998,
+    "p99": 0.049901,
+    "mean": 0.04000020097293252,
+    "median": 0.039917999999999995
+  },
+  "free_increment_duration_s": {
+    "count": 179778,
+    "min": 0.029568999999999998,
+    "max": 0.049907,
+    "p1": 0.029577,
+    "p99": 0.049901,
+    "mean": 0.04000007095973923,
+    "median": 0.039917999999999995
+  },
+  "transition_bin_edges": [
+    7.02392112111105,
+    7.502351131748837
+  ],
+  "phase_offsets_fitted": false,
+  "filters": {
+    "source": "frozen Step4 targets",
+    "usage": "offline target diagnosis only; never simulator inputs",
+    "method": "native states interpolated to 50 Hz; fourth-order Butterworth sosfiltfilt; interpolate to native timestamps then finite difference",
+    "cutoffs_hz": [
+      6,
+      8,
+      12
+    ]
+  },
+  "finished": true,
+  "sealed_test_opened": false
+}
