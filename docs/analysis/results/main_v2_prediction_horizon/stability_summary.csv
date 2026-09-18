@@ -1,0 +1,11 @@
+model,steps,n,numerical_failures,clipping_failures,support_failures
+S0,1,722,0,0,0
+S0,2,722,0,0,0
+S0,5,722,0,0,0
+S0,10,722,0,0,2
+S0,25,722,0,0,17
+Step5_S1,1,722,0,0,0
+Step5_S1,2,722,0,0,1
+Step5_S1,5,722,0,0,1
+Step5_S1,10,722,0,0,1
+Step5_S1,25,722,0,0,2

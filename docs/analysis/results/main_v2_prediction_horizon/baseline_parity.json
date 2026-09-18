@@ -1,0 +1,26 @@
+{
+  "S0": {
+    "position_n": 0.0,
+    "velocity_n": 0.0,
+    "quaternion_nb": 0.0,
+    "angular_velocity_b": 0.0,
+    "relative_phase_rad": 0.0,
+    "flap_frequency_hz": 0.0,
+    "gru_hidden": 0.0,
+    "drive_state": 0.0,
+    "tail_state": 0.0,
+    "phase_anchor": 0.0
+  },
+  "Step5_S1": {
+    "position_n": 0.0,
+    "velocity_n": 0.0,
+    "quaternion_nb": 0.0,
+    "angular_velocity_b": 0.0,
+    "relative_phase_rad": 0.0,
+    "flap_frequency_hz": 0.0,
+    "gru_hidden": 0.0,
+    "drive_state": 0.0,
+    "tail_state": 0.0,
+    "phase_anchor": 0.0
+  }
+}

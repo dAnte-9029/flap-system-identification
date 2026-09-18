@@ -1,0 +1,43 @@
+{
+  "protected_files_checked": 521,
+  "changed": [],
+  "weights_unchanged": true,
+  "first_step_teacher_autonomous_identical": true,
+  "baseline_prefix_parity_passed": true,
+  "gpu_evaluation": true,
+  "pytest_passed": true,
+  "pytest_scope": "prediction horizon and affected simulator/free-running/recurrent tests",
+  "git_diff_check_passed": true,
+  "sealed_test_opened": false,
+  "wall_time_s": 42.321303367614746,
+  "one_command_reproduction": {
+    "passed": true,
+    "output": "/tmp/main-v2-prediction-horizon-final-repro",
+    "identical_metric_report_files": [
+      "prediction_horizon_metrics.csv",
+      "control_threshold_summary.csv",
+      "per_origin.csv",
+      "variation_summary.csv",
+      "teacher_autonomous_gap.csv",
+      "native_error_curve.csv",
+      "prefix_max_error.csv",
+      "joint_threshold_summary.csv",
+      "kinematic_reference_comparison.csv",
+      "stability_summary.csv",
+      "summary.json",
+      "report.md"
+    ],
+    "all_saved_prediction_arrays_equal": true
+  },
+  "new_source_whitespace_check_passed": true,
+  "external_px4_prerequisite_present": false,
+  "full_suite_note": "Prior Step8 full suite: 633 passed, 1 external PX4 prerequisite failure; not rerun or claimed green here.",
+  "artifact_row_counts": {
+    "prediction_horizon_metrics.csv": 900,
+    "per_origin.csv": 18050,
+    "control_threshold_summary.csv": 100,
+    "variation_summary.csv": 150,
+    "native_error_curve.csv": 300,
+    "joint_threshold_summary.csv": 20
+  }
+}

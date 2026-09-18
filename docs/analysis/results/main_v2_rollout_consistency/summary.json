@@ -1,0 +1,9 @@
+{
+  "best_candidate": "R2",
+  "promoted": false,
+  "ranking": "rank eligible candidates by geometric mean of 3/5s velocity/attitude RMSE ratio; if none eligible, report best observed but do not promote",
+  "added_horizon": 10,
+  "lambda_roll": 0.1,
+  "bounded_growth_proven": false,
+  "sealed_test_opened": false
+}

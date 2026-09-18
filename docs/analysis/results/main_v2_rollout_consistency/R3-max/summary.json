@@ -1,0 +1,7 @@
+{
+  "experiment": "R3-max",
+  "n_origins": 722,
+  "numeric_failures": 0,
+  "support_failures": 125,
+  "clipping_failures": 0
+}

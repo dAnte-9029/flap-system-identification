@@ -1,0 +1,20 @@
+{
+  "preferred_control_validation_model": "Step5_S1",
+  "primary_prediction_steps": 5,
+  "primary_nominal_ms": 100,
+  "exploratory_upper_steps": 10,
+  "exploratory_upper_nominal_ms": 200,
+  "baseline_local_steps": [
+    1,
+    2
+  ],
+  "safe_short_label": "error-budget language only: S0 20ms; S1 20-40ms; no certified physical safety or all-channel high fidelity",
+  "long_horizon_nominal_ms": 500,
+  "long_horizon_recommended": false,
+  "MPC_control_validation": "CONDITIONAL YES: measurement-refreshed, constrained short-horizon validation only",
+  "RL_long_model_only_training_ready": false,
+  "controller_executed": false,
+  "models_trained": false,
+  "sealed_test_opened": false,
+  "scope": "accuracy-supported validation windows, not optimal controller horizon or closed-loop stability guarantee"
+}

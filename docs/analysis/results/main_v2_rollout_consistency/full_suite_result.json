@@ -1,0 +1,9 @@
+{
+  "command": "/home/zn/anaconda3/envs/flap-train-gpu/bin/python -m pytest -q",
+  "passed": 633,
+  "failed": 1,
+  "duration_s": 131.81,
+  "failing_test": "tests/test_px4_flap_ratio_contract.py::test_px4_default_flap_ratio_is_current_aircraft_ratio",
+  "reason": "FileNotFoundError: external checkout file /home/zn/PX4-Autopilot/src/modules/rpm_pid/rpm_pid_params.c is absent",
+  "scope": "external PX4 checkout prerequisite; not changed by Step 8"
+}

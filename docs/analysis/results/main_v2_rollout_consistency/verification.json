@@ -1,0 +1,48 @@
+{
+  "protected_files_checked": 398,
+  "protected_files_changed": [],
+  "pytest_passed": true,
+  "git_diff_check_passed": true,
+  "sealed_test_opened": false,
+  "pytest_scope": "nine affected Main V2 modules",
+  "full_suite": {
+    "command": "/home/zn/anaconda3/envs/flap-train-gpu/bin/python -m pytest -q",
+    "passed": 633,
+    "failed": 1,
+    "duration_s": 131.81,
+    "failing_test": "tests/test_px4_flap_ratio_contract.py::test_px4_default_flap_ratio_is_current_aircraft_ratio",
+    "reason": "FileNotFoundError: external checkout file /home/zn/PX4-Autopilot/src/modules/rpm_pid/rpm_pid_params.c is absent",
+    "scope": "external PX4 checkout prerequisite; not changed by Step 8"
+  },
+  "step8_source_hashes": {
+    "scripts/run_main_v2_rollout_consistency.py": "cc1c77c612523dacf55f32f0167216b95d52fe5afa15d1d4cd37679dd67af9cc",
+    "scripts/train_main_v2_rollout_consistency.py": "7fe503ef12a3738ba288caf7d31905498cbb6f1e555f0af50e190c8862b8b8b6",
+    "scripts/evaluate_main_v2_rollout_consistency.py": "fffab64ff5ee1c5cc64d155aad1b2578f3fdb5be64df9438397cc68b31bcf62a",
+    "scripts/report_main_v2_rollout_consistency.py": "d6177ded687969fb13c6c2b9d27e7b0d78e2689ed676987322a41cb17f3adcd6",
+    "scripts/analyze_main_v2_prefix_components.py": "aca6fefa65971709937240596a3b7d222324a6ac776289b791d32aab7faee0cd",
+    "src/system_identification/training/rollout_consistency.py": "bb0e63d87f6006f3058dfecf5c04bfcea82f5885dc66af73e3b6b64cb42191f6",
+    "src/system_identification/evaluation/transition_stability.py": "78c414fa17f1836613727cc5cadaceeb2e9c73969897d330a17b0c21ad83d903",
+    "tests/test_rollout_consistency.py": "33f8bb0fd641e975046af5086b537f1f1bbceeba76de48f731304fab383ac446"
+  },
+  "environment": {
+    "python": "3.11.14 (main, Oct 21 2025, 18:31:21) [GCC 11.2.0]",
+    "torch": "2.7.0+cu128",
+    "numpy": "1.26.0",
+    "pandas": "2.3.3",
+    "cuda": "12.8",
+    "gpu": "NVIDIA GeForce RTX 4090"
+  },
+  "git_head": "ea6221103aafef7e89352b2543a04d97b72284dd",
+  "new_source_whitespace_check_passed": true,
+  "artifact_row_counts": {
+    "experiment_manifest.csv": 6,
+    "training_summary.csv": 6,
+    "free_running_metrics.csv": 42,
+    "error_growth.csv": 52500,
+    "variation_summary.csv": 49,
+    "jacobian_summary.csv": 42,
+    "perturbation_recovery.csv": 4704,
+    "loss_component_analysis.csv": 24
+  },
+  "all_seven_comparators_same_722_origins": true
+}

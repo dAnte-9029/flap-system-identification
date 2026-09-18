@@ -1,0 +1,22 @@
+{
+  "old_state_hash": "eae71b188eb36c1171e60b1d7bb24a5e986d3f503ddaaf2662a1979d9128f394",
+  "new_state_hash": "eae71b188eb36c1171e60b1d7bb24a5e986d3f503ddaaf2662a1979d9128f394",
+  "old_parameter_hash": "06be66044a22d95e012bf6554f3cfb27ab7566152437fba0fedc73087a507287",
+  "new_parameter_hash": "06be66044a22d95e012bf6554f3cfb27ab7566152437fba0fedc73087a507287",
+  "all_state_tensors_equal": true,
+  "max_parameter_difference": 0.0,
+  "validation_benchmark": "722 common origins passed",
+  "checkpoint_file_hash_note": "serialization metadata differs; compare canonical tensor hashes",
+  "benchmark_max_absolute_difference": {
+    "position_n": 0.0,
+    "velocity_n": 0.0,
+    "quaternion_nb": 0.0,
+    "angular_velocity_b": 0.0,
+    "relative_phase_rad": 0.0,
+    "flap_frequency_hz": 0.0,
+    "gru_hidden": 0.0,
+    "drive_state": 0.0,
+    "tail_state": 0.0,
+    "phase_anchor": 0.0
+  }
+}

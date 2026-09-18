@@ -1,0 +1,7 @@
+experiment,gate1_teacher,gate2_mid,gate3_long,gate4_variation,gate5_support,short_guard,frequency_guard,promoted,selection_score
+R1,True,False,True,True,True,True,True,False,0.9913651089479294
+R2,True,False,True,True,True,True,True,False,0.9887019567102948
+R3,True,False,True,True,True,True,True,False,0.990588736029473
+R3-high,True,False,False,True,True,True,True,False,0.9937575974285038
+R3-max,True,False,False,True,True,True,True,False,1.0160361443384835
+Step5_S1,True,False,False,True,True,True,True,False,1.062085739556454
