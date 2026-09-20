@@ -1,0 +1,29 @@
+{
+  "dataset_id": "trajectory_v3_september_expanded",
+  "dataset_root": "dataset/trajectory_v3_september_expanded",
+  "dataset_manifest_sha256": "46b50d0b23a32b40339a4c07526711d0ff88b55584d309a56807c56905d2817e",
+  "sample_artifact_sha256": {
+    "samples_validation.parquet": "b66a14e2f0f9ef5f151c6e1c973fb2188c2821924d2bf87b8ae72442280718cd",
+    "windows_validation.parquet": "0a31c37dfd44b6889d2f896bef2fe848657fba7434e43ad7f91a375fe97d3cef"
+  },
+  "partitions": [
+    "validation"
+  ],
+  "phase_contract": {
+    "definition": "logged wing_phase zero; Hall consistency is checked separately",
+    "installation_consistency": "not_confirmed",
+    "status": "unconfirmed_physical_pose"
+  },
+  "frequency_contract": {
+    "column": "flap_frequency_hz",
+    "ratio": 7.909090995788574,
+    "rescaling": "none; September logged ratio, not April ratio8"
+  },
+  "checkpoint": "/home/zn/flap-system-identification/artifacts/september_expanded_main_v2/model.pt",
+  "checkpoint_sha256": "750b53b7b5321b884a929dd6abc3fb4cbebf116eafbaa13c4a1add16e39658eb",
+  "cases_sha256": "b20982ec8b2b743b4f27695af8b594eba6655951a12dcab48d35799c44c3bdfb",
+  "selection": "middle near-level eligible window per log",
+  "level_filter": "abs roll<10deg, abs pitch<30deg, abs yaw rate<.15rad/s, abs vz<.5m/s, horizontal speed 5..12m/s",
+  "cases": 17,
+  "test_opened": false
+}

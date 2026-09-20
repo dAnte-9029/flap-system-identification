@@ -1,0 +1,72 @@
+{
+  "source": {
+    "dataset_id": "trajectory_v3_september_expanded",
+    "dataset_root": "dataset/trajectory_v3_september_expanded",
+    "dataset_manifest_sha256": "46b50d0b23a32b40339a4c07526711d0ff88b55584d309a56807c56905d2817e",
+    "sample_artifact_sha256": {
+      "samples_validation.parquet": "b66a14e2f0f9ef5f151c6e1c973fb2188c2821924d2bf87b8ae72442280718cd",
+      "windows_validation.parquet": "0a31c37dfd44b6889d2f896bef2fe848657fba7434e43ad7f91a375fe97d3cef"
+    },
+    "partitions": [
+      "validation"
+    ],
+    "phase_contract": {
+      "definition": "logged wing_phase zero; Hall consistency is checked separately",
+      "installation_consistency": "not_confirmed",
+      "status": "unconfirmed_physical_pose"
+    },
+    "frequency_contract": {
+      "column": "flap_frequency_hz",
+      "ratio": 7.909090995788574,
+      "rescaling": "none; September logged ratio, not April ratio8"
+    },
+    "checkpoint": "/home/zn/flap-system-identification/artifacts/september_expanded_main_v2/model.pt",
+    "checkpoint_sha256": "750b53b7b5321b884a929dd6abc3fb4cbebf116eafbaa13c4a1add16e39658eb",
+    "cases_sha256": "b20982ec8b2b743b4f27695af8b594eba6655951a12dcab48d35799c44c3bdfb",
+    "selection": "middle near-level eligible window per log",
+    "level_filter": "abs roll<10deg, abs pitch<30deg, abs yaw rate<.15rad/s, abs vz<.5m/s, horizontal speed 5..12m/s",
+    "cases": 17,
+    "test_opened": false
+  },
+  "isaac_runtime": true,
+  "model_clock_s": 0.02,
+  "controller_clock_s": 0.0025,
+  "duration_s": 20.0,
+  "task": "hold initial height, horizontal speed and initial velocity course",
+  "wind": "zero; horizontal groundspeed treated as airspeed",
+  "plant": "surrogate owns all dynamics, USD display only, no PhysX vehicle",
+  "adapter": "FRD native torque -> audited unnormalized allocation; no second PWM reversal",
+  "controller": "e624 baseline A, FLAP_SLOW_EN=0, native TECS/NPFG, flight attitude/rate/allocation",
+  "termination": {
+    "height_error_m": 5,
+    "cross_track_m": 10,
+    "speed_error_m_s": 5,
+    "roll_deg": 80,
+    "pitch_deg": 60
+  },
+  "termination_note": "diagnostic stop limits fixed before execution, not certified safety limits",
+  "test_opened": false,
+  "source_sha256": {
+    "/home/zn/IsaacLab/source/flapping_bot/flapping_bot/px4_like/straight_line_controller.py": "287ca93b9da1f451f4996d0f068fc3187e929afdeb174af2373719ba36b81d51",
+    "/home/zn/IsaacLab/source/flapping_bot/flapping_bot/px4_like/tecs.py": "60c197cba2b89cff3064ebb836a9724aeb9218d02f954bf9e21a6c7f7b7f8047",
+    "/home/zn/IsaacLab/source/flapping_bot/flapping_bot/px4_like/guidance.py": "3aac9cf7e4dcb32f1a29852970ec5861750f9472d7f1dd794f142edd670210fc",
+    "/home/zn/IsaacLab/source/flapping_bot/flapping_bot/px4_like/line_navigation.py": "cd803babb92a14c9e20ae798b70f0aad21695e0ee3d89594e075ffadf249b688",
+    "/home/zn/flap-system-identification/src/system_identification/control/px4_flight_chain.py": "42381268f9834cefbe4ce6de6e94b5b6f9dfaa0816a46ecad84c9eaee9b6be2a",
+    "/home/zn/flap-system-identification/src/system_identification/control/px4_native_outer.py": "950f506f1ea174d667ca4acb00cd89803bf467ed0799d5325d258a531ae37da9",
+    "/home/zn/flap-system-identification/src/system_identification/control/px4_pitch.py": "c84e6b6814dabe76a06b77e886aef619ed281e26c700d6d3758d780cc5897fc7",
+    "/home/zn/flap-system-identification/src/system_identification/integration/px4_flight_straight.py": "65a1b7e962539fe8a51e8d20a44d1426888d89d97abc1da844e3cbc108fe07bb"
+  },
+  "script_sha256": "d2bc6946556a15613421700e2ac1e2dd580d7b24b132a6d8ea4c608818df1d6c",
+  "outer_attitude_clock_s": 0.02,
+  "rate_sensor_contract": "8 rate updates per model step, held ideal observations; last command applied at model 50 Hz",
+  "initialization": "native TECS reset; rate I=0, gain=1, speed filter=current horizontal speed; no logged hidden controller state",
+  "limitations": [
+    "zero wind and sea-level density",
+    "ideal nav quality factor=1",
+    "no takeoff/landing/manual handover",
+    "no B2b",
+    "D gains zero, no gyro derivative emulation"
+  ],
+  "native_manifest_sha256": "190b73c69d07387273d8261947a9064c61a196e9577b54660571582a92e035d7",
+  "parameters_sha256": "e1efbcb43f08bd6b3e2be40566228c0b5b057f179235be836c0fcb5a4258d584"
+}

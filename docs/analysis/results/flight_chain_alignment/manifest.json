@@ -1,0 +1,25 @@
+{
+  "firmware_commit": "e624a99f2955addbf76681e636c44162a0c03055",
+  "raw_log": {
+    "path": "/home/zn/QgcLogs/9.18\u6570\u636e/log_0_2026-9-18-18-15-06.ulg",
+    "sha256": "856d76e3776563b908ba57d66d69edb41430b0b30764fa9628d6acbbf152ae40"
+  },
+  "parameter_sha256": "e1efbcb43f08bd6b3e2be40566228c0b5b057f179235be836c0fcb5a4258d584",
+  "source_hashes": {
+    "src/modules/fw_att_control/FixedwingAttitudeControl.cpp": "40f9f25c116e6e59c8620b1e0b09642f8f77085f465077d3a19dd5408412d8f8",
+    "src/modules/fw_att_control/fw_roll_controller.cpp": "51fab211b67ec194cb72e4adb085f89d9312e962cf89b4db2b4f3981515cf510",
+    "src/modules/fw_att_control/fw_pitch_controller.cpp": "5920fccf30ac6dab3ea7618df4661522448c276b127359ed537cc083261e66f4",
+    "src/modules/fw_att_control/fw_yaw_controller.cpp": "8b7472c83e10486f081763e70f25e6125fbe4146457b9507eff02423a199e5c6",
+    "src/modules/fw_rate_control/FixedwingRateControl.cpp": "318826128dfcfe07ad75c8f5ae9918daa6207a06292319ffdf425ae3ab23a460",
+    "src/modules/fw_rate_control/FixedwingRateControl.hpp": "77058169ff7a8d172662f94878cebd0c3abc3142c8ce3056ccfba44ec0c8ec22",
+    "src/lib/rate_control/rate_control.cpp": "51dbeca652a082ed5f06c918f3f33243a2e5fca3cb4fcbbaa3f12d60dfab6e08",
+    "src/lib/rate_control/gain_compression.cpp": "e7c7b4325f8d6fa5824a19f4e96dd311cffe6e8b9d463a9ef8aaf2b8da1994b0",
+    "src/lib/fw_performance_model/PerformanceModel.cpp": "ae3df05401bc5d7ccfa7599557f1348ff0bce2112272bf247563db9d133e8c0b",
+    "src/modules/fw_lateral_longitudinal_control/FwLateralLongitudinalControl.hpp": "69ec4e4171d60590f9bb5378d201cfa8f06b7491b819e1ff29e520218676a5a9",
+    "src/modules/fw_mode_manager/FixedWingModeManager.cpp": "e68df7b772acff7f63ad37269f8213d15f77124af6c831b4fd5c2118143af5ce"
+  },
+  "script_sha256": "959626934840c9afe2eb04f0b44a75ee7294df7d20dc7ab297f7eb143c6c7d40",
+  "scope": "baseline A FLAP_SLOW_EN=0, autonomous cruise; per-stage recorded-input replay; asynchronous logged topics, not full closed-loop bitwise equality",
+  "native_outer_manifest_sha256": "190b73c69d07387273d8261947a9064c61a196e9577b54660571582a92e035d7",
+  "test_opened": false
+}

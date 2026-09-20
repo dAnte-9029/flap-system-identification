@@ -1,0 +1,19 @@
+{
+  "tests_passed": 21,
+  "test_command": "/home/zn/anaconda3/envs/flap-train-gpu/bin/python -m pytest -q tests/test_px4_flight_chain.py tests/test_px4_pitch_controller.py tests/test_surrogate_straight_adapter.py tests/test_isaac_state_backend.py",
+  "isaac_runs_completed": 34,
+  "isaac_artifacts_verified": true,
+  "isaac_shutdown": "app.close hung after EXPERIMENT_COMPLETE; process 1621131 terminated with SIGTERM after artifacts verified",
+  "open_hold_state_max_difference": 0.0,
+  "test_partition_opened": false,
+  "files": {
+    "src/system_identification/control/px4_flight_chain.py": "42381268f9834cefbe4ce6de6e94b5b6f9dfaa0816a46ecad84c9eaee9b6be2a",
+    "src/system_identification/control/px4_native_outer.py": "950f506f1ea174d667ca4acb00cd89803bf467ed0799d5325d258a531ae37da9",
+    "src/system_identification/integration/px4_flight_straight.py": "65a1b7e962539fe8a51e8d20a44d1426888d89d97abc1da844e3cbc108fe07bb",
+    "scripts/build_px4_native_outer.py": "9dc6ea2af309f345dbd15b5dfe4b13d18c15af7a4714df16fade4cb2f0abdb36",
+    "scripts/verify_flight_chain_alignment.py": "959626934840c9afe2eb04f0b44a75ee7294df7d20dc7ab297f7eb143c6c7d40",
+    "scripts/report_flight_chain_alignment.py": "24e2897ce9823a0c7f2d6d2fe4233d0a12a83d4919c9c4c1934437efab38fee6",
+    "scripts/run_isaac_surrogate_straight.py": "d2bc6946556a15613421700e2ac1e2dd580d7b24b132a6d8ea4c608818df1d6c",
+    "tests/test_px4_flight_chain.py": "539aed6bdcd3bfaa452cf50c852ee965f939121b7c5450cbf27b89cb4dea32fe"
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "runs": 34,
+  "completed_by_mode": {
+    "closed": 10,
+    "open_hold": 0
+  },
+  "duration_s": {
+    "min": {
+      "closed": 6.78,
+      "open_hold": 4.28
+    },
+    "median": {
+      "closed": 20.0,
+      "open_hold": 6.9
+    },
+    "max": {
+      "closed": 20.0,
+      "open_hold": 12.84
+    }
+  },
+  "termination_counts": {
+    "('closed', 'completed')": 10,
+    "('closed', 'cross_track')": 5,
+    "('closed', 'height_error')": 2,
+    "('open_hold', 'cross_track')": 15,
+    "('open_hold', 'height_error')": 2
+  },
+  "common_horizon_equal_case_mean": {
+    "case": {
+      "closed": 8.0,
+      "open_hold": 8.0
+    },
+    "common_duration_s": {
+      "closed": 7.161176470588236,
+      "open_hold": 7.161176470588236
+    },
+    "height_error_m": {
+      "closed": 0.48846714046916445,
+      "open_hold": 0.8662743659881604
+    },
+    "cross_track_m": {
+      "closed": 2.3208149965486884,
+      "open_hold": 3.8931733285385444
+    },
+    "speed_error_m_s": {
+      "closed": 0.3378006316166585,
+      "open_hold": 0.42970132775488534
+    },
+    "surface_limit_fraction": {
+      "closed": 0.005425357360810801,
+      "open_hold": 0.0
+    },
+    "motor_limit_fraction": {
+      "closed": 0.0,
+      "open_hold": 0.0
+    }
+  }
+}
