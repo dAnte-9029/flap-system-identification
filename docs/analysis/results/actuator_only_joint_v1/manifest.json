@@ -1,0 +1,65 @@
+{
+  "completed": true,
+  "wall_time_s": 2766.7565595721826,
+  "checkpoint_sha256": "351367bd25fba02404001fad88250e12d69be851608d33874e119ad2e3183328",
+  "protocol": {
+    "dataset_id": "trajectory_v3_september_expanded",
+    "manifest_sha256": "46b50d0b23a32b40339a4c07526711d0ff88b55584d309a56807c56905d2817e",
+    "dataset_root": "dataset/trajectory_v3_september_expanded",
+    "sample_artifact_sha256": {
+      "samples_train.parquet": "cd95d9db29cfe741c2929d8730fbd09b26fafcc54107f5faa3cd9d49e861e46e",
+      "windows_train.parquet": "d837c5183d81488788e4378d8d446a55b735829425b38fdda54c86ca28d4d422",
+      "samples_validation.parquet": "b66a14e2f0f9ef5f151c6e1c973fb2188c2821924d2bf87b8ae72442280718cd",
+      "windows_validation.parquet": "0a31c37dfd44b6889d2f896bef2fe848657fba7434e43ad7f91a375fe97d3cef"
+    },
+    "partitions": [
+      "train",
+      "validation"
+    ],
+    "phase_contract": {
+      "definition": "logged wing_phase zero; Hall consistency is checked separately",
+      "installation_consistency": "not_confirmed",
+      "status": "unconfirmed_physical_pose"
+    },
+    "frequency_contract": {
+      "column": "flap_frequency_hz",
+      "ratio": 7.909090995788574,
+      "rescaling": "none; September logged ratio, not April ratio8"
+    },
+    "model": "joint GRU64 with command history, actuator-only rollout and signed direct tail effectiveness, trained from scratch",
+    "seed": 17,
+    "epochs": 65,
+    "batch_size": 256,
+    "learning_rate": 0.0003,
+    "history_steps": 26,
+    "rollout_steps": 50,
+    "checkpoint_criterion": "last epoch fixed in advance, no validation/closed-loop selection",
+    "device": "cuda:1",
+    "comparison": "65 train passes matches baseline 40+25; joint optimization and control inputs change together, not a single-factor causal ablation",
+    "objective": "same trajectory+increment terms; actuator frequency and residual regularization applied throughout joint training",
+    "control_contract": "historical controls encode initial GRU; rollout backbone control slots fixed to training mean; future controls enter only drive/tail proxies; direct common/differential/rudder angular effectiveness signs +q/-p/+r; tau unchanged and uncalibrated",
+    "response_audit_manifest_sha256": "cacd43217486b67a01c89b60ae57bfd5b23bc1efffcdf990ec5f8a373f0ed62b",
+    "test_opened": false,
+    "script_sha256": "3ce1d1c162e2eec995c30207a1f42b7d1e0b899db614c797007f2c62efdb664d",
+    "source_sha256": {
+      "src/system_identification/models/trajectory_main_v2.py": "df23f65b94be461ac302b5237d6bbfe8afb25dc67406ee16439c985ee5498542",
+      "src/system_identification/models/main_v2_simulator.py": "3273e301a63900de74441ec3aaced7c672c0f3b1974919fbdb2c5c1cf649c0b3",
+      "src/system_identification/training/main_v2_increment.py": "fccf050772caa3bea77cd28fb61b44071b78897e27dd2caf518c706b58ad008e"
+    },
+    "scales": [
+      0.42316267925245893,
+      0.9997673474257794
+    ],
+    "weights": [
+      0.16458798840801334,
+      0.36716770482593264
+    ],
+    "train_windows": 28293
+  },
+  "tail_gates": [
+    0.047082412987947464,
+    0.04869495704770088,
+    0.029272213578224182
+  ],
+  "trainable_parameter_count": 22400
+}

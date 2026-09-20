@@ -151,7 +151,7 @@ class MainV2Simulator:
         drive_clipped = torch.zeros_like(frequency, dtype=torch.int64)
         features = _state_features(velocity, quaternion, rate, phase, phase_anchor, frequency)
         normalized_features = self.model.base_model._normalize_features(features)
-        model_input = self.model.base_model._model_input(features, controls)
+        model_input = self.model.rollout_model_input(features, controls)
         derivative_scaled = self.model.base_model.derivative_head(
             torch.cat((hidden, model_input), dim=1)
         )
@@ -165,7 +165,7 @@ class MainV2Simulator:
         if self.model.use_tail:
             gates = self.model.tail_gate_values()
             for channel, head in enumerate(self.model.tail_heads):
-                effectiveness = head(normalized_features)
+                effectiveness = self.model.tail_effectiveness(channel, normalized_features)
                 channel_residual = (
                     effectiveness
                     * tail_state[:, channel : channel + 1]
@@ -201,7 +201,7 @@ class MainV2Simulator:
             next_velocity, next_quaternion, next_rate, next_phase, phase_anchor, next_frequency
         )
         hidden = self.model.base_model.recurrent_cell(
-            self.model.base_model._model_input(next_features, controls), hidden
+            self.model.rollout_model_input(next_features, controls), hidden
         )
         drive_alpha = 1.0 - torch.exp(-dt / self.model.drive_tau_s)
         drive_state = drive_state + drive_alpha * (self.model._normalized_motor(controls) - drive_state)

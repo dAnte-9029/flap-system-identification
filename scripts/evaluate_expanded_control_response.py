@@ -15,7 +15,7 @@ from system_identification.evaluation.main_v2_free_running import endpoint_error
 def load(path):
     cp=torch.load(path,map_location='cpu',weights_only=False);s=cp['state_dict']
     stats={n:s['base_model.'+n].numpy() for n in ['feature_mean','feature_std','control_mean','control_std','derivative_mean','derivative_std']}
-    base=CausalHistoryTrajectoryModel(hidden_size=cp['base_config']['hidden_size'],use_controls=False,**stats)
+    base=CausalHistoryTrajectoryModel(hidden_size=cp['base_config']['hidden_size'],use_controls=cp['base_config'].get('use_controls',False),**stats)
     model=ActuatorAwareTrajectoryModel(base_model=base,tail_mean=cp['tail_mean'],tail_std=cp['tail_std'],**cp['config'])
     model.load_state_dict(s,strict=True)
     return MainV2Simulator(model.eval())

@@ -1,0 +1,29 @@
+{
+  "dataset": {
+    "dataset_id": "trajectory_v3_september_expanded",
+    "path": "dataset/trajectory_v3_september_expanded",
+    "manifest_sha256": "46b50d0b23a32b40339a4c07526711d0ff88b55584d309a56807c56905d2817e",
+    "sample_artifact_hashes": {
+      "samples_train.parquet": "cd95d9db29cfe741c2929d8730fbd09b26fafcc54107f5faa3cd9d49e861e46e"
+    },
+    "partitions": [
+      "train"
+    ],
+    "phase_contract": {
+      "definition": "logged wing_phase zero; Hall consistency is checked separately",
+      "installation_consistency": "not_confirmed",
+      "status": "unconfirmed_physical_pose"
+    },
+    "frequency_contract": {
+      "column": "flap_frequency_hz",
+      "ratio": 7.909090995788574,
+      "rescaling": "none; September logged ratio, not April ratio8"
+    }
+  },
+  "script_sha256": "f2053b83ad21be4d4a0085e3c7ffd18b6481c91a90ac965f604111646f136dea",
+  "test_opened": false,
+  "positive_lag": "rate increment follows command increment",
+  "method": "within-contiguous-segment 100ms command/rate increments, stride100ms, per-log correlations at -0.5..0.5s",
+  "limitation": "Closed-loop feedback, overlapping increments, phase and unmeasured surface angles confound lag; peaks are not physical actuator delay estimates",
+  "decision": "retain drive tau0.10s/tail tau0.04s as uncalibrated proxies; no lag selected from validation"
+}

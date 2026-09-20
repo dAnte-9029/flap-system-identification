@@ -64,7 +64,7 @@ def causal_first_order_filter(
 
 
 class ActuatorAwareTrajectoryModel(nn.Module):
-    """Add bounded drive/tail residuals while preserving a frozen no-control backbone."""
+    """Actuator residuals; legacy frozen backbone or explicit joint-control variant."""
 
     def __init__(
         self,
@@ -79,17 +79,25 @@ class ActuatorAwareTrajectoryModel(nn.Module):
         tail_tau_s: float = 0.04,
         history_dt_s: float = 0.02,
         initial_tail_gate: float = 0.05,
+        joint_control_backbone: bool = False,
+        actuator_only_rollout: bool = False,
+        signed_tail_effectiveness: bool = False,
     ) -> None:
         super().__init__()
-        if base_model.use_controls:
-            raise ValueError("V2 requires a no-control history backbone")
+        if base_model.use_controls != bool(joint_control_backbone):
+            raise ValueError("Control-conditioned backbone requires explicit joint_control_backbone=True")
+        self.joint_control_backbone = bool(joint_control_backbone)
+        self.actuator_only_rollout = bool(actuator_only_rollout)
+        self.signed_tail_effectiveness = bool(signed_tail_effectiveness)
+        if self.actuator_only_rollout and not (joint_control_backbone and use_drive and use_tail):
+            raise ValueError("actuator-only rollout requires joint backbone and both actuator branches")
         if min(drive_tau_s, tail_tau_s, history_dt_s) <= 0.0:
             raise ValueError("actuator time constants and history dt must be positive")
         if not 0.0 < initial_tail_gate < 1.0:
             raise ValueError("initial_tail_gate must be between zero and one")
         self.base_model = copy.deepcopy(base_model)
         for parameter in self.base_model.parameters():
-            parameter.requires_grad_(False)
+            parameter.requires_grad_(self.joint_control_backbone)
         self.use_drive = bool(use_drive)
         self.use_tail = bool(use_tail)
         self.gated_tail = bool(gated_tail)
@@ -146,6 +154,23 @@ class ActuatorAwareTrajectoryModel(nn.Module):
             ),
         )
         self._last_control_residuals: list[torch.Tensor] = []
+
+    def rollout_model_input(self, features: torch.Tensor, controls: torch.Tensor) -> torch.Tensor:
+        """History can encode commands; rollout commands only enter actuator states."""
+        if self.actuator_only_rollout:
+            controls = self.base_model.control_mean.expand_as(controls)
+        return self.base_model._model_input(features, controls)
+
+    def tail_effectiveness(self, channel: int, features: torch.Tensor) -> torch.Tensor:
+        value = self.tail_heads[channel](features)
+        if self.signed_tail_effectiveness:
+            # FRD: common -> +q, (left-right)/2 -> -p, rudder -> +r.
+            # No positive lower bound on authority; this constrains only direct effects.
+            axis, sign = ((4, 1.0), (3, -1.0), (5, 1.0))[channel]
+            signed = sign * torch.nn.functional.softplus(value[:, axis])
+            value = value.clone()
+            value[:, axis] = signed
+        return value
 
     def tail_gate_values(self) -> torch.Tensor:
         if not self.use_tail:
@@ -243,7 +268,7 @@ class ActuatorAwareTrajectoryModel(nn.Module):
             dt = dt_s[:, step]
             features = _state_features(velocity, quaternion, rate, phase, phase_anchor, frequency)
             normalized_features = self.base_model._normalize_features(features)
-            model_input = self.base_model._model_input(features, controls)
+            model_input = self.rollout_model_input(features, controls)
             derivative_scaled = self.base_model.derivative_head(
                 torch.cat((hidden, model_input), dim=1)
             )
@@ -255,7 +280,7 @@ class ActuatorAwareTrajectoryModel(nn.Module):
             if self.use_tail:
                 gates = self.tail_gate_values()
                 for channel, head in enumerate(self.tail_heads):
-                    effectiveness = head(normalized_features)
+                    effectiveness = self.tail_effectiveness(channel, normalized_features)
                     channel_residual = (
                         effectiveness
                         * tail_state[:, channel : channel + 1]
@@ -288,7 +313,7 @@ class ActuatorAwareTrajectoryModel(nn.Module):
                 next_velocity, next_quaternion, next_rate, next_phase, phase_anchor, next_frequency
             )
             hidden = self.base_model.recurrent_cell(
-                self.base_model._model_input(next_features, controls), hidden
+                self.rollout_model_input(next_features, controls), hidden
             )
             drive_alpha = 1.0 - torch.exp(-dt / self.drive_tau_s)
             drive_state = drive_state + drive_alpha * (self._normalized_motor(controls) - drive_state)

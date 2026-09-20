@@ -1,0 +1,190 @@
+{
+  "dataset_id": "trajectory_v3_september_expanded",
+  "path": "dataset/trajectory_v3_september_expanded",
+  "manifest_sha256": "46b50d0b23a32b40339a4c07526711d0ff88b55584d309a56807c56905d2817e",
+  "sample_artifact_hashes": {
+    "samples_train.parquet": "cd95d9db29cfe741c2929d8730fbd09b26fafcc54107f5faa3cd9d49e861e46e"
+  },
+  "partitions": [
+    "train"
+  ],
+  "phase_contract": {
+    "definition": "logged wing_phase zero; Hall consistency is checked separately",
+    "installation_consistency": "not_confirmed",
+    "status": "unconfirmed_physical_pose"
+  },
+  "frequency_contract": {
+    "column": "flap_frequency_hz",
+    "ratio": 7.909090995788574,
+    "rescaling": "none; September logged ratio, not April ratio8"
+  },
+  "raw_sources": {
+    "2026.9.6/log_17_2026-9-6-18-34-06.ulg": {
+      "path": "/home/zn/QgcLogs/2026.9.6/log_17_2026-9-6-18-34-06.ulg",
+      "sha256": "37ff9f8ea4e2e378fc13394288aa145a462259e2f53fa15af9511082f0e6d558"
+    },
+    "2026.9.6/log_18_2026-9-6-18-46-20.ulg": {
+      "path": "/home/zn/QgcLogs/2026.9.6/log_18_2026-9-6-18-46-20.ulg",
+      "sha256": "603a941c5ebbfcdf27b80b0d1c4b2de65dd4e114fdefb64bb70896e409c135a8"
+    },
+    "2026.9.6/log_19_2026-9-6-18-52-30.ulg": {
+      "path": "/home/zn/QgcLogs/2026.9.6/log_19_2026-9-6-18-52-30.ulg",
+      "sha256": "30f27b3c2ee46a05ed6108ec01a2150cd5c8fedaf4f0cb7a1f0347698412aacd"
+    },
+    "2026.9.6/log_20_2026-9-6-18-58-10.ulg": {
+      "path": "/home/zn/QgcLogs/2026.9.6/log_20_2026-9-6-18-58-10.ulg",
+      "sha256": "3b0afa4b3526fae934d9705082c0dbfe247fc39baff68014c06cf6642e71275e"
+    },
+    "2026.9.6/log_24_2026-9-6-06-28-38.ulg": {
+      "path": "/home/zn/QgcLogs/2026.9.6/log_24_2026-9-6-06-28-38.ulg",
+      "sha256": "63967500f915ed124b1b4deacf8a47a563ab4419c0258c3522798577280c7dd0"
+    },
+    "2026.9.6/log_28_2026-9-6-07-01-38.ulg": {
+      "path": "/home/zn/QgcLogs/2026.9.6/log_28_2026-9-6-07-01-38.ulg",
+      "sha256": "73dd94d60553a00efb3e2d9009430686c08ee611f11eb4e3f8e3a427f26df842"
+    },
+    "9.11\u6570\u636e/log_13_2026-9-11-18-28-08.ulg": {
+      "path": "/home/zn/QgcLogs/9.11\u6570\u636e/log_13_2026-9-11-18-28-08.ulg",
+      "sha256": "0ad472f5e6d2fdd7f5a94c403a49e07e089f7d16de603f5703d4e2260938cc5b"
+    },
+    "9.11\u6570\u636e/log_14_2026-9-11-18-34-58.ulg": {
+      "path": "/home/zn/QgcLogs/9.11\u6570\u636e/log_14_2026-9-11-18-34-58.ulg",
+      "sha256": "65c8b8b39c7ac62f8abcc600c7676294c46c99a1d1d19a1d6e3c588608eb834b"
+    },
+    "9.11\u6570\u636e/log_15_2026-9-11-18-40-48.ulg": {
+      "path": "/home/zn/QgcLogs/9.11\u6570\u636e/log_15_2026-9-11-18-40-48.ulg",
+      "sha256": "91d881515e157525f6527c8f148973cfd995ee64a2523f74d8896f9876f323c3"
+    },
+    "9.12\u6570\u636e/log_10_2026-9-12-06-13-40.ulg": {
+      "path": "/home/zn/QgcLogs/9.12\u6570\u636e/log_10_2026-9-12-06-13-40.ulg",
+      "sha256": "531a4f5ad9f0770e3a369375c0113cffc3f1ec6ea7070378ce84b234546fb2d9"
+    },
+    "9.12\u6570\u636e/log_11_2026-9-12-06-21-12.ulg": {
+      "path": "/home/zn/QgcLogs/9.12\u6570\u636e/log_11_2026-9-12-06-21-12.ulg",
+      "sha256": "782597332cc8092c8efde5db2630b46f194dde68f603c6550458d5b6a3d6659a"
+    },
+    "9.12\u6570\u636e/log_12_2026-9-12-06-29-44.ulg": {
+      "path": "/home/zn/QgcLogs/9.12\u6570\u636e/log_12_2026-9-12-06-29-44.ulg",
+      "sha256": "bfa039195c11191d289e8734be1ee330bf4dbdf3648ae474932471f408425a18"
+    },
+    "9.12\u6570\u636e/log_2_2026-9-12-18-32-54.ulg": {
+      "path": "/home/zn/QgcLogs/9.12\u6570\u636e/log_2_2026-9-12-18-32-54.ulg",
+      "sha256": "a978956f5f191a4daabd24086ef734b611060f7467063c838c8c78bc898a5a68"
+    },
+    "9.12\u6570\u636e/log_3_2026-9-12-18-40-02.ulg": {
+      "path": "/home/zn/QgcLogs/9.12\u6570\u636e/log_3_2026-9-12-18-40-02.ulg",
+      "sha256": "6c5b344e087a1a7ab333f75405589cdf20fdd2ad091eba2768e27de76b076dc3"
+    },
+    "9.12\u6570\u636e/log_7_2026-9-12-05-49-02.ulg": {
+      "path": "/home/zn/QgcLogs/9.12\u6570\u636e/log_7_2026-9-12-05-49-02.ulg",
+      "sha256": "ae5e395aee6f5c69eb5590a2acf890ae400c9328975f6f91444fca5cc4a7c496"
+    },
+    "9.12\u6570\u636e/log_8_2026-9-12-05-55-30.ulg": {
+      "path": "/home/zn/QgcLogs/9.12\u6570\u636e/log_8_2026-9-12-05-55-30.ulg",
+      "sha256": "e4e166c6cda3c88bd0030f598b72b425c082fcdf1eac351c5083943b804c0d02"
+    },
+    "9.12\u6570\u636e/log_9_2026-9-12-06-03-32.ulg": {
+      "path": "/home/zn/QgcLogs/9.12\u6570\u636e/log_9_2026-9-12-06-03-32.ulg",
+      "sha256": "1ff5d67cf8ef2d676896165abd64634dfa9fd343787ea606030358215ef56e64"
+    },
+    "9.13\u6570\u636e/log_1_2026-9-13-06-11-06.ulg": {
+      "path": "/home/zn/QgcLogs/9.13\u6570\u636e/log_1_2026-9-13-06-11-06.ulg",
+      "sha256": "dea67a9ed3019a32b7b11f43c8fa6668c4142849622f29d836f287defdfacbe1"
+    },
+    "9.13\u6570\u636e/log_2_2026-9-13-06-20-06.ulg": {
+      "path": "/home/zn/QgcLogs/9.13\u6570\u636e/log_2_2026-9-13-06-20-06.ulg",
+      "sha256": "15c586c0d48d09ef0036618bf1823d6475213c751d473dba6f0fa0732809b7eb"
+    },
+    "9.13\u6570\u636e/log_3_2026-9-13-06-31-26.ulg": {
+      "path": "/home/zn/QgcLogs/9.13\u6570\u636e/log_3_2026-9-13-06-31-26.ulg",
+      "sha256": "a2a85d1807255e9cb45b0c04ba77c38ec0679f6c3a286846f7deff1ba72be945"
+    },
+    "9.13\u6570\u636e/log_4_2026-9-13-06-36-26.ulg": {
+      "path": "/home/zn/QgcLogs/9.13\u6570\u636e/log_4_2026-9-13-06-36-26.ulg",
+      "sha256": "3de9134406746aa184281244591d0403f426022d5789a6d9f2d441b89f3b519e"
+    },
+    "9.13\u6570\u636e/log_5_2026-9-13-06-42-40.ulg": {
+      "path": "/home/zn/QgcLogs/9.13\u6570\u636e/log_5_2026-9-13-06-42-40.ulg",
+      "sha256": "95b2e74ad704fbe261d081ad317f01a9bba5c99b3c2f32b64e3a5e57602164a8"
+    },
+    "9.13\u6570\u636e/log_7_2026-9-13-18-12-52.ulg": {
+      "path": "/home/zn/QgcLogs/9.13\u6570\u636e/log_7_2026-9-13-18-12-52.ulg",
+      "sha256": "3746db93c8eb02d5b94167d21d11701b5caaeffdd909b7f61a4c70b7519129d0"
+    },
+    "9.14\u6570\u636e/log_11_2026-9-14-18-13-22.ulg": {
+      "path": "/home/zn/QgcLogs/9.14\u6570\u636e/log_11_2026-9-14-18-13-22.ulg",
+      "sha256": "19b10fde39323f915235f7ff29ac3bc6311d9ceb6b07e2dbda5915400b8eee3d"
+    },
+    "9.14\u6570\u636e/log_12_2026-9-14-18-20-30.ulg": {
+      "path": "/home/zn/QgcLogs/9.14\u6570\u636e/log_12_2026-9-14-18-20-30.ulg",
+      "sha256": "4c2fe9e7a473a190664b44652f2ef5c6977aa8ff1c46224e008d5b458a22cfa5"
+    },
+    "9.14\u6570\u636e/log_13_2026-9-14-18-28-32.ulg": {
+      "path": "/home/zn/QgcLogs/9.14\u6570\u636e/log_13_2026-9-14-18-28-32.ulg",
+      "sha256": "05eed2dc698464ca4a4508a2906176f8a91e65b148601f45c03f3279286d800a"
+    },
+    "9.14\u6570\u636e/log_14_2026-9-14-18-34-22.ulg": {
+      "path": "/home/zn/QgcLogs/9.14\u6570\u636e/log_14_2026-9-14-18-34-22.ulg",
+      "sha256": "5e074998eb0cf7d7db4fad4033b56d08d91bc2c176c5bae3f56b128505c46081"
+    },
+    "9.15\u6570\u636e/log_10_2026-9-15-17-44-04.ulg": {
+      "path": "/home/zn/QgcLogs/9.15\u6570\u636e/log_10_2026-9-15-17-44-04.ulg",
+      "sha256": "60cc2db103282bd4493a0ad3f8e4c05a529c53513507225d54564018a6f97edb"
+    },
+    "9.15\u6570\u636e/log_11_2026-9-15-17-51-56.ulg": {
+      "path": "/home/zn/QgcLogs/9.15\u6570\u636e/log_11_2026-9-15-17-51-56.ulg",
+      "sha256": "22a70d54b3683faa403f63c18c1d90d02d2a5aba7d95c2e8c1bf5d6457acbc29"
+    },
+    "9.15\u6570\u636e/log_12_2026-9-15-18-03-58.ulg": {
+      "path": "/home/zn/QgcLogs/9.15\u6570\u636e/log_12_2026-9-15-18-03-58.ulg",
+      "sha256": "5abe5e80b02948c33d55cfa19837725934dbb0caa2132facd63e2129cf792952"
+    },
+    "9.15\u6570\u636e/log_13_2026-9-15-18-10-58.ulg": {
+      "path": "/home/zn/QgcLogs/9.15\u6570\u636e/log_13_2026-9-15-18-10-58.ulg",
+      "sha256": "fe46c4e6013752f8e0901f623ced378c392b5726c88c5a57cb84f4b6ffd4fe71"
+    },
+    "9.15\u6570\u636e/log_14_2026-9-15-18-17-26.ulg": {
+      "path": "/home/zn/QgcLogs/9.15\u6570\u636e/log_14_2026-9-15-18-17-26.ulg",
+      "sha256": "5039763b2a8ddf31fff88c2d54827101cca997f0c73bf8e0732afdbc766641f2"
+    },
+    "9.15\u6570\u636e/log_15_2026-9-15-18-23-44.ulg": {
+      "path": "/home/zn/QgcLogs/9.15\u6570\u636e/log_15_2026-9-15-18-23-44.ulg",
+      "sha256": "d071d49da500ef84328acf9b8905b5bb618c3a8ef5ad719e49f13358d93b073e"
+    },
+    "9.16\u6570\u636e/log_1_2026-9-16-18-02-34.ulg": {
+      "path": "/home/zn/QgcLogs/9.16\u6570\u636e/log_1_2026-9-16-18-02-34.ulg",
+      "sha256": "fc53971260c2cf62f71d76af1379ae29bedabca21e3f49aaa4cb9d63c6510dbb"
+    },
+    "9.16\u6570\u636e/log_2_2026-9-16-18-08-46.ulg": {
+      "path": "/home/zn/QgcLogs/9.16\u6570\u636e/log_2_2026-9-16-18-08-46.ulg",
+      "sha256": "1894725285badf0fbb07369e0f13cf92c8f213b636349d38c7280a2ee5af2e75"
+    },
+    "9.16\u6570\u636e/log_3_2026-9-16-18-13-58.ulg": {
+      "path": "/home/zn/QgcLogs/9.16\u6570\u636e/log_3_2026-9-16-18-13-58.ulg",
+      "sha256": "5734013eecffc074bd5f9d844a284e7575cbd84670f69c0e482971024539664c"
+    },
+    "9.16\u6570\u636e/log_4_2026-9-16-18-20-50.ulg": {
+      "path": "/home/zn/QgcLogs/9.16\u6570\u636e/log_4_2026-9-16-18-20-50.ulg",
+      "sha256": "ac54f8f57c72d2254c2ee11f10d5bbd541815f3ac31040ac7c734e863e56c8c7"
+    },
+    "9.16\u6570\u636e/log_5_2026-9-16-18-26-48.ulg": {
+      "path": "/home/zn/QgcLogs/9.16\u6570\u636e/log_5_2026-9-16-18-26-48.ulg",
+      "sha256": "6b483c323ce93d7d6e97606814c4c292f1e69bd2e7b00babc97d8df6a4a18b61"
+    },
+    "9.18\u6570\u636e/log_0_2026-9-18-18-15-06.ulg": {
+      "path": "/home/zn/QgcLogs/9.18\u6570\u636e/log_0_2026-9-18-18-15-06.ulg",
+      "sha256": "856d76e3776563b908ba57d66d69edb41430b0b30764fa9628d6acbbf152ae40"
+    },
+    "9.18\u6570\u636e/log_1_2026-9-18-18-23-36.ulg": {
+      "path": "/home/zn/QgcLogs/9.18\u6570\u636e/log_1_2026-9-18-18-23-36.ulg",
+      "sha256": "31e75b37cc415dcef5333627728330aca2156b8652dd56f2d5c1dcfb22fc7d17"
+    },
+    "9.18\u6570\u636e/log_2_2026-9-18-18-29-40.ulg": {
+      "path": "/home/zn/QgcLogs/9.18\u6570\u636e/log_2_2026-9-18-18-29-40.ulg",
+      "sha256": "7e4d29d0fbb4e521eb4f3753cf8441194be4952c0c554cf7bd7e72c214cb7964"
+    }
+  },
+  "script_sha256": "be164427481f0264e5f57ea21227c9c4f14e8c3ac103740ff5fd8b0e0576a44d",
+  "test_opened": false,
+  "limitation": "timestamp_sample on actuator topics is upstream sample origin, not measured surface motion; no servo angle feedback used"
+}
