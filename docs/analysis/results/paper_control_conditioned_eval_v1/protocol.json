@@ -1,0 +1,429 @@
+{
+  "experiment": "paper_control_conditioned_eval_v1",
+  "state": "completed",
+  "git_commit": "cdf7625af4301642df61a085c3998383bbdbbe62",
+  "branch": "step5-actuator-aware-trajectory-main-v2",
+  "source_baseline_result": "docs/analysis/results/paper_baseline_comparison_v1",
+  "source_baseline_commit": "cdf7625af4301642df61a085c3998383bbdbbe62",
+  "checkpoints": {
+    "B2": {
+      "path": "artifacts/paper_baseline_comparison_v1/B2_StandardGRU.pt",
+      "sha256": "f9895418b7dd2a2757dde8d740109ab42dae258c593fd5902f0076a3faeb0e26"
+    },
+    "B3": {
+      "path": "artifacts/september_expanded_main_v2/model.pt",
+      "sha256": "750b53b7b5321b884a929dd6abc3fb4cbebf116eafbaa13c4a1add16e39658eb"
+    }
+  },
+  "origins": {
+    "count": 2582,
+    "file": "docs/analysis/results/paper_baseline_comparison_v1/validation_origins.csv",
+    "sha256": "d9677c58fe0f9f23b12699a35c78e1b0961ddcb3ec5e5814e9f18392c501e3d3",
+    "identity": "window_id + log_id + segment_id + start sample + native timestamp"
+  },
+  "controls": {
+    "raw_order": [
+      "control_flap_motor_normalized",
+      "control_left_elevon_normalized",
+      "control_right_elevon_normalized",
+      "control_rudder_normalized"
+    ],
+    "logged_sources": [
+      "actuator_motors.control[0]",
+      "actuator_servos.control[0]",
+      "actuator_servos.control[1]",
+      "actuator_servos.control[2]"
+    ],
+    "independent_coordinates": [
+      "drive=motor",
+      "common=(left+right)/2",
+      "differential=(left-right)/2",
+      "rudder=rudder"
+    ],
+    "command_semantics": "post-allocation normalized setpoints, pre-driver PWM reversal; not PWM, surface-angle feedback, or Hz commands",
+    "PWM": "PWM_MAIN_REV=17 reverses MAIN1 and MAIN5 in the downstream output driver; extraction/model do not reapply reversal",
+    "B2": "raw four channels standardized using frozen train control_mean/control_std",
+    "B3": "motor normalized by backbone train stats; transformed tail normalized by frozen tail_mean/tail_std then drive/tail proxies; history-only backbone",
+    "reference": [
+      0.68657386302948,
+      -0.0020591537468135357,
+      -0.13653267920017242,
+      -0.04773162305355072
+    ],
+    "scale": [
+      0.09660183638334274,
+      0.11485535651445389,
+      0.2810032367706299,
+      0.12501497566699982
+    ],
+    "scale_source": "existing frozen B3 TRAIN history+future-control normalization buffers; no train/validation refit"
+  },
+  "activity": {
+    "window": "actual applied control tape u[0:K], excludes u[K] at endpoint",
+    "magnitude": "sqrt(mean_k((coordinate[k]-train_mean)^2))",
+    "delta": "max_k(abs(coordinate[k]-coordinate[0]))",
+    "tv": "sum_k(abs(coordinate[k+1]-coordinate[k]))",
+    "channel_score": "delta/train_std",
+    "total_score": "sqrt(mean_channels((delta/train_std)^2))",
+    "primary": "max departure from origin; magnitude and TV descriptive only, not alternative outcome-driven selectors"
+  },
+  "bins": {
+    "quantiles": [
+      0.33,
+      0.67,
+      0.8
+    ],
+    "method": "numpy linear quantile per horizon, pooled open validation controls; shared across cohorts",
+    "boundaries": "Low <= q33; Medium q33 < score <= q67; High > q67; Top20 >= q80 AND score>0",
+    "ties": "preserved, never broken with model errors or arbitrary origin ranks; actual counts reported",
+    "thresholds": {
+      "0.1": {
+        "overall": {
+          "q33": 0.13897415007359176,
+          "q67": 0.18984803336602638,
+          "q80": 0.21854281517755136,
+          "low": 852,
+          "medium": 878,
+          "high": 852,
+          "top20": 517,
+          "zero_score": 0
+        },
+        "drive": {
+          "q33": 0.0,
+          "q67": 0.07762020947765261,
+          "q80": 0.1077131710572196,
+          "low": 917,
+          "medium": 813,
+          "high": 852,
+          "top20": 517,
+          "zero_score": 917
+        },
+        "common": {
+          "q33": 0.17285544577336306,
+          "q67": 0.26692584828704646,
+          "q80": 0.3245434486113927,
+          "low": 852,
+          "medium": 878,
+          "high": 852,
+          "top20": 517,
+          "zero_score": 0
+        },
+        "differential": {
+          "q33": 0.11180601836120084,
+          "q67": 0.20836571693539357,
+          "q80": 0.2635322514684634,
+          "low": 852,
+          "medium": 878,
+          "high": 852,
+          "top20": 517,
+          "zero_score": 0
+        },
+        "rudder": {
+          "q33": 0.05368132803026791,
+          "q67": 0.10400596457786551,
+          "q80": 0.1377235636494794,
+          "low": 852,
+          "medium": 878,
+          "high": 852,
+          "top20": 517,
+          "zero_score": 0
+        }
+      },
+      "0.2": {
+        "overall": {
+          "q33": 0.2120985324957382,
+          "q67": 0.2768551248004807,
+          "q80": 0.3137628725347993,
+          "low": 852,
+          "medium": 878,
+          "high": 852,
+          "top20": 517,
+          "zero_score": 0
+        },
+        "drive": {
+          "q33": 0.010351636809765228,
+          "q67": 0.13870714522548339,
+          "q80": 0.22886304681767922,
+          "low": 925,
+          "medium": 805,
+          "high": 852,
+          "top20": 517,
+          "zero_score": 687
+        },
+        "common": {
+          "q33": 0.25816214555037503,
+          "q67": 0.3638430123657004,
+          "q80": 0.4256640518953985,
+          "low": 852,
+          "medium": 878,
+          "high": 852,
+          "top20": 517,
+          "zero_score": 0
+        },
+        "differential": {
+          "q33": 0.1971600363593425,
+          "q67": 0.32035090995769083,
+          "q80": 0.38748533299840576,
+          "low": 852,
+          "medium": 878,
+          "high": 852,
+          "top20": 517,
+          "zero_score": 0
+        },
+        "rudder": {
+          "q33": 0.09485907723037999,
+          "q67": 0.16734425711889217,
+          "q80": 0.2224323636859054,
+          "low": 852,
+          "medium": 878,
+          "high": 852,
+          "top20": 517,
+          "zero_score": 0
+        }
+      },
+      "0.5": {
+        "overall": {
+          "q33": 0.31571507980949104,
+          "q67": 0.4416554244981293,
+          "q80": 0.512483778806017,
+          "low": 852,
+          "medium": 878,
+          "high": 852,
+          "top20": 517,
+          "zero_score": 0
+        },
+        "drive": {
+          "q33": 0.020703273619530456,
+          "q67": 0.3132103764099055,
+          "q80": 0.49089600320970467,
+          "low": 999,
+          "medium": 731,
+          "high": 852,
+          "top20": 517,
+          "zero_score": 453
+        },
+        "common": {
+          "q33": 0.335537446340969,
+          "q67": 0.4746363386174743,
+          "q80": 0.5653163729981756,
+          "low": 852,
+          "medium": 878,
+          "high": 852,
+          "top20": 517,
+          "zero_score": 0
+        },
+        "differential": {
+          "q33": 0.3163373921825909,
+          "q67": 0.503868159080313,
+          "q80": 0.6488162114997672,
+          "low": 852,
+          "medium": 878,
+          "high": 852,
+          "top20": 517,
+          "zero_score": 0
+        },
+        "rudder": {
+          "q33": 0.1615462501071265,
+          "q67": 0.2907301984608825,
+          "q80": 0.3822793017985456,
+          "low": 852,
+          "medium": 878,
+          "high": 852,
+          "top20": 517,
+          "zero_score": 0
+        }
+      },
+      "1.0": {
+        "overall": {
+          "q33": 0.459023593109964,
+          "q67": 0.6894153574579447,
+          "q80": 0.8043691419787719,
+          "low": 852,
+          "medium": 878,
+          "high": 852,
+          "top20": 517,
+          "zero_score": 0
+        },
+        "drive": {
+          "q33": 0.020703890633109148,
+          "q67": 0.5297560243470476,
+          "q80": 0.783808514771961,
+          "low": 873,
+          "medium": 857,
+          "high": 852,
+          "top20": 517,
+          "zero_score": 289
+        },
+        "common": {
+          "q33": 0.419519333671194,
+          "q67": 0.6179683819176972,
+          "q80": 0.756598437461991,
+          "low": 852,
+          "medium": 878,
+          "high": 852,
+          "top20": 517,
+          "zero_score": 0
+        },
+        "differential": {
+          "q33": 0.4766410457143269,
+          "q67": 0.8136484962223608,
+          "q80": 1.04412748289727,
+          "low": 852,
+          "medium": 878,
+          "high": 852,
+          "top20": 517,
+          "zero_score": 0
+        },
+        "rudder": {
+          "q33": 0.24033815564555838,
+          "q67": 0.43786081193494863,
+          "q80": 0.5584497997702637,
+          "low": 852,
+          "medium": 878,
+          "high": 852,
+          "top20": 517,
+          "zero_score": 0
+        }
+      }
+    }
+  },
+  "horizons": {
+    "0.1": 5,
+    "0.2": 10,
+    "0.5": 25,
+    "1.0": 50
+  },
+  "primary_horizon_s": 0.5,
+  "timing_contract": "5/10/25/50 native steps, nominal 0.1/0.2/0.5/1.0 s; integrate actual logged dt, no resampling; timing CSVs give actual durations",
+  "metrics": {
+    "existing": {
+      "position_error_m": "position_rmse_m",
+      "velocity_error_m_s": "velocity_rmse_m_s",
+      "attitude_error_deg": "attitude_error_deg",
+      "body_rate_error_rad_s": "body_rate_rmse_rad_s",
+      "delta_v_error_m_s": "delta_v_rmse_m_s",
+      "delta_omega_error_rad_s": "delta_omega_rmse_rad_s",
+      "velocity_x_error_m_s": "velocity_x_rmse_m_s",
+      "velocity_y_error_m_s": "velocity_y_rmse_m_s",
+      "velocity_z_error_m_s": "velocity_z_rmse_m_s",
+      "body_rate_p_error_rad_s": "body_rate_p_rmse_rad_s",
+      "body_rate_q_error_rad_s": "body_rate_q_rmse_rad_s",
+      "body_rate_r_error_rad_s": "body_rate_r_rmse_rad_s"
+    },
+    "additional": {
+      "attitude_roll_component_error_deg": "attitude_roll_component_rmse_deg",
+      "attitude_pitch_component_error_deg": "attitude_pitch_component_rmse_deg",
+      "attitude_yaw_component_error_deg": "attitude_yaw_component_rmse_deg"
+    },
+    "aggregation": "per-flight RMSE then equal-flight mean, as in Step 1",
+    "attitude_components": "principal Log(q_truth^-1*q_prediction) degrees, in truth-body coordinates; component RMS, not independent Euler angles",
+    "increments": "common true initial state makes delta-v/omega errors identical to endpoint v/omega; not independent evidence"
+  },
+  "paired": {
+    "sign": "B3-B2; negative favors B3",
+    "origin_statistics": "pooled mean, median and win fraction, descriptive only",
+    "flight_statistics": "equal-flight mean of within-flight mean paired errors AND equal-flight mean of paired per-flight RMSE differences",
+    "bootstrap": "10000 resamples of whole flights, within Sep7/Sep17 strata; fixed represented-flight counts and frozen control bins; percentile 95% CI",
+    "bootstrap_rng_seed": 17023,
+    "training_seed_runs_added": 0,
+    "limitations": "only 17 flights/two days, fewer in some subsets; within-day dependence, bin-threshold and seed uncertainty not captured; no multiplicity-adjusted claims"
+  },
+  "data_files_opened": [
+    "dataset/trajectory_v3_september_expanded/samples_validation.parquet",
+    "dataset/trajectory_v3_september_expanded/windows_validation.parquet"
+  ],
+  "sealed_test_opened": false,
+  "reserved_test_opened": false,
+  "inference_run": false,
+  "training_run": false,
+  "excluded_flights": {
+    "sealed_test": [
+      "2026.9.8/log_0_2026-9-8-05-42-48.ulg",
+      "2026.9.8/log_1_2026-9-8-05-49-28.ulg",
+      "2026.9.8/log_2_2026-9-8-05-56-46.ulg",
+      "2026.9.8/log_4_2026-9-8-06-38-56.ulg",
+      "2026.9.8/log_6_2026-9-8-06-46-18.ulg",
+      "2026.9.8/log_7_2026-9-8-06-55-26.ulg"
+    ],
+    "reserved_evaluation": [
+      "9.19-2数据/log_0_2026-9-19-14-31-44.ulg",
+      "9.19-2数据/log_1_2026-9-19-14-40-12.ulg",
+      "9.19-2数据/log_2_2026-9-19-14-45-56.ulg",
+      "9.19-2数据/log_3_2026-9-19-14-56-32.ulg",
+      "9.19-2数据/log_4_2026-9-19-15-15-06.ulg",
+      "9.19-2数据/log_5_2026-9-19-15-23-48.ulg",
+      "9.19-2数据/log_6_2026-9-19-15-28-00.ulg",
+      "9.19-2数据/log_7_2026-9-19-15-39-08.ulg",
+      "9.19-2数据/log_8_2026-9-19-15-47-10.ulg",
+      "9.19-3数据/log_0_2026-9-19-17-14-26.ulg",
+      "9.19-3数据/log_1_2026-9-19-17-21-44.ulg",
+      "9.19-3数据/log_2_2026-9-19-17-26-42.ulg",
+      "9.19-3数据/log_3_2026-9-19-17-38-46.ulg",
+      "9.19-3数据/log_4_2026-9-19-17-44-06.ulg",
+      "9.19-3数据/log_5_2026-9-19-17-49-50.ulg",
+      "9.19-3数据/log_9_2026-9-19-17-05-08.ulg",
+      "9.19数据/log_0_2026-9-19-05-53-40.ulg",
+      "9.19数据/log_1_2026-9-19-06-01-30.ulg",
+      "9.19数据/log_2_2026-9-19-06-07-52.ulg",
+      "9.19数据/log_3_2026-9-19-06-14-30.ulg",
+      "9.19数据/log_4_2026-9-19-06-19-40.ulg",
+      "9.19数据/log_5_2026-9-19-06-26-44.ulg",
+      "9.19数据/log_6_2026-9-19-06-31-46.ulg"
+    ]
+  },
+  "frozen_input_sha256": {
+    "docs/analysis/results/paper_baseline_comparison_v1/validation_horizon_timing.csv": "8669550c3385e07044fc64267dfa7dde9430317224d998b81045d4e8620b0022",
+    "docs/analysis/results/paper_baseline_comparison_v1/aggregate.csv": "e1ee575c5d6ee2db49220543742cc3104c237653df46139ba61764fda5503fef",
+    "docs/analysis/results/paper_baseline_comparison_v1/protocol.json": "9e84b8dc6cf784507c084c604a49c279079a3880ea557fc73ecd1853595d55f7",
+    "docs/analysis/results/paper_baseline_comparison_v1/report_smoke_test.json": "65455f1d502dfe72cdfd51efa8dd8ef369b47d0125ec648bd64972c626bb3ad6",
+    "docs/analysis/results/paper_baseline_comparison_v1/representative_prediction.pdf": "0a558174455dade173db4f348e1d4df346cf9c62b282557bbc81be8879995ffc",
+    "docs/analysis/results/paper_baseline_comparison_v1/representative_selection.json": "1048dfa44d71e21258a2a70cf854cb24637c32a418cbf0eae42b23869da88b06",
+    "docs/analysis/results/paper_baseline_comparison_v1/ours_vs_gru_per_flight.csv": "efb8cc46cbb8b8a0827a2ca1dd58c0019cd13394a696f9248d489e9538190a30",
+    "docs/analysis/results/paper_baseline_comparison_v1/per_flight.csv": "be4e714511450db13c476f6f8073ede13e4a306f7d8462ec21020b9d326571c3",
+    "docs/analysis/results/paper_baseline_comparison_v1/error_vs_horizon_velocity_rmse_m_s.pdf": "1c0fa2d76bb7f00e130c17c506fcc4a0788be67d91973b4388fed3136bf48a47",
+    "docs/analysis/results/paper_baseline_comparison_v1/error_vs_horizon_velocity_rmse_m_s.png": "82514eb7e207c40290688246b5b28fbbecbd85ea0c1db22f41749784869f8647",
+    "docs/analysis/results/paper_baseline_comparison_v1/error_vs_horizon_body_rate_rmse_rad_s.png": "c06deb7188745f53ad01b85c3f00fe370d67f01ece530cd366b5696f47d6d191",
+    "docs/analysis/results/paper_baseline_comparison_v1/report.md": "31d3adfed8f3814406124d33702fe9c42e0d57e307c32bdb7310a0fa4e3e6edf",
+    "docs/analysis/results/paper_baseline_comparison_v1/train_horizon_timing.csv": "a6837bf7183a0734994ab4e2c09caf1bfc92c83825d3db4e90c5b5cd8110890e",
+    "docs/analysis/results/paper_baseline_comparison_v1/flight_coverage.csv": "ab6ad5659529531b50bafcb2e2e21e9dba51887f12519cab95d79f0440b1c484",
+    "docs/analysis/results/paper_baseline_comparison_v1/error_vs_horizon_attitude_error_deg.pdf": "db1f4b30e4762aefc5daa7dd85f29f033dbd9ce944884196aebc380bdb661815",
+    "docs/analysis/results/paper_baseline_comparison_v1/audit.json": "9c471bb78489ce2b052c4b4f291d652d7354d8a80637dcdc13bdcf3b55e1d948",
+    "docs/analysis/results/paper_baseline_comparison_v1/validation_origins.csv": "d9677c58fe0f9f23b12699a35c78e1b0961ddcb3ec5e5814e9f18392c501e3d3",
+    "docs/analysis/results/paper_baseline_comparison_v1/error_vs_horizon_body_rate_rmse_rad_s.pdf": "1ff11ffa3461446e87e9b463897153a50b84bfad88853e498676cb49982caabf",
+    "docs/analysis/results/paper_baseline_comparison_v1/unit_tests.json": "a3b57c2e80d7b71a2daefc9220ea19c33ffd1d0b8adc2a333444a9c50bf3e4a4",
+    "docs/analysis/results/paper_baseline_comparison_v1/error_vs_horizon_attitude_error_deg.png": "ce26ec41c16139a59d4d686b528d9741fe05f36902fbae56584cf027b5137758",
+    "docs/analysis/results/paper_baseline_comparison_v1/error_vs_horizon_position_rmse_m.png": "47c07cf6060e1e0f4656f6f5e3bad974d3ce72dd07b519f40efa1621dcf65295",
+    "docs/analysis/results/paper_baseline_comparison_v1/failure_cases.csv": "f92c291900d2e0e10f7bb2af2d4cc0c2891d935593f503c4135533166d160ee7",
+    "docs/analysis/results/paper_baseline_comparison_v1/summary.csv": "25bad910a84a2ced3cc4bed2f5cdf1a47d1711f9a2a36bd381abacc0de40031f",
+    "docs/analysis/results/paper_baseline_comparison_v1/sanity_checks.json": "095fc1f7359d9033ab6156969f51681ea517d3f368592e58f738c14468f162fe",
+    "docs/analysis/results/paper_baseline_comparison_v1/train_origins.csv": "3a17f717f89367d0f673a2f73f3df246c4e332b9fac88385ce269df28854845b",
+    "docs/analysis/results/paper_baseline_comparison_v1/audit.md": "bb8e635661d06fdf238ce55dfa194d9038111049f5698abf99a2e00465325ad7",
+    "docs/analysis/results/paper_baseline_comparison_v1/git_status_at_launch.txt": "3cf999b336a68bce03dc153ffa44a915b95654ba980d09cd2f753d5589b84dbd",
+    "docs/analysis/results/paper_baseline_comparison_v1/error_vs_horizon_position_rmse_m.pdf": "16599999202d3a4b39795d75169b3c3640a9d88216f1868115eb287fb0b3716d",
+    "docs/analysis/results/paper_baseline_comparison_v1/git_status_at_completion.txt": "d058baa978d2e991d006d2ab371a5b0e4d80a8c5a9a19498fcfaa70829729605",
+    "docs/analysis/results/paper_baseline_comparison_v1/representative_prediction.png": "23ac7a17b009dec7e19aefb246e3e5ec34371d3737af4cc936d2a7c627e75eda",
+    "docs/analysis/results/paper_baseline_comparison_v1/frozen_ours_evaluator_parity.json": "659b1bc563015a0d2e2a6506885cc7ad374bb7eececf48605de44c2292cf340c",
+    "docs/analysis/results/paper_baseline_comparison_v1/representative_prediction.npz": "d8cb9bcbfc744a1c950be42a65732f8e3f0bd95511a8bd60df8b969432558a3e",
+    "docs/analysis/results/paper_baseline_comparison_v1/completion.json": "2d86a464832788698ec9d60dbf9208a0dd9a506180ab8181dcde90b304051c37",
+    "artifacts/paper_baseline_comparison_v1/B2_StandardGRU.pt": "f9895418b7dd2a2757dde8d740109ab42dae258c593fd5902f0076a3faeb0e26",
+    "artifacts/september_expanded_main_v2/model.pt": "750b53b7b5321b884a929dd6abc3fb4cbebf116eafbaa13c4a1add16e39658eb",
+    "artifacts/paper_baseline_comparison_v1/B2_StandardGRU_predictions.npz": "026d4cfe8ec3fe64a6b5fcd53cab7c4a80f6a64fe5b35bf4be3325746f3d6204",
+    "artifacts/paper_baseline_comparison_v1/B3_ActuatorAwareGRU_predictions.npz": "bb98aa0271d424dec6773c6a792291e7d480b8610e87be7ec98591dd6ec41b0b",
+    "artifacts/paper_baseline_comparison_v1/per_origin.csv": "a8d35c4f368e4524f6d45be85426fb13b6d99c6909008cf51ff0912c2109e9ad",
+    "configs/data/trajectory_dataset_registry.yaml": "3cbebc8996d1a1c233d906359aedd47c7bd23cee0c25aa988f4ce51ec1cbba49",
+    "dataset/trajectory_v3_september_expanded/manifest.json": "46b50d0b23a32b40339a4c07526711d0ff88b55584d309a56807c56905d2817e",
+    "dataset/trajectory_v3_september_expanded/samples_validation.parquet": "b66a14e2f0f9ef5f151c6e1c973fb2188c2821924d2bf87b8ae72442280718cd",
+    "dataset/trajectory_v3_september_expanded/windows_validation.parquet": "0a31c37dfd44b6889d2f896bef2fe848657fba7434e43ad7f91a375fe97d3cef"
+  },
+  "origin_activity_sha256": "fad0ad03ca236bc88e3d749cb38bfdb021f1b91c68d38d5241d9bdbbc2eaff27",
+  "interpretation": "control-conditioned prediction accuracy in closed-loop logs, not causal identification; retain Step 1 training-family confounds",
+  "source_sha256": {
+    "scripts/evaluate_paper_control_conditioned.py": "0ae6a6d49d2101c15774ce45212270b859336dea9833d47c9f12315c9bfeefc9",
+    "src/system_identification/evaluation/control_conditioned.py": "a853262e36b9f87b52cbd08abde3425eb7cce8e95e4e64eeb734ff5cac739ceb",
+    "src/system_identification/evaluation/paper_baselines.py": "32e7c312b314273929bcc92b1d98e3bd636f8c52e35783042e44d5a6660a558a",
+    "src/system_identification/evaluation/trajectory.py": "595189df1f994ed2aabfebd88e7b0c04ac38dbb6180579e461345a8fe1e64bd8",
+    "src/system_identification/data/trajectory_dataset.py": "97ee703af0eb3cce78b9091e3a729ced9f902eccd1a7d526506af13578fbe644",
+    "src/system_identification/models/trajectory_main_v2.py": "df23f65b94be461ac302b5237d6bbfe8afb25dc67406ee16439c985ee5498542"
+  },
+  "report_source_sha256": "5c8839ff60a6e063bd5ae7a7bd08eabbd00b74dbaea0e3cb8b688b401b7ac405"
+}

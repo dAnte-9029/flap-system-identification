@@ -1,0 +1,17 @@
+{
+  "frozen_inputs_unchanged": true,
+  "origin_count": 2582,
+  "same_origins_truth_horizons_metrics": true,
+  "full_cohort_macro_parity": true,
+  "metric_max_abs_parity_error": {
+    "B2": 3.552713678800501e-15,
+    "B3": 3.552713678800501e-15
+  },
+  "quantiles_frozen_before_reading_errors": true,
+  "training_run": false,
+  "inference_run": false,
+  "normalization_changed": false,
+  "sealed_test_opened": false,
+  "reserved_test_opened": false,
+  "wall_time_s": 10.358622735366225
+}

@@ -1,0 +1,93 @@
+{
+  "validation_new_firmware_assignments": [
+    {
+      "log_id": "9.17数据/log_10_2026-9-17-06-34-34.ulg",
+      "firmware": "a644ca7868f07004e45658d4ae9a7a8c880c6bb5"
+    },
+    {
+      "log_id": "9.17数据/log_11_2026-9-17-06-40-30.ulg",
+      "firmware": "a644ca7868f07004e45658d4ae9a7a8c880c6bb5"
+    },
+    {
+      "log_id": "9.17数据/log_12_2026-9-17-06-46-02.ulg",
+      "firmware": "a644ca7868f07004e45658d4ae9a7a8c880c6bb5"
+    },
+    {
+      "log_id": "9.17数据/log_13_2026-9-17-06-52-30.ulg",
+      "firmware": "a644ca7868f07004e45658d4ae9a7a8c880c6bb5"
+    },
+    {
+      "log_id": "9.17数据/log_6_2026-9-17-06-02-24.ulg",
+      "firmware": "a644ca7868f07004e45658d4ae9a7a8c880c6bb5"
+    },
+    {
+      "log_id": "9.17数据/log_7_2026-9-17-06-12-16.ulg",
+      "firmware": "a644ca7868f07004e45658d4ae9a7a8c880c6bb5"
+    },
+    {
+      "log_id": "9.17数据/log_8_2026-9-17-06-17-52.ulg",
+      "firmware": "a644ca7868f07004e45658d4ae9a7a8c880c6bb5"
+    },
+    {
+      "log_id": "9.17数据/log_9_2026-9-17-06-28-10.ulg",
+      "firmware": "a644ca7868f07004e45658d4ae9a7a8c880c6bb5"
+    }
+  ],
+  "PX4_local_source_evidence": [
+    {
+      "commit": "c9af571575af33d5403fbb479256848797c801e2",
+      "files": {
+        "msg/versioned/ActuatorServos.msg": {
+          "available": true,
+          "sha256": "6f3fe07cbcae4b472d50de20c6eec294313d64bd9113d02eb7b0d6597f18268b"
+        },
+        "msg/versioned/ActuatorMotors.msg": {
+          "available": true,
+          "sha256": "40d89fe296ce86b005ad67798b109c843698811dea3ed12d9662c9b8f032e386"
+        },
+        "src/lib/mixer_module/functions/FunctionServos.hpp": {
+          "available": true,
+          "sha256": "b5010b505528f6c55c9bbe1633d4e3e1d7a070b5704dab3048141e17ca35e6c4"
+        },
+        "src/lib/mixer_module/mixer_module.cpp": {
+          "available": true,
+          "sha256": "acdfb84d6bd94f18f52f2a26f2a651c0bfdbff956f71a480d93b43288ddf76b4",
+          "reversal_excerpts": [
+            {
+              "line": 543,
+              "text": "\n\tif (_reverse_output_mask & (1 << i)) {\n\t\tvalue = -1.f * value;\n\t}"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "commit": "a644ca7868f07004e45658d4ae9a7a8c880c6bb5",
+      "files": {
+        "msg/versioned/ActuatorServos.msg": {
+          "available": true,
+          "sha256": "6f3fe07cbcae4b472d50de20c6eec294313d64bd9113d02eb7b0d6597f18268b"
+        },
+        "msg/versioned/ActuatorMotors.msg": {
+          "available": true,
+          "sha256": "40d89fe296ce86b005ad67798b109c843698811dea3ed12d9662c9b8f032e386"
+        },
+        "src/lib/mixer_module/functions/FunctionServos.hpp": {
+          "available": true,
+          "sha256": "b5010b505528f6c55c9bbe1633d4e3e1d7a070b5704dab3048141e17ca35e6c4"
+        },
+        "src/lib/mixer_module/mixer_module.cpp": {
+          "available": true,
+          "sha256": "acdfb84d6bd94f18f52f2a26f2a651c0bfdbff956f71a480d93b43288ddf76b4",
+          "reversal_excerpts": [
+            {
+              "line": 543,
+              "text": "\n\tif (_reverse_output_mask & (1 << i)) {\n\t\tvalue = -1.f * value;\n\t}"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "interpretation": "post-allocation normalized controls; PWM reversal in downstream driver, never reapplied to model coordinates"
+}

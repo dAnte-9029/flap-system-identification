@@ -1,0 +1,13 @@
+{
+  "outcome": "C",
+  "scope": "frozen single-replicate nominal 500 ms control-conditioned prediction comparison",
+  "recommendation": "Standard GRU as paper main model; actuator-aware as negative ablation/discussion/supplementary",
+  "exceptions": [
+    "Low 500ms position slightly favors B3",
+    "Differential Top20 p-rate CI crosses zero",
+    "Sep7 High/Top20 velocity approximately tied; Top20 mean slightly favors B3 with CI crossing zero",
+    "Some individual flights/shorter-horizon cells favor B3"
+  ],
+  "next_step_started": false,
+  "strict_architectural_causality_claim": false
+}
