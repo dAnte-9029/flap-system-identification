@@ -1,0 +1,75 @@
+{
+  "data": {
+    "train": {
+      "windows": 28293,
+      "flights": 41,
+      "full_history": true,
+      "finite": true,
+      "nominal_dt_s": 0.02,
+      "dt_min_s": 0.008995,
+      "dt_max_s": 0.049200999999999995,
+      "history_span_min_s": 0.48860099999999995,
+      "history_span_max_s": 0.522376,
+      "endpoint_timestamps_match_integrated_dt": true,
+      "max_truth_quaternion_norm_error": 3.3306690738754696e-16,
+      "future_source_timestamp_counts": {
+        "phase_source_timestamp_us": 0,
+        "hall_source_timestamp_us": 0
+      }
+    },
+    "validation": {
+      "windows": 2582,
+      "flights": 17,
+      "full_history": true,
+      "finite": true,
+      "nominal_dt_s": 0.02,
+      "dt_min_s": 0.008898999999999999,
+      "dt_max_s": 0.049855,
+      "history_span_min_s": 0.48885599999999996,
+      "history_span_max_s": 0.509316,
+      "endpoint_timestamps_match_integrated_dt": true,
+      "max_truth_quaternion_norm_error": 3.3306690738754696e-16,
+      "future_source_timestamp_counts": {
+        "phase_source_timestamp_us": 0,
+        "hall_source_timestamp_us": 0
+      }
+    }
+  },
+  "models": {
+    "B0_ConstantVelocity": {
+      "analytic_constant_twist": true,
+      "n_origins": 2582,
+      "endpoint_rows": 10328,
+      "finite": true,
+      "max_quaternion_norm_error": 2.220446049250313e-16
+    },
+    "B1_MLP": {
+      "future_label_poisoning_bitwise_equal": true,
+      "prefix_500ms_bitwise_equal": true,
+      "n_origins": 2582,
+      "endpoint_rows": 10328,
+      "finite": true,
+      "max_quaternion_norm_error": 1.1604402105902523e-07
+    },
+    "B2_StandardGRU": {
+      "future_label_poisoning_bitwise_equal": true,
+      "prefix_500ms_bitwise_equal": true,
+      "n_origins": 2582,
+      "endpoint_rows": 10328,
+      "finite": true,
+      "max_quaternion_norm_error": 1.1398668586792837e-07
+    },
+    "B3_ActuatorAwareGRU": {
+      "future_label_poisoning_bitwise_equal": true,
+      "prefix_500ms_bitwise_equal": true,
+      "n_origins": 2582,
+      "endpoint_rows": 10328,
+      "finite": true,
+      "max_quaternion_norm_error": 1.1472223615527355e-07
+    }
+  },
+  "same_origins_all_models_horizons": true,
+  "normalization_train_only_reproduced": true,
+  "sealed_test_opened_this_run": false,
+  "checkpoint_unchanged": true
+}

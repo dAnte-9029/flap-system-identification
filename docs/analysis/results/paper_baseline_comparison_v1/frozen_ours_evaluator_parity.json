@@ -1,0 +1,12 @@
+{
+  "matched_rows": 5164,
+  "expected_rows": 5164,
+  "max_absolute_metric_difference": {
+    "position_m": 1.9803485978298063e-05,
+    "velocity_m_s": 2.442762154220013e-06,
+    "attitude_deg": 2.6401759466665453e-05,
+    "body_rate_rad_s": 4.793522263124572e-06
+  },
+  "comparison": "existing CPU simulator validation vs new GPU forward evaluator; frozen expanded checkpoint",
+  "sealed_test_accessed": false
+}

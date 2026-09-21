@@ -1,0 +1,238 @@
+## step5-actuator-aware-trajectory-main-v2...origin/step5-actuator-aware-trajectory-main-v2
+ M AGENTS.md
+ M configs/data/trajectory_dataset_registry.yaml
+ D docs/plans/2026-03-23-effective-wrench-labels-implementation-plan.md
+ D docs/plans/2026-03-23-ulg-to-canonical-parquet-implementation-plan.md
+ D docs/plans/2026-04-12-complete-dataset-checklist.md
+ D docs/plans/2026-04-14-dataset-log-admission-tracker.md
+ D docs/plans/2026-04-16-baseline-training-design.md
+ D docs/plans/2026-04-16-baseline-training-implementation-plan.md
+ D docs/plans/2026-04-16-cycle-block-split-design.md
+ D docs/plans/2026-04-16-cycle-block-split-implementation-plan.md
+ D docs/plans/2026-04-16-training-diagnostics-ablation-implementation-plan.md
+ D docs/plans/2026-04-30-direct-log-paper-feature-set-implementation-plan.md
+ D docs/plans/2026-04-30-hybrid-pfnn-reproduction-implementation-plan.md
+ D docs/plans/2026-04-30-label-noise-improvement-implementation-plan.md
+ D docs/plans/2026-04-30-paper-style-log-split-training-implementation-plan.md
+ D docs/plans/2026-05-06-forward-causal-sequence-asl-implementation-plan.md
+ D docs/plans/2026-05-06-leakage-resistant-baseline-protocol.md
+ D docs/plans/2026-05-06-subnet-wrench-three-stage-implementation-plan.md
+ D docs/plans/2026-05-07-lateral-diagnostics-two-batch-plan.md
+ D docs/plans/2026-05-07-tcn-gru-focused-sweep-plan.md
+ D docs/plans/2026-05-07-temporal-backbone-screening-plan.md
+ D docs/plans/2026-05-07-transformer-focused-sweep-plan.md
+ D docs/plans/2026-05-08-phase-conditioned-film-no-suspect-plan.md
+ D docs/plans/2026-05-08-phase-harmonic-encoding-plan.md
+ D docs/plans/2026-05-13-delaurier-residual-condition-analysis.md
+ D docs/plans/2026-05-13-delaurier-residual-frequency-analysis.md
+ D docs/plans/2026-05-13-delaurier-residual-phase-analysis.md
+ D docs/plans/2026-05-13-residual-delaurier-nn.md
+ D docs/plans/2026-05-25-residual-guided-delaurier-greybox-force-arm-plan.md
+ D docs/plans/2026-05-26-component-residual-attribution-diagnostic-plan.md
+ D docs/plans/2026-05-26-deployable-wrench-correction-v2-plan.md
+ D docs/plans/2026-05-27-phase-structured-wrench-correction.md
+ D docs/plans/2026-05-27-short-horizon-replay-plan.md
+ D docs/plans/2026-05-28-rotational-oracle-replay-diagnostics-plan.md
+ D docs/plans/2026-05-28-smoothed-time-aligned-wrench-labels-plan.md
+ D docs/plans/2026-06-02-measured-massprops-dataset-and-bc-rerun-plan.md
+ D docs/plans/2026-06-03-delaurier-prior-alignment-and-convention-fix-plan.md
+ D docs/plans/2026-06-03-flap-ratio-8-pipeline-rebuild-plan.md
+ D docs/plans/2026-06-04-wing-tail-my-alignment-sweep-plan.md
+ D docs/plans/2026-07-03-prior-regression-calibration-exp2.md
+ D docs/plans/2026-07-07-prior-tcn-sample-efficiency-capacity.md
+ D docs/plans/2026-07-07-prior-vs-tcn-comparison.md
+ D docs/plans/2026-07-14-wing-wrench-theta-sweep-design.md
+ D docs/plans/2026-07-15_repository_migration_plan.md
+ M src/system_identification/artifacts/AGENTS.md
+ M src/system_identification/conventions/AGENTS.md
+ M src/system_identification/evaluation/AGENTS.md
+ M src/system_identification/models/AGENTS.md
+ M src/system_identification/physics/AGENTS.md
+ M src/system_identification/training/AGENTS.md
+?? configs/control/
+?? docs/2026-09-10-plan
+?? docs/2026-09-20-plan.md
+?? docs/analysis/results/conditional_excitation_v1/
+?? docs/analysis/results/control_readiness_stage1/
+?? docs/analysis/results/control_readiness_stage1_incomplete_source_path/
+?? docs/analysis/results/control_readiness_stage2/
+?? docs/analysis/results/control_readiness_stage2_initial_diagnostics/
+?? docs/analysis/results/control_readiness_stage3/
+?? docs/analysis/results/control_readiness_stage4/
+?? docs/analysis/results/expanded_pitch_closed_loop/
+?? docs/analysis/results/flight_chain_failure_attribution/
+?? docs/analysis/results/isaac_learned_backend/
+?? docs/analysis/results/isaac_straight_cases/
+?? docs/analysis/results/isaac_straight_closed_loop/
+?? docs/analysis/results/isaac_straight_flight_chain_v1/controller_configs.json
+?? docs/analysis/results/isaac_straight_flight_chain_v1/paired_common_duration.csv
+?? docs/analysis/results/isaac_straight_flight_chain_v1/straight_flight.png
+?? docs/analysis/results/isaac_straight_flight_chain_v1/traces.csv
+?? docs/analysis/results/isaac_straight_level_cases_v2/cases.pt
+?? docs/analysis/results/isaac_straight_level_closed_loop_v2/
+?? docs/analysis/results/isaac_surrogate_readiness/
+?? docs/analysis/results/isaaclab_integration_audit/
+?? docs/analysis/results/joint_control_v1/
+?? docs/analysis/results/main_v2_dynamics_observability_phase/command_sensitivity.csv
+?? docs/analysis/results/main_v2_dynamics_observability_phase/neighbor_ids.csv
+?? docs/analysis/results/main_v2_dynamics_observability_phase/train_diagnostic_arrays.npz
+?? docs/analysis/results/main_v2_dynamics_observability_phase/train_points.csv
+?? docs/analysis/results/main_v2_dynamics_observability_phase/train_telemetry_arrays.npz
+?? docs/analysis/results/main_v2_dynamics_observability_phase/validation_diagnostic_arrays.npz
+?? docs/analysis/results/main_v2_dynamics_observability_phase/validation_points.csv
+?? docs/analysis/results/main_v2_dynamics_observability_phase/validation_telemetry_arrays.npz
+?? docs/analysis/results/main_v2_free_running_5s/failure_cases.csv
+?? docs/analysis/results/main_v2_free_running_5s/per_rollout.csv
+?? docs/analysis/results/main_v2_free_running_5s/run.log
+?? docs/analysis/results/main_v2_free_running_5s/trajectory_diagnostics.csv
+?? docs/analysis/results/main_v2_increment_supervision/S0/per_rollout.csv
+?? docs/analysis/results/main_v2_increment_supervision/S0/phase_analysis.csv
+?? docs/analysis/results/main_v2_increment_supervision/S1/per_rollout.csv
+?? docs/analysis/results/main_v2_increment_supervision/S1/phase_analysis.csv
+?? docs/analysis/results/main_v2_increment_supervision/phase_analysis.csv
+?? docs/analysis/results/main_v2_increment_supervision/pretraining
+?? docs/analysis/results/main_v2_phase_reference/frequency_integral_per_rollout.csv
+?? docs/analysis/results/main_v2_phase_reference/harmonic_alignment.csv
+?? docs/analysis/results/main_v2_phase_reference/phase_lag_vs_horizon.csv
+?? docs/analysis/results/main_v2_phase_reference/phase_offset_estimation.csv
+?? docs/analysis/results/main_v2_prediction_horizon/S0_A_teacher_refresh.npz
+?? docs/analysis/results/main_v2_prediction_horizon/S0_B_autonomous.npz
+?? docs/analysis/results/main_v2_prediction_horizon/Step5_S1_A_teacher_refresh.npz
+?? docs/analysis/results/main_v2_prediction_horizon/Step5_S1_B_autonomous.npz
+?? docs/analysis/results/main_v2_prediction_horizon/per_origin.csv
+?? docs/analysis/results/main_v2_recurrent_representation/hidden_distance_per_origin.csv
+?? docs/analysis/results/main_v2_recurrent_representation/hidden_ood_per_origin.csv
+?? docs/analysis/results/main_v2_recurrent_representation/native_hidden_ood_per_origin.csv
+?? docs/analysis/results/main_v2_recurrent_representation/native_physical_ood_per_origin.csv
+?? docs/analysis/results/main_v2_recurrent_representation/numeric_report.md
+?? docs/analysis/results/main_v2_recurrent_representation/per_rollout.csv
+?? docs/analysis/results/main_v2_recurrent_representation/physical_ood_per_origin.csv
+?? docs/analysis/results/main_v2_recurrent_representation/train_bank_rows.csv
+?? docs/analysis/results/main_v2_recurrent_representation/variation_per_rollout.csv
+?? docs/analysis/results/main_v2_rollout_consistency/R1/error_growth.csv
+?? docs/analysis/results/main_v2_rollout_consistency/R1/jacobian_train.npz
+?? docs/analysis/results/main_v2_rollout_consistency/R1/jacobian_validation.npz
+?? docs/analysis/results/main_v2_rollout_consistency/R1/per_rollout.csv
+?? docs/analysis/results/main_v2_rollout_consistency/R1/perturbation_train.csv
+?? docs/analysis/results/main_v2_rollout_consistency/R1/perturbation_validation.csv
+?? docs/analysis/results/main_v2_rollout_consistency/R1_evaluation.log
+?? docs/analysis/results/main_v2_rollout_consistency/R1_training.log
+?? docs/analysis/results/main_v2_rollout_consistency/R2/error_growth.csv
+?? docs/analysis/results/main_v2_rollout_consistency/R2/jacobian_train.npz
+?? docs/analysis/results/main_v2_rollout_consistency/R2/jacobian_validation.npz
+?? docs/analysis/results/main_v2_rollout_consistency/R2/per_rollout.csv
+?? docs/analysis/results/main_v2_rollout_consistency/R2/perturbation_train.csv
+?? docs/analysis/results/main_v2_rollout_consistency/R2/perturbation_validation.csv
+?? docs/analysis/results/main_v2_rollout_consistency/R2_evaluation.log
+?? docs/analysis/results/main_v2_rollout_consistency/R2_training.log
+?? docs/analysis/results/main_v2_rollout_consistency/R3-high/error_growth.csv
+?? docs/analysis/results/main_v2_rollout_consistency/R3-high/jacobian_train.npz
+?? docs/analysis/results/main_v2_rollout_consistency/R3-high/jacobian_validation.npz
+?? docs/analysis/results/main_v2_rollout_consistency/R3-high/per_rollout.csv
+?? docs/analysis/results/main_v2_rollout_consistency/R3-high/perturbation_train.csv
+?? docs/analysis/results/main_v2_rollout_consistency/R3-high/perturbation_validation.csv
+?? docs/analysis/results/main_v2_rollout_consistency/R3-high_evaluation.log
+?? docs/analysis/results/main_v2_rollout_consistency/R3-high_training.log
+?? docs/analysis/results/main_v2_rollout_consistency/R3-max/error_growth.csv
+?? docs/analysis/results/main_v2_rollout_consistency/R3-max/jacobian_train.npz
+?? docs/analysis/results/main_v2_rollout_consistency/R3-max/jacobian_validation.npz
+?? docs/analysis/results/main_v2_rollout_consistency/R3-max/per_rollout.csv
+?? docs/analysis/results/main_v2_rollout_consistency/R3-max/perturbation_train.csv
+?? docs/analysis/results/main_v2_rollout_consistency/R3-max/perturbation_validation.csv
+?? docs/analysis/results/main_v2_rollout_consistency/R3-max_evaluation.log
+?? docs/analysis/results/main_v2_rollout_consistency/R3-max_training.log
+?? docs/analysis/results/main_v2_rollout_consistency/R3/error_growth.csv
+?? docs/analysis/results/main_v2_rollout_consistency/R3/jacobian_train.npz
+?? docs/analysis/results/main_v2_rollout_consistency/R3/jacobian_validation.npz
+?? docs/analysis/results/main_v2_rollout_consistency/R3/per_rollout.csv
+?? docs/analysis/results/main_v2_rollout_consistency/R3/perturbation_train.csv
+?? docs/analysis/results/main_v2_rollout_consistency/R3/perturbation_validation.csv
+?? docs/analysis/results/main_v2_rollout_consistency/R3_evaluation.log
+?? docs/analysis/results/main_v2_rollout_consistency/R3_training.log
+?? docs/analysis/results/main_v2_rollout_consistency/S0/error_growth.csv
+?? docs/analysis/results/main_v2_rollout_consistency/S0/jacobian_train.npz
+?? docs/analysis/results/main_v2_rollout_consistency/S0/jacobian_validation.npz
+?? docs/analysis/results/main_v2_rollout_consistency/S0/per_rollout.csv
+?? docs/analysis/results/main_v2_rollout_consistency/S0/perturbation_train.csv
+?? docs/analysis/results/main_v2_rollout_consistency/S0/perturbation_validation.csv
+?? docs/analysis/results/main_v2_rollout_consistency/S0_evaluation.log
+?? docs/analysis/results/main_v2_rollout_consistency/S0_launch.json
+?? docs/analysis/results/main_v2_rollout_consistency/S0_training.log
+?? docs/analysis/results/main_v2_rollout_consistency/Step5_S1/error_growth.csv
+?? docs/analysis/results/main_v2_rollout_consistency/Step5_S1/jacobian_train.npz
+?? docs/analysis/results/main_v2_rollout_consistency/Step5_S1/jacobian_validation.npz
+?? docs/analysis/results/main_v2_rollout_consistency/Step5_S1/per_rollout.csv
+?? docs/analysis/results/main_v2_rollout_consistency/Step5_S1/perturbation_train.csv
+?? docs/analysis/results/main_v2_rollout_consistency/Step5_S1/perturbation_validation.csv
+?? docs/analysis/results/main_v2_rollout_consistency/Step5_S1_evaluation.log
+?? docs/analysis/results/main_v2_rollout_consistency/launch.json
+?? docs/analysis/results/main_v2_rollout_consistency/loss_component_analysis.log
+?? docs/analysis/results/main_v2_rollout_consistency/report_generation.log
+?? docs/analysis/results/main_v2_rollout_consistency/run.log
+?? docs/analysis/results/main_v2_training_objective_ablation/A0_baseline_retrain/per_rollout.csv
+?? docs/analysis/results/main_v2_training_objective_ablation/A0_baseline_retrain/phase_analysis.csv
+?? docs/analysis/results/main_v2_training_objective_ablation/A1_longer_rollout/per_rollout.csv
+?? docs/analysis/results/main_v2_training_objective_ablation/A1_longer_rollout/phase_analysis.csv
+?? docs/analysis/results/main_v2_training_objective_ablation/A2_multi_horizon/per_rollout.csv
+?? docs/analysis/results/main_v2_training_objective_ablation/A2_multi_horizon/phase_analysis.csv
+?? docs/analysis/results/main_v2_training_objective_ablation/A3_dynamic_delta/per_rollout.csv
+?? docs/analysis/results/main_v2_training_objective_ablation/A3_dynamic_delta/phase_analysis.csv
+?? docs/analysis/results/main_v2_training_objective_ablation/phase_analysis.csv
+?? docs/analysis/results/main_v2_training_objective_ablation/pretraining/train/free_run.npz
+?? docs/analysis/results/main_v2_training_objective_ablation/pretraining/train/local_spectra.csv
+?? docs/analysis/results/main_v2_training_objective_ablation/pretraining/train/phase_analysis.csv
+?? docs/analysis/results/main_v2_training_objective_ablation/pretraining/validation/free_run.npz
+?? docs/analysis/results/main_v2_training_objective_ablation/pretraining/validation/local_spectra.csv
+?? docs/analysis/results/main_v2_training_objective_ablation/pretraining/validation/phase_analysis.csv
+?? docs/analysis/results/paper_baseline_comparison_v1/
+?? docs/analysis/results/pitch_allocator_audit/
+?? docs/analysis/results/raw_log_inventory_20260920/
+?? docs/analysis/results/september_expanded_main_v2/
+?? docs/analysis/results/september_expansion/
+?? docs/analysis/results/straight_failure_diagnosis/
+?? docs/analysis/results/surrogate_input_information/
+?? docs/analysis/results/surrogate_pitch_closed_loop/
+?? docs/analysis/results/surrogate_pitch_closed_loop_v2/
+?? docs/plans/2026-09-14plan
+?? docs/results/2026-09-14-main-v2-free-running.md
+?? firmware/
+?? pelican-bike.html
+?? scripts/ablate_flight_chain_rudder.py
+?? scripts/attribute_flight_chain_failures.py
+?? scripts/audit_conditional_excitation.py
+?? scripts/audit_control_readiness_stage1.py
+?? scripts/audit_control_readiness_stage2_bandwidth.py
+?? scripts/audit_excitation_timescales.py
+?? scripts/audit_pitch_allocator.py
+?? scripts/build_expanded_september.py
+?? scripts/check_joint_control_feedthrough.py
+?? scripts/check_pitch_identification_logs.py
+?? scripts/check_px4_pitch_cycle_records.py
+?? scripts/diagnose_straight_failure.py
+?? scripts/diagnose_surrogate_input_information.py
+?? scripts/evaluate_joint_control.py
+?? scripts/finalize_paper_baseline_comparison.py
+?? scripts/prepare_px4_pitch_telemetry.py
+?? scripts/probe_flight_chain_authority.py
+?? scripts/replay_straight_controller_diagnostics.py
+?? scripts/report_conditional_excitation.py
+?? scripts/report_flight_chain_failures.py
+?? scripts/report_joint_control.py
+?? scripts/report_paper_baseline_comparison.py
+?? scripts/run_control_readiness_stage3.py
+?? scripts/run_isaac_learned_state_smoke.py
+?? scripts/run_paper_baseline_comparison.py
+?? scripts/run_surrogate_pitch_closed_loop.py
+?? scripts/summarize_control_readiness_stage1.py
+?? scripts/train_expanded_september.py
+?? scripts/train_joint_control.py
+?? scripts/validate_isaac_surrogate_readiness.py
+?? scripts/verify_px4_pitch_telemetry.py
+?? src/system_identification/evaluation/paper_baselines.py
+?? src/system_identification/models/paper_baselines.py
+?? tests/test_conditional_excitation.py
+?? tests/test_input_information_diagnostic.py
+?? tests/test_joint_control_model.py
+?? tests/test_paper_baselines.py
+?? tests/test_pitch_identification_precheck.py
+?? tests/test_px4_pitch_cycle_records.py

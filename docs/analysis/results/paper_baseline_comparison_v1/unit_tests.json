@@ -1,0 +1,13 @@
+{
+  "command": "/home/zn/anaconda3/envs/flap-train-gpu/bin/python -m pytest -q tests/test_paper_baselines.py tests/test_trajectory_prediction_baselines.py tests/test_trajectory_main_v2.py tests/test_main_v2_increment.py",
+  "passed": 29,
+  "failed": 0,
+  "reported_duration_s": 2.67,
+  "scope": "baseline adapters, integration, leakage guards, flight aggregation and existing Main V2/increment regressions",
+  "test_source_sha256": {
+    "tests/test_paper_baselines.py": "5f85d990b6f154612edd31e597eb43a293239d031b4419eaaca2f32e52580731",
+    "tests/test_trajectory_prediction_baselines.py": "353efdef9308807535a5103a1c54434234745e488e4707158d5724daee5fc8d8",
+    "tests/test_trajectory_main_v2.py": "482df680e8ad62adcbf465111160ee9cd50aa6dc813b1a52216aa5da9026f086",
+    "tests/test_main_v2_increment.py": "23d7bb65b0268f2b6f39c8ec3d4297d393eca7b7e8c6ddab4a6dab4e4db314e0"
+  }
+}

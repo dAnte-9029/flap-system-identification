@@ -1,0 +1,68 @@
+{
+  "checks": {
+    "train": {
+      "windows": 28293,
+      "flights": 41,
+      "full_history": true,
+      "finite": true,
+      "nominal_dt_s": 0.02,
+      "dt_min_s": 0.008995,
+      "dt_max_s": 0.049200999999999995,
+      "history_span_min_s": 0.48860099999999995,
+      "history_span_max_s": 0.522376,
+      "endpoint_timestamps_match_integrated_dt": true,
+      "max_truth_quaternion_norm_error": 3.3306690738754696e-16,
+      "future_source_timestamp_counts": {
+        "phase_source_timestamp_us": 0,
+        "hall_source_timestamp_us": 0
+      }
+    },
+    "validation": {
+      "windows": 2582,
+      "flights": 17,
+      "full_history": true,
+      "finite": true,
+      "nominal_dt_s": 0.02,
+      "dt_min_s": 0.008898999999999999,
+      "dt_max_s": 0.049855,
+      "history_span_min_s": 0.48885599999999996,
+      "history_span_max_s": 0.509316,
+      "endpoint_timestamps_match_integrated_dt": true,
+      "max_truth_quaternion_norm_error": 3.3306690738754696e-16,
+      "future_source_timestamp_counts": {
+        "phase_source_timestamp_us": 0,
+        "hall_source_timestamp_us": 0
+      }
+    }
+  },
+  "parameter_counts": {
+    "B0_ConstantVelocity": {
+      "total": 0,
+      "trainable": 0
+    },
+    "B1_MLP": {
+      "total": 5703,
+      "trainable": 5703
+    },
+    "B2_StandardGRU": {
+      "total": 21383,
+      "trainable": 21383
+    },
+    "B3_ActuatorAwareGRU": {
+      "total": 21376,
+      "trainable": 1017,
+      "base_stage_trainable": 20359
+    }
+  },
+  "baseline_reuse": {
+    "B0": "direct",
+    "B1": "reuse MLP structure, new rollout adapter/retrain",
+    "B2": "direct existing controlled GRU/retrain",
+    "B3": "frozen reuse"
+  },
+  "expected_training": [
+    "B1_MLP",
+    "B2_StandardGRU"
+  ],
+  "cost_reference": "Ours recorded 1827.4 s total; approximately 15-30 min per new baseline on cuda:1; pilot only"
+}
