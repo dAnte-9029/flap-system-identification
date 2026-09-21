@@ -1,0 +1,430 @@
+{
+  "status": "complete",
+  "completed_at_unix": 1789984179.3933728,
+  "training_completed_seeds": [
+    23,
+    42
+  ],
+  "reused_seeds": [
+    17
+  ],
+  "training_runs": [
+    {
+      "seed": 17,
+      "checkpoint_path": "artifacts/paper_baseline_comparison_v1/B2_StandardGRU.pt",
+      "checkpoint_sha256": "f9895418b7dd2a2757dde8d740109ab42dae258c593fd5902f0076a3faeb0e26",
+      "final_epoch": 65,
+      "best_epoch": null,
+      "final_train_loss": 0.3428593127113112,
+      "final_val_loss": 0.37574528461274576,
+      "training_time_s": 1816.3941045831887,
+      "status": "reused_complete"
+    },
+    {
+      "seed": 23,
+      "checkpoint_path": "artifacts/paper_standard_gru_multiseed_v1/seed23/model.pt",
+      "checkpoint_sha256": "1cfbb865db55e3fc7c248eff4de95892fa9ee9155ee8e81c0318a9021b7d8b03",
+      "final_epoch": 65,
+      "best_epoch": null,
+      "final_train_loss": 0.342157386901948,
+      "final_val_loss": 0.38443940000696575,
+      "training_time_s": 5353.385570913553,
+      "status": "complete"
+    },
+    {
+      "seed": 42,
+      "checkpoint_path": "artifacts/paper_standard_gru_multiseed_v1/seed42/model.pt",
+      "checkpoint_sha256": "98fd6266bdc8926055c7f8b0dc2f37a4333fa92f55f336fb4cba4d3480324f86",
+      "final_epoch": 65,
+      "best_epoch": null,
+      "final_train_loss": 0.3417657966583096,
+      "final_val_loss": 0.37851807807509424,
+      "training_time_s": 5334.5454798825085,
+      "status": "complete"
+    }
+  ],
+  "artifact_sha256": {
+    "docs/analysis/results/paper_standard_gru_multiseed_v1/seed_robustness_500ms_position_rmse_m.pdf": "2c88b4da517dcc44acb5fa0b542ae6e60030fc5a629ebd96c0f71877a9afc113",
+    "docs/analysis/results/paper_standard_gru_multiseed_v1/seed_robustness_500ms_attitude_error_deg.png": "bb6423eeee4fb2786de23b7a0d524358a7d7f249ea480fe9054fd16ad51f9712",
+    "docs/analysis/results/paper_standard_gru_multiseed_v1/multiseed_summary.csv": "43ba34997c98ea97ab29e6c509b5386135223466cb90adb94d14876480f2ebc5",
+    "docs/analysis/results/paper_standard_gru_multiseed_v1/seed_robustness_500ms_body_rate_rmse_rad_s.png": "5bc7f44774d5256e30c52d86d55432808af92bbf7324552d2b6d78ef8e1ba170",
+    "docs/analysis/results/paper_standard_gru_multiseed_v1/protocol.json": "86f5fceac7838e7f2369e6b854618eec851e652d5cde52cea4403f04063cab1e",
+    "docs/analysis/results/paper_standard_gru_multiseed_v1/tests.log": "7605d5650cc9cb9f28e7add2b601886fc3237ff4ea9b88e55e76ae9973c7bc48",
+    "docs/analysis/results/paper_standard_gru_multiseed_v1/error_growth.csv": "e7bd57265134daa0c1f299ebbb8af8eb728b67a735f340014a24ff36c818dabc",
+    "docs/analysis/results/paper_standard_gru_multiseed_v1/per_seed_summary.csv": "ea337c2466472a6d8a5f829f5990730077be712a1e186d6177f0a2902625065b",
+    "docs/analysis/results/paper_standard_gru_multiseed_v1/seed_robustness_500ms_body_rate_rmse_rad_s.pdf": "feea82d530c84222f13409a2746e9e34847578a07628c9b76b9f70a877e8bb5b",
+    "docs/analysis/results/paper_standard_gru_multiseed_v1/seed_robustness_500ms_position_rmse_m.png": "e3b5f139dabeea39d7d4262a475ae91bc14cef7173942a53ebbe30de4df29369",
+    "docs/analysis/results/paper_standard_gru_multiseed_v1/error_vs_horizon_velocity_rmse_m_s.pdf": "8ce42c623f955009523b08a2c1638289ddea67a0d27361106b8ba6c6fa52ba4f",
+    "docs/analysis/results/paper_standard_gru_multiseed_v1/error_vs_horizon_velocity_rmse_m_s.png": "40f31dd2020f6d4c59171d6af21b1aef0ef4f3d3e6e6d4d15adbd2feef5e2bfb",
+    "docs/analysis/results/paper_standard_gru_multiseed_v1/error_vs_horizon_body_rate_rmse_rad_s.png": "34ca85a1a0eb86cbecba59c8aed0463a7cf6649ead1814faf88480068f2c51dd",
+    "docs/analysis/results/paper_standard_gru_multiseed_v1/report.md": "1e70df96568def97850f7da299e9181ed3b98fa11ba81a233c5d443b97000368",
+    "docs/analysis/results/paper_standard_gru_multiseed_v1/error_vs_horizon_attitude_error_deg.pdf": "5e98d33260f67e7d46e25965ec56a34f07cb6f972f74d3742e1c378d18e33b00",
+    "docs/analysis/results/paper_standard_gru_multiseed_v1/per_flight_wide.csv": "bd683d1987fd1e19169981fcfbd48770ee2940232fec4f6fd9ff0f0b67b94e8d",
+    "docs/analysis/results/paper_standard_gru_multiseed_v1/interpretation.json": "30c1cc5dc87e40191997cc6d51edbd8f9702e7694a104bc9bddf3a516608d602",
+    "docs/analysis/results/paper_standard_gru_multiseed_v1/audit.json": "a277ca057bb51257f29193879c819a1a969f63141a8eb03be59c191b89675c16",
+    "docs/analysis/results/paper_standard_gru_multiseed_v1/seed_robustness_500ms_attitude_error_deg.pdf": "87e6a7dfcfa0b321d9e8113c2788c3fb115ae929537e261dd50cb18be77fb205",
+    "docs/analysis/results/paper_standard_gru_multiseed_v1/error_vs_horizon_body_rate_rmse_rad_s.pdf": "0efd64a6000f471b3845859e5e8f4836497a1df22519c9d90b339c2de72f8f38",
+    "docs/analysis/results/paper_standard_gru_multiseed_v1/error_vs_horizon_attitude_error_deg.png": "5082150a6e113fa202b310912d1c709f41d6e1ca2bdcb8b0397b44e70ab40e39",
+    "docs/analysis/results/paper_standard_gru_multiseed_v1/error_vs_horizon_position_rmse_m.png": "c2025652735324d57e2cc6441d782639c4d1d331b09a337ab36045fbf450d504",
+    "docs/analysis/results/paper_standard_gru_multiseed_v1/training_runs.csv": "634a515a11d97d4faa7e6099a8639ea7d1036f97f5f6d5f0a90dcecd4a515cc6",
+    "docs/analysis/results/paper_standard_gru_multiseed_v1/sanity_checks.json": "5890a418fb8d00fe9e84e9f5dbc1a11c63a31a12d28a8fb5cc55168a301b4125",
+    "docs/analysis/results/paper_standard_gru_multiseed_v1/per_flight_per_seed.csv": "c6efce8fd54f23f2dc262af23709588db393b536556b98772d5ff589a29049b0",
+    "docs/analysis/results/paper_standard_gru_multiseed_v1/git_status_at_launch.txt": "2a2742d8f2f9c5b382e64181fd4b747c4da656674f29b85443c98d01423e281d",
+    "docs/analysis/results/paper_standard_gru_multiseed_v1/preflight.json": "f4769057dfc909f10344d9ea34762ac73cefb068dc6a7fcff2cfa8d8b3eedb38",
+    "docs/analysis/results/paper_standard_gru_multiseed_v1/error_vs_horizon_position_rmse_m.pdf": "163742bd7acb7961573507e073f602cc9b0e3505109768f13f68b72c325e9dd7",
+    "docs/analysis/results/paper_standard_gru_multiseed_v1/git_status_at_completion.txt": "2a2742d8f2f9c5b382e64181fd4b747c4da656674f29b85443c98d01423e281d",
+    "docs/analysis/results/paper_standard_gru_multiseed_v1/across_flights_per_seed.csv": "e0f091a5bc1fa3a37d5962d1358c44ef2ad5e50e394bf5f1e61fedb79b09467f",
+    "docs/analysis/results/paper_standard_gru_multiseed_v1/seed_robustness_500ms_velocity_rmse_m_s.pdf": "54706fdd6ec8f92eb19dca18b857956618f32b41d7548f9c90e0c9136914070b",
+    "docs/analysis/results/paper_standard_gru_multiseed_v1/seed_robustness_500ms_velocity_rmse_m_s.png": "cd919e3db92e4fd4a9b679f07b6e617c6b899627dcebe7d339868e4950460b02",
+    "docs/analysis/results/paper_standard_gru_multiseed_v1/tests.json": "64edcacce1f5b996b73d4acc6acfdbed82ce0f37b8391106e738c3ed710f11ce",
+    "artifacts/paper_standard_gru_multiseed_v1/seed23/status.json": "b7047610408a50389072b2a020e2c3add72f37d620ea165d8d6a2b23cfa01994",
+    "artifacts/paper_standard_gru_multiseed_v1/seed23/predictions.npz": "d504874f68cfba752bc3e1d526cecca82bf0c5ca18cbdcfb3105efbbd9e21e72",
+    "artifacts/paper_standard_gru_multiseed_v1/seed23/continuation_history.csv": "50aa1d36f19d5f5f2edadbe5f3ab60c818d4034a638139bf677cf0879d99d9ca",
+    "artifacts/paper_standard_gru_multiseed_v1/seed23/per_origin.csv": "a33061ba82932c694fb1477208d0f0741ec4e410328b271eddc5b3b59ec173e5",
+    "artifacts/paper_standard_gru_multiseed_v1/seed23/model.pt": "1cfbb865db55e3fc7c248eff4de95892fa9ee9155ee8e81c0318a9021b7d8b03",
+    "artifacts/paper_standard_gru_multiseed_v1/seed23/runtime.json": "ec30e6c499088506d4272383b027e12db9a9370020fe070e57db85247b1a14fd",
+    "artifacts/paper_standard_gru_multiseed_v1/seed23/continuation.pt": "6a9307526ae27fabea218a5693982f546be14864382a63ca9671432e42d94528",
+    "artifacts/paper_standard_gru_multiseed_v1/seed23/base.pt": "37d311ed867142dff07ec3dd9698cae26d693171b8857aa6fa0c9d458b7d7b61",
+    "artifacts/paper_standard_gru_multiseed_v1/seed23/base_history.csv": "46eff1735937b8c15d4e0832957c5e356ba203fa88ed38980f03df20462274eb",
+    "artifacts/paper_standard_gru_multiseed_v1/seed42/status.json": "7e73efb0860754c8187c695c3ef2b6f94d61f9a94e642abda3f1df89e66c0763",
+    "artifacts/paper_standard_gru_multiseed_v1/seed42/predictions.npz": "2fa6f59d1bffd69871b5051f62ea5b483718a985ece856ad2ed54cb9945d47b3",
+    "artifacts/paper_standard_gru_multiseed_v1/seed42/continuation_history.csv": "f629567598f5ede224744e100d9d74b3cd80d5d8f245a502374eaa509a0ccfb7",
+    "artifacts/paper_standard_gru_multiseed_v1/seed42/per_origin.csv": "8e3b5662fa94b0019cbc49603ed7ddc97f846df999d610fcd585303773ba28ad",
+    "artifacts/paper_standard_gru_multiseed_v1/seed42/model.pt": "98fd6266bdc8926055c7f8b0dc2f37a4333fa92f55f336fb4cba4d3480324f86",
+    "artifacts/paper_standard_gru_multiseed_v1/seed42/runtime.json": "ff6d0678a089a1c3025cec0a88c54749daf5e0a0f96c0b12b002d9b92ef056b6",
+    "artifacts/paper_standard_gru_multiseed_v1/seed42/continuation.pt": "0a90ac229e5e53e908a9ff590d3f7d3ed3d0a3bbebcfcb389c692a7b1f0f2162",
+    "artifacts/paper_standard_gru_multiseed_v1/seed42/base.pt": "464661a0c97e1422df35a4e5c7a611340aa830a599b846bf9971877de918abf5",
+    "artifacts/paper_standard_gru_multiseed_v1/seed42/base_history.csv": "76e148970230341fc4e16917ba3aa35a55d73074e266d970adaf92f7e1f7fac5"
+  },
+  "normalization_sha256": "f10a427d04d54b98e5d1e4e0995b3b8562347f54313c90cd64147fa5ae2710c8",
+  "train_window_sha256": "3a17f717f89367d0f673a2f73f3df246c4e332b9fac88385ce269df28854845b",
+  "validation_origin_sha256": "d9677c58fe0f9f23b12699a35c78e1b0961ddcb3ec5e5814e9f18392c501e3d3",
+  "tests": {
+    "command": [
+      "/home/zn/anaconda3/envs/flap-train-gpu/bin/python",
+      "-m",
+      "pytest",
+      "-q",
+      "tests/test_paper_standard_gru_multiseed.py",
+      "tests/test_paper_baselines.py"
+    ],
+    "returncode": 0,
+    "elapsed_s": 10.930819749832153,
+    "output": "...................                                                      [100%]\n19 passed in 8.80s\n"
+  },
+  "sanity_checks": "sanity_checks.json",
+  "robustness": {
+    "decision": "Multi-seed robustness passed",
+    "screen_passed": true,
+    "screen": {
+      "description": "predeclared descriptive screen, not significance test or model selection",
+      "max_primary_cv": 0.2,
+      "max_1s_cv": 0.2,
+      "require_all_1s_errors_above_100ms": true,
+      "require_consistent_primary_cohort_gap_sign": true
+    },
+    "primary_max_cv": 0.03829489013512584,
+    "extended_max_cv": 0.0463710809360509,
+    "greatest_primary_relative_seed_sensitivity": {
+      "metric": "velocity_rmse_m_s",
+      "cohort": "Sep17",
+      "cv": 0.03829489013512584
+    },
+    "cohort_gaps": {
+      "position_rmse_m": {
+        "sep17_minus_sep7": {
+          "17": -0.12236414087967781,
+          "23": -0.11436945373373439,
+          "42": -0.1208932441618541
+        },
+        "consistent_sign": true
+      },
+      "velocity_rmse_m_s": {
+        "sep17_minus_sep7": {
+          "17": 0.01857263239469109,
+          "23": 0.045319702475497714,
+          "42": 0.028602240905935827
+        },
+        "consistent_sign": true
+      },
+      "attitude_error_deg": {
+        "sep17_minus_sep7": {
+          "17": 0.9304735740368626,
+          "23": 0.7873859531645757,
+          "42": 1.0651069903185766
+        },
+        "consistent_sign": true
+      },
+      "body_rate_rmse_rad_s": {
+        "sep17_minus_sep7": {
+          "17": -0.06917246686575984,
+          "23": -0.06199070430229048,
+          "42": -0.0708978714219346
+        },
+        "consistent_sign": true
+      }
+    },
+    "error_growth": [
+      {
+        "seed": 17,
+        "cohort": "ALL",
+        "metric": "position_rmse_m",
+        "ratio_1s_to_100ms": 13.319546905088346,
+        "ratio_1s_to_500ms": 2.455519878195131
+      },
+      {
+        "seed": 17,
+        "cohort": "ALL",
+        "metric": "velocity_rmse_m_s",
+        "ratio_1s_to_100ms": 4.557893286532292,
+        "ratio_1s_to_500ms": 1.8215307732494181
+      },
+      {
+        "seed": 17,
+        "cohort": "ALL",
+        "metric": "attitude_error_deg",
+        "ratio_1s_to_100ms": 4.8708057454121345,
+        "ratio_1s_to_500ms": 1.6718159515328364
+      },
+      {
+        "seed": 17,
+        "cohort": "ALL",
+        "metric": "body_rate_rmse_rad_s",
+        "ratio_1s_to_100ms": 1.1361869347449598,
+        "ratio_1s_to_500ms": 1.0321532622245688
+      },
+      {
+        "seed": 17,
+        "cohort": "Sep17",
+        "metric": "position_rmse_m",
+        "ratio_1s_to_100ms": 19.09009534997112,
+        "ratio_1s_to_500ms": 2.8149333409638646
+      },
+      {
+        "seed": 17,
+        "cohort": "Sep17",
+        "metric": "velocity_rmse_m_s",
+        "ratio_1s_to_100ms": 4.521795690777287,
+        "ratio_1s_to_500ms": 1.868076085912166
+      },
+      {
+        "seed": 17,
+        "cohort": "Sep17",
+        "metric": "attitude_error_deg",
+        "ratio_1s_to_100ms": 5.27388156196813,
+        "ratio_1s_to_500ms": 1.6957639511834748
+      },
+      {
+        "seed": 17,
+        "cohort": "Sep17",
+        "metric": "body_rate_rmse_rad_s",
+        "ratio_1s_to_100ms": 1.154844627542494,
+        "ratio_1s_to_500ms": 1.0830336310429116
+      },
+      {
+        "seed": 17,
+        "cohort": "Sep7",
+        "metric": "position_rmse_m",
+        "ratio_1s_to_100ms": 11.403410237535432,
+        "ratio_1s_to_500ms": 2.292787920092231
+      },
+      {
+        "seed": 17,
+        "cohort": "Sep7",
+        "metric": "velocity_rmse_m_s",
+        "ratio_1s_to_100ms": 4.594003166105679,
+        "ratio_1s_to_500ms": 1.7779134102924123
+      },
+      {
+        "seed": 17,
+        "cohort": "Sep7",
+        "metric": "attitude_error_deg",
+        "ratio_1s_to_100ms": 4.476210408618332,
+        "ratio_1s_to_500ms": 1.6450205507026465
+      },
+      {
+        "seed": 17,
+        "cohort": "Sep7",
+        "metric": "body_rate_rmse_rad_s",
+        "ratio_1s_to_100ms": 1.120541501169592,
+        "ratio_1s_to_500ms": 0.991882146822572
+      },
+      {
+        "seed": 23,
+        "cohort": "ALL",
+        "metric": "position_rmse_m",
+        "ratio_1s_to_100ms": 13.56274697381592,
+        "ratio_1s_to_500ms": 2.4749136340656896
+      },
+      {
+        "seed": 23,
+        "cohort": "ALL",
+        "metric": "velocity_rmse_m_s",
+        "ratio_1s_to_100ms": 4.367313725742337,
+        "ratio_1s_to_500ms": 1.787599418584918
+      },
+      {
+        "seed": 23,
+        "cohort": "ALL",
+        "metric": "attitude_error_deg",
+        "ratio_1s_to_100ms": 4.592383987710827,
+        "ratio_1s_to_500ms": 1.605236890191672
+      },
+      {
+        "seed": 23,
+        "cohort": "ALL",
+        "metric": "body_rate_rmse_rad_s",
+        "ratio_1s_to_100ms": 1.1644405675595744,
+        "ratio_1s_to_500ms": 1.0593915041731001
+      },
+      {
+        "seed": 23,
+        "cohort": "Sep17",
+        "metric": "position_rmse_m",
+        "ratio_1s_to_100ms": 20.128012642339698,
+        "ratio_1s_to_500ms": 2.8690878761515974
+      },
+      {
+        "seed": 23,
+        "cohort": "Sep17",
+        "metric": "velocity_rmse_m_s",
+        "ratio_1s_to_100ms": 4.379372634422482,
+        "ratio_1s_to_500ms": 1.784616959100341
+      },
+      {
+        "seed": 23,
+        "cohort": "Sep17",
+        "metric": "attitude_error_deg",
+        "ratio_1s_to_100ms": 4.85905924534121,
+        "ratio_1s_to_500ms": 1.5965881876612353
+      },
+      {
+        "seed": 23,
+        "cohort": "Sep17",
+        "metric": "body_rate_rmse_rad_s",
+        "ratio_1s_to_100ms": 1.2117509596295488,
+        "ratio_1s_to_500ms": 1.125886777135509
+      },
+      {
+        "seed": 23,
+        "cohort": "Sep7",
+        "metric": "position_rmse_m",
+        "ratio_1s_to_100ms": 11.337446881963906,
+        "ratio_1s_to_500ms": 2.2859279765374043
+      },
+      {
+        "seed": 23,
+        "cohort": "Sep7",
+        "metric": "velocity_rmse_m_s",
+        "ratio_1s_to_100ms": 4.355288993104272,
+        "ratio_1s_to_500ms": 1.7905998965179695
+      },
+      {
+        "seed": 23,
+        "cohort": "Sep7",
+        "metric": "attitude_error_deg",
+        "ratio_1s_to_100ms": 4.338606484815458,
+        "ratio_1s_to_500ms": 1.614558354133086
+      },
+      {
+        "seed": 23,
+        "cohort": "Sep7",
+        "metric": "body_rate_rmse_rad_s",
+        "ratio_1s_to_100ms": 1.125068939374698,
+        "ratio_1s_to_500ms": 1.006130257270598
+      },
+      {
+        "seed": 42,
+        "cohort": "ALL",
+        "metric": "position_rmse_m",
+        "ratio_1s_to_100ms": 13.355985431296327,
+        "ratio_1s_to_500ms": 2.460635049484065
+      },
+      {
+        "seed": 42,
+        "cohort": "ALL",
+        "metric": "velocity_rmse_m_s",
+        "ratio_1s_to_100ms": 4.48904383909911,
+        "ratio_1s_to_500ms": 1.830548486293156
+      },
+      {
+        "seed": 42,
+        "cohort": "ALL",
+        "metric": "attitude_error_deg",
+        "ratio_1s_to_100ms": 4.8062518177173965,
+        "ratio_1s_to_500ms": 1.6460848256967553
+      },
+      {
+        "seed": 42,
+        "cohort": "ALL",
+        "metric": "body_rate_rmse_rad_s",
+        "ratio_1s_to_100ms": 1.1162569370164352,
+        "ratio_1s_to_500ms": 1.0315894134768895
+      },
+      {
+        "seed": 42,
+        "cohort": "Sep17",
+        "metric": "position_rmse_m",
+        "ratio_1s_to_100ms": 19.58328967491486,
+        "ratio_1s_to_500ms": 2.8580408546233365
+      },
+      {
+        "seed": 42,
+        "cohort": "Sep17",
+        "metric": "velocity_rmse_m_s",
+        "ratio_1s_to_100ms": 4.572706101564437,
+        "ratio_1s_to_500ms": 1.876679304381452
+      },
+      {
+        "seed": 42,
+        "cohort": "Sep17",
+        "metric": "attitude_error_deg",
+        "ratio_1s_to_100ms": 5.310084884153675,
+        "ratio_1s_to_500ms": 1.6734560189691297
+      },
+      {
+        "seed": 42,
+        "cohort": "Sep17",
+        "metric": "body_rate_rmse_rad_s",
+        "ratio_1s_to_100ms": 1.1455396475679964,
+        "ratio_1s_to_500ms": 1.0927661194318363
+      },
+      {
+        "seed": 42,
+        "cohort": "Sep7",
+        "metric": "position_rmse_m",
+        "ratio_1s_to_100ms": 11.3045339135353,
+        "ratio_1s_to_500ms": 2.2797328327785142
+      },
+      {
+        "seed": 42,
+        "cohort": "Sep7",
+        "metric": "velocity_rmse_m_s",
+        "ratio_1s_to_100ms": 4.407432270875615,
+        "ratio_1s_to_500ms": 1.7861140136849951
+      },
+      {
+        "seed": 42,
+        "cohort": "Sep7",
+        "metric": "attitude_error_deg",
+        "ratio_1s_to_100ms": 4.31789219236434,
+        "ratio_1s_to_500ms": 1.614605273282183
+      },
+      {
+        "seed": 42,
+        "cohort": "Sep7",
+        "metric": "body_rate_rmse_rad_s",
+        "ratio_1s_to_100ms": 1.091807229715499,
+        "ratio_1s_to_500ms": 0.983361484756003
+      }
+    ],
+    "growth_1s_above_100ms_all_seeds_cohorts": true,
+    "failure": "No failed or nonfinite seeds in completed results. Large finite variation is reported, not rerun.",
+    "statistical_claim": "Descriptive n=3 screen; no significance claim. Thresholds frozen before training.",
+    "next_candidate": "History Length Ablation",
+    "next_task_started": false
+  },
+  "sealed_test_opened_this_run": false,
+  "reserved_evaluation_opened_this_run": false,
+  "ablation_started": false
+}

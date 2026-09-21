@@ -1,0 +1,311 @@
+{
+  "decision": "Multi-seed robustness passed",
+  "screen_passed": true,
+  "screen": {
+    "description": "predeclared descriptive screen, not significance test or model selection",
+    "max_primary_cv": 0.2,
+    "max_1s_cv": 0.2,
+    "require_all_1s_errors_above_100ms": true,
+    "require_consistent_primary_cohort_gap_sign": true
+  },
+  "primary_max_cv": 0.03829489013512584,
+  "extended_max_cv": 0.0463710809360509,
+  "greatest_primary_relative_seed_sensitivity": {
+    "metric": "velocity_rmse_m_s",
+    "cohort": "Sep17",
+    "cv": 0.03829489013512584
+  },
+  "cohort_gaps": {
+    "position_rmse_m": {
+      "sep17_minus_sep7": {
+        "17": -0.12236414087967781,
+        "23": -0.11436945373373439,
+        "42": -0.1208932441618541
+      },
+      "consistent_sign": true
+    },
+    "velocity_rmse_m_s": {
+      "sep17_minus_sep7": {
+        "17": 0.01857263239469109,
+        "23": 0.045319702475497714,
+        "42": 0.028602240905935827
+      },
+      "consistent_sign": true
+    },
+    "attitude_error_deg": {
+      "sep17_minus_sep7": {
+        "17": 0.9304735740368626,
+        "23": 0.7873859531645757,
+        "42": 1.0651069903185766
+      },
+      "consistent_sign": true
+    },
+    "body_rate_rmse_rad_s": {
+      "sep17_minus_sep7": {
+        "17": -0.06917246686575984,
+        "23": -0.06199070430229048,
+        "42": -0.0708978714219346
+      },
+      "consistent_sign": true
+    }
+  },
+  "error_growth": [
+    {
+      "seed": 17,
+      "cohort": "ALL",
+      "metric": "position_rmse_m",
+      "ratio_1s_to_100ms": 13.319546905088346,
+      "ratio_1s_to_500ms": 2.455519878195131
+    },
+    {
+      "seed": 17,
+      "cohort": "ALL",
+      "metric": "velocity_rmse_m_s",
+      "ratio_1s_to_100ms": 4.557893286532292,
+      "ratio_1s_to_500ms": 1.8215307732494181
+    },
+    {
+      "seed": 17,
+      "cohort": "ALL",
+      "metric": "attitude_error_deg",
+      "ratio_1s_to_100ms": 4.8708057454121345,
+      "ratio_1s_to_500ms": 1.6718159515328364
+    },
+    {
+      "seed": 17,
+      "cohort": "ALL",
+      "metric": "body_rate_rmse_rad_s",
+      "ratio_1s_to_100ms": 1.1361869347449598,
+      "ratio_1s_to_500ms": 1.0321532622245688
+    },
+    {
+      "seed": 17,
+      "cohort": "Sep17",
+      "metric": "position_rmse_m",
+      "ratio_1s_to_100ms": 19.09009534997112,
+      "ratio_1s_to_500ms": 2.8149333409638646
+    },
+    {
+      "seed": 17,
+      "cohort": "Sep17",
+      "metric": "velocity_rmse_m_s",
+      "ratio_1s_to_100ms": 4.521795690777287,
+      "ratio_1s_to_500ms": 1.868076085912166
+    },
+    {
+      "seed": 17,
+      "cohort": "Sep17",
+      "metric": "attitude_error_deg",
+      "ratio_1s_to_100ms": 5.27388156196813,
+      "ratio_1s_to_500ms": 1.6957639511834748
+    },
+    {
+      "seed": 17,
+      "cohort": "Sep17",
+      "metric": "body_rate_rmse_rad_s",
+      "ratio_1s_to_100ms": 1.154844627542494,
+      "ratio_1s_to_500ms": 1.0830336310429116
+    },
+    {
+      "seed": 17,
+      "cohort": "Sep7",
+      "metric": "position_rmse_m",
+      "ratio_1s_to_100ms": 11.403410237535432,
+      "ratio_1s_to_500ms": 2.292787920092231
+    },
+    {
+      "seed": 17,
+      "cohort": "Sep7",
+      "metric": "velocity_rmse_m_s",
+      "ratio_1s_to_100ms": 4.594003166105679,
+      "ratio_1s_to_500ms": 1.7779134102924123
+    },
+    {
+      "seed": 17,
+      "cohort": "Sep7",
+      "metric": "attitude_error_deg",
+      "ratio_1s_to_100ms": 4.476210408618332,
+      "ratio_1s_to_500ms": 1.6450205507026465
+    },
+    {
+      "seed": 17,
+      "cohort": "Sep7",
+      "metric": "body_rate_rmse_rad_s",
+      "ratio_1s_to_100ms": 1.120541501169592,
+      "ratio_1s_to_500ms": 0.991882146822572
+    },
+    {
+      "seed": 23,
+      "cohort": "ALL",
+      "metric": "position_rmse_m",
+      "ratio_1s_to_100ms": 13.56274697381592,
+      "ratio_1s_to_500ms": 2.4749136340656896
+    },
+    {
+      "seed": 23,
+      "cohort": "ALL",
+      "metric": "velocity_rmse_m_s",
+      "ratio_1s_to_100ms": 4.367313725742337,
+      "ratio_1s_to_500ms": 1.787599418584918
+    },
+    {
+      "seed": 23,
+      "cohort": "ALL",
+      "metric": "attitude_error_deg",
+      "ratio_1s_to_100ms": 4.592383987710827,
+      "ratio_1s_to_500ms": 1.605236890191672
+    },
+    {
+      "seed": 23,
+      "cohort": "ALL",
+      "metric": "body_rate_rmse_rad_s",
+      "ratio_1s_to_100ms": 1.1644405675595744,
+      "ratio_1s_to_500ms": 1.0593915041731001
+    },
+    {
+      "seed": 23,
+      "cohort": "Sep17",
+      "metric": "position_rmse_m",
+      "ratio_1s_to_100ms": 20.128012642339698,
+      "ratio_1s_to_500ms": 2.8690878761515974
+    },
+    {
+      "seed": 23,
+      "cohort": "Sep17",
+      "metric": "velocity_rmse_m_s",
+      "ratio_1s_to_100ms": 4.379372634422482,
+      "ratio_1s_to_500ms": 1.784616959100341
+    },
+    {
+      "seed": 23,
+      "cohort": "Sep17",
+      "metric": "attitude_error_deg",
+      "ratio_1s_to_100ms": 4.85905924534121,
+      "ratio_1s_to_500ms": 1.5965881876612353
+    },
+    {
+      "seed": 23,
+      "cohort": "Sep17",
+      "metric": "body_rate_rmse_rad_s",
+      "ratio_1s_to_100ms": 1.2117509596295488,
+      "ratio_1s_to_500ms": 1.125886777135509
+    },
+    {
+      "seed": 23,
+      "cohort": "Sep7",
+      "metric": "position_rmse_m",
+      "ratio_1s_to_100ms": 11.337446881963906,
+      "ratio_1s_to_500ms": 2.2859279765374043
+    },
+    {
+      "seed": 23,
+      "cohort": "Sep7",
+      "metric": "velocity_rmse_m_s",
+      "ratio_1s_to_100ms": 4.355288993104272,
+      "ratio_1s_to_500ms": 1.7905998965179695
+    },
+    {
+      "seed": 23,
+      "cohort": "Sep7",
+      "metric": "attitude_error_deg",
+      "ratio_1s_to_100ms": 4.338606484815458,
+      "ratio_1s_to_500ms": 1.614558354133086
+    },
+    {
+      "seed": 23,
+      "cohort": "Sep7",
+      "metric": "body_rate_rmse_rad_s",
+      "ratio_1s_to_100ms": 1.125068939374698,
+      "ratio_1s_to_500ms": 1.006130257270598
+    },
+    {
+      "seed": 42,
+      "cohort": "ALL",
+      "metric": "position_rmse_m",
+      "ratio_1s_to_100ms": 13.355985431296327,
+      "ratio_1s_to_500ms": 2.460635049484065
+    },
+    {
+      "seed": 42,
+      "cohort": "ALL",
+      "metric": "velocity_rmse_m_s",
+      "ratio_1s_to_100ms": 4.48904383909911,
+      "ratio_1s_to_500ms": 1.830548486293156
+    },
+    {
+      "seed": 42,
+      "cohort": "ALL",
+      "metric": "attitude_error_deg",
+      "ratio_1s_to_100ms": 4.8062518177173965,
+      "ratio_1s_to_500ms": 1.6460848256967553
+    },
+    {
+      "seed": 42,
+      "cohort": "ALL",
+      "metric": "body_rate_rmse_rad_s",
+      "ratio_1s_to_100ms": 1.1162569370164352,
+      "ratio_1s_to_500ms": 1.0315894134768895
+    },
+    {
+      "seed": 42,
+      "cohort": "Sep17",
+      "metric": "position_rmse_m",
+      "ratio_1s_to_100ms": 19.58328967491486,
+      "ratio_1s_to_500ms": 2.8580408546233365
+    },
+    {
+      "seed": 42,
+      "cohort": "Sep17",
+      "metric": "velocity_rmse_m_s",
+      "ratio_1s_to_100ms": 4.572706101564437,
+      "ratio_1s_to_500ms": 1.876679304381452
+    },
+    {
+      "seed": 42,
+      "cohort": "Sep17",
+      "metric": "attitude_error_deg",
+      "ratio_1s_to_100ms": 5.310084884153675,
+      "ratio_1s_to_500ms": 1.6734560189691297
+    },
+    {
+      "seed": 42,
+      "cohort": "Sep17",
+      "metric": "body_rate_rmse_rad_s",
+      "ratio_1s_to_100ms": 1.1455396475679964,
+      "ratio_1s_to_500ms": 1.0927661194318363
+    },
+    {
+      "seed": 42,
+      "cohort": "Sep7",
+      "metric": "position_rmse_m",
+      "ratio_1s_to_100ms": 11.3045339135353,
+      "ratio_1s_to_500ms": 2.2797328327785142
+    },
+    {
+      "seed": 42,
+      "cohort": "Sep7",
+      "metric": "velocity_rmse_m_s",
+      "ratio_1s_to_100ms": 4.407432270875615,
+      "ratio_1s_to_500ms": 1.7861140136849951
+    },
+    {
+      "seed": 42,
+      "cohort": "Sep7",
+      "metric": "attitude_error_deg",
+      "ratio_1s_to_100ms": 4.31789219236434,
+      "ratio_1s_to_500ms": 1.614605273282183
+    },
+    {
+      "seed": 42,
+      "cohort": "Sep7",
+      "metric": "body_rate_rmse_rad_s",
+      "ratio_1s_to_100ms": 1.091807229715499,
+      "ratio_1s_to_500ms": 0.983361484756003
+    }
+  ],
+  "growth_1s_above_100ms_all_seeds_cohorts": true,
+  "failure": "No failed or nonfinite seeds in completed results. Large finite variation is reported, not rerun.",
+  "statistical_claim": "Descriptive n=3 screen; no significance claim. Thresholds frozen before training.",
+  "next_candidate": "History Length Ablation",
+  "next_task_started": false
+}

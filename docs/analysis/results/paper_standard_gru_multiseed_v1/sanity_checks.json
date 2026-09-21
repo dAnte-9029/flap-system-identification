@@ -1,0 +1,41 @@
+{
+  "status": "passed",
+  "models": {
+    "17": {
+      "future_label_poisoning_bitwise_equal": true,
+      "prefix_500ms_bitwise_equal": true,
+      "checkpoint_load": true,
+      "normalization_identical": true,
+      "finite_losses": true,
+      "n_origins": 2582,
+      "endpoint_rows": 10328,
+      "horizon_timing_identical": true
+    },
+    "23": {
+      "future_label_poisoning_bitwise_equal": true,
+      "prefix_500ms_bitwise_equal": true,
+      "checkpoint_load": true,
+      "normalization_identical": true,
+      "finite_losses": true,
+      "n_origins": 2582,
+      "endpoint_rows": 10328,
+      "horizon_timing_identical": true
+    },
+    "42": {
+      "future_label_poisoning_bitwise_equal": true,
+      "prefix_500ms_bitwise_equal": true,
+      "checkpoint_load": true,
+      "normalization_identical": true,
+      "finite_losses": true,
+      "n_origins": 2582,
+      "endpoint_rows": 10328,
+      "horizon_timing_identical": true
+    }
+  },
+  "seed17_reused": true,
+  "same_train_windows": true,
+  "same_validation_origins": true,
+  "normalization_refit": false,
+  "sealed_test_opened_this_run": false,
+  "reserved_evaluation_opened_this_run": false
+}
