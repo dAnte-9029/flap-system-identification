@@ -1,0 +1,25 @@
+{
+  "seed": 17,
+  "rule": "Step1 fixed origin plus each cohort high-E25 group sorted (log_id,segment_id,start_sample_in_segment), index floor(n/2); frozen before reading Hold or prediction errors",
+  "cases": [
+    {
+      "name": "fixed_step1",
+      "window_id": "validation:2026.9.7/log_29_2026-9-7-06-51-04.ulg:4:3975",
+      "source_index": 1291
+    },
+    {
+      "name": "Sep7_high_median_identity",
+      "window_id": "validation:2026.9.7/log_24_2026-9-7-06-16-04.ulg:1:825",
+      "source_index": 555,
+      "cohort": "Sep7",
+      "eligible_origins": 185
+    },
+    {
+      "name": "Sep17_high_median_identity",
+      "window_id": "validation:9.17数据/log_13_2026-9-17-06-52-30.ulg:1:5175",
+      "source_index": 2021,
+      "cohort": "Sep17",
+      "eligible_origins": 269
+    }
+  ]
+}

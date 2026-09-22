@@ -1,0 +1,38 @@
+{
+  "status": "passed",
+  "reviewed_at_unix": 1790041225.8582292,
+  "initial_output_hashes_verified": 58,
+  "frozen_input_hashes_verified": 35,
+  "original_inference_completion_sha256": "824d9b63cfe1031735a35c3223048a902b9bd8aea602e14302fd1a7f5e7fd3a7",
+  "source_sha256": "b22061902bfc9973fe43a68c6f2f378f28c4eb0b2b6502da1ef0d01d72218b30",
+  "font_path": "/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc",
+  "font_sha256": "b76b0433203017ca80401b2ee0dd69350349871c4b19d504c34dbdd80541690a",
+  "scientific_table_hashes_unchanged": {
+    "per_flight.csv": "9a4bed5a7a92d94de8029785392e17abecd046531f90d3b145508f09f47b592a",
+    "per_seed_summary.csv": "92427f4353a0e1f42d30d4cc33f42c7e4da7327f49fa893b685942bb9089b9be",
+    "multiseed_summary.csv": "e9954c4b20cfe24c344c054655dc9384352f62412bbc6aeb46300fbd77fbc47e",
+    "paired_differences.csv": "58c2c737da3d5b9f20177e576ae22e31d6a3ed5b06b022487e11786b074fc7de",
+    "control_group_thresholds.csv": "f9856fdc14b3060a795a2bc8ae55f15e15251463a163d80270038ffb5152d332",
+    "control_group_coverage.csv": "a129f51c4a21b7e17758b74aee2466ae16f1675215ef0146c12d34b83068f1a7",
+    "error_evolution.csv": "991c6509275d7c466eda662f6da6d2fc63b9ed6d350ca964a6718e1a7ff79eaf",
+    "trajectory_interval_errors.csv": "d9c5e6445ec0c9d2f3d658ff2a8b89bd86cfcb1a7fc31f70de0aab019f05c92a",
+    "representative_selection.json": "55425d55b781f867b174cf63de1f200d983577f79f3171de67ef73a6cd51b705",
+    "sanity_checks.json": "5bdac36a55da322ba367f6db07de845572603d104b84e0978174c3c61c8802d0",
+    "protocol.json": "3f893d3decc40a7ab16e00ed0cc355026ba411f56b68d9f93b46d5087296e8de"
+  },
+  "all_per_seed_ALL_means_independently_recomputed": true,
+  "per_origin_squared_errors_finite_shape": [
+    2582,
+    50,
+    4
+  ],
+  "all_counterexamples_retained": true,
+  "original_Actual_small_batch_bitwise_parity": true,
+  "naturally_constant_origins": 0,
+  "constant_tape_verification": "synthetic bitwise equality; no naturally fully constant50step tapes in validation",
+  "model_and_normalization_unchanged": true,
+  "sealed_test_opened_this_run": false,
+  "reserved_evaluation_opened_this_run": false,
+  "no_training": true,
+  "no_additional_inference": true
+}

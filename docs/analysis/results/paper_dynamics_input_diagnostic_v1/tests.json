@@ -1,0 +1,13 @@
+{
+  "command": [
+    "/home/zn/anaconda3/envs/flap-train-gpu/bin/python",
+    "-m",
+    "pytest",
+    "-q",
+    "tests/test_future_control_diagnostic.py",
+    "tests/test_paper_baselines.py"
+  ],
+  "returncode": 0,
+  "elapsed_s": 5.489188194274902,
+  "output": "......................                                                   [100%]\n22 passed in 4.64s\n"
+}
