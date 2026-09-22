@@ -1,0 +1,554 @@
+{
+  "outcome": "Mixed",
+  "interpretation": "Metric-dependent differences do not cleanly support a single A/B/C outcome; preserve the full results and keep H26 main model unchanged.",
+  "best_primary_history_by_metric": {
+    "attitude_error_deg": 26,
+    "body_rate_rmse_rad_s": 26,
+    "position_rmse_m": 26,
+    "velocity_rmse_m_s": 26
+  },
+  "marginal_H13_to_H26_primary_pct": {
+    "attitude_error_deg": 1.3533644865641115,
+    "body_rate_rmse_rad_s": 0.5437030753512222,
+    "velocity_rmse_m_s": 2.031927792357414
+  },
+  "largest_primary_seed_cv": {
+    "history_steps": 26,
+    "cohort": "Sep17",
+    "metric": "velocity_rmse_m_s",
+    "cv": 0.03829489013512584
+  },
+  "rankings": [
+    {
+      "cohort": "ALL",
+      "horizon_s": 0.1,
+      "metric": "attitude_error_deg",
+      "best_to_worst": [
+        26,
+        13,
+        5,
+        1
+      ]
+    },
+    {
+      "cohort": "ALL",
+      "horizon_s": 0.1,
+      "metric": "body_rate_rmse_rad_s",
+      "best_to_worst": [
+        26,
+        13,
+        5,
+        1
+      ]
+    },
+    {
+      "cohort": "ALL",
+      "horizon_s": 0.1,
+      "metric": "position_rmse_m",
+      "best_to_worst": [
+        26,
+        13,
+        5,
+        1
+      ]
+    },
+    {
+      "cohort": "ALL",
+      "horizon_s": 0.1,
+      "metric": "velocity_rmse_m_s",
+      "best_to_worst": [
+        26,
+        13,
+        5,
+        1
+      ]
+    },
+    {
+      "cohort": "ALL",
+      "horizon_s": 0.2,
+      "metric": "attitude_error_deg",
+      "best_to_worst": [
+        26,
+        13,
+        5,
+        1
+      ]
+    },
+    {
+      "cohort": "ALL",
+      "horizon_s": 0.2,
+      "metric": "body_rate_rmse_rad_s",
+      "best_to_worst": [
+        26,
+        13,
+        5,
+        1
+      ]
+    },
+    {
+      "cohort": "ALL",
+      "horizon_s": 0.2,
+      "metric": "position_rmse_m",
+      "best_to_worst": [
+        26,
+        13,
+        5,
+        1
+      ]
+    },
+    {
+      "cohort": "ALL",
+      "horizon_s": 0.2,
+      "metric": "velocity_rmse_m_s",
+      "best_to_worst": [
+        26,
+        13,
+        5,
+        1
+      ]
+    },
+    {
+      "cohort": "ALL",
+      "horizon_s": 0.5,
+      "metric": "attitude_error_deg",
+      "best_to_worst": [
+        26,
+        13,
+        5,
+        1
+      ]
+    },
+    {
+      "cohort": "ALL",
+      "horizon_s": 0.5,
+      "metric": "body_rate_rmse_rad_s",
+      "best_to_worst": [
+        26,
+        13,
+        5,
+        1
+      ]
+    },
+    {
+      "cohort": "ALL",
+      "horizon_s": 0.5,
+      "metric": "position_rmse_m",
+      "best_to_worst": [
+        26,
+        13,
+        5,
+        1
+      ]
+    },
+    {
+      "cohort": "ALL",
+      "horizon_s": 0.5,
+      "metric": "velocity_rmse_m_s",
+      "best_to_worst": [
+        26,
+        13,
+        5,
+        1
+      ]
+    },
+    {
+      "cohort": "ALL",
+      "horizon_s": 1.0,
+      "metric": "attitude_error_deg",
+      "best_to_worst": [
+        26,
+        13,
+        1,
+        5
+      ]
+    },
+    {
+      "cohort": "ALL",
+      "horizon_s": 1.0,
+      "metric": "body_rate_rmse_rad_s",
+      "best_to_worst": [
+        26,
+        13,
+        1,
+        5
+      ]
+    },
+    {
+      "cohort": "ALL",
+      "horizon_s": 1.0,
+      "metric": "position_rmse_m",
+      "best_to_worst": [
+        26,
+        13,
+        1,
+        5
+      ]
+    },
+    {
+      "cohort": "ALL",
+      "horizon_s": 1.0,
+      "metric": "velocity_rmse_m_s",
+      "best_to_worst": [
+        26,
+        1,
+        13,
+        5
+      ]
+    },
+    {
+      "cohort": "Sep17",
+      "horizon_s": 0.1,
+      "metric": "attitude_error_deg",
+      "best_to_worst": [
+        26,
+        13,
+        5,
+        1
+      ]
+    },
+    {
+      "cohort": "Sep17",
+      "horizon_s": 0.1,
+      "metric": "body_rate_rmse_rad_s",
+      "best_to_worst": [
+        26,
+        13,
+        5,
+        1
+      ]
+    },
+    {
+      "cohort": "Sep17",
+      "horizon_s": 0.1,
+      "metric": "position_rmse_m",
+      "best_to_worst": [
+        26,
+        13,
+        5,
+        1
+      ]
+    },
+    {
+      "cohort": "Sep17",
+      "horizon_s": 0.1,
+      "metric": "velocity_rmse_m_s",
+      "best_to_worst": [
+        26,
+        13,
+        5,
+        1
+      ]
+    },
+    {
+      "cohort": "Sep17",
+      "horizon_s": 0.2,
+      "metric": "attitude_error_deg",
+      "best_to_worst": [
+        26,
+        13,
+        5,
+        1
+      ]
+    },
+    {
+      "cohort": "Sep17",
+      "horizon_s": 0.2,
+      "metric": "body_rate_rmse_rad_s",
+      "best_to_worst": [
+        26,
+        13,
+        5,
+        1
+      ]
+    },
+    {
+      "cohort": "Sep17",
+      "horizon_s": 0.2,
+      "metric": "position_rmse_m",
+      "best_to_worst": [
+        26,
+        13,
+        5,
+        1
+      ]
+    },
+    {
+      "cohort": "Sep17",
+      "horizon_s": 0.2,
+      "metric": "velocity_rmse_m_s",
+      "best_to_worst": [
+        26,
+        13,
+        5,
+        1
+      ]
+    },
+    {
+      "cohort": "Sep17",
+      "horizon_s": 0.5,
+      "metric": "attitude_error_deg",
+      "best_to_worst": [
+        26,
+        13,
+        5,
+        1
+      ]
+    },
+    {
+      "cohort": "Sep17",
+      "horizon_s": 0.5,
+      "metric": "body_rate_rmse_rad_s",
+      "best_to_worst": [
+        26,
+        13,
+        5,
+        1
+      ]
+    },
+    {
+      "cohort": "Sep17",
+      "horizon_s": 0.5,
+      "metric": "position_rmse_m",
+      "best_to_worst": [
+        26,
+        13,
+        5,
+        1
+      ]
+    },
+    {
+      "cohort": "Sep17",
+      "horizon_s": 0.5,
+      "metric": "velocity_rmse_m_s",
+      "best_to_worst": [
+        26,
+        13,
+        5,
+        1
+      ]
+    },
+    {
+      "cohort": "Sep17",
+      "horizon_s": 1.0,
+      "metric": "attitude_error_deg",
+      "best_to_worst": [
+        26,
+        13,
+        5,
+        1
+      ]
+    },
+    {
+      "cohort": "Sep17",
+      "horizon_s": 1.0,
+      "metric": "body_rate_rmse_rad_s",
+      "best_to_worst": [
+        26,
+        13,
+        1,
+        5
+      ]
+    },
+    {
+      "cohort": "Sep17",
+      "horizon_s": 1.0,
+      "metric": "position_rmse_m",
+      "best_to_worst": [
+        26,
+        13,
+        1,
+        5
+      ]
+    },
+    {
+      "cohort": "Sep17",
+      "horizon_s": 1.0,
+      "metric": "velocity_rmse_m_s",
+      "best_to_worst": [
+        26,
+        1,
+        13,
+        5
+      ]
+    },
+    {
+      "cohort": "Sep7",
+      "horizon_s": 0.1,
+      "metric": "attitude_error_deg",
+      "best_to_worst": [
+        13,
+        26,
+        5,
+        1
+      ]
+    },
+    {
+      "cohort": "Sep7",
+      "horizon_s": 0.1,
+      "metric": "body_rate_rmse_rad_s",
+      "best_to_worst": [
+        26,
+        13,
+        5,
+        1
+      ]
+    },
+    {
+      "cohort": "Sep7",
+      "horizon_s": 0.1,
+      "metric": "position_rmse_m",
+      "best_to_worst": [
+        26,
+        13,
+        5,
+        1
+      ]
+    },
+    {
+      "cohort": "Sep7",
+      "horizon_s": 0.1,
+      "metric": "velocity_rmse_m_s",
+      "best_to_worst": [
+        26,
+        13,
+        5,
+        1
+      ]
+    },
+    {
+      "cohort": "Sep7",
+      "horizon_s": 0.2,
+      "metric": "attitude_error_deg",
+      "best_to_worst": [
+        26,
+        13,
+        5,
+        1
+      ]
+    },
+    {
+      "cohort": "Sep7",
+      "horizon_s": 0.2,
+      "metric": "body_rate_rmse_rad_s",
+      "best_to_worst": [
+        26,
+        13,
+        5,
+        1
+      ]
+    },
+    {
+      "cohort": "Sep7",
+      "horizon_s": 0.2,
+      "metric": "position_rmse_m",
+      "best_to_worst": [
+        26,
+        13,
+        5,
+        1
+      ]
+    },
+    {
+      "cohort": "Sep7",
+      "horizon_s": 0.2,
+      "metric": "velocity_rmse_m_s",
+      "best_to_worst": [
+        26,
+        13,
+        5,
+        1
+      ]
+    },
+    {
+      "cohort": "Sep7",
+      "horizon_s": 0.5,
+      "metric": "attitude_error_deg",
+      "best_to_worst": [
+        26,
+        13,
+        1,
+        5
+      ]
+    },
+    {
+      "cohort": "Sep7",
+      "horizon_s": 0.5,
+      "metric": "body_rate_rmse_rad_s",
+      "best_to_worst": [
+        26,
+        13,
+        5,
+        1
+      ]
+    },
+    {
+      "cohort": "Sep7",
+      "horizon_s": 0.5,
+      "metric": "position_rmse_m",
+      "best_to_worst": [
+        26,
+        13,
+        5,
+        1
+      ]
+    },
+    {
+      "cohort": "Sep7",
+      "horizon_s": 0.5,
+      "metric": "velocity_rmse_m_s",
+      "best_to_worst": [
+        26,
+        13,
+        5,
+        1
+      ]
+    },
+    {
+      "cohort": "Sep7",
+      "horizon_s": 1.0,
+      "metric": "attitude_error_deg",
+      "best_to_worst": [
+        26,
+        1,
+        13,
+        5
+      ]
+    },
+    {
+      "cohort": "Sep7",
+      "horizon_s": 1.0,
+      "metric": "body_rate_rmse_rad_s",
+      "best_to_worst": [
+        26,
+        13,
+        1,
+        5
+      ]
+    },
+    {
+      "cohort": "Sep7",
+      "horizon_s": 1.0,
+      "metric": "position_rmse_m",
+      "best_to_worst": [
+        26,
+        13,
+        1,
+        5
+      ]
+    },
+    {
+      "cohort": "Sep7",
+      "horizon_s": 1.0,
+      "metric": "velocity_rmse_m_s",
+      "best_to_worst": [
+        26,
+        1,
+        13,
+        5
+      ]
+    }
+  ],
+  "main_model_changed": false,
+  "next_ablation_started": false,
+  "classification_rule": "Descriptive predeclared2% band, not significance/equivalence; A needs all3seeds consistent; mixed findings preserved."
+}

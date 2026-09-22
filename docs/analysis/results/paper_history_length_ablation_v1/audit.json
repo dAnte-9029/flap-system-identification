@@ -1,0 +1,28 @@
+{
+  "status": "passed",
+  "data": {
+    "train": {
+      "origins": 28293,
+      "flights": 41,
+      "all_H_exact_suffix": true,
+      "trajectory_object_unchanged": true,
+      "controls_match_all26_source_timestamps": true,
+      "origin_control_equals_first_future_control": true,
+      "original_loader_parity_fixed3origins_all_H": true
+    },
+    "validation": {
+      "origins": 2582,
+      "flights": 17,
+      "all_H_exact_suffix": true,
+      "trajectory_object_unchanged": true,
+      "controls_match_all26_source_timestamps": true,
+      "origin_control_equals_first_future_control": true,
+      "original_loader_parity_fixed3origins_all_H": true
+    }
+  },
+  "H26_prediction_metric_parity": true,
+  "normalization_refit": false,
+  "parameter_count_all_H": 21383,
+  "sealed_test_opened_this_run": false,
+  "reserved_evaluation_opened_this_run": false
+}

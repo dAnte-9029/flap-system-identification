@@ -1,0 +1,30 @@
+{
+  "status": "passed",
+  "review_date": "2026-09-22",
+  "output_hashes_verified": 124,
+  "frozen_input_hashes_verified": 118,
+  "source_completion_sha256": "d4bca6383d5fd2ed8930050aaab637b86c9dc494842a245b52d8801252e9e882",
+  "new_runs_completed": 9,
+  "H26_runs_reused": 3,
+  "history_epochs": [
+    40,
+    25
+  ],
+  "optimizer_steps_per_run": 7215,
+  "full_prediction_shape": [
+    2582,
+    51
+  ],
+  "all_new_histories_finite": true,
+  "all_new_predictions_finite": true,
+  "all_new_quaternion_max_norm_error_below": 1e-05,
+  "tests_passed": 28,
+  "official_outcome": "Mixed",
+  "interpretation": "Diminishing returns near H13; small H26 mean advantage; no classification threshold changed",
+  "sealed_test_opened_this_run": false,
+  "reserved_evaluation_opened_this_run": false,
+  "main_model_changed": false,
+  "further_experiment_started": false,
+  "original_frozen_artifacts_modified": false,
+  "review_report_sha256": "48fca77b3b880d37ff8bdd11ba9011acd0a41191f5526dfede04be0e3ea97857"
+}

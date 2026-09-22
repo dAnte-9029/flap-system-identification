@@ -1,0 +1,127 @@
+{
+  "status": "passed",
+  "runs": {
+    "H1/seed17": {
+      "future_label_poisoning_bitwise_equal": true,
+      "prefix_500ms_bitwise_equal": true,
+      "parameter_count": 21383,
+      "normalization_identical": true,
+      "n_origins": 2582,
+      "metric_rows": 10328,
+      "quaternion_max_norm_error": 1.1560211898853368e-07,
+      "finite_losses": true,
+      "native_horizon_timing": true
+    },
+    "H1/seed23": {
+      "future_label_poisoning_bitwise_equal": true,
+      "prefix_500ms_bitwise_equal": true,
+      "parameter_count": 21383,
+      "normalization_identical": true,
+      "n_origins": 2582,
+      "metric_rows": 10328,
+      "quaternion_max_norm_error": 1.177562816145894e-07,
+      "finite_losses": true,
+      "native_horizon_timing": true
+    },
+    "H1/seed42": {
+      "future_label_poisoning_bitwise_equal": true,
+      "prefix_500ms_bitwise_equal": true,
+      "parameter_count": 21383,
+      "normalization_identical": true,
+      "n_origins": 2582,
+      "metric_rows": 10328,
+      "quaternion_max_norm_error": 1.1233669749977082e-07,
+      "finite_losses": true,
+      "native_horizon_timing": true
+    },
+    "H5/seed17": {
+      "future_label_poisoning_bitwise_equal": true,
+      "prefix_500ms_bitwise_equal": true,
+      "parameter_count": 21383,
+      "normalization_identical": true,
+      "n_origins": 2582,
+      "metric_rows": 10328,
+      "quaternion_max_norm_error": 1.1576606140373258e-07,
+      "finite_losses": true,
+      "native_horizon_timing": true
+    },
+    "H5/seed23": {
+      "future_label_poisoning_bitwise_equal": true,
+      "prefix_500ms_bitwise_equal": true,
+      "parameter_count": 21383,
+      "normalization_identical": true,
+      "n_origins": 2582,
+      "metric_rows": 10328,
+      "quaternion_max_norm_error": 1.1407754008097015e-07,
+      "finite_losses": true,
+      "native_horizon_timing": true
+    },
+    "H5/seed42": {
+      "future_label_poisoning_bitwise_equal": true,
+      "prefix_500ms_bitwise_equal": true,
+      "parameter_count": 21383,
+      "normalization_identical": true,
+      "n_origins": 2582,
+      "metric_rows": 10328,
+      "quaternion_max_norm_error": 1.1627814933135028e-07,
+      "finite_losses": true,
+      "native_horizon_timing": true
+    },
+    "H13/seed17": {
+      "future_label_poisoning_bitwise_equal": true,
+      "prefix_500ms_bitwise_equal": true,
+      "parameter_count": 21383,
+      "normalization_identical": true,
+      "n_origins": 2582,
+      "metric_rows": 10328,
+      "quaternion_max_norm_error": 1.1667505783741206e-07,
+      "finite_losses": true,
+      "native_horizon_timing": true
+    },
+    "H13/seed23": {
+      "future_label_poisoning_bitwise_equal": true,
+      "prefix_500ms_bitwise_equal": true,
+      "parameter_count": 21383,
+      "normalization_identical": true,
+      "n_origins": 2582,
+      "metric_rows": 10328,
+      "quaternion_max_norm_error": 1.1633707552860528e-07,
+      "finite_losses": true,
+      "native_horizon_timing": true
+    },
+    "H13/seed42": {
+      "future_label_poisoning_bitwise_equal": true,
+      "prefix_500ms_bitwise_equal": true,
+      "parameter_count": 21383,
+      "normalization_identical": true,
+      "n_origins": 2582,
+      "metric_rows": 10328,
+      "quaternion_max_norm_error": 1.1413361233891806e-07,
+      "finite_losses": true,
+      "native_horizon_timing": true
+    },
+    "H26/seed17": {
+      "reused": true,
+      "metric_parity": true,
+      "source_sanity_checks": "docs/analysis/results/paper_standard_gru_multiseed_v1/sanity_checks.json"
+    },
+    "H26/seed23": {
+      "reused": true,
+      "metric_parity": true,
+      "source_sanity_checks": "docs/analysis/results/paper_standard_gru_multiseed_v1/sanity_checks.json"
+    },
+    "H26/seed42": {
+      "reused": true,
+      "metric_parity": true,
+      "source_sanity_checks": "docs/analysis/results/paper_standard_gru_multiseed_v1/sanity_checks.json"
+    }
+  },
+  "all_H_exact_suffix": true,
+  "same_train_origins": true,
+  "same_validation_origins": true,
+  "same_future_targets_controls_dt": true,
+  "normalization_refit": false,
+  "H26_reused": true,
+  "sealed_test_opened_this_run": false,
+  "reserved_evaluation_opened_this_run": false
+}

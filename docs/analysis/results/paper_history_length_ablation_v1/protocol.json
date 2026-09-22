@@ -1,0 +1,711 @@
+{
+  "experiment": "paper_history_length_ablation_v1",
+  "source_main_model_commit": "19546ada11c72f640ef31fc557664e6d02734c6f",
+  "source_protocol": "docs/analysis/results/paper_standard_gru_multiseed_v1/protocol.json",
+  "source_protocol_sha256": "86f5fceac7838e7f2369e6b854618eec851e652d5cde52cea4403f04063cab1e",
+  "git_commit": "19546ada11c72f640ef31fc557664e6d02734c6f",
+  "branch": "step5-actuator-aware-trajectory-main-v2",
+  "history_values": [
+    1,
+    5,
+    13,
+    26
+  ],
+  "seeds": [
+    17,
+    23,
+    42
+  ],
+  "new_training_runs": [
+    {
+      "history_steps": 1,
+      "seed": 17
+    },
+    {
+      "history_steps": 1,
+      "seed": 23
+    },
+    {
+      "history_steps": 1,
+      "seed": 42
+    },
+    {
+      "history_steps": 5,
+      "seed": 17
+    },
+    {
+      "history_steps": 5,
+      "seed": 23
+    },
+    {
+      "history_steps": 5,
+      "seed": 42
+    },
+    {
+      "history_steps": 13,
+      "seed": 17
+    },
+    {
+      "history_steps": 13,
+      "seed": 23
+    },
+    {
+      "history_steps": 13,
+      "seed": 42
+    }
+  ],
+  "reused_H26": [
+    {
+      "seed": 17,
+      "checkpoint_path": "artifacts/paper_baseline_comparison_v1/B2_StandardGRU.pt",
+      "checkpoint_sha256": "f9895418b7dd2a2757dde8d740109ab42dae258c593fd5902f0076a3faeb0e26",
+      "final_epoch": 65,
+      "best_epoch": null,
+      "final_train_loss": 0.3428593127113112,
+      "final_val_loss": 0.37574528461274576,
+      "training_time_s": 1816.3941045831887,
+      "status": "reused_complete"
+    },
+    {
+      "seed": 23,
+      "checkpoint_path": "artifacts/paper_standard_gru_multiseed_v1/seed23/model.pt",
+      "checkpoint_sha256": "1cfbb865db55e3fc7c248eff4de95892fa9ee9155ee8e81c0318a9021b7d8b03",
+      "final_epoch": 65,
+      "best_epoch": null,
+      "final_train_loss": 0.342157386901948,
+      "final_val_loss": 0.38443940000696575,
+      "training_time_s": 5353.385570913553,
+      "status": "complete"
+    },
+    {
+      "seed": 42,
+      "checkpoint_path": "artifacts/paper_standard_gru_multiseed_v1/seed42/model.pt",
+      "checkpoint_sha256": "98fd6266bdc8926055c7f8b0dc2f37a4333fa92f55f336fb4cba4d3480324f86",
+      "final_epoch": 65,
+      "best_epoch": null,
+      "final_train_loss": 0.3417657966583096,
+      "final_val_loss": 0.37851807807509424,
+      "training_time_s": 5334.5454798825085,
+      "status": "complete"
+    }
+  ],
+  "source_frozen_contract": {
+    "branch": "step5-actuator-aware-trajectory-main-v2",
+    "dataset_id": "trajectory_v3_september_expanded",
+    "manifest_path": "dataset/trajectory_v3_september_expanded/manifest.json",
+    "manifest_sha256": "46b50d0b23a32b40339a4c07526711d0ff88b55584d309a56807c56905d2817e",
+    "artifact_sha256": {
+      "windows_validation.parquet": "0a31c37dfd44b6889d2f896bef2fe848657fba7434e43ad7f91a375fe97d3cef",
+      "windows_train.parquet": "d837c5183d81488788e4378d8d446a55b735829425b38fdda54c86ca28d4d422",
+      "samples_validation.parquet": "b66a14e2f0f9ef5f151c6e1c973fb2188c2821924d2bf87b8ae72442280718cd",
+      "samples_train.parquet": "cd95d9db29cfe741c2929d8730fbd09b26fafcc54107f5faa3cd9d49e861e46e"
+    },
+    "train_flights": [
+      "2026.9.6/log_24_2026-9-6-06-28-38.ulg",
+      "2026.9.6/log_28_2026-9-6-07-01-38.ulg",
+      "2026.9.6/log_17_2026-9-6-18-34-06.ulg",
+      "2026.9.6/log_18_2026-9-6-18-46-20.ulg",
+      "2026.9.6/log_19_2026-9-6-18-52-30.ulg",
+      "2026.9.6/log_20_2026-9-6-18-58-10.ulg",
+      "9.11数据/log_13_2026-9-11-18-28-08.ulg",
+      "9.11数据/log_14_2026-9-11-18-34-58.ulg",
+      "9.11数据/log_15_2026-9-11-18-40-48.ulg",
+      "9.12数据/log_10_2026-9-12-06-13-40.ulg",
+      "9.12数据/log_11_2026-9-12-06-21-12.ulg",
+      "9.12数据/log_12_2026-9-12-06-29-44.ulg",
+      "9.12数据/log_2_2026-9-12-18-32-54.ulg",
+      "9.12数据/log_3_2026-9-12-18-40-02.ulg",
+      "9.12数据/log_7_2026-9-12-05-49-02.ulg",
+      "9.12数据/log_8_2026-9-12-05-55-30.ulg",
+      "9.12数据/log_9_2026-9-12-06-03-32.ulg",
+      "9.13数据/log_1_2026-9-13-06-11-06.ulg",
+      "9.13数据/log_2_2026-9-13-06-20-06.ulg",
+      "9.13数据/log_3_2026-9-13-06-31-26.ulg",
+      "9.13数据/log_4_2026-9-13-06-36-26.ulg",
+      "9.13数据/log_5_2026-9-13-06-42-40.ulg",
+      "9.13数据/log_7_2026-9-13-18-12-52.ulg",
+      "9.14数据/log_11_2026-9-14-18-13-22.ulg",
+      "9.14数据/log_12_2026-9-14-18-20-30.ulg",
+      "9.14数据/log_13_2026-9-14-18-28-32.ulg",
+      "9.14数据/log_14_2026-9-14-18-34-22.ulg",
+      "9.15数据/log_10_2026-9-15-17-44-04.ulg",
+      "9.15数据/log_11_2026-9-15-17-51-56.ulg",
+      "9.15数据/log_12_2026-9-15-18-03-58.ulg",
+      "9.15数据/log_13_2026-9-15-18-10-58.ulg",
+      "9.15数据/log_14_2026-9-15-18-17-26.ulg",
+      "9.15数据/log_15_2026-9-15-18-23-44.ulg",
+      "9.16数据/log_1_2026-9-16-18-02-34.ulg",
+      "9.16数据/log_2_2026-9-16-18-08-46.ulg",
+      "9.16数据/log_3_2026-9-16-18-13-58.ulg",
+      "9.16数据/log_4_2026-9-16-18-20-50.ulg",
+      "9.16数据/log_5_2026-9-16-18-26-48.ulg",
+      "9.18数据/log_0_2026-9-18-18-15-06.ulg",
+      "9.18数据/log_1_2026-9-18-18-23-36.ulg",
+      "9.18数据/log_2_2026-9-18-18-29-40.ulg"
+    ],
+    "validation_flights": [
+      "2026.9.7/log_21_2026-9-7-05-54-56.ulg",
+      "2026.9.7/log_22_2026-9-7-06-01-40.ulg",
+      "2026.9.7/log_23_2026-9-7-06-09-22.ulg",
+      "2026.9.7/log_24_2026-9-7-06-16-04.ulg",
+      "2026.9.7/log_26_2026-9-7-06-30-26.ulg",
+      "2026.9.7/log_27_2026-9-7-06-37-24.ulg",
+      "2026.9.7/log_28_2026-9-7-06-44-02.ulg",
+      "2026.9.7/log_29_2026-9-7-06-51-04.ulg",
+      "2026.9.7/log_30_2026-9-7-06-58-22.ulg",
+      "9.17数据/log_10_2026-9-17-06-34-34.ulg",
+      "9.17数据/log_11_2026-9-17-06-40-30.ulg",
+      "9.17数据/log_12_2026-9-17-06-46-02.ulg",
+      "9.17数据/log_13_2026-9-17-06-52-30.ulg",
+      "9.17数据/log_6_2026-9-17-06-02-24.ulg",
+      "9.17数据/log_7_2026-9-17-06-12-16.ulg",
+      "9.17数据/log_8_2026-9-17-06-17-52.ulg",
+      "9.17数据/log_9_2026-9-17-06-28-10.ulg"
+    ],
+    "excluded_sealed_flights": {
+      "sealed_test": [
+        "2026.9.8/log_0_2026-9-8-05-42-48.ulg",
+        "2026.9.8/log_1_2026-9-8-05-49-28.ulg",
+        "2026.9.8/log_2_2026-9-8-05-56-46.ulg",
+        "2026.9.8/log_4_2026-9-8-06-38-56.ulg",
+        "2026.9.8/log_6_2026-9-8-06-46-18.ulg",
+        "2026.9.8/log_7_2026-9-8-06-55-26.ulg"
+      ],
+      "reserved_evaluation": [
+        "9.19-2数据/log_0_2026-9-19-14-31-44.ulg",
+        "9.19-2数据/log_1_2026-9-19-14-40-12.ulg",
+        "9.19-2数据/log_2_2026-9-19-14-45-56.ulg",
+        "9.19-2数据/log_3_2026-9-19-14-56-32.ulg",
+        "9.19-2数据/log_4_2026-9-19-15-15-06.ulg",
+        "9.19-2数据/log_5_2026-9-19-15-23-48.ulg",
+        "9.19-2数据/log_6_2026-9-19-15-28-00.ulg",
+        "9.19-2数据/log_7_2026-9-19-15-39-08.ulg",
+        "9.19-2数据/log_8_2026-9-19-15-47-10.ulg",
+        "9.19-3数据/log_0_2026-9-19-17-14-26.ulg",
+        "9.19-3数据/log_1_2026-9-19-17-21-44.ulg",
+        "9.19-3数据/log_2_2026-9-19-17-26-42.ulg",
+        "9.19-3数据/log_3_2026-9-19-17-38-46.ulg",
+        "9.19-3数据/log_4_2026-9-19-17-44-06.ulg",
+        "9.19-3数据/log_5_2026-9-19-17-49-50.ulg",
+        "9.19-3数据/log_9_2026-9-19-17-05-08.ulg",
+        "9.19数据/log_0_2026-9-19-05-53-40.ulg",
+        "9.19数据/log_1_2026-9-19-06-01-30.ulg",
+        "9.19数据/log_2_2026-9-19-06-07-52.ulg",
+        "9.19数据/log_3_2026-9-19-06-14-30.ulg",
+        "9.19数据/log_4_2026-9-19-06-19-40.ulg",
+        "9.19数据/log_5_2026-9-19-06-26-44.ulg",
+        "9.19数据/log_6_2026-9-19-06-31-46.ulg"
+      ]
+    },
+    "frames": {
+      "body_rate": "FRD rad/s",
+      "phase": "radians, logged zero; physical pose unconfirmed",
+      "position_velocity": "local NED m, m/s",
+      "quaternion": "wxyz body FRD to NED"
+    },
+    "model_phase": "inherited relative_flap_phase_rad, relative to origin; not absolute logged Hall pose",
+    "model_phase_source_detail": "encoder-count-derived relative_flap_phase_rad, re-anchored at each origin; logged Hall/wing phase columns are not model inputs",
+    "phase_contract": {
+      "definition": "logged wing_phase zero; Hall consistency is checked separately",
+      "installation_consistency": "not_confirmed",
+      "status": "unconfirmed_physical_pose"
+    },
+    "frequency_contract": {
+      "column": "flap_frequency_hz",
+      "ratio": 7.909090995788574,
+      "rescaling": "none; September logged ratio, not April ratio8"
+    },
+    "history_steps": 26,
+    "nominal_history_span_s": 0.5,
+    "nominal_dt_s": 0.02,
+    "horizons_s": [
+      0.1,
+      0.2,
+      0.5,
+      1.0
+    ],
+    "primary_horizon_s": 0.5,
+    "timing_contract": "5/10/25/50 native steps, nominal 0.1/0.2/0.5/1.0 s; integrate actual logged dt, no resampling; timing CSVs give actual durations",
+    "checkpoint_rule": "last epoch of predeclared schedule; no validation selection",
+    "future_known": "logged motor,left,right,rudder controls at t0...t49, zero-order hold; dt",
+    "future_forbidden": "all future measured physical states, wind, phase, frequency; labels only",
+    "experiment": "paper_standard_gru_multiseed_v1",
+    "source_baseline_commit": "cdf7625af4301642df61a085c3998383bbdbbe62",
+    "source_baseline_result": "docs/analysis/results/paper_baseline_comparison_v1",
+    "git_commit": "c7518e2d61926a67c2991cc7ab51880ae47a7eb3",
+    "main_model": "B2_StandardGRU",
+    "architecture": "CausalHistoryTrajectoryModel(hidden_size=64,use_controls=True); GRUCell(16,64), head Linear(80,64)/Tanh/Linear(64,7)",
+    "parameter_count": 21383,
+    "seeds": [
+      17,
+      23,
+      42
+    ],
+    "trained_seeds": [
+      23,
+      42
+    ],
+    "reused_seed17": true,
+    "stage_seed_rule": "initialization/base=s; continuation=s+12, preserving historical 17->29",
+    "training_schedule": {
+      "base_epochs": 40,
+      "continuation_epochs": 25,
+      "batch_size": 256,
+      "optimizer": "AdamW",
+      "learning_rates": [
+        0.0003,
+        0.0005
+      ],
+      "weight_decay": 1e-05,
+      "gradient_clip_norm": 5,
+      "rollout_steps": 50,
+      "sampling_seeds": {
+        "17": [
+          17,
+          29
+        ],
+        "23": [
+          23,
+          35
+        ],
+        "42": [
+          42,
+          54
+        ]
+      },
+      "objective": "existing trajectory_rollout_loss + frozen two-step increment weights/scales; continuation adds 0.2*frequency_MSE; no actuator regularizer"
+    },
+    "increment_scales": [
+      0.42316267925245893,
+      0.9997673474257794
+    ],
+    "increment_weights": [
+      0.16458798840801334,
+      0.36716770482593264
+    ],
+    "epochs": 65,
+    "batch_size": 256,
+    "normalization": {
+      "source": "six frozen float32 B2 seed17 buffers; never fitted in Step 3",
+      "values": {
+        "feature_mean": [
+          6.9914350509643555,
+          -0.23796048760414124,
+          1.7209908962249756,
+          -0.01381479948759079,
+          0.04798189550638199,
+          0.04468931257724762,
+          -2.503241539001465,
+          0.14938277006149292,
+          9.219061851501465,
+          -0.04312499985098839,
+          0.013483933173120022,
+          3.811121702194214
+        ],
+        "feature_std": [
+          1.4314953088760376,
+          1.354203224182129,
+          0.7188957929611206,
+          0.5834083557128906,
+          0.548859715461731,
+          0.30323925614356995,
+          0.9043020009994507,
+          1.9755547046661377,
+          0.41252362728118896,
+          0.6979991793632507,
+          0.7146716117858887,
+          0.46394631266593933
+        ],
+        "control_mean": [
+          0.68657386302948,
+          -0.13859184086322784,
+          0.1344735324382782,
+          -0.04773162305355072
+        ],
+        "control_std": [
+          0.09660183638334274,
+          0.27267715334892273,
+          0.33159661293029785,
+          0.12501497566699982
+        ],
+        "derivative_mean": [
+          0.020791660994291306,
+          0.387643963098526,
+          -0.4326377511024475,
+          -0.004346979316323996,
+          -0.005650125909596682,
+          0.00012783973943442106,
+          -0.011614745482802391
+        ],
+        "derivative_std": [
+          4.288760185241699,
+          2.189427614212036,
+          9.902501106262207,
+          28.401805877685547,
+          19.77544593811035,
+          4.237797260284424,
+          5.57144832611084
+        ]
+      }
+    },
+    "normalization_sha256": "f10a427d04d54b98e5d1e4e0995b3b8562347f54313c90cd64147fa5ae2710c8",
+    "normalization_hash_encoding": "for ordered STATS: JSON [key,shape,<f4] then little-endian float32 C-order bytes",
+    "train_window_sha256": "3a17f717f89367d0f673a2f73f3df246c4e332b9fac88385ce269df28854845b",
+    "validation_origin_sha256": "d9677c58fe0f9f23b12699a35c78e1b0961ddcb3ec5e5814e9f18392c501e3d3",
+    "training_windows": 28293,
+    "validation_origins": 2582,
+    "validation_flights_count": 17,
+    "preprocessing_parity": "all freshly assembled train/validation history, controls, dt, state, target and identity arrays exactly equal Step1 cache; no stats fitting",
+    "seed17_prediction_parity": "frozen NPZ hash verified against Step2; metrics recomputed and match Step1; no seed17 retraining or full re-inference",
+    "optimizer": {
+      "name": "AdamW",
+      "betas": [
+        0.9,
+        0.999
+      ],
+      "eps": 1e-08,
+      "weight_decay": 1e-05,
+      "amsgrad": false,
+      "reset_each_stage": true,
+      "lr_schedule": "constant .0003 for40 then .0005 for25; no scheduler",
+      "gradient_clip_norm": 5.0
+    },
+    "sampling": "CPU torch.Generator(stage_seed); full randperm of same28293 windows everyepoch;111 batches;drop_last=False;no DataLoader/workers",
+    "training_objective": "unchanged trajectory_rollout_loss + wv*increment_terms[0]+ww*increment_terms[1], lag2; continuation adds .2*frequency_MSE via existing zero-regularizer adapter",
+    "checkpoint_selection": "last epoch65; no best_epoch, no validation-based selection; final validation loss calculated for reporting only",
+    "metrics": {
+      "endpoint_vector_RMSE": "sqrt(mean_windows(sum_xyz(error**2))) per flight; no division by 3",
+      "attitude_error_deg": "RMS of sign-invariant quaternion geodesic angles per flight",
+      "macro": "equal-flight mean of per-flight RMSE; SD across flights ddof=1",
+      "increments": "(pred(t+h)-truth(t0))-(truth(t+h)-truth(t0)); exactly endpoint v/omega error",
+      "uncertainty": "sample SD(ddof=1) across three seed-specific equal-flight macro means; no windows as independent samples"
+    },
+    "runtime_policy": "same4torchthreads/deterministic_algorithms=True/cudnn.benchmark=False/CUBLAS_WORKSPACE_CONFIG=:4096:8; other defaults recorded, unchanged",
+    "seed17_rng_provenance": "torch CPU/CUDA init17;base17;continuation29;samplers17/29. Python/NumPy not explicitly seeded historically; unused by stochastic training path. Historical runtime versions not recorded; do not claim bitwise cross-version reproducibility.",
+    "robustness_screen": {
+      "description": "predeclared descriptive screen, not significance test or model selection",
+      "max_primary_cv": 0.2,
+      "max_1s_cv": 0.2,
+      "require_all_1s_errors_above_100ms": true,
+      "require_consistent_primary_cohort_gap_sign": true
+    },
+    "frozen_input_sha256": {
+      "docs/analysis/results/paper_baseline_comparison_v1/validation_horizon_timing.csv": "8669550c3385e07044fc64267dfa7dde9430317224d998b81045d4e8620b0022",
+      "docs/analysis/results/paper_baseline_comparison_v1/aggregate.csv": "e1ee575c5d6ee2db49220543742cc3104c237653df46139ba61764fda5503fef",
+      "docs/analysis/results/paper_baseline_comparison_v1/protocol.json": "9e84b8dc6cf784507c084c604a49c279079a3880ea557fc73ecd1853595d55f7",
+      "docs/analysis/results/paper_baseline_comparison_v1/report_smoke_test.json": "65455f1d502dfe72cdfd51efa8dd8ef369b47d0125ec648bd64972c626bb3ad6",
+      "docs/analysis/results/paper_baseline_comparison_v1/representative_prediction.pdf": "0a558174455dade173db4f348e1d4df346cf9c62b282557bbc81be8879995ffc",
+      "docs/analysis/results/paper_baseline_comparison_v1/representative_selection.json": "1048dfa44d71e21258a2a70cf854cb24637c32a418cbf0eae42b23869da88b06",
+      "docs/analysis/results/paper_baseline_comparison_v1/ours_vs_gru_per_flight.csv": "efb8cc46cbb8b8a0827a2ca1dd58c0019cd13394a696f9248d489e9538190a30",
+      "docs/analysis/results/paper_baseline_comparison_v1/per_flight.csv": "be4e714511450db13c476f6f8073ede13e4a306f7d8462ec21020b9d326571c3",
+      "docs/analysis/results/paper_baseline_comparison_v1/error_vs_horizon_velocity_rmse_m_s.pdf": "1c0fa2d76bb7f00e130c17c506fcc4a0788be67d91973b4388fed3136bf48a47",
+      "docs/analysis/results/paper_baseline_comparison_v1/error_vs_horizon_velocity_rmse_m_s.png": "82514eb7e207c40290688246b5b28fbbecbd85ea0c1db22f41749784869f8647",
+      "docs/analysis/results/paper_baseline_comparison_v1/error_vs_horizon_body_rate_rmse_rad_s.png": "c06deb7188745f53ad01b85c3f00fe370d67f01ece530cd366b5696f47d6d191",
+      "docs/analysis/results/paper_baseline_comparison_v1/report.md": "31d3adfed8f3814406124d33702fe9c42e0d57e307c32bdb7310a0fa4e3e6edf",
+      "docs/analysis/results/paper_baseline_comparison_v1/train_horizon_timing.csv": "a6837bf7183a0734994ab4e2c09caf1bfc92c83825d3db4e90c5b5cd8110890e",
+      "docs/analysis/results/paper_baseline_comparison_v1/flight_coverage.csv": "ab6ad5659529531b50bafcb2e2e21e9dba51887f12519cab95d79f0440b1c484",
+      "docs/analysis/results/paper_baseline_comparison_v1/error_vs_horizon_attitude_error_deg.pdf": "db1f4b30e4762aefc5daa7dd85f29f033dbd9ce944884196aebc380bdb661815",
+      "docs/analysis/results/paper_baseline_comparison_v1/audit.json": "9c471bb78489ce2b052c4b4f291d652d7354d8a80637dcdc13bdcf3b55e1d948",
+      "docs/analysis/results/paper_baseline_comparison_v1/validation_origins.csv": "d9677c58fe0f9f23b12699a35c78e1b0961ddcb3ec5e5814e9f18392c501e3d3",
+      "docs/analysis/results/paper_baseline_comparison_v1/error_vs_horizon_body_rate_rmse_rad_s.pdf": "1ff11ffa3461446e87e9b463897153a50b84bfad88853e498676cb49982caabf",
+      "docs/analysis/results/paper_baseline_comparison_v1/unit_tests.json": "a3b57c2e80d7b71a2daefc9220ea19c33ffd1d0b8adc2a333444a9c50bf3e4a4",
+      "docs/analysis/results/paper_baseline_comparison_v1/error_vs_horizon_attitude_error_deg.png": "ce26ec41c16139a59d4d686b528d9741fe05f36902fbae56584cf027b5137758",
+      "docs/analysis/results/paper_baseline_comparison_v1/error_vs_horizon_position_rmse_m.png": "47c07cf6060e1e0f4656f6f5e3bad974d3ce72dd07b519f40efa1621dcf65295",
+      "docs/analysis/results/paper_baseline_comparison_v1/failure_cases.csv": "f92c291900d2e0e10f7bb2af2d4cc0c2891d935593f503c4135533166d160ee7",
+      "docs/analysis/results/paper_baseline_comparison_v1/summary.csv": "25bad910a84a2ced3cc4bed2f5cdf1a47d1711f9a2a36bd381abacc0de40031f",
+      "docs/analysis/results/paper_baseline_comparison_v1/sanity_checks.json": "095fc1f7359d9033ab6156969f51681ea517d3f368592e58f738c14468f162fe",
+      "docs/analysis/results/paper_baseline_comparison_v1/train_origins.csv": "3a17f717f89367d0f673a2f73f3df246c4e332b9fac88385ce269df28854845b",
+      "docs/analysis/results/paper_baseline_comparison_v1/audit.md": "bb8e635661d06fdf238ce55dfa194d9038111049f5698abf99a2e00465325ad7",
+      "docs/analysis/results/paper_baseline_comparison_v1/git_status_at_launch.txt": "3cf999b336a68bce03dc153ffa44a915b95654ba980d09cd2f753d5589b84dbd",
+      "docs/analysis/results/paper_baseline_comparison_v1/error_vs_horizon_position_rmse_m.pdf": "16599999202d3a4b39795d75169b3c3640a9d88216f1868115eb287fb0b3716d",
+      "docs/analysis/results/paper_baseline_comparison_v1/git_status_at_completion.txt": "d058baa978d2e991d006d2ab371a5b0e4d80a8c5a9a19498fcfaa70829729605",
+      "docs/analysis/results/paper_baseline_comparison_v1/representative_prediction.png": "23ac7a17b009dec7e19aefb246e3e5ec34371d3737af4cc936d2a7c627e75eda",
+      "docs/analysis/results/paper_baseline_comparison_v1/frozen_ours_evaluator_parity.json": "659b1bc563015a0d2e2a6506885cc7ad374bb7eececf48605de44c2292cf340c",
+      "docs/analysis/results/paper_baseline_comparison_v1/representative_prediction.npz": "d8cb9bcbfc744a1c950be42a65732f8e3f0bd95511a8bd60df8b969432558a3e",
+      "docs/analysis/results/paper_baseline_comparison_v1/completion.json": "2d86a464832788698ec9d60dbf9208a0dd9a506180ab8181dcde90b304051c37",
+      "scripts/run_paper_baseline_comparison.py": "d517c57d3a5968a16b243148f9bf368d2f6433f9844f18409401c3af790b30ea",
+      "scripts/report_paper_baseline_comparison.py": "a06e58cb627934308d88b8d7172fe60fe9e562c82e39a6ea2eb1e89c7ab86e98",
+      "src/system_identification/models/paper_baselines.py": "7313347f2d3fcd5853c159c909daf3c603d8b465d1b807c33c7e165dc8741159",
+      "src/system_identification/evaluation/paper_baselines.py": "32e7c312b314273929bcc92b1d98e3bd636f8c52e35783042e44d5a6660a558a",
+      "src/system_identification/models/neural.py": "9b45cb859adde16dad1956ec5f70d96da5f4794a6373975f57ec66a31428773d",
+      "src/system_identification/models/trajectory.py": "cd8f5a0ba54d966d2e45e942275beb12a04a57ff8a1a7a3284b6a90917f69762",
+      "src/system_identification/models/trajectory_main_v1.py": "b61dd09701b3bfe0176f1a406e4c511b58092fb080b47af115aa4c54681a7e5a",
+      "src/system_identification/models/trajectory_main_v2.py": "df23f65b94be461ac302b5237d6bbfe8afb25dc67406ee16439c985ee5498542",
+      "src/system_identification/models/main_v2_simulator.py": "3273e301a63900de74441ec3aaced7c672c0f3b1974919fbdb2c5c1cf649c0b3",
+      "src/system_identification/training/main_v2_increment.py": "fccf050772caa3bea77cd28fb61b44071b78897e27dd2caf518c706b58ad008e",
+      "src/system_identification/training/trajectory_main_v1.py": "76c028ff176724194f7ecfafe916424ded0c6417fbbf04322593c01c7e5ef4c9",
+      "src/system_identification/training/trajectory_baselines.py": "394413e654c3f6eaaa131630afc8e30beb74cea5c57f4475da21d915443051fe",
+      "src/system_identification/evaluation/trajectory.py": "595189df1f994ed2aabfebd88e7b0c04ac38dbb6180579e461345a8fe1e64bd8",
+      "scripts/train_expanded_september.py": "5611d22e40f7ef1be0d88919ae960c43c49f6f77e6895fc33a60ebb7edb671fe",
+      "artifacts/paper_baseline_comparison_v1/B2_StandardGRU.pt": "f9895418b7dd2a2757dde8d740109ab42dae258c593fd5902f0076a3faeb0e26",
+      "artifacts/paper_baseline_comparison_v1/B2_StandardGRU_predictions.npz": "026d4cfe8ec3fe64a6b5fcd53cab7c4a80f6a64fe5b35bf4be3325746f3d6204",
+      "artifacts/paper_baseline_comparison_v1/per_origin.csv": "a8d35c4f368e4524f6d45be85426fb13b6d99c6909008cf51ff0912c2109e9ad",
+      "configs/data/trajectory_dataset_registry.yaml": "3cbebc8996d1a1c233d906359aedd47c7bd23cee0c25aa988f4ce51ec1cbba49",
+      "dataset/trajectory_v3_september_expanded/manifest.json": "46b50d0b23a32b40339a4c07526711d0ff88b55584d309a56807c56905d2817e",
+      "dataset/trajectory_v3_september_expanded/samples_train.parquet": "cd95d9db29cfe741c2929d8730fbd09b26fafcc54107f5faa3cd9d49e861e46e",
+      "dataset/trajectory_v3_september_expanded/windows_train.parquet": "d837c5183d81488788e4378d8d446a55b735829425b38fdda54c86ca28d4d422",
+      "dataset/trajectory_v3_september_expanded/samples_validation.parquet": "b66a14e2f0f9ef5f151c6e1c973fb2188c2821924d2bf87b8ae72442280718cd",
+      "dataset/trajectory_v3_september_expanded/windows_validation.parquet": "0a31c37dfd44b6889d2f896bef2fe848657fba7434e43ad7f91a375fe97d3cef",
+      "artifacts/paper_baseline_comparison_v1/B2_StandardGRU_base_history.csv": "3e094bec196e700b9fc27c8e64652bb512601d9aa5fe09c78a7b17b094478b8f",
+      "artifacts/paper_baseline_comparison_v1/B2_StandardGRU_continuation_history.csv": "985f16e298917715ccdde75799aa731e20ebcca4e739b33e52709363e87a0d66",
+      "scripts/run_paper_standard_gru_multiseed.py": "33ec639af3682a13c7ef55a7c7e175565fc8e7151fee49f49e98024e9c8b8e59",
+      "scripts/report_paper_standard_gru_multiseed.py": "0b386708854a302a1bb822782cabf3e47735e7851e6e91f1573261723cf98bc6",
+      "tests/test_paper_standard_gru_multiseed.py": "66548e2e80b6e1a1948957a000b96c841d7c82424b64e4b91c55488144f9045c"
+    },
+    "prepared_sha256": "70a2f04d0802bc03efdcb30cf6c8dc5635030393a3d4f13b8eb2a64618f4d290",
+    "sealed_test_opened_this_run": false,
+    "reserved_evaluation_opened_this_run": false,
+    "sealed_test_status": "Only explicit train/validation files read; excluded names are manifest metadata only."
+  },
+  "history_semantics": {
+    "state_shape": "[N,H,12]",
+    "control_shape": "[N,H,4]",
+    "mask_shape": "[N,H]",
+    "indices": "origin-(H-1) ... origin inclusive; all tokens legal; no padding in fixed origin set",
+    "last_token": "current origin t; state and control from same sample",
+    "H1": "single-sample context at t; no earlier state/control token; future GRU transition still recurrent",
+    "encoding": "hidden initialized to zero per window, shared GRUCell consumes H tokens through t; first derivative head receives this hidden plus current state/control again, unchanged inherited definition",
+    "phase_anchor": "unchanged relative encoder phase referenced to origin; truncation does not re-anchor"
+  },
+  "duration_definition": "(timestamp_us(origin)-timestamp_us(origin-H+1))*1e-6; H1=0; native dt, no 50Hz resampling",
+  "duration_statistics": "across fixed origins; sample SD ddof=1; NumPy linear p05/p95; train ALL and validation ALL/Sep7/Sep17",
+  "architecture": "CausalHistoryTrajectoryModel(hidden_size=64,use_controls=True); GRUCell(16,64), head Linear(80,64)/Tanh/Linear(64,7)",
+  "parameter_count_by_H": {
+    "1": 21383,
+    "5": 21383,
+    "13": 21383,
+    "26": 21383
+  },
+  "training_schedule": {
+    "base_epochs": 40,
+    "continuation_epochs": 25,
+    "batch_size": 256,
+    "optimizer": "AdamW",
+    "learning_rates": [
+      0.0003,
+      0.0005
+    ],
+    "weight_decay": 1e-05,
+    "gradient_clip_norm": 5,
+    "rollout_steps": 50,
+    "sampling_seeds": {
+      "17": [
+        17,
+        29
+      ],
+      "23": [
+        23,
+        35
+      ],
+      "42": [
+        42,
+        54
+      ]
+    },
+    "objective": "existing trajectory_rollout_loss + frozen two-step increment weights/scales; continuation adds 0.2*frequency_MSE; no actuator regularizer"
+  },
+  "normalization_sha256": "f10a427d04d54b98e5d1e4e0995b3b8562347f54313c90cd64147fa5ae2710c8",
+  "train_window_sha256": "3a17f717f89367d0f673a2f73f3df246c4e332b9fac88385ce269df28854845b",
+  "validation_origin_sha256": "d9677c58fe0f9f23b12699a35c78e1b0961ddcb3ec5e5814e9f18392c501e3d3",
+  "manifest_sha256": "46b50d0b23a32b40339a4c07526711d0ff88b55584d309a56807c56905d2817e",
+  "train_origins": 28293,
+  "validation_origins": 2582,
+  "horizons_s": [
+    0.1,
+    0.2,
+    0.5,
+    1.0
+  ],
+  "primary_horizon_s": 0.5,
+  "metrics": {
+    "endpoint_vector_RMSE": "sqrt(mean_windows(sum_xyz(error**2))) per flight; no division by 3",
+    "attitude_error_deg": "RMS of sign-invariant quaternion geodesic angles per flight",
+    "macro": "equal-flight mean of per-flight RMSE; SD across flights ddof=1",
+    "increments": "(pred(t+h)-truth(t0))-(truth(t+h)-truth(t0)); exactly endpoint v/omega error",
+    "uncertainty": "sample SD(ddof=1) across three seed-specific equal-flight macro means; no windows as independent samples"
+  },
+  "checkpoint_selection": "last epoch65; no best_epoch, no validation-based selection; final validation loss calculated for reporting only",
+  "randomness_contract": "initialization/base=s; continuation=s+12, preserving historical 17->29",
+  "execution": {
+    "device": "cuda:1",
+    "concurrent_workers": 2,
+    "job_order": [
+      [
+        1,
+        17
+      ],
+      [
+        1,
+        23
+      ],
+      [
+        1,
+        42
+      ],
+      [
+        5,
+        17
+      ],
+      [
+        5,
+        23
+      ],
+      [
+        5,
+        42
+      ],
+      [
+        13,
+        17
+      ],
+      [
+        13,
+        23
+      ],
+      [
+        13,
+        42
+      ]
+    ],
+    "no_automatic_retry": true
+  },
+  "qualitative_case": {
+    "rule": "fixed middle index after lexicographic origin identity sorting, independent of all model errors",
+    "sorted_index": 1291,
+    "source_index": 1291,
+    "window_id": "validation:2026.9.7/log_29_2026-9-7-06-51-04.ulg:4:3975",
+    "log_id": "2026.9.7/log_29_2026-9-7-06-51-04.ulg",
+    "origin_timestamp_us": 226575031,
+    "seed": 17,
+    "histories": [
+      1,
+      13,
+      26
+    ],
+    "selection": "frozen Step1 representative origin, independent of all ablation errors"
+  },
+  "interpretation": "Report all metrics/cohorts/seeds and paired per-flight directions; no model switch. Descriptive classification at ALL500ms dynamics: B if all H13/H26 mean differences within2%; A if H26 best on all3 with >2% H13 gains and all3seeds same direction; C if H5 or H13 beats H26 by >2% on at least2metrics with no >2% regression on third; otherwise Mixed. This is not a significance or equivalence test.",
+  "sealed_test_opened_this_run": false,
+  "reserved_evaluation_opened_this_run": false,
+  "sealed_status": "Only frozen train/validation data and existing open validation predictions; excluded names metadata only.",
+  "frozen_input_sha256": {
+    "docs/analysis/results/paper_baseline_comparison_v1/validation_horizon_timing.csv": "8669550c3385e07044fc64267dfa7dde9430317224d998b81045d4e8620b0022",
+    "docs/analysis/results/paper_baseline_comparison_v1/aggregate.csv": "e1ee575c5d6ee2db49220543742cc3104c237653df46139ba61764fda5503fef",
+    "docs/analysis/results/paper_baseline_comparison_v1/protocol.json": "9e84b8dc6cf784507c084c604a49c279079a3880ea557fc73ecd1853595d55f7",
+    "docs/analysis/results/paper_baseline_comparison_v1/report_smoke_test.json": "65455f1d502dfe72cdfd51efa8dd8ef369b47d0125ec648bd64972c626bb3ad6",
+    "docs/analysis/results/paper_baseline_comparison_v1/representative_prediction.pdf": "0a558174455dade173db4f348e1d4df346cf9c62b282557bbc81be8879995ffc",
+    "docs/analysis/results/paper_baseline_comparison_v1/representative_selection.json": "1048dfa44d71e21258a2a70cf854cb24637c32a418cbf0eae42b23869da88b06",
+    "docs/analysis/results/paper_baseline_comparison_v1/ours_vs_gru_per_flight.csv": "efb8cc46cbb8b8a0827a2ca1dd58c0019cd13394a696f9248d489e9538190a30",
+    "docs/analysis/results/paper_baseline_comparison_v1/per_flight.csv": "be4e714511450db13c476f6f8073ede13e4a306f7d8462ec21020b9d326571c3",
+    "docs/analysis/results/paper_baseline_comparison_v1/error_vs_horizon_velocity_rmse_m_s.pdf": "1c0fa2d76bb7f00e130c17c506fcc4a0788be67d91973b4388fed3136bf48a47",
+    "docs/analysis/results/paper_baseline_comparison_v1/error_vs_horizon_velocity_rmse_m_s.png": "82514eb7e207c40290688246b5b28fbbecbd85ea0c1db22f41749784869f8647",
+    "docs/analysis/results/paper_baseline_comparison_v1/error_vs_horizon_body_rate_rmse_rad_s.png": "c06deb7188745f53ad01b85c3f00fe370d67f01ece530cd366b5696f47d6d191",
+    "docs/analysis/results/paper_baseline_comparison_v1/report.md": "31d3adfed8f3814406124d33702fe9c42e0d57e307c32bdb7310a0fa4e3e6edf",
+    "docs/analysis/results/paper_baseline_comparison_v1/train_horizon_timing.csv": "a6837bf7183a0734994ab4e2c09caf1bfc92c83825d3db4e90c5b5cd8110890e",
+    "docs/analysis/results/paper_baseline_comparison_v1/flight_coverage.csv": "ab6ad5659529531b50bafcb2e2e21e9dba51887f12519cab95d79f0440b1c484",
+    "docs/analysis/results/paper_baseline_comparison_v1/error_vs_horizon_attitude_error_deg.pdf": "db1f4b30e4762aefc5daa7dd85f29f033dbd9ce944884196aebc380bdb661815",
+    "docs/analysis/results/paper_baseline_comparison_v1/audit.json": "9c471bb78489ce2b052c4b4f291d652d7354d8a80637dcdc13bdcf3b55e1d948",
+    "docs/analysis/results/paper_baseline_comparison_v1/validation_origins.csv": "d9677c58fe0f9f23b12699a35c78e1b0961ddcb3ec5e5814e9f18392c501e3d3",
+    "docs/analysis/results/paper_baseline_comparison_v1/error_vs_horizon_body_rate_rmse_rad_s.pdf": "1ff11ffa3461446e87e9b463897153a50b84bfad88853e498676cb49982caabf",
+    "docs/analysis/results/paper_baseline_comparison_v1/unit_tests.json": "a3b57c2e80d7b71a2daefc9220ea19c33ffd1d0b8adc2a333444a9c50bf3e4a4",
+    "docs/analysis/results/paper_baseline_comparison_v1/error_vs_horizon_attitude_error_deg.png": "ce26ec41c16139a59d4d686b528d9741fe05f36902fbae56584cf027b5137758",
+    "docs/analysis/results/paper_baseline_comparison_v1/error_vs_horizon_position_rmse_m.png": "47c07cf6060e1e0f4656f6f5e3bad974d3ce72dd07b519f40efa1621dcf65295",
+    "docs/analysis/results/paper_baseline_comparison_v1/failure_cases.csv": "f92c291900d2e0e10f7bb2af2d4cc0c2891d935593f503c4135533166d160ee7",
+    "docs/analysis/results/paper_baseline_comparison_v1/summary.csv": "25bad910a84a2ced3cc4bed2f5cdf1a47d1711f9a2a36bd381abacc0de40031f",
+    "docs/analysis/results/paper_baseline_comparison_v1/sanity_checks.json": "095fc1f7359d9033ab6156969f51681ea517d3f368592e58f738c14468f162fe",
+    "docs/analysis/results/paper_baseline_comparison_v1/train_origins.csv": "3a17f717f89367d0f673a2f73f3df246c4e332b9fac88385ce269df28854845b",
+    "docs/analysis/results/paper_baseline_comparison_v1/audit.md": "bb8e635661d06fdf238ce55dfa194d9038111049f5698abf99a2e00465325ad7",
+    "docs/analysis/results/paper_baseline_comparison_v1/git_status_at_launch.txt": "3cf999b336a68bce03dc153ffa44a915b95654ba980d09cd2f753d5589b84dbd",
+    "docs/analysis/results/paper_baseline_comparison_v1/error_vs_horizon_position_rmse_m.pdf": "16599999202d3a4b39795d75169b3c3640a9d88216f1868115eb287fb0b3716d",
+    "docs/analysis/results/paper_baseline_comparison_v1/git_status_at_completion.txt": "d058baa978d2e991d006d2ab371a5b0e4d80a8c5a9a19498fcfaa70829729605",
+    "docs/analysis/results/paper_baseline_comparison_v1/representative_prediction.png": "23ac7a17b009dec7e19aefb246e3e5ec34371d3737af4cc936d2a7c627e75eda",
+    "docs/analysis/results/paper_baseline_comparison_v1/frozen_ours_evaluator_parity.json": "659b1bc563015a0d2e2a6506885cc7ad374bb7eececf48605de44c2292cf340c",
+    "docs/analysis/results/paper_baseline_comparison_v1/representative_prediction.npz": "d8cb9bcbfc744a1c950be42a65732f8e3f0bd95511a8bd60df8b969432558a3e",
+    "docs/analysis/results/paper_baseline_comparison_v1/completion.json": "2d86a464832788698ec9d60dbf9208a0dd9a506180ab8181dcde90b304051c37",
+    "scripts/run_paper_baseline_comparison.py": "d517c57d3a5968a16b243148f9bf368d2f6433f9844f18409401c3af790b30ea",
+    "scripts/report_paper_baseline_comparison.py": "a06e58cb627934308d88b8d7172fe60fe9e562c82e39a6ea2eb1e89c7ab86e98",
+    "src/system_identification/models/paper_baselines.py": "7313347f2d3fcd5853c159c909daf3c603d8b465d1b807c33c7e165dc8741159",
+    "src/system_identification/evaluation/paper_baselines.py": "32e7c312b314273929bcc92b1d98e3bd636f8c52e35783042e44d5a6660a558a",
+    "src/system_identification/models/neural.py": "9b45cb859adde16dad1956ec5f70d96da5f4794a6373975f57ec66a31428773d",
+    "src/system_identification/models/trajectory.py": "cd8f5a0ba54d966d2e45e942275beb12a04a57ff8a1a7a3284b6a90917f69762",
+    "src/system_identification/models/trajectory_main_v1.py": "b61dd09701b3bfe0176f1a406e4c511b58092fb080b47af115aa4c54681a7e5a",
+    "src/system_identification/models/trajectory_main_v2.py": "df23f65b94be461ac302b5237d6bbfe8afb25dc67406ee16439c985ee5498542",
+    "src/system_identification/models/main_v2_simulator.py": "3273e301a63900de74441ec3aaced7c672c0f3b1974919fbdb2c5c1cf649c0b3",
+    "src/system_identification/training/main_v2_increment.py": "fccf050772caa3bea77cd28fb61b44071b78897e27dd2caf518c706b58ad008e",
+    "src/system_identification/training/trajectory_main_v1.py": "76c028ff176724194f7ecfafe916424ded0c6417fbbf04322593c01c7e5ef4c9",
+    "src/system_identification/training/trajectory_baselines.py": "394413e654c3f6eaaa131630afc8e30beb74cea5c57f4475da21d915443051fe",
+    "src/system_identification/evaluation/trajectory.py": "595189df1f994ed2aabfebd88e7b0c04ac38dbb6180579e461345a8fe1e64bd8",
+    "scripts/train_expanded_september.py": "5611d22e40f7ef1be0d88919ae960c43c49f6f77e6895fc33a60ebb7edb671fe",
+    "artifacts/paper_baseline_comparison_v1/B2_StandardGRU.pt": "f9895418b7dd2a2757dde8d740109ab42dae258c593fd5902f0076a3faeb0e26",
+    "artifacts/paper_baseline_comparison_v1/B2_StandardGRU_predictions.npz": "026d4cfe8ec3fe64a6b5fcd53cab7c4a80f6a64fe5b35bf4be3325746f3d6204",
+    "artifacts/paper_baseline_comparison_v1/per_origin.csv": "a8d35c4f368e4524f6d45be85426fb13b6d99c6909008cf51ff0912c2109e9ad",
+    "configs/data/trajectory_dataset_registry.yaml": "3cbebc8996d1a1c233d906359aedd47c7bd23cee0c25aa988f4ce51ec1cbba49",
+    "dataset/trajectory_v3_september_expanded/manifest.json": "46b50d0b23a32b40339a4c07526711d0ff88b55584d309a56807c56905d2817e",
+    "dataset/trajectory_v3_september_expanded/samples_train.parquet": "cd95d9db29cfe741c2929d8730fbd09b26fafcc54107f5faa3cd9d49e861e46e",
+    "dataset/trajectory_v3_september_expanded/windows_train.parquet": "d837c5183d81488788e4378d8d446a55b735829425b38fdda54c86ca28d4d422",
+    "dataset/trajectory_v3_september_expanded/samples_validation.parquet": "b66a14e2f0f9ef5f151c6e1c973fb2188c2821924d2bf87b8ae72442280718cd",
+    "dataset/trajectory_v3_september_expanded/windows_validation.parquet": "0a31c37dfd44b6889d2f896bef2fe848657fba7434e43ad7f91a375fe97d3cef",
+    "artifacts/paper_baseline_comparison_v1/B2_StandardGRU_base_history.csv": "3e094bec196e700b9fc27c8e64652bb512601d9aa5fe09c78a7b17b094478b8f",
+    "artifacts/paper_baseline_comparison_v1/B2_StandardGRU_continuation_history.csv": "985f16e298917715ccdde75799aa731e20ebcca4e739b33e52709363e87a0d66",
+    "scripts/run_paper_standard_gru_multiseed.py": "33ec639af3682a13c7ef55a7c7e175565fc8e7151fee49f49e98024e9c8b8e59",
+    "scripts/report_paper_standard_gru_multiseed.py": "0b386708854a302a1bb822782cabf3e47735e7851e6e91f1573261723cf98bc6",
+    "tests/test_paper_standard_gru_multiseed.py": "66548e2e80b6e1a1948957a000b96c841d7c82424b64e4b91c55488144f9045c",
+    "docs/analysis/results/paper_standard_gru_multiseed_v1/seed_robustness_500ms_position_rmse_m.pdf": "2c88b4da517dcc44acb5fa0b542ae6e60030fc5a629ebd96c0f71877a9afc113",
+    "docs/analysis/results/paper_standard_gru_multiseed_v1/seed_robustness_500ms_attitude_error_deg.png": "bb6423eeee4fb2786de23b7a0d524358a7d7f249ea480fe9054fd16ad51f9712",
+    "docs/analysis/results/paper_standard_gru_multiseed_v1/multiseed_summary.csv": "43ba34997c98ea97ab29e6c509b5386135223466cb90adb94d14876480f2ebc5",
+    "docs/analysis/results/paper_standard_gru_multiseed_v1/seed_robustness_500ms_body_rate_rmse_rad_s.png": "5bc7f44774d5256e30c52d86d55432808af92bbf7324552d2b6d78ef8e1ba170",
+    "docs/analysis/results/paper_standard_gru_multiseed_v1/protocol.json": "86f5fceac7838e7f2369e6b854618eec851e652d5cde52cea4403f04063cab1e",
+    "docs/analysis/results/paper_standard_gru_multiseed_v1/tests.log": "7605d5650cc9cb9f28e7add2b601886fc3237ff4ea9b88e55e76ae9973c7bc48",
+    "docs/analysis/results/paper_standard_gru_multiseed_v1/error_growth.csv": "e7bd57265134daa0c1f299ebbb8af8eb728b67a735f340014a24ff36c818dabc",
+    "docs/analysis/results/paper_standard_gru_multiseed_v1/per_seed_summary.csv": "ea337c2466472a6d8a5f829f5990730077be712a1e186d6177f0a2902625065b",
+    "docs/analysis/results/paper_standard_gru_multiseed_v1/seed_robustness_500ms_body_rate_rmse_rad_s.pdf": "feea82d530c84222f13409a2746e9e34847578a07628c9b76b9f70a877e8bb5b",
+    "docs/analysis/results/paper_standard_gru_multiseed_v1/seed_robustness_500ms_position_rmse_m.png": "e3b5f139dabeea39d7d4262a475ae91bc14cef7173942a53ebbe30de4df29369",
+    "docs/analysis/results/paper_standard_gru_multiseed_v1/error_vs_horizon_velocity_rmse_m_s.pdf": "8ce42c623f955009523b08a2c1638289ddea67a0d27361106b8ba6c6fa52ba4f",
+    "docs/analysis/results/paper_standard_gru_multiseed_v1/error_vs_horizon_velocity_rmse_m_s.png": "40f31dd2020f6d4c59171d6af21b1aef0ef4f3d3e6e6d4d15adbd2feef5e2bfb",
+    "docs/analysis/results/paper_standard_gru_multiseed_v1/error_vs_horizon_body_rate_rmse_rad_s.png": "34ca85a1a0eb86cbecba59c8aed0463a7cf6649ead1814faf88480068f2c51dd",
+    "docs/analysis/results/paper_standard_gru_multiseed_v1/report.md": "1e70df96568def97850f7da299e9181ed3b98fa11ba81a233c5d443b97000368",
+    "docs/analysis/results/paper_standard_gru_multiseed_v1/error_vs_horizon_attitude_error_deg.pdf": "5e98d33260f67e7d46e25965ec56a34f07cb6f972f74d3742e1c378d18e33b00",
+    "docs/analysis/results/paper_standard_gru_multiseed_v1/per_flight_wide.csv": "bd683d1987fd1e19169981fcfbd48770ee2940232fec4f6fd9ff0f0b67b94e8d",
+    "docs/analysis/results/paper_standard_gru_multiseed_v1/interpretation.json": "30c1cc5dc87e40191997cc6d51edbd8f9702e7694a104bc9bddf3a516608d602",
+    "docs/analysis/results/paper_standard_gru_multiseed_v1/audit.json": "a277ca057bb51257f29193879c819a1a969f63141a8eb03be59c191b89675c16",
+    "docs/analysis/results/paper_standard_gru_multiseed_v1/seed_robustness_500ms_attitude_error_deg.pdf": "87e6a7dfcfa0b321d9e8113c2788c3fb115ae929537e261dd50cb18be77fb205",
+    "docs/analysis/results/paper_standard_gru_multiseed_v1/error_vs_horizon_body_rate_rmse_rad_s.pdf": "0efd64a6000f471b3845859e5e8f4836497a1df22519c9d90b339c2de72f8f38",
+    "docs/analysis/results/paper_standard_gru_multiseed_v1/error_vs_horizon_attitude_error_deg.png": "5082150a6e113fa202b310912d1c709f41d6e1ca2bdcb8b0397b44e70ab40e39",
+    "docs/analysis/results/paper_standard_gru_multiseed_v1/error_vs_horizon_position_rmse_m.png": "c2025652735324d57e2cc6441d782639c4d1d331b09a337ab36045fbf450d504",
+    "docs/analysis/results/paper_standard_gru_multiseed_v1/training_runs.csv": "634a515a11d97d4faa7e6099a8639ea7d1036f97f5f6d5f0a90dcecd4a515cc6",
+    "docs/analysis/results/paper_standard_gru_multiseed_v1/sanity_checks.json": "5890a418fb8d00fe9e84e9f5dbc1a11c63a31a12d28a8fb5cc55168a301b4125",
+    "docs/analysis/results/paper_standard_gru_multiseed_v1/per_flight_per_seed.csv": "c6efce8fd54f23f2dc262af23709588db393b536556b98772d5ff589a29049b0",
+    "docs/analysis/results/paper_standard_gru_multiseed_v1/git_status_at_launch.txt": "2a2742d8f2f9c5b382e64181fd4b747c4da656674f29b85443c98d01423e281d",
+    "docs/analysis/results/paper_standard_gru_multiseed_v1/preflight.json": "f4769057dfc909f10344d9ea34762ac73cefb068dc6a7fcff2cfa8d8b3eedb38",
+    "docs/analysis/results/paper_standard_gru_multiseed_v1/error_vs_horizon_position_rmse_m.pdf": "163742bd7acb7961573507e073f602cc9b0e3505109768f13f68b72c325e9dd7",
+    "docs/analysis/results/paper_standard_gru_multiseed_v1/git_status_at_completion.txt": "2a2742d8f2f9c5b382e64181fd4b747c4da656674f29b85443c98d01423e281d",
+    "docs/analysis/results/paper_standard_gru_multiseed_v1/across_flights_per_seed.csv": "e0f091a5bc1fa3a37d5962d1358c44ef2ad5e50e394bf5f1e61fedb79b09467f",
+    "docs/analysis/results/paper_standard_gru_multiseed_v1/seed_robustness_500ms_velocity_rmse_m_s.pdf": "54706fdd6ec8f92eb19dca18b857956618f32b41d7548f9c90e0c9136914070b",
+    "docs/analysis/results/paper_standard_gru_multiseed_v1/seed_robustness_500ms_velocity_rmse_m_s.png": "cd919e3db92e4fd4a9b679f07b6e617c6b899627dcebe7d339868e4950460b02",
+    "docs/analysis/results/paper_standard_gru_multiseed_v1/tests.json": "64edcacce1f5b996b73d4acc6acfdbed82ce0f37b8391106e738c3ed710f11ce",
+    "artifacts/paper_standard_gru_multiseed_v1/seed23/status.json": "b7047610408a50389072b2a020e2c3add72f37d620ea165d8d6a2b23cfa01994",
+    "artifacts/paper_standard_gru_multiseed_v1/seed23/predictions.npz": "d504874f68cfba752bc3e1d526cecca82bf0c5ca18cbdcfb3105efbbd9e21e72",
+    "artifacts/paper_standard_gru_multiseed_v1/seed23/continuation_history.csv": "50aa1d36f19d5f5f2edadbe5f3ab60c818d4034a638139bf677cf0879d99d9ca",
+    "artifacts/paper_standard_gru_multiseed_v1/seed23/per_origin.csv": "a33061ba82932c694fb1477208d0f0741ec4e410328b271eddc5b3b59ec173e5",
+    "artifacts/paper_standard_gru_multiseed_v1/seed23/model.pt": "1cfbb865db55e3fc7c248eff4de95892fa9ee9155ee8e81c0318a9021b7d8b03",
+    "artifacts/paper_standard_gru_multiseed_v1/seed23/runtime.json": "ec30e6c499088506d4272383b027e12db9a9370020fe070e57db85247b1a14fd",
+    "artifacts/paper_standard_gru_multiseed_v1/seed23/continuation.pt": "6a9307526ae27fabea218a5693982f546be14864382a63ca9671432e42d94528",
+    "artifacts/paper_standard_gru_multiseed_v1/seed23/base.pt": "37d311ed867142dff07ec3dd9698cae26d693171b8857aa6fa0c9d458b7d7b61",
+    "artifacts/paper_standard_gru_multiseed_v1/seed23/base_history.csv": "46eff1735937b8c15d4e0832957c5e356ba203fa88ed38980f03df20462274eb",
+    "artifacts/paper_standard_gru_multiseed_v1/seed42/status.json": "7e73efb0860754c8187c695c3ef2b6f94d61f9a94e642abda3f1df89e66c0763",
+    "artifacts/paper_standard_gru_multiseed_v1/seed42/predictions.npz": "2fa6f59d1bffd69871b5051f62ea5b483718a985ece856ad2ed54cb9945d47b3",
+    "artifacts/paper_standard_gru_multiseed_v1/seed42/continuation_history.csv": "f629567598f5ede224744e100d9d74b3cd80d5d8f245a502374eaa509a0ccfb7",
+    "artifacts/paper_standard_gru_multiseed_v1/seed42/per_origin.csv": "8e3b5662fa94b0019cbc49603ed7ddc97f846df999d610fcd585303773ba28ad",
+    "artifacts/paper_standard_gru_multiseed_v1/seed42/model.pt": "98fd6266bdc8926055c7f8b0dc2f37a4333fa92f55f336fb4cba4d3480324f86",
+    "artifacts/paper_standard_gru_multiseed_v1/seed42/runtime.json": "ff6d0678a089a1c3025cec0a88c54749daf5e0a0f96c0b12b002d9b92ef056b6",
+    "artifacts/paper_standard_gru_multiseed_v1/seed42/continuation.pt": "0a90ac229e5e53e908a9ff590d3f7d3ed3d0a3bbebcfcb389c692a7b1f0f2162",
+    "artifacts/paper_standard_gru_multiseed_v1/seed42/base.pt": "464661a0c97e1422df35a4e5c7a611340aa830a599b846bf9971877de918abf5",
+    "artifacts/paper_standard_gru_multiseed_v1/seed42/base_history.csv": "76e148970230341fc4e16917ba3aa35a55d73074e266d970adaf92f7e1f7fac5",
+    "docs/analysis/results/paper_standard_gru_multiseed_v1/completion.json": "978bb578269582f7fa830c5f8d77a7ca85158557cf7ac5b9af760a2347f4ee7b",
+    "artifacts/paper_standard_gru_multiseed_v1/prepared.pt": "70a2f04d0802bc03efdcb30cf6c8dc5635030393a3d4f13b8eb2a64618f4d290",
+    "artifacts/paper_standard_gru_multiseed_v1/seed17_per_origin.csv": "869d78e413440778cc8668ff2f85f8c25056dcf1c50f2ed2c83f3094b43da4b1",
+    "scripts/run_paper_history_length_ablation.py": "98ce7aa0040bc508ff3b3bbed6c65f8cb2848c4df10d949b23bce9123f7a628a",
+    "scripts/report_paper_history_length_ablation.py": "5517cc79c7c085a586a341e2d6868441173a891c7546afda4b7d2b6ade58ca53",
+    "tests/test_paper_history_length_ablation.py": "2e09f5d3633a8755bdabd7a244db44cbf878ce4da3b909af09e3b09e1d449ed1"
+  }
+}

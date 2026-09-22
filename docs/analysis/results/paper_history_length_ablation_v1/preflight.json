@@ -1,0 +1,75 @@
+{
+  "status": "passed",
+  "checks": {
+    "1": {
+      "future_label_poisoning_bitwise_equal": true,
+      "prefix_500ms_bitwise_equal": true,
+      "finite_metric_rows": 16,
+      "final_objective_smoke": 4.282910346984863,
+      "parameter_count": 21383
+    },
+    "5": {
+      "future_label_poisoning_bitwise_equal": true,
+      "prefix_500ms_bitwise_equal": true,
+      "finite_metric_rows": 16,
+      "final_objective_smoke": 4.283866882324219,
+      "parameter_count": 21383
+    },
+    "13": {
+      "future_label_poisoning_bitwise_equal": true,
+      "prefix_500ms_bitwise_equal": true,
+      "finite_metric_rows": 16,
+      "final_objective_smoke": 4.283944129943848,
+      "parameter_count": 21383
+    },
+    "26": {
+      "future_label_poisoning_bitwise_equal": true,
+      "prefix_500ms_bitwise_equal": true,
+      "finite_metric_rows": 16,
+      "final_objective_smoke": 0.6058594584465027,
+      "parameter_count": 21383
+    }
+  },
+  "runtime": {
+    "seed": 17,
+    "python_seed": [
+      17,
+      29
+    ],
+    "numpy_seed": [
+      17,
+      29
+    ],
+    "torch_seed": [
+      17,
+      29
+    ],
+    "cuda_seed_all_devices": [
+      17,
+      29
+    ],
+    "initialization_seed": 17,
+    "dataloader": "not used; CPU torch.Generator per stage",
+    "sampler_seeds": [
+      17,
+      29
+    ],
+    "deterministic_algorithms": true,
+    "cudnn_benchmark": false,
+    "cudnn_deterministic": false,
+    "cuda_matmul_allow_tf32": false,
+    "cudnn_allow_tf32": true,
+    "cublas_workspace_config": ":4096:8",
+    "threads": 4,
+    "device": "cuda:1",
+    "device_name": "NVIDIA GeForce RTX 4090",
+    "torch_version": "2.7.0+cu128",
+    "cuda_version": "12.8",
+    "cudnn_version": 90701,
+    "python_version": "3.11.14 (main, Oct 21 2025, 18:31:21) [GCC 11.2.0]",
+    "numpy_version": "1.26.0"
+  },
+  "disposable_models_only": true,
+  "no_H26_experiment_training": true,
+  "protocol_sha256": "86ac44c9a6ee44defe041fd81c10c558f85ec51ec8c6960b25ac97dc5864a857"
+}
