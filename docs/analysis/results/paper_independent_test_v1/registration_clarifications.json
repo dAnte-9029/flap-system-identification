@@ -1,0 +1,9 @@
+{
+  "at_utc": "2026-09-22T06:15:12.558290+00:00",
+  "type": "inherited wording clarification; no protocol or scientific choice changed",
+  "field": "conditions.Actual",
+  "inherited_text": "u_t,...,u_(t+49), reuse frozen full predictions",
+  "binding_registration": "H26 Actual is inferred once per seed/date and reused across comparisons",
+  "meaning": "These held-out predictions are newly inferred from the15 frozen checkpoints, not copied validation predictions. Reuse is within the three analyses of each test date.",
+  "exposure": "Both date datasets and full predictions generated; numeric performance tables have not yet been inspected by the assistant at this clarification."
+}

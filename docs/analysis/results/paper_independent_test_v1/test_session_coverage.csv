@@ -1,0 +1,6 @@
+date,session,status,flights,raw_samples,valid_samples,origins
+Sep19,9.19-2数据,admitted,8,91637,57968,1133
+Sep19,9.19-2数据,excluded_by_frozen_gate,1,1309,14,0
+Sep19,9.19-3数据,admitted,7,69807,51500,1007
+Sep19,9.19数据,admitted,7,72971,54550,1062
+Sep8,2026.9.8,admitted,6,59525,44858,871

@@ -1,0 +1,7 @@
+date,model,condition,group,horizon_s,Position RMSE [m],Velocity RMSE [m/s],Attitude geodesic RMS [deg],Body-rate RMSE [rad/s]
+Sep8,B0 kinematic,Actual,ALL,0.5,0.3628,1.1462,23.9791,0.9779
+Sep8,MLP,Actual,ALL,0.5,0.1636 ± 0.0037,0.4921 ± 0.0159,4.5510 ± 0.0677,0.6576 ± 0.0060
+Sep8,Standard GRU/H26,Actual,ALL,0.5,0.1205 ± 0.0036,0.3533 ± 0.0132,3.6977 ± 0.1867,0.5298 ± 0.0082
+Sep19,B0 kinematic,Actual,ALL,0.5,0.4769,1.4227,22.8819,1.1018
+Sep19,MLP,Actual,ALL,0.5,0.2847 ± 0.0013,0.7036 ± 0.0034,6.9392 ± 0.0204,0.7459 ± 0.0020
+Sep19,Standard GRU/H26,Actual,ALL,0.5,0.2097 ± 0.0016,0.4610 ± 0.0112,4.9615 ± 0.0364,0.5286 ± 0.0043

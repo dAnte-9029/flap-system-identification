@@ -1,0 +1,649 @@
+{
+  "experiment": "paper_independent_test_v1",
+  "frozen_at_utc": "2026-09-22T06:09:10.808392+00:00",
+  "git_commit": "63ad78f269eb882d9b311c517274b5a3b9732939",
+  "branch": "step5-actuator-aware-trajectory-main-v2",
+  "runtime": {
+    "seed": 17,
+    "python_seed": [
+      17,
+      29
+    ],
+    "numpy_seed": [
+      17,
+      29
+    ],
+    "torch_seed": [
+      17,
+      29
+    ],
+    "cuda_seed_all_devices": [
+      17,
+      29
+    ],
+    "initialization_seed": 17,
+    "dataloader": "not used; CPU torch.Generator per stage",
+    "sampler_seeds": [
+      17,
+      29
+    ],
+    "deterministic_algorithms": true,
+    "cudnn_benchmark": false,
+    "cudnn_deterministic": false,
+    "cuda_matmul_allow_tf32": false,
+    "cudnn_allow_tf32": true,
+    "cublas_workspace_config": ":4096:8",
+    "threads": 4,
+    "device": "cuda:1",
+    "device_name": "NVIDIA GeForce RTX 4090",
+    "torch_version": "2.7.0+cu128",
+    "cuda_version": "12.8",
+    "cudnn_version": 90701,
+    "python_version": "3.11.14 (main, Oct 21 2025, 18:31:21) [GCC 11.2.0]",
+    "numpy_version": "1.26.0"
+  },
+  "partitions": {
+    "Sep8": {
+      "role": "primary independent test",
+      "original_partition": "sealed_test",
+      "flights": [
+        {
+          "flight_id": "2026.9.8/log_0_2026-9-8-05-42-48.ulg",
+          "path": "/home/zn/QgcLogs/2026.9.8/log_0_2026-9-8-05-42-48.ulg",
+          "bytes": 17913774,
+          "source_sha256": null,
+          "session": "2026.9.8"
+        },
+        {
+          "flight_id": "2026.9.8/log_1_2026-9-8-05-49-28.ulg",
+          "path": "/home/zn/QgcLogs/2026.9.8/log_1_2026-9-8-05-49-28.ulg",
+          "bytes": 24733548,
+          "source_sha256": null,
+          "session": "2026.9.8"
+        },
+        {
+          "flight_id": "2026.9.8/log_2_2026-9-8-05-56-46.ulg",
+          "path": "/home/zn/QgcLogs/2026.9.8/log_2_2026-9-8-05-56-46.ulg",
+          "bytes": 22729335,
+          "source_sha256": null,
+          "session": "2026.9.8"
+        },
+        {
+          "flight_id": "2026.9.8/log_4_2026-9-8-06-38-56.ulg",
+          "path": "/home/zn/QgcLogs/2026.9.8/log_4_2026-9-8-06-38-56.ulg",
+          "bytes": 23252960,
+          "source_sha256": null,
+          "session": "2026.9.8"
+        },
+        {
+          "flight_id": "2026.9.8/log_6_2026-9-8-06-46-18.ulg",
+          "path": "/home/zn/QgcLogs/2026.9.8/log_6_2026-9-8-06-46-18.ulg",
+          "bytes": 23303638,
+          "source_sha256": null,
+          "session": "2026.9.8"
+        },
+        {
+          "flight_id": "2026.9.8/log_7_2026-9-8-06-55-26.ulg",
+          "path": "/home/zn/QgcLogs/2026.9.8/log_7_2026-9-8-06-55-26.ulg",
+          "bytes": 21811703,
+          "source_sha256": null,
+          "session": "2026.9.8"
+        }
+      ]
+    },
+    "Sep19": {
+      "role": "supplementary held-out date",
+      "original_partition": "reserved_evaluation",
+      "flights": [
+        {
+          "flight_id": "9.19-2数据/log_0_2026-9-19-14-31-44.ulg",
+          "path": "/home/zn/数据/9.19-2数据/log_0_2026-9-19-14-31-44.ulg",
+          "bytes": 31099988,
+          "source_sha256": "8620264e85a695408ff6544c6d8519af2b205b34e2dc5ce25f301b8e35a758a4",
+          "session": "9.19-2数据"
+        },
+        {
+          "flight_id": "9.19-2数据/log_1_2026-9-19-14-40-12.ulg",
+          "path": "/home/zn/数据/9.19-2数据/log_1_2026-9-19-14-40-12.ulg",
+          "bytes": 31093876,
+          "source_sha256": "9825334a4fa07f2a573b64f455b15587204a8deee5747aa7b45aa653c794a2d6",
+          "session": "9.19-2数据"
+        },
+        {
+          "flight_id": "9.19-2数据/log_2_2026-9-19-14-45-56.ulg",
+          "path": "/home/zn/数据/9.19-2数据/log_2_2026-9-19-14-45-56.ulg",
+          "bytes": 3721193,
+          "source_sha256": "4c9707d1b4ce53e72922683dc2ac6cb1fc1d1059dbfb1606f417c3dad83209ad",
+          "session": "9.19-2数据"
+        },
+        {
+          "flight_id": "9.19-2数据/log_3_2026-9-19-14-56-32.ulg",
+          "path": "/home/zn/数据/9.19-2数据/log_3_2026-9-19-14-56-32.ulg",
+          "bytes": 30010348,
+          "source_sha256": "6e42772f0cd8a2c2cc6134f00fcad349c32e55ccfa28ffed7324600b66f11f68",
+          "session": "9.19-2数据"
+        },
+        {
+          "flight_id": "9.19-2数据/log_4_2026-9-19-15-15-06.ulg",
+          "path": "/home/zn/数据/9.19-2数据/log_4_2026-9-19-15-15-06.ulg",
+          "bytes": 27215038,
+          "source_sha256": "99fcc78fce71ab4176468bf9f5ff061f50be69ea71fe648086d152ddf94c1c87",
+          "session": "9.19-2数据"
+        },
+        {
+          "flight_id": "9.19-2数据/log_5_2026-9-19-15-23-48.ulg",
+          "path": "/home/zn/数据/9.19-2数据/log_5_2026-9-19-15-23-48.ulg",
+          "bytes": 42552988,
+          "source_sha256": "ffb298b75d051684c09069a19c2fcd9a744a5aa74ddc91d97d4c7a89b2fecb3a",
+          "session": "9.19-2数据"
+        },
+        {
+          "flight_id": "9.19-2数据/log_6_2026-9-19-15-28-00.ulg",
+          "path": "/home/zn/数据/9.19-2数据/log_6_2026-9-19-15-28-00.ulg",
+          "bytes": 21918253,
+          "source_sha256": "555013e8efd61db4be706244554d53a2db3acf99912a147d9e2c0c9225fb1156",
+          "session": "9.19-2数据"
+        },
+        {
+          "flight_id": "9.19-2数据/log_7_2026-9-19-15-39-08.ulg",
+          "path": "/home/zn/数据/9.19-2数据/log_7_2026-9-19-15-39-08.ulg",
+          "bytes": 41134838,
+          "source_sha256": "0ccaea41f83ce586b98bf5f8b57d59a3b373420814396c9724405997d22fbb0f",
+          "session": "9.19-2数据"
+        },
+        {
+          "flight_id": "9.19-2数据/log_8_2026-9-19-15-47-10.ulg",
+          "path": "/home/zn/数据/9.19-2数据/log_8_2026-9-19-15-47-10.ulg",
+          "bytes": 30946668,
+          "source_sha256": "d1029644def3e9aaf28edc9a47d7c06eb50790c47c221994be2738bd8cb7fa3b",
+          "session": "9.19-2数据"
+        },
+        {
+          "flight_id": "9.19-3数据/log_0_2026-9-19-17-14-26.ulg",
+          "path": "/home/zn/数据/9.19-3数据/log_0_2026-9-19-17-14-26.ulg",
+          "bytes": 31011966,
+          "source_sha256": "c79e10ff47a4d152fc9eee3de0f9a925562f9e1921418b3485b197e50f5750be",
+          "session": "9.19-3数据"
+        },
+        {
+          "flight_id": "9.19-3数据/log_1_2026-9-19-17-21-44.ulg",
+          "path": "/home/zn/数据/9.19-3数据/log_1_2026-9-19-17-21-44.ulg",
+          "bytes": 28594929,
+          "source_sha256": "11be9c2dde6c15d2c5c51f3d7b22a44f92a5e8baa5b5535c3ec961671c2fdf73",
+          "session": "9.19-3数据"
+        },
+        {
+          "flight_id": "9.19-3数据/log_2_2026-9-19-17-26-42.ulg",
+          "path": "/home/zn/数据/9.19-3数据/log_2_2026-9-19-17-26-42.ulg",
+          "bytes": 27459584,
+          "source_sha256": "129daba37d9917950222779c3efb9977e69708667fcac8b7ebd7e968e58cf2e2",
+          "session": "9.19-3数据"
+        },
+        {
+          "flight_id": "9.19-3数据/log_3_2026-9-19-17-38-46.ulg",
+          "path": "/home/zn/数据/9.19-3数据/log_3_2026-9-19-17-38-46.ulg",
+          "bytes": 25055911,
+          "source_sha256": "64dcd437b8af3b43e19fb625bdb9ab854e791966a707a04eee0f4db1acc18a9d",
+          "session": "9.19-3数据"
+        },
+        {
+          "flight_id": "9.19-3数据/log_4_2026-9-19-17-44-06.ulg",
+          "path": "/home/zn/数据/9.19-3数据/log_4_2026-9-19-17-44-06.ulg",
+          "bytes": 29370425,
+          "source_sha256": "329162d9984d868b7e7773c3a646f70b1c5b4593afef4477d75ad710afbc3b9a",
+          "session": "9.19-3数据"
+        },
+        {
+          "flight_id": "9.19-3数据/log_5_2026-9-19-17-49-50.ulg",
+          "path": "/home/zn/数据/9.19-3数据/log_5_2026-9-19-17-49-50.ulg",
+          "bytes": 28436607,
+          "source_sha256": "c9caf10ce8ad7928c2314341b27a3c4221f0418e8f295a7687d04118284b785d",
+          "session": "9.19-3数据"
+        },
+        {
+          "flight_id": "9.19-3数据/log_9_2026-9-19-17-05-08.ulg",
+          "path": "/home/zn/数据/9.19-3数据/log_9_2026-9-19-17-05-08.ulg",
+          "bytes": 29612021,
+          "source_sha256": "8b2c88727ccf6539c023c7eec8c18755cddb28e55d95eb58fcdd9b0a265b57b2",
+          "session": "9.19-3数据"
+        },
+        {
+          "flight_id": "9.19数据/log_0_2026-9-19-05-53-40.ulg",
+          "path": "/home/zn/数据/9.19数据/log_0_2026-9-19-05-53-40.ulg",
+          "bytes": 32890909,
+          "source_sha256": "02b3f6a51a07f7d86d68f7ad615eae33873451705bf91289ac379d3f46a8146e",
+          "session": "9.19数据"
+        },
+        {
+          "flight_id": "9.19数据/log_1_2026-9-19-06-01-30.ulg",
+          "path": "/home/zn/数据/9.19数据/log_1_2026-9-19-06-01-30.ulg",
+          "bytes": 30239277,
+          "source_sha256": "0d5e5dbce4d6ea2a059df10d152bafc121833f3a14c88bbb57ae4edc47bec9a9",
+          "session": "9.19数据"
+        },
+        {
+          "flight_id": "9.19数据/log_2_2026-9-19-06-07-52.ulg",
+          "path": "/home/zn/数据/9.19数据/log_2_2026-9-19-06-07-52.ulg",
+          "bytes": 27936832,
+          "source_sha256": "dca519e722cbd697754ce36b6528672120535ccd219f4682e0379b20ff4d79a8",
+          "session": "9.19数据"
+        },
+        {
+          "flight_id": "9.19数据/log_3_2026-9-19-06-14-30.ulg",
+          "path": "/home/zn/数据/9.19数据/log_3_2026-9-19-06-14-30.ulg",
+          "bytes": 32458000,
+          "source_sha256": "7417500f121ab7dacaf01f0903d8062b893b18f829c80dcae9f1cc45e4243d5e",
+          "session": "9.19数据"
+        },
+        {
+          "flight_id": "9.19数据/log_4_2026-9-19-06-19-40.ulg",
+          "path": "/home/zn/数据/9.19数据/log_4_2026-9-19-06-19-40.ulg",
+          "bytes": 28478147,
+          "source_sha256": "2aeb238b9f82f7d7cd977a1086764a2e689eb30bcd46956abdfed92fc77e1a6f",
+          "session": "9.19数据"
+        },
+        {
+          "flight_id": "9.19数据/log_5_2026-9-19-06-26-44.ulg",
+          "path": "/home/zn/数据/9.19数据/log_5_2026-9-19-06-26-44.ulg",
+          "bytes": 27901472,
+          "source_sha256": "8a6e4d12518dc16ec397388842a77962805057279abc620a720f4f0b8c76321b",
+          "session": "9.19数据"
+        },
+        {
+          "flight_id": "9.19数据/log_6_2026-9-19-06-31-46.ulg",
+          "path": "/home/zn/数据/9.19数据/log_6_2026-9-19-06-31-46.ulg",
+          "bytes": 28680535,
+          "source_sha256": "6436c5c33392ae7a997592f746b37d79d70d417475c960aec87412873be0c2ba",
+          "session": "9.19数据"
+        }
+      ]
+    }
+  },
+  "models": [
+    {
+      "model": "MLP",
+      "history_steps": 1,
+      "seed": 17,
+      "checkpoint_path": "artifacts/paper_baseline_comparison_v1/B1_MLP.pt",
+      "checkpoint_sha256": "2e82f6b6a5380883bfc78eaa419c4f1a258a9fd06cba31017f4151610a94bef7",
+      "parameter_count": 5703,
+      "normalization_sha256": "f10a427d04d54b98e5d1e4e0995b3b8562347f54313c90cd64147fa5ae2710c8"
+    },
+    {
+      "model": "MLP",
+      "history_steps": 1,
+      "seed": 23,
+      "checkpoint_path": "artifacts/paper_mlp_multiseed_comparison_v1/seed23/model.pt",
+      "checkpoint_sha256": "c9fca6b6435d8046ed64e7f9154314f7b9e8917dbc2c02720c5f63646787ae57",
+      "parameter_count": 5703,
+      "normalization_sha256": "f10a427d04d54b98e5d1e4e0995b3b8562347f54313c90cd64147fa5ae2710c8"
+    },
+    {
+      "model": "MLP",
+      "history_steps": 1,
+      "seed": 42,
+      "checkpoint_path": "artifacts/paper_mlp_multiseed_comparison_v1/seed42/model.pt",
+      "checkpoint_sha256": "0483807dacbae37b849f4e8a14445522d050c2349e0956fb8c9334fe4d396dae",
+      "parameter_count": 5703,
+      "normalization_sha256": "f10a427d04d54b98e5d1e4e0995b3b8562347f54313c90cd64147fa5ae2710c8"
+    },
+    {
+      "model": "H1",
+      "history_steps": 1,
+      "seed": 17,
+      "checkpoint_path": "artifacts/paper_history_length_ablation_v1/H1/seed17/model.pt",
+      "checkpoint_sha256": "60cd56efa894716297df992f2e41e56bbfdcba3de75913b42955c5902b89bad9",
+      "parameter_count": 21383,
+      "normalization_sha256": "f10a427d04d54b98e5d1e4e0995b3b8562347f54313c90cd64147fa5ae2710c8"
+    },
+    {
+      "model": "H1",
+      "history_steps": 1,
+      "seed": 23,
+      "checkpoint_path": "artifacts/paper_history_length_ablation_v1/H1/seed23/model.pt",
+      "checkpoint_sha256": "b553932c90375126cb294777fc0516efdddd6847f97c33bc3f15bde8effb9346",
+      "parameter_count": 21383,
+      "normalization_sha256": "f10a427d04d54b98e5d1e4e0995b3b8562347f54313c90cd64147fa5ae2710c8"
+    },
+    {
+      "model": "H1",
+      "history_steps": 1,
+      "seed": 42,
+      "checkpoint_path": "artifacts/paper_history_length_ablation_v1/H1/seed42/model.pt",
+      "checkpoint_sha256": "3d2daa36cda770f01eb8c61fe49ccd950be44f6082567018e83926ecb370daf0",
+      "parameter_count": 21383,
+      "normalization_sha256": "f10a427d04d54b98e5d1e4e0995b3b8562347f54313c90cd64147fa5ae2710c8"
+    },
+    {
+      "model": "H5",
+      "history_steps": 5,
+      "seed": 17,
+      "checkpoint_path": "artifacts/paper_history_length_ablation_v1/H5/seed17/model.pt",
+      "checkpoint_sha256": "c80b540cf053530837edfe7f89102d867035255ed848d6118d9eee5112c2ccc8",
+      "parameter_count": 21383,
+      "normalization_sha256": "f10a427d04d54b98e5d1e4e0995b3b8562347f54313c90cd64147fa5ae2710c8"
+    },
+    {
+      "model": "H5",
+      "history_steps": 5,
+      "seed": 23,
+      "checkpoint_path": "artifacts/paper_history_length_ablation_v1/H5/seed23/model.pt",
+      "checkpoint_sha256": "bc5dffb44a77478c416306c3aae8bff07ea85055ccd8f1ae5b76595408f04038",
+      "parameter_count": 21383,
+      "normalization_sha256": "f10a427d04d54b98e5d1e4e0995b3b8562347f54313c90cd64147fa5ae2710c8"
+    },
+    {
+      "model": "H5",
+      "history_steps": 5,
+      "seed": 42,
+      "checkpoint_path": "artifacts/paper_history_length_ablation_v1/H5/seed42/model.pt",
+      "checkpoint_sha256": "2f9daae4538b3d5d47cf368607b25ae2b31dd12509f14b71cf4c37ed5dfe6b83",
+      "parameter_count": 21383,
+      "normalization_sha256": "f10a427d04d54b98e5d1e4e0995b3b8562347f54313c90cd64147fa5ae2710c8"
+    },
+    {
+      "model": "H13",
+      "history_steps": 13,
+      "seed": 17,
+      "checkpoint_path": "artifacts/paper_history_length_ablation_v1/H13/seed17/model.pt",
+      "checkpoint_sha256": "1f685777f019c3f86eef07f4e304cc19ca79959d26f9aa1cb94f555735103c6e",
+      "parameter_count": 21383,
+      "normalization_sha256": "f10a427d04d54b98e5d1e4e0995b3b8562347f54313c90cd64147fa5ae2710c8"
+    },
+    {
+      "model": "H13",
+      "history_steps": 13,
+      "seed": 23,
+      "checkpoint_path": "artifacts/paper_history_length_ablation_v1/H13/seed23/model.pt",
+      "checkpoint_sha256": "33dd843386802c31982a3092d43a6f5a3beec34ad6ea38c26b7ac0bb434dc285",
+      "parameter_count": 21383,
+      "normalization_sha256": "f10a427d04d54b98e5d1e4e0995b3b8562347f54313c90cd64147fa5ae2710c8"
+    },
+    {
+      "model": "H13",
+      "history_steps": 13,
+      "seed": 42,
+      "checkpoint_path": "artifacts/paper_history_length_ablation_v1/H13/seed42/model.pt",
+      "checkpoint_sha256": "ed7b81e19e28ec30ef7751767a7add74a984b7f30b2fe7e0b47b0ad5bf07fe93",
+      "parameter_count": 21383,
+      "normalization_sha256": "f10a427d04d54b98e5d1e4e0995b3b8562347f54313c90cd64147fa5ae2710c8"
+    },
+    {
+      "model": "H26",
+      "history_steps": 26,
+      "seed": 17,
+      "checkpoint_path": "artifacts/paper_baseline_comparison_v1/B2_StandardGRU.pt",
+      "checkpoint_sha256": "f9895418b7dd2a2757dde8d740109ab42dae258c593fd5902f0076a3faeb0e26",
+      "parameter_count": 21383,
+      "normalization_sha256": "f10a427d04d54b98e5d1e4e0995b3b8562347f54313c90cd64147fa5ae2710c8"
+    },
+    {
+      "model": "H26",
+      "history_steps": 26,
+      "seed": 23,
+      "checkpoint_path": "artifacts/paper_standard_gru_multiseed_v1/seed23/model.pt",
+      "checkpoint_sha256": "1cfbb865db55e3fc7c248eff4de95892fa9ee9155ee8e81c0318a9021b7d8b03",
+      "parameter_count": 21383,
+      "normalization_sha256": "f10a427d04d54b98e5d1e4e0995b3b8562347f54313c90cd64147fa5ae2710c8"
+    },
+    {
+      "model": "H26",
+      "history_steps": 26,
+      "seed": 42,
+      "checkpoint_path": "artifacts/paper_standard_gru_multiseed_v1/seed42/model.pt",
+      "checkpoint_sha256": "98fd6266bdc8926055c7f8b0dc2f37a4333fa92f55f336fb4cba4d3480324f86",
+      "parameter_count": 21383,
+      "normalization_sha256": "f10a427d04d54b98e5d1e4e0995b3b8562347f54313c90cd64147fa5ae2710c8"
+    }
+  ],
+  "B0": "original ConstantTwistPredictor constant NED velocity/body rate, quaternion exponential; deterministic",
+  "train_flights": [
+    "2026.9.6/log_24_2026-9-6-06-28-38.ulg",
+    "2026.9.6/log_28_2026-9-6-07-01-38.ulg",
+    "2026.9.6/log_17_2026-9-6-18-34-06.ulg",
+    "2026.9.6/log_18_2026-9-6-18-46-20.ulg",
+    "2026.9.6/log_19_2026-9-6-18-52-30.ulg",
+    "2026.9.6/log_20_2026-9-6-18-58-10.ulg",
+    "9.11数据/log_13_2026-9-11-18-28-08.ulg",
+    "9.11数据/log_14_2026-9-11-18-34-58.ulg",
+    "9.11数据/log_15_2026-9-11-18-40-48.ulg",
+    "9.12数据/log_10_2026-9-12-06-13-40.ulg",
+    "9.12数据/log_11_2026-9-12-06-21-12.ulg",
+    "9.12数据/log_12_2026-9-12-06-29-44.ulg",
+    "9.12数据/log_2_2026-9-12-18-32-54.ulg",
+    "9.12数据/log_3_2026-9-12-18-40-02.ulg",
+    "9.12数据/log_7_2026-9-12-05-49-02.ulg",
+    "9.12数据/log_8_2026-9-12-05-55-30.ulg",
+    "9.12数据/log_9_2026-9-12-06-03-32.ulg",
+    "9.13数据/log_1_2026-9-13-06-11-06.ulg",
+    "9.13数据/log_2_2026-9-13-06-20-06.ulg",
+    "9.13数据/log_3_2026-9-13-06-31-26.ulg",
+    "9.13数据/log_4_2026-9-13-06-36-26.ulg",
+    "9.13数据/log_5_2026-9-13-06-42-40.ulg",
+    "9.13数据/log_7_2026-9-13-18-12-52.ulg",
+    "9.14数据/log_11_2026-9-14-18-13-22.ulg",
+    "9.14数据/log_12_2026-9-14-18-20-30.ulg",
+    "9.14数据/log_13_2026-9-14-18-28-32.ulg",
+    "9.14数据/log_14_2026-9-14-18-34-22.ulg",
+    "9.15数据/log_10_2026-9-15-17-44-04.ulg",
+    "9.15数据/log_11_2026-9-15-17-51-56.ulg",
+    "9.15数据/log_12_2026-9-15-18-03-58.ulg",
+    "9.15数据/log_13_2026-9-15-18-10-58.ulg",
+    "9.15数据/log_14_2026-9-15-18-17-26.ulg",
+    "9.15数据/log_15_2026-9-15-18-23-44.ulg",
+    "9.16数据/log_1_2026-9-16-18-02-34.ulg",
+    "9.16数据/log_2_2026-9-16-18-08-46.ulg",
+    "9.16数据/log_3_2026-9-16-18-13-58.ulg",
+    "9.16数据/log_4_2026-9-16-18-20-50.ulg",
+    "9.16数据/log_5_2026-9-16-18-26-48.ulg",
+    "9.18数据/log_0_2026-9-18-18-15-06.ulg",
+    "9.18数据/log_1_2026-9-18-18-23-36.ulg",
+    "9.18数据/log_2_2026-9-18-18-29-40.ulg"
+  ],
+  "validation_flights": [
+    "2026.9.7/log_21_2026-9-7-05-54-56.ulg",
+    "2026.9.7/log_22_2026-9-7-06-01-40.ulg",
+    "2026.9.7/log_23_2026-9-7-06-09-22.ulg",
+    "2026.9.7/log_24_2026-9-7-06-16-04.ulg",
+    "2026.9.7/log_26_2026-9-7-06-30-26.ulg",
+    "2026.9.7/log_27_2026-9-7-06-37-24.ulg",
+    "2026.9.7/log_28_2026-9-7-06-44-02.ulg",
+    "2026.9.7/log_29_2026-9-7-06-51-04.ulg",
+    "2026.9.7/log_30_2026-9-7-06-58-22.ulg",
+    "9.17数据/log_10_2026-9-17-06-34-34.ulg",
+    "9.17数据/log_11_2026-9-17-06-40-30.ulg",
+    "9.17数据/log_12_2026-9-17-06-46-02.ulg",
+    "9.17数据/log_13_2026-9-17-06-52-30.ulg",
+    "9.17数据/log_6_2026-9-17-06-02-24.ulg",
+    "9.17数据/log_7_2026-9-17-06-12-16.ulg",
+    "9.17数据/log_8_2026-9-17-06-17-52.ulg",
+    "9.17数据/log_9_2026-9-17-06-28-10.ulg"
+  ],
+  "source_manifest": "dataset/trajectory_v3_september_expanded/manifest.json",
+  "source_manifest_sha256": "46b50d0b23a32b40339a4c07526711d0ff88b55584d309a56807c56905d2817e",
+  "preprocessing": {
+    "config_path": "configs/data/trajectory_september_v2.yaml",
+    "sampling": "native publication timestamps; past-only asof hold; no resampling; original valid_core/segments",
+    "Sep8_gate": "inherit September v2: firmware and all structural/output parameters exact; no changed parameters; critical topics present and strictly increasing publication timestamps; core nonempty; original Hall ratio diagnostic gate",
+    "Sep19_gate": "inherit v3 expansion: no changed parameters; output_mapping and structural prefixes CA_SV/PWM_MAIN/FLAP_RATIO/SYS_AUTOSTART exact; critical topics; valid_duration>=30s and at least10 full-history50future windows at stride10; no firmware equality gate",
+    "common_origins": "original v3 windows: for each valid contiguous segment start in range(25,n-50,50),51 states; all H are suffixes of these H26 windows; no extra windows",
+    "quality_failure": "fixed gate violation excludes flight with recorded rule; unexpected parse/runtime or identity failure invalidates affected date rather than silently dropping flight",
+    "no_fit": true,
+    "normalization_sha256": "f10a427d04d54b98e5d1e4e0995b3b8562347f54313c90cd64147fa5ae2710c8",
+    "history_semantics": {
+      "state_shape": "[N,H,12]",
+      "control_shape": "[N,H,4]",
+      "mask_shape": "[N,H]",
+      "indices": "origin-(H-1) ... origin inclusive; all tokens legal; no padding in fixed origin set",
+      "last_token": "current origin t; state and control from same sample",
+      "H1": "single-sample context at t; no earlier state/control token; future GRU transition still recurrent",
+      "encoding": "hidden initialized to zero per window, shared GRUCell consumes H tokens through t; first derivative head receives this hidden plus current state/control again, unchanged inherited definition",
+      "phase_anchor": "unchanged relative encoder phase referenced to origin; truncation does not re-anchor"
+    },
+    "phase": "encoder-count-derived relative_flap_phase_rad, re-anchored at each origin; logged Hall/wing phase columns are not model inputs",
+    "frames": {
+      "body_rate": "FRD rad/s",
+      "phase": "radians, logged zero; physical pose unconfirmed",
+      "position_velocity": "local NED m, m/s",
+      "quaternion": "wxyz body FRD to NED"
+    }
+  },
+  "prior_exposure": {
+    "Sep8": "2026-09-08 descriptive quality audit only; now sealed",
+    "Sep19": "previous raw-log inventory includes file identity/magic metadata; no frozen15-model test evaluation located in known experiment manifests or named output directories",
+    "claim": "first evaluation of this frozen matrix based on available provenance, not first-ever raw-log access; no exhaustive claim about unrecorded outside use"
+  },
+  "conditions": {
+    "Actual": "u_t,...,u_(t+49), reuse frozen full predictions",
+    "Hold": "repeat u_t on all4channels for50commands; history/initial states/phase anchor/dt unchanged"
+  },
+  "control_std": [
+    0.09660183638334274,
+    0.27267715334892273,
+    0.33159661293029785,
+    0.12501497566699982
+  ],
+  "grouping": {
+    "formula": "E_K=sqrt(mean_{k=0..K-1,j}(((u[t+k,j]-u[t,j])/frozen_control_std[j])**2))",
+    "thresholds": "train origin E_K linear quantiles .25/.75 separately K5/10/25/50",
+    "bins": "low E<=q25; middle q25<E<=q75; high E>q75; ties deterministic; q25==q75 disables groups, retains ALL",
+    "curve_groups": "fixed K25 membership for all1..50steps",
+    "offline_only": true,
+    "error_independent": true
+  },
+  "thresholds": [
+    {
+      "horizon_s": 0.1,
+      "step": 5,
+      "train_q25": 0.0695041439687429,
+      "train_q75": 0.1259374744559026,
+      "grouping_available": true,
+      "n_train_origins": 28293
+    },
+    {
+      "horizon_s": 0.2,
+      "step": 10,
+      "train_q25": 0.1100887242608976,
+      "train_q75": 0.1936055708369762,
+      "grouping_available": true,
+      "n_train_origins": 28293
+    },
+    {
+      "horizon_s": 0.5,
+      "step": 25,
+      "train_q25": 0.1735699983872748,
+      "train_q75": 0.3216767771852724,
+      "grouping_available": true,
+      "n_train_origins": 28293
+    },
+    {
+      "horizon_s": 1.0,
+      "step": 50,
+      "train_q25": 0.2541643074147546,
+      "train_q75": 0.5027411687346327,
+      "grouping_available": true,
+      "n_train_origins": 28293
+    }
+  ],
+  "horizons": {
+    "0.1": 5,
+    "0.2": 10,
+    "0.5": 25,
+    "1.0": 50
+  },
+  "primary_horizon_s": 0.5,
+  "metrics": [
+    "position_rmse_m",
+    "velocity_rmse_m_s",
+    "attitude_error_deg",
+    "body_rate_rmse_rad_s"
+  ],
+  "aggregation": "sqrt(mean_origins(error_squared)) within each flight, equal-flight mean, then3seed mean and sampleSD(ddof1); no window-level tests; each date separately; B0 single deterministic estimate/no seedSD; no pooled-date ALL",
+  "interval_formula": "origin MSE(K)=sum_{k=1..K}dt[k-1]*error_squared[k]/sum_{k=1..K}dt[k-1]; equal-origin mean within flight then sqrt; equal-flight mean then seed mean/SD; t0 excluded; right endpoint weights",
+  "gains": "reference-comparison; denominator reference; MLP->H26,H1->H26,H13->H26,Hold->Actual; zero undefined",
+  "tolerances": {
+    "reuse_and_first_step_atol": 2e-05,
+    "reuse_and_first_step_rtol": 1e-06,
+    "quaternion_norm_atol": 1e-05,
+    "within_same_model_first_step": "bitwise in test; full reused comparison uses above frozen tolerance",
+    "constant_control": "bitwise same-batch prediction"
+  },
+  "plotting_time": "median origin cumulative native dt at each step; no resampling; full distribution and group coverage retained",
+  "plots": [
+    "each-date model versus horizon",
+    "each-date history500ms",
+    "Actual/Hold evolution ALL and fixed500ms groups",
+    "paired-flight500ms"
+  ],
+  "qualitative_cases": "not generated in this quantitative evaluation; no error-selected cases",
+  "failure_policy": "save complete invalid predictions and failed origin IDs/context; mark whole affected model/date/condition invalid, never aggregate surviving subset; continue other models/dates, no retries/substitutions",
+  "claims": "held-out known-input predictive accuracy and descriptive paired directions; history not physical time constant; Hold lacks real counterfactual truth; no arbitrary control causality/OOD/wind/body generalization or closed-loop/long-rollout claim",
+  "locked_choices": "all15 checkpoints/seeds/H,allowlists/date roles,quality/window rules,normalization,metrics,thresholds,main500ms,conditions; engineering fixes append amendment and exposure record; never optimize test outcomes",
+  "no_training": true,
+  "no_parameter_tuning": true,
+  "history_Mixed_unchanged": true,
+  "H26_main_unchanged": true,
+  "frozen_input_sha256": {
+    "docs/analysis/results/paper_mlp_multiseed_comparison_v1/protocol.json": "a6b969f96a74aa93b7b90789851927b559730333edd1d7a99f4a3b0a92ebd99a",
+    "docs/analysis/results/paper_mlp_multiseed_comparison_v1/report.md": "53f93337099855fbde168f6833ce1bf40ba5732b479857e0002bd236ab18a503",
+    "docs/analysis/results/paper_mlp_multiseed_comparison_v1/review_report.md": "36577ad9894f3a6a2e5360af36f82f5a19c87c841a899eabd138fd9c60e26c25",
+    "docs/analysis/results/paper_mlp_multiseed_comparison_v1/completion.json": "efe3c5afe4726ee2b6fa5e5297d0b4cdaab7c3ab3996c3f8467741bdc6fbea55",
+    "docs/analysis/results/paper_standard_gru_multiseed_v1/protocol.json": "86f5fceac7838e7f2369e6b854618eec851e652d5cde52cea4403f04063cab1e",
+    "docs/analysis/results/paper_standard_gru_multiseed_v1/report.md": "1e70df96568def97850f7da299e9181ed3b98fa11ba81a233c5d443b97000368",
+    "docs/analysis/results/paper_standard_gru_multiseed_v1/completion.json": "978bb578269582f7fa830c5f8d77a7ca85158557cf7ac5b9af760a2347f4ee7b",
+    "docs/analysis/results/paper_history_length_ablation_v1/protocol.json": "86ac44c9a6ee44defe041fd81c10c558f85ec51ec8c6960b25ac97dc5864a857",
+    "docs/analysis/results/paper_history_length_ablation_v1/report.md": "b22f00b48560eab920d46c9326577442395878967e61b36825bb773da422460a",
+    "docs/analysis/results/paper_history_length_ablation_v1/review_report.md": "48fca77b3b880d37ff8bdd11ba9011acd0a41191f5526dfede04be0e3ea97857",
+    "docs/analysis/results/paper_history_length_ablation_v1/completion.json": "d4bca6383d5fd2ed8930050aaab637b86c9dc494842a245b52d8801252e9e882",
+    "docs/analysis/results/paper_dynamics_input_diagnostic_v1/protocol.json": "3f893d3decc40a7ab16e00ed0cc355026ba411f56b68d9f93b46d5087296e8de",
+    "docs/analysis/results/paper_dynamics_input_diagnostic_v1/report.md": "415eda53084774490014ad3646228a4ab270b27db392fc863875ce301e0ff1b5",
+    "docs/analysis/results/paper_dynamics_input_diagnostic_v1/review_report.md": "0ba574a262087c78ad5b7a41316feaf962d0b6d6e84babcb78b85ae7e50d77ef",
+    "docs/analysis/results/paper_dynamics_input_diagnostic_v1/completion.json": "c0b33d1434bb2d3b8dd2990dd9d6a231aefedb69c3fdf0f5b10ae80869a83e5f",
+    "dataset/trajectory_v3_september_expanded/manifest.json": "46b50d0b23a32b40339a4c07526711d0ff88b55584d309a56807c56905d2817e",
+    "configs/data/trajectory_september_v2.yaml": "81f7c174989e7acb0314b85465ed5041dfc897153cce18f952c157b5d612efb0",
+    "dataset/trajectory_v2_september_phase_observed/manifest.json": "a3b831f1eaff24f8efb71a2ff895ae851a191122c912dca3540f39a84e92f9c0",
+    "src/system_identification/data/september_trajectory.py": "364c2af56f4f306d3974b962c060ec4120e88b6b963f761e1ccf1c5972a6fb40",
+    "src/system_identification/data/trajectory_dataset.py": "97ee703af0eb3cce78b9091e3a729ced9f902eccd1a7d526506af13578fbe644",
+    "src/system_identification/data/ulg_audit.py": "421fd28e4f58c881e42dfe9f936b746cd3f340129db80890247af3e41e1d7414",
+    "scripts/build_expanded_september.py": "c8e84697389892d40d449d609dc2db1b5b4335e23fbaaf5128e70d951c655b6c",
+    "src/system_identification/evaluation/future_control_diagnostic.py": "37451b6a3d7de77d990769bc9de6210370012102a9b44f6ee8ba872d9597bca3",
+    "scripts/run_paper_history_length_ablation.py": "98ce7aa0040bc508ff3b3bbed6c65f8cb2848c4df10d949b23bce9123f7a628a",
+    "scripts/run_paper_dynamics_input_diagnostic.py": "08fdaf81978300c864c85f30b152b0fed25a4612ae2b71d6f0fbbcf82c7324b9",
+    "scripts/run_paper_standard_gru_multiseed.py": "33ec639af3682a13c7ef55a7c7e175565fc8e7151fee49f49e98024e9c8b8e59",
+    "scripts/run_paper_baseline_comparison.py": "d517c57d3a5968a16b243148f9bf368d2f6433f9844f18409401c3af790b30ea",
+    "scripts/paper_independent_test_core.py": "b0d8afee88c205de551e6363b06f25d2edc23215254ed2aa4b0bdfd86bf05e5e",
+    "scripts/run_paper_independent_test.py": "ef767cb6409718b5e1b4a98598ee77345d63d93d8c18819f9e24d426eb65e80f",
+    "tests/test_paper_independent_test.py": "835835a2cb7e62be1443e15a5ecdc18a06cf19ead8f955a3b378d60c09dbc08f",
+    "src/system_identification/models/paper_baselines.py": "7313347f2d3fcd5853c159c909daf3c603d8b465d1b807c33c7e165dc8741159",
+    "src/system_identification/evaluation/paper_baselines.py": "32e7c312b314273929bcc92b1d98e3bd636f8c52e35783042e44d5a6660a558a",
+    "src/system_identification/models/neural.py": "9b45cb859adde16dad1956ec5f70d96da5f4794a6373975f57ec66a31428773d",
+    "src/system_identification/models/trajectory.py": "cd8f5a0ba54d966d2e45e942275beb12a04a57ff8a1a7a3284b6a90917f69762",
+    "src/system_identification/models/trajectory_main_v1.py": "b61dd09701b3bfe0176f1a406e4c511b58092fb080b47af115aa4c54681a7e5a",
+    "src/system_identification/models/trajectory_main_v2.py": "df23f65b94be461ac302b5237d6bbfe8afb25dc67406ee16439c985ee5498542",
+    "src/system_identification/models/main_v2_simulator.py": "3273e301a63900de74441ec3aaced7c672c0f3b1974919fbdb2c5c1cf649c0b3",
+    "src/system_identification/training/main_v2_increment.py": "fccf050772caa3bea77cd28fb61b44071b78897e27dd2caf518c706b58ad008e",
+    "src/system_identification/training/trajectory_main_v1.py": "76c028ff176724194f7ecfafe916424ded0c6417fbbf04322593c01c7e5ef4c9",
+    "src/system_identification/training/trajectory_baselines.py": "394413e654c3f6eaaa131630afc8e30beb74cea5c57f4475da21d915443051fe",
+    "src/system_identification/evaluation/trajectory.py": "595189df1f994ed2aabfebd88e7b0c04ac38dbb6180579e461345a8fe1e64bd8",
+    "docs/analysis/results/paper_mlp_multiseed_comparison_v1/training_runs.csv": "818ac9655970c6c4b1c0d04dc5f43e70c2bbc89e345549d7b048b244069b2cc4",
+    "artifacts/paper_baseline_comparison_v1/B1_MLP.pt": "2e82f6b6a5380883bfc78eaa419c4f1a258a9fd06cba31017f4151610a94bef7",
+    "artifacts/paper_mlp_multiseed_comparison_v1/seed23/model.pt": "c9fca6b6435d8046ed64e7f9154314f7b9e8917dbc2c02720c5f63646787ae57",
+    "artifacts/paper_mlp_multiseed_comparison_v1/seed42/model.pt": "0483807dacbae37b849f4e8a14445522d050c2349e0956fb8c9334fe4d396dae",
+    "docs/analysis/results/paper_history_length_ablation_v1/training_runs.csv": "c42639b3041ffa601e5744b76fbe001bb3071a09abfc74fc7fb1582cf5ec5942",
+    "artifacts/paper_history_length_ablation_v1/H1/seed17/model.pt": "60cd56efa894716297df992f2e41e56bbfdcba3de75913b42955c5902b89bad9",
+    "artifacts/paper_history_length_ablation_v1/H1/seed23/model.pt": "b553932c90375126cb294777fc0516efdddd6847f97c33bc3f15bde8effb9346",
+    "artifacts/paper_history_length_ablation_v1/H1/seed42/model.pt": "3d2daa36cda770f01eb8c61fe49ccd950be44f6082567018e83926ecb370daf0",
+    "artifacts/paper_history_length_ablation_v1/H5/seed17/model.pt": "c80b540cf053530837edfe7f89102d867035255ed848d6118d9eee5112c2ccc8",
+    "artifacts/paper_history_length_ablation_v1/H5/seed23/model.pt": "bc5dffb44a77478c416306c3aae8bff07ea85055ccd8f1ae5b76595408f04038",
+    "artifacts/paper_history_length_ablation_v1/H5/seed42/model.pt": "2f9daae4538b3d5d47cf368607b25ae2b31dd12509f14b71cf4c37ed5dfe6b83",
+    "artifacts/paper_history_length_ablation_v1/H13/seed17/model.pt": "1f685777f019c3f86eef07f4e304cc19ca79959d26f9aa1cb94f555735103c6e",
+    "artifacts/paper_history_length_ablation_v1/H13/seed23/model.pt": "33dd843386802c31982a3092d43a6f5a3beec34ad6ea38c26b7ac0bb434dc285",
+    "artifacts/paper_history_length_ablation_v1/H13/seed42/model.pt": "ed7b81e19e28ec30ef7751767a7add74a984b7f30b2fe7e0b47b0ad5bf07fe93",
+    "artifacts/paper_baseline_comparison_v1/B2_StandardGRU.pt": "f9895418b7dd2a2757dde8d740109ab42dae258c593fd5902f0076a3faeb0e26",
+    "artifacts/paper_standard_gru_multiseed_v1/seed23/model.pt": "1cfbb865db55e3fc7c248eff4de95892fa9ee9155ee8e81c0318a9021b7d8b03",
+    "artifacts/paper_standard_gru_multiseed_v1/seed42/model.pt": "98fd6266bdc8926055c7f8b0dc2f37a4333fa92f55f336fb4cba4d3480324f86",
+    "docs/analysis/results/paper_dynamics_input_diagnostic_v1/control_group_thresholds.csv": "f9856fdc14b3060a795a2bc8ae55f15e15251463a163d80270038ffb5152d332",
+    "artifacts/paper_standard_gru_multiseed_v1/prepared.pt": "70a2f04d0802bc03efdcb30cf6c8dc5635030393a3d4f13b8eb2a64618f4d290",
+    "artifacts/paper_baseline_comparison_v1/B2_StandardGRU_predictions.npz": "026d4cfe8ec3fe64a6b5fcd53cab7c4a80f6a64fe5b35bf4be3325746f3d6204"
+  }
+}
