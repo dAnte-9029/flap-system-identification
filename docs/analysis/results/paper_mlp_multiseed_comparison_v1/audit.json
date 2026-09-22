@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "seed17_reusable": true,
+  "seed17_last_checkpoint_verified": true,
+  "seed17_factory_bitwise_parity": true,
+  "new_seed_initializations_distinct": true,
+  "parameter_count": 5703,
+  "no_normalization_fit": true,
+  "train_origins": 28293,
+  "validation_origins": 2582,
+  "full_cached_data_identity_verified": true
+}

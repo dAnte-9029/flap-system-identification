@@ -1,0 +1,58 @@
+{
+  "status": "passed",
+  "stages": [
+    {
+      "stage": "base",
+      "loss": 2.920790672302246
+    },
+    {
+      "stage": "continuation",
+      "loss": 2.8632633686065674
+    }
+  ],
+  "leakage": {
+    "future_label_poisoning_bitwise_equal": true,
+    "prefix_500ms_bitwise_equal": true
+  },
+  "seed17_fixed128_prediction_parity": true,
+  "disposable_model_only": true,
+  "runtime": {
+    "seed": 23,
+    "python_seed": [
+      23,
+      35
+    ],
+    "numpy_seed": [
+      23,
+      35
+    ],
+    "torch_seed": [
+      23,
+      35
+    ],
+    "cuda_seed_all_devices": [
+      23,
+      35
+    ],
+    "initialization_seed": 23,
+    "dataloader": "not used; CPU torch.Generator per stage",
+    "sampler_seeds": [
+      23,
+      35
+    ],
+    "deterministic_algorithms": true,
+    "cudnn_benchmark": false,
+    "cudnn_deterministic": false,
+    "cuda_matmul_allow_tf32": false,
+    "cudnn_allow_tf32": true,
+    "cublas_workspace_config": ":4096:8",
+    "threads": 4,
+    "device": "cuda:1",
+    "device_name": "NVIDIA GeForce RTX 4090",
+    "torch_version": "2.7.0+cu128",
+    "cuda_version": "12.8",
+    "cudnn_version": 90701,
+    "python_version": "3.11.14 (main, Oct 21 2025, 18:31:21) [GCC 11.2.0]",
+    "numpy_version": "1.26.0"
+  }
+}

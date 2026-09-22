@@ -1,0 +1,42 @@
+{
+  "status": "passed",
+  "new_seeds": {
+    "23": {
+      "future_label_poisoning_bitwise_equal": true,
+      "prefix_500ms_bitwise_equal": true,
+      "finite_losses_gradients_parameters_predictions": true,
+      "normalization_unchanged": true,
+      "all_parameters_trainable": true,
+      "parameter_count": 5703,
+      "origins": 2582,
+      "metric_rows": 10328,
+      "native_timing": true,
+      "max_quaternion_norm_error": 1.1527440579861548e-07,
+      "last_epoch": 65,
+      "updates": 7215
+    },
+    "42": {
+      "future_label_poisoning_bitwise_equal": true,
+      "prefix_500ms_bitwise_equal": true,
+      "finite_losses_gradients_parameters_predictions": true,
+      "normalization_unchanged": true,
+      "all_parameters_trainable": true,
+      "parameter_count": 5703,
+      "origins": 2582,
+      "metric_rows": 10328,
+      "native_timing": true,
+      "max_quaternion_norm_error": 1.153182382918061e-07,
+      "last_epoch": 65,
+      "updates": 7215
+    }
+  },
+  "seed17_factory_parity": true,
+  "seed17_reused_untouched": true,
+  "H26_reused_untouched": true,
+  "B0_deterministic_no_seedSD": true,
+  "common_origins_controls_truth_dt": true,
+  "history_classification_unchanged": "Mixed",
+  "future_control_conclusion_unchanged": true,
+  "sealed_test_opened_this_run": false,
+  "reserved_evaluation_opened_this_run": false
+}

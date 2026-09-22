@@ -1,0 +1,2 @@
+flight_id,cohort,horizon_s,metric,n_origins,mlp_error,gru_error,absolute_gain,relative_gain_pct,gru_better
+2026.9.7/log_30_2026-9-7-06-58-22.ulg,Sep7,1.0,position_rmse_m,164,1.3908231788864172,1.3913742057338172,-0.000551026847400049,-0.03961875641454557,False

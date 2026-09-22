@@ -1,0 +1,8 @@
+{
+  "type": "documentation clarification before new model evaluation; no training or statistical rule change",
+  "inherited_field": "protocol.json metrics.uncertainty",
+  "inherited_value_scope": "Historical Step1 single-seed pilot metadata copied with the original endpoint metric definitions; it does not describe this three-seed experiment.",
+  "authoritative_current_field": "protocol.json aggregation",
+  "current_rule": "For each model/seed, per-flight RMSE then equal-flight macro mean. For learned models only, mean and sample SD ddof=1 across seeds17/23/42. B0 deterministic with no across-seed SD. No window-based CI or significance test.",
+  "protocol_sha256_unchanged": "a6b969f96a74aa93b7b90789851927b559730333edd1d7a99f4a3b0a92ebd99a"
+}

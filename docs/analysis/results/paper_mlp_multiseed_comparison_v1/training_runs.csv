@@ -1,0 +1,7 @@
+model,seed,status,checkpoint_path,checkpoint_sha256,final_epoch,final_train_loss,final_val_loss,final_val_loss_note,training_time_s,best_epoch
+B1_MLP,17,reused,artifacts/paper_baseline_comparison_v1/B1_MLP.pt,2e82f6b6a5380883bfc78eaa419c4f1a258a9fd06cba31017f4151610a94bef7,65,0.7218613571357707,,not historically recorded; no new full seed17 inference,1396.7415962060913,
+B1_MLP,23,complete,artifacts/paper_mlp_multiseed_comparison_v1/seed23/model.pt,c9fca6b6435d8046ed64e7f9154314f7b9e8917dbc2c02720c5f63646787ae57,65,0.7185131172037864,0.6983874543150851,post-training report only; never selected checkpoint,1348.7960767503828,
+B1_MLP,42,complete,artifacts/paper_mlp_multiseed_comparison_v1/seed42/model.pt,0483807dacbae37b849f4e8a14445522d050c2349e0956fb8c9334fe4d396dae,65,0.7217197944928095,0.6929432774679685,post-training report only; never selected checkpoint,1345.045505299233,
+B2_StandardGRU,17,reused,artifacts/paper_baseline_comparison_v1/B2_StandardGRU.pt,f9895418b7dd2a2757dde8d740109ab42dae258c593fd5902f0076a3faeb0e26,65,0.3428593127113112,0.3757452846127457,,1816.394104583189,
+B2_StandardGRU,23,reused,artifacts/paper_standard_gru_multiseed_v1/seed23/model.pt,1cfbb865db55e3fc7c248eff4de95892fa9ee9155ee8e81c0318a9021b7d8b03,65,0.342157386901948,0.3844394000069657,,5353.385570913553,
+B2_StandardGRU,42,reused,artifacts/paper_standard_gru_multiseed_v1/seed42/model.pt,98fd6266bdc8926055c7f8b0dc2f37a4333fa92f55f336fb4cba4d3480324f86,65,0.3417657966583096,0.3785180780750942,,5334.5454798825085,

@@ -1,0 +1,4 @@
+Cohort,Horizon [s],Model,Position RMSE [m],Velocity RMSE [m/s],Attitude geodesic RMS [deg],Body-rate RMSE [rad/s]
+ALL,0.5,B0 Kinematic,0.4182,1.1707,23.2455,1.0660
+ALL,0.5,B1 MLP,0.2407 ± 0.0019,0.5422 ± 0.0097,5.4859 ± 0.0451,0.7526 ± 0.0015
+ALL,0.5,B2 Standard GRU / H26,0.1924 ± 0.0019,0.3573 ± 0.0072,4.0784 ± 0.0461,0.5966 ± 0.0028
