@@ -1,0 +1,26 @@
+{
+  "status": "complete",
+  "tests_passed": 3,
+  "training": 0,
+  "new_predictions": 0,
+  "heldout_accessed": false,
+  "outputs": {
+    "docs/analysis/results/existing_response_candidates_v1/all_candidates.pdf": "a88d98bd6d18695339754781e9d378b79ebd027d97406668b7bd0ca15920ad2c",
+    "docs/analysis/results/existing_response_candidates_v1/protocol.json": "ef97640eabf9c8a8fcb3e4bef03eadc6c8f7762e325d388f4415510569d3546a",
+    "docs/analysis/results/existing_response_candidates_v1/review_report.md": "af9e77d870f5a1260b7654c5e93ed2a7716ad5d161ea87d8db4ca202e19f09a3",
+    "docs/analysis/results/existing_response_candidates_v1/response_per_flight.pdf": "969ee2e5a4ae170187cb33667d3eac0686162a2e26d5204557907aeee6cbb487",
+    "docs/analysis/results/existing_response_candidates_v1/response_per_flight.png": "856b7f14cc2926130803b6d3ab864a993091ce6ae9e736edb966365672bc818d",
+    "docs/analysis/results/existing_response_candidates_v1/response_summary.csv": "40c75ae13d32a40acae9da3177238e4981607117691a6a689afd0bd96392ac9a",
+    "docs/analysis/results/existing_response_candidates_v1/report.md": "af9e77d870f5a1260b7654c5e93ed2a7716ad5d161ea87d8db4ca202e19f09a3",
+    "docs/analysis/results/existing_response_candidates_v1/candidate_responses.csv": "6ad139cd0b7299d69195b0f2c13fdcec68dd610c727e5d78b0d9ee8ab40d52a8",
+    "docs/analysis/results/existing_response_candidates_v1/candidate_review.csv": "59982c618ea6f15a24e1f0c93fa9a3c293b9b2768d55a4fc0969b35c62642f6a",
+    "docs/analysis/results/existing_response_candidates_v1/opposite_sign_neighbors.csv": "3eddddf1cc157471e341e24ca92b1ef50e38216e63ab75c956a48068704d73d2",
+    "docs/analysis/results/existing_response_candidates_v1/matched_response_summary.csv": "6fa60d4d20a82ea56a44d5be3312a5e02705cc58a11e4405a4f08c00d646eefe",
+    "docs/analysis/results/existing_response_candidates_v1/checks.json": "9473905df0709c45461b547b4ab931581417c6303c2d5c5b2bec56d7c1c40164",
+    "docs/analysis/results/existing_response_candidates_v1/matched_response_pairs.csv": "60a2f54d26b948706a6159319dcc0d25624ad29a6633f362f0047a2ab79d2a8e",
+    "docs/analysis/results/existing_response_candidates_v1/response_per_flight.csv": "f75a6005cb417af5e40d4759ebb273561413c5330aaddef9a6f9610edfd2c7c8",
+    "docs/analysis/results/existing_response_candidates_v1/all_traces.csv": "a840325a68024cd586adf58b7b93182bcfdc7a0bf1509ea36c486ec6f606b1ba",
+    "docs/analysis/results/existing_response_candidates_v1/coverage_summary.csv": "80696eff842f462caadbe544a3a839c72f4ceca52545fdac3a3d520fe676e2e6",
+    "docs/analysis/results/existing_response_candidates_v1/tests.json": "b8240d6087eb3319074758684e12e3be54a7f0cef4ab2da1b1316802ec07c90f"
+  }
+}

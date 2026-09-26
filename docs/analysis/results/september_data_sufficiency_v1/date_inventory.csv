@@ -1,0 +1,17 @@
+filename_date,role,current_status,unique_logs
+2026-09-06,not_admitted,existing_exclusion_or_unassigned,1
+2026-09-06,train,admitted,6
+2026-09-07,not_admitted,existing_exclusion_or_unassigned,1
+2026-09-07,validation,admitted,9
+2026-09-08,Sep8,admitted,6
+2026-09-08,not_admitted,existing_exclusion_or_unassigned,1
+2026-09-11,train,admitted,3
+2026-09-12,train,admitted,8
+2026-09-13,train,admitted,6
+2026-09-14,train,admitted,4
+2026-09-15,train,admitted,6
+2026-09-16,train,admitted,5
+2026-09-17,validation,admitted,8
+2026-09-18,train,admitted,3
+2026-09-19,Sep19,admitted,22
+2026-09-19,Sep19,excluded_by_frozen_gate,1

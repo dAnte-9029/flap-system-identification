@@ -1,0 +1,8 @@
+{
+  "status": "passed",
+  "all_frozen_groups_unchanged": true,
+  "local_parent_identity_labels_dt_controls_exact": true,
+  "offset0_prefix_parity": true,
+  "predictions_finite": true,
+  "heldout_accessed": false
+}

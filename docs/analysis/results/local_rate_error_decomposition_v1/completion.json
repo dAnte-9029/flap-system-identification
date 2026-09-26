@@ -1,0 +1,19 @@
+{
+  "status": "complete",
+  "tests_passed": 4,
+  "training": 0,
+  "new_inference": 0,
+  "heldout_accessed": false,
+  "outputs": {
+    "docs/analysis/results/local_rate_error_decomposition_v1/protocol.json": "d1d61666739825db8c95dcccc5ae417a80fb641969478ac90e048fa157d557f8",
+    "docs/analysis/results/local_rate_error_decomposition_v1/review_report.md": "e294d8d8622865042fdb0095a9d5b60b56e22ffe90e04d6a4d545f7f384a6bbc",
+    "docs/analysis/results/local_rate_error_decomposition_v1/per_flight.csv": "e8aa31f7117744f62ebcfb81cb35ebee4d0fb0532b4d7d82509e26a05aeecdaa",
+    "docs/analysis/results/local_rate_error_decomposition_v1/report.md": "e294d8d8622865042fdb0095a9d5b60b56e22ffe90e04d6a4d545f7f384a6bbc",
+    "docs/analysis/results/local_rate_error_decomposition_v1/checks.json": "399db71e9cfcb97acb6def795e1475e68ce1a4e2192b1ccd4d7bf2c6d2ec51a2",
+    "docs/analysis/results/local_rate_error_decomposition_v1/summary.csv": "2a58e043ca6ffb93af7bba7814e80105df02c36709ae80771e930ed36aab3d3c",
+    "docs/analysis/results/local_rate_error_decomposition_v1/per_seed.csv": "3edcd8e3b631450a057b7c553e183847b07abfd983a42507c073f6c48bee11f3",
+    "docs/analysis/results/local_rate_error_decomposition_v1/decomposition.pdf": "7289831456d2be8a3e2eef1e81893275a8f8e208d88df132dcc4f89459e72c69",
+    "docs/analysis/results/local_rate_error_decomposition_v1/tests.json": "3831e118c8a9494155f7277da914a8d645d358ac29710afbae6c5eccf687477b",
+    "docs/analysis/results/local_rate_error_decomposition_v1/decomposition.png": "4f76c1b39c37359b6dc045445ae61eb2bf409e12924fa4263c25f21e0b1ccb6f"
+  }
+}

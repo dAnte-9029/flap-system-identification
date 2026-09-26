@@ -1,0 +1,23 @@
+{
+  "status": "complete",
+  "training": 0,
+  "new_model_inference": 0,
+  "heldout_cache_accessed_this_run": true,
+  "heldout_model_performance_not_read": true,
+  "original_splits_unchanged": true,
+  "output_sha256": {
+    "protocol.json": "d865d3b1bcd8bb5fe3a868593a87cae90166324af60a1c0dfadf892534b114c1",
+    "review_report.md": "f67272dccefeb9c7140ef9d108b159621e03058506d6b9e660e1ab512d8f7fdd",
+    "report.md": "f67272dccefeb9c7140ef9d108b159621e03058506d6b9e660e1ab512d8f7fdd",
+    "date_inventory.csv": "56413c98d3fb09483ce737080a366ccc558ebb5ae02a1ae91836c2230a30995b",
+    "excitation_coverage.csv": "d4c8d67d4e7d20e508d6c6097ef0e8fc01060cca30fce9015202b88d3d52a714",
+    "inventory_refresh.json": "8dfc430e5069eb93efbdd84ce74fdb409471e723265e392ed0dd1e1181e34b18",
+    "excitation_plan_draft.md": "711b9fc98d208326a9f90b2b5467eaa27fe395d5c9d0848dd27c4ad4f69b21c2",
+    "checks.json": "0e2756df5b9e5e276057be509855f7091d0ba67b9dede3cb3494be5cfdc6db3d",
+    "nonoverlap_candidates.csv": "4828f6b4fd16d52daeab0fce6e74232749550d9ef14f69c1fe8130b4921d7bf7",
+    "inventory.csv": "3b1530b7b68757d5c3166d5085354beae836abfa235edc4df4989d8a09226ed3",
+    "excitation_per_flight.csv": "7382985f28b64c64dcdae1311c0a25b552df758bef52796564591ac0c1ae4056",
+    "tests.json": "3fc5c2dc616a5bf142e6fb19323515bd4162cf9166467be85cbb8a979a0e7132",
+    "access_log.jsonl": "20a6c4ce7218e9745ef9cac009dadf54a7ad6d6bc8a1214283ba2b0b377b0591"
+  }
+}

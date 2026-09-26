@@ -1,0 +1,9 @@
+channel,kind,interval,unique_pairs,opposite_response_sign,zero_response,distance_median
+common,cross_flight,late_1s,59,27,0,0.8401715246143021
+common,cross_flight,late_500ms,59,26,0,0.8401715246143021
+common,same_flight,late_1s,29,16,0,1.3597157071664745
+common,same_flight,late_500ms,29,14,0,1.3597157071664745
+rudder,cross_flight,late_1s,30,13,0,0.9926144583533958
+rudder,cross_flight,late_500ms,30,17,0,0.9926144583533958
+rudder,same_flight,late_1s,5,4,0,1.1095943074255743
+rudder,same_flight,late_500ms,5,4,0,1.1095943074255743

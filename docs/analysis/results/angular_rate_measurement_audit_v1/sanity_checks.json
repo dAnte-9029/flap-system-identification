@@ -1,0 +1,123 @@
+{
+  "flights": [
+    {
+      "flight": "2026.9.7/log_21_2026-9-7-05-54-56.ulg",
+      "exact_cached_label_parity": true,
+      "raw_sha256_valid": true
+    },
+    {
+      "flight": "2026.9.7/log_22_2026-9-7-06-01-40.ulg",
+      "exact_cached_label_parity": true,
+      "raw_sha256_valid": true
+    },
+    {
+      "flight": "2026.9.7/log_23_2026-9-7-06-09-22.ulg",
+      "exact_cached_label_parity": true,
+      "raw_sha256_valid": true
+    },
+    {
+      "flight": "2026.9.7/log_24_2026-9-7-06-16-04.ulg",
+      "exact_cached_label_parity": true,
+      "raw_sha256_valid": true
+    },
+    {
+      "flight": "2026.9.7/log_26_2026-9-7-06-30-26.ulg",
+      "exact_cached_label_parity": true,
+      "raw_sha256_valid": true
+    },
+    {
+      "flight": "2026.9.7/log_27_2026-9-7-06-37-24.ulg",
+      "exact_cached_label_parity": true,
+      "raw_sha256_valid": true
+    },
+    {
+      "flight": "2026.9.7/log_28_2026-9-7-06-44-02.ulg",
+      "exact_cached_label_parity": true,
+      "raw_sha256_valid": true
+    },
+    {
+      "flight": "2026.9.7/log_29_2026-9-7-06-51-04.ulg",
+      "exact_cached_label_parity": true,
+      "raw_sha256_valid": true
+    },
+    {
+      "flight": "2026.9.7/log_30_2026-9-7-06-58-22.ulg",
+      "exact_cached_label_parity": true,
+      "raw_sha256_valid": true
+    },
+    {
+      "flight": "9.17数据/log_10_2026-9-17-06-34-34.ulg",
+      "exact_cached_label_parity": true,
+      "raw_sha256_valid": true
+    },
+    {
+      "flight": "9.17数据/log_11_2026-9-17-06-40-30.ulg",
+      "exact_cached_label_parity": true,
+      "raw_sha256_valid": true
+    },
+    {
+      "flight": "9.17数据/log_12_2026-9-17-06-46-02.ulg",
+      "exact_cached_label_parity": true,
+      "raw_sha256_valid": true
+    },
+    {
+      "flight": "9.17数据/log_13_2026-9-17-06-52-30.ulg",
+      "exact_cached_label_parity": true,
+      "raw_sha256_valid": true
+    },
+    {
+      "flight": "9.17数据/log_6_2026-9-17-06-02-24.ulg",
+      "exact_cached_label_parity": true,
+      "raw_sha256_valid": true
+    },
+    {
+      "flight": "9.17数据/log_7_2026-9-17-06-12-16.ulg",
+      "exact_cached_label_parity": true,
+      "raw_sha256_valid": true
+    },
+    {
+      "flight": "9.17数据/log_8_2026-9-17-06-17-52.ulg",
+      "exact_cached_label_parity": true,
+      "raw_sha256_valid": true
+    },
+    {
+      "flight": "9.17数据/log_9_2026-9-17-06-28-10.ulg",
+      "exact_cached_label_parity": true,
+      "raw_sha256_valid": true
+    },
+    {
+      "flight": "9.18数据/log_0_2026-9-18-18-15-06.ulg",
+      "exact_cached_label_parity": true,
+      "raw_sha256_valid": true
+    },
+    {
+      "flight": "9.18数据/log_1_2026-9-18-18-23-36.ulg",
+      "exact_cached_label_parity": true,
+      "raw_sha256_valid": true
+    },
+    {
+      "flight": "9.18数据/log_2_2026-9-18-18-29-40.ulg",
+      "exact_cached_label_parity": true,
+      "raw_sha256_valid": true
+    }
+  ],
+  "source_evidence": [
+    {
+      "firmware": "a644ca7868f07004e45658d4ae9a7a8c880c6bb5",
+      "source_available": true,
+      "source_sha256": "763ac8e1888ca8be4665960b80ef5f4eb2835a176550a60645bad13086479cb0"
+    },
+    {
+      "firmware": "c9af571575af33d5403fbb479256848797c801e2",
+      "source_available": true,
+      "source_sha256": "763ac8e1888ca8be4665960b80ef5f4eb2835a176550a60645bad13086479cb0"
+    },
+    {
+      "firmware": "e624a99f2955addbf76681e636c44162a0c03055",
+      "source_available": true,
+      "source_sha256": "763ac8e1888ca8be4665960b80ef5f4eb2835a176550a60645bad13086479cb0"
+    }
+  ],
+  "heldout_accessed_this_run": false,
+  "frozen_inputs_unchanged": true
+}

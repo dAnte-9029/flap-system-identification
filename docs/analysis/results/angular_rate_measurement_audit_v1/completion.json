@@ -1,0 +1,32 @@
+{
+  "completed": true,
+  "logs": 20,
+  "heldout_accessed_this_run": false,
+  "new_training": false,
+  "model_or_dataset_modified": false,
+  "tests_passed": 4,
+  "script_sha256": {
+    "scripts/audit_angular_rate_measurement.py": "8e2a59b93930efa1b94202d1349ab8ddf729fc8e2bcfc59199f7d2725fcdfae3",
+    "scripts/report_angular_rate_measurement_audit.py": "3a49db9c517f92a89492d4e75a34bec6ffeb3c5d53bcde066613dd83e747f993",
+    "tests/test_angular_rate_measurement_audit.py": "7ea4e98e48d7b76ee2390ac514f8041d24d0dfe37f2fdd1d8a4e14921dbcbbb6"
+  },
+  "outputs_sha256": {
+    "timing_audit.png": "4b6b1d74093d991b4060b2117733f695230088d6a423ddd5667936f291efeb3b",
+    "protocol.json": "a0920967130c0fe9185c5d8fdc4133e90352c628fbd6bafa1aa12eba5741dbcb",
+    "firmware_a644ca7868f0.txt": "0e3712c39062b5f763d8bdd27c4d2b9d8f50df08928a8e866fc6f7b3946b349d",
+    "review_report.md": "5cb0753195896fd59280b9cc02bde0d9110c3fa21852e4b89bdf73f92a7ecae2",
+    "report.md": "5cb0753195896fd59280b9cc02bde0d9110c3fa21852e4b89bdf73f92a7ecae2",
+    "engineering_notes.md": "3beaeb4e1f62832d7e03ff3c91aa4f15e138b8d2ab87a35592e606dfa0a82f5c",
+    "protocol_initial.json": "def67b5056043981f4aac14d0f9eea5906b2d805c34fe6df7ec2dca6ea7aae02",
+    "timing_audit.pdf": "8c9c1680d849ac5f66bee13222393987332419afa28b9303c9a4aae0e74d621b",
+    "alignment_per_flight.csv": "655416e089c8455e639abdf044b783a81ba7b923978458f7f17add04f0716476",
+    "firmware_e624a99f2955.txt": "0e3712c39062b5f763d8bdd27c4d2b9d8f50df08928a8e866fc6f7b3946b349d",
+    "summary.csv": "34af9c6bcaa73a3d74fb6fa396e9a67a83bcf512218e9d2e67ae3b10f93f1007",
+    "sanity_checks.json": "7675270b41c965321ff8d3a4904d3e78f2ce66b8707b7e8a220727d9649ddc7c",
+    "firmware_c9af571575af.txt": "0e3712c39062b5f763d8bdd27c4d2b9d8f50df08928a8e866fc6f7b3946b349d",
+    "topic_timing.csv": "ac7240a016306fc7d326ad1b9dc391f806840b165963f1e177b718ab5e0b542a",
+    "tests.json": "cff539bb5eeae8937d6dd487172d067963004ecf4235005f9d931fa363118eb8",
+    "access_log.jsonl": "d39c7b60bedef28aa76358a464c0129bb6fa0a24647f8a9ae77ccd91cff138a8",
+    "parameters.csv": "1249d1cfdea4db36dc291a88aec639f62afb3986984d0c6db45c063ab7b541bb"
+  }
+}

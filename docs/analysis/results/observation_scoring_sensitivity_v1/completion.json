@@ -1,0 +1,28 @@
+{
+  "status": "complete",
+  "training": 0,
+  "new_predictions": 0,
+  "heldout_data_accessed_this_run": false,
+  "tests_passed": 9,
+  "output_sha256": {
+    "docs/analysis/results/observation_scoring_sensitivity_v1/protocol.json": "8da549c61db62e8c97646f1f88adb41d19201df09e694f4050a6e0209765fc2c",
+    "docs/analysis/results/observation_scoring_sensitivity_v1/review_report.md": "94773aaf4ca234c2ee65232e30ef709f84170d382f0ea29de92b22dbd5e13a4c",
+    "docs/analysis/results/observation_scoring_sensitivity_v1/endpoint_sensitivity_ALL.png": "de80ba7e9976ddac30c17f90b2b844732be1eafa9c15c8d07190a3cf839e639b",
+    "docs/analysis/results/observation_scoring_sensitivity_v1/per_flight.csv": "c86111070b17c37fb50e2c4fe86216296db3a6a92b5b370ee52e5552c1e13415",
+    "docs/analysis/results/observation_scoring_sensitivity_v1/initial_mismatch.csv": "69c6dbfcdf6205ab51ba2bffd926b2846ead09f5833112b321ee3b1b8cfc40bc",
+    "docs/analysis/results/observation_scoring_sensitivity_v1/report.md": "94773aaf4ca234c2ee65232e30ef709f84170d382f0ea29de92b22dbd5e13a4c",
+    "docs/analysis/results/observation_scoring_sensitivity_v1/scoring_changes.csv": "13df936b66e8262f0c2fb1f06f0dea3000fe60c0f62b671cc78fb13658d7b532",
+    "docs/analysis/results/observation_scoring_sensitivity_v1/endpoint_sensitivity_high.pdf": "b1ecd63ba9ebc47a439ca5cb1d6937d23489df334554652b2614c488875a6e19",
+    "docs/analysis/results/observation_scoring_sensitivity_v1/paired_scoring_deltas.csv": "21cbe66f6b1802cdc6c7e503bdc8f741e70561278fbf982f1bc3398a0e10647b",
+    "docs/analysis/results/observation_scoring_sensitivity_v1/summary.csv": "a8f2d95e44026ec79b3c03561b98461f9c4c4bc85ba16d8bf9846e79b1df3054",
+    "docs/analysis/results/observation_scoring_sensitivity_v1/sanity_checks.json": "b7fe7b22437aab38f93d7c9ece272c58d6ab2845b65cde62bf5e27850582a133",
+    "docs/analysis/results/observation_scoring_sensitivity_v1/endpoint_sensitivity_ALL.pdf": "d1ce562eb39b26cd4506f9ad095853c1c569f61b981fa277ffe1fa87014b75f1",
+    "docs/analysis/results/observation_scoring_sensitivity_v1/per_seed.csv": "7c30c0f4027819e4edef8316c75989d7e59c46c085f5dbdeec1cb1e9208fc3fe",
+    "docs/analysis/results/observation_scoring_sensitivity_v1/endpoint_sensitivity_high.png": "65c744d7e6547996d82d6d842522f229a75081d5b364d87112ddf095cc68b7cc",
+    "docs/analysis/results/observation_scoring_sensitivity_v1/tests.json": "56000230a3e269b296d97cda575f903b81c8e5302d599e08eef097cb5805ffdd",
+    "docs/analysis/results/observation_scoring_sensitivity_v1/access_log.jsonl": "bd01cac3d1b3f2f32a8a358661e242cf4a2c689a053247f9bac66a42afe2ca93",
+    "docs/analysis/results/observation_scoring_sensitivity_v1/coverage.csv": "f57374b13b39f3bec6c751967c5b25070d8f6720b4066ebd9fd4662e33157df6",
+    "docs/analysis/results/observation_scoring_sensitivity_v1/scoring_direction_counts.csv": "eb68ec1a47d5eb0191528029baf817e6c48aac4184477a63f1896f1b834546d0"
+  },
+  "reference_sha256": "2d511e11ca9dd848c5b95a1869b018c9bfcf8f72f46fe7920db14d2d0a4d1046"
+}

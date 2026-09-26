@@ -1,0 +1,251 @@
+[
+  {
+    "firmware": "3f42d7052c958c7f65e2f26a763d909bb84fa7f6",
+    "path": "msg/VehicleStatus.msg",
+    "available": false,
+    "lines": []
+  },
+  {
+    "firmware": "3f42d7052c958c7f65e2f26a763d909bb84fa7f6",
+    "path": "src/modules/fw_att_control/FixedwingAttitudeControl.cpp",
+    "available": true,
+    "lines": [
+      "100: // STABILIZED mode generate the attitude setpoint from manual user inputs",
+      "102: const float roll_body = _manual_control_setpoint.roll * radians(_param_fw_man_r_max.get());",
+      "335: body_rates_setpoint(2) += math::constrain(_manual_control_setpoint.yaw * radians(_param_man_yr_max.get()),"
+    ]
+  },
+  {
+    "firmware": "3f42d7052c958c7f65e2f26a763d909bb84fa7f6",
+    "path": "src/modules/fw_att_control/fw_yaw_controller.cpp",
+    "available": true,
+    "lines": [
+      "85: _euler_rate_setpoint = tanf(constrained_roll) * cosf(pitch) * CONSTANTS_ONE_G / airspeed;",
+      "88: const float yaw_body_rate_setpoint_raw = -sinf(roll) * euler_pitch_rate_setpoint +",
+      "90: _body_rate_setpoint = math::constrain(yaw_body_rate_setpoint_raw, -_max_rate, _max_rate);"
+    ]
+  },
+  {
+    "firmware": "3f42d7052c958c7f65e2f26a763d909bb84fa7f6",
+    "path": "src/modules/fw_rate_control/FixedwingRateControl.cpp",
+    "available": true,
+    "lines": [
+      "385: // Special case yaw in Acro: if the parameter FW_ACRO_YAW_EN is not set then don't rate-control yaw",
+      "433: _vehicle_torque_setpoint.xyz[2] = math::constrain(_vehicle_torque_setpoint.xyz[2] + _param_fw_rll_to_yaw_ff.get() *"
+    ]
+  },
+  {
+    "firmware": "4cd4d0ac56bc193bcab2abd3ba9eb4f6e1c9a7da",
+    "path": "msg/VehicleStatus.msg",
+    "available": false,
+    "lines": []
+  },
+  {
+    "firmware": "4cd4d0ac56bc193bcab2abd3ba9eb4f6e1c9a7da",
+    "path": "src/modules/fw_att_control/FixedwingAttitudeControl.cpp",
+    "available": true,
+    "lines": [
+      "100: // STABILIZED mode generate the attitude setpoint from manual user inputs",
+      "102: const float roll_body = _manual_control_setpoint.roll * radians(_param_fw_man_r_max.get());",
+      "335: body_rates_setpoint(2) += math::constrain(_manual_control_setpoint.yaw * radians(_param_man_yr_max.get()),"
+    ]
+  },
+  {
+    "firmware": "4cd4d0ac56bc193bcab2abd3ba9eb4f6e1c9a7da",
+    "path": "src/modules/fw_att_control/fw_yaw_controller.cpp",
+    "available": true,
+    "lines": [
+      "85: _euler_rate_setpoint = tanf(constrained_roll) * cosf(pitch) * CONSTANTS_ONE_G / airspeed;",
+      "88: const float yaw_body_rate_setpoint_raw = -sinf(roll) * euler_pitch_rate_setpoint +",
+      "90: _body_rate_setpoint = math::constrain(yaw_body_rate_setpoint_raw, -_max_rate, _max_rate);"
+    ]
+  },
+  {
+    "firmware": "4cd4d0ac56bc193bcab2abd3ba9eb4f6e1c9a7da",
+    "path": "src/modules/fw_rate_control/FixedwingRateControl.cpp",
+    "available": true,
+    "lines": [
+      "303: && _vehicle_status.nav_state == vehicle_status_s::NAVIGATION_STATE_STAB;",
+      "471: // Special case yaw in Acro: if the parameter FW_ACRO_YAW_EN is not set then don't rate-control yaw",
+      "516: _vehicle_torque_setpoint.xyz[2] = math::constrain(_vehicle_torque_setpoint.xyz[2] + _param_fw_rll_to_yaw_ff.get() *"
+    ]
+  },
+  {
+    "firmware": "74be66f2be14340838aed6732a379d124124b5f2",
+    "path": "msg/VehicleStatus.msg",
+    "available": false,
+    "lines": []
+  },
+  {
+    "firmware": "74be66f2be14340838aed6732a379d124124b5f2",
+    "path": "src/modules/fw_att_control/FixedwingAttitudeControl.cpp",
+    "available": true,
+    "lines": [
+      "100: // STABILIZED mode generate the attitude setpoint from manual user inputs",
+      "102: const float roll_body = _manual_control_setpoint.roll * radians(_param_fw_man_r_max.get());",
+      "335: body_rates_setpoint(2) += math::constrain(_manual_control_setpoint.yaw * radians(_param_man_yr_max.get()),"
+    ]
+  },
+  {
+    "firmware": "74be66f2be14340838aed6732a379d124124b5f2",
+    "path": "src/modules/fw_att_control/fw_yaw_controller.cpp",
+    "available": true,
+    "lines": [
+      "85: _euler_rate_setpoint = tanf(constrained_roll) * cosf(pitch) * CONSTANTS_ONE_G / airspeed;",
+      "88: const float yaw_body_rate_setpoint_raw = -sinf(roll) * euler_pitch_rate_setpoint +",
+      "90: _body_rate_setpoint = math::constrain(yaw_body_rate_setpoint_raw, -_max_rate, _max_rate);"
+    ]
+  },
+  {
+    "firmware": "74be66f2be14340838aed6732a379d124124b5f2",
+    "path": "src/modules/fw_rate_control/FixedwingRateControl.cpp",
+    "available": true,
+    "lines": [
+      "401: // Special case yaw in Acro: if the parameter FW_ACRO_YAW_EN is not set then don't rate-control yaw",
+      "442: _vehicle_torque_setpoint.xyz[2] = math::constrain(_vehicle_torque_setpoint.xyz[2] + _param_fw_rll_to_yaw_ff.get() *"
+    ]
+  },
+  {
+    "firmware": "a644ca7868f07004e45658d4ae9a7a8c880c6bb5",
+    "path": "msg/VehicleStatus.msg",
+    "available": false,
+    "lines": []
+  },
+  {
+    "firmware": "a644ca7868f07004e45658d4ae9a7a8c880c6bb5",
+    "path": "src/modules/fw_att_control/FixedwingAttitudeControl.cpp",
+    "available": true,
+    "lines": [
+      "100: // STABILIZED mode generate the attitude setpoint from manual user inputs",
+      "102: const float roll_body = _manual_control_setpoint.roll * radians(_param_fw_man_r_max.get());",
+      "335: body_rates_setpoint(2) += math::constrain(_manual_control_setpoint.yaw * radians(_param_man_yr_max.get()),"
+    ]
+  },
+  {
+    "firmware": "a644ca7868f07004e45658d4ae9a7a8c880c6bb5",
+    "path": "src/modules/fw_att_control/fw_yaw_controller.cpp",
+    "available": true,
+    "lines": [
+      "85: _euler_rate_setpoint = tanf(constrained_roll) * cosf(pitch) * CONSTANTS_ONE_G / airspeed;",
+      "88: const float yaw_body_rate_setpoint_raw = -sinf(roll) * euler_pitch_rate_setpoint +",
+      "90: _body_rate_setpoint = math::constrain(yaw_body_rate_setpoint_raw, -_max_rate, _max_rate);"
+    ]
+  },
+  {
+    "firmware": "a644ca7868f07004e45658d4ae9a7a8c880c6bb5",
+    "path": "src/modules/fw_rate_control/FixedwingRateControl.cpp",
+    "available": true,
+    "lines": [
+      "303: && _vehicle_status.nav_state == vehicle_status_s::NAVIGATION_STATE_STAB;",
+      "482: // Special case yaw in Acro: if the parameter FW_ACRO_YAW_EN is not set then don't rate-control yaw",
+      "527: _vehicle_torque_setpoint.xyz[2] = math::constrain(_vehicle_torque_setpoint.xyz[2] + _param_fw_rll_to_yaw_ff.get() *"
+    ]
+  },
+  {
+    "firmware": "c9af571575af33d5403fbb479256848797c801e2",
+    "path": "msg/VehicleStatus.msg",
+    "available": false,
+    "lines": []
+  },
+  {
+    "firmware": "c9af571575af33d5403fbb479256848797c801e2",
+    "path": "src/modules/fw_att_control/FixedwingAttitudeControl.cpp",
+    "available": true,
+    "lines": [
+      "100: // STABILIZED mode generate the attitude setpoint from manual user inputs",
+      "102: const float roll_body = _manual_control_setpoint.roll * radians(_param_fw_man_r_max.get());",
+      "335: body_rates_setpoint(2) += math::constrain(_manual_control_setpoint.yaw * radians(_param_man_yr_max.get()),"
+    ]
+  },
+  {
+    "firmware": "c9af571575af33d5403fbb479256848797c801e2",
+    "path": "src/modules/fw_att_control/fw_yaw_controller.cpp",
+    "available": true,
+    "lines": [
+      "85: _euler_rate_setpoint = tanf(constrained_roll) * cosf(pitch) * CONSTANTS_ONE_G / airspeed;",
+      "88: const float yaw_body_rate_setpoint_raw = -sinf(roll) * euler_pitch_rate_setpoint +",
+      "90: _body_rate_setpoint = math::constrain(yaw_body_rate_setpoint_raw, -_max_rate, _max_rate);"
+    ]
+  },
+  {
+    "firmware": "c9af571575af33d5403fbb479256848797c801e2",
+    "path": "src/modules/fw_rate_control/FixedwingRateControl.cpp",
+    "available": true,
+    "lines": [
+      "385: // Special case yaw in Acro: if the parameter FW_ACRO_YAW_EN is not set then don't rate-control yaw",
+      "433: _vehicle_torque_setpoint.xyz[2] = math::constrain(_vehicle_torque_setpoint.xyz[2] + _param_fw_rll_to_yaw_ff.get() *"
+    ]
+  },
+  {
+    "firmware": "d0dd2354fdeadfbe505211a17b54d728309fedff",
+    "path": "msg/VehicleStatus.msg",
+    "available": false,
+    "lines": []
+  },
+  {
+    "firmware": "d0dd2354fdeadfbe505211a17b54d728309fedff",
+    "path": "src/modules/fw_att_control/FixedwingAttitudeControl.cpp",
+    "available": true,
+    "lines": [
+      "100: // STABILIZED mode generate the attitude setpoint from manual user inputs",
+      "102: const float roll_body = _manual_control_setpoint.roll * radians(_param_fw_man_r_max.get());",
+      "335: body_rates_setpoint(2) += math::constrain(_manual_control_setpoint.yaw * radians(_param_man_yr_max.get()),"
+    ]
+  },
+  {
+    "firmware": "d0dd2354fdeadfbe505211a17b54d728309fedff",
+    "path": "src/modules/fw_att_control/fw_yaw_controller.cpp",
+    "available": true,
+    "lines": [
+      "85: _euler_rate_setpoint = tanf(constrained_roll) * cosf(pitch) * CONSTANTS_ONE_G / airspeed;",
+      "88: const float yaw_body_rate_setpoint_raw = -sinf(roll) * euler_pitch_rate_setpoint +",
+      "90: _body_rate_setpoint = math::constrain(yaw_body_rate_setpoint_raw, -_max_rate, _max_rate);"
+    ]
+  },
+  {
+    "firmware": "d0dd2354fdeadfbe505211a17b54d728309fedff",
+    "path": "src/modules/fw_rate_control/FixedwingRateControl.cpp",
+    "available": true,
+    "lines": [
+      "303: && _vehicle_status.nav_state == vehicle_status_s::NAVIGATION_STATE_STAB;",
+      "473: // Special case yaw in Acro: if the parameter FW_ACRO_YAW_EN is not set then don't rate-control yaw",
+      "518: _vehicle_torque_setpoint.xyz[2] = math::constrain(_vehicle_torque_setpoint.xyz[2] + _param_fw_rll_to_yaw_ff.get() *"
+    ]
+  },
+  {
+    "firmware": "e624a99f2955addbf76681e636c44162a0c03055",
+    "path": "msg/VehicleStatus.msg",
+    "available": false,
+    "lines": []
+  },
+  {
+    "firmware": "e624a99f2955addbf76681e636c44162a0c03055",
+    "path": "src/modules/fw_att_control/FixedwingAttitudeControl.cpp",
+    "available": true,
+    "lines": [
+      "100: // STABILIZED mode generate the attitude setpoint from manual user inputs",
+      "102: const float roll_body = _manual_control_setpoint.roll * radians(_param_fw_man_r_max.get());",
+      "335: body_rates_setpoint(2) += math::constrain(_manual_control_setpoint.yaw * radians(_param_man_yr_max.get()),"
+    ]
+  },
+  {
+    "firmware": "e624a99f2955addbf76681e636c44162a0c03055",
+    "path": "src/modules/fw_att_control/fw_yaw_controller.cpp",
+    "available": true,
+    "lines": [
+      "85: _euler_rate_setpoint = tanf(constrained_roll) * cosf(pitch) * CONSTANTS_ONE_G / airspeed;",
+      "88: const float yaw_body_rate_setpoint_raw = -sinf(roll) * euler_pitch_rate_setpoint +",
+      "90: _body_rate_setpoint = math::constrain(yaw_body_rate_setpoint_raw, -_max_rate, _max_rate);"
+    ]
+  },
+  {
+    "firmware": "e624a99f2955addbf76681e636c44162a0c03055",
+    "path": "src/modules/fw_rate_control/FixedwingRateControl.cpp",
+    "available": true,
+    "lines": [
+      "303: && _vehicle_status.nav_state == vehicle_status_s::NAVIGATION_STATE_STAB;",
+      "488: // Special case yaw in Acro: if the parameter FW_ACRO_YAW_EN is not set then don't rate-control yaw",
+      "533: _vehicle_torque_setpoint.xyz[2] = math::constrain(_vehicle_torque_setpoint.xyz[2] + _param_fw_rll_to_yaw_ff.get() *"
+    ]
+  }
+]

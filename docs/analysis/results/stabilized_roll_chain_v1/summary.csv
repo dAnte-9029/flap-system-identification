@@ -1,0 +1,3 @@
+split,flights,stabilized_s,fresh_chain_rows,yaw_neutral_pct,roll_runs,positive_runs,negative_runs,full_neutral_cycles,all51_stabilized,all51_fresh,median_rudder_range,median_differential_range,yaw_neutral_runs,yaw_neutral_rudder_changes_gt01
+train,41,2304.141265,112294,99.88779453933425,1594,1102,492,19,10764,2105,0.063332631252706,0.2452727458439767,1590,1587
+validation,17,1480.327946,71826,99.9443098599393,900,401,499,20,1445,293,0.05187208717688915,0.1895104257855564,898,897

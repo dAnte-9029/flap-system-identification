@@ -1,0 +1,20 @@
+{
+  "created_utc": "2026-09-26T11:08:04.398634+00:00",
+  "head": "e9d94a6be534a0cefcf404071600f5de31757c73",
+  "scope": "September6-19 existing archive inventory; unchanged admitted development and previously opened test command windows; no model predictions or performance files read",
+  "source_dataset_id": "trajectory_v3_september_expanded",
+  "pins": {
+    "docs/analysis/results/raw_log_inventory_20260920/logs.csv": "fa73630b5312a6c6ad5a7111c31170fb1a078840ab7229e183dcfbfbe979a861",
+    "dataset/trajectory_v3_september_expanded/manifest.json": "46b50d0b23a32b40339a4c07526711d0ff88b55584d309a56807c56905d2817e",
+    "docs/analysis/results/paper_independent_test_v1/test_flight_coverage.csv": "acb04840d7de4c93b2d66d1b0fafe93dd4e27ceb16509320b98ab94770b7411e",
+    "docs/analysis/results/paper_independent_test_v1/preparation_status.json": "ea114ae2e1c3bf51ce1d7e7f04819738c8a592ecd214f2a206c949e945474c87",
+    "docs/analysis/results/response_timescale_diagnostic_v1/channel_thresholds.csv": "8a039ab88e5ef792d6b108e16429e030f975f0ff69eb86780a166c5487f0194a",
+    "artifacts/paper_independent_test_v1/prepared.pt": "98d30cbd889dee49a2eaa47dae8ac68baa0f456a6438f95fb7a28587ef3550e1",
+    "artifacts/paper_standard_gru_multiseed_v1/prepared.pt": "70a2f04d0802bc03efdcb30cf6c8dc5635030393a3d4f13b8eb2a64618f4d290",
+    "docs/analysis/results/conditional_excitation_v1/report.md": "6cd8beb78adc0665ed71f050e56d6d50473ffb2c1abaf8e74384e65a58af1b8e"
+  },
+  "test_access": "Current user explicitly requests Sep6-Sep19 data sufficiency. Previously opened Sep8/Sep19 prepared caches are accessed for command coverage. Roles unchanged; not added to training; not called untouched again.",
+  "selection": "Reuse prior 500ms channel coordinate/scales/train q25/q75. high>q75; isolated=high & all other channels<=q25; persistence=abs(mean departure)/RMS>=0.8.",
+  "counting": "Raw window counts plus greedy earliest nonoverlapping full50-step intervals within flight and segment, separately per channel. Nonoverlap is NOT statistical independence or randomized exogeneity.",
+  "interpretation": "Sufficiency distinguished for logged-distribution forecasting vs sustained/counterfactual command responses. Isolated rules not universal identifiability test. No binary sample-count success threshold."
+}

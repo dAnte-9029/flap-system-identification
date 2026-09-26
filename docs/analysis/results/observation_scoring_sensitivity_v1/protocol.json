@@ -1,0 +1,147 @@
+{
+  "created_utc": "2026-09-26T09:16:58.774780+00:00",
+  "git_head": "e9d94a6be534a0cefcf404071600f5de31757c73",
+  "model": "frozen Standard GRU64 H26 K50",
+  "seeds": [
+    17,
+    23,
+    42
+  ],
+  "origins": 2582,
+  "logs": [
+    {
+      "identity": "2026.9.7/log_21_2026-9-7-05-54-56.ulg",
+      "path": "/home/zn/QgcLogs/2026.9.7/log_21_2026-9-7-05-54-56.ulg",
+      "split": "validation",
+      "sha256": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088"
+    },
+    {
+      "identity": "2026.9.7/log_22_2026-9-7-06-01-40.ulg",
+      "path": "/home/zn/QgcLogs/2026.9.7/log_22_2026-9-7-06-01-40.ulg",
+      "split": "validation",
+      "sha256": "a907493b8fd3708bac45e39fc54185e2fa4e9f9a35a71ba030f3f38b06c1d51f"
+    },
+    {
+      "identity": "2026.9.7/log_23_2026-9-7-06-09-22.ulg",
+      "path": "/home/zn/QgcLogs/2026.9.7/log_23_2026-9-7-06-09-22.ulg",
+      "split": "validation",
+      "sha256": "4b5e90d7f0e7d8ecc77c4c680cde74d6848246d6878e3606503b97570bb9f462"
+    },
+    {
+      "identity": "2026.9.7/log_24_2026-9-7-06-16-04.ulg",
+      "path": "/home/zn/QgcLogs/2026.9.7/log_24_2026-9-7-06-16-04.ulg",
+      "split": "validation",
+      "sha256": "a1945d5edee81010214065ee8ff847438d7306eb73e9a8aa359a727ff7a9070e"
+    },
+    {
+      "identity": "2026.9.7/log_26_2026-9-7-06-30-26.ulg",
+      "path": "/home/zn/QgcLogs/2026.9.7/log_26_2026-9-7-06-30-26.ulg",
+      "split": "validation",
+      "sha256": "580d9dd51677020f5a87c43f51f9d7082d4157599eab9e148b683e4baa03eadd"
+    },
+    {
+      "identity": "2026.9.7/log_27_2026-9-7-06-37-24.ulg",
+      "path": "/home/zn/QgcLogs/2026.9.7/log_27_2026-9-7-06-37-24.ulg",
+      "split": "validation",
+      "sha256": "f265efde972974cc8bad4223ace9abe36dceeddebf26d92fd0f9b1ae0498905b"
+    },
+    {
+      "identity": "2026.9.7/log_28_2026-9-7-06-44-02.ulg",
+      "path": "/home/zn/QgcLogs/2026.9.7/log_28_2026-9-7-06-44-02.ulg",
+      "split": "validation",
+      "sha256": "8d1191724e9bb10dcc592dc354b6c8cc21f51ae79dd14e9960bc656411cb7758"
+    },
+    {
+      "identity": "2026.9.7/log_29_2026-9-7-06-51-04.ulg",
+      "path": "/home/zn/QgcLogs/2026.9.7/log_29_2026-9-7-06-51-04.ulg",
+      "split": "validation",
+      "sha256": "0e3d4d085a0d8bcd87a2c76c5c3230e2ae238cf0d3b54051abd498e0b9c8bf8c"
+    },
+    {
+      "identity": "2026.9.7/log_30_2026-9-7-06-58-22.ulg",
+      "path": "/home/zn/QgcLogs/2026.9.7/log_30_2026-9-7-06-58-22.ulg",
+      "split": "validation",
+      "sha256": "b9b276a937ef21b53dc65c8f8cdeb72063f754c0aa9b7a15448580fedd3e9933"
+    },
+    {
+      "identity": "9.17数据/log_10_2026-9-17-06-34-34.ulg",
+      "path": "/home/zn/QgcLogs/9.17数据/log_10_2026-9-17-06-34-34.ulg",
+      "split": "validation",
+      "sha256": "9258b097970593d85c54daa5d13905f8b7b1c9bcab8d800ddd78e14e6be8f0c5"
+    },
+    {
+      "identity": "9.17数据/log_11_2026-9-17-06-40-30.ulg",
+      "path": "/home/zn/QgcLogs/9.17数据/log_11_2026-9-17-06-40-30.ulg",
+      "split": "validation",
+      "sha256": "72b77806f1d23dd9d32bf76275b6a94d3cc4dd2f860a9394fd1b3e42ab10c8de"
+    },
+    {
+      "identity": "9.17数据/log_12_2026-9-17-06-46-02.ulg",
+      "path": "/home/zn/QgcLogs/9.17数据/log_12_2026-9-17-06-46-02.ulg",
+      "split": "validation",
+      "sha256": "1d0eccb6bff5bbec48711611b652a5d920c132c230ac1801fe8b53314ce52ebc"
+    },
+    {
+      "identity": "9.17数据/log_13_2026-9-17-06-52-30.ulg",
+      "path": "/home/zn/QgcLogs/9.17数据/log_13_2026-9-17-06-52-30.ulg",
+      "split": "validation",
+      "sha256": "b472f27bdb908bca69c4d18cc793cde099d4632285026878d766c2bc912a6949"
+    },
+    {
+      "identity": "9.17数据/log_6_2026-9-17-06-02-24.ulg",
+      "path": "/home/zn/QgcLogs/9.17数据/log_6_2026-9-17-06-02-24.ulg",
+      "split": "validation",
+      "sha256": "8c24613d6cd518a0391183fe8c8f51198d2d1af8b05962081aa36180eb12f5fb"
+    },
+    {
+      "identity": "9.17数据/log_7_2026-9-17-06-12-16.ulg",
+      "path": "/home/zn/QgcLogs/9.17数据/log_7_2026-9-17-06-12-16.ulg",
+      "split": "validation",
+      "sha256": "5bc50ebb95abd5fb7653cf7e9dd046323e866b146da223125bb1bb8f3ef11f9d"
+    },
+    {
+      "identity": "9.17数据/log_8_2026-9-17-06-17-52.ulg",
+      "path": "/home/zn/QgcLogs/9.17数据/log_8_2026-9-17-06-17-52.ulg",
+      "split": "validation",
+      "sha256": "c1b477a8bc2758431548cbfe085aa083f8d52725c18ca0daa588fe59d7d8dfc3"
+    },
+    {
+      "identity": "9.17数据/log_9_2026-9-17-06-28-10.ulg",
+      "path": "/home/zn/QgcLogs/9.17数据/log_9_2026-9-17-06-28-10.ulg",
+      "split": "validation",
+      "sha256": "c728467cbea2bad08f7f060c6498120efe8cd4f54a3b5cf156d82939cf174480"
+    }
+  ],
+  "pins": {
+    "artifacts/paper_baseline_comparison_v1/B2_StandardGRU_predictions.npz": "026d4cfe8ec3fe64a6b5fcd53cab7c4a80f6a64fe5b35bf4be3325746f3d6204",
+    "artifacts/paper_standard_gru_multiseed_v1/seed23/predictions.npz": "d504874f68cfba752bc3e1d526cecca82bf0c5ca18cbdcfb3105efbbd9e21e72",
+    "artifacts/paper_standard_gru_multiseed_v1/seed42/predictions.npz": "2fa6f59d1bffd69871b5051f62ea5b483718a985ece856ad2ed54cb9945d47b3",
+    "docs/analysis/results/model_flight_response_diagnostic_v1/origin_selection.csv": "214e445a7087f9f58c2c28cca390b0825069516949d7a6e1d5b60979715c0cf4",
+    "artifacts/paper_standard_gru_multiseed_v1/prepared.pt": "70a2f04d0802bc03efdcb30cf6c8dc5635030393a3d4f13b8eb2a64618f4d290",
+    "scripts/run_observation_scoring_sensitivity.py": "1366c89372773004d1805f85aa570887644fa934cc0225ab663dec0da54b20da",
+    "tests/test_observation_scoring_sensitivity.py": "159c089ab66bcb75fd789a3e11507265097aed58a2baa89bdf9033718978a24f"
+  },
+  "heldout_data_accessed_this_run": false,
+  "new_inference": false,
+  "training": false,
+  "clock": "Original publication-grid time t0+cumsum(native dt), unchanged for predictions; interpolate raw xyz and quaternion by timestamp_sample onto this common clock. Offline/acausal reference ONLY, no extrapolation, gap>50ms fails entire analysis.",
+  "conditions": [
+    "original",
+    "synchronized",
+    "synchronized_lowpass"
+  ],
+  "synchronization": "linear body-rate interpolation, quaternion SLERP; no model/state reinitialization. Quaternion not filtered. Common-time means timestamp-tag synchronized, not latent physical group-delay corrected.",
+  "filter": {
+    "formula": "H(s)=1/(1+tau*s)^2; tau=1/(2*pi*10) seconds; exact FOH solution",
+    "tau_s": 0.015915494309189534,
+    "pole_hz": 10,
+    "effective_3db_hz": 6.435942529055827,
+    "attenuation_at_25hz_db": 17.206760131419873,
+    "application": "Measured rate: original ~100Hz sample-time knots before evaluation-grid sampling; predicted rate: native forecast knots. Both piecewise-linear; two states initialize to their own value at t0; no cross-label initialization.",
+    "limitation": "Fixed bandwidth restriction reduces alias risk; cannot remove already-aliased 100Hz logging content or repair forecast aliasing. Initial transient retained; report 0-500 and 500-1000ms separately. Not an alternative physical truth."
+  },
+  "metrics": "Per-axis p/q/r and vector rate RMSE; attitude geodesic RMS for original/synchronized only. Endpoint5/10/25/50 and native-dt weighted interval1..25,26..50. Flight RMSE then equal-flight mean then seed mean/sample SD.",
+  "grouping": "Reuse ALL/low/middle/high500ms frozen origin groups, no rethreshold.",
+  "failure": "No failed origins silently dropped; save identity and stop. No lag/cutoff optimization.",
+  "interpretation": "Scoring sensitivity, not improved model, noise attribution, physical delay identification or causal response validation."
+}

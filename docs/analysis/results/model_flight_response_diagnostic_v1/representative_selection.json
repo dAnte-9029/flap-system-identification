@@ -1,0 +1,26 @@
+[
+  {
+    "cohort": "Sep7",
+    "group": "low",
+    "window_id": "validation:2026.9.7/log_26_2026-9-7-06-30-26.ulg:1:5775",
+    "seed": 17
+  },
+  {
+    "cohort": "Sep7",
+    "group": "high",
+    "window_id": "validation:2026.9.7/log_24_2026-9-7-06-16-04.ulg:1:825",
+    "seed": 17
+  },
+  {
+    "cohort": "Sep17",
+    "group": "low",
+    "window_id": "validation:9.17数据/log_13_2026-9-17-06-52-30.ulg:1:1275",
+    "seed": 17
+  },
+  {
+    "cohort": "Sep17",
+    "group": "high",
+    "window_id": "validation:9.17数据/log_13_2026-9-17-06-52-30.ulg:1:5175",
+    "seed": 17
+  }
+]

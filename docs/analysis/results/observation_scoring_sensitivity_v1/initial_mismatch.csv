@@ -1,0 +1,10 @@
+seed,condition,initial_rate_rms
+17,original,0.0
+17,synchronized,0.27958742571849843
+17,synchronized_lowpass,0.27958742571849843
+23,original,0.0
+23,synchronized,0.27958742571849843
+23,synchronized_lowpass,0.27958742571849843
+42,original,0.0
+42,synchronized,0.27958742571849843
+42,synchronized_lowpass,0.27958742571849843

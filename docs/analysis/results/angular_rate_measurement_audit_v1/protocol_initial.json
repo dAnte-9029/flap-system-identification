@@ -1,0 +1,141 @@
+{
+  "created_utc": "2026-09-26T09:09:13.351412+00:00",
+  "head": "e9d94a6be534a0cefcf404071600f5de31757c73",
+  "inputs": {
+    "/home/zn/flap-system-identification/dataset/trajectory_v3_september_expanded/manifest.json": "46b50d0b23a32b40339a4c07526711d0ff88b55584d309a56807c56905d2817e",
+    "/home/zn/flap-system-identification/dataset/trajectory_v3_september_expanded/samples_train.parquet": "cd95d9db29cfe741c2929d8730fbd09b26fafcc54107f5faa3cd9d49e861e46e",
+    "/home/zn/flap-system-identification/dataset/trajectory_v3_september_expanded/samples_validation.parquet": "b66a14e2f0f9ef5f151c6e1c973fb2188c2821924d2bf87b8ae72442280718cd"
+  },
+  "logs": [
+    {
+      "identity": "2026.9.7/log_21_2026-9-7-05-54-56.ulg",
+      "path": "/home/zn/QgcLogs/2026.9.7/log_21_2026-9-7-05-54-56.ulg",
+      "split": "validation",
+      "sha256": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088"
+    },
+    {
+      "identity": "2026.9.7/log_22_2026-9-7-06-01-40.ulg",
+      "path": "/home/zn/QgcLogs/2026.9.7/log_22_2026-9-7-06-01-40.ulg",
+      "split": "validation",
+      "sha256": "a907493b8fd3708bac45e39fc54185e2fa4e9f9a35a71ba030f3f38b06c1d51f"
+    },
+    {
+      "identity": "2026.9.7/log_23_2026-9-7-06-09-22.ulg",
+      "path": "/home/zn/QgcLogs/2026.9.7/log_23_2026-9-7-06-09-22.ulg",
+      "split": "validation",
+      "sha256": "4b5e90d7f0e7d8ecc77c4c680cde74d6848246d6878e3606503b97570bb9f462"
+    },
+    {
+      "identity": "2026.9.7/log_24_2026-9-7-06-16-04.ulg",
+      "path": "/home/zn/QgcLogs/2026.9.7/log_24_2026-9-7-06-16-04.ulg",
+      "split": "validation",
+      "sha256": "a1945d5edee81010214065ee8ff847438d7306eb73e9a8aa359a727ff7a9070e"
+    },
+    {
+      "identity": "2026.9.7/log_26_2026-9-7-06-30-26.ulg",
+      "path": "/home/zn/QgcLogs/2026.9.7/log_26_2026-9-7-06-30-26.ulg",
+      "split": "validation",
+      "sha256": "580d9dd51677020f5a87c43f51f9d7082d4157599eab9e148b683e4baa03eadd"
+    },
+    {
+      "identity": "2026.9.7/log_27_2026-9-7-06-37-24.ulg",
+      "path": "/home/zn/QgcLogs/2026.9.7/log_27_2026-9-7-06-37-24.ulg",
+      "split": "validation",
+      "sha256": "f265efde972974cc8bad4223ace9abe36dceeddebf26d92fd0f9b1ae0498905b"
+    },
+    {
+      "identity": "2026.9.7/log_28_2026-9-7-06-44-02.ulg",
+      "path": "/home/zn/QgcLogs/2026.9.7/log_28_2026-9-7-06-44-02.ulg",
+      "split": "validation",
+      "sha256": "8d1191724e9bb10dcc592dc354b6c8cc21f51ae79dd14e9960bc656411cb7758"
+    },
+    {
+      "identity": "2026.9.7/log_29_2026-9-7-06-51-04.ulg",
+      "path": "/home/zn/QgcLogs/2026.9.7/log_29_2026-9-7-06-51-04.ulg",
+      "split": "validation",
+      "sha256": "0e3d4d085a0d8bcd87a2c76c5c3230e2ae238cf0d3b54051abd498e0b9c8bf8c"
+    },
+    {
+      "identity": "2026.9.7/log_30_2026-9-7-06-58-22.ulg",
+      "path": "/home/zn/QgcLogs/2026.9.7/log_30_2026-9-7-06-58-22.ulg",
+      "split": "validation",
+      "sha256": "b9b276a937ef21b53dc65c8f8cdeb72063f754c0aa9b7a15448580fedd3e9933"
+    },
+    {
+      "identity": "9.17数据/log_10_2026-9-17-06-34-34.ulg",
+      "path": "/home/zn/QgcLogs/9.17数据/log_10_2026-9-17-06-34-34.ulg",
+      "split": "validation",
+      "sha256": "9258b097970593d85c54daa5d13905f8b7b1c9bcab8d800ddd78e14e6be8f0c5"
+    },
+    {
+      "identity": "9.17数据/log_11_2026-9-17-06-40-30.ulg",
+      "path": "/home/zn/QgcLogs/9.17数据/log_11_2026-9-17-06-40-30.ulg",
+      "split": "validation",
+      "sha256": "72b77806f1d23dd9d32bf76275b6a94d3cc4dd2f860a9394fd1b3e42ab10c8de"
+    },
+    {
+      "identity": "9.17数据/log_12_2026-9-17-06-46-02.ulg",
+      "path": "/home/zn/QgcLogs/9.17数据/log_12_2026-9-17-06-46-02.ulg",
+      "split": "validation",
+      "sha256": "1d0eccb6bff5bbec48711611b652a5d920c132c230ac1801fe8b53314ce52ebc"
+    },
+    {
+      "identity": "9.17数据/log_13_2026-9-17-06-52-30.ulg",
+      "path": "/home/zn/QgcLogs/9.17数据/log_13_2026-9-17-06-52-30.ulg",
+      "split": "validation",
+      "sha256": "b472f27bdb908bca69c4d18cc793cde099d4632285026878d766c2bc912a6949"
+    },
+    {
+      "identity": "9.17数据/log_6_2026-9-17-06-02-24.ulg",
+      "path": "/home/zn/QgcLogs/9.17数据/log_6_2026-9-17-06-02-24.ulg",
+      "split": "validation",
+      "sha256": "8c24613d6cd518a0391183fe8c8f51198d2d1af8b05962081aa36180eb12f5fb"
+    },
+    {
+      "identity": "9.17数据/log_7_2026-9-17-06-12-16.ulg",
+      "path": "/home/zn/QgcLogs/9.17数据/log_7_2026-9-17-06-12-16.ulg",
+      "split": "validation",
+      "sha256": "5bc50ebb95abd5fb7653cf7e9dd046323e866b146da223125bb1bb8f3ef11f9d"
+    },
+    {
+      "identity": "9.17数据/log_8_2026-9-17-06-17-52.ulg",
+      "path": "/home/zn/QgcLogs/9.17数据/log_8_2026-9-17-06-17-52.ulg",
+      "split": "validation",
+      "sha256": "c1b477a8bc2758431548cbfe085aa083f8d52725c18ca0daa588fe59d7d8dfc3"
+    },
+    {
+      "identity": "9.17数据/log_9_2026-9-17-06-28-10.ulg",
+      "path": "/home/zn/QgcLogs/9.17数据/log_9_2026-9-17-06-28-10.ulg",
+      "split": "validation",
+      "sha256": "c728467cbea2bad08f7f060c6498120efe8cd4f54a3b5cf156d82939cf174480"
+    },
+    {
+      "identity": "9.18数据/log_0_2026-9-18-18-15-06.ulg",
+      "path": "/home/zn/QgcLogs/9.18数据/log_0_2026-9-18-18-15-06.ulg",
+      "split": "train",
+      "sha256": "856d76e3776563b908ba57d66d69edb41430b0b30764fa9628d6acbbf152ae40"
+    },
+    {
+      "identity": "9.18数据/log_1_2026-9-18-18-23-36.ulg",
+      "path": "/home/zn/QgcLogs/9.18数据/log_1_2026-9-18-18-23-36.ulg",
+      "split": "train",
+      "sha256": "31e75b37cc415dcef5333627728330aca2156b8652dd56f2d5c1dcfb22fc7d17"
+    },
+    {
+      "identity": "9.18数据/log_2_2026-9-18-18-29-40.ulg",
+      "path": "/home/zn/QgcLogs/9.18数据/log_2_2026-9-18-18-29-40.ulg",
+      "split": "train",
+      "sha256": "7e4d29d0fbb4e521eb4f3753cf8441194be4952c0c554cf7bd7e72c214cb7964"
+    }
+  ],
+  "heldout_accessed_this_run": false,
+  "training": false,
+  "prior_access": "First validation ULog inspected in pilot before this registration; no claim of blind preregistration.",
+  "row_selection": "All cached valid_core rows in allowlisted logs, not a new benchmark origin set.",
+  "comparisons": [
+    "frozen publication-time past-only ZOH",
+    "sample-time past-only ZOH, additionally publication-available"
+  ],
+  "rule": "Compare only common valid rows, sample-age <=50ms; retain coverage/exclusions. No lag optimization or model scoring.",
+  "limitations": "Measurement timestamps are estimator output epoch tags, not proof of exact physical group delay. No true angular-rate reference."
+}

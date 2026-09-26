@@ -1,0 +1,73 @@
+{
+  "experiment": "response_timescale_diagnostic_v1",
+  "frozen_at_utc": "2026-09-26T08:56:59.289135+00:00",
+  "git_commit": "e9d94a6be534a0cefcf404071600f5de31757c73",
+  "model": "frozen StandardGRU/H26/K50",
+  "seeds": [
+    17,
+    23,
+    42
+  ],
+  "frozen_input_sha256": {
+    "artifacts/paper_standard_gru_multiseed_v1/prepared.pt": "70a2f04d0802bc03efdcb30cf6c8dc5635030393a3d4f13b8eb2a64618f4d290",
+    "docs/analysis/results/paper_standard_gru_multiseed_v1/protocol.json": "86f5fceac7838e7f2369e6b854618eec851e652d5cde52cea4403f04063cab1e",
+    "docs/analysis/results/paper_standard_gru_multiseed_v1/training_runs.csv": "634a515a11d97d4faa7e6099a8639ea7d1036f97f5f6d5f0a90dcecd4a515cc6",
+    "dataset/trajectory_v3_september_expanded/manifest.json": "46b50d0b23a32b40339a4c07526711d0ff88b55584d309a56807c56905d2817e",
+    "docs/analysis/results/paper_baseline_comparison_v1/train_origins.csv": "3a17f717f89367d0f673a2f73f3df246c4e332b9fac88385ce269df28854845b",
+    "dataset/trajectory_v3_september_expanded/samples_train.parquet": "cd95d9db29cfe741c2929d8730fbd09b26fafcc54107f5faa3cd9d49e861e46e",
+    "dataset/trajectory_v3_september_expanded/windows_train.parquet": "d837c5183d81488788e4378d8d446a55b735829425b38fdda54c86ca28d4d422",
+    "docs/analysis/results/paper_baseline_comparison_v1/validation_origins.csv": "d9677c58fe0f9f23b12699a35c78e1b0961ddcb3ec5e5814e9f18392c501e3d3",
+    "dataset/trajectory_v3_september_expanded/samples_validation.parquet": "b66a14e2f0f9ef5f151c6e1c973fb2188c2821924d2bf87b8ae72442280718cd",
+    "dataset/trajectory_v3_september_expanded/windows_validation.parquet": "0a31c37dfd44b6889d2f896bef2fe848657fba7434e43ad7f91a375fe97d3cef",
+    "artifacts/paper_baseline_comparison_v1/B2_StandardGRU.pt": "f9895418b7dd2a2757dde8d740109ab42dae258c593fd5902f0076a3faeb0e26",
+    "artifacts/paper_baseline_comparison_v1/B2_StandardGRU_predictions.npz": "026d4cfe8ec3fe64a6b5fcd53cab7c4a80f6a64fe5b35bf4be3325746f3d6204",
+    "artifacts/paper_standard_gru_multiseed_v1/seed23/model.pt": "1cfbb865db55e3fc7c248eff4de95892fa9ee9155ee8e81c0318a9021b7d8b03",
+    "artifacts/paper_standard_gru_multiseed_v1/seed23/predictions.npz": "d504874f68cfba752bc3e1d526cecca82bf0c5ca18cbdcfb3105efbbd9e21e72",
+    "artifacts/paper_standard_gru_multiseed_v1/seed42/model.pt": "98fd6266bdc8926055c7f8b0dc2f37a4333fa92f55f336fb4cba4d3480324f86",
+    "artifacts/paper_standard_gru_multiseed_v1/seed42/predictions.npz": "2fa6f59d1bffd69871b5051f62ea5b483718a985ece856ad2ed54cb9945d47b3",
+    "src/system_identification/models/paper_baselines.py": "7313347f2d3fcd5853c159c909daf3c603d8b465d1b807c33c7e165dc8741159",
+    "src/system_identification/evaluation/paper_baselines.py": "32e7c312b314273929bcc92b1d98e3bd636f8c52e35783042e44d5a6660a558a",
+    "src/system_identification/models/neural.py": "9b45cb859adde16dad1956ec5f70d96da5f4794a6373975f57ec66a31428773d",
+    "src/system_identification/models/trajectory.py": "cd8f5a0ba54d966d2e45e942275beb12a04a57ff8a1a7a3284b6a90917f69762",
+    "src/system_identification/models/trajectory_main_v1.py": "b61dd09701b3bfe0176f1a406e4c511b58092fb080b47af115aa4c54681a7e5a",
+    "src/system_identification/models/trajectory_main_v2.py": "df23f65b94be461ac302b5237d6bbfe8afb25dc67406ee16439c985ee5498542",
+    "src/system_identification/models/main_v2_simulator.py": "3273e301a63900de74441ec3aaced7c672c0f3b1974919fbdb2c5c1cf649c0b3",
+    "src/system_identification/training/main_v2_increment.py": "fccf050772caa3bea77cd28fb61b44071b78897e27dd2caf518c706b58ad008e",
+    "src/system_identification/training/trajectory_main_v1.py": "76c028ff176724194f7ecfafe916424ded0c6417fbbf04322593c01c7e5ef4c9",
+    "src/system_identification/training/trajectory_baselines.py": "394413e654c3f6eaaa131630afc8e30beb74cea5c57f4475da21d915443051fe",
+    "src/system_identification/evaluation/trajectory.py": "595189df1f994ed2aabfebd88e7b0c04ac38dbb6180579e461345a8fe1e64bd8",
+    "docs/analysis/results/paper_dynamics_input_diagnostic_v1/control_group_thresholds.csv": "f9856fdc14b3060a795a2bc8ae55f15e15251463a163d80270038ffb5152d332",
+    "scripts/run_model_flight_response_diagnostic.py": "8cfded61ec64fb2b64efb6a1458cb73924d5d3ccb98113d03858b0f84c1fd346",
+    "tests/test_model_flight_response_diagnostic.py": "5bbbdf97148c00f7569c668dd35e6d360de0b1dad371688ccdb494cddca08b4f",
+    "docs/analysis/results/model_flight_response_diagnostic_v1/origin_selection.csv": "214e445a7087f9f58c2c28cca390b0825069516949d7a6e1d5b60979715c0cf4",
+    "scripts/run_response_timescale_diagnostic.py": "26ee8c3ec4ee3ff1cc29daae61813ce3aa09ded461e53fa010084b7fd87c36ab",
+    "tests/test_response_timescale_diagnostic.py": "3ac2e1485d0c552a36218a4a16bfc80cfe4c9b4d17a8d09e3c45884134676b03"
+  },
+  "prior_heldout_results_known": true,
+  "heldout_data_accessed_this_run": false,
+  "filters": {
+    "primary_analysis_tau_s": 0.1,
+    "sensitivity_tau_s": [
+      0.05,
+      0.1,
+      0.2
+    ],
+    "formula": "y[k+1]=y[k]+(1-exp(-dt[k]/tau))*(x[k+1]-y[k]); y0=x0",
+    "scope": "identical posthoc causal native-dt filters on predicted/measured body rates; no resampling; these are analysis time scales, NOT actuator taus or model changes",
+    "components": "slow=L(x); fast=x-L(x); error=e_slow+e_fast; MSEraw=MSEslow+MSEfast+2mean(e_slow*e_fast), weighted by native dt",
+    "intervals": "states1..25 and26..50; filtering continuous from t0, no reset at25; report finite-window initial transient, NOT nonoverlapping Fourier frequency bands",
+    "normalized": "error RMS/true component RMS change; slow/reference=xlow-x0; fast/reference=x-xlow; macro ratio after flight/seed aggregation; zero denominator undefined"
+  },
+  "coverage": {
+    "activity": "same independent coordinates/scales and25-command RMS departure as preceding diagnostic",
+    "high": "channel>TRAINq75",
+    "isolated": "high and ALL other channels<=their TRAINq25",
+    "predominant": "high and ALL others<=their TRAINq75; secondary, not substituted for isolated",
+    "persistence": "abs(mean(command departure))/RMS(command departure); >=0.8 reported as largely one-direction departure; not a controlled step event",
+    "sign": "sign(mean departure); no dynamics outcomes used",
+    "correlation": "within-flight Pearson correlation of all25 standardized departure samples, equal-flight average; descriptive only, no dynamics fitting"
+  },
+  "metrics": "native-dt weighted per-origin component MSE->flight equal-origin mean->sqrt->equal-flight mean->three-seed mean/sampleSD; cross term reported on squared-error scale",
+  "exclusions": "no origins dropped from errors; undefined correlations/ratios counted, no epsilon; no model predictions generated or weights fitted",
+  "initial_claims": "fast residual is not automatically sensor noise or flapping; isolated command changes are not randomized causal experiments"
+}

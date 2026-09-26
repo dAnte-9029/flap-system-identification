@@ -1,0 +1,9 @@
+{
+  "exact_decomposition_max_residual": 1.3322676295501878e-15,
+  "endpoint_parity_cells": 5220,
+  "endpoint_parity_max_abs": 3.3306690738754696e-16,
+  "heldout_accessed": false,
+  "training": 0,
+  "new_predictions": 0,
+  "source_hashes_unchanged": true
+}

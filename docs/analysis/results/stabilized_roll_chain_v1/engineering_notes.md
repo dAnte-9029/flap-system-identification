@@ -1,0 +1,1 @@
+Initial analysis used incorrect nav_state=10 (Acro), yielding zero usable rows, and was stopped before interpretation. Exact firmware msg/versioned/VehicleStatus.msg confirms STAB=15. Corrected before final analysis, with control-mode flags also required. Initial protocol and raw access log retained. No model or source data modified.

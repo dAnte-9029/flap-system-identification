@@ -1,0 +1,15 @@
+{
+  "status": "passed",
+  "pytest": "5 passed in 1.19s",
+  "checks": [
+    "native irregular-dt analytic step",
+    "constant signal",
+    "causal prefix",
+    "error cross-term identity",
+    "isolated-vs-coactive selection",
+    "activity independent of measured response"
+  ],
+  "per_flight_decomposition_cells": 2754,
+  "raw_errors_invariant_across_filter_scales": true,
+  "coverage_counts_and_subset_nesting": true
+}

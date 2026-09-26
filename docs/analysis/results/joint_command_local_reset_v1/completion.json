@@ -1,0 +1,25 @@
+{
+  "status": "complete",
+  "tests_passed": 3,
+  "training": 0,
+  "new_predictions": 0,
+  "heldout_accessed": false,
+  "outputs": {
+    "docs/analysis/results/joint_command_local_reset_v1/protocol.json": "724474b29ae7d0e4c4a6b9201430107c6e14c526050935ca91d6fbf997d71ce1",
+    "docs/analysis/results/joint_command_local_reset_v1/review_report.md": "0710e560617f44684aab531703a439d526a2a8c64bbd01a7171b27c77d5cb765",
+    "docs/analysis/results/joint_command_local_reset_v1/per_flight.csv": "67e7b7b84b63d1f3e152751fd7e4d0a8873534ffcfeb0f4ef48bda5098ceeaae",
+    "docs/analysis/results/joint_command_local_reset_v1/report.md": "0710e560617f44684aab531703a439d526a2a8c64bbd01a7171b27c77d5cb765",
+    "docs/analysis/results/joint_command_local_reset_v1/comparison.csv": "60fcf8e9c9e8fdeb3336ba1b9ee01632ba04310de27835efde70f1bdf8ee43af",
+    "docs/analysis/results/joint_command_local_reset_v1/paired_seeds.csv": "cb588929871c237399542254955d662f8920518736b305eb7f7367781a94bf5f",
+    "docs/analysis/results/joint_command_local_reset_v1/comparison_Mission.pdf": "5abbb0cc2076f1f691e6762ec285081a306f6cc7e0a4e9bb7e22a3f3b267eed3",
+    "docs/analysis/results/joint_command_local_reset_v1/comparison_Stabilized.png": "b13adeb5ae99aa2941103cbb6a033fd86a964bd5e2672face11ba1c64f076e4e",
+    "docs/analysis/results/joint_command_local_reset_v1/comparison_Mission.png": "e8bf17ff1a2a39051a8798b264ed1e96aba497a157b1b8bf10d6e88b3c4a5311",
+    "docs/analysis/results/joint_command_local_reset_v1/direction_counts.csv": "5835eb73c0f171087c3081c019e8d03d20db328359b7f2445dd9b925ba1c77d4",
+    "docs/analysis/results/joint_command_local_reset_v1/comparison_Stabilized.pdf": "ad4769619a4f847b59d47aa822e089298a9b428296572415fe5f24204ce3ee8f",
+    "docs/analysis/results/joint_command_local_reset_v1/checks.json": "9f661c22439460665e3f51aece5aed040018bb255f603a60b20edaa0d35ae055",
+    "docs/analysis/results/joint_command_local_reset_v1/paired_flights.csv": "62ef50e2b682e7ac63f0fb1d38a242268dd00ab2ef8d0ff8913c5be9071f6249",
+    "docs/analysis/results/joint_command_local_reset_v1/summary.csv": "15fd939bc0a32a5048dfb2480c3b05622b2561be944e8fde3131069aab83c17b",
+    "docs/analysis/results/joint_command_local_reset_v1/per_seed.csv": "f74f84da7ef042416e000bc8fdb2f69dacbca925aca4333eeaf295dce773b337",
+    "docs/analysis/results/joint_command_local_reset_v1/tests.json": "44ae48b22d3de8539b195e7911301e561f3cb05b48e1a63100563772d925f2d2"
+  }
+}

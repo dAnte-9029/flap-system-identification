@@ -1,0 +1,38 @@
+[
+  {
+    "mode": "Stabilized",
+    "pattern": "sustained",
+    "window_id": "validation:2026.9.7/log_28_2026-9-7-06-44-02.ulg:6:175",
+    "seed": 17
+  },
+  {
+    "mode": "Stabilized",
+    "pattern": "reversing",
+    "window_id": "validation:9.17数据/log_11_2026-9-17-06-40-30.ulg:0:25",
+    "seed": 17
+  },
+  {
+    "mode": "Stabilized",
+    "pattern": "mixed_change",
+    "window_id": "validation:2026.9.7/log_27_2026-9-7-06-37-24.ulg:2:5325",
+    "seed": 17
+  },
+  {
+    "mode": "Mission",
+    "pattern": "sustained",
+    "window_id": "validation:9.17数据/log_12_2026-9-17-06-46-02.ulg:1:5275",
+    "seed": 17
+  },
+  {
+    "mode": "Mission",
+    "pattern": "reversing",
+    "window_id": "validation:9.17数据/log_10_2026-9-17-06-34-34.ulg:1:4275",
+    "seed": 17
+  },
+  {
+    "mode": "Mission",
+    "pattern": "mixed_change",
+    "window_id": "validation:9.17数据/log_13_2026-9-17-06-52-30.ulg:1:1475",
+    "seed": 17
+  }
+]

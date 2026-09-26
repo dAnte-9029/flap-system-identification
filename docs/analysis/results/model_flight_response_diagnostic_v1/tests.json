@@ -1,0 +1,18 @@
+{
+  "status": "passed",
+  "pytest": "7 passed in 1.10s",
+  "checks": [
+    "coordinate contract",
+    "constant-control activity",
+    "local identity bounds",
+    "native dt weighting",
+    "alignment zero and known lag sign",
+    "undefined constant waveform",
+    "equal-flight and sample SD"
+  ],
+  "actual_metric_parity_cells": 144,
+  "source_sha256": {
+    "tests/test_model_flight_response_diagnostic.py": "5bbbdf97148c00f7569c668dd35e6d360de0b1dad371688ccdb494cddca08b4f",
+    "tests/test_model_flight_response_reporting.py": "e7e274b504306fd4bbafb36767a2d70d4566a15399451ac6071c4a27fb79f3d5"
+  }
+}

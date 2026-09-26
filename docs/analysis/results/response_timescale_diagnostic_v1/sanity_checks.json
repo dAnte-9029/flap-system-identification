@@ -1,0 +1,7 @@
+{
+  "status": "passed",
+  "native_dt": true,
+  "all_origins_preserved": true,
+  "exact_error_decomposition_max_residual": 1.1796119636642288e-15,
+  "heldout_data_accessed_this_run": false
+}

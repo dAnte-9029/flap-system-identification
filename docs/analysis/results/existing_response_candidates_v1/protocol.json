@@ -1,0 +1,44 @@
+{
+  "created_utc": "2026-09-26T11:16:14.900626+00:00",
+  "head": "e9d94a6be534a0cefcf404071600f5de31757c73",
+  "inputs": {
+    "docs/analysis/results/september_data_sufficiency_v1/nonoverlap_candidates.csv": "4828f6b4fd16d52daeab0fce6e74232749550d9ef14f69c1fe8130b4921d7bf7",
+    "docs/analysis/results/response_timescale_diagnostic_v1/channel_thresholds.csv": "8a039ab88e5ef792d6b108e16429e030f975f0ff69eb86780a166c5487f0194a",
+    "artifacts/paper_standard_gru_multiseed_v1/prepared.pt": "70a2f04d0802bc03efdcb30cf6c8dc5635030393a3d4f13b8eb2a64618f4d290",
+    "scripts/run_existing_response_candidates.py": "b920ec6390aae290c026987c8c162013af69226f37d4ecfa5b5b92d8d681b311",
+    "tests/test_existing_response_candidates.py": "34609e46f8aab3cb9d612f7e890aefb445d721861da11512a33de9636c408a0d"
+  },
+  "heldout_accessed": false,
+  "training": false,
+  "new_predictions": false,
+  "candidate_counts": {
+    "common": 68,
+    "rudder": 38
+  },
+  "selection": "All prior fixed train nonoverlapping candidates, sorted identity; no outcome screening.",
+  "hold_diagnostic": "Commands k25..49: >=80% have same departure sign as first25 mean; late signed mean>=0.5*abs(first25 mean); other-channel late standardized RMS departures<=frozen train q25. Descriptive only, not quality gate or physical steady state.",
+  "prehistory": "H26 command RMS departure from origin <=0.5*abs(first25 mean) for target channel, descriptive stability flag.",
+  "responses": "Original unfiltered p/q/r minus t0; dt-weighted intervals steps1..5,16..25,41..50 and endpoints5/10/25/50; mean response sign association is not causality or actuator sign correctness.",
+  "matching": {
+    "features": "initial velocity_NED[3], rate_FRD[3], gravity_body[3], flap_frequency[1], initial command[4]",
+    "scale": [
+      5.998624810446897,
+      4.432286019104105,
+      0.8406944704103072,
+      0.5904853033535845,
+      0.549684695999106,
+      0.3028267224429756,
+      0.09233666021860124,
+      0.20149757349227754,
+      0.041807912506970475,
+      0.469173351090247,
+      0.09554037264139263,
+      0.27347099952027115,
+      0.3334842393350098,
+      0.12478206705384577
+    ],
+    "rule": "For each candidate, nearest opposite-sign candidate in same flight and separately different flight, RMS standardized distance; with replacement, no response used; no maximum-distance success threshold.",
+    "limitation": "scales describe initial-state distances from existing train, never replace frozen model normalization. No matching of wind, actuator state, phase, controller integrators or history; not causal pairs."
+  },
+  "summaries": "Candidate distributions and equal-flight sign-aligned mean response; no window-independent significance test; original finite candidates retained even if unfavorable."
+}

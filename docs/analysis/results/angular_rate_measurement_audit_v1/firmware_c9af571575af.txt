@@ -1,0 +1,6 @@
+763: // Apply general low-pass filter (IMU_GYRO_CUTOFF)
+764: _lp_filter_velocity[axis].applyArray(data, N);
+777: angular_acceleration_filtered = _lp_filter_acceleration[axis].update(angular_acceleration);
+929: angular_velocity.timestamp_sample = timestamp_sample;
+932: _angular_velocity = _calibration.Correct(angular_velocity_uncalibrated) - _bias;
+939: angular_velocity.timestamp = hrt_absolute_time();

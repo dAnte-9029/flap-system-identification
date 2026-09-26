@@ -1,0 +1,11 @@
+{
+  "status": "passed",
+  "all_origins_preserved": true,
+  "original_rate_label_parity_max_abs": 0.0,
+  "max_raw_bracket_gap_s": 0.044908999999989874,
+  "synchronized_quaternion_max_norm_error": 2.220446049250313e-16,
+  "heldout_data_accessed_this_run": false,
+  "pins_unchanged": true,
+  "previous_original_interval_parity_cells": 162,
+  "previous_original_interval_max_abs": 1.1102230246251565e-16
+}

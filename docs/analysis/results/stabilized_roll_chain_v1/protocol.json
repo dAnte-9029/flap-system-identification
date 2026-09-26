@@ -1,0 +1,370 @@
+{
+  "created_utc": "2026-09-26T11:28:21.328169+00:00",
+  "head": "e9d94a6be534a0cefcf404071600f5de31757c73",
+  "logs": [
+    {
+      "split": "train",
+      "flight_id": "2026.9.6/log_24_2026-9-6-06-28-38.ulg",
+      "path": "/home/zn/QgcLogs/2026.9.6/log_24_2026-9-6-06-28-38.ulg",
+      "sha256": "63967500f915ed124b1b4deacf8a47a563ab4419c0258c3522798577280c7dd0"
+    },
+    {
+      "split": "train",
+      "flight_id": "2026.9.6/log_28_2026-9-6-07-01-38.ulg",
+      "path": "/home/zn/QgcLogs/2026.9.6/log_28_2026-9-6-07-01-38.ulg",
+      "sha256": "73dd94d60553a00efb3e2d9009430686c08ee611f11eb4e3f8e3a427f26df842"
+    },
+    {
+      "split": "train",
+      "flight_id": "2026.9.6/log_17_2026-9-6-18-34-06.ulg",
+      "path": "/home/zn/QgcLogs/2026.9.6/log_17_2026-9-6-18-34-06.ulg",
+      "sha256": "37ff9f8ea4e2e378fc13394288aa145a462259e2f53fa15af9511082f0e6d558"
+    },
+    {
+      "split": "train",
+      "flight_id": "2026.9.6/log_18_2026-9-6-18-46-20.ulg",
+      "path": "/home/zn/QgcLogs/2026.9.6/log_18_2026-9-6-18-46-20.ulg",
+      "sha256": "603a941c5ebbfcdf27b80b0d1c4b2de65dd4e114fdefb64bb70896e409c135a8"
+    },
+    {
+      "split": "train",
+      "flight_id": "2026.9.6/log_19_2026-9-6-18-52-30.ulg",
+      "path": "/home/zn/QgcLogs/2026.9.6/log_19_2026-9-6-18-52-30.ulg",
+      "sha256": "30f27b3c2ee46a05ed6108ec01a2150cd5c8fedaf4f0cb7a1f0347698412aacd"
+    },
+    {
+      "split": "train",
+      "flight_id": "2026.9.6/log_20_2026-9-6-18-58-10.ulg",
+      "path": "/home/zn/QgcLogs/2026.9.6/log_20_2026-9-6-18-58-10.ulg",
+      "sha256": "3b0afa4b3526fae934d9705082c0dbfe247fc39baff68014c06cf6642e71275e"
+    },
+    {
+      "split": "train",
+      "flight_id": "9.11数据/log_13_2026-9-11-18-28-08.ulg",
+      "path": "/home/zn/QgcLogs/9.11数据/log_13_2026-9-11-18-28-08.ulg",
+      "sha256": "0ad472f5e6d2fdd7f5a94c403a49e07e089f7d16de603f5703d4e2260938cc5b"
+    },
+    {
+      "split": "train",
+      "flight_id": "9.11数据/log_14_2026-9-11-18-34-58.ulg",
+      "path": "/home/zn/QgcLogs/9.11数据/log_14_2026-9-11-18-34-58.ulg",
+      "sha256": "65c8b8b39c7ac62f8abcc600c7676294c46c99a1d1d19a1d6e3c588608eb834b"
+    },
+    {
+      "split": "train",
+      "flight_id": "9.11数据/log_15_2026-9-11-18-40-48.ulg",
+      "path": "/home/zn/QgcLogs/9.11数据/log_15_2026-9-11-18-40-48.ulg",
+      "sha256": "91d881515e157525f6527c8f148973cfd995ee64a2523f74d8896f9876f323c3"
+    },
+    {
+      "split": "train",
+      "flight_id": "9.12数据/log_10_2026-9-12-06-13-40.ulg",
+      "path": "/home/zn/QgcLogs/9.12数据/log_10_2026-9-12-06-13-40.ulg",
+      "sha256": "531a4f5ad9f0770e3a369375c0113cffc3f1ec6ea7070378ce84b234546fb2d9"
+    },
+    {
+      "split": "train",
+      "flight_id": "9.12数据/log_11_2026-9-12-06-21-12.ulg",
+      "path": "/home/zn/QgcLogs/9.12数据/log_11_2026-9-12-06-21-12.ulg",
+      "sha256": "782597332cc8092c8efde5db2630b46f194dde68f603c6550458d5b6a3d6659a"
+    },
+    {
+      "split": "train",
+      "flight_id": "9.12数据/log_12_2026-9-12-06-29-44.ulg",
+      "path": "/home/zn/QgcLogs/9.12数据/log_12_2026-9-12-06-29-44.ulg",
+      "sha256": "bfa039195c11191d289e8734be1ee330bf4dbdf3648ae474932471f408425a18"
+    },
+    {
+      "split": "train",
+      "flight_id": "9.12数据/log_2_2026-9-12-18-32-54.ulg",
+      "path": "/home/zn/QgcLogs/9.12数据/log_2_2026-9-12-18-32-54.ulg",
+      "sha256": "a978956f5f191a4daabd24086ef734b611060f7467063c838c8c78bc898a5a68"
+    },
+    {
+      "split": "train",
+      "flight_id": "9.12数据/log_3_2026-9-12-18-40-02.ulg",
+      "path": "/home/zn/QgcLogs/9.12数据/log_3_2026-9-12-18-40-02.ulg",
+      "sha256": "6c5b344e087a1a7ab333f75405589cdf20fdd2ad091eba2768e27de76b076dc3"
+    },
+    {
+      "split": "train",
+      "flight_id": "9.12数据/log_7_2026-9-12-05-49-02.ulg",
+      "path": "/home/zn/QgcLogs/9.12数据/log_7_2026-9-12-05-49-02.ulg",
+      "sha256": "ae5e395aee6f5c69eb5590a2acf890ae400c9328975f6f91444fca5cc4a7c496"
+    },
+    {
+      "split": "train",
+      "flight_id": "9.12数据/log_8_2026-9-12-05-55-30.ulg",
+      "path": "/home/zn/QgcLogs/9.12数据/log_8_2026-9-12-05-55-30.ulg",
+      "sha256": "e4e166c6cda3c88bd0030f598b72b425c082fcdf1eac351c5083943b804c0d02"
+    },
+    {
+      "split": "train",
+      "flight_id": "9.12数据/log_9_2026-9-12-06-03-32.ulg",
+      "path": "/home/zn/QgcLogs/9.12数据/log_9_2026-9-12-06-03-32.ulg",
+      "sha256": "1ff5d67cf8ef2d676896165abd64634dfa9fd343787ea606030358215ef56e64"
+    },
+    {
+      "split": "train",
+      "flight_id": "9.13数据/log_1_2026-9-13-06-11-06.ulg",
+      "path": "/home/zn/QgcLogs/9.13数据/log_1_2026-9-13-06-11-06.ulg",
+      "sha256": "dea67a9ed3019a32b7b11f43c8fa6668c4142849622f29d836f287defdfacbe1"
+    },
+    {
+      "split": "train",
+      "flight_id": "9.13数据/log_2_2026-9-13-06-20-06.ulg",
+      "path": "/home/zn/QgcLogs/9.13数据/log_2_2026-9-13-06-20-06.ulg",
+      "sha256": "15c586c0d48d09ef0036618bf1823d6475213c751d473dba6f0fa0732809b7eb"
+    },
+    {
+      "split": "train",
+      "flight_id": "9.13数据/log_3_2026-9-13-06-31-26.ulg",
+      "path": "/home/zn/QgcLogs/9.13数据/log_3_2026-9-13-06-31-26.ulg",
+      "sha256": "a2a85d1807255e9cb45b0c04ba77c38ec0679f6c3a286846f7deff1ba72be945"
+    },
+    {
+      "split": "train",
+      "flight_id": "9.13数据/log_4_2026-9-13-06-36-26.ulg",
+      "path": "/home/zn/QgcLogs/9.13数据/log_4_2026-9-13-06-36-26.ulg",
+      "sha256": "3de9134406746aa184281244591d0403f426022d5789a6d9f2d441b89f3b519e"
+    },
+    {
+      "split": "train",
+      "flight_id": "9.13数据/log_5_2026-9-13-06-42-40.ulg",
+      "path": "/home/zn/QgcLogs/9.13数据/log_5_2026-9-13-06-42-40.ulg",
+      "sha256": "95b2e74ad704fbe261d081ad317f01a9bba5c99b3c2f32b64e3a5e57602164a8"
+    },
+    {
+      "split": "train",
+      "flight_id": "9.13数据/log_7_2026-9-13-18-12-52.ulg",
+      "path": "/home/zn/QgcLogs/9.13数据/log_7_2026-9-13-18-12-52.ulg",
+      "sha256": "3746db93c8eb02d5b94167d21d11701b5caaeffdd909b7f61a4c70b7519129d0"
+    },
+    {
+      "split": "train",
+      "flight_id": "9.14数据/log_11_2026-9-14-18-13-22.ulg",
+      "path": "/home/zn/QgcLogs/9.14数据/log_11_2026-9-14-18-13-22.ulg",
+      "sha256": "19b10fde39323f915235f7ff29ac3bc6311d9ceb6b07e2dbda5915400b8eee3d"
+    },
+    {
+      "split": "train",
+      "flight_id": "9.14数据/log_12_2026-9-14-18-20-30.ulg",
+      "path": "/home/zn/QgcLogs/9.14数据/log_12_2026-9-14-18-20-30.ulg",
+      "sha256": "4c2fe9e7a473a190664b44652f2ef5c6977aa8ff1c46224e008d5b458a22cfa5"
+    },
+    {
+      "split": "train",
+      "flight_id": "9.14数据/log_13_2026-9-14-18-28-32.ulg",
+      "path": "/home/zn/QgcLogs/9.14数据/log_13_2026-9-14-18-28-32.ulg",
+      "sha256": "05eed2dc698464ca4a4508a2906176f8a91e65b148601f45c03f3279286d800a"
+    },
+    {
+      "split": "train",
+      "flight_id": "9.14数据/log_14_2026-9-14-18-34-22.ulg",
+      "path": "/home/zn/QgcLogs/9.14数据/log_14_2026-9-14-18-34-22.ulg",
+      "sha256": "5e074998eb0cf7d7db4fad4033b56d08d91bc2c176c5bae3f56b128505c46081"
+    },
+    {
+      "split": "train",
+      "flight_id": "9.15数据/log_10_2026-9-15-17-44-04.ulg",
+      "path": "/home/zn/QgcLogs/9.15数据/log_10_2026-9-15-17-44-04.ulg",
+      "sha256": "60cc2db103282bd4493a0ad3f8e4c05a529c53513507225d54564018a6f97edb"
+    },
+    {
+      "split": "train",
+      "flight_id": "9.15数据/log_11_2026-9-15-17-51-56.ulg",
+      "path": "/home/zn/QgcLogs/9.15数据/log_11_2026-9-15-17-51-56.ulg",
+      "sha256": "22a70d54b3683faa403f63c18c1d90d02d2a5aba7d95c2e8c1bf5d6457acbc29"
+    },
+    {
+      "split": "train",
+      "flight_id": "9.15数据/log_12_2026-9-15-18-03-58.ulg",
+      "path": "/home/zn/QgcLogs/9.15数据/log_12_2026-9-15-18-03-58.ulg",
+      "sha256": "5abe5e80b02948c33d55cfa19837725934dbb0caa2132facd63e2129cf792952"
+    },
+    {
+      "split": "train",
+      "flight_id": "9.15数据/log_13_2026-9-15-18-10-58.ulg",
+      "path": "/home/zn/QgcLogs/9.15数据/log_13_2026-9-15-18-10-58.ulg",
+      "sha256": "fe46c4e6013752f8e0901f623ced378c392b5726c88c5a57cb84f4b6ffd4fe71"
+    },
+    {
+      "split": "train",
+      "flight_id": "9.15数据/log_14_2026-9-15-18-17-26.ulg",
+      "path": "/home/zn/QgcLogs/9.15数据/log_14_2026-9-15-18-17-26.ulg",
+      "sha256": "5039763b2a8ddf31fff88c2d54827101cca997f0c73bf8e0732afdbc766641f2"
+    },
+    {
+      "split": "train",
+      "flight_id": "9.15数据/log_15_2026-9-15-18-23-44.ulg",
+      "path": "/home/zn/QgcLogs/9.15数据/log_15_2026-9-15-18-23-44.ulg",
+      "sha256": "d071d49da500ef84328acf9b8905b5bb618c3a8ef5ad719e49f13358d93b073e"
+    },
+    {
+      "split": "train",
+      "flight_id": "9.16数据/log_1_2026-9-16-18-02-34.ulg",
+      "path": "/home/zn/QgcLogs/9.16数据/log_1_2026-9-16-18-02-34.ulg",
+      "sha256": "fc53971260c2cf62f71d76af1379ae29bedabca21e3f49aaa4cb9d63c6510dbb"
+    },
+    {
+      "split": "train",
+      "flight_id": "9.16数据/log_2_2026-9-16-18-08-46.ulg",
+      "path": "/home/zn/QgcLogs/9.16数据/log_2_2026-9-16-18-08-46.ulg",
+      "sha256": "1894725285badf0fbb07369e0f13cf92c8f213b636349d38c7280a2ee5af2e75"
+    },
+    {
+      "split": "train",
+      "flight_id": "9.16数据/log_3_2026-9-16-18-13-58.ulg",
+      "path": "/home/zn/QgcLogs/9.16数据/log_3_2026-9-16-18-13-58.ulg",
+      "sha256": "5734013eecffc074bd5f9d844a284e7575cbd84670f69c0e482971024539664c"
+    },
+    {
+      "split": "train",
+      "flight_id": "9.16数据/log_4_2026-9-16-18-20-50.ulg",
+      "path": "/home/zn/QgcLogs/9.16数据/log_4_2026-9-16-18-20-50.ulg",
+      "sha256": "ac54f8f57c72d2254c2ee11f10d5bbd541815f3ac31040ac7c734e863e56c8c7"
+    },
+    {
+      "split": "train",
+      "flight_id": "9.16数据/log_5_2026-9-16-18-26-48.ulg",
+      "path": "/home/zn/QgcLogs/9.16数据/log_5_2026-9-16-18-26-48.ulg",
+      "sha256": "6b483c323ce93d7d6e97606814c4c292f1e69bd2e7b00babc97d8df6a4a18b61"
+    },
+    {
+      "split": "train",
+      "flight_id": "9.18数据/log_0_2026-9-18-18-15-06.ulg",
+      "path": "/home/zn/QgcLogs/9.18数据/log_0_2026-9-18-18-15-06.ulg",
+      "sha256": "856d76e3776563b908ba57d66d69edb41430b0b30764fa9628d6acbbf152ae40"
+    },
+    {
+      "split": "train",
+      "flight_id": "9.18数据/log_1_2026-9-18-18-23-36.ulg",
+      "path": "/home/zn/QgcLogs/9.18数据/log_1_2026-9-18-18-23-36.ulg",
+      "sha256": "31e75b37cc415dcef5333627728330aca2156b8652dd56f2d5c1dcfb22fc7d17"
+    },
+    {
+      "split": "train",
+      "flight_id": "9.18数据/log_2_2026-9-18-18-29-40.ulg",
+      "path": "/home/zn/QgcLogs/9.18数据/log_2_2026-9-18-18-29-40.ulg",
+      "sha256": "7e4d29d0fbb4e521eb4f3753cf8441194be4952c0c554cf7bd7e72c214cb7964"
+    },
+    {
+      "split": "validation",
+      "flight_id": "2026.9.7/log_21_2026-9-7-05-54-56.ulg",
+      "path": "/home/zn/QgcLogs/2026.9.7/log_21_2026-9-7-05-54-56.ulg",
+      "sha256": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088"
+    },
+    {
+      "split": "validation",
+      "flight_id": "2026.9.7/log_22_2026-9-7-06-01-40.ulg",
+      "path": "/home/zn/QgcLogs/2026.9.7/log_22_2026-9-7-06-01-40.ulg",
+      "sha256": "a907493b8fd3708bac45e39fc54185e2fa4e9f9a35a71ba030f3f38b06c1d51f"
+    },
+    {
+      "split": "validation",
+      "flight_id": "2026.9.7/log_23_2026-9-7-06-09-22.ulg",
+      "path": "/home/zn/QgcLogs/2026.9.7/log_23_2026-9-7-06-09-22.ulg",
+      "sha256": "4b5e90d7f0e7d8ecc77c4c680cde74d6848246d6878e3606503b97570bb9f462"
+    },
+    {
+      "split": "validation",
+      "flight_id": "2026.9.7/log_24_2026-9-7-06-16-04.ulg",
+      "path": "/home/zn/QgcLogs/2026.9.7/log_24_2026-9-7-06-16-04.ulg",
+      "sha256": "a1945d5edee81010214065ee8ff847438d7306eb73e9a8aa359a727ff7a9070e"
+    },
+    {
+      "split": "validation",
+      "flight_id": "2026.9.7/log_26_2026-9-7-06-30-26.ulg",
+      "path": "/home/zn/QgcLogs/2026.9.7/log_26_2026-9-7-06-30-26.ulg",
+      "sha256": "580d9dd51677020f5a87c43f51f9d7082d4157599eab9e148b683e4baa03eadd"
+    },
+    {
+      "split": "validation",
+      "flight_id": "2026.9.7/log_27_2026-9-7-06-37-24.ulg",
+      "path": "/home/zn/QgcLogs/2026.9.7/log_27_2026-9-7-06-37-24.ulg",
+      "sha256": "f265efde972974cc8bad4223ace9abe36dceeddebf26d92fd0f9b1ae0498905b"
+    },
+    {
+      "split": "validation",
+      "flight_id": "2026.9.7/log_28_2026-9-7-06-44-02.ulg",
+      "path": "/home/zn/QgcLogs/2026.9.7/log_28_2026-9-7-06-44-02.ulg",
+      "sha256": "8d1191724e9bb10dcc592dc354b6c8cc21f51ae79dd14e9960bc656411cb7758"
+    },
+    {
+      "split": "validation",
+      "flight_id": "2026.9.7/log_29_2026-9-7-06-51-04.ulg",
+      "path": "/home/zn/QgcLogs/2026.9.7/log_29_2026-9-7-06-51-04.ulg",
+      "sha256": "0e3d4d085a0d8bcd87a2c76c5c3230e2ae238cf0d3b54051abd498e0b9c8bf8c"
+    },
+    {
+      "split": "validation",
+      "flight_id": "2026.9.7/log_30_2026-9-7-06-58-22.ulg",
+      "path": "/home/zn/QgcLogs/2026.9.7/log_30_2026-9-7-06-58-22.ulg",
+      "sha256": "b9b276a937ef21b53dc65c8f8cdeb72063f754c0aa9b7a15448580fedd3e9933"
+    },
+    {
+      "split": "validation",
+      "flight_id": "9.17数据/log_10_2026-9-17-06-34-34.ulg",
+      "path": "/home/zn/QgcLogs/9.17数据/log_10_2026-9-17-06-34-34.ulg",
+      "sha256": "9258b097970593d85c54daa5d13905f8b7b1c9bcab8d800ddd78e14e6be8f0c5"
+    },
+    {
+      "split": "validation",
+      "flight_id": "9.17数据/log_11_2026-9-17-06-40-30.ulg",
+      "path": "/home/zn/QgcLogs/9.17数据/log_11_2026-9-17-06-40-30.ulg",
+      "sha256": "72b77806f1d23dd9d32bf76275b6a94d3cc4dd2f860a9394fd1b3e42ab10c8de"
+    },
+    {
+      "split": "validation",
+      "flight_id": "9.17数据/log_12_2026-9-17-06-46-02.ulg",
+      "path": "/home/zn/QgcLogs/9.17数据/log_12_2026-9-17-06-46-02.ulg",
+      "sha256": "1d0eccb6bff5bbec48711611b652a5d920c132c230ac1801fe8b53314ce52ebc"
+    },
+    {
+      "split": "validation",
+      "flight_id": "9.17数据/log_13_2026-9-17-06-52-30.ulg",
+      "path": "/home/zn/QgcLogs/9.17数据/log_13_2026-9-17-06-52-30.ulg",
+      "sha256": "b472f27bdb908bca69c4d18cc793cde099d4632285026878d766c2bc912a6949"
+    },
+    {
+      "split": "validation",
+      "flight_id": "9.17数据/log_6_2026-9-17-06-02-24.ulg",
+      "path": "/home/zn/QgcLogs/9.17数据/log_6_2026-9-17-06-02-24.ulg",
+      "sha256": "8c24613d6cd518a0391183fe8c8f51198d2d1af8b05962081aa36180eb12f5fb"
+    },
+    {
+      "split": "validation",
+      "flight_id": "9.17数据/log_7_2026-9-17-06-12-16.ulg",
+      "path": "/home/zn/QgcLogs/9.17数据/log_7_2026-9-17-06-12-16.ulg",
+      "sha256": "5bc50ebb95abd5fb7653cf7e9dd046323e866b146da223125bb1bb8f3ef11f9d"
+    },
+    {
+      "split": "validation",
+      "flight_id": "9.17数据/log_8_2026-9-17-06-17-52.ulg",
+      "path": "/home/zn/QgcLogs/9.17数据/log_8_2026-9-17-06-17-52.ulg",
+      "sha256": "c1b477a8bc2758431548cbfe085aa083f8d52725c18ca0daa588fe59d7d8dfc3"
+    },
+    {
+      "split": "validation",
+      "flight_id": "9.17数据/log_9_2026-9-17-06-28-10.ulg",
+      "path": "/home/zn/QgcLogs/9.17数据/log_9_2026-9-17-06-28-10.ulg",
+      "sha256": "c728467cbea2bad08f7f060c6498120efe8cd4f54a3b5cf156d82939cf174480"
+    }
+  ],
+  "pins": {
+    "/home/zn/flap-system-identification/dataset/trajectory_v3_september_expanded/samples_train.parquet": "cd95d9db29cfe741c2929d8730fbd09b26fafcc54107f5faa3cd9d49e861e46e",
+    "/home/zn/flap-system-identification/dataset/trajectory_v3_september_expanded/samples_validation.parquet": "b66a14e2f0f9ef5f151c6e1c973fb2188c2821924d2bf87b8ae72442280718cd"
+  },
+  "scope": "all58 train/validation flights; no heldout, training or model inference",
+  "selection": "cached valid_core and nav_state==15 (STAB), confirmed manual+attitude+rates enabled and climb_rate disabled; publication past-only joins",
+  "freshness_s": {
+    "manual": 0.2,
+    "attitude_setpoint": 0.05,
+    "rates_setpoint": 0.05,
+    "control_mode": 2.0
+  },
+  "activity": "descriptive fixed thresholds: stick yaw neutral abs<=0.05; roll hysteresis active abs>=0.10, neutral abs<=0.05. No threshold tuning or model-error screening.",
+  "episode": "Continuous fresh valid Stabilized rows, gap<=50ms; active same-sign roll runs duration>=0.2s. Full cycle requires adjacent neutral pre/post blocks each>=0.2s. Not causal step or independence.",
+  "control_coordinates": "common=(left+right)/2; differential=(left-right)/2; rudder fourth model input; postallocation normalized commands, not measured deflections.",
+  "pilot_access": "Sep18 first admitted log inspected for topic schema before protocol; no blind preregistration claim."
+}

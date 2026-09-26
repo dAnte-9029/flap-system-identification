@@ -1,0 +1,28 @@
+{
+  "created_utc": "2026-09-26T11:40:44.656653+00:00",
+  "head": "e9d94a6be534a0cefcf404071600f5de31757c73",
+  "pins": {
+    "dataset/trajectory_v3_september_expanded/manifest.json": "46b50d0b23a32b40339a4c07526711d0ff88b55584d309a56807c56905d2817e",
+    "dataset/trajectory_v3_september_expanded/samples_validation.parquet": "b66a14e2f0f9ef5f151c6e1c973fb2188c2821924d2bf87b8ae72442280718cd",
+    "artifacts/paper_standard_gru_multiseed_v1/prepared.pt": "70a2f04d0802bc03efdcb30cf6c8dc5635030393a3d4f13b8eb2a64618f4d290",
+    "docs/analysis/results/response_timescale_diagnostic_v1/channel_thresholds.csv": "8a039ab88e5ef792d6b108e16429e030f975f0ff69eb86780a166c5487f0194a",
+    "docs/analysis/results/paper_baseline_comparison_v1/validation_origins.csv": "d9677c58fe0f9f23b12699a35c78e1b0961ddcb3ec5e5814e9f18392c501e3d3",
+    "scripts/run_joint_command_response.py": "36807ca7594910a146f4733ac3f41ec1139bfd1e4e06622fb42a06804e48fbc9",
+    "tests/test_joint_command_response.py": "5f6864cf30050e6e664f26e26c0d3d5dcf45cd42501d7ccb6ef885a212e6085b",
+    "artifacts/paper_baseline_comparison_v1/B2_StandardGRU_predictions.npz": "026d4cfe8ec3fe64a6b5fcd53cab7c4a80f6a64fe5b35bf4be3325746f3d6204",
+    "artifacts/paper_standard_gru_multiseed_v1/seed23/predictions.npz": "d504874f68cfba752bc3e1d526cecca82bf0c5ca18cbdcfb3105efbbd9e21e72",
+    "artifacts/paper_standard_gru_multiseed_v1/seed42/predictions.npz": "2fa6f59d1bffd69871b5051f62ea5b483718a985ece856ad2ed54cb9945d47b3"
+  },
+  "model": "StandardGRU64/H26/K50 seeds17/23/42; frozen existing actual-command predictions",
+  "origins": 2582,
+  "heldout_accessed": false,
+  "new_inference": false,
+  "training": false,
+  "modes": "all51 ground truth state rows nav_state15=Stabilized;3=Auto Mission; remainder retained separately and in ALL_original. Not RC/mode flags freshness filtered.",
+  "control": "model actual motor/left/right/rudder normalized postallocation commands; common=(L+R)/2,differential=(L-R)/2 only analysis coordinates; no physical-deflection claim",
+  "patterns": "First25 RMS departure/previous frozen scales >trainq75 per coordinate defines high channels. lower_change=no high channel. sustained=all high channels maintain sign in >=80% late25 and signed late mean>=half absolute earlymean. reversing=any high channel opposite >=80% and magnitude>=half. remainder=mixed_change. Other channels unrestricted; coactivation explicitly counted. Not step/trim/steady-state identification.",
+  "phase": "groups use whole command tape offline; errors at states5/10/25/50, dtweighted1..25 and26..50. Origin is not necessarily action onset; reversing not necessarily release to trim.",
+  "metrics": "physical endpoint and dtweighted interval RMS; flight RMSE -> equal flights ->3seed mean/sampleSD. Quaternion geodesic main attitude, wrapped Euler roll secondary. Axis waveform amplitude=RMS(change from same true t0), macro ratio not averaged window percentages.",
+  "cases": "identity median per mode x pattern seed17; selected before prediction access",
+  "claims": "Logged joint-input response fidelity, not causal intervention/control readiness; no pattern ranking threshold or selected bestseed."
+}

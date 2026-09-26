@@ -1,0 +1,38 @@
+{
+  "created_utc": "2026-09-26T11:49:51.712402+00:00",
+  "head": "e9d94a6be534a0cefcf404071600f5de31757c73",
+  "pins": {
+    "docs/analysis/results/joint_command_response_v1/origin_groups.csv": "bef23941ced0365b795b555c1288aa93a8b17288b4e959aaba377dbd9ff55c42",
+    "artifacts/model_flight_response_diagnostic_v1/local_batch.pt": "3f0b3b06306981caa0f6a4b68e504a9c7bcf62953abe9789ce665ab08246432d",
+    "artifacts/model_flight_response_diagnostic_v1/local_origins.csv": "36335cfc12549d305baf90b27b6312dd3d1a63ffe4e1033bd92626cf57641bf9",
+    "artifacts/paper_standard_gru_multiseed_v1/prepared.pt": "70a2f04d0802bc03efdcb30cf6c8dc5635030393a3d4f13b8eb2a64618f4d290",
+    "scripts/run_joint_command_local_reset.py": "a1fd6b9319eeb4572986ea24f63f46381b7f644c64844711e6125b971d483ff8",
+    "tests/test_joint_command_local_reset.py": "9e43a3355d8f5d0d8e1e901e892e34b207c8620cea4974e4a9262c265ac13c8a",
+    "artifacts/paper_baseline_comparison_v1/B2_StandardGRU_predictions.npz": "026d4cfe8ec3fe64a6b5fcd53cab7c4a80f6a64fe5b35bf4be3325746f3d6204",
+    "artifacts/model_flight_response_diagnostic_v1/local_seed17.npz": "d402fc86987675271bd931d72bf0c67c4e3db341c2911a898c44091b7767d91f",
+    "artifacts/paper_standard_gru_multiseed_v1/seed23/predictions.npz": "d504874f68cfba752bc3e1d526cecca82bf0c5ca18cbdcfb3105efbbd9e21e72",
+    "artifacts/model_flight_response_diagnostic_v1/local_seed23.npz": "5a845525398c64b54afda0eea0c27020ff1361bcb05605c9f136cda00c1757e6",
+    "artifacts/paper_standard_gru_multiseed_v1/seed42/predictions.npz": "2fa6f59d1bffd69871b5051f62ea5b483718a985ece856ad2ed54cb9945d47b3",
+    "artifacts/model_flight_response_diagnostic_v1/local_seed42.npz": "0f25ff60933ca9d54956ecfebad983921c3d65a3f8b39f79cfcf6f75650d3778"
+  },
+  "model": "frozen H26 K50 seeds17/23/42",
+  "heldout_accessed": false,
+  "training": false,
+  "new_inference": false,
+  "groups": "unchanged Stabilized/Mission and ALL/sustained from preceding joint-command analysis; compare same origins within each group",
+  "free": "original actual joint-command prediction from origin t0; same fixed50step trajectory",
+  "local": "existing independent5step forecasts reinitialized from measured state and true H26 history at offsets0,5,..45. No updates within5step forecast; not state-only reset, not stitched autonomous trajectory.",
+  "endpoints": "offset+5 -> steps5,10,..50. Same true endpoint, control sub-tape and native dt. Primary steps25 and50.",
+  "metrics": [
+    "position_m",
+    "velocity_m_s",
+    "attitude_deg",
+    "body_rate_rad_s",
+    "p_rad_s",
+    "q_rad_s",
+    "r_rad_s",
+    "roll_deg"
+  ],
+  "aggregation": "flight RMSE -> equal flight mean -> seed mean/sample SD. Paired seed deltas local-free; flight direction after3seed mean.",
+  "interpretation": "Extra recent observations AND shorter forecast age; cannot causally separate integrator drift, hidden-state drift, initial-state bias, phase/frequency error or input mapping. No model promotion or causal response proof."
+}

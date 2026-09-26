@@ -1,0 +1,9 @@
+group,n_origins,n_flights,Sep7,Sep17
+ALL,2582,17,1481,1101
+low,888,17,687,201
+middle,1240,17,609,631
+high,454,17,185,269
+drive_high,533,16,144,389
+common_high,440,17,191,249
+differential_high,501,17,244,257
+rudder_high,459,17,198,261

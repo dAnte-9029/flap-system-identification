@@ -1,0 +1,25 @@
+{
+  "created_utc": "2026-09-26T11:56:24.384397+00:00",
+  "source": "docs/analysis/results/joint_command_local_reset_v1/protocol.json",
+  "pins": {
+    "docs/analysis/results/joint_command_response_v1/origin_groups.csv": "bef23941ced0365b795b555c1288aa93a8b17288b4e959aaba377dbd9ff55c42",
+    "artifacts/model_flight_response_diagnostic_v1/local_batch.pt": "3f0b3b06306981caa0f6a4b68e504a9c7bcf62953abe9789ce665ab08246432d",
+    "artifacts/model_flight_response_diagnostic_v1/local_origins.csv": "36335cfc12549d305baf90b27b6312dd3d1a63ffe4e1033bd92626cf57641bf9",
+    "artifacts/paper_standard_gru_multiseed_v1/prepared.pt": "70a2f04d0802bc03efdcb30cf6c8dc5635030393a3d4f13b8eb2a64618f4d290",
+    "scripts/run_joint_command_local_reset.py": "a1fd6b9319eeb4572986ea24f63f46381b7f644c64844711e6125b971d483ff8",
+    "tests/test_joint_command_local_reset.py": "9e43a3355d8f5d0d8e1e901e892e34b207c8620cea4974e4a9262c265ac13c8a",
+    "artifacts/paper_baseline_comparison_v1/B2_StandardGRU_predictions.npz": "026d4cfe8ec3fe64a6b5fcd53cab7c4a80f6a64fe5b35bf4be3325746f3d6204",
+    "artifacts/model_flight_response_diagnostic_v1/local_seed17.npz": "d402fc86987675271bd931d72bf0c67c4e3db341c2911a898c44091b7767d91f",
+    "artifacts/paper_standard_gru_multiseed_v1/seed23/predictions.npz": "d504874f68cfba752bc3e1d526cecca82bf0c5ca18cbdcfb3105efbbd9e21e72",
+    "artifacts/model_flight_response_diagnostic_v1/local_seed23.npz": "5a845525398c64b54afda0eea0c27020ff1361bcb05605c9f136cda00c1757e6",
+    "artifacts/paper_standard_gru_multiseed_v1/seed42/predictions.npz": "2fa6f59d1bffd69871b5051f62ea5b483718a985ece856ad2ed54cb9945d47b3",
+    "artifacts/model_flight_response_diagnostic_v1/local_seed42.npz": "0f25ff60933ca9d54956ecfebad983921c3d65a3f8b39f79cfcf6f75650d3778"
+  },
+  "scope": "Frozen local100ms predictions only; no training/inference, heldout or raw logs",
+  "identity": "all10 offsets0..45; same parent groups, labels and actual command tapes",
+  "formula": "For 5 future states, native-dt weights sum1. MSE = (mean(p)-mean(t))^2 + (std(p)-std(t))^2 + 2*(std(p)*std(t)-cov(p,t)). No lag search or filtering; initial zero-error t0 excluded.",
+  "terms": "segment mean error, temporal spread mismatch, centered waveform mismatch; not mutually identifiable physical root causes. Shape includes timing/missed waveform, not proven phase delay.",
+  "aggregation": "average offset MSE within parent for all_offsets; flight equal parents then root for RMSE; equal flights then seed mean/SD. Share uses equal-flight mean squared terms, not squared macro RMSE. Also retain individual offsets.",
+  "correlation": "5 observations only; weighted descriptive Pearson, zero variance undefined and counted. Not statistical confidence or delay estimate.",
+  "interpretation": "Local mean mismatch need not be globally correctable bias; smoothing/noise not inferred. No outputs used to fit corrections."
+}

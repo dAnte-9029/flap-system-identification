@@ -1,0 +1,29 @@
+{
+  "status": "passed",
+  "seeds": {
+    "17": {
+      "finite": true,
+      "unit_quaternions": true,
+      "origin0_actual_prefix_parity": true,
+      "future_label_poisoning": true,
+      "local_forecasts": 25820
+    },
+    "23": {
+      "finite": true,
+      "unit_quaternions": true,
+      "origin0_actual_prefix_parity": true,
+      "future_label_poisoning": true,
+      "local_forecasts": 25820
+    },
+    "42": {
+      "finite": true,
+      "unit_quaternions": true,
+      "origin0_actual_prefix_parity": true,
+      "future_label_poisoning": true,
+      "local_forecasts": 25820
+    }
+  },
+  "native_dt_labels_controls_exact": true,
+  "H26_origin0_exact": true,
+  "heldout_data_accessed_this_run": false
+}

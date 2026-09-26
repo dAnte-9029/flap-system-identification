@@ -1,0 +1,30 @@
+{
+  "status": "complete",
+  "training_runs": 0,
+  "new_predictions": 0,
+  "heldout_data_accessed_this_run": false,
+  "artifact_sha256": {
+    "docs/analysis/results/response_timescale_diagnostic_v1/component_per_seed.csv": "d897843605cfe1889ec9483aa50b1d7278ee6f974adb76a6672b3ee965fd03e1",
+    "docs/analysis/results/response_timescale_diagnostic_v1/primary_component_table.csv": "fadd458bdf3920b71ce30e3cb28659bba81886258d6187cd6a0603a948148ac2",
+    "docs/analysis/results/response_timescale_diagnostic_v1/protocol.json": "42195923350ac37422bdfb573c3f6962b4ef11aeeaa729ce13a51b85b75272ff",
+    "docs/analysis/results/response_timescale_diagnostic_v1/review_report.md": "636d29f0b3ce2e26a726350b52cb773fa76a312dcea115690bdb3c4d29da5ac9",
+    "docs/analysis/results/response_timescale_diagnostic_v1/components_ALL.png": "8bf5c60e3dc1a9acab0c73c8ae4e664a7897c87dab4792fe1be8abd48f8ae572",
+    "docs/analysis/results/response_timescale_diagnostic_v1/report.md": "636d29f0b3ce2e26a726350b52cb773fa76a312dcea115690bdb3c4d29da5ac9",
+    "docs/analysis/results/response_timescale_diagnostic_v1/excitation_coverage.csv": "0fe2d7122d1eb02d54bf31475981e4221d18b16f72fd7daa362a7d12ab2d73d6",
+    "docs/analysis/results/response_timescale_diagnostic_v1/components_ALL.pdf": "b01cc9c2b392cd222d1372b644fb0b43c966ca9c1e3df6c2b5e99a192b6b342a",
+    "docs/analysis/results/response_timescale_diagnostic_v1/components_high.pdf": "615f014250cbc25f594d8eab8c22b33611cd7df58c001edb356b3a28007f3350",
+    "docs/analysis/results/response_timescale_diagnostic_v1/channel_thresholds.csv": "8a039ab88e5ef792d6b108e16429e030f975f0ff69eb86780a166c5487f0194a",
+    "docs/analysis/results/response_timescale_diagnostic_v1/timing_frequency_context.csv": "20a159ef2f04153cd1e5d3da51509b1703c5de66302190c267c1eecb6074f923",
+    "docs/analysis/results/response_timescale_diagnostic_v1/excitation_identities.csv": "1ca57fa497e87919294db38e4e195ea39af6d6c5903bb94fa6a7d44e946359bc",
+    "docs/analysis/results/response_timescale_diagnostic_v1/components_low.png": "61a0f47369d7df4cf53f52001801826057fba79ed3905b2da459feb27710991a",
+    "docs/analysis/results/response_timescale_diagnostic_v1/component_per_flight.csv": "976ffe33996a03da82e1c2c190a254fae788dedac8ee8362ef23840a0861607b",
+    "docs/analysis/results/response_timescale_diagnostic_v1/sanity_checks.json": "ca8bcbf262b1aa22a1e9bbe40925df78d81a4234faaacb90f53d18165880544d",
+    "docs/analysis/results/response_timescale_diagnostic_v1/control_correlation_per_flight.csv": "e6dc10153c982bc1bb89235844e897dd8ff4650a4447faf4ccca8406ce518c66",
+    "docs/analysis/results/response_timescale_diagnostic_v1/excitation_per_flight.csv": "fe6c655ca5e7886091b13616a1bc0947db6506ee255989914d6db2e3e52c9c65",
+    "docs/analysis/results/response_timescale_diagnostic_v1/tests.json": "9bdfca8b494b66e99047b7684ebe3c8033337150253d760169148821aa3ab566",
+    "docs/analysis/results/response_timescale_diagnostic_v1/component_summary.csv": "89399250e2241a03eb1ef50a5d201962e88ed569a0fac826378c0c8a0266fa69",
+    "docs/analysis/results/response_timescale_diagnostic_v1/components_high.png": "bd19c4a65ba35b5088bdce4bd516a1d7ecd319ed9fcce375ec73c1f8787bb66d",
+    "docs/analysis/results/response_timescale_diagnostic_v1/components_low.pdf": "fce61aeaa68ca2327ef95052f083b1351ff57c1490e15d6c8b1155a0f0d60537"
+  },
+  "finalizer_sha256": "8eda770049b430d4b300e5110f16285d52c30557aef8a539512ecec4d3526d19"
+}

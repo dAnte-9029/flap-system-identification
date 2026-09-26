@@ -1,0 +1,38 @@
+[
+  {
+    "split": "train",
+    "flight_id": "9.13数据/log_2_2026-9-13-06-20-06.ulg",
+    "event_id": "9.13数据/log_2_2026-9-13-06-20-06.ulg:107104802",
+    "start_us": 107104802,
+    "end_us": 107676482,
+    "duration_s": 0.5716800000000006,
+    "sign": -1,
+    "neutral_before": true,
+    "neutral_after": true,
+    "full_cycle": true,
+    "yaw_neutral_fraction": 1.0,
+    "roll_stick_mean": -0.4391012489795685,
+    "roll_change_deg": -6.302262989581697,
+    "differential_range": 0.5295673627406359,
+    "rudder_range": 0.0655628517270088,
+    "yaw_rate_sp_range": 0.1632794886827469
+  },
+  {
+    "split": "validation",
+    "flight_id": "2026.9.7/log_29_2026-9-7-06-51-04.ulg",
+    "event_id": "2026.9.7/log_29_2026-9-7-06-51-04.ulg:173704401",
+    "start_us": 173704401,
+    "end_us": 174083613,
+    "duration_s": 0.3792119999999954,
+    "sign": -1,
+    "neutral_before": true,
+    "neutral_after": true,
+    "full_cycle": true,
+    "yaw_neutral_fraction": 1.0,
+    "roll_stick_mean": -0.1287726275622844,
+    "roll_change_deg": -3.147898028898714,
+    "differential_range": 0.1817741431295871,
+    "rudder_range": 0.0208270847797393,
+    "yaw_rate_sp_range": 0.0643689483404159
+  }
+]

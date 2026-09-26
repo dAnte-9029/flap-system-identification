@@ -1,0 +1,12 @@
+{
+  "command": [
+    "/home/zn/anaconda3/envs/flap-train-gpu/bin/python",
+    "-m",
+    "pytest",
+    "-q",
+    "tests/test_existing_response_candidates.py"
+  ],
+  "exit_code": 0,
+  "stdout": "...                                                                      [100%]\n3 passed in 1.07s\n",
+  "stderr": ""
+}
