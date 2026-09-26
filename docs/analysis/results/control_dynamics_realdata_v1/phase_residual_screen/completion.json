@@ -1,0 +1,13 @@
+{
+  "status": "complete",
+  "heldout_accessed": false,
+  "selected_harmonics": 0,
+  "integrated_candidate": false,
+  "outputs": {
+    "docs/analysis/results/control_dynamics_realdata_v1/phase_residual_screen/protocol.json": "dbb8e92b2c4b707a4e5c160bbf147a814a081b6134c634e501253d798fdcc0a7",
+    "docs/analysis/results/control_dynamics_realdata_v1/phase_residual_screen/coefficients.csv": "7b19b775ced26c2373d7508e8fe1a157726afb7f5dfd5090a6021b58209e2c78",
+    "docs/analysis/results/control_dynamics_realdata_v1/phase_residual_screen/per_flight.csv": "a461f067adecc7218affee894918a6d095d42d7bf2524f1a67a7c82cd32a1c38",
+    "docs/analysis/results/control_dynamics_realdata_v1/phase_residual_screen/selection.json": "71d3ae34acc14e82bacf6117a0c5d0cf26711741b2762193ecea27a0faad863a",
+    "docs/analysis/results/control_dynamics_realdata_v1/phase_residual_screen/summary.csv": "c876945cea7674372b9c72bd78176d8709a51d5a6e738a7e87e4f796decf35db"
+  }
+}

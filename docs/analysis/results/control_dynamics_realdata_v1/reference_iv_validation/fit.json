@@ -1,0 +1,8 @@
+{
+  "beta": -4.209998190599059,
+  "denominator": 7.565124207271088e-06,
+  "instrument_rms": 0.00246921389484554,
+  "train_origins": 6477,
+  "train_flights": 41,
+  "validation_used_for_fit": false
+}

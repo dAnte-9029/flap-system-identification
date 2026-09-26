@@ -1,0 +1,35 @@
+{
+  "status": "verified",
+  "branch": "control-dynamics-realdata-v1",
+  "base": "e64a1ba",
+  "experiments": {
+    "baseline": 5,
+    "response_probe": 6,
+    "local_identification": 19,
+    "ensemble_candidate": 7,
+    "px4_guarded_closed_loop": 8,
+    "px4_guarded_summary": 6,
+    "credibility": 5,
+    "planning_stress": 4,
+    "past_residual_information": 10,
+    "planning_error_margin": 3,
+    "delivery": 160
+  },
+  "observed_partitions": [
+    "train",
+    "validation"
+  ],
+  "train_flights": 41,
+  "validation_flights": 17,
+  "archived_candidate_sha256": "94264491a356b95f34f4a64d00a32ef7e78a007f73b3d226efe15baa8c88996e",
+  "delivery_ready": true,
+  "prediction_improvement_verified": true,
+  "control_ready": false,
+  "unresolved": [
+    "causal action gain and physical delay",
+    "counterfactual error coverage",
+    "full flight-chain validation",
+    "RL transfer"
+  ],
+  "verifier_sha256": "9af1ceed4044d60285c4bffa45b7494fc93d40438b4ff16e87680078cc0a43f5"
+}

@@ -1,0 +1,14 @@
+{
+  "status": "complete",
+  "heldout_accessed": false,
+  "causal_gain_identified": false,
+  "all_calipers_retained": true,
+  "outputs": {
+    "docs/analysis/results/control_dynamics_realdata_v1/matched_contrasts_scored/protocol.json": "1579b0265670fb4a7b19d321a72f0bbd6bd98bc088f90c64d43d831ef14e87e4",
+    "docs/analysis/results/control_dynamics_realdata_v1/matched_contrasts_scored/pairs.csv": "76c1f5d1fd7b1cced6007c9de05b43391cab0a927635150f67814cc808559ec6",
+    "docs/analysis/results/control_dynamics_realdata_v1/matched_contrasts_scored/scored_pairs.csv": "1ef27847727093ef11e1ed68ba5aa9191cc53f8800778d5cba20b160b89c7952",
+    "docs/analysis/results/control_dynamics_realdata_v1/matched_contrasts_scored/selection.json": "0e2c21e147b3954daa9415170e4e2e93ad6b5b3ec749cd87d91d8b6300570ade",
+    "docs/analysis/results/control_dynamics_realdata_v1/matched_contrasts_scored/summary.csv": "676b2a1639f194da9bdbdaad7dceb32f8a603a09705b74f50971f7c4b81c676b",
+    "docs/analysis/results/control_dynamics_realdata_v1/matched_contrasts_scored/coverage.csv": "50b43dd80fd9ae8258d71e4bb59fafca20d2187e9f0fbbb6069c07c1796d8e86"
+  }
+}

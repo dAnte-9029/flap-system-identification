@@ -1,0 +1,49 @@
+{
+  "status": "complete",
+  "heldout_accessed": false,
+  "plant_promoted": false,
+  "instrument_validated": false,
+  "diagnostic_gates": [
+    {
+      "steps": 5,
+      "variant": "iv_manual",
+      "sign_stable": true,
+      "improved_flight_fraction": 0.9512195121951219,
+      "relative_gain": 0.017313074361307135,
+      "gate": true
+    },
+    {
+      "steps": 5,
+      "variant": "iv_attitude",
+      "sign_stable": true,
+      "improved_flight_fraction": 0.9512195121951219,
+      "relative_gain": 0.006697066779850047,
+      "gate": false
+    },
+    {
+      "steps": 10,
+      "variant": "iv_manual",
+      "sign_stable": false,
+      "improved_flight_fraction": 0.36585365853658536,
+      "relative_gain": -0.0013493909677064764,
+      "gate": false
+    },
+    {
+      "steps": 10,
+      "variant": "iv_attitude",
+      "sign_stable": true,
+      "improved_flight_fraction": 0.5609756097560976,
+      "relative_gain": 0.004687361288128633,
+      "gate": false
+    }
+  ],
+  "outputs": {
+    "docs/analysis/results/control_dynamics_realdata_v1/reference_iv_diagnostic/oof_k10.npz": "7df655ec0ac7c6933c35b1a8cb5a72b4318e408f84c9b30fbaf9b345da050518",
+    "docs/analysis/results/control_dynamics_realdata_v1/reference_iv_diagnostic/protocol.json": "b6e524980e781cde0d8e283ed195a5ca98762857fc27cc1959e224631ae5abd5",
+    "docs/analysis/results/control_dynamics_realdata_v1/reference_iv_diagnostic/coefficients.csv": "611decf6073b2087c233264ac1c023c6d5528890272f44812f04e395f1e7c47c",
+    "docs/analysis/results/control_dynamics_realdata_v1/reference_iv_diagnostic/per_flight.csv": "1690bb9068a89090158111bef4f206a775cd59c387d314789bf0c2f408795f32",
+    "docs/analysis/results/control_dynamics_realdata_v1/reference_iv_diagnostic/oof_k5.npz": "037defb46d8f6d751452b5f00e76d3f862586391ca84696e676038461c422ea9",
+    "docs/analysis/results/control_dynamics_realdata_v1/reference_iv_diagnostic/gates.json": "f1442268b69d1cf815d2beb0d369b2c96578305d147e620f2a6f6c187a23f8c9",
+    "docs/analysis/results/control_dynamics_realdata_v1/reference_iv_diagnostic/summary.csv": "41b2b5e228b962bf6b1839e306362f899efdb17281797a17fc0e98c8e06e3c13"
+  }
+}

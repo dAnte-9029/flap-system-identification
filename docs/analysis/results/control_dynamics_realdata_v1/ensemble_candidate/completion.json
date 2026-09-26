@@ -1,0 +1,17 @@
+{
+  "status": "complete",
+  "heldout_accessed": false,
+  "prediction_gate_passed": true,
+  "nonregression_passed": true,
+  "meaningful_improvement": true,
+  "control_ready": false,
+  "outputs": {
+    "docs/analysis/results/control_dynamics_realdata_v1/ensemble_candidate/protocol.json": "4de6a21d022ca8f3749aeab55a4f067558805b76e07e7df18231b6711f3e30f9",
+    "docs/analysis/results/control_dynamics_realdata_v1/ensemble_candidate/predictions.npz": "9c65121c44a3436da5dd39d938a0d5058b9f98aab7093106f60d88963f08f901",
+    "docs/analysis/results/control_dynamics_realdata_v1/ensemble_candidate/per_flight.csv": "f5d46b41b65079206163dc486c5aec81a1039348efa0b7bc3ef5b7c195921147",
+    "docs/analysis/results/control_dynamics_realdata_v1/ensemble_candidate/comparison.csv": "119e7500e0e4d9f73f24d61833588c742fe7e920d1673c958238a960b1743ad8",
+    "docs/analysis/results/control_dynamics_realdata_v1/ensemble_candidate/checks.json": "6a369c8aec88a39983439d48da14f8c7f13861fc8032645fcd69eb47a103ad9a",
+    "docs/analysis/results/control_dynamics_realdata_v1/ensemble_candidate/summary.csv": "3da3ecf2a292ee97cf2d5d542e66cd0d5325ba76f89874157f57c2c3a8de5b47",
+    "docs/analysis/results/control_dynamics_realdata_v1/ensemble_candidate/model.pt": "f9daab52c269986267316021c5c507296787b3295c5897cfb00c60bdea51706b"
+  }
+}

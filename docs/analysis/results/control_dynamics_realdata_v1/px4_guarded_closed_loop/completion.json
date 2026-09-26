@@ -1,0 +1,23 @@
+{
+  "status": "complete",
+  "heldout_accessed": false,
+  "control_ready": false,
+  "models": [
+    "seed17",
+    "seed23",
+    "seed42",
+    "ensemble"
+  ],
+  "origins": 51,
+  "rollout_groups": 60,
+  "outputs": {
+    "docs/analysis/results/control_dynamics_realdata_v1/px4_guarded_closed_loop/origins.csv": "057270ad2315ceb9c9b4e08401e7c7b3c53a54044398363af96bba61176a5964",
+    "docs/analysis/results/control_dynamics_realdata_v1/px4_guarded_closed_loop/protocol.json": "110a36af22d6680e051281eac4191a3480d3a5527d20b30ceadec6a0c52a00e0",
+    "docs/analysis/results/control_dynamics_realdata_v1/px4_guarded_closed_loop/guard.json": "200a4fa4c57dc6b1bfd15a7b0ae1720b7085510ae3faba4c776c33f12377ec9c",
+    "docs/analysis/results/control_dynamics_realdata_v1/px4_guarded_closed_loop/feature_ranges.csv": "1e08132e8d0f640a04e774bf973bd6af912abec30e692f70e0f0cfbb5224734c",
+    "docs/analysis/results/control_dynamics_realdata_v1/px4_guarded_closed_loop/support.npz": "3db354d71303dd697ac147c61bb4c5bf7d00970e89a958a2392679f98d476e02",
+    "docs/analysis/results/control_dynamics_realdata_v1/px4_guarded_closed_loop/command_tapes.npz": "c6e0739121115432de6778715c12c1e2b29bc6ba206f66a2e81356a72985b7a2",
+    "docs/analysis/results/control_dynamics_realdata_v1/px4_guarded_closed_loop/per_origin.csv": "8fe6dea85dfd50dc6c9cc35c5f9ebd96bea5f6ded0ed40fd76722284a9f0ff42",
+    "docs/analysis/results/control_dynamics_realdata_v1/px4_guarded_closed_loop/traces.csv": "e48e3ec6d78fbe4caff109d7515dbb653338cb872395732827c342f66a7f8b43"
+  }
+}

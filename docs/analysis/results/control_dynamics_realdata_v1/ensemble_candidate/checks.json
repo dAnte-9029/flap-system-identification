@@ -1,0 +1,4 @@
+{
+  "future_label_poisoning_bitwise_equal": true,
+  "prefix_500ms_bitwise_equal": true
+}

@@ -1,0 +1,12 @@
+{
+  "status": "complete",
+  "heldout_accessed": false,
+  "assessed": 396,
+  "passed": 0,
+  "control_validated": false,
+  "outputs": {
+    "docs/analysis/results/control_dynamics_realdata_v1/planning_error_margin/protocol.json": "d07ef67231882f43850ce1c1ad893dfbcc66b83a1fec657d390a64ca6d2709b5",
+    "docs/analysis/results/control_dynamics_realdata_v1/planning_error_margin/summary.csv": "ab20de909804846285d39dee55aa1e9009cce01b78978b24bd9d598ffde1ed68",
+    "docs/analysis/results/control_dynamics_realdata_v1/planning_error_margin/per_origin.csv": "2d0f01811d0c486a881d571ac89b4a9dfd0f9c6514cfb65632927bd9b6d456a8"
+  }
+}

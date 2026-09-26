@@ -1,0 +1,34 @@
+[
+  {
+    "steps": 5,
+    "variant": "iv_manual",
+    "sign_stable": true,
+    "improved_flight_fraction": 0.9512195121951219,
+    "relative_gain": 0.017313074361307135,
+    "gate": true
+  },
+  {
+    "steps": 5,
+    "variant": "iv_attitude",
+    "sign_stable": true,
+    "improved_flight_fraction": 0.9512195121951219,
+    "relative_gain": 0.006697066779850047,
+    "gate": false
+  },
+  {
+    "steps": 10,
+    "variant": "iv_manual",
+    "sign_stable": false,
+    "improved_flight_fraction": 0.36585365853658536,
+    "relative_gain": -0.0013493909677064764,
+    "gate": false
+  },
+  {
+    "steps": 10,
+    "variant": "iv_attitude",
+    "sign_stable": true,
+    "improved_flight_fraction": 0.5609756097560976,
+    "relative_gain": 0.004687361288128633,
+    "gate": false
+  }
+]

@@ -1,0 +1,20 @@
+{
+  "selected_harmonics": 0,
+  "candidates": [
+    {
+      "harmonics": 1,
+      "improvement": 0.0015944796817124463,
+      "improved_flight_fraction": 0.5853658536585366,
+      "nonregression": true,
+      "eligible": false
+    },
+    {
+      "harmonics": 2,
+      "improvement": 0.005198979345673704,
+      "improved_flight_fraction": 0.7560975609756098,
+      "nonregression": true,
+      "eligible": false
+    }
+  ],
+  "validation_used_for_selection": false
+}

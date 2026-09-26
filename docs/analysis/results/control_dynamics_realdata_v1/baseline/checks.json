@@ -1,0 +1,38 @@
+{
+  "17": {
+    "future_label_poisoning_bitwise_equal": true,
+    "prefix_500ms_bitwise_equal": true,
+    "max_absolute_difference": {
+      "position_n": 1.52587890625e-05,
+      "velocity_n": 4.827976226806641e-06,
+      "quaternion_nb": 4.172325134277344e-07,
+      "angular_velocity_b": 3.9637088775634766e-06,
+      "relative_phase_rad": 3.814697265625e-06,
+      "flap_frequency_hz": 1.430511474609375e-06
+    }
+  },
+  "23": {
+    "future_label_poisoning_bitwise_equal": true,
+    "prefix_500ms_bitwise_equal": true,
+    "max_absolute_difference": {
+      "position_n": 3.0517578125e-05,
+      "velocity_n": 4.76837158203125e-06,
+      "quaternion_nb": 2.980232238769531e-07,
+      "angular_velocity_b": 6.407499313354492e-06,
+      "relative_phase_rad": 4.291534423828125e-06,
+      "flap_frequency_hz": 1.430511474609375e-06
+    }
+  },
+  "42": {
+    "future_label_poisoning_bitwise_equal": true,
+    "prefix_500ms_bitwise_equal": true,
+    "max_absolute_difference": {
+      "position_n": 3.0517578125e-05,
+      "velocity_n": 4.291534423828125e-06,
+      "quaternion_nb": 4.172325134277344e-07,
+      "angular_velocity_b": 5.245208740234375e-06,
+      "relative_phase_rad": 5.9604644775390625e-06,
+      "flap_frequency_hz": 1.9073486328125e-06
+    }
+  }
+}

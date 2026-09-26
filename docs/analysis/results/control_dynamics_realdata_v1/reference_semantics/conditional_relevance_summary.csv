@@ -1,0 +1,9 @@
+steps,variant,rmse
+5,plus_attitude_pitch,0.01630830085093682
+5,plus_manual_pitch,0.01697231077488625
+5,plus_rate_pitch,0.01613846334920935
+5,state_past_controls,0.017245170909224092
+10,plus_attitude_pitch,0.022619089199700158
+10,plus_manual_pitch,0.023322326586021666
+10,plus_rate_pitch,0.0226607381608118
+10,state_past_controls,0.0235721051306449

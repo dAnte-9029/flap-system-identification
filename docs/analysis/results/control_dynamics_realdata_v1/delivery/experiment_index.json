@@ -1,0 +1,135 @@
+{
+  "baseline": {
+    "completion_path": "docs/analysis/results/control_dynamics_realdata_v1/baseline/completion.json",
+    "completion_sha256": "b6027fba809cca6d639d45c17c9d94ea256971c48a82b6d57b07153896081281",
+    "outputs": {
+      "docs/analysis/results/control_dynamics_realdata_v1/baseline/protocol.json": "f8004c550692ab7df6baa1f16ec55533a846eb9ed0ad729d973d10c2d817b8e0",
+      "docs/analysis/results/control_dynamics_realdata_v1/baseline/per_flight.csv": "2b0a2bd9363db9c5d131a1e0213b90775e4ec8c8408ac8cf6d763545148c7fb7",
+      "docs/analysis/results/control_dynamics_realdata_v1/baseline/checks.json": "707d32c359e4c7d35e954a0e829503dc14246ed1fb8bc152df52dc8266b529ed",
+      "docs/analysis/results/control_dynamics_realdata_v1/baseline/summary.csv": "43ba28ff33a313a243f75891ca446ee06cd2089c4a0b52d98eaccf7bb2cb79aa",
+      "docs/analysis/results/control_dynamics_realdata_v1/baseline/per_seed.csv": "574da7eb7e8d8d57dd513a45b36e8158c599ee2d7c22554548f05a90251fd98b"
+    }
+  },
+  "response_probe": {
+    "completion_path": "docs/analysis/results/control_dynamics_realdata_v1/response_probe/completion.json",
+    "completion_sha256": "4b1db0e5c8b68d60ab13433d847c3657667a89aa8ef2d2b79f458c0a8dbc143d",
+    "outputs": {
+      "docs/analysis/results/control_dynamics_realdata_v1/response_probe/protocol.json": "fe48a3a856f7adf441da1f6de31afa0b478f9cafef52357850073ffa7152c97c",
+      "docs/analysis/results/control_dynamics_realdata_v1/response_probe/per_flight.csv": "6b383464d33d3dd04a9e0404131b3d1a0f8daa0cd2a9df36a884b267b059c7d6",
+      "docs/analysis/results/control_dynamics_realdata_v1/response_probe/per_origin_seed.csv": "86d1445facaa243ca9fe0455ac94b564d0e936f03b51e0da097d7762e75bfbfa",
+      "docs/analysis/results/control_dynamics_realdata_v1/response_probe/cross_seed.csv": "1f72a768eb407e593039556c7f743eabc13493492360d052bb0fede77b54fa24",
+      "docs/analysis/results/control_dynamics_realdata_v1/response_probe/checks.json": "2e50aebdb41b2b53be337fdb160e7b5106e66311d42060906afecc842cf61d58",
+      "docs/analysis/results/control_dynamics_realdata_v1/response_probe/summary.csv": "254089ef40a4819ff2113727d1340cbf21984f4b6db2253d98dab8ad3db486cb"
+    }
+  },
+  "local_identification": {
+    "completion_path": "docs/analysis/results/control_dynamics_realdata_v1/local_identification/completion.json",
+    "completion_sha256": "34f4cefc986f7bab2cad9a4129273adace2bd858e929995cf56571fd66f9d311",
+    "outputs": {
+      "docs/analysis/results/control_dynamics_realdata_v1/local_identification/conditional_command_residual.csv": "80e1d0c848a94c26b0fc0b0ecd4d23131112b574285e594d3e0f6a88593960de",
+      "docs/analysis/results/control_dynamics_realdata_v1/local_identification/protocol.json": "f2b0cc80700c6f6a50f9019eee5f44395d30c4e47b538257853e888b2cc18909",
+      "docs/analysis/results/control_dynamics_realdata_v1/local_identification/per_flight.csv": "16d4b5df36b9207927ee79458827e17df89c702242c3ba0c43d33fc65f99f994",
+      "docs/analysis/results/control_dynamics_realdata_v1/local_identification/history_k1.npz": "1af76314b5571a63d1f4a7c68ded11ba4ad441cc90611299678521cc12101173",
+      "docs/analysis/results/control_dynamics_realdata_v1/local_identification/elapsed_time.csv": "ee8ebda5cfffb93214cc5e98898a9aa3d420c991b0dd1493991efaeaa96832b9",
+      "docs/analysis/results/control_dynamics_realdata_v1/local_identification/history_k25.npz": "c95a21ae0ab1d8edb9d9611dfb767c22506228fef43774b3f7b0bd4570746c82",
+      "docs/analysis/results/control_dynamics_realdata_v1/local_identification/planned_k1.npz": "9b0b998a357224bddf80b90366a72f9cc670809f98dd709798555be55e9627c9",
+      "docs/analysis/results/control_dynamics_realdata_v1/local_identification/predictions_k10.npz": "6e9f20de43e402931e8758628368245e11f068707958277585236427c1abae7e",
+      "docs/analysis/results/control_dynamics_realdata_v1/local_identification/predictions_k1.npz": "c084290d01a3bc74c1d34e83e052f1d897309fb045bc6602ea66fbfc8e2a54e7",
+      "docs/analysis/results/control_dynamics_realdata_v1/local_identification/paired_flights.csv": "81cb5e7f1ce22cf50de156151f36fec44d8411716ec7502761aa098f6cd28566",
+      "docs/analysis/results/control_dynamics_realdata_v1/local_identification/summary.csv": "92cb5c984ca72e76dfc885d55ff9007ec3fd0b8174cf93e15feab39f773c45ae",
+      "docs/analysis/results/control_dynamics_realdata_v1/local_identification/predictions_k25.npz": "55cba4c3665054d57c545d6808fe2f1e40fffa65dbe085bd70a88b50066c0fdb",
+      "docs/analysis/results/control_dynamics_realdata_v1/local_identification/predictions_k5.npz": "8f1d93c9d7ade9bb629290dc39b4bb0155224c4f048a9707ff4af408a790d533",
+      "docs/analysis/results/control_dynamics_realdata_v1/local_identification/history_k5.npz": "fef7d281ca7d1e52236e4ec55cb41bbb733892ddd9ffbf58796f13ca6955d7cd",
+      "docs/analysis/results/control_dynamics_realdata_v1/local_identification/planned_k5.npz": "08a9c3e9de8378690664c8f46068da7f63dd462da16d9db49c388eee571a7076",
+      "docs/analysis/results/control_dynamics_realdata_v1/local_identification/planned_k10.npz": "fd9ee03d3a41a46c39d8f54a3a459daa01000f93aaeb0f1a8d3aa3d558b51d30",
+      "docs/analysis/results/control_dynamics_realdata_v1/local_identification/gain_by_fold.csv": "7526f4874fa7e42f207f5133af5a3c03175e228915613c730475fc3217dcdece",
+      "docs/analysis/results/control_dynamics_realdata_v1/local_identification/history_k10.npz": "988e7aaafe799aeb90601ad28d6f7027edd5f4bad304ea334c17cd3f71a7d77b",
+      "docs/analysis/results/control_dynamics_realdata_v1/local_identification/planned_k25.npz": "8b1bc7d13f18b93bc45ac1db392e81cec20adbf5d1fedaf280b1448a56a2217c"
+    }
+  },
+  "ensemble_candidate": {
+    "completion_path": "docs/analysis/results/control_dynamics_realdata_v1/ensemble_candidate/completion.json",
+    "completion_sha256": "2a94d2885606acb352f4429e1e247134bd82ec609e84c5a5b73795397465c23c",
+    "outputs": {
+      "docs/analysis/results/control_dynamics_realdata_v1/ensemble_candidate/protocol.json": "4de6a21d022ca8f3749aeab55a4f067558805b76e07e7df18231b6711f3e30f9",
+      "docs/analysis/results/control_dynamics_realdata_v1/ensemble_candidate/predictions.npz": "9c65121c44a3436da5dd39d938a0d5058b9f98aab7093106f60d88963f08f901",
+      "docs/analysis/results/control_dynamics_realdata_v1/ensemble_candidate/per_flight.csv": "f5d46b41b65079206163dc486c5aec81a1039348efa0b7bc3ef5b7c195921147",
+      "docs/analysis/results/control_dynamics_realdata_v1/ensemble_candidate/comparison.csv": "119e7500e0e4d9f73f24d61833588c742fe7e920d1673c958238a960b1743ad8",
+      "docs/analysis/results/control_dynamics_realdata_v1/ensemble_candidate/checks.json": "6a369c8aec88a39983439d48da14f8c7f13861fc8032645fcd69eb47a103ad9a",
+      "docs/analysis/results/control_dynamics_realdata_v1/ensemble_candidate/summary.csv": "3da3ecf2a292ee97cf2d5d542e66cd0d5325ba76f89874157f57c2c3a8de5b47",
+      "docs/analysis/results/control_dynamics_realdata_v1/ensemble_candidate/model.pt": "f9daab52c269986267316021c5c507296787b3295c5897cfb00c60bdea51706b"
+    }
+  },
+  "px4_guarded_closed_loop": {
+    "completion_path": "docs/analysis/results/control_dynamics_realdata_v1/px4_guarded_closed_loop/completion.json",
+    "completion_sha256": "76c42ef9255587d312375d9b09bbfc2a58da4b737494dc02d77cd94a67dfbdba",
+    "outputs": {
+      "docs/analysis/results/control_dynamics_realdata_v1/px4_guarded_closed_loop/origins.csv": "057270ad2315ceb9c9b4e08401e7c7b3c53a54044398363af96bba61176a5964",
+      "docs/analysis/results/control_dynamics_realdata_v1/px4_guarded_closed_loop/protocol.json": "110a36af22d6680e051281eac4191a3480d3a5527d20b30ceadec6a0c52a00e0",
+      "docs/analysis/results/control_dynamics_realdata_v1/px4_guarded_closed_loop/guard.json": "200a4fa4c57dc6b1bfd15a7b0ae1720b7085510ae3faba4c776c33f12377ec9c",
+      "docs/analysis/results/control_dynamics_realdata_v1/px4_guarded_closed_loop/feature_ranges.csv": "1e08132e8d0f640a04e774bf973bd6af912abec30e692f70e0f0cfbb5224734c",
+      "docs/analysis/results/control_dynamics_realdata_v1/px4_guarded_closed_loop/support.npz": "3db354d71303dd697ac147c61bb4c5bf7d00970e89a958a2392679f98d476e02",
+      "docs/analysis/results/control_dynamics_realdata_v1/px4_guarded_closed_loop/command_tapes.npz": "c6e0739121115432de6778715c12c1e2b29bc6ba206f66a2e81356a72985b7a2",
+      "docs/analysis/results/control_dynamics_realdata_v1/px4_guarded_closed_loop/per_origin.csv": "8fe6dea85dfd50dc6c9cc35c5f9ebd96bea5f6ded0ed40fd76722284a9f0ff42",
+      "docs/analysis/results/control_dynamics_realdata_v1/px4_guarded_closed_loop/traces.csv": "e48e3ec6d78fbe4caff109d7515dbb653338cb872395732827c342f66a7f8b43"
+    }
+  },
+  "px4_guarded_summary": {
+    "completion_path": "docs/analysis/results/control_dynamics_realdata_v1/px4_guarded_summary/completion.json",
+    "completion_sha256": "c0934f876ff5f2612c3712df46fe39687341626e8fe2081f1afbbe45781240b2",
+    "outputs": {
+      "docs/analysis/results/control_dynamics_realdata_v1/px4_guarded_summary/own_feedback_per_origin.csv": "4aa6c61e94a6c46d38c583110ccfbb3b6348ed1e7c3f0307ee9cf904b0e7667c",
+      "docs/analysis/results/control_dynamics_realdata_v1/px4_guarded_summary/survival.csv": "fab624b902d76b3b64bf91999264386ecb8bee5af1cc16690669b2242609c2a3",
+      "docs/analysis/results/control_dynamics_realdata_v1/px4_guarded_summary/transfer_per_origin.csv": "aa0b78be2c7d803ad4c25fcb762686736055611b4f785a82905a2c4470804ad9",
+      "docs/analysis/results/control_dynamics_realdata_v1/px4_guarded_summary/paired_common_duration.csv": "2b38905f8e0ed5a136a59f3f326b4717041b8646dbdebfa3ce77f8e5f6ce9ddf",
+      "docs/analysis/results/control_dynamics_realdata_v1/px4_guarded_summary/own_feedback_counts.csv": "a2a06eff1b9c12fb0206d02d306eec0398f94585a9fa6786f7acf36cf5b0f35d",
+      "docs/analysis/results/control_dynamics_realdata_v1/px4_guarded_summary/transfer_counts.csv": "c01ca778d722de6a54bc05ed5f8840eb56adc09854c83d7a648dc5d369ccef9e"
+    }
+  },
+  "credibility": {
+    "completion_path": "docs/analysis/results/control_dynamics_realdata_v1/credibility/completion.json",
+    "completion_sha256": "dd06e34fe07871e751f082b5c3b1a03bedb041f8dff423c2e498ae6884bc627f",
+    "outputs": {
+      "docs/analysis/results/control_dynamics_realdata_v1/credibility/protocol.json": "804cf54e0db07ba43f077d62c3af61b29e70c75786177ecf8a85d44c79236dc4",
+      "docs/analysis/results/control_dynamics_realdata_v1/credibility/per_flight.csv": "2266be844c5991a90f220dcaf3e3209eba1f379ebb6d17bd30e70750bb7f7a7f",
+      "docs/analysis/results/control_dynamics_realdata_v1/credibility/summary.csv": "e91061619ca121933c06255f177d337d8b62a900077a6e3f6a4954f869f00e90",
+      "docs/analysis/results/control_dynamics_realdata_v1/credibility/per_origin.csv": "492cb8dd6aa7255910e44387dca974114cb49dbd550a4a4ccb22965d020936ff",
+      "docs/analysis/results/control_dynamics_realdata_v1/credibility/support_per_origin.csv": "e76c130eddbe10cb338eb98517d87178250226c19c9f3db39824174dbc5ae6e4"
+    }
+  },
+  "planning_stress": {
+    "completion_path": "docs/analysis/results/control_dynamics_realdata_v1/planning_stress/completion.json",
+    "completion_sha256": "2b129cf424673610c28020435277fff9860bc7e8e99aff04b6250ba00976ae17",
+    "outputs": {
+      "docs/analysis/results/control_dynamics_realdata_v1/planning_stress/protocol.json": "0d6437c856bec336560d3a85272d2145c76eab3c3ae3f1bb570ac1a282b6cf79",
+      "docs/analysis/results/control_dynamics_realdata_v1/planning_stress/selected_actions.csv": "cf369dc6f0a0fde9f637eec2216770a5b16790cd25b4fab8db5d16dffd21c398",
+      "docs/analysis/results/control_dynamics_realdata_v1/planning_stress/counts.csv": "457bedc8eae2cedcba846d634425c48d1c288aff1aeb5f51595d189e3e0d8af7",
+      "docs/analysis/results/control_dynamics_realdata_v1/planning_stress/per_origin.csv": "9a081d6fc009336a0a539d82b076673d5b505ed3263cc2ad24066db6fd9fd338"
+    }
+  },
+  "past_residual_information": {
+    "completion_path": "docs/analysis/results/control_dynamics_realdata_v1/past_residual_information/completion.json",
+    "completion_sha256": "f0a7baa678d900e3b48488a586c0fb688449bb4c40c0aa3bbd97a13e88a4a050",
+    "outputs": {
+      "docs/analysis/results/control_dynamics_realdata_v1/past_residual_information/train_predictions.npz": "43caf2e8087e914c007eb27d7585f573458a1c1c1250a45d3b20207cae89a344",
+      "docs/analysis/results/control_dynamics_realdata_v1/past_residual_information/protocol.json": "b758357c9b17109b86f4ff0278070d87fd81de164c19ae3cc32dbf11b73d4e55",
+      "docs/analysis/results/control_dynamics_realdata_v1/past_residual_information/coefficients.csv": "e15f974cee818e15c5ca50a2204e7b487dfd30e2a655e91da5f3a9625ab3450c",
+      "docs/analysis/results/control_dynamics_realdata_v1/past_residual_information/empirical_envelope.csv": "cad4af47d21bf68e79cdd4bf515b3364bd991f2de4bb7183cf6dbc0478fd3cb3",
+      "docs/analysis/results/control_dynamics_realdata_v1/past_residual_information/per_flight.csv": "b8c4bc50bfe25838f0fd6ce542fe235c0c9a1fb53d75c56b4404a1197fa0adb3",
+      "docs/analysis/results/control_dynamics_realdata_v1/past_residual_information/train_past_residual.npz": "d1089b6ef0a4708c92d705d050f553f3e5ca95add512cc9f179ee97993072024",
+      "docs/analysis/results/control_dynamics_realdata_v1/past_residual_information/checks.json": "c47428690ed7e689c5bc6c380967d8eaddb3a4a3f709f93535729528be0bd26d",
+      "docs/analysis/results/control_dynamics_realdata_v1/past_residual_information/summary.csv": "3ff13052205c7a26adc8406b3546f7d9262a61cb90d38da0477b33763c420746",
+      "docs/analysis/results/control_dynamics_realdata_v1/past_residual_information/envelope_coverage_per_flight.csv": "c30590c0a0ebb174305a60967567968cd3ab8b80be17fd8c9dd55e7dda4e8ce4",
+      "docs/analysis/results/control_dynamics_realdata_v1/past_residual_information/validation_past_residual.npz": "6de1dd98eac5122a06b376dff248196d3e6194c9e1c2c3cce74e4e3c83eafe00"
+    }
+  },
+  "planning_error_margin": {
+    "completion_path": "docs/analysis/results/control_dynamics_realdata_v1/planning_error_margin/completion.json",
+    "completion_sha256": "0278b1d87eb80b5ff11293f6b7ebf74ec985a4355522ad6652eb998f77d66da0",
+    "outputs": {
+      "docs/analysis/results/control_dynamics_realdata_v1/planning_error_margin/protocol.json": "d07ef67231882f43850ce1c1ad893dfbcc66b83a1fec657d390a64ca6d2709b5",
+      "docs/analysis/results/control_dynamics_realdata_v1/planning_error_margin/summary.csv": "ab20de909804846285d39dee55aa1e9009cce01b78978b24bd9d598ffde1ed68",
+      "docs/analysis/results/control_dynamics_realdata_v1/planning_error_margin/per_origin.csv": "2d0f01811d0c486a881d571ac89b4a9dfd0f9c6514cfb65632927bd9b6d456a8"
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "status": "complete",
+  "heldout_accessed": false,
+  "train_flights": 41,
+  "instrument_validated": false,
+  "outputs": {
+    "docs/analysis/results/control_dynamics_realdata_v1/reference_availability/protocol.json": "972db7045906d541fd6bf1df6de00b2364c4ab4299c3aa70a492a06598bafa2e",
+    "docs/analysis/results/control_dynamics_realdata_v1/reference_availability/topics.csv": "d67c2786fd83dbcb4440d4beb67eceaae31bf98eebc9429ee83b78b38fec4f0e",
+    "docs/analysis/results/control_dynamics_realdata_v1/reference_availability/raw_sources.json": "be6f2f6b8c5360c0b989346daf861fbd435ffd0de73ec37c201e48eaa36dcaff",
+    "docs/analysis/results/control_dynamics_realdata_v1/reference_availability/parameters.csv": "8a886a1e7c0f5d48e87f4534374a5e658522813d614b6bea52858ce8770554b6"
+  }
+}

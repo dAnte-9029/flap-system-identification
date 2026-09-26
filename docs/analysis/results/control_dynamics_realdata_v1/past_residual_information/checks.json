@@ -1,0 +1,14 @@
+{
+  "train": {
+    "past_endpoint_equals_current": true,
+    "past_commands_exact": true,
+    "future_labels_invariant": true,
+    "padded_origins": 173
+  },
+  "validation": {
+    "past_endpoint_equals_current": true,
+    "past_commands_exact": true,
+    "future_labels_invariant": true,
+    "padded_origins": 52
+  }
+}

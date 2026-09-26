@@ -1,0 +1,21 @@
+{
+  "status": "complete",
+  "heldout_accessed": false,
+  "persistent_residual_train_gate": false,
+  "primary_relative_improvement": 0.0049028581635610635,
+  "primary_improved_flight_fraction": 0.7804878048780488,
+  "integrated_candidate_delivered": false,
+  "envelope_is_formal_guarantee": false,
+  "outputs": {
+    "docs/analysis/results/control_dynamics_realdata_v1/past_residual_information/train_predictions.npz": "43caf2e8087e914c007eb27d7585f573458a1c1c1250a45d3b20207cae89a344",
+    "docs/analysis/results/control_dynamics_realdata_v1/past_residual_information/protocol.json": "b758357c9b17109b86f4ff0278070d87fd81de164c19ae3cc32dbf11b73d4e55",
+    "docs/analysis/results/control_dynamics_realdata_v1/past_residual_information/coefficients.csv": "e15f974cee818e15c5ca50a2204e7b487dfd30e2a655e91da5f3a9625ab3450c",
+    "docs/analysis/results/control_dynamics_realdata_v1/past_residual_information/empirical_envelope.csv": "cad4af47d21bf68e79cdd4bf515b3364bd991f2de4bb7183cf6dbc0478fd3cb3",
+    "docs/analysis/results/control_dynamics_realdata_v1/past_residual_information/per_flight.csv": "b8c4bc50bfe25838f0fd6ce542fe235c0c9a1fb53d75c56b4404a1197fa0adb3",
+    "docs/analysis/results/control_dynamics_realdata_v1/past_residual_information/train_past_residual.npz": "d1089b6ef0a4708c92d705d050f553f3e5ca95add512cc9f179ee97993072024",
+    "docs/analysis/results/control_dynamics_realdata_v1/past_residual_information/checks.json": "c47428690ed7e689c5bc6c380967d8eaddb3a4a3f709f93535729528be0bd26d",
+    "docs/analysis/results/control_dynamics_realdata_v1/past_residual_information/summary.csv": "3ff13052205c7a26adc8406b3546f7d9262a61cb90d38da0477b33763c420746",
+    "docs/analysis/results/control_dynamics_realdata_v1/past_residual_information/envelope_coverage_per_flight.csv": "c30590c0a0ebb174305a60967567968cd3ab8b80be17fd8c9dd55e7dda4e8ce4",
+    "docs/analysis/results/control_dynamics_realdata_v1/past_residual_information/validation_past_residual.npz": "6de1dd98eac5122a06b376dff248196d3e6194c9e1c2c3cce74e4e3c83eafe00"
+  }
+}

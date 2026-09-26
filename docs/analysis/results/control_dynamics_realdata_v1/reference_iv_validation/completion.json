@@ -1,0 +1,14 @@
+{
+  "status": "complete",
+  "sealed_test_accessed": false,
+  "prediction_gate": false,
+  "instrument_validated": false,
+  "plant_promoted": false,
+  "outputs": {
+    "docs/analysis/results/control_dynamics_realdata_v1/reference_iv_validation/protocol.json": "c0e4328ff67e1d83453f8b77e22c3890d05553f8749cee5e63438eee960bf60d",
+    "docs/analysis/results/control_dynamics_realdata_v1/reference_iv_validation/predictions.npz": "b38433ada94b358c5f7b105967682410bcf065150f3569b4fb86199f265d1d97",
+    "docs/analysis/results/control_dynamics_realdata_v1/reference_iv_validation/per_flight.csv": "e049ab8cb5151d3866a204243d920ee946031dcc5781f6efe0fd8fa5e1e3735e",
+    "docs/analysis/results/control_dynamics_realdata_v1/reference_iv_validation/fit.json": "9500f289746877c2e39eb55140cba87508002f1db8ca4a2d7913dfa45fe44ba5",
+    "docs/analysis/results/control_dynamics_realdata_v1/reference_iv_validation/summary.csv": "8f70a751c7a364053f265e2b1b8b9c8b724af934346deb9b705e388b92f565c1"
+  }
+}

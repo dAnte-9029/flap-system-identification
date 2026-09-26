@@ -1,0 +1,19 @@
+{
+  "status": "verified",
+  "heldout_accessed": false,
+  "experiments": {
+    "matched_contrasts_scored": {
+      "completion_sha256": "622d361ca55ce73bf69e05a0a666575fa96fcf0b9dbebba94eea3a8b67f3b4ce",
+      "outputs_verified": 6
+    },
+    "phase_residual_screen": {
+      "completion_sha256": "d7d8ed969d870ab3cf7e95df6995767285c48a877734f83a3713630996b5e721",
+      "outputs_verified": 5
+    },
+    "reference_availability": {
+      "completion_sha256": "a00c5ba980f9abbf3bc79b5f2b139834d81c5623147c9fd37d995c91a83ac3e2",
+      "outputs_verified": 4
+    }
+  },
+  "control_ready": false
+}

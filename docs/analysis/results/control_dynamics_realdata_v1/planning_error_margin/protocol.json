@@ -1,0 +1,12 @@
+{
+  "pins": {
+    "scripts/audit_control_planning_error_margin.py": "3e4e59d513040322ce84205bcfbb0ee834819858af7f6d20727dfcc43525ca7a",
+    "docs/analysis/results/control_dynamics_realdata_v1/past_residual_information/empirical_envelope.csv": "cad4af47d21bf68e79cdd4bf515b3364bd991f2de4bb7183cf6dbc0478fd3cb3",
+    "docs/analysis/results/control_dynamics_realdata_v1/planning_stress/per_origin.csv": "9a081d6fc009336a0a539d82b076673d5b505ed3263cc2ad24066db6fd9fd338",
+    "src/system_identification/integration/control_error_envelope.py": "96457e4e93b17a2bf9cb20275e7106bef922c9ce7dfd834f120ad142d121966f"
+  },
+  "heldout_accessed": false,
+  "rule": "nominal reduction in absolute q target error must exceed2*fixed train empirical q error threshold",
+  "inequality": "triangle inequality conditional on BOTH forecast errors bounded by B; those errors need not be independent",
+  "caveat": "counterfactual bound assumptions not validated; only an empirical stress gate, not certified action safety"
+}

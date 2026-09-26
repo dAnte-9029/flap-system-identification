@@ -1,0 +1,21 @@
+{
+  "status": "verified",
+  "experiments": {
+    "reference_semantics": {
+      "completion_sha256": "3e2fc33f1899358f9fc6cd63c48c4984080a796868e75756e9042efc8a3987e3",
+      "outputs_verified": 7
+    },
+    "reference_iv_diagnostic": {
+      "completion_sha256": "6f5196efe94386d5d7d624a1bccc29f859b1612daa3756dce168904599d65e1c",
+      "outputs_verified": 7
+    },
+    "reference_iv_validation": {
+      "completion_sha256": "5cadee8b66985d8833363e93ae8f33e4cf7ace6fb1c5c0a26b299b1b8a74431e",
+      "outputs_verified": 5
+    }
+  },
+  "sealed_test_accessed": false,
+  "control_ready": false,
+  "tests": "8 passed",
+  "candidate_archive_sha256": "94264491a356b95f34f4a64d00a32ef7e78a007f73b3d226efe15baa8c88996e"
+}

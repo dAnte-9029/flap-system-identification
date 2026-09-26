@@ -1,0 +1,13 @@
+{
+  "status": "complete",
+  "heldout_accessed": false,
+  "uncertainty_calibrated": false,
+  "support_proves_causality": false,
+  "outputs": {
+    "docs/analysis/results/control_dynamics_realdata_v1/credibility/protocol.json": "804cf54e0db07ba43f077d62c3af61b29e70c75786177ecf8a85d44c79236dc4",
+    "docs/analysis/results/control_dynamics_realdata_v1/credibility/per_flight.csv": "2266be844c5991a90f220dcaf3e3209eba1f379ebb6d17bd30e70750bb7f7a7f",
+    "docs/analysis/results/control_dynamics_realdata_v1/credibility/summary.csv": "e91061619ca121933c06255f177d337d8b62a900077a6e3f6a4954f869f00e90",
+    "docs/analysis/results/control_dynamics_realdata_v1/credibility/per_origin.csv": "492cb8dd6aa7255910e44387dca974114cb49dbd550a4a4ccb22965d020936ff",
+    "docs/analysis/results/control_dynamics_realdata_v1/credibility/support_per_origin.csv": "e76c130eddbe10cb338eb98517d87178250226c19c9f3db39824174dbc5ae6e4"
+  }
+}

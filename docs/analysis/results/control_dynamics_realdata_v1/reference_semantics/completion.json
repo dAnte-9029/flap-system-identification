@@ -1,0 +1,17 @@
+{
+  "status": "complete",
+  "heldout_accessed": false,
+  "admitted_origins": 6477,
+  "admitted_flights": 41,
+  "instrument_validated": false,
+  "second_stage_fitted": false,
+  "outputs": {
+    "docs/analysis/results/control_dynamics_realdata_v1/reference_semantics/mapping_parameters.csv": "c10b035afea2514e9f9581405fc3afb1986f153708e19877fdb04b10cad7bda1",
+    "docs/analysis/results/control_dynamics_realdata_v1/reference_semantics/protocol.json": "8ea89b326d3422cc259485b19608dcb8a4df0b9fd7c0194d6e23211789ebb79c",
+    "docs/analysis/results/control_dynamics_realdata_v1/reference_semantics/references.npz": "f561166b64d2a2c0a381e33fe08c2bad6532af948521092668f635ae81e51eee",
+    "docs/analysis/results/control_dynamics_realdata_v1/reference_semantics/conditional_relevance_per_flight.csv": "3a29cca455508d7fc17212c703fb1773cd8854ca0f00d37a13871da9f5ce49b1",
+    "docs/analysis/results/control_dynamics_realdata_v1/reference_semantics/conditional_relevance_summary.csv": "686480b7b6c0f277f9f7ecd654cac03ec4ffde179992b55dabbac0d66ab07924",
+    "docs/analysis/results/control_dynamics_realdata_v1/reference_semantics/conditional_relevance_predictions.csv": "d8dc151e9a4a73f6b58046cf26218cff311ef515b5367d2b5b2d088d7ab250d8",
+    "docs/analysis/results/control_dynamics_realdata_v1/reference_semantics/per_origin.csv": "ef9503f46dc59f1ea262ff90c2f5446920d9797079471c757db98eb3c5e81704"
+  }
+}

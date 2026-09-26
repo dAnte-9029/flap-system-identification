@@ -1,0 +1,18 @@
+{
+  "status": "complete",
+  "heldout_accessed": false,
+  "input_hashes_unchanged": true,
+  "seeds": [
+    17,
+    23,
+    42
+  ],
+  "origins": 2582,
+  "outputs": {
+    "docs/analysis/results/control_dynamics_realdata_v1/baseline/protocol.json": "f8004c550692ab7df6baa1f16ec55533a846eb9ed0ad729d973d10c2d817b8e0",
+    "docs/analysis/results/control_dynamics_realdata_v1/baseline/per_flight.csv": "2b0a2bd9363db9c5d131a1e0213b90775e4ec8c8408ac8cf6d763545148c7fb7",
+    "docs/analysis/results/control_dynamics_realdata_v1/baseline/checks.json": "707d32c359e4c7d35e954a0e829503dc14246ed1fb8bc152df52dc8266b529ed",
+    "docs/analysis/results/control_dynamics_realdata_v1/baseline/summary.csv": "43ba28ff33a313a243f75891ca446ee06cd2089c4a0b52d98eaccf7bb2cb79aa",
+    "docs/analysis/results/control_dynamics_realdata_v1/baseline/per_seed.csv": "574da7eb7e8d8d57dd513a45b36e8158c599ee2d7c22554548f05a90251fd98b"
+  }
+}

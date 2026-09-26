@@ -1,0 +1,14 @@
+{
+  "17": {
+    "future_command_prefix_invariant": true,
+    "finite": true
+  },
+  "23": {
+    "future_command_prefix_invariant": true,
+    "finite": true
+  },
+  "42": {
+    "future_command_prefix_invariant": true,
+    "finite": true
+  }
+}

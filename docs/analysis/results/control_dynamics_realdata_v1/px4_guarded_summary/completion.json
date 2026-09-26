@@ -1,0 +1,15 @@
+{
+  "status": "complete",
+  "heldout_accessed": false,
+  "source_completion_sha256": "76c42ef9255587d312375d9b09bbfc2a58da4b737494dc02d77cd94a67dfbdba",
+  "method": "survival/all requested first; complete-pair and common-duration effects separate; replay effect requires source feedback/hold and destination replay/hold all complete",
+  "script_sha256": "db8769a0205ea443572089985dd6a007065f36e86023eea6e83ba2623dbe995c",
+  "outputs": {
+    "docs/analysis/results/control_dynamics_realdata_v1/px4_guarded_summary/own_feedback_per_origin.csv": "4aa6c61e94a6c46d38c583110ccfbb3b6348ed1e7c3f0307ee9cf904b0e7667c",
+    "docs/analysis/results/control_dynamics_realdata_v1/px4_guarded_summary/survival.csv": "fab624b902d76b3b64bf91999264386ecb8bee5af1cc16690669b2242609c2a3",
+    "docs/analysis/results/control_dynamics_realdata_v1/px4_guarded_summary/transfer_per_origin.csv": "aa0b78be2c7d803ad4c25fcb762686736055611b4f785a82905a2c4470804ad9",
+    "docs/analysis/results/control_dynamics_realdata_v1/px4_guarded_summary/paired_common_duration.csv": "2b38905f8e0ed5a136a59f3f326b4717041b8646dbdebfa3ce77f8e5f6ce9ddf",
+    "docs/analysis/results/control_dynamics_realdata_v1/px4_guarded_summary/own_feedback_counts.csv": "a2a06eff1b9c12fb0206d02d306eec0398f94585a9fa6786f7acf36cf5b0f35d",
+    "docs/analysis/results/control_dynamics_realdata_v1/px4_guarded_summary/transfer_counts.csv": "c01ca778d722de6a54bc05ed5f8840eb56adc09854c83d7a648dc5d369ccef9e"
+  }
+}
