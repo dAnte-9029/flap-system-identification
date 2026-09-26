@@ -1,0 +1,222 @@
+{
+  "experiment": "paper_rollout_horizon_ablation_v1",
+  "git_commit": "6acb785fbdfb2ed87d10cd19994e4e8dce28f3cd",
+  "frozen_at_utc": "2026-09-22T08:35:01.344150+00:00",
+  "source_protocol": "docs/analysis/results/paper_standard_gru_multiseed_v1/protocol.json",
+  "history_steps": 26,
+  "train_unroll_steps": [
+    25,
+    50
+  ],
+  "eval_rollout_steps": 50,
+  "seeds": [
+    17,
+    23,
+    42
+  ],
+  "architecture": "CausalHistoryTrajectoryModel(hidden_size=64,use_controls=True); GRUCell(16,64), head Linear(80,64)/Tanh/Linear(64,7)",
+  "parameter_count": 21383,
+  "training_schedule": {
+    "base_epochs": 40,
+    "continuation_epochs": 25,
+    "batch_size": 256,
+    "optimizer": "AdamW",
+    "learning_rates": [
+      0.0003,
+      0.0005
+    ],
+    "weight_decay": 1e-05,
+    "gradient_clip_norm": 5,
+    "rollout_steps": 50,
+    "sampling_seeds": {
+      "17": [
+        17,
+        29
+      ],
+      "23": [
+        23,
+        35
+      ],
+      "42": [
+        42,
+        54
+      ]
+    },
+    "objective": "existing trajectory_rollout_loss + frozen two-step increment weights/scales; continuation adds 0.2*frequency_MSE; no actuator regularizer"
+  },
+  "candidate_override": {
+    "rollout_steps": 25
+  },
+  "increment_scales": [
+    0.42316267925245893,
+    0.9997673474257794
+  ],
+  "increment_weights": [
+    0.16458798840801334,
+    0.36716770482593264
+  ],
+  "normalization_sha256": "f10a427d04d54b98e5d1e4e0995b3b8562347f54313c90cd64147fa5ae2710c8",
+  "train_flights": [
+    "2026.9.6/log_24_2026-9-6-06-28-38.ulg",
+    "2026.9.6/log_28_2026-9-6-07-01-38.ulg",
+    "2026.9.6/log_17_2026-9-6-18-34-06.ulg",
+    "2026.9.6/log_18_2026-9-6-18-46-20.ulg",
+    "2026.9.6/log_19_2026-9-6-18-52-30.ulg",
+    "2026.9.6/log_20_2026-9-6-18-58-10.ulg",
+    "9.11数据/log_13_2026-9-11-18-28-08.ulg",
+    "9.11数据/log_14_2026-9-11-18-34-58.ulg",
+    "9.11数据/log_15_2026-9-11-18-40-48.ulg",
+    "9.12数据/log_10_2026-9-12-06-13-40.ulg",
+    "9.12数据/log_11_2026-9-12-06-21-12.ulg",
+    "9.12数据/log_12_2026-9-12-06-29-44.ulg",
+    "9.12数据/log_2_2026-9-12-18-32-54.ulg",
+    "9.12数据/log_3_2026-9-12-18-40-02.ulg",
+    "9.12数据/log_7_2026-9-12-05-49-02.ulg",
+    "9.12数据/log_8_2026-9-12-05-55-30.ulg",
+    "9.12数据/log_9_2026-9-12-06-03-32.ulg",
+    "9.13数据/log_1_2026-9-13-06-11-06.ulg",
+    "9.13数据/log_2_2026-9-13-06-20-06.ulg",
+    "9.13数据/log_3_2026-9-13-06-31-26.ulg",
+    "9.13数据/log_4_2026-9-13-06-36-26.ulg",
+    "9.13数据/log_5_2026-9-13-06-42-40.ulg",
+    "9.13数据/log_7_2026-9-13-18-12-52.ulg",
+    "9.14数据/log_11_2026-9-14-18-13-22.ulg",
+    "9.14数据/log_12_2026-9-14-18-20-30.ulg",
+    "9.14数据/log_13_2026-9-14-18-28-32.ulg",
+    "9.14数据/log_14_2026-9-14-18-34-22.ulg",
+    "9.15数据/log_10_2026-9-15-17-44-04.ulg",
+    "9.15数据/log_11_2026-9-15-17-51-56.ulg",
+    "9.15数据/log_12_2026-9-15-18-03-58.ulg",
+    "9.15数据/log_13_2026-9-15-18-10-58.ulg",
+    "9.15数据/log_14_2026-9-15-18-17-26.ulg",
+    "9.15数据/log_15_2026-9-15-18-23-44.ulg",
+    "9.16数据/log_1_2026-9-16-18-02-34.ulg",
+    "9.16数据/log_2_2026-9-16-18-08-46.ulg",
+    "9.16数据/log_3_2026-9-16-18-13-58.ulg",
+    "9.16数据/log_4_2026-9-16-18-20-50.ulg",
+    "9.16数据/log_5_2026-9-16-18-26-48.ulg",
+    "9.18数据/log_0_2026-9-18-18-15-06.ulg",
+    "9.18数据/log_1_2026-9-18-18-23-36.ulg",
+    "9.18数据/log_2_2026-9-18-18-29-40.ulg"
+  ],
+  "validation_flights": [
+    "2026.9.7/log_21_2026-9-7-05-54-56.ulg",
+    "2026.9.7/log_22_2026-9-7-06-01-40.ulg",
+    "2026.9.7/log_23_2026-9-7-06-09-22.ulg",
+    "2026.9.7/log_24_2026-9-7-06-16-04.ulg",
+    "2026.9.7/log_26_2026-9-7-06-30-26.ulg",
+    "2026.9.7/log_27_2026-9-7-06-37-24.ulg",
+    "2026.9.7/log_28_2026-9-7-06-44-02.ulg",
+    "2026.9.7/log_29_2026-9-7-06-51-04.ulg",
+    "2026.9.7/log_30_2026-9-7-06-58-22.ulg",
+    "9.17数据/log_10_2026-9-17-06-34-34.ulg",
+    "9.17数据/log_11_2026-9-17-06-40-30.ulg",
+    "9.17数据/log_12_2026-9-17-06-46-02.ulg",
+    "9.17数据/log_13_2026-9-17-06-52-30.ulg",
+    "9.17数据/log_6_2026-9-17-06-02-24.ulg",
+    "9.17数据/log_7_2026-9-17-06-12-16.ulg",
+    "9.17数据/log_8_2026-9-17-06-17-52.ulg",
+    "9.17数据/log_9_2026-9-17-06-28-10.ulg"
+  ],
+  "train_origins": 28293,
+  "validation_origins": 2582,
+  "frozen_input_sha256": {
+    "artifacts/paper_standard_gru_multiseed_v1/prepared.pt": "70a2f04d0802bc03efdcb30cf6c8dc5635030393a3d4f13b8eb2a64618f4d290",
+    "docs/analysis/results/paper_standard_gru_multiseed_v1/protocol.json": "86f5fceac7838e7f2369e6b854618eec851e652d5cde52cea4403f04063cab1e",
+    "docs/analysis/results/paper_standard_gru_multiseed_v1/training_runs.csv": "634a515a11d97d4faa7e6099a8639ea7d1036f97f5f6d5f0a90dcecd4a515cc6",
+    "dataset/trajectory_v3_september_expanded/manifest.json": "46b50d0b23a32b40339a4c07526711d0ff88b55584d309a56807c56905d2817e",
+    "docs/analysis/results/paper_baseline_comparison_v1/train_origins.csv": "3a17f717f89367d0f673a2f73f3df246c4e332b9fac88385ce269df28854845b",
+    "dataset/trajectory_v3_september_expanded/samples_train.parquet": "cd95d9db29cfe741c2929d8730fbd09b26fafcc54107f5faa3cd9d49e861e46e",
+    "dataset/trajectory_v3_september_expanded/windows_train.parquet": "d837c5183d81488788e4378d8d446a55b735829425b38fdda54c86ca28d4d422",
+    "docs/analysis/results/paper_baseline_comparison_v1/validation_origins.csv": "d9677c58fe0f9f23b12699a35c78e1b0961ddcb3ec5e5814e9f18392c501e3d3",
+    "dataset/trajectory_v3_september_expanded/samples_validation.parquet": "b66a14e2f0f9ef5f151c6e1c973fb2188c2821924d2bf87b8ae72442280718cd",
+    "dataset/trajectory_v3_september_expanded/windows_validation.parquet": "0a31c37dfd44b6889d2f896bef2fe848657fba7434e43ad7f91a375fe97d3cef",
+    "artifacts/paper_baseline_comparison_v1/B2_StandardGRU.pt": "f9895418b7dd2a2757dde8d740109ab42dae258c593fd5902f0076a3faeb0e26",
+    "artifacts/paper_baseline_comparison_v1/B2_StandardGRU_predictions.npz": "026d4cfe8ec3fe64a6b5fcd53cab7c4a80f6a64fe5b35bf4be3325746f3d6204",
+    "artifacts/paper_standard_gru_multiseed_v1/seed23/model.pt": "1cfbb865db55e3fc7c248eff4de95892fa9ee9155ee8e81c0318a9021b7d8b03",
+    "artifacts/paper_standard_gru_multiseed_v1/seed23/predictions.npz": "d504874f68cfba752bc3e1d526cecca82bf0c5ca18cbdcfb3105efbbd9e21e72",
+    "artifacts/paper_standard_gru_multiseed_v1/seed42/model.pt": "98fd6266bdc8926055c7f8b0dc2f37a4333fa92f55f336fb4cba4d3480324f86",
+    "artifacts/paper_standard_gru_multiseed_v1/seed42/predictions.npz": "2fa6f59d1bffd69871b5051f62ea5b483718a985ece856ad2ed54cb9945d47b3",
+    "src/system_identification/models/paper_baselines.py": "7313347f2d3fcd5853c159c909daf3c603d8b465d1b807c33c7e165dc8741159",
+    "src/system_identification/evaluation/paper_baselines.py": "32e7c312b314273929bcc92b1d98e3bd636f8c52e35783042e44d5a6660a558a",
+    "src/system_identification/models/neural.py": "9b45cb859adde16dad1956ec5f70d96da5f4794a6373975f57ec66a31428773d",
+    "src/system_identification/models/trajectory.py": "cd8f5a0ba54d966d2e45e942275beb12a04a57ff8a1a7a3284b6a90917f69762",
+    "src/system_identification/models/trajectory_main_v1.py": "b61dd09701b3bfe0176f1a406e4c511b58092fb080b47af115aa4c54681a7e5a",
+    "src/system_identification/models/trajectory_main_v2.py": "df23f65b94be461ac302b5237d6bbfe8afb25dc67406ee16439c985ee5498542",
+    "src/system_identification/models/main_v2_simulator.py": "3273e301a63900de74441ec3aaced7c672c0f3b1974919fbdb2c5c1cf649c0b3",
+    "src/system_identification/training/main_v2_increment.py": "fccf050772caa3bea77cd28fb61b44071b78897e27dd2caf518c706b58ad008e",
+    "src/system_identification/training/trajectory_main_v1.py": "76c028ff176724194f7ecfafe916424ded0c6417fbbf04322593c01c7e5ef4c9",
+    "src/system_identification/training/trajectory_baselines.py": "394413e654c3f6eaaa131630afc8e30beb74cea5c57f4475da21d915443051fe",
+    "src/system_identification/evaluation/trajectory.py": "595189df1f994ed2aabfebd88e7b0c04ac38dbb6180579e461345a8fe1e64bd8",
+    "scripts/run_paper_rollout_horizon_ablation.py": "657a371b6abd716ba6d751cbd9151f7b15fa142d0656cf8ffe5a589aecabece9",
+    "scripts/run_paper_standard_gru_multiseed.py": "33ec639af3682a13c7ef55a7c7e175565fc8e7151fee49f49e98024e9c8b8e59",
+    "scripts/run_paper_baseline_comparison.py": "d517c57d3a5968a16b243148f9bf368d2f6433f9844f18409401c3af790b30ea"
+  },
+  "prior_heldout_results_known": true,
+  "heldout_data_accessed_this_run": false,
+  "access_scope": "explicit original train/validation cache, parquet, checkpoint and validation predictions only; no independent-test inputs/results",
+  "checkpoint_rule": "last epoch65, no validation selection",
+  "stages": "base seed s; continuation s+12; AdamW reset",
+  "budget": "65 epochs,111 updates/epoch,7215 updates; not equal transitions/FLOPs/wall time",
+  "loss_scope": "trajectory and frequency means over states1..K; lag2 increments unchanged; no detach or teacher forcing",
+  "metrics": {
+    "endpoint_vector_RMSE": "sqrt(mean_windows(sum_xyz(error**2))) per flight; no division by 3",
+    "attitude_error_deg": "RMS of sign-invariant quaternion geodesic angles per flight",
+    "macro": "equal-flight mean of per-flight RMSE; SD across flights ddof=1",
+    "increments": "(pred(t+h)-truth(t0))-(truth(t+h)-truth(t0)); exactly endpoint v/omega error",
+    "uncertainty": "sample SD(ddof=1) across three seed-specific equal-flight macro means; no windows as independent samples"
+  },
+  "horizons_s": [
+    0.1,
+    0.2,
+    0.5,
+    1.0
+  ],
+  "primary_horizon_s": 0.5,
+  "comparison": "K25-K50 negative favors K25; relative gain=(K50-K25)/K50; zero denominator undefined",
+  "execution": {
+    "device": "cuda:1",
+    "concurrent_workers": 1,
+    "automatic_retry": false
+  },
+  "main_model_remains": "H26/K50",
+  "runtime": {
+    "seed": 17,
+    "python_seed": [
+      17,
+      29
+    ],
+    "numpy_seed": [
+      17,
+      29
+    ],
+    "torch_seed": [
+      17,
+      29
+    ],
+    "cuda_seed_all_devices": [
+      17,
+      29
+    ],
+    "initialization_seed": 17,
+    "dataloader": "not used; CPU torch.Generator per stage",
+    "sampler_seeds": [
+      17,
+      29
+    ],
+    "deterministic_algorithms": true,
+    "cudnn_benchmark": false,
+    "cudnn_deterministic": false,
+    "cuda_matmul_allow_tf32": false,
+    "cudnn_allow_tf32": true,
+    "cublas_workspace_config": ":4096:8",
+    "threads": 4,
+    "device": "cuda:1",
+    "device_name": "NVIDIA GeForce RTX 4090",
+    "torch_version": "2.7.0+cu128",
+    "cuda_version": "12.8",
+    "cudnn_version": 90701,
+    "python_version": "3.11.14 (main, Oct 21 2025, 18:31:21) [GCC 11.2.0]",
+    "numpy_version": "1.26.0"
+  }
+}

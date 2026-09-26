@@ -1,0 +1,19 @@
+{
+  "status": "passed",
+  "pytest": "22 passed in 8.11s",
+  "precheck": "sanity_checks.json",
+  "initial_test_collection_error": "wrong TorchTrajectoryPrediction import in new test; corrected before training",
+  "formal_training_started_after_tests": true,
+  "reporting_checks": [
+    "equal-flight weighting despite unequal window counts",
+    "sample SD ddof=1",
+    "paired delta sign",
+    "relative gain aggregation"
+  ],
+  "test_sha256": "b5272fb37cb567cb94779bb8407abac6ef88d601cf53d18058638ed82d1bd0db",
+  "test_files": [
+    "tests/test_paper_rollout_horizon_ablation.py",
+    "tests/test_paper_standard_gru_multiseed.py",
+    "tests/test_paper_baselines.py"
+  ]
+}

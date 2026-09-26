@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "independent_per_flight_metric_cells": 1632,
+  "all_registered_hashes_match": true,
+  "new_runs": 3,
+  "epochs_per_new_run": 65,
+  "updates_per_new_run": 7215,
+  "origins_per_prediction": 2582,
+  "heldout_data_accessed_this_run": false,
+  "rtol": 2e-06,
+  "atol": 1e-06
+}

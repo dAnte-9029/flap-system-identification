@@ -1,0 +1,32 @@
+{
+  "status": "passed",
+  "prefix25_bitwise": true,
+  "tail_label_loss_gradient_invariance": true,
+  "tail_control_invariance": true,
+  "initialization_parity": true,
+  "parameter_count": 21383,
+  "two_step_increment_parity": true,
+  "eval_state_count": 51,
+  "causality": {
+    "future_label_poisoning_bitwise_equal": true,
+    "prefix_500ms_bitwise_equal": true
+  },
+  "final_checks": {
+    "K25_seed17": {
+      "future_label_poisoning_bitwise_equal": true,
+      "prefix_500ms_bitwise_equal": true
+    },
+    "K25_seed23": {
+      "future_label_poisoning_bitwise_equal": true,
+      "prefix_500ms_bitwise_equal": true
+    },
+    "K25_seed42": {
+      "future_label_poisoning_bitwise_equal": true,
+      "prefix_500ms_bitwise_equal": true
+    }
+  },
+  "K50_metric_parity": true,
+  "all_prediction_counts": 2582,
+  "normalization_identical": true,
+  "heldout_data_accessed_this_run": false
+}

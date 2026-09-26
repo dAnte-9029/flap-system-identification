@@ -1,0 +1,72 @@
+{
+  "status": "complete",
+  "new_training_runs": 3,
+  "reused_K50": 3,
+  "prior_heldout_results_known": true,
+  "heldout_data_accessed_this_run": false,
+  "artifact_sha256": {
+    "docs/analysis/results/paper_rollout_horizon_ablation_v1/validation_horizon_timing.csv": "2432142185987146aeff2a5dec6f1d112eceb80b1840d40be46a88fb9bd6e5b6",
+    "docs/analysis/results/paper_rollout_horizon_ablation_v1/paired_flights_1s.pdf": "41aeb717fb00d15f4d75e5854663a0387bfda478cd1e4385389812408a0a55e8",
+    "docs/analysis/results/paper_rollout_horizon_ablation_v1/multiseed_summary.csv": "6208f83e8858f10e7c9943c7433a93454f03de6883805f840a9cb52660980820",
+    "docs/analysis/results/paper_rollout_horizon_ablation_v1/protocol.json": "fce2563bcd62d3edd4e3332a9d91ccc65853fd9b8d21a637d94639707b0d6c50",
+    "docs/analysis/results/paper_rollout_horizon_ablation_v1/review_report.md": "efc89bc2f9f5ffa0efd533ec332ae0fd20d5abb710a87cc3b1756cc527014548",
+    "docs/analysis/results/paper_rollout_horizon_ablation_v1/per_seed_summary.csv": "c96d26073a6f66c890cfda49af40cbae3b39c742d6789544702722e073d70d8d",
+    "docs/analysis/results/paper_rollout_horizon_ablation_v1/paired_flights_0.5s.png": "740fefe6ea91fa718835ccbc178a09de1bbdcdc70be3a23a5d2882fa4486238d",
+    "docs/analysis/results/paper_rollout_horizon_ablation_v1/per_flight.csv": "ccb534e3dec3676a1b8b0fd7b17b17e468961e8f42a0cc8c3cee7b667c949f16",
+    "docs/analysis/results/paper_rollout_horizon_ablation_v1/error_vs_horizon_velocity_rmse_m_s.pdf": "854a098bb9dd6b2a75c91aec7c1e18bd41a621c06fb9e373c667c15aad8a41c5",
+    "docs/analysis/results/paper_rollout_horizon_ablation_v1/error_vs_horizon_velocity_rmse_m_s.png": "a950d77e42021ab129173658ddbe31e191e9a3556ff639cd69061d42d416e871",
+    "docs/analysis/results/paper_rollout_horizon_ablation_v1/error_vs_horizon_body_rate_rmse_rad_s.png": "ba43c9afd589c1a0b630b8b4168c19fabe3fcfb6651877b50a6e034cb114fbec",
+    "docs/analysis/results/paper_rollout_horizon_ablation_v1/report.md": "efc89bc2f9f5ffa0efd533ec332ae0fd20d5abb710a87cc3b1756cc527014548",
+    "docs/analysis/results/paper_rollout_horizon_ablation_v1/paper_table_1s.csv": "5b33ab89085b55251e97f144dcd75103fcf3bd394817736b9a23e89eb45e7913",
+    "docs/analysis/results/paper_rollout_horizon_ablation_v1/common_validation_objectives.csv": "46dd383a25a57183a2d80de2727137bfbe9d356dbe5712172f14eb3a1156b2dd",
+    "docs/analysis/results/paper_rollout_horizon_ablation_v1/error_vs_horizon_attitude_error_deg.pdf": "bed7ced43c7e2e61bd1780a31dd0347edc433db68f532b3f147428e7468b71c6",
+    "docs/analysis/results/paper_rollout_horizon_ablation_v1/common_objective_parity.json": "5c50b2a8ab4c4be9c918f92388201df84d3e14f63726a1ce867b8f6e66f94ee6",
+    "docs/analysis/results/paper_rollout_horizon_ablation_v1/loss_definition.md": "195c47bf53e2c8f7d30e8a5c7073f9367cd38dad8e21dd86b9019402e8d0b03c",
+    "docs/analysis/results/paper_rollout_horizon_ablation_v1/relative_improvement.csv": "0a759940b34228a2da1b32f695c7eed41b6108a8cc9e8d5a75af3385fcc358f7",
+    "docs/analysis/results/paper_rollout_horizon_ablation_v1/paired_flights_0.5s.pdf": "b0681254abd6afa6eb56943b8b7f1e5280054dcc83cd35b8c40f0b83bb1733e8",
+    "docs/analysis/results/paper_rollout_horizon_ablation_v1/error_vs_horizon_body_rate_rmse_rad_s.pdf": "ad4e8ea2344f4ee709aa90f0fd7291f058cb6d7a65cd6e18c356e69d11ab05d9",
+    "docs/analysis/results/paper_rollout_horizon_ablation_v1/error_vs_horizon_attitude_error_deg.png": "3aec8f54e6c9d34e00a6740b7c46b6448a44d79ab1f8b03ef616c09b3fb5f47a",
+    "docs/analysis/results/paper_rollout_horizon_ablation_v1/error_vs_horizon_position_rmse_m.png": "83543f64e726e45a0e286d03b506a1c96e9c74f7ddcef561f82ce97dbd3e77ff",
+    "docs/analysis/results/paper_rollout_horizon_ablation_v1/paired_flights_1s.png": "e432f3525046a83d9e2dd8b754a292f265223e46cccf09100576f6511fa806cf",
+    "docs/analysis/results/paper_rollout_horizon_ablation_v1/paired_flight_differences.csv": "6706e2d84f15ac1868c960247b69423fe8744f52bc32527d01f971577a88ec32",
+    "docs/analysis/results/paper_rollout_horizon_ablation_v1/training_runs.csv": "116cb54d49885dc59dd0f9f732598fcdc59201e0fc2c872b303883c8ec0c8d21",
+    "docs/analysis/results/paper_rollout_horizon_ablation_v1/direction_summary.csv": "dabc414556ccba383cb6b0c116c398c18bed01c66f2ae8add4ad26f2c2481218",
+    "docs/analysis/results/paper_rollout_horizon_ablation_v1/final_verification.json": "1dbaa2cc436aea70151b21c34fdf8a262340a1ed812cbf336abc3efa1d98c0b3",
+    "docs/analysis/results/paper_rollout_horizon_ablation_v1/sanity_checks.json": "f387b97a929dd5d3dd72d00ca2213a181083bf38be6baaeac1c8d8af7563e975",
+    "docs/analysis/results/paper_rollout_horizon_ablation_v1/error_vs_horizon_position_rmse_m.pdf": "5cf4f7a625b390bee4e84d0f2303a324a8aeb21434fc8c6a20a6235aa35f8ccc",
+    "docs/analysis/results/paper_rollout_horizon_ablation_v1/paper_table_500ms.csv": "e81d331f7be5b9bfc179c9874b40694289af490364d61fc65955862ad31abdf9",
+    "docs/analysis/results/paper_rollout_horizon_ablation_v1/tests.json": "972fd8ba91bf2dffb480907057325ed40babae4804e406a45f9bae649b1dfba5",
+    "docs/analysis/results/paper_rollout_horizon_ablation_v1/paired_seed_differences.csv": "15984d3013180b7dffb895f5b052bd185ce0dfc650129ba28ec9b8030691ac94"
+  },
+  "checkpoint_sha256": {
+    "artifacts/paper_rollout_horizon_ablation_v1/seed17/model.pt": "d459e87484704c8cb36aae8e2fac87942559bd15f8df0a28260c520180cf8a89",
+    "artifacts/paper_rollout_horizon_ablation_v1/seed23/model.pt": "8bff397dd4e90f7064fef986babb87d3129b06fadc6a8be39c67f6ba46069d29",
+    "artifacts/paper_rollout_horizon_ablation_v1/seed42/model.pt": "f846930783d6c1b41da763d1be73b6f92bfa576b1e24e534349a5d3479edca7d",
+    "artifacts/paper_baseline_comparison_v1/B2_StandardGRU.pt": "f9895418b7dd2a2757dde8d740109ab42dae258c593fd5902f0076a3faeb0e26",
+    "artifacts/paper_standard_gru_multiseed_v1/seed23/model.pt": "1cfbb865db55e3fc7c248eff4de95892fa9ee9155ee8e81c0318a9021b7d8b03",
+    "artifacts/paper_standard_gru_multiseed_v1/seed42/model.pt": "98fd6266bdc8926055c7f8b0dc2f37a4333fa92f55f336fb4cba4d3480324f86"
+  },
+  "source_sha256": {
+    "scripts/report_paper_rollout_horizon_ablation.py": "7ed8db148e8fd5e7436c265c47cd83d8e45eaaa589eb811875b9295e2ea461f4",
+    "scripts/run_paper_rollout_horizon_ablation.py": "657a371b6abd716ba6d751cbd9151f7b15fa142d0656cf8ffe5a589aecabece9",
+    "tests/test_paper_rollout_horizon_ablation.py": "b5272fb37cb567cb94779bb8407abac6ef88d601cf53d18058638ed82d1bd0db",
+    "scripts/verify_paper_rollout_horizon_ablation.py": "ab717e6a5948bd97c4ac75577ef1550997fa7a3de76caa165e499db5b6c7f21f"
+  },
+  "prediction_sha256": {
+    "artifacts/paper_rollout_horizon_ablation_v1/seed17/predictions.npz": "b7fb42a47ffa4059e18b70e12a263f37d63f1839769742e251ce8f2005f28055",
+    "artifacts/paper_rollout_horizon_ablation_v1/seed23/predictions.npz": "1e82855f563da2f9cffc03707593646ea1c5e662e78f5fbb2d0480d197271929",
+    "artifacts/paper_rollout_horizon_ablation_v1/seed42/predictions.npz": "11866d6724c20bdc9269bbeb6d7d13cf5d8d760787fc1d352162f028728d8949"
+  },
+  "final_verification": {
+    "status": "passed",
+    "independent_per_flight_metric_cells": 1632,
+    "all_registered_hashes_match": true,
+    "new_runs": 3,
+    "epochs_per_new_run": 65,
+    "updates_per_new_run": 7215,
+    "origins_per_prediction": 2582,
+    "heldout_data_accessed_this_run": false,
+    "rtol": 2e-06,
+    "atol": 1e-06
+  }
+}

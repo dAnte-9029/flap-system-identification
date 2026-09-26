@@ -1,0 +1,13 @@
+train_unroll_steps,seed,validation_objective_steps,loss,aggregation
+25,17,25,0.22679195445143466,equal-origin frozen final-stage objective
+25,17,50,0.3808911662753657,equal-origin frozen final-stage objective
+25,23,25,0.22586529820257154,equal-origin frozen final-stage objective
+25,23,50,0.3843814377448616,equal-origin frozen final-stage objective
+25,42,25,0.22986618958638677,equal-origin frozen final-stage objective
+25,42,50,0.37969094854191604,equal-origin frozen final-stage objective
+50,17,25,0.24382371046255025,equal-origin frozen final-stage objective
+50,17,50,0.37574528904500437,equal-origin frozen final-stage objective
+50,23,25,0.24990874585442355,equal-origin frozen final-stage objective
+50,23,50,0.38443941895948835,equal-origin frozen final-stage objective
+50,42,25,0.24700315045026916,equal-origin frozen final-stage objective
+50,42,50,0.3785180765976747,equal-origin frozen final-stage objective

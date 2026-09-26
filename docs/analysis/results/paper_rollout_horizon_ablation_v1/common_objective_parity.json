@@ -1,0 +1,29 @@
+{
+  "status": "passed",
+  "checks": [
+    {
+      "seed": 17,
+      "L25": 0.24382371046255025,
+      "L50": 0.37574528904500437,
+      "historical_final_val_loss": 0.3757452846127457,
+      "absolute_difference": 4.4322586711942336e-09
+    },
+    {
+      "seed": 23,
+      "L25": 0.24990874585442355,
+      "L50": 0.38443941895948835,
+      "historical_final_val_loss": 0.3844394000069657,
+      "absolute_difference": 1.895252266237435e-08
+    },
+    {
+      "seed": 42,
+      "L25": 0.24700315045026916,
+      "L50": 0.3785180765976747,
+      "historical_final_val_loss": 0.3785180780750942,
+      "absolute_difference": -1.4774194645461591e-09
+    }
+  ],
+  "rtol": 2e-06,
+  "atol": 2e-07,
+  "full_K50_inference": false
+}
