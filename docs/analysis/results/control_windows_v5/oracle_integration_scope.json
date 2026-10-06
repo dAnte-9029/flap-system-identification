@@ -1,0 +1,8 @@
+{
+  "script_sha256": "0b55415acb2327f8746bc22ce6234d658054e77aa3864302d97c1d4a21619fe7",
+  "future_true_rates_used": true,
+  "deployable": false,
+  "interpretation": "same grid/published-as-of pose targets; attitude/rate sample times differ, so replay mismatch is not pure physical inconsistency or a strict model accuracy lower bound",
+  "training_or_gate_changed": false,
+  "sealed_test_accessed": false
+}

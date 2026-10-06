@@ -1,0 +1,31 @@
+{
+  "seeds": [
+    17,
+    23,
+    42
+  ],
+  "architecture": "same GRU64 and40070parameters; same initialization and loss; only feature units corrected",
+  "data_strategy_experiment": "reuse frozen A800; B/C/D800 each seed, same v2 hyperparameters",
+  "convergence_experiment": "A_long1600 from same initialization; only update budget doubles",
+  "checkpoint": "fixed800/1600 only; no validation choice; continuing identical optimizer is equivalent to same1600-step initialized run",
+  "batch": 32,
+  "lr": 0.0003,
+  "weight_decay": 0.0001,
+  "gradient_clip": 1.0,
+  "loss": "identical v2 rate + velocity + 0.2 attitude loss",
+  "primary_candidate": "A_long predeclared for complete-context comparison to A; not best validation arm",
+  "relative_gate": "same5percent improvement and seed/flight uncertainty gates for data strategies; absolute fitness separate",
+  "absolute_research_gate": "at0.5s roll-active p and pitch-active q each flight-equal RMSE<=0.15rad/s; all attitude<=3deg; velocity component RMSE<=0.5m/s; all3 seeds",
+  "tolerances_status": "engineering research targets set before new training, not platform-validated safety bounds",
+  "response_gate": "full-context rollout and rolling1s diagnostics separate; >=10complete clusters each sign and >=3flights per target axis; waveform amplitude error improves>=10percent over A; timing median<=max40ms,2*native interval; no direct causal-effect claim",
+  "control_gate": "no optimization or deployment unless absolute and response evidence gates pass; physics/hardware safety not inferred",
+  "script_sha256": "707bb73144d13a55a5547490ff651510d95c0e1b0980294ba7523cb7772dab29",
+  "model_sha256": "0b80d78ef64f54840756f969c338c906224a44b8da32e5b067f522fd2758d213",
+  "parent_protocol_sha256": "df188b3c36b3839403c75c43e3de6e7edbb8dd1f99224cd35d0f09d33efce7cf",
+  "selection_sha256": "49cf2aefecbba64fe510e78396ee19483c159bcbfca52949b39b68ded9d962b4",
+  "feature_contract": "unit_gravity_v1",
+  "corrected_decoder": "divide gravity acceleration by9.80665 before applying unit-direction normalization",
+  "previous_experiments": "v2 and legacy v3 used mismatched history/decoder gravity units; retained for implementation diagnosis, not an adequate-model/data-insufficiency verdict",
+  "runs": "A/B/C/D800 x3seeds plus A_long1600 x3seeds; A800 checkpoint is fixed intermediate of identical A_long trajectory",
+  "all_origin_feature_max_abs_difference": 3.814697265625e-06
+}

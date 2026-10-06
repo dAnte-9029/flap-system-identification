@@ -1,0 +1,17 @@
+{
+  "completed_trainings": 15,
+  "steps_each": 1600,
+  "primary_q_wave_improvement_percent": -1.3255769310836607,
+  "all_seeds_q_positive": false,
+  "positive_flights": 4,
+  "protection_passed": 10,
+  "protection_total": 18,
+  "descriptive_gate": false,
+  "absolute_active_passed": 3,
+  "absolute_active_total": 12,
+  "promoted": false,
+  "control_ready": false,
+  "limit": "Conditional prediction under feedback-generated recorded actuator commands; different information boundary from rate-reference baseline. Independent response/closed-loop evidence absent.",
+  "validation_accessed": false,
+  "sealed_test_accessed": false
+}

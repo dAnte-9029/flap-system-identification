@@ -1,0 +1,11 @@
+{
+  "stage_complete": true,
+  "all_fit_lag_choices_zero": true,
+  "fixedshift_oof_gain": 0.0,
+  "q_abs_phase_lag_drift_spearman_mean": 0.013213285440780495,
+  "physical_delay_identified": false,
+  "no_timestamp_change": true,
+  "model_promoted": false,
+  "development_evaluated": false,
+  "sealed_test_accessed": false
+}

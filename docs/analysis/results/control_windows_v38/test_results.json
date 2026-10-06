@@ -1,0 +1,5 @@
+{
+  "passed": 6,
+  "command": "pytest -q tests/test_px4_c9af.py",
+  "reused_unchanged_source_result": true
+}

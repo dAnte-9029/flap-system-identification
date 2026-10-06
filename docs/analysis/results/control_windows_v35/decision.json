@@ -1,0 +1,9 @@
+{
+  "status": "training_and_evaluation_complete",
+  "model_promoted": false,
+  "control_ready": false,
+  "baseline_retained": "A1600",
+  "descriptive_gate": true,
+  "absolute_gate": false,
+  "next_step": "冻结候选，按已记录操纵的输入支持分层审计响应方向、时延、幅值、持续作用与耦合；再决定是否值得准备同一控制链闭环重放。"
+}

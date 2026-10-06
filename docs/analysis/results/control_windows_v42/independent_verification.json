@@ -1,0 +1,9 @@
+{
+  "status": "passed",
+  "fresh_fit_gradient_pairs_recomputed": 60,
+  "coefficients_recomputed": 5,
+  "kinematic_metric_cells_recomputed": 12960,
+  "full1600_zero_state_dict_exact": true,
+  "query_parents_absent_from_calibration": true,
+  "candidate_training_started": false
+}

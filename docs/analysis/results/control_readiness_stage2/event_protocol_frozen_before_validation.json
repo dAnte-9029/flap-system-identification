@@ -1,0 +1,52 @@
+{
+  "version": 1,
+  "center_stride_s": 0.2,
+  "window_s": [
+    -0.5,
+    1.0
+  ],
+  "command_difference_windows_s": [
+    [
+      -0.2,
+      0
+    ],
+    [
+      0,
+      0.2
+    ]
+  ],
+  "threshold_source": "train base-valid windows only; no response/model predictions used",
+  "operating_envelope": {
+    "speed": [
+      5.027819670958266,
+      8.990834357162807
+    ],
+    "pitch_deg": [
+      9.024813020576596,
+      26.27603146112895
+    ],
+    "frequency": [
+      3.009501814842224,
+      4.262452840805054
+    ]
+  },
+  "excitation": {
+    "symmetric_tail": 0.021170839854540192,
+    "differential_tail": 0.08522665717385033,
+    "motor": 0.012980318882248598,
+    "rudder": 0.016915692575275892
+  },
+  "other_channel_excursion_max": {
+    "symmetric_tail": 0.04245978184044361,
+    "differential_tail": 0.14136251106392594,
+    "motor": 0.01,
+    "rudder": 0.02965344395488501
+  },
+  "pre_range_fraction_max": 0.5,
+  "hold_signed_delta_fraction_min": 0.5,
+  "nonoverlap_s": 1.5,
+  "response_use": "descriptive closed-loop association only; no causal gain/delay identification",
+  "not_performance_acceptance_thresholds": true,
+  "threshold_origin_sha256": "50ee5fc9ae553fa0e5f026336241198367d6f3c785974c8ef62c3914f6aec6f8",
+  "integrity_revision": "Add raw topic age/gap <=50ms; motor response is flap frequency. No threshold relaxation; initial validation already inspected."
+}

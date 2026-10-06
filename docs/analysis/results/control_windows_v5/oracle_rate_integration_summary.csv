@@ -1,0 +1,9 @@
+model,partition,horizon_s,attitude_rmse_rad
+oracle_logged100,train,0.5,0.011879005
+oracle_logged100,train,1.0,0.014715928
+oracle_logged100,validation,0.5,0.012128735
+oracle_logged100,validation,1.0,0.01516686
+oracle_logged50,train,0.5,0.020902384
+oracle_logged50,train,1.0,0.027411869
+oracle_logged50,validation,0.5,0.020801228
+oracle_logged50,validation,1.0,0.029485825

@@ -1,0 +1,20 @@
+{
+  "status": "diagnostic_complete",
+  "windows_retained": 407,
+  "focus_window": 97,
+  "focus_log": "2026.9.6/log_18_2026-9-6-18-46-20.ulg",
+  "log18_delta_q_mse": 0.029223807916518935,
+  "window97_weighted_delta_mse": 0.01884940792106369,
+  "window97_signed_mse_share": 0.6450017730375563,
+  "log18_bias_delta_share": 0.6807533177516124,
+  "log18_first_half_delta_mse": 0.00772185476632193,
+  "log18_last_half_delta_mse": 0.05072576106671596,
+  "remaining77_q_baseline": 0.32762079751787637,
+  "remaining77_q_actuator": 0.34333104001658626,
+  "model_promoted": false,
+  "baseline_retained": "A1600",
+  "root_cause_proven": false,
+  "training_started": false,
+  "interpretation": "A seed-sensitive low-support/allocator-flagged event contributes most log18 q excess MSE, but covered windows also regress. Mean bias and late rollout accumulation dominate. Fixed lag shift not supported on log18. Attitude accumulation involves multiple rate axes; oracle axis replacements are nonadditive, not causal efficacy.",
+  "next_step": "Freeze data and checkpoints; trace per-step predicted q/r derivatives, hidden states and output clipping for all407 OOF windows, with event97 highlighted. Separate local state-conditioned prediction error from autoregressive error propagation using explicitly offline true-state diagnostic inputs; do not train, retime inputs or delete windows."
+}

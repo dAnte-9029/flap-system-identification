@@ -1,0 +1,71 @@
+{
+  "stage": "v25",
+  "frozen_design": {
+    "stage": "v24 frozen next training design",
+    "status": "prepared_not_started",
+    "parent": "control_windows_v23",
+    "windows": 407,
+    "history_steps": 26,
+    "horizon": 50,
+    "dt_s": 0.02,
+    "folds": 5,
+    "seeds": [
+      17,
+      23,
+      42
+    ],
+    "steps": 1600,
+    "batch": 32,
+    "arms": [
+      "zero_history_control",
+      "observed_history_control"
+    ],
+    "runs": 30,
+    "input": "Append8 normalized controller observations only to historical encoder rows:3postintegrals,3publishedcompressiongains,2publicationages. No appended rollout features, future controller signals, recovered airspeed scaling, or additional targets.",
+    "architecture": "Same unit-gravity GRU64 rate-reference model; encoder input25->33 only, total41606parameters (+1536). Cell/head/derivative bounds/phase schedule unchanged. Both arms use identical enlarged architecture.",
+    "initialization": "Instantiate original v23 model under each original seed first. Copy every original parameter into enlarged model, append8 all-zero columns to encoder weight_ih_l0; copy all other encoder weights/biases. Same initial trainable weights between arms; check initial predictions against original implementation.",
+    "zero_control": "Zero the appended8 channels AFTER normalization. This preserves identical parameter capacity without conveying controller information. Rerun all15 zero-control fits; frozenv23 is secondary reference, not the sole capacity control.",
+    "normalization": "Use prepared fold*/controller_normalization.npz fitted only on unique historical rows in the4fitflights. All v23 state/reference/actuator/label normalization unchanged.",
+    "pairing": "Identical v8/v23 stored1600x32 draws and common initial weights for each fold/seed, AdamWlr3e-4 wd1e-4 clip1, original full1s loss, no q first-step auxiliary loss. Fixed final checkpoint.",
+    "primary": "q complete1s OOF waveform RMSE: >=5% mean flight/seed improvement vs zero arm, all3seeds positive, >=4/5flights positive.",
+    "protections": "p/r full1s waveform and velocity/attitude .5/1s endpoints no>5% regression per seed, same flight-equal aggregation asv23. Report p/q<=.15rad/s,attitude<=3deg,velocity<=.5m/s at.5s on unchanged original active windows for every seed.",
+    "evaluation": "Fit and OOF, horizons20ms/100ms/.5s/1s, original modes/flight strata retained. Held rate3/thrust diagnostic optional only if frozen before launch; no feedback future state as known input.",
+    "causal_checks": "All observation publications<=each historical query<=origin; altering messages afterorigin must not change history. Future reference suffix cannot alter earlier predictions. No hidden normalization fit on query flights.",
+    "limitations": "Tests the joint block of observed integral/compression/age information, not separate causal contributions. Published gains are stale observations and do not restore all spectral/filter states. The conditional rate-reference task still differs from an exogenous attitude-input task.",
+    "decision": "If primary/protections fail, retainA1600 and v23 as research baselines; do not alterthresholds, deletewindows, scancoefficients or promotecontrol. If numericalgatespass, proceed only to independent control-response/closed-loop evidence, never automatic deployment.",
+    "training_started": false,
+    "validation_accessed": false,
+    "sealed_test_accessed": false
+  },
+  "design_sha256": "473fe3220f51e2593ed0162c30c420481bbc18e43a6ee6f0a810f329cc91cffa",
+  "parent_delivery_sha256": {
+    "docs/analysis/results/control_windows_v23": "3b060e6e77850b9de52a4a3fc5d286dad31251c4d4fd5e8577c07e971480f4a5",
+    "docs/analysis/results/control_windows_v24": "5611fa42901e3ff257efdf8f5750c1a40fea8a7e152ded81ac17cc063cba5cd0"
+  },
+  "code_pins": {
+    "scripts/prepare_controller_history_v25.py": "ae5c30481ba3d063ec906bffae8cef8e5b5ea45aa664bf3cc6629ca945d6727e",
+    "scripts/controller_history_training_v25.py": "347a28565be767578fc1ca8939c436673f65dd6304009e905032a6950583b6a3",
+    "scripts/train_controller_history_v25.py": "b7dc3ce7accccecfa62287dc5cf5eeb9eef387a358357e052b1644ed7f9d2e8b",
+    "scripts/run_controller_history_v25.py": "69b1657645241b7d8ac886ece683d93232ecaa1b8294f50f93ea938c65f41280",
+    "scripts/evaluate_controller_history_v25.py": "77e392ab7184cb125b3895a66871beb05ca4941424d015ead60362c28872707f",
+    "src/system_identification/models/reference_gru_controller_history.py": "461ef8074a5f8cb873de67effc5760a0ce00b228ebc5ede47f40a065ad641c65",
+    "tests/test_controller_history_model_v25.py": "d7cd75da5612e6484bf8cf9abe0a40fda5f8b07c558061fb31cdb232fc87fa44",
+    "scripts/evaluate_rate_reference_v23.py": "5163221923f69cf99029250e85df28398e5e1c253e727c8146684ff1c2baa4f2",
+    "scripts/rate_reference_v23.py": "65877e520993bf9be15bf705e225a7c02104a1cb3072ff8bc36ed81c0da2dac0",
+    "src/system_identification/models/reference_gru_unit_gravity.py": "0b80d78ef64f54840756f969c338c906224a44b8da32e5b067f522fd2758d213",
+    "scripts/train_control_windows_v2.py": "5dcfdb408981224786abdc01ada52ef90a357260035ea1f249624704b0152865"
+  },
+  "reference_hold": "Both arms: hold future rate3/thrust to origin values, preserve reset. Diagnostic only, no real counterfactual or promotion gate.",
+  "evaluation": "Same v24 primary/protections; same original active flag for absolute .5s limits. Mode/fit/OOF and v23 comparison secondary. No full-data candidate refit.",
+  "phase_contract": {
+    "definition": "logged wing_phase zero; Hall consistency is checked separately",
+    "installation_consistency": "not_confirmed",
+    "status": "unconfirmed_physical_pose"
+  },
+  "frequency_contract": {
+    "column": "flap_frequency_hz",
+    "ratio": 7.909090995788574,
+    "rescaling": "none; September logged ratio, not April ratio8"
+  },
+  "sealed_test_accessed": false
+}

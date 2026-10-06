@@ -1,0 +1,24 @@
+{
+  "status": "bounded_coupled_replay_complete",
+  "coupled_window_runs": 9768,
+  "teacher_window_runs": 1628,
+  "all407_retained": true,
+  "nonfinite_failures": 0,
+  "relative_gate_passed_variants": 4,
+  "variants": 4,
+  "absolute_passed_each_variant": [
+    3,
+    3,
+    3,
+    3
+  ],
+  "absolute_total_each_variant": 12,
+  "exact_firmware_replay": false,
+  "independent_control_effectiveness_verified": false,
+  "control_ready": false,
+  "model_promoted": false,
+  "baseline": "A1600 retained; v35 remains a research candidate",
+  "validation_accessed": false,
+  "sealed_test_accessed": false,
+  "reserved_accessed": false
+}

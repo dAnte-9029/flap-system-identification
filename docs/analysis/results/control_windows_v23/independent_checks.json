@@ -1,0 +1,99 @@
+{
+  "checks": [
+    {
+      "fold": 0,
+      "seed": 17,
+      "full_oof_replay_max_error": 0.0,
+      "paired": true
+    },
+    {
+      "fold": 0,
+      "seed": 23,
+      "full_oof_replay_max_error": 0.0,
+      "paired": true
+    },
+    {
+      "fold": 0,
+      "seed": 42,
+      "full_oof_replay_max_error": 0.0,
+      "paired": true
+    },
+    {
+      "fold": 1,
+      "seed": 17,
+      "full_oof_replay_max_error": 0.0,
+      "paired": true
+    },
+    {
+      "fold": 1,
+      "seed": 23,
+      "full_oof_replay_max_error": 0.0,
+      "paired": true
+    },
+    {
+      "fold": 1,
+      "seed": 42,
+      "full_oof_replay_max_error": 0.0,
+      "paired": true
+    },
+    {
+      "fold": 2,
+      "seed": 17,
+      "full_oof_replay_max_error": 0.0,
+      "paired": true
+    },
+    {
+      "fold": 2,
+      "seed": 23,
+      "full_oof_replay_max_error": 0.0,
+      "paired": true
+    },
+    {
+      "fold": 2,
+      "seed": 42,
+      "full_oof_replay_max_error": 0.0,
+      "paired": true
+    },
+    {
+      "fold": 3,
+      "seed": 17,
+      "full_oof_replay_max_error": 0.0,
+      "paired": true
+    },
+    {
+      "fold": 3,
+      "seed": 23,
+      "full_oof_replay_max_error": 0.0,
+      "paired": true
+    },
+    {
+      "fold": 3,
+      "seed": 42,
+      "full_oof_replay_max_error": 0.0,
+      "paired": true
+    },
+    {
+      "fold": 4,
+      "seed": 17,
+      "full_oof_replay_max_error": 0.0,
+      "paired": true
+    },
+    {
+      "fold": 4,
+      "seed": 23,
+      "full_oof_replay_max_error": 0.0,
+      "paired": true
+    },
+    {
+      "fold": 4,
+      "seed": 42,
+      "full_oof_replay_max_error": 0.0,
+      "paired": true
+    }
+  ],
+  "all_oof_once_per_seed": true,
+  "q_primary_recomputed": 0.3537607037482871,
+  "source_and_evaluation_pins_verified": true,
+  "tests_passed": 9,
+  "sealed_test_accessed": false
+}

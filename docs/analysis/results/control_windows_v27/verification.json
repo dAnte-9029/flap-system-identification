@@ -1,0 +1,117 @@
+{
+  "status": "passed",
+  "checks": [
+    {
+      "fold": 0,
+      "seed": 17,
+      "fit_oof_held_replay_exact": true,
+      "age_invariance": true,
+      "paired_initialization_draws": true
+    },
+    {
+      "fold": 0,
+      "seed": 23,
+      "fit_oof_held_replay_exact": true,
+      "age_invariance": true,
+      "paired_initialization_draws": true
+    },
+    {
+      "fold": 0,
+      "seed": 42,
+      "fit_oof_held_replay_exact": true,
+      "age_invariance": true,
+      "paired_initialization_draws": true
+    },
+    {
+      "fold": 1,
+      "seed": 17,
+      "fit_oof_held_replay_exact": true,
+      "age_invariance": true,
+      "paired_initialization_draws": true
+    },
+    {
+      "fold": 1,
+      "seed": 23,
+      "fit_oof_held_replay_exact": true,
+      "age_invariance": true,
+      "paired_initialization_draws": true
+    },
+    {
+      "fold": 1,
+      "seed": 42,
+      "fit_oof_held_replay_exact": true,
+      "age_invariance": true,
+      "paired_initialization_draws": true
+    },
+    {
+      "fold": 2,
+      "seed": 17,
+      "fit_oof_held_replay_exact": true,
+      "age_invariance": true,
+      "paired_initialization_draws": true
+    },
+    {
+      "fold": 2,
+      "seed": 23,
+      "fit_oof_held_replay_exact": true,
+      "age_invariance": true,
+      "paired_initialization_draws": true
+    },
+    {
+      "fold": 2,
+      "seed": 42,
+      "fit_oof_held_replay_exact": true,
+      "age_invariance": true,
+      "paired_initialization_draws": true
+    },
+    {
+      "fold": 3,
+      "seed": 17,
+      "fit_oof_held_replay_exact": true,
+      "age_invariance": true,
+      "paired_initialization_draws": true
+    },
+    {
+      "fold": 3,
+      "seed": 23,
+      "fit_oof_held_replay_exact": true,
+      "age_invariance": true,
+      "paired_initialization_draws": true
+    },
+    {
+      "fold": 3,
+      "seed": 42,
+      "fit_oof_held_replay_exact": true,
+      "age_invariance": true,
+      "paired_initialization_draws": true
+    },
+    {
+      "fold": 4,
+      "seed": 17,
+      "fit_oof_held_replay_exact": true,
+      "age_invariance": true,
+      "paired_initialization_draws": true
+    },
+    {
+      "fold": 4,
+      "seed": 23,
+      "fit_oof_held_replay_exact": true,
+      "age_invariance": true,
+      "paired_initialization_draws": true
+    },
+    {
+      "fold": 4,
+      "seed": 42,
+      "fit_oof_held_replay_exact": true,
+      "age_invariance": true,
+      "paired_initialization_draws": true
+    }
+  ],
+  "models_replayed": 15,
+  "windows_per_seed": 407,
+  "independent_primary_protection_absolute": true,
+  "parent_and_code_hashes": true,
+  "focused_tests_passed": 3,
+  "validation_accessed": false,
+  "sealed_test_accessed": false
+}

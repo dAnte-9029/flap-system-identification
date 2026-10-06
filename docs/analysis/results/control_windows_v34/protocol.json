@@ -1,0 +1,94 @@
+{
+  "stage": "v34 joint rolling-increment supervision preparation",
+  "status": "frozen_before_formal_training",
+  "code": {
+    "scripts/joint_increment_v34.py": "7a28c9b196e56351db98cf48160a00d162bc66551dea92f20d9c1de9cd4f4138",
+    "scripts/train_joint_increment_v34.py": "5c02852169c6e6eed2d4d425ad16d70f7d2adac84c6c295a7230992b31626180",
+    "scripts/run_joint_increment_v34.py": "168d2fed8f86802e08cfb31ff87a75f70f3305976866b65f9107cb4051d0e775",
+    "scripts/prepare_joint_increment_v34.py": "f82beda16590aeb20c43948c93050c733593c1666d2fcc158ac1171bacb941e9",
+    "tests/test_joint_increment_v34.py": "5915abcc2b94c063c7e4b93d89413f2f3c9a2839c3b18162272051910d90caee",
+    "tests/test_rollout_trace_v32.py": "d64248f76f586589f383b3a2ada42129432c8ef944c67fe804bbbe0d586468aa",
+    "scripts/train_control_windows_v2.py": "5dcfdb408981224786abdc01ada52ef90a357260035ea1f249624704b0152865",
+    "scripts/prepare_actuator_inputs_v29.py": "40ba7a036b098e7100ebe642e498b7dfc65d0a0a962844b23781e91b85845aa0",
+    "scripts/actuator_training_v30.py": "5cbcec140f631b2713b5e977fd1c31946851d7c03f355bd28f7ef599ede75465",
+    "scripts/reference_groupcv_v8.py": "c4a2857f5f1935e5996ea7d224eacee9af3c34cc95ce90d2437f789ec75b85bd",
+    "src/system_identification/models/actuator_command_gru.py": "f73e5a762033d23ef90c349b1421147d309c7f85edc3694125269805e2a918b8",
+    "src/system_identification/models/reference_gru_unit_gravity.py": "0b80d78ef64f54840756f969c338c906224a44b8da32e5b067f522fd2758d213",
+    "src/system_identification/models/trajectory_main_v1.py": "b61dd09701b3bfe0176f1a406e4c511b58092fb080b47af115aa4c54681a7e5a"
+  },
+  "parents": {
+    "docs/analysis/results/control_windows_v29": "49ffd01eb46a8fd80e6e193143b25be4212cc78fdb11725feb95c5a495e9b231",
+    "docs/analysis/results/control_windows_v30": "d7fa86921e498c47875ae4144e13899e907d4104e6b1ad1f6cfdb4bdde6f8b18",
+    "docs/analysis/results/control_windows_v33": "487d47eb0d69e6808b9a5a738fd33733fa45e3cfb9dd0717c562673b58e60773"
+  },
+  "scope": "Original407train parents and5flight folds. ActuatorCommandGRU only, unchanged40070parameters, H26/K50 andnormalization. Original nonoverlapping parents retained; rolling correlated observations do not become independent training windows.",
+  "objective": {
+    "formula": "L = unchanged_full50_loss + 1.0 * mean_batch_axes[((rate_local_pred-rate_local_true)/rate_scale)^2]",
+    "local_weight": 1.0,
+    "axes": [
+      "p",
+      "q",
+      "r"
+    ],
+    "normalization": "Same existing per-fold rate_scale, no new variance fit and no dt division.",
+    "increment_identity": "Predicted andtrue increments have identical observed initialrate, which cancels. Compute endpoint difference directly to avoid redundant subtraction rounding.",
+    "weighting": "Full loss keeps rates+velocity+0.2attitude exactly. Local term weight1 equals coefficient of full rate loss; average over3axes, not an axis sum. This adds a second equally weighted rate objective; no total-loss renormalization, q-only term or weight search.",
+    "limits": "Rolling true histories are used only in the extra FIT-flight training branch. Inference architecture remains original; future state labels never enter the full1s rollout or a claimed forecast."
+  },
+  "sampling": "Reuse exact v30 1600x32 parent draws for eachfold/seed. One localoffset0..49 per parent occurrence. Independent per-parent RNG SeedSequence([34,fold,seed,array_index]) drives repeated shuffled50-offset cycles. Every fullcycle coversall50; count difference <=1 perparent. Row-major occurrence order, independent of model RNG/outcomes. Reject queryparents; no filtering or changing parent weights.",
+  "data": "Full inputsv29; rolling observed H26 inputsv33 with latest causalphase/frequency/airspeed. Use only corresponding fit indices for bothlossbranches. Preserve existing September phase/frequencycontracts; no April dataset or prior.",
+  "training": {
+    "candidate_runs": 15,
+    "folds": 5,
+    "seeds": [
+      17,
+      23,
+      42
+    ],
+    "steps": 1600,
+    "batch": 32,
+    "local_batch": 32,
+    "optimizer": "AdamW lr3e-4 weight_decay1e-4, clip total gradient norm1 AFTER summed loss backward.",
+    "checkpoint": "Fixed final1600; no early stopping or checkpoint selection.",
+    "pairing": "Alltrainable initialparameters andparentdraws match v30. Reuse15v30 controls only after fullzero-weight reproduction fold0/seed17 exactly matches final parameters/buffers. Zero failure blocks allcandidates.",
+    "zero_weight_reproduction_runs": 1,
+    "zero_weight_steps": 1600,
+    "planned_total_training_runs": 16
+  },
+  "budget": {
+    "parent_exposures_each": 51200,
+    "local_exposures_each": 51200,
+    "reference_recurrent_positions_each": 3891200,
+    "candidate_recurrent_positions_each": 5273600,
+    "relative_recurrent_position_increase": 0.35526315789473684,
+    "disclaimer": "Matched optimizerupdates andparentdraws, NOT matched compute. GRUposition count is workload accounting, not FLOPs or walltime; fused encoder anddecoder costs differ. Record actual duration. Zero reproduction is additional verification cost."
+  },
+  "comparison": "Primarycontrol v30 actuator model, same input boundary. v23 rate model is secondary descriptive context only. Evaluate same407OOF parent targets, perflight then perseedequal weighting; these5flights are repeatedly used development, not unopenedfinaltest.",
+  "gates": {
+    "primary": "Full1s q waveform RMSE improves>=5% vs v30, all3seedspositive, >=4/5flightspositive.",
+    "protection": "Perseed p/r full1swaveform andvelocity/attitude .5/1s endpoints regress<=5% (18checks).",
+    "absolute": "Originalactive-window .5s p/q<=.15rad/s, attitude<=3deg, velocity<=.5m/s for eachseed (12checks).",
+    "promotion": "Keep relative/protection andabsolute gates distinct; no causal/control promotion even if allpass.",
+    "secondary": "All50 rolling local p/q/r andincrement accumulation on sameOOF parents; no local-result substitute for full1s gate. Held-command diagnostic retains its no-counterfactual-truth limit."
+  },
+  "evaluation": "Save completefit/OOF free predictions andOOF commandhold. Report20ms/.1s/.5s/1s endpoints andwaveforms, completeoriginalactive masks, localrolling secondarymetrics, perflight/perseed andwindow97 context. No querylabel use in training or normalization.",
+  "preflight": "3disposableupdates per15fold/seed; paired legacy vszero-weight exact parameters/optimizerstate, candidatefinite andunchangedbuffers. No disposablecheckpoint retained, no outcome-based coefficient selection. Nextlaunch still requires full1600step zero reproduction.",
+  "next_launch": "OPENBLAS_NUM_THREADS=1 /home/zn/anaconda3/envs/flap-train-gpu/bin/python scripts/run_joint_increment_v34.py",
+  "next_output": "docs/analysis/results/control_windows_v35",
+  "formal_training_started": false,
+  "model_promoted": false,
+  "baseline_retained": "A1600",
+  "phase_contract": {
+    "definition": "logged wing_phase zero; Hall consistency is checked separately",
+    "installation_consistency": "not_confirmed",
+    "status": "unconfirmed_physical_pose"
+  },
+  "frequency_contract": {
+    "column": "flap_frequency_hz",
+    "ratio": 7.909090995788574,
+    "rescaling": "none; September logged ratio, not April ratio8"
+  },
+  "validation_accessed": false,
+  "sealed_test_accessed": false,
+  "reserved_accessed": false
+}

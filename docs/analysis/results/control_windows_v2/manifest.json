@@ -1,0 +1,53 @@
+{
+  "parent_sha256": "3c046faa6ad492f6654a19b00090bc2fb84c57d3fcd868456cc79f30e6399b0d",
+  "phase_contract": {
+    "definition": "logged wing_phase zero; Hall consistency is checked separately",
+    "installation_consistency": "not_confirmed",
+    "status": "unconfirmed_physical_pose"
+  },
+  "frequency_contract": {
+    "column": "flap_frequency_hz",
+    "ratio": 7.909090995788574,
+    "rescaling": "none; September logged ratio, not April ratio8"
+  },
+  "tables": {
+    "coverage_v2.json": "d12f26accd9cbd0424cc7eb7c6493e419737189733e8766db4d7f89d080d69b4",
+    "protocol.json": "6d6a881a159c30d801effd40912b8c38d056d716d007f1cfc84bc1294e8eef4f",
+    "arm_B.csv": "bbcfa0b7e971de3f5a235b8b9468ee92743943723fdab0ba8addacc9ae258c32",
+    "windows_v2.csv": "ae91b646fb0b35c9bc1a8c8e67b7e2277b11066e13676907154fdee95e340516",
+    "arm_C.csv": "019f038ef0dada23f228ce195fe8027ac81278b60335fea6422332d51003b69f",
+    "evaluation_windows.csv": "336eabace3c70b9b8b6546720041de20721b8512593789d3761e100cee31363e",
+    "segments_v2.csv": "b5c7ae2b6eafaca010d752065bf338e1237637d9721abda0d0f34c2757f55878",
+    "event_clusters.csv": "d69a5ceaaef3951e42be9283f39b6650a90cc7370aa4a3be86adf84461c30ebd",
+    "event_coverage.csv": "0b455575011253612050c0b93f1d05822386fb477ba2be57e6896e5f57d1a6e4",
+    "arm_D.csv": "874df91537a88587440f794f1f90227efc06739ef7c48a52e6c364c1d9fcb7a2",
+    "arm_A.csv": "96552955a119acf1764ef051482e2fef0d09653b0b72b521d5968f57cf91a95e",
+    "events.csv": "e04bde5506ecf67cd7f47a2340f9c67f37fa71608241f89663fe116ae202c385",
+    "actuator_activity.csv": "bac9b8cc466a75d5c391c1f3a9cbc854f42d7c243156341927ce66b072361d2b",
+    "blocks_v2.csv": "41ef081ed3af86cd094ff66aa4f8edee3fd24f9628dd03bec32d3f4f2acce451"
+  },
+  "arrays": {
+    "dataset/control_windows_v2/normalization.npz": "fa877a62c3b84828ea3d6afc05b89b6cd5e1e66583e433308fa5cce9e40edd2a",
+    "dataset/control_windows_v2/windows.npz": "5e2c0a77eb1a8a17a14fe27b3fec80811b501a89d5e99f1752a9ec52fae96b8b"
+  },
+  "train_flights": [
+    "2026.9.6/log_17_2026-9-6-18-34-06.ulg",
+    "2026.9.6/log_18_2026-9-6-18-46-20.ulg",
+    "2026.9.6/log_19_2026-9-6-18-52-30.ulg",
+    "2026.9.6/log_20_2026-9-6-18-58-10.ulg",
+    "2026.9.6/log_28_2026-9-6-07-01-38.ulg"
+  ],
+  "validation_flights": [
+    "2026.9.7/log_21_2026-9-7-05-54-56.ulg",
+    "2026.9.7/log_22_2026-9-7-06-01-40.ulg",
+    "2026.9.7/log_23_2026-9-7-06-09-22.ulg",
+    "2026.9.7/log_24_2026-9-7-06-16-04.ulg",
+    "2026.9.7/log_26_2026-9-7-06-30-26.ulg",
+    "2026.9.7/log_27_2026-9-7-06-37-24.ulg",
+    "2026.9.7/log_28_2026-9-7-06-44-02.ulg",
+    "2026.9.7/log_29_2026-9-7-06-51-04.ulg",
+    "2026.9.7/log_30_2026-9-7-06-58-22.ulg"
+  ],
+  "sealed_test_accessed": false,
+  "formal_training_started": false
+}

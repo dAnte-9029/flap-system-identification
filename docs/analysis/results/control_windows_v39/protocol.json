@@ -1,0 +1,353 @@
+{
+  "stage": "v39 persistent actuator-model step parity",
+  "status": "frozen_before_execution",
+  "code": {
+    "src/system_identification/models/actuator_command_step.py": "55a9da84f45eb47f85069a6c0ac6979e23db852dfdeeac88c587f4a4de85031f",
+    "tests/test_actuator_command_step.py": "b522b1294c56018f42e521226768a13d8b3bd6410314ad96f47205bbfc901341",
+    "scripts/verify_actuator_step_v39.py": "f591b3290aea28a9dc8a246f20352710bac12411c583a175d45216e706314d15"
+  },
+  "parents": {
+    "docs/analysis/results/control_windows_v29": "49ffd01eb46a8fd80e6e193143b25be4212cc78fdb11725feb95c5a495e9b231",
+    "docs/analysis/results/control_windows_v30": "d7fa86921e498c47875ae4144e13899e907d4104e6b1ad1f6cfdb4bdde6f8b18",
+    "docs/analysis/results/control_windows_v35": "8329f834d415102d3949635fe39ea2c7f2ea8bf0d0aaa9ecee096102ac037e8a",
+    "docs/analysis/results/control_windows_v38": "2346ddfd6551208780e46cb5d5ecf6c5caf9882c590f3087ea4b783e5a8e9197"
+  },
+  "runs": [
+    {
+      "stage": 30,
+      "fold": 0,
+      "seed": 17,
+      "checkpoint": "docs/analysis/results/control_windows_v30/fold0/seed17/final.pt",
+      "checkpoint_sha256": "2db8a5f00425ac44198cb33ff022a56fa4e5c2565025fac333d7987d505310d9",
+      "saved_predictions": "docs/analysis/results/control_windows_v30/fold0/seed17/oof_predictions.npz",
+      "saved_predictions_sha256": "fd5fe579d05d5a906e0e9eb5b0162a810697f8b0999659cc285acea1096a5fd9",
+      "normalization_sha256": "44abf3c7a58d8c02edb03a7698e72420845e57e29cc6f2ca66a90c9136085bb3"
+    },
+    {
+      "stage": 30,
+      "fold": 0,
+      "seed": 23,
+      "checkpoint": "docs/analysis/results/control_windows_v30/fold0/seed23/final.pt",
+      "checkpoint_sha256": "bb09191764f9a8a889eb5a7bcde0c5a96130c9a9c5886ddfb5ba36b6508d2096",
+      "saved_predictions": "docs/analysis/results/control_windows_v30/fold0/seed23/oof_predictions.npz",
+      "saved_predictions_sha256": "ba7a9fddd516982da21bceaee465756e8becaa0124221690bd904636f81105f7",
+      "normalization_sha256": "44abf3c7a58d8c02edb03a7698e72420845e57e29cc6f2ca66a90c9136085bb3"
+    },
+    {
+      "stage": 30,
+      "fold": 0,
+      "seed": 42,
+      "checkpoint": "docs/analysis/results/control_windows_v30/fold0/seed42/final.pt",
+      "checkpoint_sha256": "db5d4cc57a2a067eddb40747e5e7f79d495e6e62b001f13b913f394604fb3f30",
+      "saved_predictions": "docs/analysis/results/control_windows_v30/fold0/seed42/oof_predictions.npz",
+      "saved_predictions_sha256": "2570bd3c408d84398ab53d115efdd6e7875c49a356cda25842ca100944397bc2",
+      "normalization_sha256": "44abf3c7a58d8c02edb03a7698e72420845e57e29cc6f2ca66a90c9136085bb3"
+    },
+    {
+      "stage": 30,
+      "fold": 1,
+      "seed": 17,
+      "checkpoint": "docs/analysis/results/control_windows_v30/fold1/seed17/final.pt",
+      "checkpoint_sha256": "0c79798376c0e431760512e83c56a3edd47fba61491423cc7f1580541e80d6ea",
+      "saved_predictions": "docs/analysis/results/control_windows_v30/fold1/seed17/oof_predictions.npz",
+      "saved_predictions_sha256": "a7067f0e24ed74f79e3d408cbf7ca426fe82bd076360f3aca9db3a0cbf42ab39",
+      "normalization_sha256": "1c10f6e66a5858b8853434bc03224962c0c9ac7490b3887f02b4434bf395c842"
+    },
+    {
+      "stage": 30,
+      "fold": 1,
+      "seed": 23,
+      "checkpoint": "docs/analysis/results/control_windows_v30/fold1/seed23/final.pt",
+      "checkpoint_sha256": "f92cf5e6d2e180cc75e912f31a976f1f61c8eb3c85259384391deabfe06fd0cf",
+      "saved_predictions": "docs/analysis/results/control_windows_v30/fold1/seed23/oof_predictions.npz",
+      "saved_predictions_sha256": "4481002b67ee70b6df3e3ccce1365a1da78bfca8320064a2dcd894ff252e7e41",
+      "normalization_sha256": "1c10f6e66a5858b8853434bc03224962c0c9ac7490b3887f02b4434bf395c842"
+    },
+    {
+      "stage": 30,
+      "fold": 1,
+      "seed": 42,
+      "checkpoint": "docs/analysis/results/control_windows_v30/fold1/seed42/final.pt",
+      "checkpoint_sha256": "4fe9702c4d4d0f7109c452fe1fc0b3458ab334307b921e4e2fc1bd6d74ddcd14",
+      "saved_predictions": "docs/analysis/results/control_windows_v30/fold1/seed42/oof_predictions.npz",
+      "saved_predictions_sha256": "e69a15f2596a50ef790ab59462047a0e912037206399656ade49b5472bc07001",
+      "normalization_sha256": "1c10f6e66a5858b8853434bc03224962c0c9ac7490b3887f02b4434bf395c842"
+    },
+    {
+      "stage": 30,
+      "fold": 2,
+      "seed": 17,
+      "checkpoint": "docs/analysis/results/control_windows_v30/fold2/seed17/final.pt",
+      "checkpoint_sha256": "912cce58136c58904b696ccc76aa037661f7fda65c2c81ce613d231a0ef37e87",
+      "saved_predictions": "docs/analysis/results/control_windows_v30/fold2/seed17/oof_predictions.npz",
+      "saved_predictions_sha256": "f22a31d6a16d64798fb2567ffbb6519f8a1b10ae5e8069862d85115527c8b638",
+      "normalization_sha256": "bd82f3b6951f44738fe28096c28134eb1f50e45a2d12a28853be25ca762b200a"
+    },
+    {
+      "stage": 30,
+      "fold": 2,
+      "seed": 23,
+      "checkpoint": "docs/analysis/results/control_windows_v30/fold2/seed23/final.pt",
+      "checkpoint_sha256": "e9d26fb57f8e2e3ff4d98a1360688978b8236b8b29cb7ed792444a5fc4e8eabe",
+      "saved_predictions": "docs/analysis/results/control_windows_v30/fold2/seed23/oof_predictions.npz",
+      "saved_predictions_sha256": "1fb7ebb54b35e9a9f9682f888f142a4e79f23bc5f7189237357e898270727236",
+      "normalization_sha256": "bd82f3b6951f44738fe28096c28134eb1f50e45a2d12a28853be25ca762b200a"
+    },
+    {
+      "stage": 30,
+      "fold": 2,
+      "seed": 42,
+      "checkpoint": "docs/analysis/results/control_windows_v30/fold2/seed42/final.pt",
+      "checkpoint_sha256": "2a4034e7d1f6c78c45b9e4131f759d2dc6cf88572b448cb63ec3035bba041065",
+      "saved_predictions": "docs/analysis/results/control_windows_v30/fold2/seed42/oof_predictions.npz",
+      "saved_predictions_sha256": "2c6eeb5dfb64a05b6abc1806465a578e8efb04795f0e8a7bb22bdba9e8321dfa",
+      "normalization_sha256": "bd82f3b6951f44738fe28096c28134eb1f50e45a2d12a28853be25ca762b200a"
+    },
+    {
+      "stage": 30,
+      "fold": 3,
+      "seed": 17,
+      "checkpoint": "docs/analysis/results/control_windows_v30/fold3/seed17/final.pt",
+      "checkpoint_sha256": "0f6779835fee7a85aa56c515d6de06baf96e290b782d18b9d5e5323128fc4c4d",
+      "saved_predictions": "docs/analysis/results/control_windows_v30/fold3/seed17/oof_predictions.npz",
+      "saved_predictions_sha256": "c2c6db017a934bef42037431c09cd7b49a8997dbc13513e36dc40f25b64b03cd",
+      "normalization_sha256": "0a8ec020fdaef37ee064605761820e43ae1719f8b34571f93b3e57d5a031e12f"
+    },
+    {
+      "stage": 30,
+      "fold": 3,
+      "seed": 23,
+      "checkpoint": "docs/analysis/results/control_windows_v30/fold3/seed23/final.pt",
+      "checkpoint_sha256": "8f574be4695d559d6e66bf38c69f1a53880d2474783073ab3a0d957e51ea8155",
+      "saved_predictions": "docs/analysis/results/control_windows_v30/fold3/seed23/oof_predictions.npz",
+      "saved_predictions_sha256": "bc3913c17a3e74bb4c84e1a82f1ea838074deb327d661e494ff586e501fe0f85",
+      "normalization_sha256": "0a8ec020fdaef37ee064605761820e43ae1719f8b34571f93b3e57d5a031e12f"
+    },
+    {
+      "stage": 30,
+      "fold": 3,
+      "seed": 42,
+      "checkpoint": "docs/analysis/results/control_windows_v30/fold3/seed42/final.pt",
+      "checkpoint_sha256": "4ab9c08527fee9b18c06f299b423e38ab877d56441e877dc691073c018e921a8",
+      "saved_predictions": "docs/analysis/results/control_windows_v30/fold3/seed42/oof_predictions.npz",
+      "saved_predictions_sha256": "5135f74b38f5d230440d846a2d5d990b88747ef79088e0cd95de263f5d7e4d14",
+      "normalization_sha256": "0a8ec020fdaef37ee064605761820e43ae1719f8b34571f93b3e57d5a031e12f"
+    },
+    {
+      "stage": 30,
+      "fold": 4,
+      "seed": 17,
+      "checkpoint": "docs/analysis/results/control_windows_v30/fold4/seed17/final.pt",
+      "checkpoint_sha256": "1a41ca2d750cfcc2bded56b0d12df75dcf0365b459281512a18e262f6b467a36",
+      "saved_predictions": "docs/analysis/results/control_windows_v30/fold4/seed17/oof_predictions.npz",
+      "saved_predictions_sha256": "f759683a6e37622722682fcbc0a352c1a057dcbcf21815abf65e864fa8e125cf",
+      "normalization_sha256": "62f7177363acb32acc1146665ab3d6d690e3fe19b8599d7e3cb224cd4881c07f"
+    },
+    {
+      "stage": 30,
+      "fold": 4,
+      "seed": 23,
+      "checkpoint": "docs/analysis/results/control_windows_v30/fold4/seed23/final.pt",
+      "checkpoint_sha256": "bee61feb2e9373619a5652af84ca0abc3c88f46d6b2dee48b6e35bbe9c913d42",
+      "saved_predictions": "docs/analysis/results/control_windows_v30/fold4/seed23/oof_predictions.npz",
+      "saved_predictions_sha256": "a25943a591fb4a86a72d89bb02c65701566db4a35e2050fd02892a3f35f7c73e",
+      "normalization_sha256": "62f7177363acb32acc1146665ab3d6d690e3fe19b8599d7e3cb224cd4881c07f"
+    },
+    {
+      "stage": 30,
+      "fold": 4,
+      "seed": 42,
+      "checkpoint": "docs/analysis/results/control_windows_v30/fold4/seed42/final.pt",
+      "checkpoint_sha256": "89bd929c63d271749704461b759f609cdfbf4931cb21e580132a342b23a59cf6",
+      "saved_predictions": "docs/analysis/results/control_windows_v30/fold4/seed42/oof_predictions.npz",
+      "saved_predictions_sha256": "31c6772cb5b6480325e6c96960746635edb11f88f0193fcc9b80db7aba0ff281",
+      "normalization_sha256": "62f7177363acb32acc1146665ab3d6d690e3fe19b8599d7e3cb224cd4881c07f"
+    },
+    {
+      "stage": 35,
+      "fold": 0,
+      "seed": 17,
+      "checkpoint": "docs/analysis/results/control_windows_v35/fold0/joint_increment/seed17/final.pt",
+      "checkpoint_sha256": "9ea9b062062486f4560986b1a83fe6f7addb1e082023e2449e59e6cd915e4c03",
+      "saved_predictions": "docs/analysis/results/control_windows_v35/fold0/joint_increment/seed17/oof_predictions.npz",
+      "saved_predictions_sha256": "9939f702a5b46f7658dee7cbfce001b519ba1517595635194d524f9a6832c92b",
+      "normalization_sha256": "44abf3c7a58d8c02edb03a7698e72420845e57e29cc6f2ca66a90c9136085bb3"
+    },
+    {
+      "stage": 35,
+      "fold": 0,
+      "seed": 23,
+      "checkpoint": "docs/analysis/results/control_windows_v35/fold0/joint_increment/seed23/final.pt",
+      "checkpoint_sha256": "b7ea0615e0bc6a2891b18c6b1b93daf20bd8c7932956f4cf5e0e00555052c9a6",
+      "saved_predictions": "docs/analysis/results/control_windows_v35/fold0/joint_increment/seed23/oof_predictions.npz",
+      "saved_predictions_sha256": "637a9f8e6e18e8721d176a7f53230b7c5b8ff71f0a13a5cdf17bc598bd0402a4",
+      "normalization_sha256": "44abf3c7a58d8c02edb03a7698e72420845e57e29cc6f2ca66a90c9136085bb3"
+    },
+    {
+      "stage": 35,
+      "fold": 0,
+      "seed": 42,
+      "checkpoint": "docs/analysis/results/control_windows_v35/fold0/joint_increment/seed42/final.pt",
+      "checkpoint_sha256": "804bdc6a8340327065384952e0565ec67d929544507582253fd651a665da028d",
+      "saved_predictions": "docs/analysis/results/control_windows_v35/fold0/joint_increment/seed42/oof_predictions.npz",
+      "saved_predictions_sha256": "55d0a7b2af7386cd457ae2dd2c3141e00df2bda957bdcfc624b5ce30cf44893d",
+      "normalization_sha256": "44abf3c7a58d8c02edb03a7698e72420845e57e29cc6f2ca66a90c9136085bb3"
+    },
+    {
+      "stage": 35,
+      "fold": 1,
+      "seed": 17,
+      "checkpoint": "docs/analysis/results/control_windows_v35/fold1/joint_increment/seed17/final.pt",
+      "checkpoint_sha256": "d213b868659a7d3ced392014abd4cc277156456df2be4cf6fd85f42b7a8137a3",
+      "saved_predictions": "docs/analysis/results/control_windows_v35/fold1/joint_increment/seed17/oof_predictions.npz",
+      "saved_predictions_sha256": "9a7e30713b6d7fcb916fc9e28a559dd6f97070d4f47dc72d93cf5d95d8413de0",
+      "normalization_sha256": "1c10f6e66a5858b8853434bc03224962c0c9ac7490b3887f02b4434bf395c842"
+    },
+    {
+      "stage": 35,
+      "fold": 1,
+      "seed": 23,
+      "checkpoint": "docs/analysis/results/control_windows_v35/fold1/joint_increment/seed23/final.pt",
+      "checkpoint_sha256": "5ac4619d72f3f6d0eef217d74429ce40dc34ead3e34556cc11b905dea63125a8",
+      "saved_predictions": "docs/analysis/results/control_windows_v35/fold1/joint_increment/seed23/oof_predictions.npz",
+      "saved_predictions_sha256": "ca9b049e4ba74dcd4c086983ddd08d60cc2e1757233750f8b105cd29fa2ba8bb",
+      "normalization_sha256": "1c10f6e66a5858b8853434bc03224962c0c9ac7490b3887f02b4434bf395c842"
+    },
+    {
+      "stage": 35,
+      "fold": 1,
+      "seed": 42,
+      "checkpoint": "docs/analysis/results/control_windows_v35/fold1/joint_increment/seed42/final.pt",
+      "checkpoint_sha256": "d58734703b8e2d9eb8e9551bb3aa8c0bccc69fb1d6c77429a69459b9762bc62f",
+      "saved_predictions": "docs/analysis/results/control_windows_v35/fold1/joint_increment/seed42/oof_predictions.npz",
+      "saved_predictions_sha256": "4fdc1ade23c5952eeffcefc6a6ba3891bcbc0ea2fb17f515528376464b0625a3",
+      "normalization_sha256": "1c10f6e66a5858b8853434bc03224962c0c9ac7490b3887f02b4434bf395c842"
+    },
+    {
+      "stage": 35,
+      "fold": 2,
+      "seed": 17,
+      "checkpoint": "docs/analysis/results/control_windows_v35/fold2/joint_increment/seed17/final.pt",
+      "checkpoint_sha256": "0c5167fb1758e0bdaefb2f05317a59e561a63d62feb81867f038f6cfe5e9c548",
+      "saved_predictions": "docs/analysis/results/control_windows_v35/fold2/joint_increment/seed17/oof_predictions.npz",
+      "saved_predictions_sha256": "0d7bc90c5ccb7736904a7252c4102b754fbaebeb57bbc6fc4e22db744c457a79",
+      "normalization_sha256": "bd82f3b6951f44738fe28096c28134eb1f50e45a2d12a28853be25ca762b200a"
+    },
+    {
+      "stage": 35,
+      "fold": 2,
+      "seed": 23,
+      "checkpoint": "docs/analysis/results/control_windows_v35/fold2/joint_increment/seed23/final.pt",
+      "checkpoint_sha256": "69da762107b57e9ed87b050e63792cb82da3e034e248c252f2903f348f1883e3",
+      "saved_predictions": "docs/analysis/results/control_windows_v35/fold2/joint_increment/seed23/oof_predictions.npz",
+      "saved_predictions_sha256": "87efe4bcab7063874ed22f1e2c9749f110482e3b37ae162cf9b870e4090ac9b0",
+      "normalization_sha256": "bd82f3b6951f44738fe28096c28134eb1f50e45a2d12a28853be25ca762b200a"
+    },
+    {
+      "stage": 35,
+      "fold": 2,
+      "seed": 42,
+      "checkpoint": "docs/analysis/results/control_windows_v35/fold2/joint_increment/seed42/final.pt",
+      "checkpoint_sha256": "9752831cb778d076f50c7a08efbad67e7590c3642f18982458ae6423d6ad43f6",
+      "saved_predictions": "docs/analysis/results/control_windows_v35/fold2/joint_increment/seed42/oof_predictions.npz",
+      "saved_predictions_sha256": "b6fe1aa7416eb83d0b77088336f4e69b54d85f385465f085ea8bc49ea86e219b",
+      "normalization_sha256": "bd82f3b6951f44738fe28096c28134eb1f50e45a2d12a28853be25ca762b200a"
+    },
+    {
+      "stage": 35,
+      "fold": 3,
+      "seed": 17,
+      "checkpoint": "docs/analysis/results/control_windows_v35/fold3/joint_increment/seed17/final.pt",
+      "checkpoint_sha256": "1e7738d52acff0dcbee98dfafb7b305d367118908bcd91c5dd0f17ccfa380e35",
+      "saved_predictions": "docs/analysis/results/control_windows_v35/fold3/joint_increment/seed17/oof_predictions.npz",
+      "saved_predictions_sha256": "a4dc52b9fb9f54f457fe7c36cb38ba35e11a5cc75ecaf1b84d8756f080920228",
+      "normalization_sha256": "0a8ec020fdaef37ee064605761820e43ae1719f8b34571f93b3e57d5a031e12f"
+    },
+    {
+      "stage": 35,
+      "fold": 3,
+      "seed": 23,
+      "checkpoint": "docs/analysis/results/control_windows_v35/fold3/joint_increment/seed23/final.pt",
+      "checkpoint_sha256": "f70a1c09235d9bb33e9b06daf216c80b6a89c7871ef62430464fd63ec7c1e8c3",
+      "saved_predictions": "docs/analysis/results/control_windows_v35/fold3/joint_increment/seed23/oof_predictions.npz",
+      "saved_predictions_sha256": "d33365793572214fdc3e63d6b75bb7f381e8db3ce4afe09e725c17fea6f764d4",
+      "normalization_sha256": "0a8ec020fdaef37ee064605761820e43ae1719f8b34571f93b3e57d5a031e12f"
+    },
+    {
+      "stage": 35,
+      "fold": 3,
+      "seed": 42,
+      "checkpoint": "docs/analysis/results/control_windows_v35/fold3/joint_increment/seed42/final.pt",
+      "checkpoint_sha256": "3b3b631ce60631d757c56386ebcf6076c6ecf478ab213410cd0532a487a480cf",
+      "saved_predictions": "docs/analysis/results/control_windows_v35/fold3/joint_increment/seed42/oof_predictions.npz",
+      "saved_predictions_sha256": "0e5a77e8e2972272afd6499ad795eb8e20928cf9a32a8e2fc264dfbe2a8edee1",
+      "normalization_sha256": "0a8ec020fdaef37ee064605761820e43ae1719f8b34571f93b3e57d5a031e12f"
+    },
+    {
+      "stage": 35,
+      "fold": 4,
+      "seed": 17,
+      "checkpoint": "docs/analysis/results/control_windows_v35/fold4/joint_increment/seed17/final.pt",
+      "checkpoint_sha256": "83b95ae4087fddf4605c6f9205ba8963793576ba25875495bc0789443e09f103",
+      "saved_predictions": "docs/analysis/results/control_windows_v35/fold4/joint_increment/seed17/oof_predictions.npz",
+      "saved_predictions_sha256": "a2436d9fb8fc4da15ebe82f0da1fea288b85f8cdba3165ab185232f0097fd3e6",
+      "normalization_sha256": "62f7177363acb32acc1146665ab3d6d690e3fe19b8599d7e3cb224cd4881c07f"
+    },
+    {
+      "stage": 35,
+      "fold": 4,
+      "seed": 23,
+      "checkpoint": "docs/analysis/results/control_windows_v35/fold4/joint_increment/seed23/final.pt",
+      "checkpoint_sha256": "e99fe62302c37b1662626efdab119365447fd55a7e113aeffffcbbe3fb27fe33",
+      "saved_predictions": "docs/analysis/results/control_windows_v35/fold4/joint_increment/seed23/oof_predictions.npz",
+      "saved_predictions_sha256": "a203cbf49cc3694e98285b8a13580ddc8b80ec1d5f9645a4fe9586f5deb0a8f7",
+      "normalization_sha256": "62f7177363acb32acc1146665ab3d6d690e3fe19b8599d7e3cb224cd4881c07f"
+    },
+    {
+      "stage": 35,
+      "fold": 4,
+      "seed": 42,
+      "checkpoint": "docs/analysis/results/control_windows_v35/fold4/joint_increment/seed42/final.pt",
+      "checkpoint_sha256": "f7df566a50d10724c9b41e1c5a4302ecd170a3fd77ce21cdbd4c130d5354d57f",
+      "saved_predictions": "docs/analysis/results/control_windows_v35/fold4/joint_increment/seed42/oof_predictions.npz",
+      "saved_predictions_sha256": "f9eb4188e2896aa9673356e38f5dcd7e73d48d9df8105a391d9690f479d6b291",
+      "normalization_sha256": "62f7177363acb32acc1146665ab3d6d690e3fe19b8599d7e3cb224cd4881c07f"
+    }
+  ],
+  "scope": "All30 frozen v30/v35 OOF models, 407 originaltrain parents per stage/seed. No fitting, labels, developmentvalidation, sealed or reserved.",
+  "tolerance": {
+    "rtol": 0,
+    "atol": 0,
+    "requirement": "Exact float32 equality on CPU, same <=64 batch layout as stored native predictions; hidden state also exact."
+  },
+  "sequence": {
+    "history": 26,
+    "steps": 50,
+    "dt_s": 0.02,
+    "command": "postallocation motor0/servo012 at origin+k predicts state at origin+k+1",
+    "phase": "native phase=anchor=0 at initialization, then phase+=2pi*fixed_frequency*dt",
+    "frequency": "history_state[-1,11] held",
+    "airspeed": "history_state[-1,12:14] held",
+    "previous_command": "audit metadata only; native decoder has no previous-command slot"
+  },
+  "checks": [
+    "native and archived output parity all50",
+    "native GRU hidden state all50",
+    "serialized state after17 steps, fresh adapter restore and exact continuation",
+    "independent interleaved sessions, all commands after step25 perturbed by0.125",
+    "unchanged first25 outputs and nonzero suffix response",
+    "checkpoint and fit normalization hashes"
+  ],
+  "environment": {
+    "python": "3.11.14",
+    "torch": "2.7.0+cu128",
+    "numpy": "1.26.0",
+    "device": "cpu",
+    "threads": 1
+  },
+  "model_closed_loop": false,
+  "model_promoted": false,
+  "validation_accessed": false,
+  "sealed_test_accessed": false,
+  "reserved_accessed": false
+}

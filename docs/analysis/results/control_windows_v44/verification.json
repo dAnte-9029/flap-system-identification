@@ -1,0 +1,11 @@
+{
+  "status": "passed",
+  "paired_trajectories": 10989,
+  "native_quaternions_exact": 21978,
+  "all8_rate_combinations": true,
+  "all_bias_variance_identities": true,
+  "all_shapley_sum_identities": true,
+  "parent_hashes_unchanged": true,
+  "training": false,
+  "model_promoted": false
+}

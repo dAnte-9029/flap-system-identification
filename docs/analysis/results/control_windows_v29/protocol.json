@@ -1,0 +1,78 @@
+{
+  "stage": "v29 actuator-conditioned preparation",
+  "status": "frozen_before_training",
+  "source_pins": {
+    "scripts/prepare_actuator_inputs_v29.py": "40ba7a036b098e7100ebe642e498b7dfc65d0a0a962844b23781e91b85845aa0",
+    "scripts/actuator_inputs_v29.py": "069960ba55a66320bb02ac5bcb03b92d584cfb4b2b7574d4dd4599c54ea31143",
+    "tests/test_actuator_inputs_v29.py": "c6f416dbfc8b04b42bb0e8f7132e1afe72b1cfc20d59cde0c2c11d6b19eff397",
+    "src/system_identification/models/actuator_command_gru.py": "f73e5a762033d23ef90c349b1421147d309c7f85edc3694125269805e2a918b8",
+    "src/system_identification/models/reference_gru_unit_gravity.py": "0b80d78ef64f54840756f969c338c906224a44b8da32e5b067f522fd2758d213",
+    "src/system_identification/models/trajectory_main_v1.py": "b61dd09701b3bfe0176f1a406e4c511b58092fb080b47af115aa4c54681a7e5a",
+    "scripts/train_control_windows_v2.py": "5dcfdb408981224786abdc01ada52ef90a357260035ea1f249624704b0152865",
+    "scripts/reference_groupcv_v8.py": "c4a2857f5f1935e5996ea7d224eacee9af3c34cc95ce90d2437f789ec75b85bd",
+    "scripts/audit_controller_support_v26.py": "b589bb103d7baa2a8b04f0429e9951a88624e1ab9c8843de0cee5749656dedc9"
+  },
+  "parents": {
+    "docs/analysis/results/control_windows_v23": "3b060e6e77850b9de52a4a3fc5d286dad31251c4d4fd5e8577c07e971480f4a5",
+    "docs/analysis/results/control_windows_v28": "fcd22c3bcff805abb867e975491d80af108876b4d35fba11d6b7f08b65b7d64f"
+  },
+  "scope": "Original 407 train windows only; preserve all windows, five flight folds, modes, labels and non-control features. No validation/sealed/reserved access.",
+  "boundary": "Normalized post-allocation command -> output mapping/driver/actuator/aircraft. Remove attitude/rate controllers and allocator from learned dynamics boundary. Firmware still matters for output mapping.",
+  "conditional_limit": "Future flight-recorded actuator commands depend on feedback and disturbances. They are permissible ONLY for explicitly actuator-conditioned offline identification, not known inputs in a reference-driven autonomous prediction claim. Closed-loop use must generate actions from a controller rather than future logs.",
+  "substitution": "Replace both history reference5 and future reference5 by motor0/servo0/servo1/servo2 plus structural zero. No controller history8. This is a whole-boundary comparison, not an isolated future-channel ablation.",
+  "history": "state and new command history origin-25..0; retained actuator history origin-26..-1. Duplicate past commands intentionally preserve encoder slots; no new sensors.",
+  "future": "commands origin..+49 are left-endpoint inputs for labels origin+1..+50. Row+50 is excluded. Each topic uses causal publication/sample hold inherited from v28; no shift/interpolation.",
+  "architecture": {
+    "name": "ActuatorCommandGRU",
+    "hidden": 64,
+    "encoder_input": 25,
+    "recurrent_input": 21,
+    "trainable_parameters": 40070,
+    "padding": "fifth slot always0, mean0/scale1; v23 reset was also always0"
+  },
+  "normalization": "Each fold fits command mean/std on unique (flight,query_us) rows origin-25..+49 from its four fit flights only; std floor1e-4. Copy all other v23 stats exactly. The retained lagged actuator block keeps its older past-only normalization. Both control blocks use the same physical units but different fitting supports.",
+  "steps": 1600,
+  "batch": 32,
+  "seeds": [
+    17,
+    23,
+    42
+  ],
+  "folds": 5,
+  "candidate_runs": 15,
+  "optimizer": {
+    "name": "AdamW",
+    "lr": 0.0003,
+    "weight_decay": 0.0001,
+    "gradient_clip": 1.0
+  },
+  "loss": "Unchanged base.loss_fn over complete 50-step rates+velocity+0.2 quaternion loss. No auxiliary loss. Fixed final1600 checkpoint; no early stopping or outcome-selected checkpoint.",
+  "pairing": "Same trainable initialization as v23/v8, same stored1600x32 draws per fold/seed. Reuse15 frozenv23 controls after exact fit/OOF inference replay; no retraining baseline required because its implementation/data/optimizer are unchanged.",
+  "evaluation": "Save all fit and OOF predictions and per-window/per-flight metrics. Equal-flight then equal-seed aggregation, full1s p/q/r/velocity/attitude waveforms and20ms/.1s/.5s/1s endpoints; same labels and original active-window mask as v23. Verify every seed covers407uniqueOOF windows.",
+  "descriptive_gate": {
+    "q_relative_improvement_min": 0.05,
+    "all_three_seeds_improve": true,
+    "minimum_improving_flights": 4,
+    "protections": "For each seed, p/r full1s and velocity/attitude .5s/1s endpoints regress <=5% (18 values)",
+    "absolute": "Original active-window0.5s p/q<=.15rad/s, attitude<=3deg, velocity<=.5m/s (12 values); reuse original metric definitions/masks"
+  },
+  "diagnostics": "After training, hold all4futurecommands at origin within each query window; compare conditional predictions. Artificial hold is a sensitivity diagnostic without counterfactual ground truth, not an accuracy/control gate.",
+  "limitations": "Five flights have repeatedly informed development, not an unopened final test. Logged future commands are feedback-conditioned. No independent actuator positions/forces or high-rate waveform. Even all numerical gates passing cannot promote to causal control or deployment.",
+  "next_gates": "Conditional prediction first; independently supported direction/delay/amplitude/persistence/coupling second; model-state-driven actual PX4 control/allocation closed-loop replay third. Novel-controller robustness and independent evidence required beyond these development folds.",
+  "training_started": false,
+  "model_promoted": false,
+  "baseline_retained": "A1600",
+  "phase_contract": {
+    "definition": "logged wing_phase zero; Hall consistency is checked separately",
+    "installation_consistency": "not_confirmed",
+    "status": "unconfirmed_physical_pose"
+  },
+  "frequency_contract": {
+    "column": "flap_frequency_hz",
+    "ratio": 7.909090995788574,
+    "rescaling": "none; September logged ratio, not April ratio8"
+  },
+  "validation_accessed": false,
+  "sealed_test_accessed": false,
+  "reserved_accessed": false
+}

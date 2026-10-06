@@ -1,0 +1,10 @@
+{
+  "stage": "v43 fixed tilt-supervision training",
+  "preparation_delivery_sha256": "4f289081702bdc59c4ec6dbe785d268971a1aa8956328689131dc46e0f501492",
+  "training_plan_sha256": "df195140f9bb1feda9e111ab4f69d246e195adafa628d3fa62ce0bb1f12a22f3",
+  "candidate_runs": 15,
+  "updates_each": 1600,
+  "validation_accessed": false,
+  "sealed_test_accessed": false,
+  "reserved_accessed": false
+}

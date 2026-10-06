@@ -1,0 +1,9 @@
+{
+  "status": "passed",
+  "scalar_outputs_compared": 1221000,
+  "max_abs_error": 0.0,
+  "snapshot_files": 54,
+  "restored_window_states": 2442,
+  "unique407_per_stage_seed": true,
+  "checked_against_unchanged_preexisting_native_archives": true
+}

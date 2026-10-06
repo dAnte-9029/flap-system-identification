@@ -1,0 +1,16 @@
+{
+  "status": "prepared_not_executed",
+  "objective": "Prepare a controlled attitude-supervision training comparison",
+  "rationale": "Current roll/pitch state errors dominate the observed surface-action discrepancy under all4diagnostic variants; currentrate-only or hidden-history-only substitution is much weaker.",
+  "baseline": "Frozen v35 joint-increment model, with v30 and all v40/v41 artifacts retained",
+  "stages": [
+    "Before selecting a loss, verify saved quaternion/roll/pitch trajectories by native midpoint integration and inspect whether accumulated body-rate error or kinematic/label residual drives roll/pitch drift. Truth-rate substitutions are offline diagnostics only.",
+    "Audit the existing loss and fit-only gradient/loss scales. Prepare one explicit roll/pitch attitude-supervision term; freeze coefficient and normalization using fit data only, not by searching OOF gains.",
+    "Keep architecture,40070parameters,H26/K50,all407parents,5folds3seeds,initialization,sampling and1600update budget fixed. First reproduce the zero-weight v35 baseline exactly.",
+    "Freeze paired state accuracy/absolute gates plus generated-action metrics under all4v40coupling variants; retain p/q/r/velocity/attitude protections. No target-only easy-window evaluation.",
+    "Only after preparation checks pass execute the specified controlled training. No controller gain tuning, new observation channels, action restriction or validation/sealed/reserved access."
+  ],
+  "no_training_started": true,
+  "no_controller_tuning": true,
+  "no_real_flight": true
+}

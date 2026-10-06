@@ -1,0 +1,9 @@
+partition,channel,centers,base_valid,accepted,logs
+train,symmetric_tail,5456,3371,0,0
+train,differential_tail,5456,3371,4,4
+train,motor,5456,3371,4,3
+train,rudder,5456,3371,0,0
+validation,symmetric_tail,9079,6806,1,1
+validation,differential_tail,9079,6806,4,2
+validation,motor,9079,6806,9,6
+validation,rudder,9079,6806,0,0

@@ -1,0 +1,16 @@
+{
+  "status": "complete_verified",
+  "completed_trainings": 15,
+  "steps_each": 1600,
+  "conditional_tilt_target": false,
+  "conditional_relative_gate": false,
+  "all_coupled_relative_gates": false,
+  "all_frozen_relative_gates": false,
+  "all_absolute_gates": false,
+  "control_ready": false,
+  "model_promoted": false,
+  "baseline_retained": "A1600 and v35 frozen research baseline",
+  "validation_accessed": false,
+  "sealed_test_accessed": false,
+  "reserved_accessed": false
+}

@@ -1,0 +1,16 @@
+{
+  "status": "complete",
+  "completed": [
+    {
+      "step": 1600,
+      "checkpoint_sha256": "45e9e3079dbcb56fe8ad084d8e3d7051e92bd2bd2890988cd72b1dd8598d0792",
+      "reproduction_max_abs": null
+    },
+    {
+      "step": 6400,
+      "checkpoint_sha256": "0ec0513b789e54d2a88e9d666d09703126ade713b77d73ffbaa5acd582de9f1c",
+      "reproduction_max_abs": null
+    }
+  ],
+  "elapsed_s": 571.9228294230998
+}

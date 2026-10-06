@@ -1,0 +1,23 @@
+{
+  "completed_trainings": 15,
+  "steps_each": 1600,
+  "primary_q_wave_improvement_percent": -0.41160052869160246,
+  "all_seeds_q_positive": false,
+  "positive_flights": 2,
+  "protection_passed": 18,
+  "protection_total": 18,
+  "descriptive_gate": false,
+  "absolute_active_passed": 3,
+  "absolute_active_total": 12,
+  "promoted": false,
+  "control_ready": false,
+  "limit": "Conditional prediction under feedback-generated recorded rate references; different information boundary from attitude baseline. Independent response/closed-loop evidence absent.",
+  "validation_accessed": false,
+  "sealed_test_accessed": false,
+  "stage": "v23",
+  "status": "complete",
+  "baseline_retained": "A1600",
+  "windows_retained": 407,
+  "windows_removed": 0,
+  "next_step": "Audit available past PID integral and airspeed-scaling state; freeze a past-controller-state-only ablation. No future controller states or actuator commands as known inputs."
+}

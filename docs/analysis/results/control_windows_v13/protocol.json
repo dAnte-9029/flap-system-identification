@@ -1,0 +1,40 @@
+{
+  "stage": "v13 bounded history-frequency q-loss balancing",
+  "source_pins": {
+    "docs/analysis/results/control_windows_v8/delivery_manifest.json": "bf358676286f34af65bc140435eea00a978ebf7c3f1e018cb2eff9e349483ad6",
+    "docs/analysis/results/control_windows_v12/delivery_manifest.json": "064ac0c8b9600d09a495b1ad3e43b40fb666f09979be73f86537a38b80282bbf",
+    "docs/analysis/results/control_windows_v2/manifest.json": "84cac37ebf73f47802a4b5d3afff48d97554ac3aedfdd1cb6fb9ec5d618b919f",
+    "docs/analysis/results/control_windows_v2/windows_v2.csv": "ae91b646fb0b35c9bc1a8c8e67b7e2277b11066e13676907154fdee95e340516",
+    "dataset/control_windows_v2/windows.npz": "5e2c0a77eb1a8a17a14fe27b3fec80811b501a89d5e99f1752a9ec52fae96b8b",
+    "scripts/reference_frequency_weight_v13.py": "c1b9483098e7587fc8af7d16dfff2c8603b9acb0da1f148f5680884368dea8c6",
+    "scripts/prepare_reference_frequency_weight_v13.py": "9e42e0e3c0057bb91aa114285041e8b6182cba50ed3482c71b903e8904773d9c",
+    "scripts/train_reference_frequency_weight_v13.py": "b698a9ce293329f69382cbaf52e95da49cd4e5ff50e1212460126a2fe8478f9c",
+    "scripts/run_reference_frequency_weight_v13.py": "ecc02095c46aa0e02a7c8f2ae5928e18d309cedbc268e5e6f1e0efe45d9a8731",
+    "scripts/evaluate_reference_frequency_weight_v13.py": "97f366f971c8cf282087ba7921b4652d3c8613c559268f2fd1bec824d5f10b3f",
+    "tests/test_reference_frequency_weight_v13.py": "b4b8aef2ec296314756dc2ab175e2c9de528e1a1c9a847c6f840f63efd064215"
+  },
+  "phase_contract": {
+    "definition": "logged wing_phase zero; Hall consistency is checked separately",
+    "installation_consistency": "not_confirmed",
+    "status": "unconfirmed_physical_pose"
+  },
+  "frequency_contract": {
+    "column": "flap_frequency_hz",
+    "ratio": 7.909090995788574,
+    "rescaling": "none; September logged ratio, not April ratio8"
+  },
+  "data": "407train windows, original5outerflight folds; no data removal, new split, development or sealed/reserved evaluation",
+  "model": "same v8hold ReferenceGRUPhaseSchedule,40,070params,phase_start=None; holdfrequency; H26/K50 at50Hz; no yawmean correction",
+  "reproduction": "one extra fold0seed17 training with weights1; parameter match to oldv8<=1e-6 required",
+  "runs": "5folds xseeds17/23/42;1600updates,batch32,AdamW3e-4wd1e-4clip1; freshweights, identical v8 initialparameter hashes and saved sampledwindow tapes; no early stopping",
+  "weights": "one axis q only; historymean frequency. Fit global flight-balanced terciles on4fitflights (not separate equal-count terciles perflight, which would be a near-noop). For eachflight and occupiedbin raw=n_flight/(occupied_bins*n_bin). Find scalarc with mean(clip(c*raw,.5,2))=1. Empty bins not invented. Allwindowspositive.",
+  "objective": "oldloss + mean((weight-1)*mean_time((qpred-qtruth)/qscale)^2)/3; no minibatchweight renormalization, p/r/velocity/attitude direct losses unchanged; sharednetwork can change all predictions",
+  "primary": "qfullwave RMSE, equalflights then horizons.5/1s then seeds; compare unweighted common windows against frozenv8hold",
+  "gate": "primarygain>=5%;all3seedsgain>0;>=4/5flightgain>0; eachseed allstateendpoints .5/1s regression<=5%; p/rfullwave eachseed/horizonregression<=5%; qOOF low/mid/high eachseed/horizonregression<=5%. q1s referenceutility loss<=.02 absolute perseed and referenceeffect RMS ratio in[.9,1.1].",
+  "reference": "recordedreference vs all5heldatstart; utility=1-factualRMSE/heldRMSE againstsameobservedtruth; not causal counterfactual flightresponse",
+  "absolute": "eachseed allstate.5s p/q/r<=.15rad/s,attitude<=3deg,velocity<=.5m/s; independentresponse/closedloop stillrequired",
+  "selection": "singlecandidate chosen afterv12exploration; reusedOOFflights are development evidence, no multiplecomparison-adjusted claim",
+  "bootstrap": "2000 pairedwholeflight resamples seed913; exploratory5flights",
+  "after_gate": "report complete OOF result and freeze decision; any all407 refit/development evaluation is a separate subsequent stage, no auto expansion in this run",
+  "sealed_test_accessed": false
+}

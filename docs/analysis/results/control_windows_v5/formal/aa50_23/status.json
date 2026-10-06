@@ -1,0 +1,10 @@
+{
+  "status": "complete",
+  "arm": "aa50",
+  "scope": "formal",
+  "seed": 23,
+  "elapsed_s": 238.72668197844177,
+  "checkpoint_sha256": "975ae840c92702542f2e46b13e23275210f5cdf883ffd470b24db1003b72e22e",
+  "updates": 1600,
+  "sealed_test_accessed": false
+}

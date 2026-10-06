@@ -1,0 +1,73 @@
+{
+  "stage": "v20 channel masks and input support",
+  "source_pins": {
+    "scripts/run_reference_channels_v20.py": "7dc8d368dcd55091e5e6e03eb05a726fcc5798a1df16f78b990d8eb4b7b9aff2",
+    "scripts/reference_channels_v20.py": "7c526ac579fe6f1981021e30fb6422399cffa9b3ce3d159cd2d8a38c8ddf3a2e",
+    "tests/test_reference_channels_v20.py": "808ce62a1cc02ec4e8eb78e2f4b74afdd61ce06378e22b6b9068addc8772c8ad",
+    "scripts/reference_groupcv_v8.py": "c4a2857f5f1935e5996ea7d224eacee9af3c34cc95ce90d2437f789ec75b85bd",
+    "scripts/reference_condition_diagnostics_v12.py": "409f8a48ec43604ee553ef1e69e3b12a026a7259028159902723de18cfb0846f",
+    "docs/analysis/results/control_windows_v2/manifest.json": "84cac37ebf73f47802a4b5d3afff48d97554ac3aedfdd1cb6fb9ec5d618b919f",
+    "docs/analysis/results/reference_dynamics_data_v1/training_contract/manifest.json": "3c046faa6ad492f6654a19b00090bc2fb84c57d3fcd868456cc79f30e6399b0d",
+    "docs/analysis/results/control_windows_v8/delivery_manifest.json": "bf358676286f34af65bc140435eea00a978ebf7c3f1e018cb2eff9e349483ad6",
+    "docs/analysis/results/control_windows_v18/delivery_manifest.json": "55624da0f83391488a69ab97737d2ada1acdea859a0ade457e0f643dca29c2a5",
+    "docs/analysis/results/control_windows_v19/delivery_manifest.json": "e15e107bd29e3f4c9ea753154b7bf28a87640bf694b09e19a9d93db3e056ad07"
+  },
+  "phase_contract": {
+    "definition": "logged wing_phase zero; Hall consistency is checked separately",
+    "installation_consistency": "not_confirmed",
+    "status": "unconfirmed_physical_pose"
+  },
+  "frequency_contract": {
+    "column": "flap_frequency_hz",
+    "ratio": 7.909090995788574,
+    "rescaling": "none; September logged ratio, not April ratio8"
+  },
+  "scope": "Same407 originaltrain parents,5folds x3seeds paired frozenv8/v18,fit+OOF; no training/selection, development or sealed/reserved.",
+  "masks": {
+    "factual": 31,
+    "held": 0,
+    "only_roll": 1,
+    "only_pitch": 2,
+    "only_yaw_rate": 4,
+    "only_thrust": 8,
+    "only_manual_yaw": 16,
+    "hold_roll": 30,
+    "hold_pitch": 29,
+    "hold_yaw_rate": 27,
+    "hold_thrust": 23,
+    "hold_manual_yaw": 15
+  },
+  "channels": [
+    "roll",
+    "pitch",
+    "yaw_rate",
+    "thrust",
+    "manual_yaw"
+  ],
+  "blocks": {
+    "early100ms": [
+      0,
+      5
+    ],
+    "middle120_500ms": [
+      5,
+      25
+    ],
+    "late520_1000ms": [
+      25,
+      50
+    ],
+    "full1s": [
+      0,
+      50
+    ]
+  },
+  "interventions": "Factual/allheld,5 only-channel-changing,5 hold-one-channel. Always firstfuturevalue forheld; observedhistories unchanged. Deduplicate identical fullreference tapes. Synthetic reference combinations are diagnostic only, no real counterfactual truth.",
+  "metrics": "qresponse RMS vs allheld and vs factual; factual-label meanerror and RMSE only descriptive under artificialinputs, not predictive utility certification. Sum(only_j-held) versus factual-held residual measures nonadditivity, no additive channel attribution assumed.",
+  "features": "20 plannedreference summaries:initial,range,stepRMS,netchange each5channels;12 history features: v12 qcovariates8 plus qmean,pmean,pstd,rstd. No future measuredstates, commands or predictionerrors.",
+  "support": "Fit-flight-equal mean/std floor1e-4; nearestfit RMS standardized featuredistance for reference20/history12/joint32. Threshold=flightweighted95percentile of fit distances to nearest OTHER-flight fitwindow. Scaling fittedonall4fitflights, therefore descriptive supportnot formal conformal or independent probability. OOF distances exclude entirequeryflight. Same originalfit calibration for artificialmask support. Featurewise fitmin/max andweighted1/99percent bounds also retained.",
+  "bias": "OOF withinflight Spearman of all32 predeclaredinput features vs factual full1s signedqmeanerror and its square, perarm/seed. Compare v18-v8 bias_square and signedbias. Report allfeatures incl undefinedconstant correlations; exploratoryposthoc associations not causal and no outcome-based windowremoval.",
+  "strata": "Reuse v19 plannedreference activitystrata exactly fororiginalwindows; masked cases keeporiginal labels, no outcome-based regrouping.",
+  "decision": "Keep existingfailed model gates. No coefficientsearch, new controller or data exclusion.",
+  "sealed_test_accessed": false
+}

@@ -1,0 +1,65 @@
+{
+  "stage": "v23 rate-reference conditional prediction",
+  "source_pins": {
+    "scripts/prepare_rate_reference_v23.py": "328f0315323aad61d86695905429a4f11bd6d44637abee1aafdea122b4388f3f",
+    "scripts/rate_reference_v23.py": "65877e520993bf9be15bf705e225a7c02104a1cb3072ff8bc36ed81c0da2dac0",
+    "scripts/train_rate_reference_v23.py": "7e0bd4b0a3c0623439c7c54ae558b27fcec203af2cf6bdf8d4121bbb42dde8c7",
+    "tests/test_rate_reference_v23.py": "72ada24bfad4115aaa6273014922ab4da768ab223a0ac6a8664294fb5149a2d1",
+    "docs/analysis/results/reference_dynamics_data_v1/training_contract/manifest.json": "3c046faa6ad492f6654a19b00090bc2fb84c57d3fcd868456cc79f30e6399b0d",
+    "docs/analysis/results/reference_dynamics_data_v1/training_ready/manifest.json": "76756f5966550062b164764f83875933947b91dcec5795e7a8278358825f0a1e",
+    "dataset/reference_dynamics_data_v1/manifest.json": "130ddb710a54125d481cad22db2cf9c9f081536202984b2c2e289cc78465519e",
+    "docs/analysis/results/control_windows_v2/manifest.json": "84cac37ebf73f47802a4b5d3afff48d97554ac3aedfdd1cb6fb9ec5d618b919f",
+    "docs/analysis/results/control_windows_v2/windows_v2.csv": "ae91b646fb0b35c9bc1a8c8e67b7e2277b11066e13676907154fdee95e340516",
+    "docs/analysis/results/control_windows_v22/delivery_manifest.json": "7855eac9ff935eabc64d1101336313f79b2721eb169e64d8648b3330fde2780f",
+    "docs/analysis/results/control_windows_v8/delivery_manifest.json": "bf358676286f34af65bc140435eea00a978ebf7c3f1e018cb2eff9e349483ad6",
+    "scripts/train_control_windows_v2.py": "5dcfdb408981224786abdc01ada52ef90a357260035ea1f249624704b0152865",
+    "src/system_identification/data/reference_windows.py": "064945839984cae347a54cb681daf24b4dbfd67574d5adfb3f88a5be9d50ba44",
+    "src/system_identification/models/reference_gru.py": "aa214b4e88d19cd585f6f2ec0afdf26583e9231f115603ae43bd7740324a4451",
+    "src/system_identification/models/reference_gru_unit_gravity.py": "0b80d78ef64f54840756f969c338c906224a44b8da32e5b067f522fd2758d213",
+    "src/system_identification/models/reference_gru_phase_schedule.py": "e1713d1ad43bcbc58caf0c1d0644a967a53c04494989697a654fd7001bf6850e"
+  },
+  "data": "407 original train parents, same H26 K50 50Hz, no new split or exclusion; development/sealed/reserved unused",
+  "reference_fields": [
+    "roll",
+    "pitch",
+    "yaw",
+    "thrust_body[0]",
+    "reset_integral"
+  ],
+  "units": [
+    "rad/s",
+    "rad/s",
+    "rad/s",
+    "normalized thrust demand, not newtons",
+    "boolean reset command"
+  ],
+  "subsystem": "fixed PX4 body rate loop, allocation, actuators and aircraft; excludes attitude loop; same non-VTOL mode3/15 cruise context",
+  "timing": "causal latest eligible rate message; history origin-25..origin, future origin..origin+49, targets origin+1..origin+50; actuator history origin-26..origin-1",
+  "reset": "Retain reset_integral as fifth reference channel, binary mean0 scale1. Cruise materialization requires zero reset throughout original support; fail rather than remove windows.",
+  "semantics": "Future logged rate/thrust references are feedback-generated conditional inputs, NOT exogenous attitude plans or evidence of new control performance.",
+  "architecture": "unchanged ReferenceGRUPhaseSchedule with unit gravity, no phase schedule; 40070 parameters; five slots now rate3/thrust/reset instead of attitude2/yaw_move/thrust/manual_yaw",
+  "optimizer": "AdamW lr3e-4 wd1e-4 clip1; original full1s loss; no q auxiliary loss",
+  "steps": 1600,
+  "batch": 32,
+  "seeds": [
+    17,
+    23,
+    42
+  ],
+  "folds": 5,
+  "pairing": "same v8 fold train/query, all initial trainable parameters, exact stored 1600x32 sample draws; copy non-reference normalization, refit rate normalization on unique fit rows only",
+  "comparison": "Reuse verified v8 hold baseline; same targets but different information boundary. No full-data refit or controller promotion in this stage.",
+  "evaluation": "fit and OOF p/q/r full1s waveform, velocity/attitude; 20ms,.1s,.5s,1s endpoints and original absolute0.5s bounds. Reference-hold removes future changes of rate3/thrust, preserves reset, diagnostic only.",
+  "descriptive_gate": "q full1s mean flight/seed RMSE improves >=5%, all seeds positive and >=4/5 flight positive; p/r full1s and velocity/attitude .5/1s <=5% regression for each seed; report original0.5s p/q<=.15rad/s attitude<=3deg velocity<=.5m/s. No causal/control promotion regardless of outcome.",
+  "phase_contract": {
+    "definition": "logged wing_phase zero; Hall consistency is checked separately",
+    "installation_consistency": "not_confirmed",
+    "status": "unconfirmed_physical_pose"
+  },
+  "frequency_contract": {
+    "column": "flap_frequency_hz",
+    "ratio": 7.909090995788574,
+    "rescaling": "none; September logged ratio, not April ratio8"
+  },
+  "sealed_test_accessed": false
+}

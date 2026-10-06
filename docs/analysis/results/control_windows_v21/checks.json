@@ -1,0 +1,10 @@
+{
+  "window_identity_matches_v2": true,
+  "manifest_chain_and_source_hashes": true,
+  "source_snapshots_verified": true,
+  "grid_points_verified": 77,
+  "exact_sample_pairs_verified": 300,
+  "cache_max_abs_error": 0.0,
+  "focused_tests_passed": 3,
+  "sealed_test_accessed": false
+}

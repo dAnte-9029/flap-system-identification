@@ -1,0 +1,15 @@
+{
+  "script_sha256": "8fb61d95c24608244041f46a39fa00d040eee6b9db6a762c4347dc02478d12c7",
+  "gate_sha256": "f978ca4e039ce36abbad654198e51c225e1eab6e5af083123890d6e24a5f87d9",
+  "arms": [
+    "raw100",
+    "aa50"
+  ],
+  "seeds": [
+    17,
+    23,
+    42
+  ],
+  "workers": 2,
+  "sealed_test_accessed": false
+}

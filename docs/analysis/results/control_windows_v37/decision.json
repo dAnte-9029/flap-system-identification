@@ -1,0 +1,17 @@
+{
+  "status": "replay_entry_audit_complete",
+  "exact_closed_loop_entry_ready": false,
+  "approximate_closed_loop_started": false,
+  "partial_origin_snapshots": 407,
+  "controller_adapter_compatible": false,
+  "missing_signed_hpf": true,
+  "missing_previous_compression_input": true,
+  "native_vs_model_clock_mismatch": true,
+  "next_stage": "Implement c9af source-parity controller adapter, then logged-state controller-only replay and explicit initialization/clock sensitivity; no learned-model closed loop yet.",
+  "no_new_flight_requirement_inferred": true,
+  "model_promoted": false,
+  "baseline_retained": "A1600",
+  "validation_accessed": false,
+  "sealed_test_accessed": false,
+  "reserved_accessed": false
+}

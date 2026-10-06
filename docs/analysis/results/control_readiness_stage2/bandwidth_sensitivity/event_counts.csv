@@ -1,0 +1,9 @@
+partition,channel,accepted,logs
+train,symmetric_tail,2,2
+train,differential_tail,4,2
+train,motor,3,3
+train,rudder,1,1
+validation,symmetric_tail,11,6
+validation,differential_tail,5,3
+validation,motor,10,6
+validation,rudder,4,3

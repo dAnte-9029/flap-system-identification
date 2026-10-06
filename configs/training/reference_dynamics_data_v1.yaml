@@ -1,0 +1,44 @@
+schema_version: reference_dynamics_training_preparation_v1
+status: prepared_not_trained
+dataset_manifest: docs/analysis/results/reference_dynamics_data_v1/training_contract/manifest.json
+partition_source: original_whole_flight_train_validation
+sealed_test_access: false
+sampling:
+  dt_s: 0.02
+  history_steps: 26
+  forecast_steps: 50
+  origin_stride_steps: 10
+  overlapping_windows_are_independent_trials: false
+inputs:
+  history_state: [body_vx, body_vy, body_vz, p, q, r, gravity_bx, gravity_by, gravity_bz, relative_phase_sin, relative_phase_cos, flap_frequency_hz, airspeed_if_valid, airspeed_valid]
+  history_reference: [roll_reference_rad, pitch_reference_rad, logged_yaw_sp_move_rate, thrust_body_x, manual_yaw_normalized]
+  history_actuator: [motor, servo0, servo1, servo2]
+  actuator_history_ends: strictly_before_origin
+  future_known_reference: [roll_reference_rad, pitch_reference_rad, logged_yaw_sp_move_rate, thrust_body_x, manual_yaw_normalized]
+  current_context: [mission, stabilized]
+  initial_state: [quaternion_wxyz_body_to_ned, velocity_ned, rates_body_frd]
+  forbidden_future: [measured_state, actual_actuator_commands, measured_airspeed, measured_phase, feedback_controller_state]
+labels: [quaternion_wxyz_body_to_ned, velocity_ned, rates_body_frd]
+normalization:
+  full_fit: dataset/reference_dynamics_data_v1/contract/normalization.npz
+  fitted_on: train_only_unique_rows
+  cross_validation: refit_within_each_train_flight_fold
+evaluation:
+  horizons_steps: [5, 10, 25, 50]
+  aggregate: equal_flight_then_report_mode_and_reference_activity_strata
+  report: [velocity_error, attitude_geodesic_error, per_axis_rate_error, response_timing, input_support, saturation_tag]
+  modes: [mission_only, stabilized_only, pooled_with_current_mode_context]
+  no_performance_based_window_selection: true
+  use_validation_for_response_calibration: false
+proposed_first_comparisons:
+  - current_state_or_rate_hold
+  - train_only_regularized_local_reference_response
+  - causal_history_encoder_with_reference_driven_rollout
+control_gate:
+  prediction_success_is_control_validation: false
+  future_logged_mission_reference_is_closed_loop_replanning: false
+  required_followup: [held_flight_response_consistency, counterfactual_support, controller_model_exploitation_audit]
+execution:
+  formal_training_started: false
+  interpreter: /home/zn/anaconda3/envs/flap-train-gpu/bin/python
+  dependencies_changed: false

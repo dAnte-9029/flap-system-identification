@@ -1,0 +1,51 @@
+{
+  "arms": [
+    "A",
+    "B",
+    "C",
+    "D"
+  ],
+  "seeds": [
+    17,
+    23,
+    42
+  ],
+  "updates": 800,
+  "architecture": "ReferenceGRU64; causal observed history + planned references; held current frequency/airspeed",
+  "batch_size": 32,
+  "learning_rate": 0.0003,
+  "optimizer": "AdamW",
+  "weight_decay": 0.0001,
+  "gradient_norm_clip": 1.0,
+  "checkpoint": "final fixed update; no validation selection",
+  "loss": "mean(rate_error/rate_scale)^2 + mean(velocity_error/velocity_scale)^2 + 0.2*mean(4*(1-dot(q,qtruth)^2)/0.01)",
+  "cpu_threads": 1,
+  "device": "cpu",
+  "deterministic_algorithms": true,
+  "normalization": "shared A-train unique rows; frozen dataset normalization.npz",
+  "evaluation": "739 common validation windows from 9 whole flights; previously seen development validation, not blind test",
+  "horizons_steps": [
+    5,
+    10,
+    25,
+    50
+  ],
+  "primary_horizons_steps": [
+    5,
+    10,
+    25
+  ],
+  "primary_metric": "flight-equal RMSE, equal mean over roll-active p and pitch-active q and 0.1/0.2/0.5s; active if future reference range >=1degree",
+  "G1": "C/D improve >=5% vs BOTH A/B; >=2/3 paired seeds improve vs both; flight-bootstrap95% improvement CI >0 vs both; full short-horizon velocity/attitude/p/q/r <=3% degradation vs A; Q2/Q3 <=5%",
+  "G2": "complete input-event context response: amplitude/increment >=10% better vs A/B; median timing <=max(40ms,2*source input interval); coverage gates per sign10clusters/3flights",
+  "G3": "only after G1 and G2; otherwise do not run model-based reference optimizer",
+  "bootstrap": "2000 paired resamples of whole validation flights, seed1309; seeds averaged, not counted as flights",
+  "weak_contrast": "C395/A407; B and C share384 windows; do not tune selection after outcomes",
+  "manual_yaw": "insufficient independent events; no control-response pass claim",
+  "yaw_sp_move_rate": "constant zero; unidentified nonzero effect",
+  "data_manifest_sha256": "84cac37ebf73f47802a4b5d3afff48d97554ac3aedfdd1cb6fb9ec5d618b919f",
+  "script_sha256": "5dcfdb408981224786abdc01ada52ef90a357260035ea1f249624704b0152865",
+  "model_sha256": "aa214b4e88d19cd585f6f2ec0afdf26583e9231f115603ae43bd7740324a4451",
+  "sealed_test_accessed": false,
+  "torch_version": "2.7.0+cu128"
+}

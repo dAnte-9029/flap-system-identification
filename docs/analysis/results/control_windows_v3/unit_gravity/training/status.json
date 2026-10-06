@@ -1,0 +1,155 @@
+{
+  "status": "complete",
+  "completed": [
+    {
+      "arm": "A",
+      "seed": 17,
+      "steps": 800,
+      "elapsed_s": 53.16715123131871,
+      "checkpoint": "artifacts/control_windows_v3_unit_gravity/A_17/final.pt",
+      "checkpoint_sha256": "1f53adbd35e803ceb0d15a3636dec6245b0571f85c1833976000b44f3a47674f",
+      "predictions_sha256": "1c1efee204aca7ae2de8163f21bd8aa33d2100741af610c61dcf9fed4e881476",
+      "feature_contract": "unit_gravity_v1"
+    },
+    {
+      "arm": "A_long",
+      "seed": 17,
+      "steps": 1600,
+      "elapsed_s": 102.04709035623819,
+      "checkpoint": "artifacts/control_windows_v3_unit_gravity/A_long_17/final.pt",
+      "checkpoint_sha256": "95868b44ecb025b1995710771a7a700e6a11beda52e2c2918b367c3a30c54626",
+      "predictions_sha256": "1e2717150c9c791e0e0585c6530959e013b0d1f33d706ac50015f1b155ad13fc",
+      "feature_contract": "unit_gravity_v1"
+    },
+    {
+      "arm": "A",
+      "seed": 23,
+      "steps": 800,
+      "elapsed_s": 48.794739816337824,
+      "checkpoint": "artifacts/control_windows_v3_unit_gravity/A_23/final.pt",
+      "checkpoint_sha256": "06c3bb4d603ec778b49c2f1e17fceae636bebba123597254ef5ce90de45b5e37",
+      "predictions_sha256": "aedf5467625bbf8d6329debc8a1b081bf839ebbbe76b700ea88212bea5060258",
+      "feature_contract": "unit_gravity_v1"
+    },
+    {
+      "arm": "A_long",
+      "seed": 23,
+      "steps": 1600,
+      "elapsed_s": 97.3826042432338,
+      "checkpoint": "artifacts/control_windows_v3_unit_gravity/A_long_23/final.pt",
+      "checkpoint_sha256": "ff20e0c44f1908bd9bfd9f309ce1b569916e9bc3f8aab9ed0662639b15421741",
+      "predictions_sha256": "6ff24dce682781dd679eedcc320f17632e212f64a0941a48a76d23273a007ef1",
+      "feature_contract": "unit_gravity_v1"
+    },
+    {
+      "arm": "A",
+      "seed": 42,
+      "steps": 800,
+      "elapsed_s": 48.772762157954276,
+      "checkpoint": "artifacts/control_windows_v3_unit_gravity/A_42/final.pt",
+      "checkpoint_sha256": "e7d26d0c57c92164fd48549170fe8abeaf72a8cdea2f2262bbb471134b5d1dd2",
+      "predictions_sha256": "712f392e82483886e577684b2d80c1b2e84a6333620d1561579323b06c29042e",
+      "feature_contract": "unit_gravity_v1"
+    },
+    {
+      "arm": "A_long",
+      "seed": 42,
+      "steps": 1600,
+      "elapsed_s": 97.73320703953505,
+      "checkpoint": "artifacts/control_windows_v3_unit_gravity/A_long_42/final.pt",
+      "checkpoint_sha256": "a0fdef20541ec19d51cb1e47dabe69c7f69c001dac4c610e7a413aca3b12cec9",
+      "predictions_sha256": "42f42681db00b1277b2373e920c6e7a9ad7454c707a8cff56b3755a826ca7419",
+      "feature_contract": "unit_gravity_v1"
+    },
+    {
+      "arm": "B",
+      "seed": 17,
+      "steps": 800,
+      "elapsed_s": 50.606574254110456,
+      "checkpoint": "artifacts/control_windows_v3_unit_gravity/B_17/final.pt",
+      "checkpoint_sha256": "fca75768140f7268e3f23084786136af60ab04429560a09b6a5c7c4a95403440",
+      "predictions_sha256": "8f6adadd4d0adeb6a5111fbbec1052e6efa9ec80dba268048589b1b63e9ca5e4",
+      "feature_contract": "unit_gravity_v1"
+    },
+    {
+      "arm": "B",
+      "seed": 23,
+      "steps": 800,
+      "elapsed_s": 54.02710437215865,
+      "checkpoint": "artifacts/control_windows_v3_unit_gravity/B_23/final.pt",
+      "checkpoint_sha256": "d6a75163d7bd759f569ea2455152ce9dfdbdcf4ed1d3c9e52ac3f5b11a6dffa5",
+      "predictions_sha256": "9fa3dbe44b50c756d26fbc26c85e0bfbd982d399e3b277a1ea94d4891430d9a5",
+      "feature_contract": "unit_gravity_v1"
+    },
+    {
+      "arm": "B",
+      "seed": 42,
+      "steps": 800,
+      "elapsed_s": 53.58256388269365,
+      "checkpoint": "artifacts/control_windows_v3_unit_gravity/B_42/final.pt",
+      "checkpoint_sha256": "72b9c8fb96c55657c183f6f8640a449afffc976e4ff09ced3dff13a21e3a5caa",
+      "predictions_sha256": "e1983e99e9ee6edfa6d91da1d79cdc4f4c7b62bf29afc7d1ff0cc5e6046ecfb5",
+      "feature_contract": "unit_gravity_v1"
+    },
+    {
+      "arm": "C",
+      "seed": 17,
+      "steps": 800,
+      "elapsed_s": 53.1656599547714,
+      "checkpoint": "artifacts/control_windows_v3_unit_gravity/C_17/final.pt",
+      "checkpoint_sha256": "72db83d7aa3860343a8fb329be8592a7485438ecea4d4c93dd6d665465cea6ae",
+      "predictions_sha256": "a82a8a1010edcbf4babc9cb68419b91e005b96d9f99b32d92a9c8f8aa415deb1",
+      "feature_contract": "unit_gravity_v1"
+    },
+    {
+      "arm": "C",
+      "seed": 23,
+      "steps": 800,
+      "elapsed_s": 54.40314671397209,
+      "checkpoint": "artifacts/control_windows_v3_unit_gravity/C_23/final.pt",
+      "checkpoint_sha256": "ff31f3e707e64211e809074b2266c37572ebf3a8cfdce1c37c6d83a09c2f28c0",
+      "predictions_sha256": "9657c215c7f1595dd823ea3089657375ae27e76776847e1bdafe33db9bda536f",
+      "feature_contract": "unit_gravity_v1"
+    },
+    {
+      "arm": "C",
+      "seed": 42,
+      "steps": 800,
+      "elapsed_s": 49.84006632771343,
+      "checkpoint": "artifacts/control_windows_v3_unit_gravity/C_42/final.pt",
+      "checkpoint_sha256": "a9744aec93a9b318978b8e935e538fdee236e40dfc9e4c8ef9c3eeea20706e2a",
+      "predictions_sha256": "e6eb277a0c0acb270ecd02582dafa7778016aa2737318a9691f7f4e758c0d758",
+      "feature_contract": "unit_gravity_v1"
+    },
+    {
+      "arm": "D",
+      "seed": 17,
+      "steps": 800,
+      "elapsed_s": 49.98481151089072,
+      "checkpoint": "artifacts/control_windows_v3_unit_gravity/D_17/final.pt",
+      "checkpoint_sha256": "4283748c465ab6f002e1a6ac6cee98982e32fbb58ca9aa3a83f3963986b7d73a",
+      "predictions_sha256": "dfb9a0efa8ccfcac6859a7e3be770bf504c0a1c9d2ceb5a06f11ef17554730fa",
+      "feature_contract": "unit_gravity_v1"
+    },
+    {
+      "arm": "D",
+      "seed": 23,
+      "steps": 800,
+      "elapsed_s": 50.18399927671999,
+      "checkpoint": "artifacts/control_windows_v3_unit_gravity/D_23/final.pt",
+      "checkpoint_sha256": "1817b88b8a5256fd77f64750803b64eb4e9d6e46bb8a8785db806feb4e49b6bf",
+      "predictions_sha256": "3714a2dbf89e7670c690da7aac4626065e4c85c3b99c8b1bc63146d26d8f8b08",
+      "feature_contract": "unit_gravity_v1"
+    },
+    {
+      "arm": "D",
+      "seed": 42,
+      "steps": 800,
+      "elapsed_s": 50.625312441028655,
+      "checkpoint": "artifacts/control_windows_v3_unit_gravity/D_42/final.pt",
+      "checkpoint_sha256": "d6789b0b14ce4579318e128a5d423f308936617f1c71b0011ea00aa6c29fad07",
+      "predictions_sha256": "258be7b4b89751d83f4e42308b4c2b6b0d8ecedd773d0ec6a3b63cfab143ca6f",
+      "feature_contract": "unit_gravity_v1"
+    }
+  ]
+}

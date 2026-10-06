@@ -1,0 +1,34 @@
+{
+  "cutoff_hz": 2.0,
+  "time_constant_s": 0.07957747154594767,
+  "causal": true,
+  "scope": "exploratory sensitivity after raw validation inspected; not primary selection or acceptance",
+  "warmup_history_s": 0.5,
+  "raw_response_preserved": true,
+  "envelope": {
+    "speed": [
+      5.027819670958266,
+      8.990834357162807
+    ],
+    "pitch_deg": [
+      9.024813020576596,
+      26.27603146112895
+    ],
+    "frequency": [
+      3.009501814842224,
+      4.262452840805054
+    ]
+  },
+  "excitation": {
+    "symmetric_tail": 0.018085253016935785,
+    "differential_tail": 0.07549679080616634,
+    "motor": 0.012745849835497092,
+    "rudder": 0.01532463932349687
+  },
+  "interference": {
+    "symmetric_tail": 0.028642046000460993,
+    "differential_tail": 0.11398967103271687,
+    "motor": 0.01,
+    "rudder": 0.022030547786825116
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "windows": 407,
+  "flights": 5,
+  "all_original_parents_retained": true,
+  "nonoverlap_verified": true,
+  "source_hashes_and_semantics_verified": true,
+  "cache_value_and_age_verified_points": 31339,
+  "validation_accessed": false,
+  "sealed_test_accessed": false,
+  "focused_tests_passed": 6,
+  "independent_csv_cache_reconstruction": true,
+  "summary_group_counts_verified": true,
+  "rc_pair_counts_verified": true,
+  "v21_window391_reproduced": true,
+  "source_and_protocol_pins_reverified": true
+}

@@ -1,0 +1,21 @@
+{
+  "status": "complete",
+  "pins": {
+    "dataset/control_windows_v5/windows_100hz.npz": "6b0f312930aa8ab9265eba2184e9d1b2436644a1802aee84bb0a8fb2913c9d43",
+    "dataset/control_windows_v5/antialiased_50hz_labels.npz": "b0aa65310abee5d3e86590f2ad71639c7f230ece4a7fa3982af684bcfbde7a3b",
+    "docs/analysis/results/control_windows_v5/windows.csv": "69fb4c8a348a5f8b0149534cf3cb13745f3a3939bac759a57c622df8fe242c31",
+    "dataset/control_windows_v2/normalization.npz": "fa877a62c3b84828ea3d6afc05b89b6cd5e1e66583e433308fa5cce9e40edd2a"
+  },
+  "protocol_sha256": "30dd7e3f9710adc535590652e5b4792c8a68d304c246519ea36bf0906890fa9f",
+  "source_contract_sha256": "3c046faa6ad492f6654a19b00090bc2fb84c57d3fcd868456cc79f30e6399b0d",
+  "phase_contract": "September logged wing_phase physical zero unconfirmed; original50Hz phase samples held; currentfrequencyheld for prediction",
+  "frequency_ratio": 7.909090995788574,
+  "partitions": [
+    "train",
+    "validation"
+  ],
+  "windows": 1146,
+  "same_original_support": true,
+  "note": "aa50 labels are delayed rate observations, not physical rates for direct attitude integration; model inputs retain raw100 history and known filter state",
+  "sealed_test_accessed": false
+}

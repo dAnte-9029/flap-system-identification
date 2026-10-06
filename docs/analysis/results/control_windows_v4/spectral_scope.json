@@ -1,0 +1,13 @@
+{
+  "script_sha256": "e8ddbed755c57faf8da3edc54662959f15c64d6fbc170cf11b1ead53f020be28",
+  "model_sha256": "95868b44ecb025b1995710771a7a700e6a11beda52e2c2918b367c3a30c54626",
+  "band_edges_hz": [
+    0,
+    2,
+    8,
+    25
+  ],
+  "resolution_hz": 1,
+  "scope": "descriptive centered1s energy, not transfer function or proof of periodic origin",
+  "waveform": "0.5/1s local initialization; all windows retained, measurability only tags timing diagnostics; peak-time difference not actuator delay"
+}

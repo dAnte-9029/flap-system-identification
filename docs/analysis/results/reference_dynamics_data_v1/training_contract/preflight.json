@@ -1,0 +1,13 @@
+{
+  "status": "passed",
+  "windows_checked": 10606,
+  "caches_checked": 14,
+  "normalization_recomputed_train_only": true,
+  "future_measurement_poisoning_passed": true,
+  "split_overlap": false,
+  "sealed_test_accessed": false,
+  "loader_sha256": "064945839984cae347a54cb681daf24b4dbfd67574d5adfb3f88a5be9d50ba44",
+  "verifier_sha256": "7b52ca4c8350bfd0c3cedaf8de277b97dfaedc9899b67094c17f3115a989eb26",
+  "manifest_sha256": "3c046faa6ad492f6654a19b00090bc2fb84c57d3fcd868456cc79f30e6399b0d",
+  "training_started": false
+}

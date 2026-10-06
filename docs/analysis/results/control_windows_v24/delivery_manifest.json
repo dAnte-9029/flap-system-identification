@@ -1,0 +1,39 @@
+{
+  "stage": "v24",
+  "artifacts": {
+    "checks.json": "2ef3aa111d996d12d0d8db0b2fcd8ac51042a95ff51d1167ff113d9b8860c513",
+    "dataset_manifest.json": "869173d1464aaeead8e90545e56bdd9cd84966a1c126e3a1ef9a31971ee233e1",
+    "decision.json": "ef9ed8cad6a5a4d586c84ad4c2c3b93c14342bd00dd89f0c18dffd06699854c9",
+    "fold0/controller_normalization.npz": "b5a59f2a5e49f250ae065cc6994d2216806c4e18ebeab12ec5fd0bed1561d9ba",
+    "fold0/manifest.json": "62ab7f30815562cb3362c47b079a9a0ddce4543d363a608ed3d8815583e32d29",
+    "fold1/controller_normalization.npz": "8c0c717517ca384a96412a155bc320b94be6bcaff8bc9b92d32d1481d259d60b",
+    "fold1/manifest.json": "7f010aa40ab2d5abe5c4c4315a423ba4ded9da14f9cd385735609f5518877840",
+    "fold2/controller_normalization.npz": "1cd127a6171e658e66488f70f69ac406b2ac171dd1d880c304bffd1cbc2d45c6",
+    "fold2/manifest.json": "c96c4fd4bdd099abf722186a18893ffb91cd5e42c591e0ee711b308433d4ec9e",
+    "fold3/controller_normalization.npz": "9877d62693e76f03e3f9d7bfc175c40d55a4e60d3fd27a412a821516f4433c5a",
+    "fold3/manifest.json": "b1d20311cfdcfd6928605d91ab2ba7ca9f2cdac0a8a8c75c46b7fe4e6b2bb84c",
+    "fold4/controller_normalization.npz": "f22744621140e0375ccd5fdb9884382a11c65761952c4de5ebfe4bceb77863b5",
+    "fold4/manifest.json": "999fb61c999d84949bb81078876a1d3dec3744f686829d3d643b6e3ae0cac213",
+    "history_controller.npz": "5458d4c3589444a512054ad6ca3700536d27f33aa7476793f17ccb59367e0537",
+    "history_points.csv": "c872d96432345b3210f400cfc533571a19785cc1c71bb418cfc4a1d07fe50b03",
+    "integral_timing_pairs.csv": "1ad566350a4cb9ba89ae28ff9c7ec2cccf06da02106418c92e9980e6cd87a13d",
+    "per_flight.csv": "4e50a64588b9652a1a0651ff29f3a631c2ed5c7b7d2fbb9f2f8d2e3af3304fd9",
+    "protocol.json": "4d09664c18dceb6771ffee2c854e8748af5323de02201661ab935bd74bfa79b9",
+    "report_zh.md": "9300326f1645a79862df2cc6869389d9404d85576f11fd2ad28b8d4b369ab1df",
+    "scaling_diagnostic.csv": "17c9968231cecc6a5429040f585fa998a7f809fa2d8b8cc0dbca378d6cfad3c1",
+    "source/AlphaFilter.hpp": "f5397a18862e2e7fa21aa8dcb589c0737005d6b2d34f53c96d3059692c0bf2d8",
+    "source/FixedwingRateControl.cpp": "f629723bb627cd166c9fd0f7d13d7b57c34e902abf4ada7dd82d4d7f60071e75",
+    "source/FixedwingRateControl.hpp": "b5cef2003af3e5cf81fc28d4532a7893df66f408600bbf67f158d37ea97f0873",
+    "source/gain_compression.cpp": "e7c7b4325f8d6fa5824a19f4e96dd311cffe6e8b9d463a9ef8aaf2b8da1994b0",
+    "source/rate_control.cpp": "6889ca65e148ffbdc1da24db60204515fcf26ba97717d3e51c877a1c2792ec78",
+    "source_provenance.json": "1cb60fc22d7185feb714924f95be4981a7c98e76bf13bd98f88ba030f9b53b6c",
+    "training_protocol.json": "473fe3220f51e2593ed0162c30c420481bbc18e43a6ee6f0a810f329cc91cffa"
+  },
+  "code": {
+    "scripts/controller_history_v24.py": "0b8db68bbdea235121ec4dab2b827d688ca335eb6bd2539ae2e2a3b66b1197d3",
+    "scripts/audit_controller_history_v24.py": "40707accbe3c2859a53f38df1519581cee59916bdbea4b88533561b47985d73a",
+    "tests/test_controller_history_v24.py": "390d033fd6d5caf2e700340c4af0f8af38202f604b0d2aae2068d151cfd6b87a"
+  },
+  "training_started": false,
+  "sealed_test_accessed": false
+}

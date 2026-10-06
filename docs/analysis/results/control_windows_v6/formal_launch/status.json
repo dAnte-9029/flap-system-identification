@@ -1,0 +1,36 @@
+{
+  "status": "complete",
+  "completed": [
+    {
+      "arm": "integrated",
+      "seed": 42,
+      "exit_code": 0
+    },
+    {
+      "arm": "direct",
+      "seed": 42,
+      "exit_code": 0
+    },
+    {
+      "arm": "integrated",
+      "seed": 17,
+      "exit_code": 0
+    },
+    {
+      "arm": "integrated",
+      "seed": 23,
+      "exit_code": 0
+    },
+    {
+      "arm": "direct",
+      "seed": 23,
+      "exit_code": 0
+    },
+    {
+      "arm": "direct",
+      "seed": 17,
+      "exit_code": 0
+    }
+  ],
+  "failures": []
+}

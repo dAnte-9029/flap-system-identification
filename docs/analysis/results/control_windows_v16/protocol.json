@@ -1,0 +1,36 @@
+{
+  "stage": "v16 original-origin 20ms increments",
+  "source_pins": {
+    "scripts/run_reference_increment_v16.py": "11dc2a7b9d52a2646b280739a69686328b27dec78face91d0f7b13d824392a7a",
+    "scripts/reference_increment_v16.py": "db8333cf2e430497c0c5d1c334b07b5cda058547e2060ee0a714a299fae14a7b",
+    "tests/test_reference_increment_v16.py": "33bb693bfff09f06242f9820f50d8a58866161696e303f87e05a4fc9b4644f88",
+    "scripts/reference_groupcv_v8.py": "c4a2857f5f1935e5996ea7d224eacee9af3c34cc95ce90d2437f789ec75b85bd",
+    "scripts/reference_condition_diagnostics_v12.py": "409f8a48ec43604ee553ef1e69e3b12a026a7259028159902723de18cfb0846f",
+    "src/system_identification/models/reference_gru_unit_gravity.py": "0b80d78ef64f54840756f969c338c906224a44b8da32e5b067f522fd2758d213",
+    "src/system_identification/models/reference_gru_phase_schedule.py": "e1713d1ad43bcbc58caf0c1d0644a967a53c04494989697a654fd7001bf6850e",
+    "docs/analysis/results/control_windows_v2/manifest.json": "84cac37ebf73f47802a4b5d3afff48d97554ac3aedfdd1cb6fb9ec5d618b919f",
+    "docs/analysis/results/reference_dynamics_data_v1/training_contract/manifest.json": "3c046faa6ad492f6654a19b00090bc2fb84c57d3fcd868456cc79f30e6399b0d",
+    "docs/analysis/results/control_windows_v8/delivery_manifest.json": "bf358676286f34af65bc140435eea00a978ebf7c3f1e018cb2eff9e349483ad6",
+    "docs/analysis/results/control_windows_v12/delivery_manifest.json": "064ac0c8b9600d09a495b1ad3e43b40fb666f09979be73f86537a38b80282bbf",
+    "docs/analysis/results/control_windows_v15/delivery_manifest.json": "41273e9be395056651bbad8e7c23902d89901ee4d6f8b631d89bc7578f06184a"
+  },
+  "scope": "407 original train windows, 5 frozen v8 folds x seeds17/23/42 hold models, fit and OOF; no new selection, training, development or sealed/reserved evaluation",
+  "phase_contract": {
+    "definition": "logged wing_phase zero; Hall consistency is checked separately",
+    "installation_consistency": "not_confirmed",
+    "status": "unconfirmed_physical_pose"
+  },
+  "frequency_contract": {
+    "column": "flap_frequency_hz",
+    "ratio": 7.909090995788574,
+    "rescaling": "none; September logged ratio, not April ratio8"
+  },
+  "prediction": "Use original observed initial_rates_b; first-step truth/pred increment equals next rate minus this common origin. Replay all50 steps and capture pre-clamp head. Saved model/normalization unchanged.",
+  "limits": "Model raw head clamp +/-6 times scale20 rad/s2 times dt.02 = +/-2.4 rad/s perstep. Report firststep and full50step saturation separately; pointwise clipped-truth oracle lower bound on clamp-compatible increment RMSE, not an attainable predictor.",
+  "metrics": "Per-flight increment RMSE,bias,RMS,std,pred/truth ratios,Pearson,descriptive pred-on-truth slope,5/50/95%quantiles,zero-increment hold gain. Sign denominator abs(truth)>.01rad/s; nearzero predicted increments abs(pred)<=.01 count incorrect and reported separately. All other metrics retain every window.",
+  "history_spectrum": "Only original26 observed history p/q/r; remove sample mean then Hann, one-sided periodogram normalized by N*sum(Hann^2). >8Hz energy RMS/share; frequency spacing50/26=1.923Hz; Nyquist25Hz. Coarse cached-signal covariate, not noise attribution or original IMU spectrum. No future labels used for spectrum or strata.",
+  "strata": "Highfrequency RMS terciles per axis fit on 4 fit flights with equalflight empirical inverseCDF; OOF uses frozen cuts. Existing v12 q/historyfrequency strata shared across axes. No threshold tuning/selection by target error.",
+  "aggregation": "Within flight/model first; average repeated fit folds per sourceflight/seed, then equalflight/seed. Report individual flights and counts. Fit windows are in-sample and OOF is repeatedly explored train-flight holdout, not blind test.",
+  "decision": "Diagnostic only; no control gate or model promotion, no clamp relaxation. Inspect saturation, amplitude and correlation, history highfrequency/error association without claiming causal noise.",
+  "sealed_test_accessed": false
+}

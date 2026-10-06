@@ -1,0 +1,11 @@
+{
+  "log_count": 68,
+  "unique_logs": 66,
+  "full_topic_logs": 3,
+  "reserved_logs": 23,
+  "verified_dataset_artifacts": 26,
+  "target_matches": 26,
+  "structural_difference_rows": 0,
+  "parameter_changes": 0,
+  "test_opened": false
+}

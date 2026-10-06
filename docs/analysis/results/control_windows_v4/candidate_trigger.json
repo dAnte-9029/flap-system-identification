@@ -1,0 +1,5 @@
+{
+  "train_p_median_harmonic_fraction": 0.15378461320817904,
+  "trigger_passed": false,
+  "attribution": "in-sample descriptive phase projection, not causal explained variance or achievable forecast accuracy"
+}

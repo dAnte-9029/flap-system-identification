@@ -1,0 +1,44 @@
+{
+  "status": "complete",
+  "contexts": 19,
+  "flights": 5,
+  "waveform_rows": 342,
+  "measurable_fraction": 0.8421052631578947,
+  "G2_observational_thresholds_passed": false,
+  "axis_gates": {
+    "p": {
+      "amplitude_error_improvement": 0.025256449797453673,
+      "median_peak_time_error_s": 2.3000000000000003,
+      "timing_target_s": 0.04,
+      "measurable_coverage": {
+        "-1": {
+          "clusters": 13,
+          "flights": 4
+        },
+        "1": {
+          "clusters": 13,
+          "flights": 4
+        }
+      },
+      "passed": false
+    },
+    "q": {
+      "amplitude_error_improvement": 0.17549196330582906,
+      "median_peak_time_error_s": 1.24,
+      "timing_target_s": 0.04,
+      "measurable_coverage": {
+        "-1": {
+          "clusters": 12,
+          "flights": 4
+        },
+        "1": {
+          "clusters": 13,
+          "flights": 4
+        }
+      },
+      "passed": false
+    }
+  },
+  "scope": "mixed-reference natural-record waveform alignment, not isolated physical delay; full-context free-run beyond nominal1s must remain separate from nominal error",
+  "sealed_test_accessed": false
+}

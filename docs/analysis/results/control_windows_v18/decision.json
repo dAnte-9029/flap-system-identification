@@ -1,0 +1,68 @@
+{
+  "stage_complete": true,
+  "diagnostic": {
+    "fit": {
+      "primary_gain": 0.690650498789178,
+      "seed_gains": {
+        "17": 0.6760117966449717,
+        "23": 0.6831311663791473,
+        "42": 0.7121077942368355
+      },
+      "flight_gains": {
+        "2026.9.6/log_17_2026-9-6-18-34-06.ulg": 0.6418264768317441,
+        "2026.9.6/log_18_2026-9-6-18-46-20.ulg": 0.687301526023772,
+        "2026.9.6/log_19_2026-9-6-18-52-30.ulg": 0.6777400274477663,
+        "2026.9.6/log_20_2026-9-6-18-58-10.ulg": 0.7454274078754776,
+        "2026.9.6/log_28_2026-9-6-07-01-38.ulg": 0.6943738274904429
+      },
+      "positive_seeds": 3,
+      "positive_flights": 5,
+      "passes": true
+    },
+    "oof": {
+      "primary_gain": 0.3264210167580094,
+      "seed_gains": {
+        "17": 0.3242503437785419,
+        "23": 0.3259851682522593,
+        "42": 0.3289351239438204
+      },
+      "flight_gains": {
+        "2026.9.6/log_17_2026-9-6-18-34-06.ulg": 0.30968138946001567,
+        "2026.9.6/log_18_2026-9-6-18-46-20.ulg": 0.338477932425461,
+        "2026.9.6/log_19_2026-9-6-18-52-30.ulg": 0.3925357820062929,
+        "2026.9.6/log_20_2026-9-6-18-58-10.ulg": 0.41486057779428454,
+        "2026.9.6/log_28_2026-9-6-07-01-38.ulg": 0.17278896158154256
+      },
+      "positive_seeds": 3,
+      "positive_flights": 5,
+      "passes": true
+    }
+  },
+  "reference_protection_passes": false,
+  "rollout_protection_passes": false,
+  "failed_protection_checks": [
+    {
+      "seed": 23,
+      "kind": "prefix",
+      "horizon_s": 0.5,
+      "metric": "attitude",
+      "baseline": 0.06862791649606753,
+      "aux": 0.07268730414962632,
+      "gain": -0.05915067600502488
+    },
+    {
+      "seed": 23,
+      "kind": "prefix",
+      "horizon_s": 1.0,
+      "metric": "attitude",
+      "baseline": 0.10253146328781657,
+      "aux": 0.10860775523408543,
+      "gain": -0.05926270582145188
+    }
+  ],
+  "absolute_passes": false,
+  "model_promoted": false,
+  "control_validated": false,
+  "development_evaluated": false,
+  "sealed_test_accessed": false
+}

@@ -1,0 +1,55 @@
+{
+  "flights": [
+    {
+      "log_id": "2026.9.6/log_20_2026-9-6-18-58-10.ulg",
+      "path": "log_20_2026-9-6-18-58-10",
+      "windows": 64,
+      "artifacts": {
+        "conditions.npz": "bfd88c5a319147a48844ae59572375bb659c9e676c75752667bd111365086c5e",
+        "snapshots.json": "9e57ad46ef89a8ff988c59fdae1068d61f44115708819b6a7342dfcd52c5d900",
+        "provenance.json": "de086b0110a5e51c69d892d9548c21fe04dae70472a2dacfcc6a219771aa4648"
+      }
+    },
+    {
+      "log_id": "2026.9.6/log_17_2026-9-6-18-34-06.ulg",
+      "path": "log_17_2026-9-6-18-34-06",
+      "windows": 97,
+      "artifacts": {
+        "conditions.npz": "5cfc980cd8d3e6791d9fb3c024670f3ae79bd76296a78c792efa5245af99ea9c",
+        "snapshots.json": "13e90421c2444d8a45befe492dbd7ec4ff43152969210dfb4656272cd85e015e",
+        "provenance.json": "fd1329c036ad636c0fbabe3fdb20ff8ab190da9ccb0294a45dd91bec1b1c62dc"
+      }
+    },
+    {
+      "log_id": "2026.9.6/log_28_2026-9-6-07-01-38.ulg",
+      "path": "log_28_2026-9-6-07-01-38",
+      "windows": 81,
+      "artifacts": {
+        "conditions.npz": "9de0e359cfdc6e2544503e54c5bc3606be9a91fa318c3567c4ae51661105682a",
+        "snapshots.json": "657a05edb6fcb5144ecfa9f9d97e539b05be178fe2084ebe9284892bc0149671",
+        "provenance.json": "48fad076b5039d2f7830a2bd3982f61f0699e2b1041a540ed95c0badbca79d0f"
+      }
+    },
+    {
+      "log_id": "2026.9.6/log_19_2026-9-6-18-52-30.ulg",
+      "path": "log_19_2026-9-6-18-52-30",
+      "windows": 87,
+      "artifacts": {
+        "conditions.npz": "82b79036268fd25105032d3f5bd09c8c269f16a5af571f3e24ec5b4ff9d6b0d7",
+        "snapshots.json": "543d96759c6f0d0e36363a2ff1e93c94593fe4c38f3f2c38a0c0f61ee8450ced",
+        "provenance.json": "48c8df03d8ede6cd07d737d917e409728d09b1a84ac86e6f35034c49abfd02da"
+      }
+    },
+    {
+      "log_id": "2026.9.6/log_18_2026-9-6-18-46-20.ulg",
+      "path": "log_18_2026-9-6-18-46-20",
+      "windows": 78,
+      "artifacts": {
+        "conditions.npz": "47c8f5717c481ed444d50852461dc5e1335cdcc0a546bc7c60520c9c5bf9d225",
+        "snapshots.json": "59d6e40031c60e6895560e7f09e79766e2b933c2532d215aefe7681deee31ea8",
+        "provenance.json": "a611705d64842274b9505ad000b3a9080d39aeb663e8caea7d657fd9fe06b23e"
+      }
+    }
+  ],
+  "all407": true
+}

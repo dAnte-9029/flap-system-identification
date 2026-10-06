@@ -1,0 +1,42 @@
+{
+  "stage": "v11 planned-reference-prefix yaw cumulative mean",
+  "source_pins": {
+    "docs/analysis/results/control_windows_v8/delivery_manifest.json": "bf358676286f34af65bc140435eea00a978ebf7c3f1e018cb2eff9e349483ad6",
+    "docs/analysis/results/control_windows_v10/delivery_manifest.json": "9c7d8193c1ff8fcfe2853df17408b6a7fad72102e0f9c2c16ae3aa066b6e4da7",
+    "docs/analysis/results/control_windows_v2/manifest.json": "84cac37ebf73f47802a4b5d3afff48d97554ac3aedfdd1cb6fb9ec5d618b919f",
+    "docs/analysis/results/control_windows_v2/windows_v2.csv": "ae91b646fb0b35c9bc1a8c8e67b7e2277b11066e13676907154fdee95e340516",
+    "dataset/control_windows_v2/windows.npz": "5e2c0a77eb1a8a17a14fe27b3fec80811b501a89d5e99f1752a9ec52fae96b8b",
+    "dataset/control_windows_v2/normalization.npz": "fa877a62c3b84828ea3d6afc05b89b6cd5e1e66583e433308fa5cce9e40edd2a",
+    "scripts/run_reference_yaw_prefix_v11.py": "5c53ee5c5046d39723c6aac1ba8371007d9aa33543601cbd640f40bf854d1c27",
+    "scripts/reference_yaw_prefix_v11.py": "ca858b69876dff9f21678ba6d3469e3459edcb19bc538e8d78de57735917c3c3",
+    "scripts/evaluate_reference_yaw_prefix_v11.py": "8fe6c04573cc834ccd0f0c3346da07824757639a8d936da6af86da975e0a2d0f",
+    "src/system_identification/models/reference_gru_yaw_reference.py": "5a72cde0d87225bf33d3faca1d1e23eaf8acae38697bc727a6ebfe5a4b239829",
+    "tests/test_reference_yaw_prefix_v11.py": "7e1f5a0af6bc55fa93e4897c4dee083ec0e05b9c9bb95b688bf4942a259cb1c0"
+  },
+  "data": "407 original train windows; same5 outerfolds x3 frozen hold GRU seeds17/23/42; no screening, new GRU optimization or sealed/reserved access",
+  "phase_contract": {
+    "definition": "logged wing_phase zero; Hall consistency is checked separately",
+    "installation_consistency": "not_confirmed",
+    "status": "unconfirmed_physical_pose"
+  },
+  "frequency_contract": {
+    "column": "flap_frequency_hz",
+    "ratio": 7.909090995788574,
+    "rescaling": "none; September logged ratio, not April ratio8"
+  },
+  "development_boundary": "OOF flights repeatedly used for research; not blind. 739 development windows only evaluated after frozen OOF gate passes.",
+  "features": "94 historical statistics plus5 current plannedreference minus last historical reference plus5 prefix-average plannedreference minus last historical reference;104 total. Step k uses reference indices0..k only.",
+  "fit": "50 independent flight-balanced ridgealpha100 models of true cumulative r mean; fit and normalization on same4outerfit flights only, no pooled crossfold residual targets",
+  "mechanics": "v10 correction loop unchanged:100ms smoothstep, magnitude<=trainrstd,slew<=2trainrstd/s, corrected rate integrated into quaternion and fed back to GRU; empirical research limits, not safety envelope",
+  "comparators": [
+    "frozen baseline",
+    "v10 history-only correction",
+    "v11 prefix-aware correction"
+  ],
+  "gate": "retainv10:1s r mean gain>=10%,waveformgain>=5% vsbaseline;all3seedspositiveboth,>=4/5flightwavepositive;allpqr/attitude/velocityendpointregression<=5% at.5/1s perseed. Additional:1s mean andwaveflight-equal scores no worse thanv10;1s r held-reference effect RMS ratio tobaseline in[0.9,1.1] for eachseed.",
+  "sensitivity": "hold all5future references at last history value and recompute BOTH predictor and decoder. Modeloutput contrast only, no counterfactual flighttruth. Report p/q/r .5/1s;[.9,1.1] is a conservative research comparison band, not physical-effect tolerance.",
+  "absolute_gate": "eachseed allstate.5s p/q/r<=.15rad/s,attitude<=3deg,velocity<=.5m/s; controlresponse/closedloop separate",
+  "conditional_development": "only if fullOOFgate passes: fitprefix and historymeans on original5train flights, attach3frozenA1600GRUs; evaluate739dev once, same3arm diagnostics. No tuning after results.",
+  "bootstrap": "2000 pairedwholeflight resamples seed910;exploratory5flight intervals, not independent selection-adjusted confidence",
+  "sealed_test_accessed": false
+}

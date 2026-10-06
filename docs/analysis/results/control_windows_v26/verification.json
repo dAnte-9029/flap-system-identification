@@ -1,0 +1,239 @@
+{
+  "status": "passed",
+  "parent_hashes": true,
+  "original_strata_recomputed": true,
+  "calibration_checks": [
+    {
+      "fold": 0,
+      "block": "integral",
+      "fit_only": true,
+      "same_flight_excluded": true
+    },
+    {
+      "fold": 0,
+      "block": "compression",
+      "fit_only": true,
+      "same_flight_excluded": true
+    },
+    {
+      "fold": 0,
+      "block": "age",
+      "fit_only": true,
+      "same_flight_excluded": true
+    },
+    {
+      "fold": 0,
+      "block": "all",
+      "fit_only": true,
+      "same_flight_excluded": true
+    },
+    {
+      "fold": 1,
+      "block": "integral",
+      "fit_only": true,
+      "same_flight_excluded": true
+    },
+    {
+      "fold": 1,
+      "block": "compression",
+      "fit_only": true,
+      "same_flight_excluded": true
+    },
+    {
+      "fold": 1,
+      "block": "age",
+      "fit_only": true,
+      "same_flight_excluded": true
+    },
+    {
+      "fold": 1,
+      "block": "all",
+      "fit_only": true,
+      "same_flight_excluded": true
+    },
+    {
+      "fold": 2,
+      "block": "integral",
+      "fit_only": true,
+      "same_flight_excluded": true
+    },
+    {
+      "fold": 2,
+      "block": "compression",
+      "fit_only": true,
+      "same_flight_excluded": true
+    },
+    {
+      "fold": 2,
+      "block": "age",
+      "fit_only": true,
+      "same_flight_excluded": true
+    },
+    {
+      "fold": 2,
+      "block": "all",
+      "fit_only": true,
+      "same_flight_excluded": true
+    },
+    {
+      "fold": 3,
+      "block": "integral",
+      "fit_only": true,
+      "same_flight_excluded": true
+    },
+    {
+      "fold": 3,
+      "block": "compression",
+      "fit_only": true,
+      "same_flight_excluded": true
+    },
+    {
+      "fold": 3,
+      "block": "age",
+      "fit_only": true,
+      "same_flight_excluded": true
+    },
+    {
+      "fold": 3,
+      "block": "all",
+      "fit_only": true,
+      "same_flight_excluded": true
+    },
+    {
+      "fold": 4,
+      "block": "integral",
+      "fit_only": true,
+      "same_flight_excluded": true
+    },
+    {
+      "fold": 4,
+      "block": "compression",
+      "fit_only": true,
+      "same_flight_excluded": true
+    },
+    {
+      "fold": 4,
+      "block": "age",
+      "fit_only": true,
+      "same_flight_excluded": true
+    },
+    {
+      "fold": 4,
+      "block": "all",
+      "fit_only": true,
+      "same_flight_excluded": true
+    }
+  ],
+  "exact_mse_decomposition": true,
+  "v25_fit_oof_q_reproduced": true,
+  "each_seed_407_unique_oof": true,
+  "windows_retained": 407,
+  "training_started": false,
+  "validation_accessed": false,
+  "sealed_test_accessed": false,
+  "independent_query_checks": [
+    {
+      "fold": 0,
+      "block": "integral",
+      "query_distance_and_fit_statistics": true
+    },
+    {
+      "fold": 0,
+      "block": "compression",
+      "query_distance_and_fit_statistics": true
+    },
+    {
+      "fold": 0,
+      "block": "age",
+      "query_distance_and_fit_statistics": true
+    },
+    {
+      "fold": 0,
+      "block": "all",
+      "query_distance_and_fit_statistics": true
+    },
+    {
+      "fold": 1,
+      "block": "integral",
+      "query_distance_and_fit_statistics": true
+    },
+    {
+      "fold": 1,
+      "block": "compression",
+      "query_distance_and_fit_statistics": true
+    },
+    {
+      "fold": 1,
+      "block": "age",
+      "query_distance_and_fit_statistics": true
+    },
+    {
+      "fold": 1,
+      "block": "all",
+      "query_distance_and_fit_statistics": true
+    },
+    {
+      "fold": 2,
+      "block": "integral",
+      "query_distance_and_fit_statistics": true
+    },
+    {
+      "fold": 2,
+      "block": "compression",
+      "query_distance_and_fit_statistics": true
+    },
+    {
+      "fold": 2,
+      "block": "age",
+      "query_distance_and_fit_statistics": true
+    },
+    {
+      "fold": 2,
+      "block": "all",
+      "query_distance_and_fit_statistics": true
+    },
+    {
+      "fold": 3,
+      "block": "integral",
+      "query_distance_and_fit_statistics": true
+    },
+    {
+      "fold": 3,
+      "block": "compression",
+      "query_distance_and_fit_statistics": true
+    },
+    {
+      "fold": 3,
+      "block": "age",
+      "query_distance_and_fit_statistics": true
+    },
+    {
+      "fold": 3,
+      "block": "all",
+      "query_distance_and_fit_statistics": true
+    },
+    {
+      "fold": 4,
+      "block": "integral",
+      "query_distance_and_fit_statistics": true
+    },
+    {
+      "fold": 4,
+      "block": "compression",
+      "query_distance_and_fit_statistics": true
+    },
+    {
+      "fold": 4,
+      "block": "age",
+      "query_distance_and_fit_statistics": true
+    },
+    {
+      "fold": 4,
+      "block": "all",
+      "query_distance_and_fit_statistics": true
+    }
+  ],
+  "original_mode_labels": true,
+  "signed_contributions_reconcile": true,
+  "focused_tests_passed": 3
+}

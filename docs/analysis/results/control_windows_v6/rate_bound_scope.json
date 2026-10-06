@@ -1,0 +1,6 @@
+{
+  "script_sha256": "477b10b45f4fb7e2741f84221f2c424b317c3b4c9c55cb8159cd0d0ae79238aa",
+  "purpose": "factual output bounds only; no unseen-reference safety or physical validity claim",
+  "interpretation": "direct mode removes the angular-acceleration cap; absence of bound violations on logged references cannot certify counterfactual behavior",
+  "sealed_test_accessed": false
+}

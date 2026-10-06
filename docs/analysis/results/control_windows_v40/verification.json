@@ -1,0 +1,13 @@
+{
+  "status": "passed",
+  "all407_per_stage_seed_variant": true,
+  "coupled_window_runs": 9768,
+  "matched_teacher_window_runs": 1628,
+  "finite_trajectories": 9768,
+  "first_actions_identical_across_models": true,
+  "condition_points_independently_rebuilt": 162800,
+  "measured_future_state_only_in_named_teacher_and_scoring": true,
+  "validation_accessed": false,
+  "sealed_test_accessed": false,
+  "reserved_accessed": false
+}

@@ -1,0 +1,9 @@
+{
+  "status": "passed",
+  "steps": 1600,
+  "all_parameters_buffers_exact": true,
+  "baseline_checkpoint": "docs/analysis/results/control_windows_v35/fold0/joint_increment/seed17/final.pt",
+  "baseline_sha256": "9ea9b062062486f4560986b1a83fe6f7addb1e082023e2449e59e6cd915e4c03",
+  "reproduction_sha256": "f7e0451a3d7063894da413bd99850e21e33c914a9341575fdae2f928f23c29be",
+  "candidate_training_started": false
+}

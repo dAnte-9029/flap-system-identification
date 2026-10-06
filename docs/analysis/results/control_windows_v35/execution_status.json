@@ -1,0 +1,7 @@
+{
+  "status": "training_and_evaluation_complete",
+  "candidate_trainings": 15,
+  "zero_reproduction": 1,
+  "report_pending": false,
+  "report": "report_zh.md"
+}

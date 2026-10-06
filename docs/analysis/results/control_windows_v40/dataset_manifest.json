@@ -1,0 +1,155 @@
+{
+  "authority": "docs/analysis/results/control_windows_v29/dataset_manifest.json",
+  "authority_sha256": "d94423e9e918494a386158d48fa00b29f8fbde1934910d383f97234add7bd001",
+  "contract": {
+    "dataset_id": "actuator_conditioned_train_v29",
+    "partition": "original_train_only",
+    "windows": 407,
+    "flights": 5,
+    "history_steps": 26,
+    "rollout_steps": 50,
+    "authority": "docs/analysis/results/control_windows_v29/protocol.json",
+    "protocol_sha256": "4116637ee77b1cb25bc1c059343869622fc6a235a14ad17e7c4af5e759214376",
+    "parent_manifest_sha256": "58446ec46138109d266aba1a9a08c8275278199b8a0ef18890f14a58c092ea8a",
+    "command_contract_sha256": "3a9bbc7653f8a8dc3e0ace031fcda952a0cd8c73012b8540eb75e709dc7a5074",
+    "arrays_sha256": "eb06dd11d48ee727f2b8656ff6c7fc170a929e2769a40f1f3a9bf6e6467a2a9d",
+    "windows_sha256": "7aa14314e616023ffa6350475b00a344432366711ef4c2237dfbefc515304496",
+    "shapes": {
+      "input_history_state": [
+        407,
+        26,
+        14
+      ],
+      "input_history_actuator": [
+        407,
+        26,
+        4
+      ],
+      "input_initial_quaternion": [
+        407,
+        4
+      ],
+      "input_initial_velocity_n": [
+        407,
+        3
+      ],
+      "input_initial_rates_b": [
+        407,
+        3
+      ],
+      "input_dt_s": [
+        407,
+        50
+      ],
+      "input_current_mode": [
+        407,
+        2
+      ],
+      "label_quaternion": [
+        407,
+        50,
+        4
+      ],
+      "label_velocity_n": [
+        407,
+        50,
+        3
+      ],
+      "label_rates_b": [
+        407,
+        50,
+        3
+      ],
+      "input_history_command": [
+        407,
+        26,
+        4
+      ],
+      "input_future_command": [
+        407,
+        50,
+        4
+      ]
+    },
+    "sources": [
+      {
+        "log_id": "2026.9.6/log_20_2026-9-6-18-58-10.ulg",
+        "source": {
+          "path": "/home/zn/QgcLogs/2026.9.6/log_20_2026-9-6-18-58-10.ulg",
+          "sha256": "3b0afa4b3526fae934d9705082c0dbfe247fc39baff68014c06cf6642e71275e",
+          "partition": "train"
+        },
+        "cache": "dataset/reference_dynamics_data_v1/contract/26ba9c99346eef34.npz",
+        "cache_sha256": "08159a90419eba88aa278a88cb3ae71ae1fa968c3dbf487f71aee53df3eba355"
+      },
+      {
+        "log_id": "2026.9.6/log_17_2026-9-6-18-34-06.ulg",
+        "source": {
+          "path": "/home/zn/QgcLogs/2026.9.6/log_17_2026-9-6-18-34-06.ulg",
+          "sha256": "37ff9f8ea4e2e378fc13394288aa145a462259e2f53fa15af9511082f0e6d558",
+          "partition": "train"
+        },
+        "cache": "dataset/reference_dynamics_data_v1/contract/4446fd466bb7821d.npz",
+        "cache_sha256": "ff58c51e5f6b24a658fcba58ee3e28dd0f147a6bb73a90ea6800943801165375"
+      },
+      {
+        "log_id": "2026.9.6/log_28_2026-9-6-07-01-38.ulg",
+        "source": {
+          "path": "/home/zn/QgcLogs/2026.9.6/log_28_2026-9-6-07-01-38.ulg",
+          "sha256": "73dd94d60553a00efb3e2d9009430686c08ee611f11eb4e3f8e3a427f26df842",
+          "partition": "train"
+        },
+        "cache": "dataset/reference_dynamics_data_v1/contract/52364e098db4b9af.npz",
+        "cache_sha256": "5801d58118e7695b54e83cf2850e04b683b860ea0cafedc171d91d6fbfc08797"
+      },
+      {
+        "log_id": "2026.9.6/log_19_2026-9-6-18-52-30.ulg",
+        "source": {
+          "path": "/home/zn/QgcLogs/2026.9.6/log_19_2026-9-6-18-52-30.ulg",
+          "sha256": "30f27b3c2ee46a05ed6108ec01a2150cd5c8fedaf4f0cb7a1f0347698412aacd",
+          "partition": "train"
+        },
+        "cache": "dataset/reference_dynamics_data_v1/contract/8d835123654f62c7.npz",
+        "cache_sha256": "7037dea0fd686a73ad8ee4f94a1573221f1736645cb6c978d35fbff79aa5c602"
+      },
+      {
+        "log_id": "2026.9.6/log_18_2026-9-6-18-46-20.ulg",
+        "source": {
+          "path": "/home/zn/QgcLogs/2026.9.6/log_18_2026-9-6-18-46-20.ulg",
+          "sha256": "603a941c5ebbfcdf27b80b0d1c4b2de65dd4e114fdefb64bb70896e409c135a8",
+          "partition": "train"
+        },
+        "cache": "dataset/reference_dynamics_data_v1/contract/98850e05e3b89ecb.npz",
+        "cache_sha256": "799a99539f8e7ae90d7a1917513225e2ee8b94cb62d01b4a073edd8c02829703"
+      }
+    ],
+    "channel_order": [
+      "motor0",
+      "servo0",
+      "servo1",
+      "servo2"
+    ],
+    "units": [
+      "normalized_motor_thrust_request",
+      "normalized_servo_command",
+      "normalized_servo_command",
+      "normalized_servo_command"
+    ],
+    "phase_contract": {
+      "definition": "logged wing_phase zero; Hall consistency is checked separately",
+      "installation_consistency": "not_confirmed",
+      "status": "unconfirmed_physical_pose"
+    },
+    "frequency_contract": {
+      "column": "flap_frequency_hz",
+      "ratio": 7.909090995788574,
+      "rescaling": "none; September logged ratio, not April ratio8"
+    },
+    "validation_accessed": false,
+    "sealed_test_accessed": false
+  },
+  "partitions": [
+    "original_train_only"
+  ],
+  "teacher_future_state": "Only separate teacher diagnostic and scoring"
+}

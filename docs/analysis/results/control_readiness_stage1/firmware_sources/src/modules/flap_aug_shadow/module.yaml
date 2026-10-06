@@ -1,0 +1,209 @@
+module_name: flap_aug_shadow
+
+parameters:
+    - group: Flap V4 Shadow
+      definitions:
+        FLAP_V4_ENABLE:
+            description:
+                short: Enable V4 specimen-prior Shadow diagnostics
+                long: |
+                    Enables computation and publication of V4 specimen-prior diagnostic state only.
+                    This parameter cannot enable actuator augmentation and has no control-path effect.
+            type: boolean
+            default: false
+            category: System
+
+        FLAP_SLOW_EN:
+            description:
+                short: Enable B2b Roll-I transfer experiment
+                long: Enables the guarded B2b Roll-I burden transfer. Transfer authority remains zero while FLAP_B2B_CAP is zero. Fast injection and delta_b remain disabled.
+            type: boolean
+            default: false
+            category: System
+
+        FLAP_SLOW_B0:
+            description:
+                short: Legacy fixed-b0 tail coordinate
+                long: Legacy specimen-prior value retained for audit compatibility. It is not used as a B2b raw-I target and provides no authority in the B2b path.
+            type: float
+            default: 0.0
+            min: -0.22
+            max: 0.22
+            decimal: 6
+            category: System
+
+        FLAP_SLOW_SLEW:
+            description:
+                short: Legacy fixed-b0 tail ramp rate
+                long: Legacy tail-coordinate value retained for audit compatibility. It is not interpreted as raw-I per second.
+            type: float
+            default: 0.02
+            min: 0.005
+            max: 0.05
+            decimal: 3
+            category: System
+
+        FLAP_B2B_CAP:
+            description:
+                short: B2b transferred Roll-I cap
+                long: Maximum existing Roll integrator burden transferable into the B2b raw-I state. Zero disables transfer authority. Nonzero values are test and SITL only, not flight frozen.
+            type: float
+            default: 0.0
+            min: 0.0
+            max: 1.0
+            decimal: 4
+            category: System
+
+        FLAP_B2B_SLEW:
+            description:
+                short: B2b normal raw-I slew
+                long: Normal transfer-in and exact transfer-out rate in raw-I per second. This does not use legacy tail-coordinate units.
+            type: float
+            default: 0.02
+            min: 0.001
+            max: 1.0
+            decimal: 4
+            category: System
+
+        FLAP_B2B_SAFE:
+            description:
+                short: B2b safety raw-I slew
+                long: Safety-exit removal rate in raw-I per second. Continuity is best effort. This value is test and SITL only, not flight frozen.
+            type: float
+            default: 0.20
+            min: 0.01
+            max: 2.0
+            decimal: 3
+            category: System
+
+        FLAP_B2B_HR:
+            description:
+                short: B2b Roll-I headroom release ratio
+                long: Ratio of transferred Roll-I burden released as residual integrator headroom after TransferHold. The value is latched per B2b episode. Zero preserves the 2026-09-14 behavior.
+            type: float
+            default: 0.0
+            min: 0.0
+            max: 1.0
+            decimal: 2
+            increment: 0.1
+            category: System
+
+        FLAP_B2B_ADAPT:
+            description:
+                short: Enable Adaptive V3 Roll Slow transfer
+                long: Enables the bounded Adaptive V3 persistent-burden estimator and Hold transfer. When disabled, the legacy B2b/HR behavior is preserved.
+            type: boolean
+            default: false
+            category: System
+
+        FLAP_B2B_HCAP:
+            description:
+                short: Adaptive Hold transferred-I cap
+                long: Maximum absolute transferred Roll-I state during Adaptive V3 Hold.
+            type: float
+            default: 0.10
+            min: 0.0
+            max: 0.20
+            decimal: 3
+            increment: 0.01
+            category: System
+
+        FLAP_B2B_RSVD:
+            description:
+                short: Adaptive residual-I reserve
+                long: Desired native residual Roll-I reserve retained by Adaptive V3.
+            type: float
+            default: 0.05
+            min: 0.0
+            max: 0.20
+            decimal: 3
+            increment: 0.01
+            category: System
+
+        FLAP_B2B_TAU:
+            description:
+                short: Adaptive burden LPF time constant
+                long: First-order LPF time constant for the total-equivalent Roll-I burden estimate.
+            type: float
+            default: 5.0
+            min: 0.1
+            max: 30.0
+            decimal: 2
+            increment: 0.1
+            unit: s
+            category: System
+
+        FLAP_B2B_ASLW:
+            description:
+                short: Adaptive Hold slew rate
+                long: Adaptive Roll-I redistribution slew rate during Hold and adaptive release.
+            type: float
+            default: 0.01
+            min: 0.001
+            max: 0.20
+            decimal: 3
+            increment: 0.001
+            category: System
+
+        FLAP_B2B_EWIN:
+            description:
+                short: Adaptive entry estimator window
+                long: Causal pre-eligibility robust median window used for Adaptive V3 entry.
+            type: float
+            default: 5.0
+            min: 1.0
+            max: 10.0
+            decimal: 1
+            increment: 0.5
+            unit: s
+            category: System
+
+        FLAP_B2B_GWIN:
+            description:
+                short: Adaptive growth gate window
+                long: Rolling persistence and variance window required before Adaptive V3 growth.
+            type: float
+            default: 3.0
+            min: 0.5
+            max: 10.0
+            decimal: 1
+            increment: 0.5
+            unit: s
+            category: System
+
+        FLAP_B2B_GSTD:
+            description:
+                short: Adaptive growth standard deviation limit
+                long: Maximum rolling standard deviation of total-equivalent burden permitting growth.
+            type: float
+            default: 0.025
+            min: 0.001
+            max: 0.20
+            decimal: 3
+            increment: 0.001
+            category: System
+
+        FLAP_B2B_GSIGN:
+            description:
+                short: Adaptive same-sign growth fraction
+                long: Minimum same-sign fraction required for Adaptive V3 growth.
+            type: float
+            default: 0.90
+            min: 0.5
+            max: 1.0
+            decimal: 2
+            increment: 0.01
+            category: System
+
+        FLAP_V4_B_PRIOR:
+            description:
+                short: V4 specimen prior diagnostic value
+                long: |
+                    Fixed specimen-prior diagnostic artifact value for the current evaluation block.
+                    It is logged only; it is not a trim command and is never sent to a controller or actuator.
+            type: float
+            default: 0.0
+            min: -2.0
+            max: 2.0
+            decimal: 6
+            category: System

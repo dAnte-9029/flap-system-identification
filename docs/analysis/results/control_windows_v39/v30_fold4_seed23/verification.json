@@ -1,0 +1,19 @@
+{
+  "stage": 30,
+  "fold": 4,
+  "seed": 23,
+  "checkpoint": "docs/analysis/results/control_windows_v30/fold4/seed23/final.pt",
+  "checkpoint_sha256": "bee61feb2e9373619a5652af84ca0abc3c88f46d6b2dee48b6e35bbe9c913d42",
+  "saved_predictions": "docs/analysis/results/control_windows_v30/fold4/seed23/oof_predictions.npz",
+  "saved_predictions_sha256": "a25943a591fb4a86a72d89bb02c65701566db4a35e2050fd02892a3f35f7c73e",
+  "normalization_sha256": "62f7177363acb32acc1146665ab3d6d690e3fe19b8599d7e3cb224cd4881c07f",
+  "status": "passed",
+  "model_id": "d4b2a221d31c4c65f58b698ddda4466c09d6fafcb00479f49d2047f2b34d6e54",
+  "windows": 81,
+  "restored_windows": 81,
+  "every50_outputs_and_hidden_exact": true,
+  "independent_sessions_exact": true,
+  "prefix_causality_exact": true,
+  "changed_suffix_response": true,
+  "normalization_exact": true
+}

@@ -1,0 +1,21 @@
+{
+  "status": "prepared_not_executed",
+  "objective": "Bounded reference-conditioned c9af + learned-model closed-loop diagnostic",
+  "prerequisites_completed": [
+    "c9af component/source parity and teacher-state error baseline v38",
+    "H26 persistent20ms adapter/native50step parity and restore v39"
+  ],
+  "limitation": "v38 does not certify exact controller initial state or scheduling; diagnostic execution cannot be promoted as faithful full firmware replay.",
+  "stages": [
+    "Before any coupled run, freeze400Hz controller/50Hz model exchange order and held-state/command approximation; preserve native20ms model command semantics and do not choose clocks by lowest error.",
+    "Specify origin initialization, causal2s warmup and retainedHPF/clock/allocation-feedback sensitivity branches; use matched teacher-state controller baselines. Do not read future controller hidden state.",
+    "Freeze attitude/thrust/manual-yaw condition tapes and input timestamps; separately specify airspeed/phase/frequency/acceleration proxies. No future measured plant states or future logged actuator commands may drive the model.",
+    "Retain all407 parents and frozenv30/v35 OOF models; report states AND generated actions perflight/mode/seed plus failures, physical clamps, command/support excursions and sensitivity. Support uses past/current quantities only.",
+    "Use existing frozen state-accuracy/protection gates unchanged; explicitly separate descriptive coupled errors and controller-approximation sensitivity. Define any additional acceptance criteria before replay, never from its outcomes.",
+    "Run only after source/temporal/causality checks pass. A completed finite trajectory is diagnostic evidence, not independent control effectiveness or flight certification."
+  ],
+  "no_training": true,
+  "no_controller_tuning": true,
+  "no_real_flight": true,
+  "no_developmentvalidation_sealed_reserved": true
+}

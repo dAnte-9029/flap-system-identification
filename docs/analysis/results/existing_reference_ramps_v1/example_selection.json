@@ -1,0 +1,22 @@
+[
+  {
+    "candidate_id": "40e58d45c17f1ace",
+    "log_id": "2026.9.6/log_17_2026-9-6-18-34-06.ulg",
+    "seconds_from_log_start": 41.476199
+  },
+  {
+    "candidate_id": "9edb067f09134497",
+    "log_id": "2026.9.6/log_19_2026-9-6-18-52-30.ulg",
+    "seconds_from_log_start": 124.71718
+  },
+  {
+    "candidate_id": "73610e20c1dbeee8",
+    "log_id": "2026.9.6/log_24_2026-9-6-06-28-38.ulg",
+    "seconds_from_log_start": 39.651278
+  },
+  {
+    "candidate_id": "abaaba962ca9d0d5",
+    "log_id": "2026.9.6/log_28_2026-9-6-07-01-38.ulg",
+    "seconds_from_log_start": 157.413362
+  }
+]

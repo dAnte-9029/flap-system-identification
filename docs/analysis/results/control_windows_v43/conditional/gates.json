@@ -1,0 +1,23 @@
+[
+  {
+    "variant": "logged_command_conditioned",
+    "tilt": {
+      "improvement_percent": -0.2068322227700481,
+      "improving_seeds": 0,
+      "improving_flights": 1,
+      "passed": false
+    },
+    "legacy_q": {
+      "improvement_percent": -3.9401072538243875,
+      "improving_seeds": 0,
+      "improving_flights": 0,
+      "passed": false
+    },
+    "protections_passed": 27,
+    "protections_total": 27,
+    "tilt_with_protections": false,
+    "absolute_passed": 3,
+    "absolute_total": 12,
+    "control_ready": false
+  }
+]

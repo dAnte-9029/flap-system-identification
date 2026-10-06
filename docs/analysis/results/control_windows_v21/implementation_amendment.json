@@ -1,0 +1,7 @@
+{
+  "stage": "v21",
+  "error": "First audit compared availability age against cached max(publication_age,sample_age); assertion difference up to 43.006 microseconds.",
+  "correction": "Use min(publication_timestamp,sample_timestamp) only for the maximum age; eligibility still uses max timestamps. Rerun passed for all 77 support points.",
+  "data_changed": false,
+  "protocol_changed": false
+}

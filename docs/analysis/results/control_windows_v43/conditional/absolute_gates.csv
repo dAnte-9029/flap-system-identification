@@ -1,0 +1,13 @@
+variant,seed,metric,rmse,limit,passed
+logged_command_conditioned,17,attitude,0.10323313414883595,0.05235987755982989,False
+logged_command_conditioned,17,p,0.49707827585203007,0.15,False
+logged_command_conditioned,17,q,0.31609249802360606,0.15,False
+logged_command_conditioned,17,velocity,0.4055950800324054,0.5,True
+logged_command_conditioned,23,attitude,0.09983213239318162,0.05235987755982989,False
+logged_command_conditioned,23,p,0.49023743799561686,0.15,False
+logged_command_conditioned,23,q,0.30879985790641373,0.15,False
+logged_command_conditioned,23,velocity,0.41148702752858346,0.5,True
+logged_command_conditioned,42,attitude,0.10102426375467813,0.05235987755982989,False
+logged_command_conditioned,42,p,0.49000431275913464,0.15,False
+logged_command_conditioned,42,q,0.32151190369249943,0.15,False
+logged_command_conditioned,42,velocity,0.4224047368136695,0.5,True

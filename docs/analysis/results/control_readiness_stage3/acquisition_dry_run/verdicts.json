@@ -1,0 +1,79 @@
+[
+  {
+    "path": "/home/zn/QgcLogs/9.18数据/log_0_2026-9-18-18-15-06.ulg",
+    "sha256": "856d76e3776563b908ba57d66d69edb41430b0b30764fa9628d6acbbf152ae40",
+    "acquisition_precheck_pass": false,
+    "failures": [
+      "timing_vehicle_attitude",
+      "timing_vehicle_attitude_setpoint",
+      "timing_vehicle_rates_setpoint",
+      "timing_vehicle_angular_velocity",
+      "timing_rate_ctrl_terms",
+      "timing_rate_ctrl_status",
+      "timing_vehicle_torque_setpoint",
+      "timing_control_allocator_status",
+      "timing_gain_compression"
+    ],
+    "identification_ready": false,
+    "exact_controller_replay_ready": false,
+    "missing_evidence": [
+      "one_controller_cycle_id_joining_rate_input_terms_torque_and_allocator",
+      "actual_controller_dt_per_cycle",
+      "complete_controller_state_at_start_and_every_reset",
+      "exogenous_reference_event_id_and_actual_start_end_timestamps"
+    ],
+    "reason": "No implemented cycle-state/event-evidence schema; cannot certify identification or exact replay from timing alone"
+  },
+  {
+    "path": "/home/zn/QgcLogs/9.18数据/log_1_2026-9-18-18-23-36.ulg",
+    "sha256": "31e75b37cc415dcef5333627728330aca2156b8652dd56f2d5c1dcfb22fc7d17",
+    "acquisition_precheck_pass": false,
+    "failures": [
+      "parameter_FLAP_SLOW_EN",
+      "timing_vehicle_attitude",
+      "timing_vehicle_attitude_setpoint",
+      "timing_vehicle_rates_setpoint",
+      "timing_vehicle_angular_velocity",
+      "timing_rate_ctrl_terms",
+      "timing_rate_ctrl_status",
+      "timing_vehicle_torque_setpoint",
+      "timing_control_allocator_status",
+      "timing_gain_compression"
+    ],
+    "identification_ready": false,
+    "exact_controller_replay_ready": false,
+    "missing_evidence": [
+      "one_controller_cycle_id_joining_rate_input_terms_torque_and_allocator",
+      "actual_controller_dt_per_cycle",
+      "complete_controller_state_at_start_and_every_reset",
+      "exogenous_reference_event_id_and_actual_start_end_timestamps"
+    ],
+    "reason": "No implemented cycle-state/event-evidence schema; cannot certify identification or exact replay from timing alone"
+  },
+  {
+    "path": "/home/zn/QgcLogs/9.18数据/log_2_2026-9-18-18-29-40.ulg",
+    "sha256": "7e4d29d0fbb4e521eb4f3753cf8441194be4952c0c554cf7bd7e72c214cb7964",
+    "acquisition_precheck_pass": false,
+    "failures": [
+      "parameter_FLAP_SLOW_EN",
+      "timing_vehicle_attitude",
+      "timing_vehicle_attitude_setpoint",
+      "timing_vehicle_rates_setpoint",
+      "timing_vehicle_angular_velocity",
+      "timing_rate_ctrl_terms",
+      "timing_rate_ctrl_status",
+      "timing_vehicle_torque_setpoint",
+      "timing_control_allocator_status",
+      "timing_gain_compression"
+    ],
+    "identification_ready": false,
+    "exact_controller_replay_ready": false,
+    "missing_evidence": [
+      "one_controller_cycle_id_joining_rate_input_terms_torque_and_allocator",
+      "actual_controller_dt_per_cycle",
+      "complete_controller_state_at_start_and_every_reset",
+      "exogenous_reference_event_id_and_actual_start_end_timestamps"
+    ],
+    "reason": "No implemented cycle-state/event-evidence schema; cannot certify identification or exact replay from timing alone"
+  }
+]

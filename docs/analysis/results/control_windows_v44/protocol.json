@@ -1,0 +1,27 @@
+{
+  "status": "frozen_before_diagnostic",
+  "code": {
+    "scripts/residual_diagnostic_v44.py": "3045bff8cdf4f52af62968fda5bb0bcc5bdb074bee8f703f037c247d91cfad38",
+    "scripts/run_residual_diagnostic_v44.py": "49cfd6209c3d9e05ad785fc3094cfa644432506c99fa78540fc6d5ec40ffff44",
+    "tests/test_residual_diagnostic_v44.py": "4c27e362aa4b59c13ec3e15d2ba79ec5ac3484269e1b26ae947624c11466a3fb"
+  },
+  "parents": {
+    "docs/analysis/results/control_windows_v29": "49ffd01eb46a8fd80e6e193143b25be4212cc78fdb11725feb95c5a495e9b231",
+    "docs/analysis/results/control_windows_v35": "8329f834d415102d3949635fe39ea2c7f2ea8bf0d0aaa9ecee096102ac037e8a",
+    "docs/analysis/results/control_windows_v40": "8e29c423373d24461329cf2d75fb9781323986e860fabd93d62095fb5803ec8e",
+    "docs/analysis/results/control_windows_v42": "4f289081702bdc59c4ec6dbe785d268971a1aa8956328689131dc46e0f501492",
+    "docs/analysis/results/control_windows_v43": "78bb6df1d945235be9bf653e7f31708b9bc69bf02650131a2696618bc02acd13"
+  },
+  "data": "All407 originaltrain parents; pairedv35/v43 per5fold3seed. Fit predictions count the same source window under4different trainingfolds, not new independent data.",
+  "scope": "No training, weight selection, outcome-selected window removal, controller changes or new validation/sealed/reserved access.",
+  "decomposition": "For every axis and fixed full50/first25/last25 samples: mean(error^2)=mean(error)^2+mean((error-mean(error))^2). Window-specific mean, not global signed mean.",
+  "curves": "All50 endpoint times for p/q/r/velocity/attitude/roll/pitch/tilt. Group each sourceflight within each modelfold/seed, then equal sourceflight, modelfold andseed. Mode-specific cells retain counts, no balanced-mode extrapolation.",
+  "kinematics": "All8baseline/candidate p/q/r tape combinations on common initialq/r anddt. Endpoints0/7 must exactly reproduce native quaternion. Three-axis Shapley on full1s roll/pitch/tilt MSE sums to candidate-baseline; symmetric accounting of path interactions, not causal attribution or model/control rerollout.",
+  "oracles": "Also remove each window future rate-error mean and integrate fulltrue rates; future measurement-dependent diagnostic only, not a correction or physical noise floor.",
+  "coupling": "For same OOF window compare conditional MSE change to each coupled change; difference-in-differences describes the changed input/state feedback path, not isolated controller causality.",
+  "units": "Rate components rad^2/s^2, anglecomponents rad^2. RMSE derived only after flight averaging, Shapley operates on MSE not RMSE.",
+  "promotion": false,
+  "validation_accessed": false,
+  "sealed_test_accessed": false,
+  "reserved_accessed": false
+}

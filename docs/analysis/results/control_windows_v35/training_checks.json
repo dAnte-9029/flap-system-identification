@@ -1,0 +1,152 @@
+[
+  {
+    "fold": 0,
+    "seed": 17,
+    "status": "complete",
+    "step": 1600,
+    "elapsed_s": 174.91752881463617,
+    "checkpoint_sha256": "9ea9b062062486f4560986b1a83fe6f7addb1e082023e2449e59e6cd915e4c03",
+    "local_weight": 1.0,
+    "paired_init_and_parent_draws": true
+  },
+  {
+    "fold": 0,
+    "seed": 23,
+    "status": "complete",
+    "step": 1600,
+    "elapsed_s": 176.8223628476262,
+    "checkpoint_sha256": "b7ea0615e0bc6a2891b18c6b1b93daf20bd8c7932956f4cf5e0e00555052c9a6",
+    "local_weight": 1.0,
+    "paired_init_and_parent_draws": true
+  },
+  {
+    "fold": 0,
+    "seed": 42,
+    "status": "complete",
+    "step": 1600,
+    "elapsed_s": 174.51106964517385,
+    "checkpoint_sha256": "804bdc6a8340327065384952e0565ec67d929544507582253fd651a665da028d",
+    "local_weight": 1.0,
+    "paired_init_and_parent_draws": true
+  },
+  {
+    "fold": 1,
+    "seed": 17,
+    "status": "complete",
+    "step": 1600,
+    "elapsed_s": 170.62528474908322,
+    "checkpoint_sha256": "d213b868659a7d3ced392014abd4cc277156456df2be4cf6fd85f42b7a8137a3",
+    "local_weight": 1.0,
+    "paired_init_and_parent_draws": true
+  },
+  {
+    "fold": 1,
+    "seed": 23,
+    "status": "complete",
+    "step": 1600,
+    "elapsed_s": 171.83927444089204,
+    "checkpoint_sha256": "5ac4619d72f3f6d0eef217d74429ce40dc34ead3e34556cc11b905dea63125a8",
+    "local_weight": 1.0,
+    "paired_init_and_parent_draws": true
+  },
+  {
+    "fold": 1,
+    "seed": 42,
+    "status": "complete",
+    "step": 1600,
+    "elapsed_s": 167.66288870107383,
+    "checkpoint_sha256": "d58734703b8e2d9eb8e9551bb3aa8c0bccc69fb1d6c77429a69459b9762bc62f",
+    "local_weight": 1.0,
+    "paired_init_and_parent_draws": true
+  },
+  {
+    "fold": 2,
+    "seed": 17,
+    "status": "complete",
+    "step": 1600,
+    "elapsed_s": 186.23811331391335,
+    "checkpoint_sha256": "0c5167fb1758e0bdaefb2f05317a59e561a63d62feb81867f038f6cfe5e9c548",
+    "local_weight": 1.0,
+    "paired_init_and_parent_draws": true
+  },
+  {
+    "fold": 2,
+    "seed": 23,
+    "status": "complete",
+    "step": 1600,
+    "elapsed_s": 209.00962310563773,
+    "checkpoint_sha256": "69da762107b57e9ed87b050e63792cb82da3e034e248c252f2903f348f1883e3",
+    "local_weight": 1.0,
+    "paired_init_and_parent_draws": true
+  },
+  {
+    "fold": 2,
+    "seed": 42,
+    "status": "complete",
+    "step": 1600,
+    "elapsed_s": 200.224725112319,
+    "checkpoint_sha256": "9752831cb778d076f50c7a08efbad67e7590c3642f18982458ae6423d6ad43f6",
+    "local_weight": 1.0,
+    "paired_init_and_parent_draws": true
+  },
+  {
+    "fold": 3,
+    "seed": 17,
+    "status": "complete",
+    "step": 1600,
+    "elapsed_s": 185.9293182985857,
+    "checkpoint_sha256": "1e7738d52acff0dcbee98dfafb7b305d367118908bcd91c5dd0f17ccfa380e35",
+    "local_weight": 1.0,
+    "paired_init_and_parent_draws": true
+  },
+  {
+    "fold": 3,
+    "seed": 23,
+    "status": "complete",
+    "step": 1600,
+    "elapsed_s": 200.55074812751263,
+    "checkpoint_sha256": "f70a1c09235d9bb33e9b06daf216c80b6a89c7871ef62430464fd63ec7c1e8c3",
+    "local_weight": 1.0,
+    "paired_init_and_parent_draws": true
+  },
+  {
+    "fold": 3,
+    "seed": 42,
+    "status": "complete",
+    "step": 1600,
+    "elapsed_s": 204.44819079432636,
+    "checkpoint_sha256": "3b3b631ce60631d757c56386ebcf6076c6ecf478ab213410cd0532a487a480cf",
+    "local_weight": 1.0,
+    "paired_init_and_parent_draws": true
+  },
+  {
+    "fold": 4,
+    "seed": 17,
+    "status": "complete",
+    "step": 1600,
+    "elapsed_s": 170.69913652073592,
+    "checkpoint_sha256": "83b95ae4087fddf4605c6f9205ba8963793576ba25875495bc0789443e09f103",
+    "local_weight": 1.0,
+    "paired_init_and_parent_draws": true
+  },
+  {
+    "fold": 4,
+    "seed": 23,
+    "status": "complete",
+    "step": 1600,
+    "elapsed_s": 164.27502326946706,
+    "checkpoint_sha256": "e99fe62302c37b1662626efdab119365447fd55a7e113aeffffcbbe3fb27fe33",
+    "local_weight": 1.0,
+    "paired_init_and_parent_draws": true
+  },
+  {
+    "fold": 4,
+    "seed": 42,
+    "status": "complete",
+    "step": 1600,
+    "elapsed_s": 165.5361718107015,
+    "checkpoint_sha256": "f7df566a50d10724c9b41e1c5a4302ecd170a3fd77ce21cdbd4c130d5354d57f",
+    "local_weight": 1.0,
+    "paired_init_and_parent_draws": true
+  }
+]

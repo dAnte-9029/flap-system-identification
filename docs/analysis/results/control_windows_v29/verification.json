@@ -1,0 +1,181 @@
+{
+  "status": "passed",
+  "checks": [
+    {
+      "fold": 0,
+      "seed": 17,
+      "matched_initial_parameters": true,
+      "exact_fit_oof_baseline_replay": true,
+      "draws_fit_only": true,
+      "finite_forward_backward": true,
+      "parameters_unchanged": true
+    },
+    {
+      "fold": 0,
+      "seed": 23,
+      "matched_initial_parameters": true,
+      "exact_fit_oof_baseline_replay": true,
+      "draws_fit_only": true,
+      "finite_forward_backward": true,
+      "parameters_unchanged": true
+    },
+    {
+      "fold": 0,
+      "seed": 42,
+      "matched_initial_parameters": true,
+      "exact_fit_oof_baseline_replay": true,
+      "draws_fit_only": true,
+      "finite_forward_backward": true,
+      "parameters_unchanged": true
+    },
+    {
+      "fold": 1,
+      "seed": 17,
+      "matched_initial_parameters": true,
+      "exact_fit_oof_baseline_replay": true,
+      "draws_fit_only": true,
+      "finite_forward_backward": true,
+      "parameters_unchanged": true
+    },
+    {
+      "fold": 1,
+      "seed": 23,
+      "matched_initial_parameters": true,
+      "exact_fit_oof_baseline_replay": true,
+      "draws_fit_only": true,
+      "finite_forward_backward": true,
+      "parameters_unchanged": true
+    },
+    {
+      "fold": 1,
+      "seed": 42,
+      "matched_initial_parameters": true,
+      "exact_fit_oof_baseline_replay": true,
+      "draws_fit_only": true,
+      "finite_forward_backward": true,
+      "parameters_unchanged": true
+    },
+    {
+      "fold": 2,
+      "seed": 17,
+      "matched_initial_parameters": true,
+      "exact_fit_oof_baseline_replay": true,
+      "draws_fit_only": true,
+      "finite_forward_backward": true,
+      "parameters_unchanged": true
+    },
+    {
+      "fold": 2,
+      "seed": 23,
+      "matched_initial_parameters": true,
+      "exact_fit_oof_baseline_replay": true,
+      "draws_fit_only": true,
+      "finite_forward_backward": true,
+      "parameters_unchanged": true
+    },
+    {
+      "fold": 2,
+      "seed": 42,
+      "matched_initial_parameters": true,
+      "exact_fit_oof_baseline_replay": true,
+      "draws_fit_only": true,
+      "finite_forward_backward": true,
+      "parameters_unchanged": true
+    },
+    {
+      "fold": 3,
+      "seed": 17,
+      "matched_initial_parameters": true,
+      "exact_fit_oof_baseline_replay": true,
+      "draws_fit_only": true,
+      "finite_forward_backward": true,
+      "parameters_unchanged": true
+    },
+    {
+      "fold": 3,
+      "seed": 23,
+      "matched_initial_parameters": true,
+      "exact_fit_oof_baseline_replay": true,
+      "draws_fit_only": true,
+      "finite_forward_backward": true,
+      "parameters_unchanged": true
+    },
+    {
+      "fold": 3,
+      "seed": 42,
+      "matched_initial_parameters": true,
+      "exact_fit_oof_baseline_replay": true,
+      "draws_fit_only": true,
+      "finite_forward_backward": true,
+      "parameters_unchanged": true
+    },
+    {
+      "fold": 4,
+      "seed": 17,
+      "matched_initial_parameters": true,
+      "exact_fit_oof_baseline_replay": true,
+      "draws_fit_only": true,
+      "finite_forward_backward": true,
+      "parameters_unchanged": true
+    },
+    {
+      "fold": 4,
+      "seed": 23,
+      "matched_initial_parameters": true,
+      "exact_fit_oof_baseline_replay": true,
+      "draws_fit_only": true,
+      "finite_forward_backward": true,
+      "parameters_unchanged": true
+    },
+    {
+      "fold": 4,
+      "seed": 42,
+      "matched_initial_parameters": true,
+      "exact_fit_oof_baseline_replay": true,
+      "draws_fit_only": true,
+      "finite_forward_backward": true,
+      "parameters_unchanged": true
+    }
+  ],
+  "normalization": [
+    {
+      "fold": 0,
+      "fit_windows": 310,
+      "query_windows": 97,
+      "unique_command_rows": 23250
+    },
+    {
+      "fold": 1,
+      "fit_windows": 329,
+      "query_windows": 78,
+      "unique_command_rows": 24675
+    },
+    {
+      "fold": 2,
+      "fit_windows": 320,
+      "query_windows": 87,
+      "unique_command_rows": 24000
+    },
+    {
+      "fold": 3,
+      "fit_windows": 343,
+      "query_windows": 64,
+      "unique_command_rows": 25725
+    },
+    {
+      "fold": 4,
+      "fit_windows": 326,
+      "query_windows": 81,
+      "unique_command_rows": 24450
+    }
+  ],
+  "non_control_inputs_and_labels_unchanged": true,
+  "independent_normalization_recomputed": true,
+  "all407_windows_retained": true,
+  "nonoverlapping_support": true,
+  "final_audit_command_excluded": true,
+  "command_timestamps_causal": true,
+  "source_and_parent_hashes_verified": true,
+  "training_started": false,
+  "optimizer_steps": 0
+}

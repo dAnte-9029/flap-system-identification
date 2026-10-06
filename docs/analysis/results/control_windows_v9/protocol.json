@@ -1,0 +1,60 @@
+{
+  "task": "OOF angular-rate mean versus waveform error and history-only predictability",
+  "source_pins": {
+    "docs/analysis/results/control_windows_v8/delivery_manifest.json": "bf358676286f34af65bc140435eea00a978ebf7c3f1e018cb2eff9e349483ad6",
+    "docs/analysis/results/control_windows_v2/manifest.json": "84cac37ebf73f47802a4b5d3afff48d97554ac3aedfdd1cb6fb9ec5d618b919f",
+    "dataset/control_windows_v2/windows.npz": "5e2c0a77eb1a8a17a14fe27b3fec80811b501a89d5e99f1752a9ec52fae96b8b",
+    "scripts/run_reference_error_structure_v9.py": "3b9e8eb0ede36449816cefbdf1fd413724fa631031261b0b5dc9027b49529f80",
+    "scripts/reference_error_structure_v9.py": "bb3d6a5af81a71cb65ee01ab962d3584e259cf11b28e2775212c0988a0110333",
+    "tests/test_reference_error_structure_v9.py": "447f64a71b71b89c3a36da539e4623e28c884137a9f7da71438e895b89ae7963"
+  },
+  "data_authority": "docs/analysis/results/control_windows_v2/manifest.json",
+  "partitions": "original407trainingwindows/5flights only; existing v8 OOF and same-model fit predictions; no new developmentvalidation evaluation; sealed/reserved not accessed",
+  "phase_contract": {
+    "definition": "logged wing_phase zero; Hall consistency is checked separately",
+    "installation_consistency": "not_confirmed",
+    "status": "unconfirmed_physical_pose"
+  },
+  "frequency_contract": {
+    "column": "flap_frequency_hz",
+    "ratio": 7.909090995788574,
+    "rescaling": "none; September logged ratio, not April ratio8"
+  },
+  "decomposition": "perwindow float64 MSE=bias^2+centeredMSE; centeredMSE=(stdpred-stdtrue)^2+2*(stdpred*stdtrue-cov). Last term combines waveform/timing discrepancies, not pure phase error.",
+  "diagnostic_horizons_steps": [
+    5,
+    10,
+    25,
+    50
+  ],
+  "learning_horizons_steps": [
+    25,
+    50
+  ],
+  "seeds": [
+    17,
+    23,
+    42
+  ],
+  "decomposition_models": "both v8 hold andphase, fit andOOF, no new neural training",
+  "predictors": [
+    "zero",
+    "constant",
+    "residual_state",
+    "residual_full",
+    "mean_state",
+    "mean_full"
+  ],
+  "ridge_alpha": 100,
+  "features": "58state-only or94state+reference+actuator; last/mean/std/lineartrend of observed26samples, pluscurrentmode; no future reference, future measurement, flightID or errors as features",
+  "learning": "for each outerfold andseed use its holdGRU only. Residual labels from that same model on its4fitflights; query5th excluded from GRU, regression, normalization and targets. Never combine otherfold OOF residuals as training labels.",
+  "residual_limitation": "calibration residuals are in-sample for GRU, although regression evaluation is outerflight-honest; transfer may fail due optimism of these labels. This does not prove residuals unlearnable.",
+  "direct_mean": "separate history-only predictor trained on4fitflights truth windowmean; no GRU-generated training targets, distinguishes predictability of mean from residual calibration transfer",
+  "interpretation": "constant rate-readout shift is algebraic diagnosis only, changes trajectory mean; no reintegration or reference-response validation, not a dynamics/control model",
+  "primary": "OOF flight-equal RMSE of normalized windowmean error, equal axespqr and horizons0.5/1s and seeds; normalization from respective4fitflight GRU loss scale",
+  "followup_gate": "for each prespecified learnedarm: >=10percent primary improvement vszero, all3seedpositive, >=4of5flightpositive, noaxis normalizedmeanRMSE>5percent worse. Gate only supports further mean-error research, not control promotion.",
+  "association": "within-flight Spearman, report every fixed historical covariate vs signedbias/centeredMSE; descriptive, no significance or causality claims",
+  "bootstrap": "2000pairedwholeflight resamples seed909, fixedtrainedmodels,5flights; exploratory only",
+  "validation_status": "training flights used in prior development; not blind test",
+  "sealed_test_accessed": false
+}

@@ -1,0 +1,13 @@
+{
+  "python": "3.11.14 (main, Oct 21 2025, 18:31:21) [GCC 11.2.0]",
+  "executable": "/home/zn/anaconda3/envs/flap-train-gpu/bin/python",
+  "torch": "2.7.0+cu128",
+  "numpy": "1.26.0",
+  "pandas": "2.3.3",
+  "platform": "Linux-5.15.0-186-generic-x86_64-with-glibc2.35",
+  "training_device": "cpu",
+  "training_threads_per_worker": 1,
+  "concurrency": 6,
+  "OPENBLAS_NUM_THREADS": 1,
+  "deterministic_algorithms": true
+}

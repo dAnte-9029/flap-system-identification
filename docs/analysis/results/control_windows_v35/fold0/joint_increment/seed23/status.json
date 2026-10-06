@@ -1,0 +1,8 @@
+{
+  "status": "complete",
+  "step": 1600,
+  "elapsed_s": 176.8223628476262,
+  "checkpoint_sha256": "b7ea0615e0bc6a2891b18c6b1b93daf20bd8c7932956f4cf5e0e00555052c9a6",
+  "local_weight": 1.0,
+  "paired_init_and_parent_draws": true
+}

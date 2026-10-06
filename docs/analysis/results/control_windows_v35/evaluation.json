@@ -1,0 +1,18 @@
+{
+  "completed_trainings": 15,
+  "steps_each": 1600,
+  "primary_q_wave_improvement_percent": 10.039363613679075,
+  "all_seeds_q_positive": true,
+  "positive_flights": 5,
+  "protection_passed": 18,
+  "protection_total": 18,
+  "descriptive_gate": true,
+  "absolute_active_passed": 3,
+  "absolute_active_total": 12,
+  "promoted": false,
+  "control_ready": false,
+  "limit": "Conditional prediction under feedback-generated recorded actuator commands; same input boundary as v30 control; rolling auxiliary supervision is fit-only. Independent response/closed-loop evidence absent.",
+  "validation_accessed": false,
+  "sealed_test_accessed": false,
+  "reserved_accessed": false
+}

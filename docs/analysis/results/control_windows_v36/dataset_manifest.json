@@ -1,0 +1,20 @@
+{
+  "source": "docs/analysis/results/control_windows_v29",
+  "source_manifest_sha256": "d94423e9e918494a386158d48fa00b29f8fbde1934910d383f97234add7bd001",
+  "arrays_sha256": "eb06dd11d48ee727f2b8656ff6c7fc170a929e2769a40f1f3a9bf6e6467a2a9d",
+  "support_manifest_sha256": "28bc012980faf0c4fe854c766d6abcc7e77295fdf2bb0fb2ce2f6278655f1209",
+  "partitions": [
+    "original_train_5flight_OOF"
+  ],
+  "windows": 407,
+  "phase_contract": {
+    "definition": "logged wing_phase zero; Hall consistency is checked separately",
+    "installation_consistency": "not_confirmed",
+    "status": "unconfirmed_physical_pose"
+  },
+  "frequency_contract": {
+    "column": "flap_frequency_hz",
+    "ratio": 7.909090995788574,
+    "rescaling": "none; September logged ratio, not April ratio8"
+  }
+}

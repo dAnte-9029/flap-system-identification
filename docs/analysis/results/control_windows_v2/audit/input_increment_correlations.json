@@ -1,0 +1,282 @@
+[
+  {
+    "partition": "train",
+    "mode": 3,
+    "input_a": "roll_ref",
+    "input_b": "pitch_ref",
+    "correlation": -0.1500057218200497
+  },
+  {
+    "partition": "train",
+    "mode": 3,
+    "input_a": "roll_ref",
+    "input_b": "yaw_rate_ref",
+    "correlation": null
+  },
+  {
+    "partition": "train",
+    "mode": 3,
+    "input_a": "roll_ref",
+    "input_b": "thrust_x",
+    "correlation": 0.015568034071679887
+  },
+  {
+    "partition": "train",
+    "mode": 3,
+    "input_a": "roll_ref",
+    "input_b": "manual_yaw",
+    "correlation": null
+  },
+  {
+    "partition": "train",
+    "mode": 3,
+    "input_a": "pitch_ref",
+    "input_b": "yaw_rate_ref",
+    "correlation": null
+  },
+  {
+    "partition": "train",
+    "mode": 3,
+    "input_a": "pitch_ref",
+    "input_b": "thrust_x",
+    "correlation": 0.04078574865160609
+  },
+  {
+    "partition": "train",
+    "mode": 3,
+    "input_a": "pitch_ref",
+    "input_b": "manual_yaw",
+    "correlation": null
+  },
+  {
+    "partition": "train",
+    "mode": 3,
+    "input_a": "yaw_rate_ref",
+    "input_b": "thrust_x",
+    "correlation": null
+  },
+  {
+    "partition": "train",
+    "mode": 3,
+    "input_a": "yaw_rate_ref",
+    "input_b": "manual_yaw",
+    "correlation": null
+  },
+  {
+    "partition": "train",
+    "mode": 3,
+    "input_a": "thrust_x",
+    "input_b": "manual_yaw",
+    "correlation": null
+  },
+  {
+    "partition": "train",
+    "mode": 15,
+    "input_a": "roll_ref",
+    "input_b": "pitch_ref",
+    "correlation": 0.1340257166787199
+  },
+  {
+    "partition": "train",
+    "mode": 15,
+    "input_a": "roll_ref",
+    "input_b": "yaw_rate_ref",
+    "correlation": null
+  },
+  {
+    "partition": "train",
+    "mode": 15,
+    "input_a": "roll_ref",
+    "input_b": "thrust_x",
+    "correlation": 0.007532766472254124
+  },
+  {
+    "partition": "train",
+    "mode": 15,
+    "input_a": "roll_ref",
+    "input_b": "manual_yaw",
+    "correlation": -0.01006345419271452
+  },
+  {
+    "partition": "train",
+    "mode": 15,
+    "input_a": "pitch_ref",
+    "input_b": "yaw_rate_ref",
+    "correlation": null
+  },
+  {
+    "partition": "train",
+    "mode": 15,
+    "input_a": "pitch_ref",
+    "input_b": "thrust_x",
+    "correlation": 0.10829616515640379
+  },
+  {
+    "partition": "train",
+    "mode": 15,
+    "input_a": "pitch_ref",
+    "input_b": "manual_yaw",
+    "correlation": -0.0019293030900910029
+  },
+  {
+    "partition": "train",
+    "mode": 15,
+    "input_a": "yaw_rate_ref",
+    "input_b": "thrust_x",
+    "correlation": null
+  },
+  {
+    "partition": "train",
+    "mode": 15,
+    "input_a": "yaw_rate_ref",
+    "input_b": "manual_yaw",
+    "correlation": null
+  },
+  {
+    "partition": "train",
+    "mode": 15,
+    "input_a": "thrust_x",
+    "input_b": "manual_yaw",
+    "correlation": -0.012799451290517608
+  },
+  {
+    "partition": "validation",
+    "mode": 3,
+    "input_a": "roll_ref",
+    "input_b": "pitch_ref",
+    "correlation": -0.002874943241960444
+  },
+  {
+    "partition": "validation",
+    "mode": 3,
+    "input_a": "roll_ref",
+    "input_b": "yaw_rate_ref",
+    "correlation": null
+  },
+  {
+    "partition": "validation",
+    "mode": 3,
+    "input_a": "roll_ref",
+    "input_b": "thrust_x",
+    "correlation": -0.019458564189752104
+  },
+  {
+    "partition": "validation",
+    "mode": 3,
+    "input_a": "roll_ref",
+    "input_b": "manual_yaw",
+    "correlation": null
+  },
+  {
+    "partition": "validation",
+    "mode": 3,
+    "input_a": "pitch_ref",
+    "input_b": "yaw_rate_ref",
+    "correlation": null
+  },
+  {
+    "partition": "validation",
+    "mode": 3,
+    "input_a": "pitch_ref",
+    "input_b": "thrust_x",
+    "correlation": -0.047294369036815366
+  },
+  {
+    "partition": "validation",
+    "mode": 3,
+    "input_a": "pitch_ref",
+    "input_b": "manual_yaw",
+    "correlation": null
+  },
+  {
+    "partition": "validation",
+    "mode": 3,
+    "input_a": "yaw_rate_ref",
+    "input_b": "thrust_x",
+    "correlation": null
+  },
+  {
+    "partition": "validation",
+    "mode": 3,
+    "input_a": "yaw_rate_ref",
+    "input_b": "manual_yaw",
+    "correlation": null
+  },
+  {
+    "partition": "validation",
+    "mode": 3,
+    "input_a": "thrust_x",
+    "input_b": "manual_yaw",
+    "correlation": null
+  },
+  {
+    "partition": "validation",
+    "mode": 15,
+    "input_a": "roll_ref",
+    "input_b": "pitch_ref",
+    "correlation": 0.09446385089783306
+  },
+  {
+    "partition": "validation",
+    "mode": 15,
+    "input_a": "roll_ref",
+    "input_b": "yaw_rate_ref",
+    "correlation": null
+  },
+  {
+    "partition": "validation",
+    "mode": 15,
+    "input_a": "roll_ref",
+    "input_b": "thrust_x",
+    "correlation": -0.004409210546525875
+  },
+  {
+    "partition": "validation",
+    "mode": 15,
+    "input_a": "roll_ref",
+    "input_b": "manual_yaw",
+    "correlation": -0.01812191779292044
+  },
+  {
+    "partition": "validation",
+    "mode": 15,
+    "input_a": "pitch_ref",
+    "input_b": "yaw_rate_ref",
+    "correlation": null
+  },
+  {
+    "partition": "validation",
+    "mode": 15,
+    "input_a": "pitch_ref",
+    "input_b": "thrust_x",
+    "correlation": 0.04654011438368418
+  },
+  {
+    "partition": "validation",
+    "mode": 15,
+    "input_a": "pitch_ref",
+    "input_b": "manual_yaw",
+    "correlation": -0.0070456749110724085
+  },
+  {
+    "partition": "validation",
+    "mode": 15,
+    "input_a": "yaw_rate_ref",
+    "input_b": "thrust_x",
+    "correlation": null
+  },
+  {
+    "partition": "validation",
+    "mode": 15,
+    "input_a": "yaw_rate_ref",
+    "input_b": "manual_yaw",
+    "correlation": null
+  },
+  {
+    "partition": "validation",
+    "mode": 15,
+    "input_a": "thrust_x",
+    "input_b": "manual_yaw",
+    "correlation": 0.005425792714640044
+  }
+]

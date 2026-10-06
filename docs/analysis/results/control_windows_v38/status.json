@@ -1,0 +1,41 @@
+{
+  "status": "complete_verified",
+  "completed": [
+    {
+      "log_id": "2026.9.6/log_20_2026-9-6-18-58-10.ulg",
+      "parents": 64,
+      "status": "complete",
+      "runs": 896,
+      "destination": "log_20_2026-9-6-18-58-10"
+    },
+    {
+      "log_id": "2026.9.6/log_17_2026-9-6-18-34-06.ulg",
+      "parents": 97,
+      "status": "complete",
+      "runs": 1358,
+      "destination": "log_17_2026-9-6-18-34-06"
+    },
+    {
+      "log_id": "2026.9.6/log_28_2026-9-6-07-01-38.ulg",
+      "parents": 81,
+      "status": "complete",
+      "runs": 1134,
+      "destination": "log_28_2026-9-6-07-01-38"
+    },
+    {
+      "log_id": "2026.9.6/log_19_2026-9-6-18-52-30.ulg",
+      "parents": 87,
+      "status": "complete",
+      "runs": 1218,
+      "destination": "log_19_2026-9-6-18-52-30"
+    },
+    {
+      "log_id": "2026.9.6/log_18_2026-9-6-18-46-20.ulg",
+      "parents": 78,
+      "status": "complete",
+      "runs": 1092,
+      "destination": "log_18_2026-9-6-18-46-20"
+    }
+  ],
+  "model_replay_started": false
+}

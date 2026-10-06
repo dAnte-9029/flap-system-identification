@@ -1,0 +1,7 @@
+{
+  "candidate_run_seconds_min": 164.27502326946706,
+  "candidate_run_seconds_max": 209.00962310563773,
+  "candidate_run_seconds_sum": 2723.2894595516846,
+  "zero_reproduction_seconds": 129.01140147820115,
+  "note": "Per-process measured duration includes final save and predictions, excludes initial hash/load. Concurrent sums are not campaign elapsed time. Not a FLOPs comparison."
+}

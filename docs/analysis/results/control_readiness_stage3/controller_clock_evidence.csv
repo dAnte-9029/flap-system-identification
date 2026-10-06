@@ -1,0 +1,4 @@
+log,n,dt_p01_s,dt_median_s,dt_p99_s,inferred_hz,method
+log_0_2026-9-18-18-15-06.ulg,7167,0.0024929996693134385,0.002494999821447967,0.002497000067342954,400.8016318893572,roll raw I delta / (FW_RR_I * error * nonlinear I factor); update_enabled bool mask
+log_1_2026-9-18-18-23-36.ulg,6810,0.0024619997612821565,0.002463999892411469,0.00246600004720233,405.84417356500745,roll raw I delta / (FW_RR_I * error * nonlinear I factor); update_enabled bool mask
+log_2_2026-9-18-18-29-40.ulg,7429,0.00246199978297371,0.0024639998779022254,0.0024659999287161313,405.8441759548177,roll raw I delta / (FW_RR_I * error * nonlinear I factor); update_enabled bool mask

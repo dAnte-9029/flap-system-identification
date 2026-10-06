@@ -1,0 +1,22 @@
+{
+  "status": "frozen_response_audit_complete",
+  "trained_models": 0,
+  "windows_retained": 407,
+  "input_channel_anchors": 412,
+  "parents_with_anchors": 265,
+  "simultaneous_channel_fraction": 0.5194174757281553,
+  "full_prediction_relative_gate_retained": true,
+  "absolute_gate_passed": false,
+  "model_promoted": false,
+  "control_ready": false,
+  "same_controller_diagnostic_replay_preparation_supported": true,
+  "replay_execution_ready": false,
+  "missing_replay_evidence": "Complete controller/allocator initial state and faithful closed-loop time ordering have not been audited in this stage.",
+  "p_accumulation_worse_flights": 4,
+  "q_all_group_best_oracle_lags_zero": true,
+  "baseline_retained": "A1600",
+  "next_step": "Prepare a bounded same-PX4-inner-loop offline diagnostic replay: first audit full controller/allocator state initialization, timestamps, mode/parameter fidelity and observed command support. Use model states to generate future commands and compare both states and commands. No new-controller design, promotion, online deployment or future logged-command substitution.",
+  "validation_accessed": false,
+  "sealed_test_accessed": false,
+  "reserved_accessed": false
+}

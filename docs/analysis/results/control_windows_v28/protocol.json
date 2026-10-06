@@ -1,0 +1,32 @@
+{
+  "stage": "v28 actuator input contract audit",
+  "parents": {
+    "docs/analysis/results/control_windows_v23": "3b060e6e77850b9de52a4a3fc5d286dad31251c4d4fd5e8577c07e971480f4a5",
+    "docs/analysis/results/control_windows_v27": "28d5ccc985bb431b5d0bff5fa4268665b4ddc19a8bd0f48231c48d333ef423e1"
+  },
+  "code": {
+    "scripts/audit_actuator_contract_v28.py": "57041cb10ef0558f5b9969067e6ad1f25f24cdb58eecd19f2a8ebee9271d90c3",
+    "scripts/actuator_contract_v28.py": "7feee85723476c10f4f3dae843a52d76ae44a073730a1d14961233741629ecf3",
+    "tests/test_actuator_contract_v28.py": "e385a60e960f8c9afd690d8f0be230744de12770b9776c175d816407fe2b4614"
+  },
+  "source_firmware": "c9af571575af33d5403fbb479256848797c801e2",
+  "scope": "Original407trainparents only;5authorized source ULogs; no training, selection, future state features, developmentvalidation/sealed/reserved.",
+  "window_support": "77grid instants origin-26..origin+50 inclusive. Preserve existing history command origin-26..origin-1 and candidate future commands origin..origin+49. Labels remain origin+1..origin+50.",
+  "commands": "[motor0,servo0,servo1,servo2] normalized post-allocation, independently latest messages with max(publication,sample)<=query. Store both times; sample timestamp is originating control/gyro sample, not physical actuator application.",
+  "allocation": "Configured fixedwing pseudoinverse from source/parameters; join unique exact timestamp_sample among motor,servo,torque,thrust; report duplicate/unmatched counts. No fitted control mapping.",
+  "pwm": "Normal active output mapping using fixedfunction,reverse,min/max,optionalcenter,THR_MDL_FAC; compare causal lastlogged commands with native actuator_outputs instance0, no fitted time shift. Asynchronous logs need not coincide with commands applied by driver.",
+  "coverage": "Native update counts and gaps within each original parent; grid publication/sample ages; future range/change counts, saturation/status tags retained. No output response sign or model error selection.",
+  "independence": "Within-window first differences motor/common/differential/yaw; perflight raw SVD and correlation, descriptive only, no causal identifiability claim.",
+  "phase_contract": {
+    "definition": "logged wing_phase zero; Hall consistency is checked separately",
+    "installation_consistency": "not_confirmed",
+    "status": "unconfirmed_physical_pose"
+  },
+  "frequency_contract": {
+    "column": "flap_frequency_hz",
+    "ratio": 7.909090995788574,
+    "rescaling": "none; September logged ratio, not April ratio8"
+  },
+  "training_started": false,
+  "sealed_test_accessed": false
+}

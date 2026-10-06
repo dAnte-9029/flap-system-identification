@@ -1,0 +1,133 @@
+{
+  "status": "passed",
+  "checkpoint_checks": [
+    {
+      "fold": 0,
+      "seed": 17,
+      "predictions_exact": true,
+      "buffers_exact": true,
+      "initialization_exact": true,
+      "causal_prefix": true
+    },
+    {
+      "fold": 0,
+      "seed": 23,
+      "predictions_exact": true,
+      "buffers_exact": true,
+      "initialization_exact": true,
+      "causal_prefix": true
+    },
+    {
+      "fold": 0,
+      "seed": 42,
+      "predictions_exact": true,
+      "buffers_exact": true,
+      "initialization_exact": true,
+      "causal_prefix": true
+    },
+    {
+      "fold": 1,
+      "seed": 17,
+      "predictions_exact": true,
+      "buffers_exact": true,
+      "initialization_exact": true,
+      "causal_prefix": true
+    },
+    {
+      "fold": 1,
+      "seed": 23,
+      "predictions_exact": true,
+      "buffers_exact": true,
+      "initialization_exact": true,
+      "causal_prefix": true
+    },
+    {
+      "fold": 1,
+      "seed": 42,
+      "predictions_exact": true,
+      "buffers_exact": true,
+      "initialization_exact": true,
+      "causal_prefix": true
+    },
+    {
+      "fold": 2,
+      "seed": 17,
+      "predictions_exact": true,
+      "buffers_exact": true,
+      "initialization_exact": true,
+      "causal_prefix": true
+    },
+    {
+      "fold": 2,
+      "seed": 23,
+      "predictions_exact": true,
+      "buffers_exact": true,
+      "initialization_exact": true,
+      "causal_prefix": true
+    },
+    {
+      "fold": 2,
+      "seed": 42,
+      "predictions_exact": true,
+      "buffers_exact": true,
+      "initialization_exact": true,
+      "causal_prefix": true
+    },
+    {
+      "fold": 3,
+      "seed": 17,
+      "predictions_exact": true,
+      "buffers_exact": true,
+      "initialization_exact": true,
+      "causal_prefix": true
+    },
+    {
+      "fold": 3,
+      "seed": 23,
+      "predictions_exact": true,
+      "buffers_exact": true,
+      "initialization_exact": true,
+      "causal_prefix": true
+    },
+    {
+      "fold": 3,
+      "seed": 42,
+      "predictions_exact": true,
+      "buffers_exact": true,
+      "initialization_exact": true,
+      "causal_prefix": true
+    },
+    {
+      "fold": 4,
+      "seed": 17,
+      "predictions_exact": true,
+      "buffers_exact": true,
+      "initialization_exact": true,
+      "causal_prefix": true
+    },
+    {
+      "fold": 4,
+      "seed": 23,
+      "predictions_exact": true,
+      "buffers_exact": true,
+      "initialization_exact": true,
+      "causal_prefix": true
+    },
+    {
+      "fold": 4,
+      "seed": 42,
+      "predictions_exact": true,
+      "buffers_exact": true,
+      "initialization_exact": true,
+      "causal_prefix": true
+    }
+  ],
+  "state_metric_values_recomputed": 78144,
+  "action_metric_values_recomputed": 0,
+  "causal_support_points_recomputed": 0,
+  "all_gates_independently_verified": true,
+  "all407_retained": true,
+  "validation_accessed": false,
+  "sealed_test_accessed": false,
+  "reserved_accessed": false
+}

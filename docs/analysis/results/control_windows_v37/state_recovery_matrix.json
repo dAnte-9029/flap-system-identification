@@ -1,0 +1,67 @@
+[
+  {
+    "component": "固件与参数",
+    "status": "identified",
+    "evidence": "5日志c9af，相关参数一致，无变更；不是二进制/实物接线认证"
+  },
+  {
+    "component": "积分",
+    "status": "partial",
+    "evidence": "status为更新后，terms为更新前；起点最新记录仍有年龄，不是同周期完整状态"
+  },
+  {
+    "component": "压缩增益与能量LPF",
+    "status": "partial",
+    "evidence": "约100ms发布；最新观测可提取但不是起点真实内部状态"
+  },
+  {
+    "component": "压缩signed HPF",
+    "status": "not_identifiable_from_field",
+    "evidence": "日志getSpectralDamperHpf返回_hpf*_hpf，符号丢失"
+  },
+  {
+    "component": "压缩previous effort",
+    "status": "not_directly_logged",
+    "evidence": "_input_prev为压缩器上一周期输入control_u，不是任意最新PWM/限幅后torque"
+  },
+  {
+    "component": "空速滤波与缩放",
+    "status": "partial",
+    "evidence": "原始空速可用；1秒时间常数内部滤波值未直接记录，代数反推也只覆盖部分历史时刻"
+  },
+  {
+    "component": "姿态yaw欧拉率记忆",
+    "status": "partial",
+    "evidence": "roll/pitch使用上一周期yaw欧拉率，然后更新yaw；body rate setpoint不直接等价于此状态"
+  },
+  {
+    "component": "飞手yaw叠加",
+    "status": "partial",
+    "evidence": "Stabilized姿态链另加yaw杆量，约200ms日志；只给姿态四元数不足以完整复现"
+  },
+  {
+    "component": "控制器/分配时钟",
+    "status": "not_exact",
+    "evidence": "日志抽样缺少中间更新、uORB读取顺序和最后运行时刻；原生周期约2.5ms"
+  },
+  {
+    "component": "分配与反饱和",
+    "status": "mapping_verified_state_partial",
+    "evidence": "静态分配已有同sample验证；反馈状态约200ms，不能恢复所有周期的旗标"
+  },
+  {
+    "component": "角加速度",
+    "status": "not_active_D_path",
+    "evidence": "三轴D=0，此配置角加速度缺失不会通过D项产生力矩；不假定其他配置如此"
+  },
+  {
+    "component": "电池/轮控/执行器slew",
+    "status": "inactive_under_frozen_config",
+    "evidence": "FW_BAT_SCALE_EN=0、FW_W_EN=0、舵机slew=0；不是永久忽略这些路径"
+  },
+  {
+    "component": "模型持久状态",
+    "status": "adapter_required",
+    "evidence": "现接口整段forward；闭环需H26初始化一次并保持GRU hidden/物理状态/相位，同一命令带必须重现原50步"
+  }
+]

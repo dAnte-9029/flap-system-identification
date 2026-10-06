@@ -1,0 +1,11 @@
+{
+  "normalization_reproduced_train_only": true,
+  "checkpoint_reload_max_abs": [
+    6.556510925292969e-07,
+    9.5367431640625e-07,
+    9.5367431640625e-07
+  ],
+  "baseline_checkpoint_hashes_verified": true,
+  "focused_tests": 18,
+  "sealed_test_accessed": false
+}

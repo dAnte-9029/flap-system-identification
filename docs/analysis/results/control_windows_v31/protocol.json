@@ -1,0 +1,44 @@
+{
+  "stage": "v31 frozen actuator response/support localization",
+  "status": "frozen_before_diagnostics",
+  "parents": {
+    "docs/analysis/results/control_windows_v12": "064ac0c8b9600d09a495b1ad3e43b40fb666f09979be73f86537a38b80282bbf",
+    "docs/analysis/results/control_windows_v23": "3b060e6e77850b9de52a4a3fc5d286dad31251c4d4fd5e8577c07e971480f4a5",
+    "docs/analysis/results/control_windows_v28": "fcd22c3bcff805abb867e975491d80af108876b4d35fba11d6b7f08b65b7d64f",
+    "docs/analysis/results/control_windows_v29": "49ffd01eb46a8fd80e6e193143b25be4212cc78fdb11725feb95c5a495e9b231",
+    "docs/analysis/results/control_windows_v30": "d7fa86921e498c47875ae4144e13899e907d4104e6b1ad1f6cfdb4bdde6f8b18"
+  },
+  "code": {
+    "scripts/audit_actuator_response_v31.py": "7a67d415989c76f8236a72c061c5b7519a3a46f328211e037b2d7d0cf3d41925",
+    "scripts/actuator_diagnostics_v31.py": "d6f334b15b0228f3e8439480a8f87d3d9c13054a815162c82cec9ca1df911885",
+    "tests/test_actuator_diagnostics_v31.py": "4d932539dd33ccca7393857b127bfd7cab66e7989c7ba4a1f9daca8d5981f1c6",
+    "scripts/controller_support_v26.py": "012f4833291229bb44e5c98b8bfd3be6cf896ad3a582d94ff286917198f9e6d6",
+    "scripts/reference_condition_diagnostics_v12.py": "409f8a48ec43604ee553ef1e69e3b12a026a7259028159902723de18cfb0846f",
+    "scripts/reference_error_structure_v9.py": "bb3d6a5af81a71cb65ee01ab962d3584e259cf11b28e2775212c0988a0110333",
+    "src/system_identification/models/trajectory_main_v1.py": "b61dd09701b3bfe0176f1a406e4c511b58092fb080b47af115aa4c54681a7e5a"
+  },
+  "scope": "All407 original train windows and15v30+15v23 frozen predictions, fit and OOF; no training/checkpoint changes/exclusions or validation/sealed/reserved access.",
+  "support": "Physical command combinations motor,common=(servo0+servo1)/2,diff=(servo1-servo0)/2,yaw. Each history/future block mean,std,last,stepRMS; past-state same summaries of columns0..8,11..13. Four blocks: past command16, future command16, past state48, past command+state64. Fit-flight-balanced standardization floor1e-6; RMS nearest neighbor; fit calibration excludes entire same flight,95percentile fit-flight-balanced threshold. Query cannot affect statistics. Future-command support is OFFLINE only; no online trust claim.",
+  "marginal": "Fit-flight-balanced1/99percentile andmin/max per command channel separately history/future. Do not drop tails or interpret coverage as causal validity.",
+  "strata": "Reuse v12 q history frequency_mean/frequency_std terciles and mode verbatim, independently verify thresholds. Add input support covered/weak and v28 allocator-limited flag. No error-selected bins.",
+  "rate_errors": "p/q/r waveform total=bias+centered=bias+amplitude+shape. Full1s,first/last.5s, signedbias, timewise residual/MSE. Paired candidate-minus-baseline, both fit/OOF, by flight andseed. No pvalues or causal root-cause claim.",
+  "lag": "q only; lags -5..5samples of20ms on fixed truth indices5:45, centeredMSE. Positive means later prediction aligned with earlier truth. Best group-level lag after seeing truth is oracle diagnostic, NOT fitted input shift, physical latency or corrected deployable prediction.",
+  "attitude": "Replay midpoint integration of saved predicted rates from original initial attitude/rates; exact match stored quaternions. Then replace one predicted axis or all3 with future true rates and reintegrate only kinematics, preserving other predicted rates. Offline oracle; no GRU reroll/state feedback. Axis improvements nonadditive and do not establish causal actuator effect. All-rate case checks label/integration discrepancy.",
+  "comparison": "Preserve v30 metric definitions and equal-flight then equal-seed averaging. Reproduce frozen q andattitude metrics before interpreting; all407 retained.",
+  "baseline_retained": "A1600",
+  "model_promoted": false,
+  "training_started": false,
+  "phase_contract": {
+    "definition": "logged wing_phase zero; Hall consistency is checked separately",
+    "installation_consistency": "not_confirmed",
+    "status": "unconfirmed_physical_pose"
+  },
+  "frequency_contract": {
+    "column": "flap_frequency_hz",
+    "ratio": 7.909090995788574,
+    "rescaling": "none; September logged ratio, not April ratio8"
+  },
+  "validation_accessed": false,
+  "sealed_test_accessed": false,
+  "reserved_accessed": false
+}

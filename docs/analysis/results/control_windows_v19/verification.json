@@ -1,0 +1,497 @@
+{
+  "integration_and_reference_checks": [
+    {
+      "fold": 0,
+      "seed": 17,
+      "cohort": "fit",
+      "arm": "baseline",
+      "quaternion_max_angle": 1.231669805674401e-06,
+      "v18_held_max_abs": null
+    },
+    {
+      "fold": 0,
+      "seed": 17,
+      "cohort": "fit",
+      "arm": "aux",
+      "quaternion_max_angle": 1.5606951114387973e-06,
+      "v18_held_max_abs": null
+    },
+    {
+      "fold": 0,
+      "seed": 17,
+      "cohort": "oof",
+      "arm": "baseline",
+      "quaternion_max_angle": 1.413188401881752e-06,
+      "v18_held_max_abs": null
+    },
+    {
+      "fold": 0,
+      "seed": 17,
+      "cohort": "oof",
+      "arm": "aux",
+      "quaternion_max_angle": 1.7294150411124e-06,
+      "v18_held_max_abs": 0.0
+    },
+    {
+      "fold": 0,
+      "seed": 23,
+      "cohort": "fit",
+      "arm": "baseline",
+      "quaternion_max_angle": 1.3242631772300394e-06,
+      "v18_held_max_abs": null
+    },
+    {
+      "fold": 0,
+      "seed": 23,
+      "cohort": "fit",
+      "arm": "aux",
+      "quaternion_max_angle": 1.373310287528556e-06,
+      "v18_held_max_abs": null
+    },
+    {
+      "fold": 0,
+      "seed": 23,
+      "cohort": "oof",
+      "arm": "baseline",
+      "quaternion_max_angle": 1.29041734942124e-06,
+      "v18_held_max_abs": null
+    },
+    {
+      "fold": 0,
+      "seed": 23,
+      "cohort": "oof",
+      "arm": "aux",
+      "quaternion_max_angle": 1.355644568245855e-06,
+      "v18_held_max_abs": 0.0
+    },
+    {
+      "fold": 0,
+      "seed": 42,
+      "cohort": "fit",
+      "arm": "baseline",
+      "quaternion_max_angle": 1.4127395552560092e-06,
+      "v18_held_max_abs": null
+    },
+    {
+      "fold": 0,
+      "seed": 42,
+      "cohort": "fit",
+      "arm": "aux",
+      "quaternion_max_angle": 1.4942951279405357e-06,
+      "v18_held_max_abs": null
+    },
+    {
+      "fold": 0,
+      "seed": 42,
+      "cohort": "oof",
+      "arm": "baseline",
+      "quaternion_max_angle": 1.2174818389737484e-06,
+      "v18_held_max_abs": null
+    },
+    {
+      "fold": 0,
+      "seed": 42,
+      "cohort": "oof",
+      "arm": "aux",
+      "quaternion_max_angle": 1.3917651218925825e-06,
+      "v18_held_max_abs": 0.0
+    },
+    {
+      "fold": 1,
+      "seed": 17,
+      "cohort": "fit",
+      "arm": "baseline",
+      "quaternion_max_angle": 1.4972255637610904e-06,
+      "v18_held_max_abs": null
+    },
+    {
+      "fold": 1,
+      "seed": 17,
+      "cohort": "fit",
+      "arm": "aux",
+      "quaternion_max_angle": 1.7568390264632685e-06,
+      "v18_held_max_abs": null
+    },
+    {
+      "fold": 1,
+      "seed": 17,
+      "cohort": "oof",
+      "arm": "baseline",
+      "quaternion_max_angle": 1.161224650377953e-06,
+      "v18_held_max_abs": null
+    },
+    {
+      "fold": 1,
+      "seed": 17,
+      "cohort": "oof",
+      "arm": "aux",
+      "quaternion_max_angle": 1.3112368829361173e-06,
+      "v18_held_max_abs": 0.0
+    },
+    {
+      "fold": 1,
+      "seed": 23,
+      "cohort": "fit",
+      "arm": "baseline",
+      "quaternion_max_angle": 1.4881987900879428e-06,
+      "v18_held_max_abs": null
+    },
+    {
+      "fold": 1,
+      "seed": 23,
+      "cohort": "fit",
+      "arm": "aux",
+      "quaternion_max_angle": 1.3863512298892209e-06,
+      "v18_held_max_abs": null
+    },
+    {
+      "fold": 1,
+      "seed": 23,
+      "cohort": "oof",
+      "arm": "baseline",
+      "quaternion_max_angle": 1.0635454701923496e-06,
+      "v18_held_max_abs": null
+    },
+    {
+      "fold": 1,
+      "seed": 23,
+      "cohort": "oof",
+      "arm": "aux",
+      "quaternion_max_angle": 1.0249141111634168e-06,
+      "v18_held_max_abs": 0.0
+    },
+    {
+      "fold": 1,
+      "seed": 42,
+      "cohort": "fit",
+      "arm": "baseline",
+      "quaternion_max_angle": 1.8895395460573464e-06,
+      "v18_held_max_abs": null
+    },
+    {
+      "fold": 1,
+      "seed": 42,
+      "cohort": "fit",
+      "arm": "aux",
+      "quaternion_max_angle": 1.5153770066631588e-06,
+      "v18_held_max_abs": null
+    },
+    {
+      "fold": 1,
+      "seed": 42,
+      "cohort": "oof",
+      "arm": "baseline",
+      "quaternion_max_angle": 1.1466941016097175e-06,
+      "v18_held_max_abs": null
+    },
+    {
+      "fold": 1,
+      "seed": 42,
+      "cohort": "oof",
+      "arm": "aux",
+      "quaternion_max_angle": 1.1397980755138123e-06,
+      "v18_held_max_abs": 0.0
+    },
+    {
+      "fold": 2,
+      "seed": 17,
+      "cohort": "fit",
+      "arm": "baseline",
+      "quaternion_max_angle": 1.5429598780795282e-06,
+      "v18_held_max_abs": null
+    },
+    {
+      "fold": 2,
+      "seed": 17,
+      "cohort": "fit",
+      "arm": "aux",
+      "quaternion_max_angle": 1.1929984272687305e-06,
+      "v18_held_max_abs": null
+    },
+    {
+      "fold": 2,
+      "seed": 17,
+      "cohort": "oof",
+      "arm": "baseline",
+      "quaternion_max_angle": 1.269345795320684e-06,
+      "v18_held_max_abs": null
+    },
+    {
+      "fold": 2,
+      "seed": 17,
+      "cohort": "oof",
+      "arm": "aux",
+      "quaternion_max_angle": 1.2391736320928793e-06,
+      "v18_held_max_abs": 0.0
+    },
+    {
+      "fold": 2,
+      "seed": 23,
+      "cohort": "fit",
+      "arm": "baseline",
+      "quaternion_max_angle": 1.4896730899609227e-06,
+      "v18_held_max_abs": null
+    },
+    {
+      "fold": 2,
+      "seed": 23,
+      "cohort": "fit",
+      "arm": "aux",
+      "quaternion_max_angle": 1.2417198358613264e-06,
+      "v18_held_max_abs": null
+    },
+    {
+      "fold": 2,
+      "seed": 23,
+      "cohort": "oof",
+      "arm": "baseline",
+      "quaternion_max_angle": 1.516730896809869e-06,
+      "v18_held_max_abs": null
+    },
+    {
+      "fold": 2,
+      "seed": 23,
+      "cohort": "oof",
+      "arm": "aux",
+      "quaternion_max_angle": 1.4006856723115308e-06,
+      "v18_held_max_abs": 0.0
+    },
+    {
+      "fold": 2,
+      "seed": 42,
+      "cohort": "fit",
+      "arm": "baseline",
+      "quaternion_max_angle": 1.2363575544805683e-06,
+      "v18_held_max_abs": null
+    },
+    {
+      "fold": 2,
+      "seed": 42,
+      "cohort": "fit",
+      "arm": "aux",
+      "quaternion_max_angle": 1.9138790465083833e-06,
+      "v18_held_max_abs": null
+    },
+    {
+      "fold": 2,
+      "seed": 42,
+      "cohort": "oof",
+      "arm": "baseline",
+      "quaternion_max_angle": 1.1312149562105062e-06,
+      "v18_held_max_abs": null
+    },
+    {
+      "fold": 2,
+      "seed": 42,
+      "cohort": "oof",
+      "arm": "aux",
+      "quaternion_max_angle": 1.2124120610745752e-06,
+      "v18_held_max_abs": 0.0
+    },
+    {
+      "fold": 3,
+      "seed": 17,
+      "cohort": "fit",
+      "arm": "baseline",
+      "quaternion_max_angle": 1.6123694057153213e-06,
+      "v18_held_max_abs": null
+    },
+    {
+      "fold": 3,
+      "seed": 17,
+      "cohort": "fit",
+      "arm": "aux",
+      "quaternion_max_angle": 1.7472294743710743e-06,
+      "v18_held_max_abs": null
+    },
+    {
+      "fold": 3,
+      "seed": 17,
+      "cohort": "oof",
+      "arm": "baseline",
+      "quaternion_max_angle": 1.2544503722649638e-06,
+      "v18_held_max_abs": null
+    },
+    {
+      "fold": 3,
+      "seed": 17,
+      "cohort": "oof",
+      "arm": "aux",
+      "quaternion_max_angle": 7.652492872131141e-07,
+      "v18_held_max_abs": 0.0
+    },
+    {
+      "fold": 3,
+      "seed": 23,
+      "cohort": "fit",
+      "arm": "baseline",
+      "quaternion_max_angle": 1.5292480335847888e-06,
+      "v18_held_max_abs": null
+    },
+    {
+      "fold": 3,
+      "seed": 23,
+      "cohort": "fit",
+      "arm": "aux",
+      "quaternion_max_angle": 1.6262415644082858e-06,
+      "v18_held_max_abs": null
+    },
+    {
+      "fold": 3,
+      "seed": 23,
+      "cohort": "oof",
+      "arm": "baseline",
+      "quaternion_max_angle": 1.3789883533107836e-06,
+      "v18_held_max_abs": null
+    },
+    {
+      "fold": 3,
+      "seed": 23,
+      "cohort": "oof",
+      "arm": "aux",
+      "quaternion_max_angle": 1.1901271919283122e-06,
+      "v18_held_max_abs": 0.0
+    },
+    {
+      "fold": 3,
+      "seed": 42,
+      "cohort": "fit",
+      "arm": "baseline",
+      "quaternion_max_angle": 1.3045490263960001e-06,
+      "v18_held_max_abs": null
+    },
+    {
+      "fold": 3,
+      "seed": 42,
+      "cohort": "fit",
+      "arm": "aux",
+      "quaternion_max_angle": 1.3495963694904541e-06,
+      "v18_held_max_abs": null
+    },
+    {
+      "fold": 3,
+      "seed": 42,
+      "cohort": "oof",
+      "arm": "baseline",
+      "quaternion_max_angle": 1.306795816553793e-06,
+      "v18_held_max_abs": null
+    },
+    {
+      "fold": 3,
+      "seed": 42,
+      "cohort": "oof",
+      "arm": "aux",
+      "quaternion_max_angle": 1.5721403527259424e-06,
+      "v18_held_max_abs": 0.0
+    },
+    {
+      "fold": 4,
+      "seed": 17,
+      "cohort": "fit",
+      "arm": "baseline",
+      "quaternion_max_angle": 1.6607442006912984e-06,
+      "v18_held_max_abs": null
+    },
+    {
+      "fold": 4,
+      "seed": 17,
+      "cohort": "fit",
+      "arm": "aux",
+      "quaternion_max_angle": 1.4340404319310645e-06,
+      "v18_held_max_abs": null
+    },
+    {
+      "fold": 4,
+      "seed": 17,
+      "cohort": "oof",
+      "arm": "baseline",
+      "quaternion_max_angle": 1.1755832122750165e-06,
+      "v18_held_max_abs": null
+    },
+    {
+      "fold": 4,
+      "seed": 17,
+      "cohort": "oof",
+      "arm": "aux",
+      "quaternion_max_angle": 1.2019452644749485e-06,
+      "v18_held_max_abs": 0.0
+    },
+    {
+      "fold": 4,
+      "seed": 23,
+      "cohort": "fit",
+      "arm": "baseline",
+      "quaternion_max_angle": 1.4724408422668239e-06,
+      "v18_held_max_abs": null
+    },
+    {
+      "fold": 4,
+      "seed": 23,
+      "cohort": "fit",
+      "arm": "aux",
+      "quaternion_max_angle": 1.4254968206713626e-06,
+      "v18_held_max_abs": null
+    },
+    {
+      "fold": 4,
+      "seed": 23,
+      "cohort": "oof",
+      "arm": "baseline",
+      "quaternion_max_angle": 9.430029874298533e-07,
+      "v18_held_max_abs": null
+    },
+    {
+      "fold": 4,
+      "seed": 23,
+      "cohort": "oof",
+      "arm": "aux",
+      "quaternion_max_angle": 1.6395036226641561e-06,
+      "v18_held_max_abs": 0.0
+    },
+    {
+      "fold": 4,
+      "seed": 42,
+      "cohort": "fit",
+      "arm": "baseline",
+      "quaternion_max_angle": 1.6889988462159367e-06,
+      "v18_held_max_abs": null
+    },
+    {
+      "fold": 4,
+      "seed": 42,
+      "cohort": "fit",
+      "arm": "aux",
+      "quaternion_max_angle": 1.3130886484787408e-06,
+      "v18_held_max_abs": null
+    },
+    {
+      "fold": 4,
+      "seed": 42,
+      "cohort": "oof",
+      "arm": "baseline",
+      "quaternion_max_angle": 1.1926053249639098e-06,
+      "v18_held_max_abs": null
+    },
+    {
+      "fold": 4,
+      "seed": 42,
+      "cohort": "oof",
+      "arm": "aux",
+      "quaternion_max_angle": 1.1428421316370653e-06,
+      "v18_held_max_abs": 0.0
+    }
+  ],
+  "original_windows": 407,
+  "no_training": true,
+  "no_window_removal": true,
+  "sealed_test_accessed": false,
+  "original_reference_metrics_max_abs": 4.0245584642661925e-16,
+  "oof_all407_unique": true,
+  "block_mse_identity": true,
+  "shapley_efficiency": true,
+  "late_tape_no_effect_on_first100ms": true,
+  "input_only_reference_cuts_verified": true,
+  "focused_tests_passed": 5,
+  "original_attitude_per_flight_reproduced": true,
+  "max_quaternion_reconstruction_angle": 1.9138790465083833e-06
+}

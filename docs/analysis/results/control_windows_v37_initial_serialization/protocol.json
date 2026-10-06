@@ -1,0 +1,40 @@
+{
+  "stage": "v37 same-controller replay entry audit",
+  "firmware": "c9af571575af33d5403fbb479256848797c801e2",
+  "parents": {
+    "docs/analysis/results/control_windows_v23": "3b060e6e77850b9de52a4a3fc5d286dad31251c4d4fd5e8577c07e971480f4a5",
+    "docs/analysis/results/control_windows_v24": "5611fa42901e3ff257efdf8f5750c1a40fea8a7e152ded81ac17cc063cba5cd0",
+    "docs/analysis/results/control_windows_v28": "fcd22c3bcff805abb867e975491d80af108876b4d35fba11d6b7f08b65b7d64f",
+    "docs/analysis/results/control_windows_v29": "49ffd01eb46a8fd80e6e193143b25be4212cc78fdb11725feb95c5a495e9b231",
+    "docs/analysis/results/control_windows_v35": "8329f834d415102d3949635fe39ea2c7f2ea8bf0d0aaa9ecee096102ac037e8a",
+    "docs/analysis/results/control_windows_v36": "1eddd5dc2584871a1093861b018ceaf301161b996ccec499be367a5f7cb6934b"
+  },
+  "code": {
+    "scripts/audit_replay_preflight_v37.py": "283f59f445bb7c0840f11401be1ded6e4e1bccaecd6ba7034007597121e7f365",
+    "scripts/replay_preflight_v37.py": "7986a56bdeba344b33553ddd79b7e14512a411f5298c5bd02cda818775e86a38",
+    "tests/test_replay_preflight_v37.py": "c012ab4091920e74a84dc99d6cf97ed6917575ab9544c09942e9178ddf86f89e",
+    "src/system_identification/control/px4_pitch.py": "c84e6b6814dabe76a06b77e886aef619ed281e26c700d6d3758d780cc5897fc7",
+    "src/system_identification/control/px4_flight_chain.py": "42381268f9834cefbe4ce6de6e94b5b6f9dfaa0816a46ecad84c9eaee9b6be2a"
+  },
+  "scope": "Only5originaltrainULogs and407origins from v23 manifest; no model run/training, no firmware edits or deployment. Read full topic streams for source integrity; diagnostics restricted to original parent intervals, causal origin snapshots use only available past messages.",
+  "initialization": "Latest publication with BOTH publication and sample<=origin. No future controller state, no interpolation; save source times and age separately. Snapshots are asynchronous partial observations, NOT restorable exact controller state.",
+  "clock": "Source dt bounds2..40ms. Terms paired with first post status within1ms and before next terms. Infer per-axis dt from post-minus-pre integral divided by Ki*error*(1-(error/400deg)^2), error=Pterm/Kp; discard denominator<=.005 or near integral clamp and estimates outside source bounds. Conditional diagnostic assumes no reset/antiwindup, never substitutes for exact native scheduler.",
+  "boundary": "Candidate intended attitude-reference+thrust conditioned inner-loop replay, not Mission navigation/TECS or exogenous manual experiment. Recorded future references are offline conditioning; future logged actuator commands/controller states forbidden after origin. Model dt contract20ms; native faster substeps require separately declared approximation and teacher replay evidence.",
+  "native_telemetry": "Report gaps only within original windows. Logged topic cadence cannot certify complete producer updates.",
+  "state_gate": "Require signed HPF, previous effort, compression gain/cached gain, integral phase, airspeed filter, attitude yaw state, controller clocks and prior allocator feedback for exact replay. Missing states must be represented as uncertainty, not silently zeroed.",
+  "phase_contract": {
+    "definition": "logged wing_phase zero; Hall consistency is checked separately",
+    "installation_consistency": "not_confirmed",
+    "status": "unconfirmed_physical_pose"
+  },
+  "frequency_contract": {
+    "column": "flap_frequency_hz",
+    "ratio": 7.909090995788574,
+    "rescaling": "none; September logged ratio, not April ratio8"
+  },
+  "model_promoted": false,
+  "training_started": false,
+  "validation_accessed": false,
+  "sealed_test_accessed": false,
+  "reserved_accessed": false
+}

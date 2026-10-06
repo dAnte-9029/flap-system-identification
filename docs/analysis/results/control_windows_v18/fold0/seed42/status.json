@@ -1,0 +1,8 @@
+{
+  "identity_parameter_max_abs": null,
+  "status": "complete",
+  "step": 1600,
+  "elapsed_s": 138.35963437892497,
+  "checkpoint_sha256": "584f83434527f7e1f8f8dfd30c835b25d6fcfd535cf31544ba5257ab4668f3ca",
+  "all_predictions_finite": true
+}

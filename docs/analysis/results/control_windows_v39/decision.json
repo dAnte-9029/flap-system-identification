@@ -1,0 +1,16 @@
+{
+  "status": "persistent_model_step_adapter_verified",
+  "exact_cpu_native_step_parity": true,
+  "save_restore_continuation_verified": true,
+  "independent_sessions_verified": true,
+  "input_prefix_causality_verified": true,
+  "model_predictions_changed": false,
+  "weights_or_normalization_changed": false,
+  "controller_model_coupled": false,
+  "model_promoted": false,
+  "baseline": "A1600 retained; v35 remains a research candidate",
+  "next": "Freeze multirate diagnostic coupling and evaluation contract, then bounded controller-model replay; no new training.",
+  "validation_accessed": false,
+  "sealed_test_accessed": false,
+  "reserved_accessed": false
+}

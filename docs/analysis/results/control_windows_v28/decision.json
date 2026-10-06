@@ -1,0 +1,13 @@
+{
+  "status": "audit_complete",
+  "conditional_actuator_input_contract_available": true,
+  "windows_retained": 407,
+  "complete_high_rate_actuator_waveform_recovered": false,
+  "physical_servo_angle_or_force_verified": false,
+  "training_started": false,
+  "model_promoted": false,
+  "baseline_retained": "A1600",
+  "next_step": "Prepare and freeze an actuator-conditioned same-window comparison: fold normalization, input substitution and capacity control first. No claim of autonomous reference response or deployment.",
+  "validation_accessed": false,
+  "sealed_test_accessed": false
+}

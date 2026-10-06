@@ -1,0 +1,14 @@
+{
+  "stage": "v21",
+  "status": "complete",
+  "baseline": "A1600",
+  "promoted": false,
+  "raw_maneuver_and_command_chain_confirmed": true,
+  "cache_reconstruction_error_found": false,
+  "manual_input_between_logged_samples_unresolved": true,
+  "causes_of_model_failure_separated": false,
+  "windows_removed": 0,
+  "trained": false,
+  "sealed_test_accessed": false,
+  "next_step": "Audit manual-input recoverability and coverage over the original 407 train windows before freezing input-contract or training changes."
+}

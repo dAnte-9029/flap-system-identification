@@ -1,0 +1,19 @@
+{
+  "fold": 2,
+  "seed": 42,
+  "sample_plan": "fold2/seed42/sample_plan.npz",
+  "sample_plan_sha256": "4be95b11cf4cbbf0a7650cab7737259f5d43195b2831823d34ea8dc130679be0",
+  "parent_draws_path": "docs/analysis/results/control_windows_v8/fold2/hold_42/sample_draws.npz",
+  "parent_draws_sha256": "dd4a5a1b55e83673e7211f4cb4e3eebd1d004ecb75872a39cecca37935951a20",
+  "initial_parameter_sha256": "29f7a7d2c8510a917054efc2ce4c022ad56cd9db4a984df0174325320e0e1482",
+  "normalization_sha256": "bd82f3b6951f44738fe28096c28134eb1f50e45a2d12a28853be25ca762b200a",
+  "control_checkpoint": "docs/analysis/results/control_windows_v30/fold2/seed42/final.pt",
+  "control_checkpoint_sha256": "2a4034e7d1f6c78c45b9e4131f759d2dc6cf88572b448cb63ec3035bba041065",
+  "steps": 1600,
+  "batch": 32,
+  "local_batch": 32,
+  "local_weight": 1.0,
+  "weight": 1.0,
+  "execution_protocol_sha256": "9bcea1f57a8e73c2bf3de5cee42bb30de1d7f0d70d5e1d3bc4357a62b1aa6ac8",
+  "preparation_protocol_sha256": "4addecd70838e0490054c59a8649e1f857bcec11df43b47510de389b041ed337"
+}

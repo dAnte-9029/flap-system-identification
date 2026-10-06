@@ -1,0 +1,15 @@
+{
+  "status": "passed",
+  "all407_in_every_branch_and_variant": true,
+  "variants": 7,
+  "branches": 2,
+  "raw_target_metric_groups_recomputed": 17094,
+  "serialized_initial_hypotheses_restored": 5698,
+  "initial_hypotheses_not_exact_physical_state": true,
+  "unsupported_scored_cycles": 0,
+  "no_future_hidden_state_injection": true,
+  "model_replay_started": false,
+  "validation_accessed": false,
+  "sealed_test_accessed": false,
+  "reserved_accessed": false
+}

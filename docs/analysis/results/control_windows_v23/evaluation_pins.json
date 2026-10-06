@@ -1,0 +1,8 @@
+{
+  "frozen_before_final_training_results": true,
+  "paths": {
+    "scripts/evaluate_rate_reference_v23.py": "5163221923f69cf99029250e85df28398e5e1c253e727c8146684ff1c2baa4f2",
+    "scripts/run_rate_reference_v23.py": "ab10ae03a1297be228b2feaeb94b3892fdee05109d6ff849ebc2100188f4a639",
+    "tests/test_rate_reference_evaluation_v23.py": "f94257eb519dbd6d4625cf0e17f8d54c4b2ecb904ae20ab4665fdd5194f32d7b"
+  }
+}

@@ -1,0 +1,119 @@
+{
+  "group": "3e1b1922309f00687fa63d61109c12efae400efaf59ba77a37540e5a05c1cc11",
+  "sources": [
+    {
+      "log_id": "2026.9.6/log_20_2026-9-6-18-58-10.ulg",
+      "partition": "train",
+      "cache": "dataset/reference_dynamics_data_v1/26ba9c99346eef34.npz",
+      "sha256": "9c935205f52a2c60d443b6d39a8f79d568d409e1d5e7bbfd5c6eea3e7c14ddba"
+    },
+    {
+      "log_id": "2026.9.7/log_26_2026-9-7-06-30-26.ulg",
+      "partition": "validation",
+      "cache": "dataset/reference_dynamics_data_v1/330300275b6589cd.npz",
+      "sha256": "a8d96a6d09fc07aa7457e443fefeac026eba71c563355960a72fcda67d24f638"
+    },
+    {
+      "log_id": "2026.9.6/log_17_2026-9-6-18-34-06.ulg",
+      "partition": "train",
+      "cache": "dataset/reference_dynamics_data_v1/4446fd466bb7821d.npz",
+      "sha256": "43a20c1f3c9bfd43ab637deb71afff26424447547585a3fb887e3762170ace99"
+    },
+    {
+      "log_id": "2026.9.6/log_28_2026-9-6-07-01-38.ulg",
+      "partition": "train",
+      "cache": "dataset/reference_dynamics_data_v1/52364e098db4b9af.npz",
+      "sha256": "99f277a9a9d1fdcb19e0800b0a326a660276e9c95f66d9f8146d3cb17e92c715"
+    },
+    {
+      "log_id": "2026.9.7/log_23_2026-9-7-06-09-22.ulg",
+      "partition": "validation",
+      "cache": "dataset/reference_dynamics_data_v1/70bfd3142ae488fa.npz",
+      "sha256": "b808688498d3cbabfa38a34674c687094bce647d732b24eba324564f7a054e88"
+    },
+    {
+      "log_id": "2026.9.6/log_19_2026-9-6-18-52-30.ulg",
+      "partition": "train",
+      "cache": "dataset/reference_dynamics_data_v1/8d835123654f62c7.npz",
+      "sha256": "1083ba43d7aa6928d67bec7c7aa95af8b4eebc012451e5e099fd5bfb1326ee7c"
+    },
+    {
+      "log_id": "2026.9.6/log_18_2026-9-6-18-46-20.ulg",
+      "partition": "train",
+      "cache": "dataset/reference_dynamics_data_v1/98850e05e3b89ecb.npz",
+      "sha256": "9de7d135a9b98a01a210a6345db5eee66291244cc0e23fe285359bd86a705cc3"
+    },
+    {
+      "log_id": "2026.9.7/log_28_2026-9-7-06-44-02.ulg",
+      "partition": "validation",
+      "cache": "dataset/reference_dynamics_data_v1/a4a32113afd95b96.npz",
+      "sha256": "a1172bc2aa4f56eac8cfe03ffebb9fb7398ae3f7d1bdfbd318ce9b89a6e37cb5"
+    },
+    {
+      "log_id": "2026.9.7/log_24_2026-9-7-06-16-04.ulg",
+      "partition": "validation",
+      "cache": "dataset/reference_dynamics_data_v1/b825d7c9b2ac5e3c.npz",
+      "sha256": "4e2b779bf4fd7197339e84fb6567c0a82eabb4975464a4d9c17019f3c0ffadf4"
+    },
+    {
+      "log_id": "2026.9.7/log_27_2026-9-7-06-37-24.ulg",
+      "partition": "validation",
+      "cache": "dataset/reference_dynamics_data_v1/bc2e1f24eb256337.npz",
+      "sha256": "1e70aad938c21e8a5f5c23505ad730863d958e3e68e3f12f7b7f5314d4d2771a"
+    },
+    {
+      "log_id": "2026.9.7/log_30_2026-9-7-06-58-22.ulg",
+      "partition": "validation",
+      "cache": "dataset/reference_dynamics_data_v1/c50cd3f13ed1b9f6.npz",
+      "sha256": "214a0b9b150342804905985981638deead91d028d015af196fd60e7bf315c683"
+    },
+    {
+      "log_id": "2026.9.7/log_22_2026-9-7-06-01-40.ulg",
+      "partition": "validation",
+      "cache": "dataset/reference_dynamics_data_v1/d0e7f205cd3c76b8.npz",
+      "sha256": "f769657bb9752cce00c045da104a505980020c014c4786b1f05a587b58a1919b"
+    },
+    {
+      "log_id": "2026.9.7/log_21_2026-9-7-05-54-56.ulg",
+      "partition": "validation",
+      "cache": "dataset/reference_dynamics_data_v1/da9ada57e954d581.npz",
+      "sha256": "a80ca9540deff9357dbdfb195f75ebe9a29ecc1a6aad728843e94ab6705fab96"
+    },
+    {
+      "log_id": "2026.9.7/log_29_2026-9-7-06-51-04.ulg",
+      "partition": "validation",
+      "cache": "dataset/reference_dynamics_data_v1/f91beb7778cd51a9.npz",
+      "sha256": "c1802d8a12f1276c906cc20445babb64f4b531923f143ec96672999522c00469"
+    }
+  ],
+  "parent_manifest": "dataset/reference_dynamics_data_v1/manifest.json",
+  "parent_sha256": "130ddb710a54125d481cad22db2cf9c9f081536202984b2c2e289cc78465519e",
+  "windows_path": "docs/analysis/results/reference_dynamics_data_v1/training_ready/windows.csv",
+  "windows_sha256": "2b49b0e70e22be9ec75c674eb75b197daa39920c592fee4a5c75999af4f72a09",
+  "normalization_path": "dataset/reference_dynamics_data_v1/paired_normalization.npz",
+  "normalization_sha256": "5aa4a1464c48089a50f04df7abdb958a127cfab71bce740d7840cf5fb0620824",
+  "normalization_fit_partitions": [
+    "train"
+  ],
+  "phase_contract": {
+    "definition": "logged wing_phase zero; Hall consistency is checked separately",
+    "installation_consistency": "not_confirmed",
+    "status": "unconfirmed_physical_pose"
+  },
+  "frequency_contract": {
+    "column": "flap_frequency_hz",
+    "ratio": 7.909090995788574,
+    "rescaling": "none; September logged ratio, not April ratio8"
+  },
+  "checked_windows": 10704,
+  "train_windows": 3535,
+  "validation_windows": 7169,
+  "train_flights": 5,
+  "validation_flights": 9,
+  "history_steps": 26,
+  "forecast_steps": 50,
+  "dt_s": 0.02,
+  "formal_training_started": false,
+  "control_validated": false,
+  "cv_warning": "Fold-specific scalers must be re-fit inside each train-only fold. Full-train scaler is for final all-train fit and original validation only."
+}

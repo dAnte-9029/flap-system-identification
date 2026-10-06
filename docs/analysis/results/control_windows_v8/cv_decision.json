@@ -1,0 +1,106 @@
+{
+  "evaluation_cohort": "oof",
+  "phase_primary_gain": 0.0028420383638877444,
+  "seed_gains": [
+    0.0024004010782965324,
+    0.011877069547833186,
+    -0.005386022209007857
+  ],
+  "baseline_seed_scores": [
+    0.441148777,
+    0.43234187350000003,
+    0.45106553699999996
+  ],
+  "phase_seed_scores": [
+    0.440089843,
+    0.427206919,
+    0.45349498600000004
+  ],
+  "flight_gains": [
+    {
+      "log_id": "2026.9.6/log_17_2026-9-6-18-34-06.ulg",
+      "gain": -0.014399599270445984
+    },
+    {
+      "log_id": "2026.9.6/log_18_2026-9-6-18-46-20.ulg",
+      "gain": 0.004241889700627444
+    },
+    {
+      "log_id": "2026.9.6/log_19_2026-9-6-18-52-30.ulg",
+      "gain": 0.010195054948092586
+    },
+    {
+      "log_id": "2026.9.6/log_20_2026-9-6-18-58-10.ulg",
+      "gain": 0.00786638163212916
+    },
+    {
+      "log_id": "2026.9.6/log_28_2026-9-6-07-01-38.ulg",
+      "gain": 0.00658916685347577
+    }
+  ],
+  "bootstrap95": [
+    -0.006231035332989077,
+    0.008451410107620183
+  ],
+  "maximum_allmetric_regression": 0.02952786321654588,
+  "cv_gate": false,
+  "absolute": [
+    {
+      "arm": "hold",
+      "seed": 17,
+      "p": 0.50067638,
+      "q": 0.35463162600000003,
+      "velocity": 0.39653111,
+      "attitude_deg": 5.6391651424816525,
+      "passed": false
+    },
+    {
+      "arm": "hold",
+      "seed": 23,
+      "p": 0.491073652,
+      "q": 0.34767054399999997,
+      "velocity": 0.377752426,
+      "attitude_deg": 5.806929316298955,
+      "passed": false
+    },
+    {
+      "arm": "hold",
+      "seed": 42,
+      "p": 0.49735829000000004,
+      "q": 0.35885679600000003,
+      "velocity": 0.41041422800000005,
+      "attitude_deg": 5.695892513484498,
+      "passed": false
+    },
+    {
+      "arm": "phase",
+      "seed": 17,
+      "p": 0.500463102,
+      "q": 0.35360881,
+      "velocity": 0.39464055600000003,
+      "attitude_deg": 5.682106770781505,
+      "passed": false
+    },
+    {
+      "arm": "phase",
+      "seed": 23,
+      "p": 0.488144714,
+      "q": 0.34179481,
+      "velocity": 0.38398432,
+      "attitude_deg": 5.978395530858782,
+      "passed": false
+    },
+    {
+      "arm": "phase",
+      "seed": 42,
+      "p": 0.49513734600000003,
+      "q": 0.36109701000000005,
+      "velocity": 0.41013522999999996,
+      "attitude_deg": 5.650327059339311,
+      "passed": false
+    }
+  ],
+  "full_phase_training_authorized_by_protocol": false,
+  "selection_uses_development_validation": false,
+  "control_validated": false
+}

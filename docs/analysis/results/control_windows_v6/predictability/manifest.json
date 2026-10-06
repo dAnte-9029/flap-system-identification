@@ -1,0 +1,11 @@
+{
+  "status": "complete",
+  "script_sha256": "f06b606a87615fe99c5bee704a7e0dcbfbddf6356c94675225e050b53b7c54ed",
+  "parent_protocol_sha256": "ed8df29cc35537651ea62dfd89d65ef72eccc722c3f089a539f0657631cbb3b6",
+  "phase_source_sha256": "cc7913924596910002b3b3db357086e4043be1143cbb8207708bb0f55e78b095",
+  "learned_statistics": "ridge eachfold trainonly; harmonic coefficients observed historyonly",
+  "oracle_and_projection": "future phase or future-label regression are nondeployable diagnostics, not identified causal effects or strict achievable performance bounds",
+  "sealed_test_accessed": false,
+  "independent_repeated_trials_available": false,
+  "irreducible_noise_proved": false
+}

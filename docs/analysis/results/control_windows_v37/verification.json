@@ -1,0 +1,11 @@
+{
+  "status": "passed",
+  "causal_partial_snapshots": 407,
+  "exact_restore_claimed": false,
+  "raw_hash_and_firmware_verified": true,
+  "tests_passed": 3,
+  "model_or_controller_replay_started": false,
+  "validation_accessed": false,
+  "sealed_test_accessed": false,
+  "reserved_accessed": false
+}

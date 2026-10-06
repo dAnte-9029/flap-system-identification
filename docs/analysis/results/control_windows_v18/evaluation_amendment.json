@@ -1,0 +1,8 @@
+{
+  "reason": "Static review before evaluation found copied candidate CSV column single, while absolute check reads aux. Rename column only; no training, metric, coefficient, threshold or data changes. Original frozen script retained.",
+  "original_path": "scripts/evaluate_reference_q_aux_v18.py",
+  "original_sha256": "7f29f0a77eb79e9701f05881569aa8f41ccc01d0b1de873680e9c39a7e46142e",
+  "corrected_path": "scripts/evaluate_reference_q_aux_v18_corrected.py",
+  "corrected_sha256": "f5f826f1ff69d4388ed9b69e0106b03be4060a7bfabc669a44c4e75e7566c008",
+  "results_seen": false
+}

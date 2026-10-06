@@ -1,0 +1,15 @@
+{
+  "causal_hold_checks": true,
+  "causal_filter_future_perturbation_check": true,
+  "filter_segment_reset_check": true,
+  "actuator_sign_mapping_check": true,
+  "event_count_and_nonoverlap_checks": true,
+  "source_log_hash_recheck_count": 15,
+  "finite_metrics": true,
+  "script_syntax_checks": true,
+  "script_hash_matches_run": true,
+  "test_opened": false,
+  "september19_opened": false,
+  "full_repository_tests_run": false,
+  "reason": "bounded offline audit; no product behavior change"
+}

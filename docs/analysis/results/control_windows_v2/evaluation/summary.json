@@ -1,0 +1,192 @@
+{
+  "primary_metric": "flight-equal event-axis rate RMSE averaged p/q and 0.1/0.2/0.5s, rad/s",
+  "seeds": [
+    17,
+    23,
+    42
+  ],
+  "scores_by_arm": {
+    "A": [
+      0.5671821672607351,
+      0.5664874701588243,
+      0.5625711425586983
+    ],
+    "B": [
+      0.5716198969770361,
+      0.5684347963995404,
+      0.5638286388582653
+    ],
+    "C": [
+      0.5709195263959743,
+      0.564637220568127,
+      0.5585888138523808
+    ],
+    "D": [
+      0.5692564403569257,
+      0.569083211046678,
+      0.5604589421440054
+    ]
+  },
+  "mean_by_arm": {
+    "A": 0.5654135933260859,
+    "B": 0.5679611107449473,
+    "C": 0.5647151869388275,
+    "D": 0.5662661978492031
+  },
+  "decisions": {
+    "C": {
+      "primary_vs": {
+        "A": {
+          "improvement_fraction": 0.0012352132943072025,
+          "flight_bootstrap_95ci": [
+            -0.00013371779584051002,
+            0.0025582956021644753
+          ],
+          "paired_seed_improvements": [
+            -0.006589345277354441,
+            0.003266179197535468,
+            0.007078800181973488
+          ]
+        },
+        "B": {
+          "improvement_fraction": 0.005715045880275826,
+          "flight_bootstrap_95ci": [
+            0.004499593759475787,
+            0.006995498045157671
+          ],
+          "paired_seed_improvements": [
+            0.001225238282931751,
+            0.006680758911078555,
+            0.009293293466779096
+          ]
+        }
+      },
+      "jointly_improving_seeds": 2,
+      "safeguards": {
+        "all": {
+          "relative_degradation": {
+            "p": -0.000674128532409668,
+            "q": -0.0011420249938964844,
+            "r": -0.0019302964210510254,
+            "velocity": -0.01658451557159424,
+            "attitude": -0.0030894875526428223
+          },
+          "maximum_allowed": 0.03,
+          "passed": true,
+          "flights": 9,
+          "windows": 739
+        },
+        "quiet": {
+          "relative_degradation": {
+            "p": 0.001400589942932129,
+            "q": -0.005885720252990723,
+            "r": 0.008721590042114258,
+            "velocity": -0.014148592948913574,
+            "attitude": -0.0028974413871765137
+          },
+          "maximum_allowed": 0.05,
+          "passed": true,
+          "flights": 8,
+          "windows": 120
+        },
+        "hard": {
+          "relative_degradation": {
+            "p": 0.043318867683410645,
+            "q": -0.021773338317871094,
+            "r": 0.010240674018859863,
+            "velocity": -0.07239502668380737,
+            "attitude": 0.029346942901611328
+          },
+          "maximum_allowed": 0.05,
+          "passed": true,
+          "flights": 5,
+          "windows": 5
+        }
+      },
+      "point_threshold_passed": false,
+      "confidence_passed": false,
+      "G1_passed": false
+    },
+    "D": {
+      "primary_vs": {
+        "A": {
+          "improvement_fraction": -0.0015079307133414321,
+          "flight_bootstrap_95ci": [
+            -0.0024900133920923717,
+            -0.0004448283182963886
+          ],
+          "paired_seed_improvements": [
+            -0.003657154995208023,
+            -0.0045821682289388654,
+            0.0037545481005054615
+          ]
+        },
+        "B": {
+          "improvement_fraction": 0.0029842058966346174,
+          "flight_bootstrap_95ci": [
+            0.0016633860076142176,
+            0.004379532989838752
+          ],
+          "paired_seed_improvements": [
+            0.004134664717952097,
+            -0.0011407018909550537,
+            0.0059764554015621085
+          ]
+        }
+      },
+      "jointly_improving_seeds": 1,
+      "safeguards": {
+        "all": {
+          "relative_degradation": {
+            "p": 0.002946019172668457,
+            "q": 0.0005439519882202148,
+            "r": 0.0017992258071899414,
+            "velocity": 0.002633810043334961,
+            "attitude": 0.007452964782714844
+          },
+          "maximum_allowed": 0.03,
+          "passed": true,
+          "flights": 9,
+          "windows": 739
+        },
+        "quiet": {
+          "relative_degradation": {
+            "p": 0.009233951568603516,
+            "q": -0.00015217065811157227,
+            "r": 0.009572744369506836,
+            "velocity": -0.0009070634841918945,
+            "attitude": 0.01499330997467041
+          },
+          "maximum_allowed": 0.05,
+          "passed": true,
+          "flights": 8,
+          "windows": 120
+        },
+        "hard": {
+          "relative_degradation": {
+            "p": 0.01739788055419922,
+            "q": -0.017497718334197998,
+            "r": 0.0008594989776611328,
+            "velocity": -0.049383699893951416,
+            "attitude": 0.008466005325317383
+          },
+          "maximum_allowed": 0.05,
+          "passed": true,
+          "flights": 5,
+          "windows": 5
+        }
+      },
+      "point_threshold_passed": false,
+      "confidence_passed": false,
+      "G1_passed": false
+    }
+  },
+  "G0_data_integrity": "passed; nonoverlap, hashes, common eval, train-only normalization, causal-input tests",
+  "G0_channel_coverage": "roll/pitch/thrust contextual clusters count gate met; manual yaw and yaw_sp_move_rate insufficient; no causal identification claim",
+  "G2": "not accepted: 1s waveform table is supplemental and cannot substitute full-context response/delay validation",
+  "G3": "not started; requires G1 and G2",
+  "sealed_test_accessed": false,
+  "validation_status": "previously inspected development validation, not a new blind test",
+  "source_training_protocol_sha256": "df188b3c36b3839403c75c43e3de6e7edbb8dd1f99224cd35d0f09d33efce7cf",
+  "script_sha256": "d888089d28322cd224dc68804e9762daae4d25185a942570d7f71d896c5d390e"
+}

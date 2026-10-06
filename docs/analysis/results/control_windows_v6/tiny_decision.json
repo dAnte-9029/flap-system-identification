@@ -1,0 +1,49 @@
+{
+  "decisions": [
+    {
+      "comparison": "budget",
+      "candidate": "integrated6400",
+      "baseline": "integrated1600",
+      "gain_fraction": 0.6547534090150533,
+      "attitude_regression_fraction": -0.189875960673056,
+      "velocity_regression_fraction": -0.45471954146775484,
+      "passed": true
+    },
+    {
+      "comparison": "output1600",
+      "candidate": "direct1600",
+      "baseline": "integrated1600",
+      "gain_fraction": 0.5424878154226684,
+      "attitude_regression_fraction": -0.1762362735846642,
+      "velocity_regression_fraction": -0.227034766163405,
+      "passed": true
+    },
+    {
+      "comparison": "output6400",
+      "candidate": "direct6400",
+      "baseline": "integrated6400",
+      "gain_fraction": 0.6533537672698422,
+      "attitude_regression_fraction": -0.015020672575713268,
+      "velocity_regression_fraction": -0.3606014379932274,
+      "passed": true
+    }
+  ],
+  "formal_arms": [
+    "integrated",
+    "direct"
+  ],
+  "steps": 6400,
+  "snapshots": [
+    1600,
+    6400
+  ],
+  "seeds": [
+    17,
+    23,
+    42
+  ],
+  "gate_uses_train_only": true,
+  "validation_used_for_selection": false,
+  "control_validated": false,
+  "sealed_test_accessed": false
+}

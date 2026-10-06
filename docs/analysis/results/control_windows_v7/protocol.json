@@ -1,0 +1,40 @@
+{
+  "stage": "flight/condition generalization and phase extrapolation diagnosis",
+  "authority": "control_windows_v2/manifest.json; same407train739developmentvalidation; no screening or split changes",
+  "phase_contract": "September logged relative wing phase; physical zero unconfirmed; ratio7.909090995788574, not April canonical ratio8",
+  "data": "50Hz H26/K50; future phase only supplies training forecast labels or explicitly marked offline oracle",
+  "source_pins": {
+    "docs/analysis/results/control_windows_v2/manifest.json": "84cac37ebf73f47802a4b5d3afff48d97554ac3aedfdd1cb6fb9ec5d618b919f",
+    "docs/analysis/results/control_windows_v2/windows_v2.csv": "ae91b646fb0b35c9bc1a8c8e67b7e2277b11066e13676907154fdee95e340516",
+    "dataset/control_windows_v2/windows.npz": "5e2c0a77eb1a8a17a14fe27b3fec80811b501a89d5e99f1752a9ec52fae96b8b",
+    "dataset/control_windows_v2/normalization.npz": "fa877a62c3b84828ea3d6afc05b89b6cd5e1e66583e433308fa5cce9e40edd2a",
+    "docs/analysis/results/control_windows_v4/diagnostic_future_phase.npz": "cc7913924596910002b3b3db357086e4043be1143cbb8207708bb0f55e78b095",
+    "docs/analysis/results/control_windows_v6/delivery_manifest.json": "3bc0939e02a250681735ebbd5afb7524e006f9991048a84cdb0c60e48b781ad5",
+    "scripts/run_reference_generalization_v7.py": "fc64beedb4d4db52314e7846b14e8414cf26c5150ce99bd59c6ddd1d9851e4a9",
+    "scripts/reference_generalization_v7.py": "6b5f90f7e4b4666fe78c484bcc0b3acf16e8b6e7ee6d5aed5154611c4f1f4fc2",
+    "tests/test_reference_generalization_v7.py": "7bf035bbf77e7b0cb8735bf07eaebbf79eecffeed38ab42565dd999d804c13a3"
+  },
+  "stratification": "all4 v6 arms x3seeds; all windows retained; mode, quality, initial frequency/speed/history-rate-RMS; terciles fit training only; flight means before cohort means",
+  "support": "descriptive training1/99percentile ranges of initial/history covariates, not safe envelope; no response-based selection",
+  "phase_candidates": [
+    "hold",
+    "frequency_mean5",
+    "phase_slope6",
+    "phase_slope11",
+    "phase_slope26",
+    "damped_trend",
+    "ridge10",
+    "ridge100"
+  ],
+  "candidate_details": "hold current frequency; mean last5; phase slope6/11/26; damped frequency trend11 withtau.15; train-flight-balanced ridge residual trajectory alpha10/100 on15history features",
+  "selection": "nested leave-one-training-flight-out: choose on inner LOO of4flights then evaluate fifth; final fixed candidate chosen by full5flightLOO. No validation labels for selection.",
+  "phase_primary": "mean across flights of sqrt(mean harmonic1/2 chord squared error over full1s)); fixed order breaks ties",
+  "phase_support_gate": "nestedOOF>=10percent improvement overhold, >=4of5flights positive, noflight>5percent worse",
+  "frozen_model": "A1600 integrated3seeds, exact original weights and normalization. Replay originalphase, selected causalphase and oracleloggedphase, keep frequency context unchanged to isolate phase schedule. No retraining or optimizer.",
+  "inference": "start-of-step phase0 then forecast/logged phase atsteps1..49; hold replay must match original inference; each timestep sees current/past planned references only",
+  "candidate_evaluation": "evaluate final train-selected phase model once on development validation even if phase gate fails, as diagnosis; no promotion without gates",
+  "state_gate": "activep/q .5/1s >=5percent flight-equal improvement, all3seedspositive, allmetricregression<=5percent; absolute .5s p/q<=.15rad/s attitude<=3deg velocity<=.5m/s eachseed",
+  "causality_limit": "phase intervention changes frozen decoder input distribution; oracle improvement does not identify rootcause or achievable bound. References/response and independent closedloop gates remain required.",
+  "validation_status": "previously viewed development data, not blind test",
+  "sealed_test_accessed": false
+}

@@ -1,0 +1,16 @@
+log,topic,field,n,finite_fraction,min,max,nonzero_sample_fraction
+log_0_2026-9-18-18-15-06.ulg,flap_b2b_adaptive,enabled,4098,1.0,0.0,0.0,0.0
+log_0_2026-9-18-18-15-06.ulg,flap_b2b_adaptive,gate,4098,1.0,0.0,0.0,0.0
+log_0_2026-9-18-18-15-06.ulg,flap_b2b_adaptive,transferred_i_raw,4098,1.0,0.0,0.0,0.0
+log_0_2026-9-18-18-15-06.ulg,vehicle_attitude_setpoint,pitch_degrees_all_setpoint_samples,8031,,6.038008213043213,29.60764503479004,
+log_0_2026-9-18-18-15-06.ulg,wing_phase,phase_valid,20486,1.0,0.0,1.0,0.9716879820365127
+log_1_2026-9-18-18-23-36.ulg,flap_b2b_adaptive,enabled,4730,1.0,0.0,1.0,0.5422832980972516
+log_1_2026-9-18-18-23-36.ulg,flap_b2b_adaptive,gate,4730,1.0,0.0,1.0,0.07378435517970401
+log_1_2026-9-18-18-23-36.ulg,flap_b2b_adaptive,transferred_i_raw,4730,1.0,-0.030000001192092896,0.015004970133304596,0.12727272727272726
+log_1_2026-9-18-18-23-36.ulg,vehicle_attitude_setpoint,pitch_degrees_all_setpoint_samples,7880,,4.370995998382568,29.366195678710938,
+log_1_2026-9-18-18-23-36.ulg,wing_phase,phase_valid,23644,1.0,0.0,1.0,0.9515310438166131
+log_2_2026-9-18-18-29-40.ulg,flap_b2b_adaptive,enabled,4419,1.0,0.0,1.0,0.5329260013577732
+log_2_2026-9-18-18-29-40.ulg,flap_b2b_adaptive,gate,4419,1.0,0.0,1.0,0.17809459153654672
+log_2_2026-9-18-18-29-40.ulg,flap_b2b_adaptive,transferred_i_raw,4419,1.0,-0.016015373170375824,0.015670020133256912,0.16451685901787735
+log_2_2026-9-18-18-29-40.ulg,vehicle_attitude_setpoint,pitch_degrees_all_setpoint_samples,8889,,7.3856120109558105,23.707988739013672,
+log_2_2026-9-18-18-29-40.ulg,wing_phase,phase_valid,22091,1.0,0.0,1.0,0.9202842786655199

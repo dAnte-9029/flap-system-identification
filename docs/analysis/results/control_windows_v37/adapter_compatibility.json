@@ -1,0 +1,37 @@
+[
+  {
+    "log_id": "2026.9.6/log_20_2026-9-6-18-58-10.ulg",
+    "existing_adapter_firmware": "e624a99f2955addbf76681e636c44162a0c03055",
+    "logged_firmware": "c9af571575af33d5403fbb479256848797c801e2",
+    "FLAP_SLOW_EN_present": false,
+    "constructor_result": "KeyError: 'FLAP_SLOW_EN'"
+  },
+  {
+    "log_id": "2026.9.6/log_17_2026-9-6-18-34-06.ulg",
+    "existing_adapter_firmware": "e624a99f2955addbf76681e636c44162a0c03055",
+    "logged_firmware": "c9af571575af33d5403fbb479256848797c801e2",
+    "FLAP_SLOW_EN_present": false,
+    "constructor_result": "KeyError: 'FLAP_SLOW_EN'"
+  },
+  {
+    "log_id": "2026.9.6/log_28_2026-9-6-07-01-38.ulg",
+    "existing_adapter_firmware": "e624a99f2955addbf76681e636c44162a0c03055",
+    "logged_firmware": "c9af571575af33d5403fbb479256848797c801e2",
+    "FLAP_SLOW_EN_present": false,
+    "constructor_result": "KeyError: 'FLAP_SLOW_EN'"
+  },
+  {
+    "log_id": "2026.9.6/log_19_2026-9-6-18-52-30.ulg",
+    "existing_adapter_firmware": "e624a99f2955addbf76681e636c44162a0c03055",
+    "logged_firmware": "c9af571575af33d5403fbb479256848797c801e2",
+    "FLAP_SLOW_EN_present": false,
+    "constructor_result": "KeyError: 'FLAP_SLOW_EN'"
+  },
+  {
+    "log_id": "2026.9.6/log_18_2026-9-6-18-46-20.ulg",
+    "existing_adapter_firmware": "e624a99f2955addbf76681e636c44162a0c03055",
+    "logged_firmware": "c9af571575af33d5403fbb479256848797c801e2",
+    "FLAP_SLOW_EN_present": false,
+    "constructor_result": "KeyError: 'FLAP_SLOW_EN'"
+  }
+]

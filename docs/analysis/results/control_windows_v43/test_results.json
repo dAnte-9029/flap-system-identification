@@ -1,0 +1,5 @@
+{
+  "command": "python -m pytest -q tests/test_attitude_evaluation_v43.py tests/test_attitude_supervision_v42.py tests/test_coupled_replay_v40.py",
+  "returncode": 0,
+  "stdout": "10 passed in 5.10s"
+}

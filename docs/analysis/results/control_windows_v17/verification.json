@@ -1,0 +1,305 @@
+{
+  "models": 15,
+  "updates_each": 1600,
+  "original_windows": 407,
+  "reloads": [
+    {
+      "fold": 0,
+      "seed": 17,
+      "cohort": "fit",
+      "reload_max_abs": 0.0
+    },
+    {
+      "fold": 0,
+      "seed": 17,
+      "cohort": "oof",
+      "reload_max_abs": 0.0
+    },
+    {
+      "fold": 0,
+      "seed": 23,
+      "cohort": "fit",
+      "reload_max_abs": 0.0
+    },
+    {
+      "fold": 0,
+      "seed": 23,
+      "cohort": "oof",
+      "reload_max_abs": 0.0
+    },
+    {
+      "fold": 0,
+      "seed": 42,
+      "cohort": "fit",
+      "reload_max_abs": 0.0
+    },
+    {
+      "fold": 0,
+      "seed": 42,
+      "cohort": "oof",
+      "reload_max_abs": 0.0
+    },
+    {
+      "fold": 1,
+      "seed": 17,
+      "cohort": "fit",
+      "reload_max_abs": 0.0
+    },
+    {
+      "fold": 1,
+      "seed": 17,
+      "cohort": "oof",
+      "reload_max_abs": 0.0
+    },
+    {
+      "fold": 1,
+      "seed": 23,
+      "cohort": "fit",
+      "reload_max_abs": 0.0
+    },
+    {
+      "fold": 1,
+      "seed": 23,
+      "cohort": "oof",
+      "reload_max_abs": 0.0
+    },
+    {
+      "fold": 1,
+      "seed": 42,
+      "cohort": "fit",
+      "reload_max_abs": 0.0
+    },
+    {
+      "fold": 1,
+      "seed": 42,
+      "cohort": "oof",
+      "reload_max_abs": 0.0
+    },
+    {
+      "fold": 2,
+      "seed": 17,
+      "cohort": "fit",
+      "reload_max_abs": 0.0
+    },
+    {
+      "fold": 2,
+      "seed": 17,
+      "cohort": "oof",
+      "reload_max_abs": 0.0
+    },
+    {
+      "fold": 2,
+      "seed": 23,
+      "cohort": "fit",
+      "reload_max_abs": 0.0
+    },
+    {
+      "fold": 2,
+      "seed": 23,
+      "cohort": "oof",
+      "reload_max_abs": 0.0
+    },
+    {
+      "fold": 2,
+      "seed": 42,
+      "cohort": "fit",
+      "reload_max_abs": 0.0
+    },
+    {
+      "fold": 2,
+      "seed": 42,
+      "cohort": "oof",
+      "reload_max_abs": 0.0
+    },
+    {
+      "fold": 3,
+      "seed": 17,
+      "cohort": "fit",
+      "reload_max_abs": 0.0
+    },
+    {
+      "fold": 3,
+      "seed": 17,
+      "cohort": "oof",
+      "reload_max_abs": 0.0
+    },
+    {
+      "fold": 3,
+      "seed": 23,
+      "cohort": "fit",
+      "reload_max_abs": 0.0
+    },
+    {
+      "fold": 3,
+      "seed": 23,
+      "cohort": "oof",
+      "reload_max_abs": 0.0
+    },
+    {
+      "fold": 3,
+      "seed": 42,
+      "cohort": "fit",
+      "reload_max_abs": 0.0
+    },
+    {
+      "fold": 3,
+      "seed": 42,
+      "cohort": "oof",
+      "reload_max_abs": 0.0
+    },
+    {
+      "fold": 4,
+      "seed": 17,
+      "cohort": "fit",
+      "reload_max_abs": 0.0
+    },
+    {
+      "fold": 4,
+      "seed": 17,
+      "cohort": "oof",
+      "reload_max_abs": 0.0
+    },
+    {
+      "fold": 4,
+      "seed": 23,
+      "cohort": "fit",
+      "reload_max_abs": 0.0
+    },
+    {
+      "fold": 4,
+      "seed": 23,
+      "cohort": "oof",
+      "reload_max_abs": 0.0
+    },
+    {
+      "fold": 4,
+      "seed": 42,
+      "cohort": "fit",
+      "reload_max_abs": 0.0
+    },
+    {
+      "fold": 4,
+      "seed": 42,
+      "cohort": "oof",
+      "reload_max_abs": 0.0
+    }
+  ],
+  "identical_initialization_and_draws": true,
+  "normalization_unchanged": true,
+  "all15_reference_firststep_causal": true,
+  "all50step_predictions_finite": true,
+  "sealed_test_accessed": false,
+  "focused_tests_passed": 3,
+  "trained_prefix_gradient_checks": [
+    {
+      "fold": 0,
+      "seed": 17,
+      "trained_full_short_gradient_max_abs": 0.0,
+      "checkpoint_hash_verified": true
+    },
+    {
+      "fold": 0,
+      "seed": 23,
+      "trained_full_short_gradient_max_abs": 0.0,
+      "checkpoint_hash_verified": true
+    },
+    {
+      "fold": 0,
+      "seed": 42,
+      "trained_full_short_gradient_max_abs": 0.0,
+      "checkpoint_hash_verified": true
+    },
+    {
+      "fold": 1,
+      "seed": 17,
+      "trained_full_short_gradient_max_abs": 0.0,
+      "checkpoint_hash_verified": true
+    },
+    {
+      "fold": 1,
+      "seed": 23,
+      "trained_full_short_gradient_max_abs": 0.0,
+      "checkpoint_hash_verified": true
+    },
+    {
+      "fold": 1,
+      "seed": 42,
+      "trained_full_short_gradient_max_abs": 0.0,
+      "checkpoint_hash_verified": true
+    },
+    {
+      "fold": 2,
+      "seed": 17,
+      "trained_full_short_gradient_max_abs": 0.0,
+      "checkpoint_hash_verified": true
+    },
+    {
+      "fold": 2,
+      "seed": 23,
+      "trained_full_short_gradient_max_abs": 0.0,
+      "checkpoint_hash_verified": true
+    },
+    {
+      "fold": 2,
+      "seed": 42,
+      "trained_full_short_gradient_max_abs": 0.0,
+      "checkpoint_hash_verified": true
+    },
+    {
+      "fold": 3,
+      "seed": 17,
+      "trained_full_short_gradient_max_abs": 0.0,
+      "checkpoint_hash_verified": true
+    },
+    {
+      "fold": 3,
+      "seed": 23,
+      "trained_full_short_gradient_max_abs": 0.0,
+      "checkpoint_hash_verified": true
+    },
+    {
+      "fold": 3,
+      "seed": 42,
+      "trained_full_short_gradient_max_abs": 0.0,
+      "checkpoint_hash_verified": true
+    },
+    {
+      "fold": 4,
+      "seed": 17,
+      "trained_full_short_gradient_max_abs": 0.0,
+      "checkpoint_hash_verified": true
+    },
+    {
+      "fold": 4,
+      "seed": 23,
+      "trained_full_short_gradient_max_abs": 0.0,
+      "checkpoint_hash_verified": true
+    },
+    {
+      "fold": 4,
+      "seed": 42,
+      "trained_full_short_gradient_max_abs": 0.0,
+      "checkpoint_hash_verified": true
+    }
+  ],
+  "v16_first_rate_rmse_reproduced": true,
+  "total_optimizer_updates": 24000,
+  "normalization_audit": "Compare exact float32 model buffers to float32 conversion of original float64 statistics; original check against float64 with fixed2e-7 tolerance rejected harmless4.45e-7 rounding, then corrected. Data and normalization not changed.",
+  "run_elapsed_s": [
+    7.4633485712111,
+    7.355166498571634,
+    7.501845479011536,
+    7.1738414373248816,
+    7.526868082582951,
+    7.488529029302299,
+    7.071346829645336,
+    7.097160483710468,
+    7.161437591537833,
+    7.067305773496628,
+    7.133750690147281,
+    6.932536283507943,
+    7.364980585873127,
+    7.357491846196353,
+    7.41167948115617
+  ]
+}

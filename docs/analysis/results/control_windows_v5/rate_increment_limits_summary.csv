@@ -1,0 +1,13 @@
+partition,grid,axis,target_step_above_model_limit_fraction,sequence_rmse_lower_bound
+train,raw100,p,0.045479115479115484,0.0498956602820428
+train,raw100,q,0.0,0.0
+train,raw100,r,0.0,0.0
+train,raw50,p,0.004275184275184275,0.003859688272742088
+train,raw50,q,0.0,0.0
+train,raw50,r,0.0,0.0
+validation,raw100,p,0.05104194857916103,0.05503659826764055
+validation,raw100,q,0.0,0.0
+validation,raw100,r,0.0,0.0
+validation,raw50,p,0.004330175913396482,0.00301000142184294
+validation,raw50,q,0.0,0.0
+validation,raw50,r,0.0,0.0

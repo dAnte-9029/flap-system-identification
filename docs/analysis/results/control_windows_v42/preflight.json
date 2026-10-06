@@ -1,0 +1,127 @@
+{
+  "status": "passed",
+  "checks": [
+    {
+      "fold": 0,
+      "seed": 17,
+      "disposable_steps": 3,
+      "zero_parameters_optimizer_exact": true,
+      "candidate_finite_nonzero_effect": true,
+      "buffers_unchanged": true
+    },
+    {
+      "fold": 0,
+      "seed": 23,
+      "disposable_steps": 3,
+      "zero_parameters_optimizer_exact": true,
+      "candidate_finite_nonzero_effect": true,
+      "buffers_unchanged": true
+    },
+    {
+      "fold": 0,
+      "seed": 42,
+      "disposable_steps": 3,
+      "zero_parameters_optimizer_exact": true,
+      "candidate_finite_nonzero_effect": true,
+      "buffers_unchanged": true
+    },
+    {
+      "fold": 1,
+      "seed": 17,
+      "disposable_steps": 3,
+      "zero_parameters_optimizer_exact": true,
+      "candidate_finite_nonzero_effect": true,
+      "buffers_unchanged": true
+    },
+    {
+      "fold": 1,
+      "seed": 23,
+      "disposable_steps": 3,
+      "zero_parameters_optimizer_exact": true,
+      "candidate_finite_nonzero_effect": true,
+      "buffers_unchanged": true
+    },
+    {
+      "fold": 1,
+      "seed": 42,
+      "disposable_steps": 3,
+      "zero_parameters_optimizer_exact": true,
+      "candidate_finite_nonzero_effect": true,
+      "buffers_unchanged": true
+    },
+    {
+      "fold": 2,
+      "seed": 17,
+      "disposable_steps": 3,
+      "zero_parameters_optimizer_exact": true,
+      "candidate_finite_nonzero_effect": true,
+      "buffers_unchanged": true
+    },
+    {
+      "fold": 2,
+      "seed": 23,
+      "disposable_steps": 3,
+      "zero_parameters_optimizer_exact": true,
+      "candidate_finite_nonzero_effect": true,
+      "buffers_unchanged": true
+    },
+    {
+      "fold": 2,
+      "seed": 42,
+      "disposable_steps": 3,
+      "zero_parameters_optimizer_exact": true,
+      "candidate_finite_nonzero_effect": true,
+      "buffers_unchanged": true
+    },
+    {
+      "fold": 3,
+      "seed": 17,
+      "disposable_steps": 3,
+      "zero_parameters_optimizer_exact": true,
+      "candidate_finite_nonzero_effect": true,
+      "buffers_unchanged": true
+    },
+    {
+      "fold": 3,
+      "seed": 23,
+      "disposable_steps": 3,
+      "zero_parameters_optimizer_exact": true,
+      "candidate_finite_nonzero_effect": true,
+      "buffers_unchanged": true
+    },
+    {
+      "fold": 3,
+      "seed": 42,
+      "disposable_steps": 3,
+      "zero_parameters_optimizer_exact": true,
+      "candidate_finite_nonzero_effect": true,
+      "buffers_unchanged": true
+    },
+    {
+      "fold": 4,
+      "seed": 17,
+      "disposable_steps": 3,
+      "zero_parameters_optimizer_exact": true,
+      "candidate_finite_nonzero_effect": true,
+      "buffers_unchanged": true
+    },
+    {
+      "fold": 4,
+      "seed": 23,
+      "disposable_steps": 3,
+      "zero_parameters_optimizer_exact": true,
+      "candidate_finite_nonzero_effect": true,
+      "buffers_unchanged": true
+    },
+    {
+      "fold": 4,
+      "seed": 42,
+      "disposable_steps": 3,
+      "zero_parameters_optimizer_exact": true,
+      "candidate_finite_nonzero_effect": true,
+      "buffers_unchanged": true
+    }
+  ],
+  "temporary_optimizer_updates": 135,
+  "temporary_checkpoints_retained": 0
+}

@@ -1,0 +1,10 @@
+{
+  "status": "prepared_not_started",
+  "question": "Does removing publication-age channels prevent loss of generalization while retaining integral/compression history?",
+  "evidence": "Age summary support differs strongly forlog17, but coveredlog19 also regresses. Association is insufficient; controlled ablation required before causal attribution.",
+  "candidate": "Samev25architecture33input/41606parameters; use first6historicalcontroller channels, set normalized last2publication-age channels tozero. No futurecontroller features.",
+  "controls": "Frozenv25 zero_history_control andobserved_history_control. No retraining controls if exact shared weights/draws/environment reproduce. Candidate15runs5foldx3seed1600steps, sameoriginal407trainwindows,normalization,init,stored32batchdraws,AdamW/full1sloss.",
+  "primary": "Againstzero arm: qfull1sOOF>=5% improvement, all3seedpositive,>=4/5flightpositive; same18protections<=5%regression andoriginal12absoluteactivegates. Full8arm comparison secondary.",
+  "limit": "No tuned thresholds, sample removal, developmentvalidation/test access or automaticcontrolpromotion; a failed candidate does not justify deletinglog17.",
+  "training_started": false
+}

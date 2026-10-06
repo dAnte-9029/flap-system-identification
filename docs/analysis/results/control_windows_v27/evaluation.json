@@ -1,0 +1,19 @@
+{
+  "stage": "v27",
+  "completed_trainings": 15,
+  "steps_each": 1600,
+  "primary_q_improvement_percent": -0.8094904513184842,
+  "all_seeds_positive": false,
+  "positive_flights": 2,
+  "protection_passed": 18,
+  "protection_total": 18,
+  "numerical_gate": false,
+  "absolute_active_passed": 3,
+  "absolute_active_total": 12,
+  "promoted": false,
+  "control_ready": false,
+  "baseline_retained": "A1600",
+  "limitation": "Paired historical observation block under recorded feedback-generated rate-reference conditioning. No causal effect or independent closed-loop certification.",
+  "validation_accessed": false,
+  "sealed_test_accessed": false
+}

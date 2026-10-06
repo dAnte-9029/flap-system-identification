@@ -1,0 +1,7 @@
+partition,mode,kind,active_reference,windows
+train,3,mission_mixed_or_unknown,True,16822
+train,15,stabilized,False,1057
+train,15,stabilized,True,8927
+validation,3,mission_mixed_or_unknown,True,5516
+validation,15,stabilized,False,1916
+validation,15,stabilized,True,5066

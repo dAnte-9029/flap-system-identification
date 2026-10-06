@@ -1,0 +1,64 @@
+{
+  "windows": 1146,
+  "by_partition": {
+    "train": 407,
+    "validation": 739
+  },
+  "by_quality": [
+    {
+      "partition": "train",
+      "quality": "Q1",
+      "n": 395
+    },
+    {
+      "partition": "train",
+      "quality": "Q2",
+      "n": 7
+    },
+    {
+      "partition": "train",
+      "quality": "Q3",
+      "n": 5
+    },
+    {
+      "partition": "validation",
+      "quality": "Q1",
+      "n": 614
+    },
+    {
+      "partition": "validation",
+      "quality": "Q2",
+      "n": 120
+    },
+    {
+      "partition": "validation",
+      "quality": "Q3",
+      "n": 5
+    }
+  ],
+  "source_logs": 14,
+  "segments": 66,
+  "blocks": 254,
+  "event_clusters": 87,
+  "complete_event_clusters": 19,
+  "source_elapsed_s": 2208.32,
+  "source_sample_s": 2209.64,
+  "window_elapsed_s": 1741.92,
+  "covered_sample_s": 1764.8400000000001,
+  "unused_sample_s": 444.7999999999997,
+  "arm_sizes": {
+    "A": 407,
+    "B": 395,
+    "C": 395,
+    "D": 407
+  },
+  "B_C_overlap": 384,
+  "actuator_threshold_train_q75": [
+    0.015999972820281982,
+    0.10662209056317806,
+    0.11422529444098473,
+    0.021315461490303278
+  ],
+  "no_overlap": true,
+  "event_count_warning": "Individual input threshold crossings within same contextual cluster are not independent trials"
+}

@@ -1,0 +1,12 @@
+{
+  "same_seed_initial_weights_identical": true,
+  "checkpoint_roundtrip": true,
+  "maximum_absolute_prediction_difference": {
+    "rates_b": 0.0,
+    "quaternion": 0.0,
+    "velocity_n": 0.0
+  },
+  "unit_contract": "unit_gravity_v1",
+  "parameter_count": 40070,
+  "focused_tests_passed": 21
+}

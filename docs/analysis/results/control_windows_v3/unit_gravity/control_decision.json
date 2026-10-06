@@ -1,0 +1,12 @@
+{
+  "prerequisites": {
+    "absolute_prediction": false,
+    "observable_waveforms": false,
+    "conservative_effect_to_error": false
+  },
+  "optimizer_started": false,
+  "hardware_or_flight_tests_started": false,
+  "status": "prerequisites_failed",
+  "interpretation": "error/effect test is conservative; shared error can cancel in action differences, so failing it is not proof of wrong derivatives or impossibility",
+  "sealed_test_accessed": false
+}

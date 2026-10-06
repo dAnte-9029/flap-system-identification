@@ -1,0 +1,35 @@
+{
+  "stage": "v26 historical-controller support diagnostic",
+  "status": "frozen_before_diagnostic",
+  "parents": {
+    "docs/analysis/results/control_windows_v12": "064ac0c8b9600d09a495b1ad3e43b40fb666f09979be73f86537a38b80282bbf",
+    "docs/analysis/results/control_windows_v23": "3b060e6e77850b9de52a4a3fc5d286dad31251c4d4fd5e8577c07e971480f4a5",
+    "docs/analysis/results/control_windows_v24": "5611fa42901e3ff257efdf8f5750c1a40fea8a7e152ded81ac17cc063cba5cd0",
+    "docs/analysis/results/control_windows_v25": "23256e33cf29a562a081b6cdb56c29e7708bc8953e14156030f0021ae051440e"
+  },
+  "code": {
+    "scripts/audit_controller_support_v26.py": "b589bb103d7baa2a8b04f0429e9951a88624e1ab9c8843de0cee5749656dedc9",
+    "scripts/controller_support_v26.py": "012f4833291229bb44e5c98b8bfd3be6cf896ad3a582d94ff286917198f9e6d6",
+    "tests/test_controller_support_v26.py": "c17ea8fc79201397cc081a7cb5345e3136cd2b6c89402a5e42a76b7a40824617"
+  },
+  "scope": "407original train parents, frozen30v25checkpoints and predictions; no training/modelmutation/windowremoval/developmentvalidation/sealed/reserved access.",
+  "marginal": "Each channel: fit-flight-balanced1/99percentile plus fitmin/max on past26points, query point fractions outside. Report shift using fixedv24training normalization. No outcome based thresholds.",
+  "joint": "Each block integral3/compression3/age2/all8 uses past mean,std,last perchannel. Fit-flight-balanced center/std, scale floor1e-6. RMS Euclidean standardized summary distance. Fit calibration nearest neighbor excludes entire same flight; query nearest among all4fitflights. Threshold fit-flight-balanced95percentile of cross-flight calibration distances; weak if distance>threshold. Marginal/joint flags are descriptive support proxies, not probability/causal validity or deletion rules.",
+  "structure": "Report fit-only flight-balanced eta2 byflight for each mean/std/last summary, and fit correlations with pastfrequencymean and mode. Does not establish flight identity as learned cause.",
+  "strata": "Reuse v12 q frequency_mean/frequency_std terciles and mode verbatim; verify thresholds using fit histories. Append4support strata andall; no outcome-dependent feature bins.",
+  "outcome": "q full1s squared-error difference observed-minus-zero; exact bias/centered andfirst/last.5s decomposition. Fit andOOF; flight RMSE then equalflight/seed. Spearman supportdistance vs deltaMSE withinflight perseed; >=8cases and nonconstant, undefined retained. No pvalues, significance or rootcause claim.",
+  "limits": "5repeated-development flights, correlated features and unequal mode coverage; summarydistance ignores full temporal ordering. No inference-time ablation/distribution modification. All407 retained; future logged rate references remain feedback-conditioned.",
+  "phase_contract": {
+    "definition": "logged wing_phase zero; Hall consistency is checked separately",
+    "installation_consistency": "not_confirmed",
+    "status": "unconfirmed_physical_pose"
+  },
+  "frequency_contract": {
+    "column": "flap_frequency_hz",
+    "ratio": 7.909090995788574,
+    "rescaling": "none; September logged ratio, not April ratio8"
+  },
+  "model_promoted": false,
+  "validation_accessed": false,
+  "sealed_test_accessed": false
+}

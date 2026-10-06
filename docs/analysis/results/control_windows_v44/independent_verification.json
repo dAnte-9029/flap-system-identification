@@ -1,0 +1,11 @@
+{
+  "status": "passed",
+  "paired_trajectories": 10989,
+  "rate_decomposition_scalars_recomputed": 791208,
+  "curve_cells_recomputed": 324000,
+  "all_six_permutations_match_shapley": true,
+  "all_original_v43_full1s_metrics_reproduced": true,
+  "all407_oof_per_seed_variant": true,
+  "fit_predictions_are_repeated_model_views_not_independent_samples": true,
+  "parent_hashes_unchanged": true
+}

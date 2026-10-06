@@ -1,0 +1,86 @@
+{
+  "commit": "c9af571575af33d5403fbb479256848797c801e2",
+  "files": {
+    "src/modules/control_allocator/ControlAllocator.cpp": {
+      "snapshot": "source/ControlAllocator.cpp",
+      "sha256": "de9f231d5b94f648ea07f44618493e2429ee3084bdfa2902bccbfa313e83690f",
+      "blob": "17385a117cc8ebac58c0fab48eaf3e7be0d0a98d"
+    },
+    "src/modules/control_allocator/VehicleActuatorEffectiveness/ActuatorEffectivenessFixedWing.cpp": {
+      "snapshot": "source/ActuatorEffectivenessFixedWing.cpp",
+      "sha256": "1de36f1fee534a6142337a93f4a20da94bebfa8675bcb8f49545a3981832939d",
+      "blob": "e91783cf808699e82871ef7a0b34837f1556f8f7"
+    },
+    "src/modules/control_allocator/VehicleActuatorEffectiveness/ActuatorEffectivenessFixedWing.hpp": {
+      "snapshot": "source/ActuatorEffectivenessFixedWing.hpp",
+      "sha256": "fff1938c05a8a76285c9c368e08832c8a3e57cbb8763b02c8fd4bfba2d30c836",
+      "blob": "0633cbc875ddbd1a5c3361ea751a43c189a1c872"
+    },
+    "src/modules/control_allocator/VehicleActuatorEffectiveness/ActuatorEffectivenessRotors.cpp": {
+      "snapshot": "source/ActuatorEffectivenessRotors.cpp",
+      "sha256": "c2d49f8ee5f3d2fee7b373c73ac79ac5eb7669ad01ac94072cb7ed75b7ff5627",
+      "blob": "b4edd0f2b01c26ccf957e6982def03d68701b52e"
+    },
+    "src/modules/control_allocator/VehicleActuatorEffectiveness/ActuatorEffectivenessControlSurfaces.cpp": {
+      "snapshot": "source/ActuatorEffectivenessControlSurfaces.cpp",
+      "sha256": "044e4aaa558c811134c5fde6f3c3df62959231273cc0056df29c50fe294df78d",
+      "blob": "093185e24050f9b1a57db2ffe3b9d986aa3451b6"
+    },
+    "src/lib/control_allocation/actuator_effectiveness/ActuatorEffectiveness.hpp": {
+      "snapshot": "source/ActuatorEffectiveness.hpp",
+      "sha256": "3ead1c6844173b9d465ef53bdc47e77159407cdf4f88201aaa25f17ec9d2a7c1",
+      "blob": "ffc2315b723269d3109b5103628f2b0b444f903a"
+    },
+    "src/lib/control_allocation/control_allocation/ControlAllocation.cpp": {
+      "snapshot": "source/ControlAllocation.cpp",
+      "sha256": "e16eabd67d9c6ecb1d171017a662ba16196251e225e188bd6ebdcc83969f939f",
+      "blob": "dfdf9ca7f765630eb8dc6f0159ffc9e624d82be6"
+    },
+    "src/lib/control_allocation/control_allocation/ControlAllocationPseudoInverse.cpp": {
+      "snapshot": "source/ControlAllocationPseudoInverse.cpp",
+      "sha256": "3200e76a8a150c0dd514c8e4008d7392729bca53bf42e71151a74d364c803499",
+      "blob": "0dc512b4edf3ddd51b1ef72df498672ee3d2a7c8"
+    },
+    "src/lib/mixer_module/functions/FunctionMotors.hpp": {
+      "snapshot": "source/FunctionMotors.hpp",
+      "sha256": "47ffbae2a01e0c4f1fcc99714fe589641f3c370ddb4681d8ef54f54f2f48e829",
+      "blob": "76e2b274f01eb194c3706d75e87b094f6fc6bda4"
+    },
+    "src/lib/mixer_module/functions/FunctionServos.hpp": {
+      "snapshot": "source/FunctionServos.hpp",
+      "sha256": "b5010b505528f6c55c9bbe1633d4e3e1d7a070b5704dab3048141e17ca35e6c4",
+      "blob": "5b69d326d84bf5f742be5805302ec0a7ea4a785e"
+    },
+    "src/lib/mixer_module/mixer_module.cpp": {
+      "snapshot": "source/mixer_module.cpp",
+      "sha256": "acdfb84d6bd94f18f52f2a26f2a651c0bfdbff956f71a480d93b43288ddf76b4",
+      "blob": "eb67188018945d5f1199921fb31a44938be018a3"
+    },
+    "src/lib/mixer_module/output_functions.yaml": {
+      "snapshot": "source/output_functions.yaml",
+      "sha256": "f92f544f86404db7ef37380bb112c57418fddc84e7c63e027ba68458e7dbe2cd",
+      "blob": "52543add979c7c5566c5c07489aa2b162a80d019"
+    },
+    "src/drivers/px4io/px4io.cpp": {
+      "snapshot": "source/px4io.cpp",
+      "sha256": "44df1bfd5f02db27a44aa7df4e1b4fe04e03ee9f0c6215478a15c6cc5052a381",
+      "blob": "0f53b54157c8bc49f61a34b30d8a19d7de106331"
+    },
+    "msg/versioned/ActuatorMotors.msg": {
+      "snapshot": "source/ActuatorMotors.msg",
+      "sha256": "40d89fe296ce86b005ad67798b109c843698811dea3ed12d9662c9b8f032e386",
+      "blob": "d165c5c1cb5432da58380b3cffa836728baf47ce"
+    },
+    "msg/versioned/ActuatorServos.msg": {
+      "snapshot": "source/ActuatorServos.msg",
+      "sha256": "6f3fe07cbcae4b472d50de20c6eec294313d64bd9113d02eb7b0d6597f18268b",
+      "blob": "c547998d1cbffd51961925d77bafcba1df73fd1d"
+    },
+    "msg/ActuatorOutputs.msg": {
+      "snapshot": "source/ActuatorOutputs.msg",
+      "sha256": "18baa5261a3bf906e65beee3470db943c8b7fb5aa36551ccc4ab6f732c6a2cdd",
+      "blob": "3209e54e34cc1341614d8393078d5ca5a46bd44f"
+    }
+  },
+  "limit": "Logged revision identifies source, not independent attestation of binary/uncommitted patches or hardware pose."
+}

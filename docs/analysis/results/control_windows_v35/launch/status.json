@@ -1,0 +1,102 @@
+{
+  "status": "training_complete_evaluation_pending",
+  "completed": [
+    {
+      "fold": 1,
+      "seed": 42,
+      "zero_control": false,
+      "exit_code": 0
+    },
+    {
+      "fold": 1,
+      "seed": 17,
+      "zero_control": false,
+      "exit_code": 0
+    },
+    {
+      "fold": 1,
+      "seed": 23,
+      "zero_control": false,
+      "exit_code": 0
+    },
+    {
+      "fold": 0,
+      "seed": 17,
+      "zero_control": false,
+      "exit_code": 0
+    },
+    {
+      "fold": 0,
+      "seed": 42,
+      "zero_control": false,
+      "exit_code": 0
+    },
+    {
+      "fold": 0,
+      "seed": 23,
+      "zero_control": false,
+      "exit_code": 0
+    },
+    {
+      "fold": 2,
+      "seed": 17,
+      "zero_control": false,
+      "exit_code": 0
+    },
+    {
+      "fold": 3,
+      "seed": 17,
+      "zero_control": false,
+      "exit_code": 0
+    },
+    {
+      "fold": 2,
+      "seed": 42,
+      "zero_control": false,
+      "exit_code": 0
+    },
+    {
+      "fold": 3,
+      "seed": 23,
+      "zero_control": false,
+      "exit_code": 0
+    },
+    {
+      "fold": 2,
+      "seed": 23,
+      "zero_control": false,
+      "exit_code": 0
+    },
+    {
+      "fold": 3,
+      "seed": 42,
+      "zero_control": false,
+      "exit_code": 0
+    },
+    {
+      "fold": 4,
+      "seed": 23,
+      "zero_control": false,
+      "exit_code": 0
+    },
+    {
+      "fold": 4,
+      "seed": 17,
+      "zero_control": false,
+      "exit_code": 0
+    },
+    {
+      "fold": 4,
+      "seed": 42,
+      "zero_control": false,
+      "exit_code": 0
+    }
+  ],
+  "total_candidates": 15,
+  "zero_control": {
+    "fold": 0,
+    "seed": 17,
+    "zero_control": true,
+    "exit_code": 0
+  }
+}

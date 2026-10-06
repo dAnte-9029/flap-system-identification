@@ -1,0 +1,18 @@
+{
+  "stage": "v22",
+  "status": "complete",
+  "baseline": "A1600",
+  "promoted": false,
+  "windows_retained": 407,
+  "windows_removed": 0,
+  "trained": false,
+  "manual_applicable_windows": 274,
+  "mission_windows": 133,
+  "manual_future_range_over_2_rc_counts": 4,
+  "flights_with_these_windows": 2,
+  "rc_disagreement_windows_full_support": 4,
+  "conclusion": "Sparse manual logs and limited observed manual excitation constrain reconstruction and identification; other channels/modes are not invalidated. This does not certify low-frequency or controller readiness.",
+  "next_step": "Freeze and verify a body-rate-reference plus thrust input contract for a same-budget model comparison; the retained subsystem is the fixed PX4 rate loop plus aircraft. Future logged rate references are feedback-generated and cannot stand in for exogenous attitude plans.",
+  "validation_accessed": false,
+  "sealed_test_accessed": false
+}

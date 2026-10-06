@@ -1,0 +1,70 @@
+{
+  "dataset_checks": {
+    "quaternion_common20ms_max_abs": 0.0,
+    "velocity_n_common20ms_max_abs": 0.0,
+    "rates_b_common20ms_max_abs": 0.0,
+    "history_state_common20ms_max_abs": 0.0,
+    "history_reference_common20ms_max_abs": 0.0,
+    "history_actuator_common20ms_max_abs": 0.0,
+    "original_support_disjoint": true,
+    "same_reference_tape": true,
+    "stored_filter_labels_match_inference": true
+  },
+  "checkpoint_reload": [
+    {
+      "checkpoint": "docs/analysis/results/control_windows_v5/tiny/raw100_17/final.pt",
+      "max_abs_difference": 1.430511474609375e-06,
+      "readout": "raw100",
+      "prefix_causality_passed": true
+    },
+    {
+      "checkpoint": "docs/analysis/results/control_windows_v5/tiny/aa50_17/final.pt",
+      "max_abs_difference": 1.4007091522216797e-06,
+      "readout": "aa50",
+      "prefix_causality_passed": true
+    },
+    {
+      "checkpoint": "docs/analysis/results/control_windows_v5/formal/aa50_23/final.pt",
+      "max_abs_difference": 7.152557373046875e-07,
+      "readout": "aa50",
+      "prefix_causality_passed": true
+    },
+    {
+      "checkpoint": "docs/analysis/results/control_windows_v5/formal/aa50_42/final.pt",
+      "max_abs_difference": 4.76837158203125e-07,
+      "readout": "aa50",
+      "prefix_causality_passed": true
+    },
+    {
+      "checkpoint": "docs/analysis/results/control_windows_v5/formal/raw100_23/final.pt",
+      "max_abs_difference": 9.5367431640625e-07,
+      "readout": "raw100",
+      "prefix_causality_passed": true
+    },
+    {
+      "checkpoint": "docs/analysis/results/control_windows_v5/formal/raw100_17/final.pt",
+      "max_abs_difference": 9.5367431640625e-07,
+      "readout": "raw100",
+      "prefix_causality_passed": true
+    },
+    {
+      "checkpoint": "docs/analysis/results/control_windows_v5/formal/raw100_42/final.pt",
+      "max_abs_difference": 9.5367431640625e-07,
+      "readout": "raw100",
+      "prefix_causality_passed": true
+    },
+    {
+      "checkpoint": "docs/analysis/results/control_windows_v5/formal/aa50_17/final.pt",
+      "max_abs_difference": 1.6689300537109375e-06,
+      "readout": "aa50",
+      "prefix_causality_passed": true
+    }
+  ],
+  "focused_tests_passed": 23,
+  "environment": {
+    "python": "3.11.14 (main, Oct 21 2025, 18:31:21) [GCC 11.2.0]",
+    "torch": "2.7.0+cu128",
+    "numpy": "1.26.0"
+  },
+  "sealed_test_accessed": false
+}

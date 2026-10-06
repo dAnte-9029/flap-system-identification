@@ -1,0 +1,225 @@
+{
+  "status": "passed",
+  "tests_passed": 3,
+  "checks": [
+    {
+      "fold": 0,
+      "seed": 17,
+      "arm": "baseline",
+      "rate_decomposition_exact": true,
+      "quaternion_replay_exact": true
+    },
+    {
+      "fold": 0,
+      "seed": 17,
+      "arm": "joint",
+      "rate_decomposition_exact": true,
+      "quaternion_replay_exact": true
+    },
+    {
+      "fold": 0,
+      "seed": 23,
+      "arm": "baseline",
+      "rate_decomposition_exact": true,
+      "quaternion_replay_exact": true
+    },
+    {
+      "fold": 0,
+      "seed": 23,
+      "arm": "joint",
+      "rate_decomposition_exact": true,
+      "quaternion_replay_exact": true
+    },
+    {
+      "fold": 0,
+      "seed": 42,
+      "arm": "baseline",
+      "rate_decomposition_exact": true,
+      "quaternion_replay_exact": true
+    },
+    {
+      "fold": 0,
+      "seed": 42,
+      "arm": "joint",
+      "rate_decomposition_exact": true,
+      "quaternion_replay_exact": true
+    },
+    {
+      "fold": 1,
+      "seed": 17,
+      "arm": "baseline",
+      "rate_decomposition_exact": true,
+      "quaternion_replay_exact": true
+    },
+    {
+      "fold": 1,
+      "seed": 17,
+      "arm": "joint",
+      "rate_decomposition_exact": true,
+      "quaternion_replay_exact": true
+    },
+    {
+      "fold": 1,
+      "seed": 23,
+      "arm": "baseline",
+      "rate_decomposition_exact": true,
+      "quaternion_replay_exact": true
+    },
+    {
+      "fold": 1,
+      "seed": 23,
+      "arm": "joint",
+      "rate_decomposition_exact": true,
+      "quaternion_replay_exact": true
+    },
+    {
+      "fold": 1,
+      "seed": 42,
+      "arm": "baseline",
+      "rate_decomposition_exact": true,
+      "quaternion_replay_exact": true
+    },
+    {
+      "fold": 1,
+      "seed": 42,
+      "arm": "joint",
+      "rate_decomposition_exact": true,
+      "quaternion_replay_exact": true
+    },
+    {
+      "fold": 2,
+      "seed": 17,
+      "arm": "baseline",
+      "rate_decomposition_exact": true,
+      "quaternion_replay_exact": true
+    },
+    {
+      "fold": 2,
+      "seed": 17,
+      "arm": "joint",
+      "rate_decomposition_exact": true,
+      "quaternion_replay_exact": true
+    },
+    {
+      "fold": 2,
+      "seed": 23,
+      "arm": "baseline",
+      "rate_decomposition_exact": true,
+      "quaternion_replay_exact": true
+    },
+    {
+      "fold": 2,
+      "seed": 23,
+      "arm": "joint",
+      "rate_decomposition_exact": true,
+      "quaternion_replay_exact": true
+    },
+    {
+      "fold": 2,
+      "seed": 42,
+      "arm": "baseline",
+      "rate_decomposition_exact": true,
+      "quaternion_replay_exact": true
+    },
+    {
+      "fold": 2,
+      "seed": 42,
+      "arm": "joint",
+      "rate_decomposition_exact": true,
+      "quaternion_replay_exact": true
+    },
+    {
+      "fold": 3,
+      "seed": 17,
+      "arm": "baseline",
+      "rate_decomposition_exact": true,
+      "quaternion_replay_exact": true
+    },
+    {
+      "fold": 3,
+      "seed": 17,
+      "arm": "joint",
+      "rate_decomposition_exact": true,
+      "quaternion_replay_exact": true
+    },
+    {
+      "fold": 3,
+      "seed": 23,
+      "arm": "baseline",
+      "rate_decomposition_exact": true,
+      "quaternion_replay_exact": true
+    },
+    {
+      "fold": 3,
+      "seed": 23,
+      "arm": "joint",
+      "rate_decomposition_exact": true,
+      "quaternion_replay_exact": true
+    },
+    {
+      "fold": 3,
+      "seed": 42,
+      "arm": "baseline",
+      "rate_decomposition_exact": true,
+      "quaternion_replay_exact": true
+    },
+    {
+      "fold": 3,
+      "seed": 42,
+      "arm": "joint",
+      "rate_decomposition_exact": true,
+      "quaternion_replay_exact": true
+    },
+    {
+      "fold": 4,
+      "seed": 17,
+      "arm": "baseline",
+      "rate_decomposition_exact": true,
+      "quaternion_replay_exact": true
+    },
+    {
+      "fold": 4,
+      "seed": 17,
+      "arm": "joint",
+      "rate_decomposition_exact": true,
+      "quaternion_replay_exact": true
+    },
+    {
+      "fold": 4,
+      "seed": 23,
+      "arm": "baseline",
+      "rate_decomposition_exact": true,
+      "quaternion_replay_exact": true
+    },
+    {
+      "fold": 4,
+      "seed": 23,
+      "arm": "joint",
+      "rate_decomposition_exact": true,
+      "quaternion_replay_exact": true
+    },
+    {
+      "fold": 4,
+      "seed": 42,
+      "arm": "baseline",
+      "rate_decomposition_exact": true,
+      "quaternion_replay_exact": true
+    },
+    {
+      "fold": 4,
+      "seed": 42,
+      "arm": "joint",
+      "rate_decomposition_exact": true,
+      "quaternion_replay_exact": true
+    }
+  ],
+  "frozen_support_distances_reproduced": true,
+  "strata_recompose_all_original_parents": true,
+  "full_v35_metrics_reproduced": true,
+  "input_only_events": true,
+  "all407_retained": true,
+  "trained_models": 0,
+  "validation_accessed": false,
+  "sealed_test_accessed": false,
+  "reserved_accessed": false
+}

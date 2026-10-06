@@ -1,0 +1,14 @@
+{
+  "status": "ready_for_training_preflight",
+  "outputs": {
+    "train_reference_ranges.csv": "3ec0908bddd06415deaf0351f2d4efa96861fbbf659aba71d579c2232ab807b1",
+    "windows.csv": "2b49b0e70e22be9ec75c674eb75b197daa39920c592fee4a5c75999af4f72a09",
+    "protocol.json": "94e44ea0040d21b70adeb46ddcec27ff8fda8c2f3c4f969be9378045442a8557",
+    "train_leave_one_flight_out_folds.json": "7329d4dede8c497c950485c084a7a1ee3b38c0997fa25959e4375eabfe407c90",
+    "manifest.json": "76756f5966550062b164764f83875933947b91dcec5795e7a8278358825f0a1e",
+    "summary.csv": "13bd16d8ba6da10291fcd5539ac319078af35dca3f5a3f51a2cf050413b5cffa"
+  },
+  "normalization_sha256": "5aa4a1464c48089a50f04df7abdb958a127cfab71bce740d7840cf5fb0620824",
+  "formal_training_started": false,
+  "sealed_test_accessed": false
+}

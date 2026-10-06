@@ -1,0 +1,14 @@
+{
+  "status": "proposed_not_started",
+  "objective": "Localize remaining prediction/action errors before further model changes",
+  "evidence": "Use v43 fit/OOF and four coupled comparisons, including every failed protection; do not retune lambda on these repeated OOF results.",
+  "steps": [
+    "Freeze all15 checkpoints and all407 parents; compare fit-vs-OOF tilt/rates and errors by flight/mode/time within the1s horizon.",
+    "Pair candidate andv35 trajectories under identical reference/initial states; separate conditional changes from generated-action changes, preserving difficult windows.",
+    "Use measured-rate kinematics and reference/action evidence only as labelled diagnostics; select at most one next hypothesis after identifying whether residuals are fit capacity, cross-flight transfer or accumulated dynamics.",
+    "Keep original absolute gates and sealed boundaries; no controller changes or candidate deployment based on this comparison."
+  ],
+  "training": false,
+  "controller_tuning": false,
+  "new_flight": false
+}

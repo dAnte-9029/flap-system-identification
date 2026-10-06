@@ -1,0 +1,20 @@
+{
+  "status": "ready_not_started",
+  "objective": "Run the15 frozen tilt-supervision candidates and compare with v35",
+  "launch": "OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 /home/zn/anaconda3/envs/flap-train-gpu/bin/python scripts/run_attitude_training_v42.py",
+  "output": "docs/analysis/results/control_windows_v43",
+  "runs": 15,
+  "updates_each": 1600,
+  "baseline": "Frozenv35 jointincrement checkpoints; completed zero-tilt1600 control need not be repeated.",
+  "coefficient_source": "weights.json; shared per fold across3seeds, no postlaunch tuning.",
+  "requirements": [
+    "Verify preparation and checkpoint/data hashes before launch.",
+    "Retain all407 OOF parents and existing active masks; compare tilt/roll/pitch plus original p/q/r/velocity/geodesic attitude metrics perseed/flight.",
+    "Independently replay saved checkpoints and preserve all original buffers/initialization/sampling; candidate changes remain loss-only.",
+    "After conditional scoring, use the same4v40controller/model coupling variants andteacher baselines for generated action/state evaluation; do not substitute future log commands in this coupled stage.",
+    "Apply protocol.json primary/protection/absolute gates exactly; report legacyq gate separately. Even success does not itself certify independent response or new-controller real-flight safety."
+  ],
+  "no_controller_tuning": true,
+  "no_real_flight": true,
+  "no_developmentvalidation_sealed_reserved": true
+}

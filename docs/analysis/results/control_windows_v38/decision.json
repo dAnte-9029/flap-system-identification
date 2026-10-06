@@ -1,0 +1,21 @@
+{
+  "status": "controller_component_replay_complete",
+  "source_component_arithmetic_passed": true,
+  "all407_retained": true,
+  "windows": 407,
+  "flights": 5,
+  "replay_runs": 5698,
+  "measured_state_controller_replay_completed": true,
+  "exact_initial_controller_state_recovered": false,
+  "exact_native_scheduler_recovered": false,
+  "output_fidelity_gate_predefined": false,
+  "controller_fidelity_certified": false,
+  "replay_recipe_selected": false,
+  "model_replay_started": false,
+  "model_promoted": false,
+  "baseline": "A1600 retained; v35 research candidate remains unpromoted",
+  "validation_accessed": false,
+  "sealed_test_accessed": false,
+  "reserved_accessed": false,
+  "next_action": "Persistent model step adapter parity; no controller or model tuning"
+}

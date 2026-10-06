@@ -1,0 +1,29 @@
+{
+  "candidate": "A_long all3seeds",
+  "increment_deg": 1.0,
+  "ramp_s": 0.2,
+  "horizon_s": 0.5,
+  "axes": [
+    "roll_reference",
+    "pitch_reference"
+  ],
+  "bounds": "train1percent/99percent marginal reference envelope; not joint counterfactual support certification",
+  "statistic": "predicted change of p/q compared with original recorded-response prediction error",
+  "interpretation": "sensitivity diagnostic, not causal-effect truth or optimizer benefit",
+  "no_controller_optimization": true,
+  "low": [
+    -0.49287110567092896,
+    0.2327541033923626,
+    0.0,
+    0.44188377261161804,
+    -0.0023808006662875414
+  ],
+  "high": [
+    0.547461986541748,
+    0.5235987901687622,
+    0.0,
+    0.8364633303880692,
+    1.51805579662323e-07
+  ],
+  "sealed_test_accessed": false
+}

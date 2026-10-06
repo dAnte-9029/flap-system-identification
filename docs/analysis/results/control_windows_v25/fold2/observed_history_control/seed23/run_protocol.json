@@ -1,0 +1,9 @@
+{
+  "fold": 2,
+  "seed": 23,
+  "arm": "observed_history_control",
+  "initial_parameters_sha256": "1774b9ca1b1f8ef5ec91e4bfe6aa0d051bbfa67c2a599fe3236a91b589f16731",
+  "common_initial_parameters_sha256": "5445a628cc9083dd66d3d5c683c8e8a1db16139abd7b9e1e42447ee3e806f60f",
+  "draws_sha256": "1b88ef924f34e7f5804ff3cbaff4c00fbc0223752db91a629f57610faedb81ff",
+  "parent_protocol_sha256": "5aa560cd1d81754d5e728ccddcf7b5f73c044c99f0965f411e3cb284ebee4569"
+}

@@ -1,0 +1,17 @@
+{
+  "seeds": [
+    17,
+    23,
+    42
+  ],
+  "source_manifest_sha256": "84cac37ebf73f47802a4b5d3afff48d97554ac3aedfdd1cb6fb9ec5d618b919f",
+  "task": "frozen A800 train/validation gap and observed-reference versus reference-held diagnostic; not causal intervention truth",
+  "horizons": [
+    0.1,
+    0.2,
+    0.5,
+    1.0
+  ],
+  "threshold_tuning_from_outputs": false,
+  "sealed_test_accessed": false
+}

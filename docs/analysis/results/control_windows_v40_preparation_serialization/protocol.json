@@ -1,0 +1,271 @@
+{
+  "stage": "v40 bounded reference-conditioned controller-model coupling",
+  "status": "frozen_before_preparation_and_execution",
+  "code": {
+    "scripts/coupled_replay_v40.py": "e98472516416130a4cd380bd64d677a12eab9d485463282dfec99ee871618602",
+    "scripts/run_coupled_replay_v40.py": "8a9e6db09f2323689e0c5af37870ebafb3c2c4ad50eb4269134f6d9cf35394ab",
+    "tests/test_coupled_replay_v40.py": "b17f38fc044776aa93c630deb1f2d2788dd443d84a23db35f24c42d94e51f815"
+  },
+  "parents": {
+    "docs/analysis/results/control_windows_v29": "49ffd01eb46a8fd80e6e193143b25be4212cc78fdb11725feb95c5a495e9b231",
+    "docs/analysis/results/control_windows_v30": "d7fa86921e498c47875ae4144e13899e907d4104e6b1ad1f6cfdb4bdde6f8b18",
+    "docs/analysis/results/control_windows_v35": "8329f834d415102d3949635fe39ea2c7f2ea8bf0d0aaa9ecee096102ac037e8a",
+    "docs/analysis/results/control_windows_v38": "2346ddfd6551208780e46cb5d5ecf6c5caf9882c590f3087ea4b783e5a8e9197",
+    "docs/analysis/results/control_windows_v39": "fef6e6c041caa939799ede8b5eeb5910c49722a05ba3734c2c2d0f73928238fd"
+  },
+  "models": [
+    {
+      "stage": 30,
+      "fold": 0,
+      "seed": 17,
+      "checkpoint": "docs/analysis/results/control_windows_v30/fold0/seed17/final.pt",
+      "sha256": "2db8a5f00425ac44198cb33ff022a56fa4e5c2565025fac333d7987d505310d9"
+    },
+    {
+      "stage": 30,
+      "fold": 0,
+      "seed": 23,
+      "checkpoint": "docs/analysis/results/control_windows_v30/fold0/seed23/final.pt",
+      "sha256": "bb09191764f9a8a889eb5a7bcde0c5a96130c9a9c5886ddfb5ba36b6508d2096"
+    },
+    {
+      "stage": 30,
+      "fold": 0,
+      "seed": 42,
+      "checkpoint": "docs/analysis/results/control_windows_v30/fold0/seed42/final.pt",
+      "sha256": "db5d4cc57a2a067eddb40747e5e7f79d495e6e62b001f13b913f394604fb3f30"
+    },
+    {
+      "stage": 30,
+      "fold": 1,
+      "seed": 17,
+      "checkpoint": "docs/analysis/results/control_windows_v30/fold1/seed17/final.pt",
+      "sha256": "0c79798376c0e431760512e83c56a3edd47fba61491423cc7f1580541e80d6ea"
+    },
+    {
+      "stage": 30,
+      "fold": 1,
+      "seed": 23,
+      "checkpoint": "docs/analysis/results/control_windows_v30/fold1/seed23/final.pt",
+      "sha256": "f92cf5e6d2e180cc75e912f31a976f1f61c8eb3c85259384391deabfe06fd0cf"
+    },
+    {
+      "stage": 30,
+      "fold": 1,
+      "seed": 42,
+      "checkpoint": "docs/analysis/results/control_windows_v30/fold1/seed42/final.pt",
+      "sha256": "4fe9702c4d4d0f7109c452fe1fc0b3458ab334307b921e4e2fc1bd6d74ddcd14"
+    },
+    {
+      "stage": 30,
+      "fold": 2,
+      "seed": 17,
+      "checkpoint": "docs/analysis/results/control_windows_v30/fold2/seed17/final.pt",
+      "sha256": "912cce58136c58904b696ccc76aa037661f7fda65c2c81ce613d231a0ef37e87"
+    },
+    {
+      "stage": 30,
+      "fold": 2,
+      "seed": 23,
+      "checkpoint": "docs/analysis/results/control_windows_v30/fold2/seed23/final.pt",
+      "sha256": "e9d26fb57f8e2e3ff4d98a1360688978b8236b8b29cb7ed792444a5fc4e8eabe"
+    },
+    {
+      "stage": 30,
+      "fold": 2,
+      "seed": 42,
+      "checkpoint": "docs/analysis/results/control_windows_v30/fold2/seed42/final.pt",
+      "sha256": "2a4034e7d1f6c78c45b9e4131f759d2dc6cf88572b448cb63ec3035bba041065"
+    },
+    {
+      "stage": 30,
+      "fold": 3,
+      "seed": 17,
+      "checkpoint": "docs/analysis/results/control_windows_v30/fold3/seed17/final.pt",
+      "sha256": "0f6779835fee7a85aa56c515d6de06baf96e290b782d18b9d5e5323128fc4c4d"
+    },
+    {
+      "stage": 30,
+      "fold": 3,
+      "seed": 23,
+      "checkpoint": "docs/analysis/results/control_windows_v30/fold3/seed23/final.pt",
+      "sha256": "8f574be4695d559d6e66bf38c69f1a53880d2474783073ab3a0d957e51ea8155"
+    },
+    {
+      "stage": 30,
+      "fold": 3,
+      "seed": 42,
+      "checkpoint": "docs/analysis/results/control_windows_v30/fold3/seed42/final.pt",
+      "sha256": "4ab9c08527fee9b18c06f299b423e38ab877d56441e877dc691073c018e921a8"
+    },
+    {
+      "stage": 30,
+      "fold": 4,
+      "seed": 17,
+      "checkpoint": "docs/analysis/results/control_windows_v30/fold4/seed17/final.pt",
+      "sha256": "1a41ca2d750cfcc2bded56b0d12df75dcf0365b459281512a18e262f6b467a36"
+    },
+    {
+      "stage": 30,
+      "fold": 4,
+      "seed": 23,
+      "checkpoint": "docs/analysis/results/control_windows_v30/fold4/seed23/final.pt",
+      "sha256": "bee61feb2e9373619a5652af84ca0abc3c88f46d6b2dee48b6e35bbe9c913d42"
+    },
+    {
+      "stage": 30,
+      "fold": 4,
+      "seed": 42,
+      "checkpoint": "docs/analysis/results/control_windows_v30/fold4/seed42/final.pt",
+      "sha256": "89bd929c63d271749704461b759f609cdfbf4931cb21e580132a342b23a59cf6"
+    },
+    {
+      "stage": 35,
+      "fold": 0,
+      "seed": 17,
+      "checkpoint": "docs/analysis/results/control_windows_v35/fold0/joint_increment/seed17/final.pt",
+      "sha256": "9ea9b062062486f4560986b1a83fe6f7addb1e082023e2449e59e6cd915e4c03"
+    },
+    {
+      "stage": 35,
+      "fold": 0,
+      "seed": 23,
+      "checkpoint": "docs/analysis/results/control_windows_v35/fold0/joint_increment/seed23/final.pt",
+      "sha256": "b7ea0615e0bc6a2891b18c6b1b93daf20bd8c7932956f4cf5e0e00555052c9a6"
+    },
+    {
+      "stage": 35,
+      "fold": 0,
+      "seed": 42,
+      "checkpoint": "docs/analysis/results/control_windows_v35/fold0/joint_increment/seed42/final.pt",
+      "sha256": "804bdc6a8340327065384952e0565ec67d929544507582253fd651a665da028d"
+    },
+    {
+      "stage": 35,
+      "fold": 1,
+      "seed": 17,
+      "checkpoint": "docs/analysis/results/control_windows_v35/fold1/joint_increment/seed17/final.pt",
+      "sha256": "d213b868659a7d3ced392014abd4cc277156456df2be4cf6fd85f42b7a8137a3"
+    },
+    {
+      "stage": 35,
+      "fold": 1,
+      "seed": 23,
+      "checkpoint": "docs/analysis/results/control_windows_v35/fold1/joint_increment/seed23/final.pt",
+      "sha256": "5ac4619d72f3f6d0eef217d74429ce40dc34ead3e34556cc11b905dea63125a8"
+    },
+    {
+      "stage": 35,
+      "fold": 1,
+      "seed": 42,
+      "checkpoint": "docs/analysis/results/control_windows_v35/fold1/joint_increment/seed42/final.pt",
+      "sha256": "d58734703b8e2d9eb8e9551bb3aa8c0bccc69fb1d6c77429a69459b9762bc62f"
+    },
+    {
+      "stage": 35,
+      "fold": 2,
+      "seed": 17,
+      "checkpoint": "docs/analysis/results/control_windows_v35/fold2/joint_increment/seed17/final.pt",
+      "sha256": "0c5167fb1758e0bdaefb2f05317a59e561a63d62feb81867f038f6cfe5e9c548"
+    },
+    {
+      "stage": 35,
+      "fold": 2,
+      "seed": 23,
+      "checkpoint": "docs/analysis/results/control_windows_v35/fold2/joint_increment/seed23/final.pt",
+      "sha256": "69da762107b57e9ed87b050e63792cb82da3e034e248c252f2903f348f1883e3"
+    },
+    {
+      "stage": 35,
+      "fold": 2,
+      "seed": 42,
+      "checkpoint": "docs/analysis/results/control_windows_v35/fold2/joint_increment/seed42/final.pt",
+      "sha256": "9752831cb778d076f50c7a08efbad67e7590c3642f18982458ae6423d6ad43f6"
+    },
+    {
+      "stage": 35,
+      "fold": 3,
+      "seed": 17,
+      "checkpoint": "docs/analysis/results/control_windows_v35/fold3/joint_increment/seed17/final.pt",
+      "sha256": "1e7738d52acff0dcbee98dfafb7b305d367118908bcd91c5dd0f17ccfa380e35"
+    },
+    {
+      "stage": 35,
+      "fold": 3,
+      "seed": 23,
+      "checkpoint": "docs/analysis/results/control_windows_v35/fold3/joint_increment/seed23/final.pt",
+      "sha256": "f70a1c09235d9bb33e9b06daf216c80b6a89c7871ef62430464fd63ec7c1e8c3"
+    },
+    {
+      "stage": 35,
+      "fold": 3,
+      "seed": 42,
+      "checkpoint": "docs/analysis/results/control_windows_v35/fold3/joint_increment/seed42/final.pt",
+      "sha256": "3b3b631ce60631d757c56386ebcf6076c6ecf478ab213410cd0532a487a480cf"
+    },
+    {
+      "stage": 35,
+      "fold": 4,
+      "seed": 17,
+      "checkpoint": "docs/analysis/results/control_windows_v35/fold4/joint_increment/seed17/final.pt",
+      "sha256": "83b95ae4087fddf4605c6f9205ba8963793576ba25875495bc0789443e09f103"
+    },
+    {
+      "stage": 35,
+      "fold": 4,
+      "seed": 23,
+      "checkpoint": "docs/analysis/results/control_windows_v35/fold4/joint_increment/seed23/final.pt",
+      "sha256": "e99fe62302c37b1662626efdab119365447fd55a7e113aeffffcbbe3fb27fe33"
+    },
+    {
+      "stage": 35,
+      "fold": 4,
+      "seed": 42,
+      "checkpoint": "docs/analysis/results/control_windows_v35/fold4/joint_increment/seed42/final.pt",
+      "sha256": "f7df566a50d10724c9b41e1c5a4302ecd170a3fd77ce21cdbd4c130d5354d57f"
+    }
+  ],
+  "variants": [
+    {
+      "name": "warm2_plus",
+      "tick_us": 2500,
+      "feedback": "source_no_interleave"
+    },
+    {
+      "name": "warm2_minus",
+      "tick_us": 2500,
+      "feedback": "source_no_interleave"
+    },
+    {
+      "name": "warm2_20ms",
+      "tick_us": 20000,
+      "feedback": "source_no_interleave"
+    },
+    {
+      "name": "warm2_delayed_feedback",
+      "tick_us": 2500,
+      "feedback": "delayed_allocation"
+    }
+  ],
+  "data": "All407 originaltrain parents, all30 OOF checkpoints; no outcome selection, refit or additional clamps.",
+  "initialization": "Causal2s raw-state warmup ending strictly before origin, HPF all-plus/all-minus probes; original modelH26 initialization.",
+  "clock": "Model20ms; controller2.5ms/attitude10ms or20ms alternative. Hold model state for20ms, consume first generated action for native model step; record all intermediate actions. This is a50Hz plant-input hold approximation, not recovered firmware scheduling.",
+  "inputs": "400x2.5ms causal publication+sample held logged attitude/thrust/manualyaw condition tape. Fixed origin manual/mode, all scored airborne attitude/rate/nonVTOL flags audited. No future plant measurements or logged actuator commands enter model rollout.",
+  "proxies": "Controller uses fixed origin valid CAS (source trim fallback if stale/invalid) as fresh synthetic airspeed. Model keeps original frequency/phase/air proxies. D=0 verified, controller acceleration0, no future reset state.",
+  "teacher": "Same coupling schedule, initial controller state, fixedCAS and condition tape, held measured20ms state, no model; diagnostic only. v38 retained as different-schedule reference.",
+  "support": "Per-fold fit-only command min/max and observed history state14 min/max, evaluated on generated/current quantities. Marginal coverage only, not calibrated confidence or joint support.",
+  "evaluation": "Full407; equal-flight then equal-seed. State full1s wave and.5s/1s endpoint; generated action/teacher action error, microcommand mismatch, saturation, support and all sensitivity variants. Failures retained, no skipping/restarts to hide failure.",
+  "gates": {
+    "q_relative_improvement_min": 0.05,
+    "all_three_seeds_improve": true,
+    "minimum_improving_flights": 4,
+    "protections": "For each seed, p/r full1s and velocity/attitude .5s/1s endpoints regress <=5% (18 values)",
+    "absolute": "Original active-window0.5s p/q<=.15rad/s, attitude<=3deg, velocity<=.5m/s (12 values); reuse original metric definitions/masks"
+  },
+  "gate_application": "Apply frozen relative/protection/absolute definitions to v35 versus v30 at identical variant. Additional action diagnostic: per-seed, each four-channel action RMSE may regress at most5% vs v30; each passed cell reported, not physical fidelity certification. No promotion even if all descriptive gates pass.",
+  "deployment": false,
+  "training": false,
+  "validation_accessed": false,
+  "sealed_test_accessed": false,
+  "reserved_accessed": false
+}

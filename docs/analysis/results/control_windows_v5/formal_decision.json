@@ -1,0 +1,108 @@
+{
+  "comparisons": [
+    {
+      "candidate": "raw100",
+      "baseline": "A1600_50hz",
+      "readout": "raw50",
+      "primary_gain_fraction": 0.011935913596386571,
+      "paired_flight_bootstrap_gain_95percent": [
+        0.004596134493398241,
+        0.01967839252516317
+      ],
+      "all_seeds_improve": true,
+      "maximum_all_metric_regression_fraction": 0.04443599282566657,
+      "relative_gate_passed": false,
+      "absolute_gate_passed": false
+    },
+    {
+      "candidate": "aa50",
+      "baseline": "raw100",
+      "readout": "aa50",
+      "primary_gain_fraction": -0.003369531093095013,
+      "paired_flight_bootstrap_gain_95percent": [
+        -0.006291222356687087,
+        -0.00021442114099545306
+      ],
+      "all_seeds_improve": false,
+      "maximum_all_metric_regression_fraction": 0.033083410169342464,
+      "relative_gate_passed": false,
+      "absolute_gate_passed": false
+    }
+  ],
+  "absolute_by_seed": [
+    {
+      "candidate": "raw100",
+      "readout": "raw50",
+      "seed": 17,
+      "active_p": 0.5210205744444445,
+      "active_q": 0.2798222766666667,
+      "attitude_deg": 4.459831762080971,
+      "velocity": 0.2825320044444445,
+      "passed": false
+    },
+    {
+      "candidate": "raw100",
+      "readout": "raw50",
+      "seed": 23,
+      "active_p": 0.5239871988888889,
+      "active_q": 0.2853657622222222,
+      "attitude_deg": 4.491083547664251,
+      "velocity": 0.28152929111111114,
+      "passed": false
+    },
+    {
+      "candidate": "raw100",
+      "readout": "raw50",
+      "seed": 42,
+      "active_p": 0.5201844044444444,
+      "active_q": 0.29139479,
+      "attitude_deg": 4.505960027575356,
+      "velocity": 0.2918304955555555,
+      "passed": false
+    },
+    {
+      "candidate": "aa50",
+      "readout": "aa50",
+      "seed": 17,
+      "active_p": 0.4146772588888889,
+      "active_q": 0.26346891333333333,
+      "attitude_deg": 4.494858785674963,
+      "velocity": 0.28081570444444437,
+      "passed": false
+    },
+    {
+      "candidate": "aa50",
+      "readout": "aa50",
+      "seed": 23,
+      "active_p": 0.4171073155555556,
+      "active_q": 0.24918031333333335,
+      "attitude_deg": 4.520233921407123,
+      "velocity": 0.2795397722222222,
+      "passed": false
+    },
+    {
+      "candidate": "aa50",
+      "readout": "aa50",
+      "seed": 42,
+      "active_p": 0.41727154222222224,
+      "active_q": 0.2674476422222222,
+      "attitude_deg": 4.509422055024259,
+      "velocity": 0.2867475055555555,
+      "passed": false
+    }
+  ],
+  "source_checkpoint_pins": {
+    "/home/zn/flap-system-identification/docs/analysis/results/control_windows_v5/formal/raw100_17/final.pt": "b7df73cfd20567f7b7810d6f0711cedc0ebb2c427e2da0d04c92f0b8f8efaab1",
+    "/home/zn/flap-system-identification/docs/analysis/results/control_windows_v5/formal/aa50_17/final.pt": "48faf120b6516fceb7a003a3be4c75ecb767f75cc5bad41cff4409a5926c9699",
+    "/home/zn/flap-system-identification/docs/analysis/results/control_windows_v5/formal/raw100_23/final.pt": "5d0de7584554cc5d23897249fadb42f4a843e8aeede703d34501a6cea83feb3c",
+    "/home/zn/flap-system-identification/docs/analysis/results/control_windows_v5/formal/aa50_23/final.pt": "975ae840c92702542f2e46b13e23275210f5cdf883ffd470b24db1003b72e22e",
+    "/home/zn/flap-system-identification/docs/analysis/results/control_windows_v5/formal/raw100_42/final.pt": "c378865b58c623bd7666ddf6be1032296da0209f0200125665148edb74f05506",
+    "/home/zn/flap-system-identification/docs/analysis/results/control_windows_v5/formal/aa50_42/final.pt": "eac828090d59228b02d69ebf24e1918ccc0ff8efa4bea0b5714922d7e5ef8dfe"
+  },
+  "control_response_independently_validated": false,
+  "controller_optimization_started": false,
+  "accepted_for_control": false,
+  "reason": "Prediction gates and independent control-response evidence are separate; this bandwidth experiment does not certify causal control effects.",
+  "inference_note": "aa50 has100ms lagged rate readout plus current-time pose/velocity; internal raw100 latent rate remains unvalidated as instantaneous state",
+  "sealed_test_accessed": false
+}

@@ -1,0 +1,77 @@
+{
+  "held_replay": [
+    {
+      "seed": 17,
+      "partition": "train",
+      "replay_max_abs": 0.0
+    },
+    {
+      "seed": 17,
+      "partition": "validation",
+      "replay_max_abs": 0.0
+    },
+    {
+      "seed": 23,
+      "partition": "train",
+      "replay_max_abs": 0.0
+    },
+    {
+      "seed": 23,
+      "partition": "validation",
+      "replay_max_abs": 0.0
+    },
+    {
+      "seed": 42,
+      "partition": "train",
+      "replay_max_abs": 0.0
+    },
+    {
+      "seed": 42,
+      "partition": "validation",
+      "replay_max_abs": 0.0
+    }
+  ],
+  "sealed_test_accessed": false,
+  "phase_future_used_only_as_training_label_or_oracle": true,
+  "phase_candidate_reload_max_abs": 3.552713678800501e-15,
+  "outer_fold_audit": [
+    {
+      "file": "phase_outer_fold0.npz",
+      "fit_flights": 4,
+      "query_flights": 1,
+      "disjoint": true
+    },
+    {
+      "file": "phase_outer_fold1.npz",
+      "fit_flights": 4,
+      "query_flights": 1,
+      "disjoint": true
+    },
+    {
+      "file": "phase_outer_fold2.npz",
+      "fit_flights": 4,
+      "query_flights": 1,
+      "disjoint": true
+    },
+    {
+      "file": "phase_outer_fold3.npz",
+      "fit_flights": 4,
+      "query_flights": 1,
+      "disjoint": true
+    },
+    {
+      "file": "phase_outer_fold4.npz",
+      "fit_flights": 4,
+      "query_flights": 1,
+      "disjoint": true
+    }
+  ],
+  "focused_tests_passed": 24,
+  "future_phase_oracle_not_deployable": true,
+  "frequency_increment_audit": {
+    "negative_fraction": 0.0,
+    "minimum": 2.1299852080954698,
+    "maximum": 5.138933334048122,
+    "meaning": "implied phase trajectory increments only; frequency decoder context remains original held frequency"
+  }
+}

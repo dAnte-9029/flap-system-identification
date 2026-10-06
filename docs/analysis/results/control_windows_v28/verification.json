@@ -1,0 +1,136 @@
+{
+  "status": "passed",
+  "checks": [
+    {
+      "log_id": "2026.9.6/log_20_2026-9-6-18-58-10.ulg",
+      "windows": 64,
+      "grid_points": 4928,
+      "cache_commands_exact": true,
+      "raw_firmware_and_hashes": true,
+      "exact_allocation_pairs": 4851,
+      "allocation_max_abs": 1.3023309020088192e-07,
+      "source": {
+        "log_id": "2026.9.6/log_20_2026-9-6-18-58-10.ulg",
+        "source": {
+          "path": "/home/zn/QgcLogs/2026.9.6/log_20_2026-9-6-18-58-10.ulg",
+          "sha256": "3b0afa4b3526fae934d9705082c0dbfe247fc39baff68014c06cf6642e71275e",
+          "partition": "train"
+        },
+        "cache": "dataset/reference_dynamics_data_v1/contract/26ba9c99346eef34.npz",
+        "cache_sha256": "08159a90419eba88aa278a88cb3ae71ae1fa968c3dbf487f71aee53df3eba355"
+      }
+    },
+    {
+      "log_id": "2026.9.6/log_17_2026-9-6-18-34-06.ulg",
+      "windows": 97,
+      "grid_points": 7469,
+      "cache_commands_exact": true,
+      "raw_firmware_and_hashes": true,
+      "exact_allocation_pairs": 7355,
+      "allocation_max_abs": 1.4484472454778796e-07,
+      "source": {
+        "log_id": "2026.9.6/log_17_2026-9-6-18-34-06.ulg",
+        "source": {
+          "path": "/home/zn/QgcLogs/2026.9.6/log_17_2026-9-6-18-34-06.ulg",
+          "sha256": "37ff9f8ea4e2e378fc13394288aa145a462259e2f53fa15af9511082f0e6d558",
+          "partition": "train"
+        },
+        "cache": "dataset/reference_dynamics_data_v1/contract/4446fd466bb7821d.npz",
+        "cache_sha256": "ff58c51e5f6b24a658fcba58ee3e28dd0f147a6bb73a90ea6800943801165375"
+      }
+    },
+    {
+      "log_id": "2026.9.6/log_28_2026-9-6-07-01-38.ulg",
+      "windows": 81,
+      "grid_points": 6237,
+      "cache_commands_exact": true,
+      "raw_firmware_and_hashes": true,
+      "exact_allocation_pairs": 6135,
+      "allocation_max_abs": 1.523215137355649e-07,
+      "source": {
+        "log_id": "2026.9.6/log_28_2026-9-6-07-01-38.ulg",
+        "source": {
+          "path": "/home/zn/QgcLogs/2026.9.6/log_28_2026-9-6-07-01-38.ulg",
+          "sha256": "73dd94d60553a00efb3e2d9009430686c08ee611f11eb4e3f8e3a427f26df842",
+          "partition": "train"
+        },
+        "cache": "dataset/reference_dynamics_data_v1/contract/52364e098db4b9af.npz",
+        "cache_sha256": "5801d58118e7695b54e83cf2850e04b683b860ea0cafedc171d91d6fbfc08797"
+      }
+    },
+    {
+      "log_id": "2026.9.6/log_19_2026-9-6-18-52-30.ulg",
+      "windows": 87,
+      "grid_points": 6699,
+      "cache_commands_exact": true,
+      "raw_firmware_and_hashes": true,
+      "exact_allocation_pairs": 6597,
+      "allocation_max_abs": 1.3374477314531674e-07,
+      "source": {
+        "log_id": "2026.9.6/log_19_2026-9-6-18-52-30.ulg",
+        "source": {
+          "path": "/home/zn/QgcLogs/2026.9.6/log_19_2026-9-6-18-52-30.ulg",
+          "sha256": "30f27b3c2ee46a05ed6108ec01a2150cd5c8fedaf4f0cb7a1f0347698412aacd",
+          "partition": "train"
+        },
+        "cache": "dataset/reference_dynamics_data_v1/contract/8d835123654f62c7.npz",
+        "cache_sha256": "7037dea0fd686a73ad8ee4f94a1573221f1736645cb6c978d35fbff79aa5c602"
+      }
+    },
+    {
+      "log_id": "2026.9.6/log_18_2026-9-6-18-46-20.ulg",
+      "windows": 78,
+      "grid_points": 6006,
+      "cache_commands_exact": true,
+      "raw_firmware_and_hashes": true,
+      "exact_allocation_pairs": 5915,
+      "allocation_max_abs": 1.265726727872618e-07,
+      "source": {
+        "log_id": "2026.9.6/log_18_2026-9-6-18-46-20.ulg",
+        "source": {
+          "path": "/home/zn/QgcLogs/2026.9.6/log_18_2026-9-6-18-46-20.ulg",
+          "sha256": "603a941c5ebbfcdf27b80b0d1c4b2de65dd4e114fdefb64bb70896e409c135a8",
+          "partition": "train"
+        },
+        "cache": "dataset/reference_dynamics_data_v1/contract/98850e05e3b89ecb.npz",
+        "cache_sha256": "799a99539f8e7ae90d7a1917513225e2ee8b94cb62d01b4a073edd8c02829703"
+      }
+    }
+  ],
+  "all_five_configs_equal": true,
+  "past_command_tensor_matches_v23": true,
+  "causal_timestamps": true,
+  "windows_retained": 407,
+  "training_started": false,
+  "validation_accessed": false,
+  "sealed_test_accessed": false,
+  "independent_raw_reconstruction": [
+    {
+      "log_id": "2026.9.6/log_20_2026-9-6-18-58-10.ulg",
+      "points": 4928,
+      "raw_commands_times_pwm_exact": true
+    },
+    {
+      "log_id": "2026.9.6/log_17_2026-9-6-18-34-06.ulg",
+      "points": 7469,
+      "raw_commands_times_pwm_exact": true
+    },
+    {
+      "log_id": "2026.9.6/log_28_2026-9-6-07-01-38.ulg",
+      "points": 6237,
+      "raw_commands_times_pwm_exact": true
+    },
+    {
+      "log_id": "2026.9.6/log_19_2026-9-6-18-52-30.ulg",
+      "points": 6699,
+      "raw_commands_times_pwm_exact": true
+    },
+    {
+      "log_id": "2026.9.6/log_18_2026-9-6-18-46-20.ulg",
+      "points": 6006,
+      "raw_commands_times_pwm_exact": true
+    }
+  ],
+  "independent_allocation_and_pwm_formula": true,
+  "focused_tests_passed": 3
+}

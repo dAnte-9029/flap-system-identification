@@ -1,0 +1,28 @@
+{
+  "parent_protocol_sha256": "ea636171067c0640972b8ce9dd3688c8070e3b20d48bba01042f1551ad8b69ee",
+  "source_manifest_sha256": "84cac37ebf73f47802a4b5d3afff48d97554ac3aedfdd1cb6fb9ec5d618b919f",
+  "script_sha256": "62799e0ea5d46a8838de607ce0bd5f3a12110d29812a1abf7ac9168c893d06ef",
+  "readout_sha256": "d4b27ca3868800a5e8c70d1782218a36a4e7d7b9f2bd0521b8ac187c04dad8f5",
+  "decision": "No harmonic candidate triggered. Separate follow-up after training-spectrum/capacity audit: change only rate loss to causal10-sample average.",
+  "target": "velocity_NED and attitude at forecast time; rates averaged over current and previous9 samples",
+  "filter_history": "observed last9 raw rates before forecast, then predicted raw latent rates; truth uses identical causal filter",
+  "linear_phase_delay_s": 0.09,
+  "not_equivalent_to_instantaneous_state": true,
+  "seeds": [
+    17,
+    23,
+    42
+  ],
+  "updates": 1600,
+  "batch": 32,
+  "optimizer": "AdamW3e-4 wd1e-4 clip1",
+  "normalization": "unchanged A train only",
+  "dataset": "same full407 train windows and fixed739 development-validation windows",
+  "comparison": "A1600 frozen vs slow-loss1600, BOTH through identical causal readout; raw metrics secondary",
+  "primary": "equal-flight active p and q RMSE at0.5/1s, equal axes/horizons/seeds",
+  "relative_gate": ">=5percent primary gain, everyseed improves, no all-window metric >5percent worse at0.5/1s",
+  "absolute_gate": "eachseed0.5s active averaged p/q<=.15rad/s; attitude<=3deg; velocity<=.5m/s",
+  "limits": "research thresholds not validated flight safety; filtered p/q pass cannot certify instantaneous control; validation already viewed",
+  "reference_response": "held-reference ablation + nominal0.5/1s waveforms; no measured counterfactual certification; long rollouts stress only",
+  "sealed_test_accessed": false
+}

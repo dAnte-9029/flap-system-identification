@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "checkpoint_checks": [],
+  "state_metric_values_recomputed": 312576,
+  "action_metric_values_recomputed": 78144,
+  "causal_support_points_recomputed": 488400,
+  "all_gates_independently_verified": true,
+  "all407_retained": true,
+  "validation_accessed": false,
+  "sealed_test_accessed": false,
+  "reserved_accessed": false
+}

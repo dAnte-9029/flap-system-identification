@@ -1,0 +1,17 @@
+{
+  "status": "complete_verified",
+  "model_promoted": false,
+  "control_ready": false,
+  "training": false,
+  "findings": [
+    "q degradation is dominated by centered waveform MSE; windowmean bias energy slightly improves.",
+    "q regression already exists at20ms on bothfit andOOF; cannot attribute it only to long rollout drift.",
+    "Symmetric kinematic accounting localizes lost roll/tilt benefit mainly to the p-rate path onOOF; not a causal plant-axis claim.",
+    "Fit tilt benefit occurs across all5sourceflights; q worsens across all5fit andOOF sourceflights and bothmodes.",
+    "Coupled roll/tilt deterioration exceeds conditional deterioration at matching windows; no isolated controller causality proven."
+  ],
+  "next_hypothesis": "Additional tilt supervision trades centered short-time angular-rate fidelity for integrated attitude fit; test its gradient interaction on fit-only batches.",
+  "validation_accessed": false,
+  "sealed_test_accessed": false,
+  "reserved_accessed": false
+}

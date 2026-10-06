@@ -1,0 +1,7 @@
+partition,mode,kind,active_reference,windows
+train,3,mission_loiter_target,True,1076
+train,15,stabilized,False,164
+train,15,stabilized,True,2295
+validation,3,mission_loiter_target,True,1521
+validation,15,stabilized,False,1689
+validation,15,stabilized,True,3861

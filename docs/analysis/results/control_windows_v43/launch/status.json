@@ -1,0 +1,20 @@
+{
+  "status": "training_complete_evaluation_pending",
+  "completed": [
+    "fold0_seed17",
+    "fold0_seed23",
+    "fold0_seed42",
+    "fold1_seed17",
+    "fold1_seed23",
+    "fold1_seed42",
+    "fold2_seed17",
+    "fold2_seed23",
+    "fold2_seed42",
+    "fold3_seed17",
+    "fold3_seed23",
+    "fold3_seed42",
+    "fold4_seed17",
+    "fold4_seed23",
+    "fold4_seed42"
+  ]
+}

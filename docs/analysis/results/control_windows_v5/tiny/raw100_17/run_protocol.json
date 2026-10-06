@@ -1,0 +1,25 @@
+{
+  "parent_protocol_sha256": "30dd7e3f9710adc535590652e5b4792c8a68d304c246519ea36bf0906890fa9f",
+  "dataset_manifest_sha256": "ff7d06d5f65bafdc07117222959813450603bec5638154c44f0171fb258dd500",
+  "script_sha256": "dbd32fa6962bc80ca9d4e62dfd946bdfc68b6de50b66a60fdedfe566d7eaecfe",
+  "shared_sha256": "c1df0aa55659f115f7fdca05d2be6955eb5d148f12359158672e0c812befd799",
+  "model_sha256": "0b80d78ef64f54840756f969c338c906224a44b8da32e5b067f522fd2758d213",
+  "filter_sha256": "015560032179e184a73cb480aebee9b2113e3e98be38fa7a36b1367ad0dc54f5",
+  "arm": "raw100",
+  "scope": "tiny",
+  "seed": 17,
+  "steps": 1600,
+  "batch": 8,
+  "train_window_ids": [
+    "4446fd466bb7821d_0_union0_block0_480",
+    "4446fd466bb7821d_3_union0_block0_6228",
+    "98850e05e3b89ecb_0_union0_block3_2037",
+    "98850e05e3b89ecb_6_union0_block3_7611",
+    "8d835123654f62c7_1_union0_block5_5333",
+    "26ba9c99346eef34_4_union0_block0_3346",
+    "52364e098db4b9af_2_union0_block0_2752",
+    "52364e098db4b9af_7_union0_block5_8253"
+  ],
+  "normalization_source": "originalAtrainonly",
+  "sealed_test_accessed": false
+}

@@ -1,0 +1,93 @@
+{
+  "source_windows_sha256": "ae91b646fb0b35c9bc1a8c8e67b7e2277b11066e13676907154fdee95e340516",
+  "source_manifest_sha256": "84cac37ebf73f47802a4b5d3afff48d97554ac3aedfdd1cb6fb9ec5d618b919f",
+  "reference_model_input_contract": "unchanged v2",
+  "score": "max_axis(range/unit * (0.5+0.5*abs(net change)/total variation)); input-only",
+  "selection": "top25percent per TRAIN flight/mode, Q3 excluded only from C; deterministic time tie-break",
+  "thresholds": [
+    {
+      "log_id": "2026.9.6/log_17_2026-9-6-18-34-06.ulg",
+      "mode": 3,
+      "kept": 8,
+      "available": 29,
+      "threshold": 7.022448317432897
+    },
+    {
+      "log_id": "2026.9.6/log_17_2026-9-6-18-34-06.ulg",
+      "mode": 15,
+      "kept": 17,
+      "available": 67,
+      "threshold": 11.853934593353545
+    },
+    {
+      "log_id": "2026.9.6/log_18_2026-9-6-18-46-20.ulg",
+      "mode": 3,
+      "kept": 6,
+      "available": 23,
+      "threshold": 15.190417679768336
+    },
+    {
+      "log_id": "2026.9.6/log_18_2026-9-6-18-46-20.ulg",
+      "mode": 15,
+      "kept": 14,
+      "available": 54,
+      "threshold": 13.160863278422147
+    },
+    {
+      "log_id": "2026.9.6/log_19_2026-9-6-18-52-30.ulg",
+      "mode": 3,
+      "kept": 10,
+      "available": 40,
+      "threshold": 6.96708161525405
+    },
+    {
+      "log_id": "2026.9.6/log_19_2026-9-6-18-52-30.ulg",
+      "mode": 15,
+      "kept": 12,
+      "available": 46,
+      "threshold": 12.067658227185657
+    },
+    {
+      "log_id": "2026.9.6/log_20_2026-9-6-18-58-10.ulg",
+      "mode": 3,
+      "kept": 5,
+      "available": 18,
+      "threshold": 9.760753971493392
+    },
+    {
+      "log_id": "2026.9.6/log_20_2026-9-6-18-58-10.ulg",
+      "mode": 15,
+      "kept": 12,
+      "available": 45,
+      "threshold": 10.20787040352842
+    },
+    {
+      "log_id": "2026.9.6/log_28_2026-9-6-07-01-38.ulg",
+      "mode": 3,
+      "kept": 6,
+      "available": 23,
+      "threshold": 11.3973687501618
+    },
+    {
+      "log_id": "2026.9.6/log_28_2026-9-6-07-01-38.ulg",
+      "mode": 15,
+      "kept": 15,
+      "available": 57,
+      "threshold": 15.561374839235144
+    }
+  ],
+  "counts": {
+    "A": 407,
+    "B": 105,
+    "C": 105,
+    "D": 407
+  },
+  "BC_overlap": 24,
+  "D": "flight equal then high-input group3:others1; keep hard/quiet",
+  "fixed_evaluation": "same739 validation windows, no recuration; no new blind test",
+  "sampling_units": "retain original disjoint H26/K50 supports",
+  "train_validation_reassigned": false,
+  "normalization": "reuse frozen A-train v2 stats, unchanged full A cohort",
+  "sealed_test_accessed": false,
+  "adaptation_notice": "new hypothesis after weak-contrast v2 results; not an untouched confirmatory test"
+}

@@ -1,0 +1,14 @@
+{
+  "status": "attitude_training_preparation_complete",
+  "kinematics_preparation_gate": true,
+  "full1600_zero_weight_reproduction": true,
+  "fit_only_coefficients_frozen": true,
+  "candidate_runs_ready": 15,
+  "candidate_training_started": false,
+  "model_promoted": false,
+  "control_ready": false,
+  "baseline": "A1600 retained; v35 remains the frozen research baseline",
+  "validation_accessed": false,
+  "sealed_test_accessed": false,
+  "reserved_accessed": false
+}

@@ -1,0 +1,9 @@
+variant,stage,any_command_outside,any_state_outside,any_surface_clip
+warm2_20ms,30,43,55,15
+warm2_20ms,35,40,55,13
+warm2_delayed_feedback,30,37,54,10
+warm2_delayed_feedback,35,35,53,8
+warm2_minus,30,37,55,10
+warm2_minus,35,35,53,9
+warm2_plus,30,37,55,10
+warm2_plus,35,35,53,9

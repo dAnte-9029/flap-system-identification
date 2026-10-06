@@ -1,0 +1,10 @@
+{
+  "status": "passed",
+  "native_quaternions_exact": 9768,
+  "oracle_tapes_per_trajectory": 9,
+  "whole_true_rate_tilt_to_native_ratio": 0.26814562402871306,
+  "true_rate_improving_flights": 5,
+  "preparation_gate": true,
+  "gate": "Predeclared primary warm2_plus v35 true-rate tilt RMSE <=half native and >=4/5 flights lower",
+  "interpretation": "Logged rates/quaternions are not perfectly kinematically consistent; true-rate residual is not an irreducible physical noise bound. Oracles do not alter model/controller trajectories."
+}

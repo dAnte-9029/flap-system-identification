@@ -1,0 +1,7 @@
+{
+  "script_sha256": "411ea4f380aba2e00103057e5eddfe370bce7a0121b1689f504fa7dcaa0b1e01",
+  "bound_rad_s2": 120,
+  "derivation": "sum excess_i^2 <= sum(e_i-e_(i-1))^2 <=4 sum(e_i^2), e0=0; weak sequence-RMSE lower bound, not endpoint bound",
+  "scope": "logged sample increments, not measured physical angular acceleration; no cap adjustment or gate change",
+  "sealed_test_accessed": false
+}

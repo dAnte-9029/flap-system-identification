@@ -1,0 +1,19 @@
+{
+  "status": "diagnostic_complete",
+  "trained_models": 0,
+  "windows_retained": 407,
+  "models_traced": 30,
+  "all_variants_clipped_components": 0,
+  "maximum_raw_head_abs": 2.5772922039031982,
+  "actuator_q_free_rmse": 0.3584500740284135,
+  "actuator_q_true_state_local_rmse": 0.26333893010216325,
+  "actuator_q_previous_true_rate_persistence_rmse": 0.3995121399167842,
+  "actuator_q_true_state_derivative_sum_rmse": 1.5736515379040672,
+  "baseline_q_true_state_derivative_sum_rmse": 1.5160307506658695,
+  "conclusion": "No head-clipping bottleneck observed. State-reset local errors improve against persistence, but signed derivative accumulation on observed-state paths grows strongly, including baseline. Pure free-state drift alone is insufficient as an explanation. Oracle inputs change state/hidden distribution and retain imperfect held context, so this does not establish unique physical or training root cause.",
+  "next_step": "Prepare a frozen rolling-H26-history re-encoding diagnostic on original supports before any new training. Use complete observed histories with explicit phase/frequency/airspeed/time contracts; compare with current oracle path to test hidden/context distribution mismatch. If local increment bias persists, design a separately frozen local-increment plus full-rollout training comparison, retaining all original gates. Do not interpret this diagnostic as permission to retime/delete data or deploy.",
+  "model_promoted": false,
+  "baseline_retained": "A1600",
+  "validation_accessed": false,
+  "sealed_test_accessed": false
+}

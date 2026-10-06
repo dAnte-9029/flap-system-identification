@@ -1,0 +1,17 @@
+{
+  "status": "passed",
+  "checkpoints": 30,
+  "unique_parents": 407,
+  "model_window_runs": 2442,
+  "model_window_steps": 122100,
+  "perturbed_session_steps": 122100,
+  "restored_window_states": 2442,
+  "all_outputs_hidden_and_archives_exact": true,
+  "checkpoint_normalization_hashes_unchanged": true,
+  "no_future_measured_state_or_hidden_injection": true,
+  "model_closed_loop": false,
+  "model_promoted": false,
+  "validation_accessed": false,
+  "sealed_test_accessed": false,
+  "reserved_accessed": false
+}

@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "cases": 512,
+  "actual_source_function_bodies": 6,
+  "max_abs_error": 2.2363188079133067e-07,
+  "tolerance": {
+    "rtol": 1e-05,
+    "atol": 2e-06
+  },
+  "limit": "Extracted scalar/vector component bodies with host shims; not full PX4/uORB or bit-exact firmware replay.",
+  "source_sha256": "80cb68ba6756bb27ec49830fc3692d4c1b945d2955d4cb1a55c380c099a5f58b"
+}

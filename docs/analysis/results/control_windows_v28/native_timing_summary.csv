@@ -1,0 +1,8 @@
+topic,windows_with_two_rows,median_of_window_medians_ms,max_gap_ms
+actuator_armed,407,505.9995,507.524
+actuator_motors,407,19.96,25.061
+actuator_outputs,407,9.981,14.99
+actuator_servos,407,19.96,25.061
+control_allocator_status,407,199.607,209.592
+vehicle_thrust_setpoint,407,19.96,25.061
+vehicle_torque_setpoint,407,19.96,25.061

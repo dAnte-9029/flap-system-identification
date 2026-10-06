@@ -1,0 +1,27 @@
+{
+  "status": "prepared_not_executed",
+  "model_boundary": "reference input to fixed PX4 inner loops plus aircraft; no duplicate inner controller",
+  "axes": [
+    "roll",
+    "pitch"
+  ],
+  "nominal_horizon_s": 0.5,
+  "maximum_reference_increment_deg": 1.0,
+  "maximum_increment_slew_deg_s": 5.0,
+  "reference_bounds": "training 1st/99th percentile marginal envelope, insufficient alone for joint support",
+  "comparison": "same initial histories; reference hold versus bounded reference optimizer",
+  "uncertainty_checks": [
+    "all three GRU seeds",
+    "different model family endpoint response consistency",
+    "recorded residual and timing stress; distinguish assumptions from measured bounds"
+  ],
+  "requirements": [
+    "absolute 0.5s state prediction gate",
+    "measurable full-context waveform evidence and timing",
+    "proposed action effect distinguishable from empirical model error"
+  ],
+  "success_target": "tracking cost at least10percent lower with no increase in constraints or early termination",
+  "inference_limit": "research only; real-flight effectiveness requires staged independent hardware/flight validation",
+  "deployment_authorized_or_performed": false,
+  "sealed_test_accessed": false
+}

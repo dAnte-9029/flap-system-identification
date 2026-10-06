@@ -1,0 +1,9 @@
+{
+  "fold": 3,
+  "seed": 17,
+  "arm": "no_age_history_control",
+  "initial_parameters_sha256": "99f8ce83b88184987d73713c852120575f3f29bcad7bbad5ff5191ec192df56f",
+  "common_initial_parameters_sha256": "3477bf6bae63dfc87d1998bc78786f593d749a745defd81e6371e67b95dae4a4",
+  "draws_sha256": "7673f28bd632d7ead7eb46af6d15651a266297bd61f0123dd631c9994dfdb8af",
+  "parent_protocol_sha256": "01876203c2ad3f2b96d96100bbea231df6b269f5580a558a64746cb33dad1922"
+}

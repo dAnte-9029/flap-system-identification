@@ -1,0 +1,319 @@
+{
+  "stage_complete": true,
+  "diagnostic": {
+    "fit": {
+      "primary_gain": 0.7822420833552388,
+      "seed_gains": {
+        "17": 0.7800030705545687,
+        "23": 0.7868302491337187,
+        "42": 0.7798645693274848
+      },
+      "flight_gains": {
+        "2026.9.6/log_17_2026-9-6-18-34-06.ulg": 0.7362005173941387,
+        "2026.9.6/log_18_2026-9-6-18-46-20.ulg": 0.806471524424587,
+        "2026.9.6/log_19_2026-9-6-18-52-30.ulg": 0.7640228149253034,
+        "2026.9.6/log_20_2026-9-6-18-58-10.ulg": 0.827675626021854,
+        "2026.9.6/log_28_2026-9-6-07-01-38.ulg": 0.7601025610381659
+      },
+      "positive_seeds": 3,
+      "positive_flights": 5,
+      "passes": true
+    },
+    "oof": {
+      "primary_gain": -0.050446376665423065,
+      "seed_gains": {
+        "17": -0.06351114751156217,
+        "23": -0.0515599158926463,
+        "42": -0.036496524253622376
+      },
+      "flight_gains": {
+        "2026.9.6/log_17_2026-9-6-18-34-06.ulg": -0.10397353682331123,
+        "2026.9.6/log_18_2026-9-6-18-46-20.ulg": 0.04143048520225545,
+        "2026.9.6/log_19_2026-9-6-18-52-30.ulg": -0.023309802625682385,
+        "2026.9.6/log_20_2026-9-6-18-58-10.ulg": 0.09435340817566729,
+        "2026.9.6/log_28_2026-9-6-07-01-38.ulg": -0.35596389254037053
+      },
+      "positive_seeds": 0,
+      "positive_flights": 2,
+      "passes": false
+    }
+  },
+  "rollout_protection_passes": false,
+  "failed_protection_checks": [
+    {
+      "seed": 17,
+      "kind": "prefix",
+      "horizon_s": 0.5,
+      "metric": "p",
+      "baseline": 0.5283801339955886,
+      "single": 1.1102145298071633,
+      "gain": -1.101166297475583
+    },
+    {
+      "seed": 17,
+      "kind": "prefix",
+      "horizon_s": 0.5,
+      "metric": "q",
+      "baseline": 0.3379988789107231,
+      "single": 2.193691824802033,
+      "gain": -5.4902340264313745
+    },
+    {
+      "seed": 17,
+      "kind": "prefix",
+      "horizon_s": 0.5,
+      "metric": "r",
+      "baseline": 0.1668705794704213,
+      "single": 0.49314236264199945,
+      "gain": -1.9552385100299334
+    },
+    {
+      "seed": 17,
+      "kind": "prefix",
+      "horizon_s": 0.5,
+      "metric": "velocity",
+      "baseline": 0.31116341030563355,
+      "single": 1.5762330132616182,
+      "gain": -4.06561170451692
+    },
+    {
+      "seed": 17,
+      "kind": "prefix",
+      "horizon_s": 0.5,
+      "metric": "attitude",
+      "baseline": 0.06693756781667544,
+      "single": 0.42732445322405593,
+      "gain": -5.383925606535127
+    },
+    {
+      "seed": 17,
+      "kind": "prefix",
+      "horizon_s": 1.0,
+      "metric": "p",
+      "baseline": 0.5293798056219363,
+      "single": 1.4615849788058817,
+      "gain": -1.7609382966332725
+    },
+    {
+      "seed": 17,
+      "kind": "prefix",
+      "horizon_s": 1.0,
+      "metric": "q",
+      "baseline": 0.3562993349346254,
+      "single": 2.978786812477568,
+      "gain": -7.360349067236182
+    },
+    {
+      "seed": 17,
+      "kind": "prefix",
+      "horizon_s": 1.0,
+      "metric": "r",
+      "baseline": 0.1977371596829314,
+      "single": 0.8582785873226217,
+      "gain": -3.340502254097605
+    },
+    {
+      "seed": 17,
+      "kind": "prefix",
+      "horizon_s": 1.0,
+      "metric": "velocity",
+      "baseline": 0.4062517448804508,
+      "single": 2.3300777771227397,
+      "gain": -4.735551432052114
+    },
+    {
+      "seed": 17,
+      "kind": "prefix",
+      "horizon_s": 1.0,
+      "metric": "attitude",
+      "baseline": 0.10245667304058714,
+      "single": 0.7717489644961801,
+      "gain": -6.5324421689006025
+    },
+    {
+      "seed": 23,
+      "kind": "prefix",
+      "horizon_s": 0.5,
+      "metric": "p",
+      "baseline": 0.5264434738169423,
+      "single": 1.2561489592302686,
+      "gain": -1.3861041530682234
+    },
+    {
+      "seed": 23,
+      "kind": "prefix",
+      "horizon_s": 0.5,
+      "metric": "q",
+      "baseline": 0.33259693289898173,
+      "single": 2.2767998303919073,
+      "gain": -5.8455226286871085
+    },
+    {
+      "seed": 23,
+      "kind": "prefix",
+      "horizon_s": 0.5,
+      "metric": "r",
+      "baseline": 0.16136197385925105,
+      "single": 0.5407112289356101,
+      "gain": -2.3509210131951455
+    },
+    {
+      "seed": 23,
+      "kind": "prefix",
+      "horizon_s": 0.5,
+      "metric": "velocity",
+      "baseline": 0.30115250881880673,
+      "single": 1.7037207581130318,
+      "gain": -4.657335430461591
+    },
+    {
+      "seed": 23,
+      "kind": "prefix",
+      "horizon_s": 0.5,
+      "metric": "attitude",
+      "baseline": 0.06862791649606753,
+      "single": 0.5644793389114341,
+      "gain": -7.225214573485989
+    },
+    {
+      "seed": 23,
+      "kind": "prefix",
+      "horizon_s": 1.0,
+      "metric": "p",
+      "baseline": 0.5256130481406186,
+      "single": 1.45347217545322,
+      "gain": -1.7652893713254412
+    },
+    {
+      "seed": 23,
+      "kind": "prefix",
+      "horizon_s": 1.0,
+      "metric": "q",
+      "baseline": 0.3468554581708165,
+      "single": 2.7121595892545893,
+      "gain": -6.81927896870208
+    },
+    {
+      "seed": 23,
+      "kind": "prefix",
+      "horizon_s": 1.0,
+      "metric": "r",
+      "baseline": 0.1839956678553033,
+      "single": 1.0562302483085944,
+      "gain": -4.740516940535949
+    },
+    {
+      "seed": 23,
+      "kind": "prefix",
+      "horizon_s": 1.0,
+      "metric": "velocity",
+      "baseline": 0.402601431902205,
+      "single": 2.5505533045015247,
+      "gain": -5.335181900498243
+    },
+    {
+      "seed": 23,
+      "kind": "prefix",
+      "horizon_s": 1.0,
+      "metric": "attitude",
+      "baseline": 0.10253146328781657,
+      "single": 0.9738161367606988,
+      "gain": -8.497729823937993
+    },
+    {
+      "seed": 42,
+      "kind": "prefix",
+      "horizon_s": 0.5,
+      "metric": "p",
+      "baseline": 0.5292503045720878,
+      "single": 1.2408160031292441,
+      "gain": -1.3444785811365287
+    },
+    {
+      "seed": 42,
+      "kind": "prefix",
+      "horizon_s": 0.5,
+      "metric": "q",
+      "baseline": 0.3392998888597479,
+      "single": 2.781263664789695,
+      "gain": -7.197066241714422
+    },
+    {
+      "seed": 42,
+      "kind": "prefix",
+      "horizon_s": 0.5,
+      "metric": "r",
+      "baseline": 0.1664022239054122,
+      "single": 0.5169220188746481,
+      "gain": -2.1064609999952966
+    },
+    {
+      "seed": 42,
+      "kind": "prefix",
+      "horizon_s": 0.5,
+      "metric": "velocity",
+      "baseline": 0.32782240815346075,
+      "single": 2.1145694077093067,
+      "gain": -5.450350418753043
+    },
+    {
+      "seed": 42,
+      "kind": "prefix",
+      "horizon_s": 0.5,
+      "metric": "attitude",
+      "baseline": 0.067577536199047,
+      "single": 0.6243966652499151,
+      "gain": -8.239707458566988
+    },
+    {
+      "seed": 42,
+      "kind": "prefix",
+      "horizon_s": 1.0,
+      "metric": "p",
+      "baseline": 0.539905694876196,
+      "single": 1.6472691545830336,
+      "gain": -2.051031263822404
+    },
+    {
+      "seed": 42,
+      "kind": "prefix",
+      "horizon_s": 1.0,
+      "metric": "q",
+      "baseline": 0.3537769813677779,
+      "single": 3.650345101110177,
+      "gain": -9.318209757449898
+    },
+    {
+      "seed": 42,
+      "kind": "prefix",
+      "horizon_s": 1.0,
+      "metric": "r",
+      "baseline": 0.18245532447051785,
+      "single": 0.9509281670122409,
+      "gain": -4.21184114397219
+    },
+    {
+      "seed": 42,
+      "kind": "prefix",
+      "horizon_s": 1.0,
+      "metric": "velocity",
+      "baseline": 0.43018381415587825,
+      "single": 2.8502210553313447,
+      "gain": -5.62558878679373
+    },
+    {
+      "seed": 42,
+      "kind": "prefix",
+      "horizon_s": 1.0,
+      "metric": "attitude",
+      "baseline": 0.10446899668091988,
+      "single": 1.076500647835366,
+      "gain": -9.304498770322517
+    }
+  ],
+  "absolute_passes": false,
+  "model_promoted": false,
+  "control_validated": false,
+  "development_evaluated": false,
+  "sealed_test_accessed": false
+}

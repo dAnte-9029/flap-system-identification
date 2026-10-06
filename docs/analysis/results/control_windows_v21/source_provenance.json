@@ -1,0 +1,66 @@
+{
+  "commit": "c9af571575af33d5403fbb479256848797c801e2",
+  "files": {
+    "src/modules/fw_att_control/FixedwingAttitudeControl.cpp": {
+      "blob": "ec856e942d5b5f06f433db1e00821d410b1d44f1",
+      "snapshot": "source/FixedwingAttitudeControl.cpp",
+      "sha256": "40f9f25c116e6e59c8620b1e0b09642f8f77085f465077d3a19dd5408412d8f8"
+    },
+    "src/modules/fw_att_control/fw_yaw_controller.cpp": {
+      "blob": "4f27e8a610230d9339ccbb89326b6611a2f144ba",
+      "snapshot": "source/fw_yaw_controller.cpp",
+      "sha256": "8b7472c83e10486f081763e70f25e6125fbe4146457b9507eff02423a199e5c6"
+    },
+    "src/modules/fw_rate_control/FixedwingRateControl.cpp": {
+      "blob": "7f15661b546c86ff42b4e241b0f5b1408cc9c7bc",
+      "snapshot": "source/FixedwingRateControl.cpp",
+      "sha256": "f629723bb627cd166c9fd0f7d13d7b57c34e902abf4ada7dd82d4d7f60071e75"
+    },
+    "src/modules/rc_update/rc_update.cpp": {
+      "blob": "52d65bf9157c6af6ecc3fd0527e27faa4cfd6d2d",
+      "snapshot": "source/rc_update.cpp",
+      "sha256": "8a75a507cbc5f7b7c1c9aa2629cdcb72409246c70df4276a0f7f87870f70948f"
+    },
+    "src/modules/manual_control/ManualControl.cpp": {
+      "blob": "759088524a3d2009e0b05884004fa452590ea4ed",
+      "snapshot": "source/ManualControl.cpp",
+      "sha256": "56ade3bf4b679079083afe0269839c6c542ee44215457400537ab15d19d32818"
+    },
+    "src/modules/manual_control/ManualControlSelector.cpp": {
+      "blob": "aa2e175beb46ca8c8b7d00ca95989a608d80daaf",
+      "snapshot": "source/ManualControlSelector.cpp",
+      "sha256": "271bbd307d8f085d4cc5f9b56e245331ba3da2ddab9ed4de20c4c2a6d8ae66d0"
+    },
+    "src/modules/logger/logged_topics.cpp": {
+      "blob": "9a03700f5315f46831dd31f440cdb59099f657c3",
+      "snapshot": "source/logged_topics.cpp",
+      "sha256": "1745b60152a8fde9eabfc27000221d27e110391c0b04ddaa67129b1958b01749"
+    },
+    "src/modules/control_allocator/VehicleActuatorEffectiveness/ActuatorEffectivenessControlSurfaces.cpp": {
+      "blob": "093185e24050f9b1a57db2ffe3b9d986aa3451b6",
+      "snapshot": "source/ActuatorEffectivenessControlSurfaces.cpp",
+      "sha256": "044e4aaa558c811134c5fde6f3c3df62959231273cc0056df29c50fe294df78d"
+    },
+    "src/lib/mixer_module/functions/FunctionServos.hpp": {
+      "blob": "5b69d326d84bf5f742be5805302ec0a7ea4a785e",
+      "snapshot": "source/FunctionServos.hpp",
+      "sha256": "b5010b505528f6c55c9bbe1633d4e3e1d7a070b5704dab3048141e17ca35e6c4"
+    },
+    "src/lib/mixer_module/output_functions.yaml": {
+      "blob": "52543add979c7c5566c5c07489aa2b162a80d019",
+      "snapshot": "source/output_functions.yaml",
+      "sha256": "f92f544f86404db7ef37380bb112c57418fddc84e7c63e027ba68458e7dbe2cd"
+    },
+    "src/lib/mixer_module/mixer_module.cpp": {
+      "blob": "eb67188018945d5f1199921fb31a44938be018a3",
+      "snapshot": "source/mixer_module.cpp",
+      "sha256": "acdfb84d6bd94f18f52f2a26f2a651c0bfdbff956f71a480d93b43288ddf76b4"
+    },
+    "src/drivers/px4io/px4io.cpp": {
+      "blob": "0f53b54157c8bc49f61a34b30d8a19d7de106331",
+      "snapshot": "source/px4io.cpp",
+      "sha256": "44df1bfd5f02db27a44aa7df4e1b4fe04e03ee9f0c6215478a15c6cc5052a381"
+    }
+  },
+  "limitation": "Logged version identifies source revision; does not independently attest binary or uncommitted build patches."
+}

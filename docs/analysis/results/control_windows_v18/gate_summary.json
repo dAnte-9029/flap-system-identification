@@ -1,0 +1,8 @@
+{
+  "diagnostic_pass": true,
+  "state_protection_pass": false,
+  "reference_protection_pass": false,
+  "all_relative_pass": false,
+  "absolute_pass": false,
+  "control_validated": false
+}

@@ -1,0 +1,14 @@
+{
+  "alpha": 10.0,
+  "horizons_steps": [
+    5,
+    10,
+    25,
+    50
+  ],
+  "outputs": "delta p/q/r and delta velocity NED; separate endpoint fits, not a rollout simulator",
+  "inputs": "current/past features and references up to each target only; no later reference access",
+  "fit": "train-only normalization, flight-equal least squares, unpenalized intercept",
+  "calibration": "five train-flight leave-one-out predictions, not validation fitting",
+  "sealed_test_accessed": false
+}

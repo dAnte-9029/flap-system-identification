@@ -1,0 +1,10 @@
+{
+  "script_sha256": "b35d41d9e9dd803d86420a19374d5e171ef0e7ff52aecc525a94d8a883cea624",
+  "python": "/home/zn/anaconda3/envs/flap-train-gpu/bin/python",
+  "target_commit": "e624a99f2955addbf76681e636c44162a0c03055",
+  "raw_log_scope": "9.18 only",
+  "dataset_scope": "registered September train/validation only",
+  "sealed_test_opened": false,
+  "september19_opened": false,
+  "neural_inference": false
+}

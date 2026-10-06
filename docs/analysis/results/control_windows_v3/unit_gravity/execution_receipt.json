@@ -1,0 +1,9 @@
+{
+  "stage1": "complete, includes unit-contract correction and repeated diagnostics",
+  "stage2": "complete105 selected training samples",
+  "stage3": "complete15 corrected checkpoints plus legacy diagnostics",
+  "stage4": "complete, acceptance gates not all met",
+  "stage5": "not started: quantitative prerequisites failed",
+  "sealed_test_accessed": false,
+  "report_sha256": "4e0ba1ad3864254e1db640725ed13f4b9c759a803ce93a9fd0dc0787a35a5e2f"
+}

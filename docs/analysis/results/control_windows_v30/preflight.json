@@ -1,0 +1,84 @@
+{
+  "status": "passed",
+  "checks": [
+    {
+      "fold": 0,
+      "seed": 17,
+      "initial_parameters_and_draws_match": true
+    },
+    {
+      "fold": 0,
+      "seed": 23,
+      "initial_parameters_and_draws_match": true
+    },
+    {
+      "fold": 0,
+      "seed": 42,
+      "initial_parameters_and_draws_match": true
+    },
+    {
+      "fold": 1,
+      "seed": 17,
+      "initial_parameters_and_draws_match": true
+    },
+    {
+      "fold": 1,
+      "seed": 23,
+      "initial_parameters_and_draws_match": true
+    },
+    {
+      "fold": 1,
+      "seed": 42,
+      "initial_parameters_and_draws_match": true
+    },
+    {
+      "fold": 2,
+      "seed": 17,
+      "initial_parameters_and_draws_match": true
+    },
+    {
+      "fold": 2,
+      "seed": 23,
+      "initial_parameters_and_draws_match": true
+    },
+    {
+      "fold": 2,
+      "seed": 42,
+      "initial_parameters_and_draws_match": true
+    },
+    {
+      "fold": 3,
+      "seed": 17,
+      "initial_parameters_and_draws_match": true
+    },
+    {
+      "fold": 3,
+      "seed": 23,
+      "initial_parameters_and_draws_match": true
+    },
+    {
+      "fold": 3,
+      "seed": 42,
+      "initial_parameters_and_draws_match": true
+    },
+    {
+      "fold": 4,
+      "seed": 17,
+      "initial_parameters_and_draws_match": true
+    },
+    {
+      "fold": 4,
+      "seed": 23,
+      "initial_parameters_and_draws_match": true
+    },
+    {
+      "fold": 4,
+      "seed": 42,
+      "initial_parameters_and_draws_match": true
+    }
+  ],
+  "tests_passed": 4,
+  "original407_train_windows": true,
+  "parent_hashes_verified": true,
+  "formal_training_started": false
+}

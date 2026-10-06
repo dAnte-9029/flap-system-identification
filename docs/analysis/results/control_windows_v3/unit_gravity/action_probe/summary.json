@@ -1,0 +1,22 @@
+[
+  {
+    "axis": "p",
+    "windows": 713,
+    "flights": 9,
+    "predicted_effect_rms": 0.007368583170968733,
+    "observed_error_rms": 0.5198885172124063,
+    "error_to_effect_ratio": 70.55474643493201,
+    "ridge_sign_agreement_fraction": 0.9820009350163628,
+    "interpretation": "different model family is a sensitivity check, not causal ground truth; common-mode error could cancel in action differences"
+  },
+  {
+    "axis": "q",
+    "windows": 545,
+    "flights": 9,
+    "predicted_effect_rms": 0.014334141307234184,
+    "observed_error_rms": 0.27765268060792847,
+    "error_to_effect_ratio": 19.370025358114905,
+    "ridge_sign_agreement_fraction": 0.7391437308868501,
+    "interpretation": "different model family is a sensitivity check, not causal ground truth; common-mode error could cancel in action differences"
+  }
+]

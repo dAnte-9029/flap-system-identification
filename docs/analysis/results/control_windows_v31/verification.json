@@ -1,0 +1,103 @@
+{
+  "status": "passed",
+  "checks": [
+    {
+      "fold": 0,
+      "seed": 17,
+      "quaternion_reintegration_exact": true,
+      "rate_decomposition_exact": true
+    },
+    {
+      "fold": 0,
+      "seed": 23,
+      "quaternion_reintegration_exact": true,
+      "rate_decomposition_exact": true
+    },
+    {
+      "fold": 0,
+      "seed": 42,
+      "quaternion_reintegration_exact": true,
+      "rate_decomposition_exact": true
+    },
+    {
+      "fold": 1,
+      "seed": 17,
+      "quaternion_reintegration_exact": true,
+      "rate_decomposition_exact": true
+    },
+    {
+      "fold": 1,
+      "seed": 23,
+      "quaternion_reintegration_exact": true,
+      "rate_decomposition_exact": true
+    },
+    {
+      "fold": 1,
+      "seed": 42,
+      "quaternion_reintegration_exact": true,
+      "rate_decomposition_exact": true
+    },
+    {
+      "fold": 2,
+      "seed": 17,
+      "quaternion_reintegration_exact": true,
+      "rate_decomposition_exact": true
+    },
+    {
+      "fold": 2,
+      "seed": 23,
+      "quaternion_reintegration_exact": true,
+      "rate_decomposition_exact": true
+    },
+    {
+      "fold": 2,
+      "seed": 42,
+      "quaternion_reintegration_exact": true,
+      "rate_decomposition_exact": true
+    },
+    {
+      "fold": 3,
+      "seed": 17,
+      "quaternion_reintegration_exact": true,
+      "rate_decomposition_exact": true
+    },
+    {
+      "fold": 3,
+      "seed": 23,
+      "quaternion_reintegration_exact": true,
+      "rate_decomposition_exact": true
+    },
+    {
+      "fold": 3,
+      "seed": 42,
+      "quaternion_reintegration_exact": true,
+      "rate_decomposition_exact": true
+    },
+    {
+      "fold": 4,
+      "seed": 17,
+      "quaternion_reintegration_exact": true,
+      "rate_decomposition_exact": true
+    },
+    {
+      "fold": 4,
+      "seed": 23,
+      "quaternion_reintegration_exact": true,
+      "rate_decomposition_exact": true
+    },
+    {
+      "fold": 4,
+      "seed": 42,
+      "quaternion_reintegration_exact": true,
+      "rate_decomposition_exact": true
+    }
+  ],
+  "tests_passed": 6,
+  "independent_support_nearest_neighbors": true,
+  "original_frequency_strata_verified": true,
+  "strata_weighted_mse_recompose": true,
+  "v30_rate_and_attitude_metrics_reproduced": true,
+  "training_started": false,
+  "validation_accessed": false,
+  "sealed_test_accessed": false
+}

@@ -1,0 +1,152 @@
+[
+  {
+    "fold": 0,
+    "seed": 17,
+    "status": "complete",
+    "step": 1600,
+    "elapsed_s": 137.20438653603196,
+    "checkpoint_sha256": "b6662aedf7170647107ccae3fcd41d8393daee06df609bcc67913c6a454e7597",
+    "exact_init_and_draws": true,
+    "reload_and_prefix_causality": true
+  },
+  {
+    "fold": 0,
+    "seed": 23,
+    "status": "complete",
+    "step": 1600,
+    "elapsed_s": 136.96454391535372,
+    "checkpoint_sha256": "51053e91721660690b19b05cace77892c60b637245359824a45a0fa3b7b3556f",
+    "exact_init_and_draws": true,
+    "reload_and_prefix_causality": true
+  },
+  {
+    "fold": 0,
+    "seed": 42,
+    "status": "complete",
+    "step": 1600,
+    "elapsed_s": 136.70525047555566,
+    "checkpoint_sha256": "4bd4c28d6f302f5358036befda09ac4fb781d40896adaf1261e6c0e7bdb0ebcc",
+    "exact_init_and_draws": true,
+    "reload_and_prefix_causality": true
+  },
+  {
+    "fold": 1,
+    "seed": 17,
+    "status": "complete",
+    "step": 1600,
+    "elapsed_s": 138.36194073501974,
+    "checkpoint_sha256": "453c66ff1d27de5041661adfdc9ae1fd06cbbf2f2020f3039fe211dee2b6a42a",
+    "exact_init_and_draws": true,
+    "reload_and_prefix_causality": true
+  },
+  {
+    "fold": 1,
+    "seed": 23,
+    "status": "complete",
+    "step": 1600,
+    "elapsed_s": 142.48165890481323,
+    "checkpoint_sha256": "58177c0bcdadbf460b1698386a8e2c9d6fa0502eaa01a038668cc67a7f740d1f",
+    "exact_init_and_draws": true,
+    "reload_and_prefix_causality": true
+  },
+  {
+    "fold": 1,
+    "seed": 42,
+    "status": "complete",
+    "step": 1600,
+    "elapsed_s": 137.78585853613913,
+    "checkpoint_sha256": "3baf0f92bbf9035a3c97219d5fe86801222c5bd8a620d1d20ad1b3eca6552753",
+    "exact_init_and_draws": true,
+    "reload_and_prefix_causality": true
+  },
+  {
+    "fold": 2,
+    "seed": 17,
+    "status": "complete",
+    "step": 1600,
+    "elapsed_s": 136.4129209369421,
+    "checkpoint_sha256": "01a72731979711e862a566acefc6606ca2889cd1f54621b89ba247a96bb81aad",
+    "exact_init_and_draws": true,
+    "reload_and_prefix_causality": true
+  },
+  {
+    "fold": 2,
+    "seed": 23,
+    "status": "complete",
+    "step": 1600,
+    "elapsed_s": 138.17120422422886,
+    "checkpoint_sha256": "d63d0c329b6b5a20695263381518ca54762f31f14b9fa133d29c3d9bf64e5c6a",
+    "exact_init_and_draws": true,
+    "reload_and_prefix_causality": true
+  },
+  {
+    "fold": 2,
+    "seed": 42,
+    "status": "complete",
+    "step": 1600,
+    "elapsed_s": 136.57938862033188,
+    "checkpoint_sha256": "9250664898f89ce6001083b59b183ab4cd2da43fa2c2740c2038de85eb643d7e",
+    "exact_init_and_draws": true,
+    "reload_and_prefix_causality": true
+  },
+  {
+    "fold": 3,
+    "seed": 17,
+    "status": "complete",
+    "step": 1600,
+    "elapsed_s": 137.0163448145613,
+    "checkpoint_sha256": "3576edb783bb795f560657e21a4a793440e15be2354db1c767f77d082d0b20a5",
+    "exact_init_and_draws": true,
+    "reload_and_prefix_causality": true
+  },
+  {
+    "fold": 3,
+    "seed": 23,
+    "status": "complete",
+    "step": 1600,
+    "elapsed_s": 135.55499826464802,
+    "checkpoint_sha256": "1037e51b185af34109bd99f2e8397a6ad8d03699c9625e9720b0e10b893a0051",
+    "exact_init_and_draws": true,
+    "reload_and_prefix_causality": true
+  },
+  {
+    "fold": 3,
+    "seed": 42,
+    "status": "complete",
+    "step": 1600,
+    "elapsed_s": 135.35027014650404,
+    "checkpoint_sha256": "9ec061922a93497b91c75c80f919759c524fa541192d241057c674a1c55258d4",
+    "exact_init_and_draws": true,
+    "reload_and_prefix_causality": true
+  },
+  {
+    "fold": 4,
+    "seed": 17,
+    "status": "complete",
+    "step": 1600,
+    "elapsed_s": 125.7007623296231,
+    "checkpoint_sha256": "1acd6d90ef5694856106fde8352029bcde6471cc6a8d4f59a45ebadf16390485",
+    "exact_init_and_draws": true,
+    "reload_and_prefix_causality": true
+  },
+  {
+    "fold": 4,
+    "seed": 23,
+    "status": "complete",
+    "step": 1600,
+    "elapsed_s": 123.5051629114896,
+    "checkpoint_sha256": "ba09582a0c34ce53bbf47bbd2f5dc501d4a0bad74acdf8b599133d3927a9f3a5",
+    "exact_init_and_draws": true,
+    "reload_and_prefix_causality": true
+  },
+  {
+    "fold": 4,
+    "seed": 42,
+    "status": "complete",
+    "step": 1600,
+    "elapsed_s": 127.420564500615,
+    "checkpoint_sha256": "85c55b553b035812e6b8b86deb5f0f9c4219cab230420a412934b4eab2dd53cc",
+    "exact_init_and_draws": true,
+    "reload_and_prefix_causality": true
+  }
+]

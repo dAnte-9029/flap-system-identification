@@ -1,0 +1,11 @@
+{
+  "parent_manifest_sha256": "130ddb710a54125d481cad22db2cf9c9f081536202984b2c2e289cc78465519e",
+  "script_sha256": "c85c7054f5b048b20f43f0e2e87ad4cbf08571637ed7eb443873a1d94cbdfb19",
+  "rule": "Require>=2 original train and>=2 original validation flights in same recorded firmware/config group, rank only by train window count; all modes and active/quiet references retained",
+  "selection_uses_validation": "configuration and eligible flight presence only; never outputs/errors or validation normalization",
+  "reason": "Largest train-only group has no original matching validation. Preserve original selection and use this explicitly separate paired-cohort proposal.",
+  "group": "3e1b1922309f00687fa63d61109c12efae400efaf59ba77a37540e5a05c1cc11",
+  "original_split_preserved": true,
+  "sealed_test_accessed": false,
+  "model_training_started": false
+}

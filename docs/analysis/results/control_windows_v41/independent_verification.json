@@ -1,0 +1,13 @@
+{
+  "status": "passed",
+  "all_window_metric_values_recomputed": 3282048,
+  "saved_state_native_calls_verified": 410256,
+  "checked_steps": [
+    0,
+    24,
+    49
+  ],
+  "all14_branches_checked": true,
+  "snapshots_complete_restore_passed": true,
+  "commands_and_saturation_exact": true
+}

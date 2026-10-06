@@ -1,0 +1,12 @@
+{
+  "status": "frozen_before_final_evaluation",
+  "verification_code": "scripts/verify_report_actuator_v30.py",
+  "sha256": "8d0627d6c7d174a49b87cfaa295e6802cba9367cb539a1b33054fa2f45e9470a",
+  "checks": [
+    "all15checkpoint fit/oof/held exact replay",
+    "normalization buffers and initial weights",
+    "unique407OOF per seed",
+    "independent per-flight OOF metrics and all frozen gates"
+  ],
+  "training_changes": false
+}

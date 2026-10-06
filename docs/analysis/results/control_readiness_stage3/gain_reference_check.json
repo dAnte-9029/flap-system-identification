@@ -1,0 +1,7 @@
+{
+  "source_sha256": "e7c7b4325f8d6fa5824a19f4e96dd311cffe6e8b9d463a9ef8aaf2b8da1994b0",
+  "component": "exact GainCompression::update body with minimal filter/math shims",
+  "samples": 1200,
+  "maximum_gain_error": 1.795584727570798e-07,
+  "tolerance": 3e-06
+}

@@ -1,0 +1,21 @@
+{
+  "script_sha256": "d2802c1fa5ab144354530513103928518c7d45b77359cb30e3b8bcbf67e73feb",
+  "read_only_source_pins": {
+    "/home/zn/QgcLogs/2026.9.6/log_20_2026-9-6-18-58-10.ulg": "3b0afa4b3526fae934d9705082c0dbfe247fc39baff68014c06cf6642e71275e",
+    "/home/zn/QgcLogs/2026.9.7/log_26_2026-9-7-06-30-26.ulg": "580d9dd51677020f5a87c43f51f9d7082d4157599eab9e148b683e4baa03eadd",
+    "/home/zn/QgcLogs/2026.9.6/log_17_2026-9-6-18-34-06.ulg": "37ff9f8ea4e2e378fc13394288aa145a462259e2f53fa15af9511082f0e6d558",
+    "/home/zn/QgcLogs/2026.9.6/log_28_2026-9-6-07-01-38.ulg": "73dd94d60553a00efb3e2d9009430686c08ee611f11eb4e3f8e3a427f26df842",
+    "/home/zn/QgcLogs/2026.9.7/log_23_2026-9-7-06-09-22.ulg": "4b5e90d7f0e7d8ecc77c4c680cde74d6848246d6878e3606503b97570bb9f462",
+    "/home/zn/QgcLogs/2026.9.6/log_19_2026-9-6-18-52-30.ulg": "30f27b3c2ee46a05ed6108ec01a2150cd5c8fedaf4f0cb7a1f0347698412aacd",
+    "/home/zn/QgcLogs/2026.9.6/log_18_2026-9-6-18-46-20.ulg": "603a941c5ebbfcdf27b80b0d1c4b2de65dd4e114fdefb64bb70896e409c135a8",
+    "/home/zn/QgcLogs/2026.9.7/log_28_2026-9-7-06-44-02.ulg": "8d1191724e9bb10dcc592dc354b6c8cc21f51ae79dd14e9960bc656411cb7758",
+    "/home/zn/QgcLogs/2026.9.7/log_24_2026-9-7-06-16-04.ulg": "a1945d5edee81010214065ee8ff847438d7306eb73e9a8aa359a727ff7a9070e",
+    "/home/zn/QgcLogs/2026.9.7/log_27_2026-9-7-06-37-24.ulg": "f265efde972974cc8bad4223ace9abe36dceeddebf26d92fd0f9b1ae0498905b",
+    "/home/zn/QgcLogs/2026.9.7/log_30_2026-9-7-06-58-22.ulg": "b9b276a937ef21b53dc65c8f8cdeb72063f754c0aa9b7a15448580fedd3e9933",
+    "/home/zn/QgcLogs/2026.9.7/log_22_2026-9-7-06-01-40.ulg": "a907493b8fd3708bac45e39fc54185e2fa4e9f9a35a71ba030f3f38b06c1d51f",
+    "/home/zn/QgcLogs/2026.9.7/log_21_2026-9-7-05-54-56.ulg": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088",
+    "/home/zn/QgcLogs/2026.9.7/log_29_2026-9-7-06-51-04.ulg": "0e3d4d085a0d8bcd87a2c76c5c3230e2ae238cf0d3b54051abd498e0b9c8bf8c"
+  },
+  "interpretation": "100Hz causal held regrid of logged rate, 1Hz bins; above25Hz can alias at50Hz absent antialias filtering, but this is not underlying IMU spectrum or demonstrated alias error",
+  "sealed_test_accessed": false
+}

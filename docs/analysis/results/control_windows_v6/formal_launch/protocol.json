@@ -1,0 +1,32 @@
+{
+  "script_sha256": "11f7e69d971e4a8e15431c9a850b7d850d889a2a0455c5cbc0628b10c782013e",
+  "gate_sha256": "46c93ed4305ecda73dc85f7275344d266f54fef93da6f063d61bbec8357d5403",
+  "jobs": [
+    [
+      "integrated",
+      17
+    ],
+    [
+      "integrated",
+      23
+    ],
+    [
+      "integrated",
+      42
+    ],
+    [
+      "direct",
+      17
+    ],
+    [
+      "direct",
+      23
+    ],
+    [
+      "direct",
+      42
+    ]
+  ],
+  "workers": 6,
+  "cpu_threads_per_job": 1
+}

@@ -1,0 +1,76 @@
+{
+  "commit": "c9af571575af33d5403fbb479256848797c801e2",
+  "files": {
+    "src/lib/rate_control/gain_compression.hpp": {
+      "snapshot": "source/gain_compression.hpp",
+      "sha256": "29fc97be95a4c183034d399a8a0ca733c326e825f9c09668220307c7e5110711",
+      "blob": "20611e9ac969a1e8b1c067c1b302ba323c740f61"
+    },
+    "src/lib/rate_control/gain_compression.cpp": {
+      "snapshot": "source/gain_compression.cpp",
+      "sha256": "e7c7b4325f8d6fa5824a19f4e96dd311cffe6e8b9d463a9ef8aaf2b8da1994b0",
+      "blob": "7e1e172de4d49498274b0141de1369c8227487fc"
+    },
+    "src/lib/rate_control/rate_control.cpp": {
+      "snapshot": "source/rate_control.cpp",
+      "sha256": "6889ca65e148ffbdc1da24db60204515fcf26ba97717d3e51c877a1c2792ec78",
+      "blob": "b990aac9b83cbff24500b71a08d37e0198602e88"
+    },
+    "src/lib/rate_control/rate_control.hpp": {
+      "snapshot": "source/rate_control.hpp",
+      "sha256": "6894adc7b74f218b2ab181ad3261a1c9b059b001c4128cf26892019260b5a33a",
+      "blob": "0542092747ec000e9a7361833181b7b7e75dc8fc"
+    },
+    "src/modules/fw_rate_control/FixedwingRateControl.cpp": {
+      "snapshot": "source/FixedwingRateControl.cpp",
+      "sha256": "f629723bb627cd166c9fd0f7d13d7b57c34e902abf4ada7dd82d4d7f60071e75",
+      "blob": "7f15661b546c86ff42b4e241b0f5b1408cc9c7bc"
+    },
+    "src/modules/fw_rate_control/FixedwingRateControl.hpp": {
+      "snapshot": "source/FixedwingRateControl.hpp",
+      "sha256": "b5cef2003af3e5cf81fc28d4532a7893df66f408600bbf67f158d37ea97f0873",
+      "blob": "4ce2e767a169d93ae42fc8d0fd59b90aa62ef4ac"
+    },
+    "src/modules/fw_att_control/FixedwingAttitudeControl.cpp": {
+      "snapshot": "source/FixedwingAttitudeControl.cpp",
+      "sha256": "40f9f25c116e6e59c8620b1e0b09642f8f77085f465077d3a19dd5408412d8f8",
+      "blob": "ec856e942d5b5f06f433db1e00821d410b1d44f1"
+    },
+    "src/modules/fw_att_control/FixedwingAttitudeControl.hpp": {
+      "snapshot": "source/FixedwingAttitudeControl.hpp",
+      "sha256": "a94e7a341ebcfccdb05e4f9576acadc446abb1edfdf0b71ef902db3e236df80d",
+      "blob": "73a08c00e01012ba2dbbae5d3a8a9e479281277c"
+    },
+    "src/modules/fw_att_control/fw_roll_controller.cpp": {
+      "snapshot": "source/fw_roll_controller.cpp",
+      "sha256": "51fab211b67ec194cb72e4adb085f89d9312e962cf89b4db2b4f3981515cf510",
+      "blob": "659adfa9c28a997b818c13251e7fc918af2b899c"
+    },
+    "src/modules/fw_att_control/fw_roll_controller.h": {
+      "snapshot": "source/fw_roll_controller.h",
+      "sha256": "c408e17ba195c77fb3482bdd70af79ca960fd15032edb2a1fbad9a0c6af6316d",
+      "blob": "5e47f0ffd0e1ff75268e9c9b5f56be6d389bffb3"
+    },
+    "src/modules/fw_att_control/fw_pitch_controller.cpp": {
+      "snapshot": "source/fw_pitch_controller.cpp",
+      "sha256": "5920fccf30ac6dab3ea7618df4661522448c276b127359ed537cc083261e66f4",
+      "blob": "90ad9dce43de3a14560b914ccd65a1c412cd8193"
+    },
+    "src/modules/fw_att_control/fw_pitch_controller.h": {
+      "snapshot": "source/fw_pitch_controller.h",
+      "sha256": "f592f8c24fc38eea4c7e5f50c9f01cb174617d32f6b05a20c7a615d8831a4824",
+      "blob": "d8a40ab63637d8192fa35a72143a200d012d12c4"
+    },
+    "src/modules/fw_att_control/fw_yaw_controller.cpp": {
+      "snapshot": "source/fw_yaw_controller.cpp",
+      "sha256": "8b7472c83e10486f081763e70f25e6125fbe4146457b9507eff02423a199e5c6",
+      "blob": "4f27e8a610230d9339ccbb89326b6611a2f144ba"
+    },
+    "src/modules/fw_att_control/fw_yaw_controller.h": {
+      "snapshot": "source/fw_yaw_controller.h",
+      "sha256": "c9addf9aed6dd88887a701c995c87c9f1cbd080a05afc3144ecd9733ebcc3cfe",
+      "blob": "e6f9ff9795746fd9c4aab0213fc28a7ce52085db"
+    }
+  },
+  "limit": "Logged revision is source provenance, not binary attestation."
+}

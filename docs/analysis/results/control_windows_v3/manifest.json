@@ -1,0 +1,18 @@
+{
+  "parent_manifest_sha256": "84cac37ebf73f47802a4b5d3afff48d97554ac3aedfdd1cb6fb9ec5d618b919f",
+  "training_protocol_sha256": "e748f4b2874bdbeca1c276a391c060c85072a34e6bbf094db5db0f36bea3ffa2",
+  "selection_sha256": "49cf2aefecbba64fe510e78396ee19483c159bcbfca52949b39b68ded9d962b4",
+  "table_hashes": {
+    "diagnostic_summary.csv": "ffc0f220a538c66e9b82c3c89a4915fbdc6b45d061b21fa780638e6ae74af8d9",
+    "arm_B.csv": "af11e22e5e063d3b2769744946d78a4b63a423fd046b58462d729921ccfd85b4",
+    "arm_C.csv": "63b299ff7f7bd386938f9d421c2d6be666715eb5145bba4ba6c3febdd908d107",
+    "evaluation_windows.csv": "b829ed834446ff54dcec8d94dae2061c5e937eabae36c9a5ea451955521686c7",
+    "diagnostic_per_flight.csv": "12a9a5526a685b296ea7f109945fb4b58a2101f1fb7e68875615567b13f38af6",
+    "reference_sensitivity.csv": "a25ba0b755e35de6ea0cd564f0b5411e1149eef6c69ceba4fda060f17ee25d1c",
+    "windows_v3.csv": "f34fd3df26661c88e7be7ddcb1c8d207a6a8cef75cd0f62714bd4edff792fa1a",
+    "arm_D.csv": "650f086238a6fa385fa264321eb5bc0aac3938ca1a26b06fd85ca02e1b152292",
+    "arm_A.csv": "8095a3dc9963735904d15364555b54ea0016eda5614a017a5d6746e0f0980d9d",
+    "arm_A_long.csv": "8095a3dc9963735904d15364555b54ea0016eda5614a017a5d6746e0f0980d9d"
+  },
+  "sealed_test_accessed": false
+}

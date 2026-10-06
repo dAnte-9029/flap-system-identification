@@ -1,0 +1,60 @@
+{
+  "stage": "v19 frozen qgain and attitude/reference localization",
+  "source_pins": {
+    "scripts/run_reference_localization_v19.py": "5cd3393ae0d6317adb756508dd5457ca7f1fe9ff24587e59626e2ed85fbb2c7e",
+    "scripts/reference_localization_v19.py": "cc7cf53c15948131a739a84af4fe35af463f5113c4f16c535e76ada9b90c79f6",
+    "tests/test_reference_localization_v19.py": "c825c5535369b4cdb5a55f16cea23f1e9c3ce467100d163c2e697fae3a38a0fd",
+    "scripts/reference_error_structure_v9.py": "bb3d6a5af81a71cb65ee01ab962d3584e259cf11b28e2775212c0988a0110333",
+    "scripts/reference_condition_diagnostics_v12.py": "409f8a48ec43604ee553ef1e69e3b12a026a7259028159902723de18cfb0846f",
+    "scripts/reference_groupcv_v8.py": "c4a2857f5f1935e5996ea7d224eacee9af3c34cc95ce90d2437f789ec75b85bd",
+    "docs/analysis/results/control_windows_v8/delivery_manifest.json": "bf358676286f34af65bc140435eea00a978ebf7c3f1e018cb2eff9e349483ad6",
+    "docs/analysis/results/control_windows_v18/delivery_manifest.json": "55624da0f83391488a69ab97737d2ada1acdea859a0ade457e0f643dca29c2a5",
+    "docs/analysis/results/control_windows_v2/manifest.json": "84cac37ebf73f47802a4b5d3afff48d97554ac3aedfdd1cb6fb9ec5d618b919f",
+    "docs/analysis/results/reference_dynamics_data_v1/training_contract/manifest.json": "3c046faa6ad492f6654a19b00090bc2fb84c57d3fcd868456cc79f30e6399b0d"
+  },
+  "phase_contract": {
+    "definition": "logged wing_phase zero; Hall consistency is checked separately",
+    "installation_consistency": "not_confirmed",
+    "status": "unconfirmed_physical_pose"
+  },
+  "frequency_contract": {
+    "column": "flap_frequency_hz",
+    "ratio": 7.909090995788574,
+    "rescaling": "none; September logged ratio, not April ratio8"
+  },
+  "scope": "407 originaltrain windows,5folds x3seeds paired v8hold/v18aux,fit+OOF. No retraining, selection, newweights, development or sealed/reserved access.",
+  "blocks": {
+    "20_40ms": [
+      0,
+      2
+    ],
+    "60_100ms": [
+      2,
+      5
+    ],
+    "120_200ms": [
+      5,
+      10
+    ],
+    "220_500ms": [
+      10,
+      25
+    ],
+    "520_1000ms": [
+      25,
+      50
+    ],
+    "full1s": [
+      0,
+      50
+    ]
+  },
+  "q_decomposition": "Exact perwindow MSE=bias_squared+std_amplitude_difference_squared+shape_term; timeblocks fixed20-40,60-100,120-200,220-500,520-1000ms,full1s.2pointblock mathematicallyvalid but not frequency/time-delay identification.",
+  "attitude": "Independent float64 numpy midpoint bodyrate right quaternion product using observedinitialquat/rate. Compare frozen quaternions atall50steps; maxangle discrepancy<2e-5rad. Integrate loggedfuture rates only as offline consistency diagnostic, not deployable prediction or errorfloor.",
+  "attribution": "For each paired rate tape, all8 p/q/r replacements integrated without GRU feedback; exact3player Shapley of squared quaternion error over .5/1s prefix. Also4 early(first5endpoints20-100ms)/late(6-50) tape replacements, exact2player allocation. Contributions sum to integratedaux-baseline MSE; signedrad2. This is algebraic tape attribution, not a realizable hybrid or causal network mechanism.",
+  "reference": "Fresh replay bothmodels withall5 plannedrefs held at firstfuturevalue, allfit+OOF. qfactual/held RMSE and outputdifference RMS per fixedblock/flight/seed. Verify v18 OOF held predictions and full1s reference metrics.",
+  "strata": "Plannedreference activity=RMS(diff(reference)/foldfit_reference_scale) over49changes and5channels. Flightbalanced fit-terciles from4fitflights, queryusesfixedcuts. Uses known full plannedtape, no future measuredresponses; descriptive offline grouping, not causal online confidence. Keep all strata/counts incl smallcells.",
+  "weighting": "Within model/sourceflight first, average repeatedfitmodels per sourceflight then equalseed/flight. Perwindow provenance and whole-flight records retained. No outcome-based dropping or posthoc causal/physicaldelay claim.",
+  "decision": "Diagnostic only. Existingv18 gates remainfailed; no promotion, no tuning. Locate failures before choosing next experiment.",
+  "sealed_test_accessed": false
+}

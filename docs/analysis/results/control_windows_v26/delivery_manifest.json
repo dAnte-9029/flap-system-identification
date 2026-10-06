@@ -1,0 +1,43 @@
+{
+  "status": "complete",
+  "artifacts": {
+    "age_per_flight.csv": "3929ddfe25d59097f486cf4c96a1d7d60cf2e802fb03b7a1170dbbdb5280785c",
+    "association_per_flight.csv": "6b18c28c9defcbfdac991d720c7ffeaea7aeb656f4a4301a5f301fc78064d3fd",
+    "decision.json": "b6bb4016f873cd7cddc07d277d754ad2ce47ff44487d111e58afeb742da5825b",
+    "fit_feature_structure.csv": "ffdd4d05cdc652b5ea7d0f06b47c8afe5c57b3de56eb38e6e6e647f0d81d9497",
+    "fold0/support_parameters.json": "3142561c4fbde77233a3721be9979f884774b4ce31e1fae9d1a5053123a62b07",
+    "fold1/support_parameters.json": "8f01954b5a92d1303c91b816ec3ce052ee268ca2b67d77e20161b85ab360ae7a",
+    "fold2/support_parameters.json": "52ab210daaaf96910ba0b9c90f69364c117b02cd38962bffef9d5b306d44e223",
+    "fold3/support_parameters.json": "5381ccda887e813458a97ba333583e54d91aa5390242610062730f4de4311009",
+    "fold4/support_parameters.json": "f4f351c091b155d218579f5926ca39228a4afad70f33fe87e23b1d7b4e10fb0b",
+    "history_summaries.csv": "eefd03222a868b3f4e03d06449ca0d66d19ecb270f7548f21f3a91ef0c610e5f",
+    "marginal_distribution.csv": "5a1e770ecc341495d1f6bb4a711b6ed3a64cf93fc3fe940261ced8fe6e267f51",
+    "next_ablation_protocol.json": "3cfc8e89d957d8462f37c041bb45d104246b42a25297500a561f6370bb9418c2",
+    "protocol.json": "82c7f27be9ec13379b05cdd55a8ff9f9a0d0002df2897ee5f0d559b58b54b678",
+    "q_per_flight.csv": "6ae5574a2e8308e6821f4e51f94f7ba00bb6545e8c8a306d340daee08600bde0",
+    "q_per_window.csv": "64fd216f6f912bc2bafade9ed0c365a20df7df7cd4ae35500dd31a50f34918a4",
+    "q_strata_per_flight.csv": "269ffb04ddc0ba261b8a249d6787d587a3cc4adfc9152f5cd4e00a6f5b6660b5",
+    "q_strata_summary.csv": "1479622e3e10e2ad3521794713352749177f5f58be6ce87f30e1e5335c84dae9",
+    "report_zh.md": "c45641a8549c38b61c255627ab1b16241e782c9e6acd9bfeb3b86ad8e392d3f9",
+    "signed_error_contributions.csv": "994b42f23d89a320e84b4de42c6cb1ead1cf4491485719c220e45a36a12307e3",
+    "strata.csv": "043d81948465368022e999a15290ba57f32e3f50283745d58fe4392b67878e90",
+    "strata_coverage.csv": "6388cbdb693ee6bb85a3000cdf86e945b362769551d926ac9d1b3700fd253a00",
+    "support_comparability.csv": "74b3ded5d22303fdc19874837c45158e083b3b5a354ec112ad9b2675cf1f8764",
+    "support_coverage_per_flight.csv": "9e51e716423722d6e904a1f682e3b77f0cf5651db20ca86eb3dcdd3989d9e313",
+    "support_error_association.csv": "7dc80dc8fe137d59f30c87c4d2911592309a2f254d36e874bafba2b9a2f7a0b2",
+    "support_per_window.csv": "59e04b24d343c6ede3567de62dc8f3e532966de5c9460a8dcdb5056efb24a6b0",
+    "support_thresholds.csv": "1fc954ededf7831b0e4fc914d9d3f3570a44f57a408061fed7f06d9d623ad173",
+    "test_results.json": "19de203c613fddb679733a0c6e4889d92b4de6525a8b80849e917c80dcceffb5",
+    "verification.json": "dae70e8982914260abd220ddcc422a82026b4af10310f1aba93018b2f5b95f27"
+  },
+  "code": {
+    "scripts/audit_controller_support_v26.py": "b589bb103d7baa2a8b04f0429e9951a88624e1ab9c8843de0cee5749656dedc9",
+    "scripts/controller_support_v26.py": "012f4833291229bb44e5c98b8bfd3be6cf896ad3a582d94ff286917198f9e6d6",
+    "tests/test_controller_support_v26.py": "c17ea8fc79201397cc081a7cb5345e3136cd2b6c89402a5e42a76b7a40824617",
+    "scripts/report_controller_support_v26.py": "524ca309e96d2853e0382879c5db4e8f91a32eae80cdfe412210be71eb324825"
+  },
+  "training_started": false,
+  "model_promoted": false,
+  "validation_accessed": false,
+  "sealed_test_accessed": false
+}

@@ -1,0 +1,11 @@
+{
+  "status": "passed",
+  "snapshots": 407,
+  "topic_observations_verified": 7326,
+  "nonfinite_values_preserved_as_null": true,
+  "clock_estimates_recomputed": 68538,
+  "multiaxis_clock_rows": 25684,
+  "multiaxis_dt_spread_median_us": 0.20959360855004813,
+  "multiaxis_dt_spread_p95_us": 0.9260028209251208,
+  "exact_controller_clock_not_claimed": true
+}

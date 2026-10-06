@@ -1,0 +1,146 @@
+{
+  "status": "passed",
+  "checks": [
+    {
+      "fold": 0,
+      "seed": 17,
+      "all_predictions_exactly_replayed": true,
+      "normalization_buffers_exact": true,
+      "initial_parameters_match": true,
+      "prefix_causality": true,
+      "parameters": 40070
+    },
+    {
+      "fold": 0,
+      "seed": 23,
+      "all_predictions_exactly_replayed": true,
+      "normalization_buffers_exact": true,
+      "initial_parameters_match": true,
+      "prefix_causality": true,
+      "parameters": 40070
+    },
+    {
+      "fold": 0,
+      "seed": 42,
+      "all_predictions_exactly_replayed": true,
+      "normalization_buffers_exact": true,
+      "initial_parameters_match": true,
+      "prefix_causality": true,
+      "parameters": 40070
+    },
+    {
+      "fold": 1,
+      "seed": 17,
+      "all_predictions_exactly_replayed": true,
+      "normalization_buffers_exact": true,
+      "initial_parameters_match": true,
+      "prefix_causality": true,
+      "parameters": 40070
+    },
+    {
+      "fold": 1,
+      "seed": 23,
+      "all_predictions_exactly_replayed": true,
+      "normalization_buffers_exact": true,
+      "initial_parameters_match": true,
+      "prefix_causality": true,
+      "parameters": 40070
+    },
+    {
+      "fold": 1,
+      "seed": 42,
+      "all_predictions_exactly_replayed": true,
+      "normalization_buffers_exact": true,
+      "initial_parameters_match": true,
+      "prefix_causality": true,
+      "parameters": 40070
+    },
+    {
+      "fold": 2,
+      "seed": 17,
+      "all_predictions_exactly_replayed": true,
+      "normalization_buffers_exact": true,
+      "initial_parameters_match": true,
+      "prefix_causality": true,
+      "parameters": 40070
+    },
+    {
+      "fold": 2,
+      "seed": 23,
+      "all_predictions_exactly_replayed": true,
+      "normalization_buffers_exact": true,
+      "initial_parameters_match": true,
+      "prefix_causality": true,
+      "parameters": 40070
+    },
+    {
+      "fold": 2,
+      "seed": 42,
+      "all_predictions_exactly_replayed": true,
+      "normalization_buffers_exact": true,
+      "initial_parameters_match": true,
+      "prefix_causality": true,
+      "parameters": 40070
+    },
+    {
+      "fold": 3,
+      "seed": 17,
+      "all_predictions_exactly_replayed": true,
+      "normalization_buffers_exact": true,
+      "initial_parameters_match": true,
+      "prefix_causality": true,
+      "parameters": 40070
+    },
+    {
+      "fold": 3,
+      "seed": 23,
+      "all_predictions_exactly_replayed": true,
+      "normalization_buffers_exact": true,
+      "initial_parameters_match": true,
+      "prefix_causality": true,
+      "parameters": 40070
+    },
+    {
+      "fold": 3,
+      "seed": 42,
+      "all_predictions_exactly_replayed": true,
+      "normalization_buffers_exact": true,
+      "initial_parameters_match": true,
+      "prefix_causality": true,
+      "parameters": 40070
+    },
+    {
+      "fold": 4,
+      "seed": 17,
+      "all_predictions_exactly_replayed": true,
+      "normalization_buffers_exact": true,
+      "initial_parameters_match": true,
+      "prefix_causality": true,
+      "parameters": 40070
+    },
+    {
+      "fold": 4,
+      "seed": 23,
+      "all_predictions_exactly_replayed": true,
+      "normalization_buffers_exact": true,
+      "initial_parameters_match": true,
+      "prefix_causality": true,
+      "parameters": 40070
+    },
+    {
+      "fold": 4,
+      "seed": 42,
+      "all_predictions_exactly_replayed": true,
+      "normalization_buffers_exact": true,
+      "initial_parameters_match": true,
+      "prefix_causality": true,
+      "parameters": 40070
+    }
+  ],
+  "unique407_oof_per_seed": true,
+  "independent_all_oof_metrics_and_gates_match": true,
+  "parent_hashes_verified": true,
+  "validation_accessed": false,
+  "sealed_test_accessed": false,
+  "reserved_accessed": false
+}

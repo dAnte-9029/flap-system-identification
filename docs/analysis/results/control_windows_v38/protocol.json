@@ -1,0 +1,90 @@
+{
+  "stage": "v38 c9af controller-only teacher-state replay",
+  "status": "frozen_before_replay",
+  "firmware": "c9af571575af33d5403fbb479256848797c801e2",
+  "parents": {
+    "docs/analysis/results/control_windows_v37": "370f67f2eb851690daf428d7d1a774b5a83edba0a458e1252862587bceb020ad",
+    "docs/analysis/results/control_windows_v29": "49ffd01eb46a8fd80e6e193143b25be4212cc78fdb11725feb95c5a495e9b231"
+  },
+  "code": {
+    "src/system_identification/control/px4_c9af.py": "8703d28a3c292d635e26affb64dcee9357b69df162f2721a42b31ce7c27e31a0",
+    "tests/test_px4_c9af.py": "20f07706d1433ac4add75df636f6ea43ba107404dfeff84e918aa0010613787d",
+    "scripts/check_c9af_source_v38.py": "b3f1f18f5434decd3c6c3f6e59299f9298fdbf56c9bceb1b9f6b844026d1c90e",
+    "scripts/run_c9af_replay_v38.py": "cd557f20ad6174cf466525b3071b26fdbe654309b83abd9ad053e1df1a8400bc"
+  },
+  "variants": [
+    {
+      "name": "cold",
+      "warmup_s": 0,
+      "hpf_sign": 0,
+      "tick_us": 2500,
+      "feedback": "source_no_interleave"
+    },
+    {
+      "name": "partial_plus",
+      "warmup_s": 0,
+      "hpf_sign": 1,
+      "tick_us": 2500,
+      "feedback": "source_no_interleave"
+    },
+    {
+      "name": "partial_minus",
+      "warmup_s": 0,
+      "hpf_sign": -1,
+      "tick_us": 2500,
+      "feedback": "source_no_interleave"
+    },
+    {
+      "name": "warm2_plus",
+      "warmup_s": 2,
+      "hpf_sign": 1,
+      "tick_us": 2500,
+      "feedback": "source_no_interleave"
+    },
+    {
+      "name": "warm2_minus",
+      "warmup_s": 2,
+      "hpf_sign": -1,
+      "tick_us": 2500,
+      "feedback": "source_no_interleave"
+    },
+    {
+      "name": "warm2_20ms",
+      "warmup_s": 2,
+      "hpf_sign": 1,
+      "tick_us": 20000,
+      "feedback": "source_no_interleave"
+    },
+    {
+      "name": "warm2_delayed_feedback",
+      "warmup_s": 2,
+      "hpf_sign": 1,
+      "tick_us": 2500,
+      "feedback": "delayed_allocation"
+    }
+  ],
+  "branches": [
+    "rate_input:logged rate reference+thrust to rate controller",
+    "attitude_chain:logged attitude reference/thrust/manual-yaw to attitude then rate controller"
+  ],
+  "initialization": "cold: allsource initial states0/gain1; partial: causal postI/gain/energy, +/-sqrtHPF, rawCAS filter proxy, previous effort/yaw memory0. Only at each variant start, no logged hidden state read afterward. +/-all axes are two probes, not exhaustive8sign confidence bounds.",
+  "timing": "Fixed2.5ms or20ms rate ticks anchored to origin; attitude updated when causal logged attitude index changes, before rate. Publication AND sample causal ZOH. Synthetic schedules, not recovered native timing. Targets same causal origin+0..49 command grid; no fitted shifts.",
+  "feedback": "Primary no-interleaved-publication reading of c9af double update of same instance0 for nonVTOL: no fresh surface feedback consumed. Additional delayed_allocation variant uses preceding synthetic allocator residual, an alternative scheduling assumption. Do not infer actual thread interleaving from sparse logs.",
+  "scope": "All407 originaltrain parents; actual future measured states allowed only for this controller component check; no learned-model rollout, future hidden state injection, tuning, exclusions or flight.",
+  "nonfinite": "Fail on nonfinite physical state/command; invalid airspeed uses source fallback; unsupported scored mode fails, unsupported warmup modes resetI/gain and counted.",
+  "thresholds": "Source-body arithmetic rtol1e-5 atol2e-6, no posthoc output gate. Teacher-replay errors all reported; no variant selected/promoted.",
+  "model_promoted": false,
+  "validation_accessed": false,
+  "sealed_test_accessed": false,
+  "reserved_accessed": false,
+  "phase_contract": {
+    "definition": "logged wing_phase zero; Hall consistency is checked separately",
+    "installation_consistency": "not_confirmed",
+    "status": "unconfirmed_physical_pose"
+  },
+  "frequency_contract": {
+    "column": "flap_frequency_hz",
+    "ratio": 7.909090995788574,
+    "rescaling": "none; September logged ratio, not April ratio8"
+  }
+}

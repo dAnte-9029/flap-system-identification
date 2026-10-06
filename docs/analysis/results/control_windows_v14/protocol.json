@@ -1,0 +1,42 @@
+{
+  "stage": "v14 frequency-conditioned fixed-support lag and relative phase diagnosis",
+  "source_pins": {
+    "docs/analysis/results/control_windows_v8/delivery_manifest.json": "bf358676286f34af65bc140435eea00a978ebf7c3f1e018cb2eff9e349483ad6",
+    "docs/analysis/results/control_windows_v10/delivery_manifest.json": "9c7d8193c1ff8fcfe2853df17408b6a7fad72102e0f9c2c16ae3aa066b6e4da7",
+    "docs/analysis/results/control_windows_v12/delivery_manifest.json": "064ac0c8b9600d09a495b1ad3e43b40fb666f09979be73f86537a38b80282bbf",
+    "docs/analysis/results/control_windows_v13/delivery_manifest.json": "bdc5bd7b02bcf99bae632fd2b1fe430c1ca630b4e3add2790087d8b35d2c7dc3",
+    "docs/analysis/results/control_windows_v2/manifest.json": "84cac37ebf73f47802a4b5d3afff48d97554ac3aedfdd1cb6fb9ec5d618b919f",
+    "docs/analysis/results/reference_dynamics_data_v1/training_contract/manifest.json": "3c046faa6ad492f6654a19b00090bc2fb84c57d3fcd868456cc79f30e6399b0d",
+    "scripts/run_reference_timing_v14.py": "f9084b9978dc6f3e108f6c85f4c044a06edb7aae7d4094df5272ead3636f9202",
+    "scripts/reference_timing_v14.py": "783e8d532787705f4341d8aa911307b0cfe7333e1c9cdd5f96d630e29ebe975b",
+    "scripts/audit_reference_timing_v14.py": "1f9c821e09fbaf274f7023543dd2de4ccb6749fa2faf07762976f9f7250b5f80",
+    "tests/test_reference_timing_v14.py": "87f4c4bf4a29f222455f4725868adf14492350db34894730bd0f118583e92471",
+    "src/system_identification/data/reference_windows.py": "064945839984cae347a54cb681daf24b4dbfd67574d5adfb3f88a5be9d50ba44",
+    "scripts/audit_control_reference_semantics.py": "32b2226f40e45631aebb91d714314312ea1f4ced69667cd69b40fa3b0121d8ab",
+    "scripts/prepare_reference_dynamics_data.py": "636d4fd2c4e1ea5aa172700df7d44c8c1ad6c2871188127951a216f70083221d",
+    "dataset/reference_dynamics_data_v1/contract/4446fd466bb7821d.npz": "ff58c51e5f6b24a658fcba58ee3e28dd0f147a6bb73a90ea6800943801165375",
+    "dataset/reference_dynamics_data_v1/contract/98850e05e3b89ecb.npz": "799a99539f8e7ae90d7a1917513225e2ee8b94cb62d01b4a073edd8c02829703",
+    "dataset/reference_dynamics_data_v1/contract/8d835123654f62c7.npz": "7037dea0fd686a73ad8ee4f94a1573221f1736645cb6c978d35fbff79aa5c602",
+    "dataset/reference_dynamics_data_v1/contract/26ba9c99346eef34.npz": "08159a90419eba88aa278a88cb3ae71ae1fa968c3dbf487f71aee53df3eba355",
+    "dataset/reference_dynamics_data_v1/contract/52364e098db4b9af.npz": "5801d58118e7695b54e83cf2850e04b683b860ea0cafedc171d91d6fbfc08797"
+  },
+  "phase_contract": {
+    "definition": "logged wing_phase zero; Hall consistency is checked separately",
+    "installation_consistency": "not_confirmed",
+    "status": "unconfirmed_physical_pose"
+  },
+  "frequency_contract": {
+    "column": "flap_frequency_hz",
+    "ratio": 7.909090995788574,
+    "rescaling": "none; September logged ratio, not April ratio8"
+  },
+  "data": "407originaltrain windows,5outerfolds,3v8holdseeds,fit+OOF; frozenv12 frequencymean strata; no newtraining, no timestamp modification, no development/sealed/reserved evaluation",
+  "original": "reproduce v10 .5/1s maxlag5 gainclip0..3 onidentical fullprefixinterior, then stratify",
+  "blocks": "fixed truthcore earlyindices5..19 (target.12-.40s) andlate30..44 (.62-.90s), equal15samples; same ±5lag candidates eachcore. Demean separately percore; unitgain and positivegain0..3 curves.",
+  "fixedlag": "for eachfold/seed/axis and frequencystratum plusall, choose one unit-gain lag minimizing equalfitflight MSE of bothcores; evaluate unchanged on queryflight. Future prediction shifting remains offline, not deployable even when fitted onfitflights.",
+  "oracle": "compare independently bestearly/late lags vs one perwindowsharedlag, sameunionof30truthsamples andunitgain; flexiblegain separatelydescriptive. A shortcore has aboutonecycle, lagambiguity/boundaryfractions must bereported.",
+  "phase": "offline labels only: unwrapped cachedrelative phase fromorigin tofuture minus heldoriginfrequency phase, endpoints.25? use .24/.5/.74/1s; signed andabsoluteerrors. No assumed physicalzero. Reportassociation withlagdrift, not causal attribution.",
+  "timing": "reconstruct publication/sample admissibility for selectedtrainwindows fromoriginalULog; verify cachedrates/phase/frequency/commands and ages; history state/ref origin-25..origin, actuator origin-26..origin-1, futureref origin..origin49, labels origin+1..origin50. Timestamps prove bookkeeping, not physicalsensor/servo latency.",
+  "conclusion": "descriptive repeateddevelopment evidence. No shift/phase correction or controlpromotion based onoracle. Report allstrata, uncertainty and source-time limits.",
+  "sealed_test_accessed": false
+}

@@ -1,0 +1,89 @@
+{
+  "comparisons": [
+    {
+      "candidate": "selected",
+      "primary_gain": -0.005202223109982196,
+      "seed_gains": [
+        -0.005883704115991373,
+        -0.006591701297786523,
+        -0.003100676784417278
+      ],
+      "bootstrap95": [
+        -0.008731023667511878,
+        -0.0018855046200722
+      ],
+      "maximum_regression": 0.018062949180603027,
+      "relative_pass": false,
+      "absolute": [
+        {
+          "seed": 17,
+          "p": 0.5240437984466553,
+          "q": 0.2964441478252411,
+          "attitude_deg": 4.613224983215332,
+          "velocity": 0.28350958228111267,
+          "passed": false
+        },
+        {
+          "seed": 23,
+          "p": 0.5188812017440796,
+          "q": 0.31120213866233826,
+          "attitude_deg": 4.65090799331665,
+          "velocity": 0.2913876473903656,
+          "passed": false
+        },
+        {
+          "seed": 42,
+          "p": 0.5174172520637512,
+          "q": 0.3027024567127228,
+          "attitude_deg": 4.685590744018555,
+          "velocity": 0.2910708785057068,
+          "passed": false
+        }
+      ]
+    },
+    {
+      "candidate": "oracle",
+      "primary_gain": -0.0054500208565104735,
+      "seed_gains": [
+        -0.006033272461930528,
+        -0.007823266093838654,
+        -0.0024432841903940794
+      ],
+      "bootstrap95": [
+        -0.009059208780428185,
+        -0.0014808355366200067
+      ],
+      "maximum_regression": 0.02287876605987549,
+      "relative_pass": false,
+      "absolute": [
+        {
+          "seed": 17,
+          "p": 0.5243504047393799,
+          "q": 0.29629436135292053,
+          "attitude_deg": 4.615349292755127,
+          "velocity": 0.2831202745437622,
+          "passed": false
+        },
+        {
+          "seed": 23,
+          "p": 0.5191465020179749,
+          "q": 0.31165811419487,
+          "attitude_deg": 4.652621269226074,
+          "velocity": 0.29121673107147217,
+          "passed": false
+        },
+        {
+          "seed": 42,
+          "p": 0.5178166627883911,
+          "q": 0.3019736707210541,
+          "attitude_deg": 4.687006950378418,
+          "velocity": 0.29037725925445557,
+          "passed": false
+        }
+      ]
+    }
+  ],
+  "control_validated": false,
+  "controller_optimization_started": false,
+  "oracle": "nondeployable diagnostic; neither independent response truth nor achievable bound"
+}

@@ -1,0 +1,141 @@
+{
+  "scope": "Descriptive pool, ignoring train/validation labels; no training and no split reassignment",
+  "timing": "Elapsed time from earliest observed history/command timestamp to final target timestamp; 1.52s per window, overlapping spans unioned within original quality/mode segment. Endpoints have zero measure, no extra20ms bin added.",
+  "gap": "Next interval start minus previous interval end within same log; excludes pre-first/post-last time and cross-log gaps",
+  "source_tables": {
+    "docs/analysis/results/reference_dynamics_data_v1/windows.csv": "301bbec4e42808cca762a0825560f326eb9bcbb169acff5965092926ef5c10e4",
+    "docs/analysis/results/reference_dynamics_data_v1/training_contract/windows.csv": "c1e2ab734909d12e2e8c3855cee5dcaa8b53b2ddfdd164cf66649fa3249ac4ab"
+  },
+  "script_sha256": "727ead6547dc647a9d392db2c4eb295e3f3a335d306d37fa0d9bea5839592ef6",
+  "sealed_test_accessed": false,
+  "results": {
+    "all_screened": {
+      "logs": 57,
+      "windows": 39304,
+      "window_elapsed_span_s": 1.52,
+      "naive_window_sum_s": 59742.08,
+      "segments": {
+        "n": 212,
+        "total_s": 8140.639999999999,
+        "mean_s": 38.399245283018864,
+        "min_s": 1.52,
+        "p10_s": 5.74,
+        "p25_s": 10.87,
+        "p50_s": 23.32,
+        "p75_s": 48.57,
+        "p90_s": 103.58000000000001,
+        "p95_s": 108.47999999999999,
+        "max_s": 171.32
+      },
+      "gaps": {
+        "n": 155,
+        "total_s": 210.05999999999997,
+        "mean_s": 1.3552258064516127,
+        "min_s": 1.02,
+        "p10_s": 1.04,
+        "p25_s": 1.0799999999999998,
+        "p50_s": 1.1199999999999999,
+        "p75_s": 1.18,
+        "p90_s": 1.2,
+        "p95_s": 1.3859999999999961,
+        "max_s": 12.639999999999999
+      },
+      "short_gaps_le2s": 149,
+      "short_gaps_le5s": 151,
+      "same_mode_gaps": 14,
+      "within_original_segment_gaps": 0,
+      "by_mode": {
+        "3": {
+          "n": 77,
+          "total_s": 4569.24,
+          "mean_s": 59.34077922077922,
+          "min_s": 1.52,
+          "p10_s": 3.56,
+          "p25_s": 6.319999999999999,
+          "p50_s": 72.92,
+          "p75_s": 99.52,
+          "p90_s": 108.0,
+          "p95_s": 111.88,
+          "max_s": 123.11999999999999
+        },
+        "15": {
+          "n": 135,
+          "total_s": 3571.3999999999996,
+          "mean_s": 26.454814814814814,
+          "min_s": 1.52,
+          "p10_s": 7.84,
+          "p25_s": 11.42,
+          "p50_s": 19.119999999999997,
+          "p75_s": 29.42,
+          "p90_s": 45.12,
+          "p95_s": 56.019999999999996,
+          "max_s": 171.32
+        }
+      }
+    },
+    "same_configuration_final": {
+      "logs": 14,
+      "windows": 10606,
+      "window_elapsed_span_s": 1.52,
+      "naive_window_sum_s": 16121.12,
+      "segments": {
+        "n": 66,
+        "total_s": 2208.32,
+        "mean_s": 33.45939393939394,
+        "min_s": 1.52,
+        "p10_s": 3.82,
+        "p25_s": 7.27,
+        "p50_s": 26.82,
+        "p75_s": 45.12,
+        "p90_s": 75.42,
+        "p95_s": 82.97,
+        "max_s": 150.12
+      },
+      "gaps": {
+        "n": 52,
+        "total_s": 63.919999999999995,
+        "mean_s": 1.2292307692307691,
+        "min_s": 0.08,
+        "p10_s": 0.27999999999999997,
+        "p25_s": 1.02,
+        "p50_s": 1.0799999999999998,
+        "p75_s": 1.145,
+        "p90_s": 1.254,
+        "p95_s": 1.8909999999999967,
+        "max_s": 12.1
+      },
+      "short_gaps_le2s": 49,
+      "short_gaps_le5s": 51,
+      "same_mode_gaps": 18,
+      "within_original_segment_gaps": 12,
+      "by_mode": {
+        "3": {
+          "n": 20,
+          "total_s": 545.8000000000001,
+          "mean_s": 27.290000000000003,
+          "min_s": 1.92,
+          "p10_s": 2.88,
+          "p25_s": 3.87,
+          "p50_s": 9.12,
+          "p75_s": 49.62,
+          "p90_s": 73.52000000000001,
+          "p95_s": 78.92,
+          "max_s": 78.92
+        },
+        "15": {
+          "n": 46,
+          "total_s": 1662.5199999999995,
+          "mean_s": 36.14173913043477,
+          "min_s": 1.52,
+          "p10_s": 6.42,
+          "p25_s": 12.17,
+          "p50_s": 32.22,
+          "p75_s": 45.12,
+          "p90_s": 74.32,
+          "p95_s": 105.62,
+          "max_s": 150.12
+        }
+      }
+    }
+  }
+}

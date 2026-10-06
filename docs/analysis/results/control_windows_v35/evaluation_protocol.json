@@ -1,0 +1,19 @@
+{
+  "stage": "v35 implementation of unchanged v34 evaluation",
+  "preparation_protocol_sha256": "4addecd70838e0490054c59a8649e1f857bcec11df43b47510de389b041ed337",
+  "code": {
+    "scripts/evaluate_joint_increment_v35.py": "378e3a399400993398b8fb34b61fcb8fb3d978d2f952ee75270b6956e770a338",
+    "scripts/verify_joint_increment_v35.py": "abf4bcffc60b964506d1e49e624fddca9e76dfc1e64d6c86d171b03a9de6121d",
+    "scripts/rolling_joint_increment_v35.py": "2439d72ccdfc90742c2a49ab075782f4c9931ac3f7ed0c02e14cd55371aac2c8",
+    "scripts/report_joint_increment_v35.py": "021cb2062c5caaa6c9c07faffec56657603a670399ecd0ee4288effce4da6723",
+    "tests/test_joint_increment_evaluation_v35.py": "1484e6658771c676bfe2e4f08e8d7c993412c888a7c302c23f083c364e136fa1"
+  },
+  "frozen_metrics_source": "v34 protocol evaluation and gates, no new threshold or selection",
+  "training_predictions_inspected": false,
+  "primary_control": "v30 same actuator command input boundary",
+  "aggregation": "Within flight MSE then square root, equal flight and seed weights",
+  "rolling": "All50 rolling observed H26 anchors, derivative accumulation offline diagnostic only",
+  "validation_accessed": false,
+  "sealed_test_accessed": false,
+  "reserved_accessed": false
+}

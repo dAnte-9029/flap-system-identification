@@ -1,0 +1,14 @@
+{
+  "commit": "c9af571575af33d5403fbb479256848797c801e2",
+  "files": {
+    "platforms/common/uORB/Subscription.hpp": {
+      "blob": "723427d840d4511b0915ca15ee76a91e507a68bf",
+      "sha256": "0d350258d6f3d2833b91183a36b3ea4efe0d318e077b79e13efcfb613bbf6d04"
+    },
+    "platforms/common/uORB/SubscriptionMultiArray.hpp": {
+      "blob": "28a7fff95e266fb3fd8c779a24bdf7c51cc6bf75",
+      "sha256": "28e453237f036a2cf18f30871de1ce3ab659dae10e3d3942aba15ac66f61e525"
+    }
+  },
+  "inference": "Under no intervening publication, first update consumes same instance0 before control-surface update; actual task interleaving unknown. Alternative delayed synthetic feedback explicitly evaluated."
+}

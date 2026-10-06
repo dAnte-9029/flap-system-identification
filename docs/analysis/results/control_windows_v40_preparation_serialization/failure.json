@@ -1,0 +1,5 @@
+{
+  "stage": "causal_warmup_serialization",
+  "error": "numpy.bool_ is not JSON serializable",
+  "coupled_model_replay_started": false
+}

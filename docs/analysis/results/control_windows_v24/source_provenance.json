@@ -1,0 +1,30 @@
+{
+  "commit": "c9af571575af33d5403fbb479256848797c801e2",
+  "files": {
+    "src/lib/rate_control/rate_control.cpp": {
+      "blob": "b990aac9b83cbff24500b71a08d37e0198602e88",
+      "snapshot": "source/rate_control.cpp",
+      "sha256": "6889ca65e148ffbdc1da24db60204515fcf26ba97717d3e51c877a1c2792ec78"
+    },
+    "src/lib/rate_control/gain_compression.cpp": {
+      "blob": "7e1e172de4d49498274b0141de1369c8227487fc",
+      "snapshot": "source/gain_compression.cpp",
+      "sha256": "e7c7b4325f8d6fa5824a19f4e96dd311cffe6e8b9d463a9ef8aaf2b8da1994b0"
+    },
+    "src/modules/fw_rate_control/FixedwingRateControl.cpp": {
+      "blob": "7f15661b546c86ff42b4e241b0f5b1408cc9c7bc",
+      "snapshot": "source/FixedwingRateControl.cpp",
+      "sha256": "f629723bb627cd166c9fd0f7d13d7b57c34e902abf4ada7dd82d4d7f60071e75"
+    },
+    "src/modules/fw_rate_control/FixedwingRateControl.hpp": {
+      "blob": "4ce2e767a169d93ae42fc8d0fd59b90aa62ef4ac",
+      "snapshot": "source/FixedwingRateControl.hpp",
+      "sha256": "b5cef2003af3e5cf81fc28d4532a7893df66f408600bbf67f158d37ea97f0873"
+    },
+    "src/lib/mathlib/math/filter/AlphaFilter.hpp": {
+      "blob": "b80e2a73f593c029b3098808c4e108cbde56cb29",
+      "snapshot": "source/AlphaFilter.hpp",
+      "sha256": "f5397a18862e2e7fa21aa8dcb589c0737005d6b2d34f53c96d3059692c0bf2d8"
+    }
+  }
+}

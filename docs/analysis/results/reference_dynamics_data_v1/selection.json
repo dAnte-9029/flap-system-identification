@@ -1,0 +1,12 @@
+{
+  "primary_group": "dffa8f85ef5af4837a1b8ada1a789e37b0d0e5f254323dfc2f620de078ca0844",
+  "train_selection_only": true,
+  "train_windows": 7440,
+  "validation_windows": 0,
+  "train_flights": 11,
+  "validation_flights": 0,
+  "paired_validation_available": false,
+  "normalization_path": "dataset/reference_dynamics_data_v1/normalization.npz",
+  "ready_for_training_preflight": false,
+  "control_validated": false
+}

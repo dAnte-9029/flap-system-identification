@@ -1,0 +1,8 @@
+{
+  "parent_selection_sha256": "49cf2aefecbba64fe510e78396ee19483c159bcbfca52949b39b68ded9d962b4",
+  "source_dataset_manifest_sha256": "84cac37ebf73f47802a4b5d3afff48d97554ac3aedfdd1cb6fb9ec5d618b919f",
+  "arrays": "dataset/control_windows_v2/windows.npz",
+  "normalization": "dataset/control_windows_v2/normalization.npz",
+  "feature_contract": "unit_gravity_v1",
+  "sealed_test_accessed": false
+}

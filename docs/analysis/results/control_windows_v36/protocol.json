@@ -1,0 +1,42 @@
+{
+  "stage": "v36 frozen observed maneuver response audit",
+  "parents": {
+    "docs/analysis/results/control_windows_v29": "49ffd01eb46a8fd80e6e193143b25be4212cc78fdb11725feb95c5a495e9b231",
+    "docs/analysis/results/control_windows_v30": "d7fa86921e498c47875ae4144e13899e907d4104e6b1ad1f6cfdb4bdde6f8b18",
+    "docs/analysis/results/control_windows_v31": "28bc012980faf0c4fe854c766d6abcc7e77295fdf2bb0fb2ce2f6278655f1209",
+    "docs/analysis/results/control_windows_v33": "487d47eb0d69e6808b9a5a738fd33733fa45e3cfb9dd0717c562673b58e60773",
+    "docs/analysis/results/control_windows_v35": "8329f834d415102d3949635fe39ea2c7f2ea8bf0d0aaa9ecee096102ac037e8a"
+  },
+  "code": {
+    "scripts/audit_response_v36.py": "f26cb874dab5207d4f6705610dc316de46b01ce7ccc11e27b7b2c9bf94affe7a",
+    "scripts/response_audit_v36.py": "a9c7ce1ad7f4fa8ff7b3ec16dfbfebcf86df77272de4d6f15119845985d70605",
+    "tests/test_response_audit_v36.py": "8113a2f1a6ecdb4af7f77b6b9db98b1015c208724aff0ec56f0f323f678b4caa",
+    "scripts/actuator_diagnostics_v31.py": "d6f334b15b0228f3e8439480a8f87d3d9c13054a815162c82cec9ca1df911885",
+    "scripts/controller_support_v26.py": "012f4833291229bb44e5c98b8bfd3be6cf896ad3a582d94ff286917198f9e6d6",
+    "scripts/reference_error_structure_v9.py": "bb3d6a5af81a71cb65ee01ab962d3584e259cf11b28e2775212c0988a0110333"
+  },
+  "scope": "All407 original train parents, five OOF flights, seeds17/23/42. Same v30/v35 models. No training, checkpoint modification, window deletion or validation/sealed/reserved access.",
+  "strata": "Reuse immutable v31 mode/frequency/allocator and support strata verbatim. Verify fit-only support scaling/distances. Future-command support is offline only.",
+  "events": "Input-only retrospective anchors: per parent and modal command, max absolute mean(next5)-mean(previous5) in first25 command positions0..24. Origin command is future0; history origin omitted from previous5. Qualify if nonzero and >=75th percentile of corresponding FIT-parent maxima, fit-flight-balanced. One anchor per channel/parent; several channels may share support. No output-based thresholds or exclusions. All parents remain in full metrics.",
+  "response": "Each prediction and true curve minus its own pre5 rate mean, post25samples (next20..500ms). Pre5 uses true pre-origin history and its own predicted/true subsequent history. Report raw response errors separately from full rollout errors. Late mean samples5:25 defines sign, numerical-zero tolerance1e-12 only; weak/opposite/neutral outcomes retained, not causal control directions.",
+  "timing": "Oracle alignment +/-5samples on fixed truth5:20; predictions5+lag:20+lag, separately centered. Positive lag means later prediction aligns with earlier truth. Best per-flight/seed lag after seeing outcomes is not measured actuator delay or a deployed correction.",
+  "amplitude_coupling": "All4modal channels x3rate axes, RMS amplitude and sustained difference, shape cosine. Cooccurrence if any other normalized contrast at anchor >=0.5 target contrast, normalizer=fit event75th-percentile floor1e-6. Modal command-difference correlations and covariance eigenvalues standardized on fit only. These are descriptive coupled closed-loop observations, not isolated gains.",
+  "persistence": "Exact full1s bias/amplitude/shape decomposition, early/late MSE. v35 rolling derivative error mean and per-parent accumulated p/q/r retained and stratified. Attitude integration with single-axis truth substitutions is offline oracle only, no GRU reroll.",
+  "weighting": "Within-flight MSE then root, equal flights within seed then equal seeds. Sign means likewise equal-flight/seed. Report event/parent/flight counts; related channel anchors and rolling observations are not independent experiments.",
+  "decisions": "No new promotion threshold or response-selected subset. Preserve v34 absolute and relative gates; control readiness remains false without causal-response and closed-loop evidence. Decide next research step from complete audit, not best subset.",
+  "phase_contract": {
+    "definition": "logged wing_phase zero; Hall consistency is checked separately",
+    "installation_consistency": "not_confirmed",
+    "status": "unconfirmed_physical_pose"
+  },
+  "frequency_contract": {
+    "column": "flap_frequency_hz",
+    "ratio": 7.909090995788574,
+    "rescaling": "none; September logged ratio, not April ratio8"
+  },
+  "model_promoted": false,
+  "training_started": false,
+  "validation_accessed": false,
+  "sealed_test_accessed": false,
+  "reserved_accessed": false
+}

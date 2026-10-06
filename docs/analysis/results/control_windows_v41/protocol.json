@@ -1,0 +1,114 @@
+{
+  "stage": "v41 frozen state-to-action error propagation",
+  "status": "frozen_before_execution",
+  "code": {
+    "scripts/action_propagation_v41.py": "1d20e8b4ea9e4ea0c7d4d1630f53110d553d43f7b0207b63db2cf44391d9eff2",
+    "scripts/run_action_propagation_v41.py": "4c0882ecb2053c102e837e6074e0e9d38e1c1fc34f4f296b5dc18d043e9e44ae",
+    "tests/test_action_propagation_v41.py": "39938838c91be0f9ec61b00d2f914bd6e2d48b965f7192a40148db4125a628d6"
+  },
+  "parents": {
+    "docs/analysis/results/control_windows_v29": "49ffd01eb46a8fd80e6e193143b25be4212cc78fdb11725feb95c5a495e9b231",
+    "docs/analysis/results/control_windows_v40": "8e29c423373d24461329cf2d75fb9781323986e860fabd93d62095fb5803ec8e",
+    "docs/analysis/results/control_windows_v39": "fef6e6c041caa939799ede8b5eeb5910c49722a05ba3734c2c2d0f73928238fd"
+  },
+  "scope": "All407 originaltrain parents, all30model trajectories and4v40variants. No retraining, new controller design, window removal or developmentvalidation/sealed/reserved.",
+  "branches": [
+    "mm",
+    "mt",
+    "tm",
+    "tt",
+    "p",
+    "q",
+    "r",
+    "roll",
+    "pitch",
+    "rates",
+    "attitude",
+    "integral",
+    "compression",
+    "yaw_memory"
+  ],
+  "state_schema": [
+    [
+      "integral",
+      3
+    ],
+    [
+      "gain",
+      3
+    ],
+    [
+      "cached_gain",
+      3
+    ],
+    [
+      "hpf",
+      3
+    ],
+    [
+      "energy",
+      3
+    ],
+    [
+      "previous_effort",
+      3
+    ],
+    [
+      "positive",
+      3
+    ],
+    [
+      "negative",
+      3
+    ],
+    [
+      "airspeed_filter",
+      1
+    ],
+    [
+      "yaw_euler",
+      1
+    ],
+    [
+      "yaw_body",
+      1
+    ],
+    [
+      "last_rate_sp",
+      3
+    ],
+    [
+      "unallocated",
+      3
+    ]
+  ],
+  "branch_semantics": {
+    "mm": "model controller history/model current plant",
+    "mt": "model history/measured plant",
+    "tm": "teacher history/model plant",
+    "tt": "teacher history/measured plant",
+    "p": "Replace only measuredp at fixed model history",
+    "q": "Replace only measuredq",
+    "r": "Replace only measuredr",
+    "roll": "Replace only measuredroll angle",
+    "pitch": "Replace only measuredpitch angle",
+    "rates": "Replace all three rates",
+    "attitude": "Replace both roll/pitch angles",
+    "integral": "Replace only model integral with teacher integral at model plant",
+    "compression": "Replace gain/cachedgain/HPF/energy/previous-effort group with teacher; only cachedgain affects this tick output",
+    "yaw_memory": "Replace oldyaw/bodyyaw/last-rate-sp memory with teacher at model plant"
+  },
+  "timing": "At each original20ms boundary before the attitude update, clone factual controller states and evaluate one native tick. Only factual histories advance all original microticks on unchanged v40 trajectories. No oracle is propagated into later state or GRU.",
+  "targets": "Report each branch against real logged actions AND matchedteacher; teacher is approximate, not true firmware hidden state.",
+  "decomposition": "D=mm-tt; P=mm-mt; H=mt-tt; exactD=P+H. Also reversed-order P2=tm-tt,H2=mm-tm; interaction=mm-mt-tm+tt. Signed cross moments of P,H withD are descriptive and may cancel; not causal percentages or additive independent effects.",
+  "evaluation": "All axes, horizons .1/.5/1s prefixes, time curves, flight/mode and original v40 currentstate/command-support strata. Equalflight then equalseed RMSE. No new promotion thresholds, no best-oracle selection for deployment.",
+  "tolerance": {
+    "factual_rtol": 0,
+    "factual_atol": 0,
+    "identity_atol": 1e-12
+  },
+  "model_promoted": false,
+  "validation_accessed": false,
+  "sealed_test_accessed": false,
+  "reserved_accessed": false
+}

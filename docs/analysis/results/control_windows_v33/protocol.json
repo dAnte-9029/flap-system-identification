@@ -1,0 +1,102 @@
+{
+  "stage": "v33 frozen rolling H26 history diagnostic",
+  "status": "frozen_before_diagnostic",
+  "code": {
+    "scripts/audit_rolling_history_v33.py": "70d41c1bb1179bed09adf33f9da2e01282923aa26ba3c6f86a93afe1e9b1727f",
+    "scripts/rolling_history_v33.py": "c2dec7f14d51b46c087788c772d546d758fd93236440bdf44effa74f36c86c6d",
+    "tests/test_rolling_history_v33.py": "0568438ecd6eee89a197747fa5281fe9b99511633e096239e1dcc0d4d37eec61",
+    "tests/test_rollout_trace_v32.py": "d64248f76f586589f383b3a2ada42129432c8ef944c67fe804bbbe0d586468aa",
+    "src/system_identification/data/reference_windows.py": "064945839984cae347a54cb681daf24b4dbfd67574d5adfb3f88a5be9d50ba44",
+    "src/system_identification/models/actuator_command_gru.py": "f73e5a762033d23ef90c349b1421147d309c7f85edc3694125269805e2a918b8",
+    "src/system_identification/models/reference_gru_unit_gravity.py": "0b80d78ef64f54840756f969c338c906224a44b8da32e5b067f522fd2758d213",
+    "src/system_identification/models/trajectory_main_v1.py": "b61dd09701b3bfe0176f1a406e4c511b58092fb080b47af115aa4c54681a7e5a",
+    "scripts/rollout_trace_v32.py": "b5652215773e0cf528a7da14bad41caf2cdd6cd7242ef2226009248631935ccb"
+  },
+  "parents": {
+    "docs/analysis/results/control_windows_v29": "49ffd01eb46a8fd80e6e193143b25be4212cc78fdb11725feb95c5a495e9b231",
+    "docs/analysis/results/control_windows_v23": "3b060e6e77850b9de52a4a3fc5d286dad31251c4d4fd5e8577c07e971480f4a5",
+    "docs/analysis/results/control_windows_v28": "fcd22c3bcff805abb867e975491d80af108876b4d35fba11d6b7f08b65b7d64f",
+    "docs/analysis/results/control_windows_v30": "d7fa86921e498c47875ae4144e13899e907d4104e6b1ad1f6cfdb4bdde6f8b18",
+    "docs/analysis/results/control_windows_v32": "b612db7df27f9c9d778993c176c526b174ac64b4a1d065a59a07290ec18ca69e"
+  },
+  "scope": "All407 original train parents, same5flight folds and3seeds; v23/v30 frozen models. 50rolling anchors per parent are correlated diagnostic observations, NOT20350 independent training windows. No new partition/filter/normalization/training.",
+  "extraction": "Use pinned original five train contract caches, v23 source_points for rate references, v28 actuator_grid. Reuse extract_window(history26,horizon1) at origin+k,k0..49. Each support lies within original origin-26..+50. Check original validity/reset/mode/gap rules at every anchor. History state/reference/command origin+k-25..origin+k, lagged actuator origin+k-26..origin+k-1; current left-endpoint command atorigin+k, targetorigin+k+1.",
+  "phase": "Only existing cached logged mechanical phase; reanchor all26history phases to each rolling origin. Native decoder starts relativephase0 and holds frequency/airspeed from latest rolling history. Not April ratio8 or newly reconstructed physical phase. Future local observations are available only as rolling time advances, not at original forecast origin.",
+  "variants": {
+    "rolling_current": "Native rolling H26 re-encoding with latest causal phase/frequency/airspeed context. Deployment-shaped ONE STEP only.",
+    "legacy_current": "Use v32 true-state-recursive pre-update hidden, with native rolling current recurrent input.",
+    "rolling_legacy": "Use rolling H26 encoder hidden with v32 true-state-recursive recurrent input (original held phase/frequency/air).",
+    "legacy_legacy": "Replay v32 true-state-recursive hidden/input pair exactly, giving a bridge to previous stage."
+  },
+  "contrasts": "Cross hidden-source and decoder-context factors. Hidden-source changes whole encoder history including historyphase/context; cannot interpret as pure abstract memory effect. Other3branches are off-distribution diagnostic combinations, not deployable models.",
+  "metrics": "Local20ms p/q/r MSE versus same-point previous true rate persistence, finite-difference interval derivative bias, and offline accumulated predicted derivative from parent initial rate. Oracle derivative sum is not a self-consistent physical or1s prediction. Equal-flight/seed weighting; no control promotion or new pass thresholds.",
+  "verification": "Every rollingorigin0 input/label equals parent; all50targets equal parent; allcurrent physical states equal previous targets; source/timestamp lineage; originalfirststep exact; native direct forward matches new branch; legacy branch exactly reproducesv32 raw/derivative/rates; native input difference restricted to context apart from quaternion normalization roundoff; unique407perseed; hashes unchanged.",
+  "phase_contract": {
+    "definition": "logged wing_phase zero; Hall consistency is checked separately",
+    "installation_consistency": "not_confirmed",
+    "status": "unconfirmed_physical_pose"
+  },
+  "frequency_contract": {
+    "column": "flap_frequency_hz",
+    "ratio": 7.909090995788574,
+    "rescaling": "none; September logged ratio, not April ratio8"
+  },
+  "sources": [
+    {
+      "log_id": "2026.9.6/log_20_2026-9-6-18-58-10.ulg",
+      "source": {
+        "path": "/home/zn/QgcLogs/2026.9.6/log_20_2026-9-6-18-58-10.ulg",
+        "sha256": "3b0afa4b3526fae934d9705082c0dbfe247fc39baff68014c06cf6642e71275e",
+        "partition": "train"
+      },
+      "cache": "dataset/reference_dynamics_data_v1/contract/26ba9c99346eef34.npz",
+      "cache_sha256": "08159a90419eba88aa278a88cb3ae71ae1fa968c3dbf487f71aee53df3eba355"
+    },
+    {
+      "log_id": "2026.9.6/log_17_2026-9-6-18-34-06.ulg",
+      "source": {
+        "path": "/home/zn/QgcLogs/2026.9.6/log_17_2026-9-6-18-34-06.ulg",
+        "sha256": "37ff9f8ea4e2e378fc13394288aa145a462259e2f53fa15af9511082f0e6d558",
+        "partition": "train"
+      },
+      "cache": "dataset/reference_dynamics_data_v1/contract/4446fd466bb7821d.npz",
+      "cache_sha256": "ff58c51e5f6b24a658fcba58ee3e28dd0f147a6bb73a90ea6800943801165375"
+    },
+    {
+      "log_id": "2026.9.6/log_28_2026-9-6-07-01-38.ulg",
+      "source": {
+        "path": "/home/zn/QgcLogs/2026.9.6/log_28_2026-9-6-07-01-38.ulg",
+        "sha256": "73dd94d60553a00efb3e2d9009430686c08ee611f11eb4e3f8e3a427f26df842",
+        "partition": "train"
+      },
+      "cache": "dataset/reference_dynamics_data_v1/contract/52364e098db4b9af.npz",
+      "cache_sha256": "5801d58118e7695b54e83cf2850e04b683b860ea0cafedc171d91d6fbfc08797"
+    },
+    {
+      "log_id": "2026.9.6/log_19_2026-9-6-18-52-30.ulg",
+      "source": {
+        "path": "/home/zn/QgcLogs/2026.9.6/log_19_2026-9-6-18-52-30.ulg",
+        "sha256": "30f27b3c2ee46a05ed6108ec01a2150cd5c8fedaf4f0cb7a1f0347698412aacd",
+        "partition": "train"
+      },
+      "cache": "dataset/reference_dynamics_data_v1/contract/8d835123654f62c7.npz",
+      "cache_sha256": "7037dea0fd686a73ad8ee4f94a1573221f1736645cb6c978d35fbff79aa5c602"
+    },
+    {
+      "log_id": "2026.9.6/log_18_2026-9-6-18-46-20.ulg",
+      "source": {
+        "path": "/home/zn/QgcLogs/2026.9.6/log_18_2026-9-6-18-46-20.ulg",
+        "sha256": "603a941c5ebbfcdf27b80b0d1c4b2de65dd4e114fdefb64bb70896e409c135a8",
+        "partition": "train"
+      },
+      "cache": "dataset/reference_dynamics_data_v1/contract/98850e05e3b89ecb.npz",
+      "cache_sha256": "799a99539f8e7ae90d7a1917513225e2ee8b94cb62d01b4a073edd8c02829703"
+    }
+  ],
+  "training_started": false,
+  "model_promoted": false,
+  "baseline_retained": "A1600",
+  "validation_accessed": false,
+  "sealed_test_accessed": false,
+  "reserved_accessed": false
+}

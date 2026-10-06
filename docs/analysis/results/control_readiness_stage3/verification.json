@@ -1,0 +1,14 @@
+{
+  "targeted_tests_passed": 12,
+  "gain_source_parity_passed": true,
+  "gain_max_error": 1.795584727570798e-07,
+  "raw_log_hash_checks_passed": 3,
+  "common_scoring_mask_check": true,
+  "finite_metrics": true,
+  "script_syntax_pass": true,
+  "sealed_test_opened": false,
+  "september19_opened": false,
+  "full_suite_run": false,
+  "external_px4_changed": false,
+  "scope": "offline component and acquisition precheck; no flight readiness certification"
+}

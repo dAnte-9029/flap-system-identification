@@ -1,0 +1,5 @@
+partition,axis_name,candidates,flights,single_axis
+train,pitch,24,20,1
+train,roll,6,5,4
+validation,pitch,16,9,2
+validation,roll,7,7,4

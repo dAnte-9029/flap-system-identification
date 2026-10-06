@@ -1,0 +1,45 @@
+{
+  "stage": "v15 observedhistory refresh diagnosis",
+  "source_pins": {
+    "docs/analysis/results/control_windows_v8/delivery_manifest.json": "bf358676286f34af65bc140435eea00a978ebf7c3f1e018cb2eff9e349483ad6",
+    "docs/analysis/results/control_windows_v12/delivery_manifest.json": "064ac0c8b9600d09a495b1ad3e43b40fb666f09979be73f86537a38b80282bbf",
+    "docs/analysis/results/control_windows_v14/delivery_manifest.json": "488a94dfa4172b53acf23aed1273f42f77e01ca3588fda4df9044fbf789f8507",
+    "docs/analysis/results/control_windows_v2/manifest.json": "84cac37ebf73f47802a4b5d3afff48d97554ac3aedfdd1cb6fb9ec5d618b919f",
+    "docs/analysis/results/reference_dynamics_data_v1/training_contract/manifest.json": "3c046faa6ad492f6654a19b00090bc2fb84c57d3fcd868456cc79f30e6399b0d",
+    "scripts/run_reference_refresh_v15.py": "b25f6d585527d8aba643c78ed1221558a8232b364411e9d41ccb4260fe99cf8e",
+    "scripts/reference_refresh_v15.py": "dadba7451fcb1d0233d44f4c77b29707bcb987fb4d0188319212eccebb25be13",
+    "tests/test_reference_refresh_v15.py": "fac59b7ce8786d63bc35df25427dca9e5564b95599ccb4736cc9f7d4b3e6ae44",
+    "src/system_identification/data/reference_windows.py": "064945839984cae347a54cb681daf24b4dbfd67574d5adfb3f88a5be9d50ba44",
+    "dataset/reference_dynamics_data_v1/contract/4446fd466bb7821d.npz": "ff58c51e5f6b24a658fcba58ee3e28dd0f147a6bb73a90ea6800943801165375",
+    "dataset/reference_dynamics_data_v1/contract/98850e05e3b89ecb.npz": "799a99539f8e7ae90d7a1917513225e2ee8b94cb62d01b4a073edd8c02829703",
+    "dataset/reference_dynamics_data_v1/contract/8d835123654f62c7.npz": "7037dea0fd686a73ad8ee4f94a1573221f1736645cb6c978d35fbff79aa5c602",
+    "dataset/reference_dynamics_data_v1/contract/26ba9c99346eef34.npz": "08159a90419eba88aa278a88cb3ae71ae1fa968c3dbf487f71aee53df3eba355",
+    "dataset/reference_dynamics_data_v1/contract/52364e098db4b9af.npz": "5801d58118e7695b54e83cf2850e04b683b860ea0cafedc171d91d6fbfc08797"
+  },
+  "phase_contract": {
+    "definition": "logged wing_phase zero; Hall consistency is checked separately",
+    "installation_consistency": "not_confirmed",
+    "status": "unconfirmed_physical_pose"
+  },
+  "frequency_contract": {
+    "column": "flap_frequency_hz",
+    "ratio": 7.909090995788574,
+    "rescaling": "none; September logged ratio, not April ratio8"
+  },
+  "scope": "407originaltrain parents, same5outerfolds x3v8hold GRUseeds,fit+OOF. No retraining, new selection, development or sealed/reserved access.",
+  "arms": [
+    "free50",
+    "refresh5",
+    "refresh10",
+    "persistence50",
+    "persistence5",
+    "persistence10"
+  ],
+  "observations": "For reset5 or10, rebuild complete26sample observedhistory at origin+0,5,..45 or origin+0,10,..40; actuator ends one sample before current origin; reencodeGRU, reset physicalstate, relativephase,freq,airspeed. Fixed parent starts/strata retained. No new labels outsideparentorigin+50.",
+  "inputs": "each local forecast uses measurements only up to its own origin, actualcommands only through origin-1 and plannedreference prefix from neworigin. Later originalforecast observations are allowed ONLY after resettime, never called autonomous1s forecast.",
+  "fairness": "all arms scored against identical50 originaltargettimes. Local output startsone step AFTER reset, never inserting observation as zeroerror prediction. First5/10steps must match originalfree rollout. Persistence holds observedrates/velocity/quaternion constant withsame reset cadence; simplebaseline, not physicalquaternion integration.",
+  "metrics": "perflight RMSE then equalflights/seeds forfull .1/.2/.5/1sprefix; endpointprofiles vs globalelapsedtime; localage20..100/200ms withfree predictions scored onidenticalglobaltargetpositions for eachage. Fixedv12 originalhistoryfrequency strata only.",
+  "limitations": "reset jointly changes state, hiddenhistory, phase/frequency, measurement freshness and forecastage; benefit not attributable only to integrator drift. Fullstate persistence may be unphysical. No controlreadiness or absolute1s gate applied to refreshed outputs.",
+  "diagnostic_only": true,
+  "sealed_test_accessed": false
+}

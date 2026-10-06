@@ -1,0 +1,69 @@
+{
+  "source_manifest_sha256": "130ddb710a54125d481cad22db2cf9c9f081536202984b2c2e289cc78465519e",
+  "source_logs": {
+    "2026.9.6/log_20_2026-9-6-18-58-10.ulg": {
+      "path": "/home/zn/QgcLogs/2026.9.6/log_20_2026-9-6-18-58-10.ulg",
+      "sha256": "3b0afa4b3526fae934d9705082c0dbfe247fc39baff68014c06cf6642e71275e",
+      "partition": "train"
+    },
+    "2026.9.6/log_17_2026-9-6-18-34-06.ulg": {
+      "path": "/home/zn/QgcLogs/2026.9.6/log_17_2026-9-6-18-34-06.ulg",
+      "sha256": "37ff9f8ea4e2e378fc13394288aa145a462259e2f53fa15af9511082f0e6d558",
+      "partition": "train"
+    },
+    "2026.9.6/log_28_2026-9-6-07-01-38.ulg": {
+      "path": "/home/zn/QgcLogs/2026.9.6/log_28_2026-9-6-07-01-38.ulg",
+      "sha256": "73dd94d60553a00efb3e2d9009430686c08ee611f11eb4e3f8e3a427f26df842",
+      "partition": "train"
+    },
+    "2026.9.6/log_19_2026-9-6-18-52-30.ulg": {
+      "path": "/home/zn/QgcLogs/2026.9.6/log_19_2026-9-6-18-52-30.ulg",
+      "sha256": "30f27b3c2ee46a05ed6108ec01a2150cd5c8fedaf4f0cb7a1f0347698412aacd",
+      "partition": "train"
+    },
+    "2026.9.6/log_18_2026-9-6-18-46-20.ulg": {
+      "path": "/home/zn/QgcLogs/2026.9.6/log_18_2026-9-6-18-46-20.ulg",
+      "sha256": "603a941c5ebbfcdf27b80b0d1c4b2de65dd4e114fdefb64bb70896e409c135a8",
+      "partition": "train"
+    }
+  },
+  "checks": [
+    {
+      "log_id": "2026.9.6/log_20_2026-9-6-18-58-10.ulg",
+      "windows": 64,
+      "all_source_rows_causal": true,
+      "all_window_indices_match": true,
+      "cache_values_max_abs": 2.9787448507789804e-08
+    },
+    {
+      "log_id": "2026.9.6/log_17_2026-9-6-18-34-06.ulg",
+      "windows": 97,
+      "all_source_rows_causal": true,
+      "all_window_indices_match": true,
+      "cache_values_max_abs": 2.977587765240486e-08
+    },
+    {
+      "log_id": "2026.9.6/log_28_2026-9-6-07-01-38.ulg",
+      "windows": 81,
+      "all_source_rows_causal": true,
+      "all_window_indices_match": true,
+      "cache_values_max_abs": 2.9707083348817775e-08
+    },
+    {
+      "log_id": "2026.9.6/log_19_2026-9-6-18-52-30.ulg",
+      "windows": 87,
+      "all_source_rows_causal": true,
+      "all_window_indices_match": true,
+      "cache_values_max_abs": 2.977220414646098e-08
+    },
+    {
+      "log_id": "2026.9.6/log_18_2026-9-6-18-46-20.ulg",
+      "windows": 78,
+      "all_source_rows_causal": true,
+      "all_window_indices_match": true,
+      "cache_values_max_abs": 2.979493152199808e-08
+    }
+  ],
+  "limits": "publication/sample bookkeeping only; sample_timestamp absent means physicalsampleage unknown. No independent sensor/servo latency measurement; intentionalone-step historyactuator offset retained.",
+  "sealed_test_accessed": false
+}

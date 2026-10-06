@@ -1,0 +1,5 @@
+{
+  "passed": 3,
+  "command": "pytest -q tests/test_action_propagation_v41.py",
+  "unchanged_test_result_reused": true
+}

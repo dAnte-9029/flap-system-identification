@@ -1,0 +1,35 @@
+{
+  "stage": "contract and training-capacity audit",
+  "source_manifest_sha256": "84cac37ebf73f47802a4b5d3afff48d97554ac3aedfdd1cb6fb9ec5d618b919f",
+  "script_sha256": "21b7f62ec83e542060e6141aaace983b3cbdc1cf6da0b0a07c9e8b128917033f",
+  "sealed_test_accessed": false,
+  "partitions": [
+    "train",
+    "validation"
+  ],
+  "validation_status": "repeatedly viewed development evaluation, not blind test",
+  "tiny_cohort": [
+    "4446fd466bb7821d_0_union0_block0_480",
+    "4446fd466bb7821d_3_union0_block0_6228",
+    "98850e05e3b89ecb_0_union0_block3_2037",
+    "98850e05e3b89ecb_6_union0_block3_7611",
+    "8d835123654f62c7_1_union0_block5_5333",
+    "26ba9c99346eef34_4_union0_block0_3346",
+    "52364e098db4b9af_2_union0_block0_2752",
+    "52364e098db4b9af_7_union0_block5_8253"
+  ],
+  "tiny_seed": 17,
+  "tiny_updates": 1600,
+  "tiny_batch": "all8",
+  "tiny_optimizer": "AdamW3e-4, weight_decay1e-4, clip1; unchanged loss/normalization",
+  "tiny_purpose": "memorization diagnostic only; no candidate selection from validation",
+  "waveform": "phase harmonic1+2 regression of centered residual; future phase allowed only in offline attribution, not operational inputs",
+  "conditional_next_experiment": "if train median harmonic fraction of p residual exceeds0.5, compare causal history-fitted p harmonic prior with A1600, same407windows/3seeds/1600updates; otherwise stop to report diagnosis",
+  "primary_horizons_s": [
+    0.5,
+    1.0
+  ],
+  "long_rollout": "stress only, not primary acceptance",
+  "candidate_acceptance": ">=5percent mean improvement on active p/q at0.5/1s across flights; all3seeds improve; no metric >5percent worse; absolute0.5s active p/q<=.15rad/s attitude<=3deg velocity<=.5m/s eachseed",
+  "response": "nominal waveform amplitude/time and reference ablation; neither supplies measured counterfactual truth; no optimizer unless absolute and response evidence passes"
+}

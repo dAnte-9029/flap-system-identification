@@ -1,0 +1,37 @@
+{
+  "task": "p/q waveform localization and constrained prefix-causal r mean research",
+  "source_pins": {
+    "docs/analysis/results/control_windows_v8/delivery_manifest.json": "bf358676286f34af65bc140435eea00a978ebf7c3f1e018cb2eff9e349483ad6",
+    "docs/analysis/results/control_windows_v9/delivery_manifest.json": "a24b85737d16615c6ad63f66abb15d4fff886d334f44ad99878e53688ed1441b",
+    "docs/analysis/results/control_windows_v2/manifest.json": "84cac37ebf73f47802a4b5d3afff48d97554ac3aedfdd1cb6fb9ec5d618b919f",
+    "dataset/control_windows_v2/windows.npz": "5e2c0a77eb1a8a17a14fe27b3fec80811b501a89d5e99f1752a9ec52fae96b8b",
+    "scripts/run_reference_axis_diagnostics_v10.py": "008bd6ec1ae9ebf2bb5dff65b5e7e0f45cd4c8b45c50ee16182d0cf3313b4510",
+    "scripts/reference_axis_diagnostics_v10.py": "d4c10c315d020cbf2e147df1feee7b1969e90fa3442f4a6610656fdae54e1d53",
+    "src/system_identification/models/reference_gru_yaw_mean.py": "fb4e8dcfb92245bb5e6c86cc02824833f595b49c3558a369e35914207b663390",
+    "tests/test_reference_axis_diagnostics_v10.py": "a9eee4154d8b53562fdaa1fef17bdd6708adb239d13263e20c3e3ebaf0f4071d"
+  },
+  "phase_contract": {
+    "definition": "logged wing_phase zero; Hall consistency is checked separately",
+    "installation_consistency": "not_confirmed",
+    "status": "unconfirmed_physical_pose"
+  },
+  "frequency_contract": {
+    "column": "flap_frequency_hz",
+    "ratio": 7.909090995788574,
+    "rescaling": "none; September logged ratio, not April ratio8"
+  },
+  "data": "same407originaltrainingwindows,5outerflight folds,3frozenholdGRUseeds; no new neural training, data screening, architecture search or sealed/reserved access",
+  "development_status": "v9 r route selected after prior training OOF analysis; repeated development evidence, not blind test",
+  "pq_diagnostic": "0.5/1s windows; fixed truth core excludes5samples eachend; lag -5..+5samples and positive least-squares gain clipped0..3; truthintercept removed percore; compare zero-lag gain and best-lag gain on identical support",
+  "pq_limit": "oracle reads futuretruth, lag may reflect periodic alignment, not identified actuator delay; not deployable or an error lowerbound; no rescreening by oracle result",
+  "yaw_target": "94past-onlyfeatures,flightbalancedridgealpha100 predict cumulative mean r forsteps1..50; outerquery excluded; finalcolumn must reproducev9 directmean1s parameters",
+  "yaw_update": "subtract previousbias from rawGRU proposedr; accumulate virtualuncorrectedprefix; desired bias=smoothstep(t/.1)*clip(predictedcumulative_mean-prefixmean,+/-trainingrstd). Slew limit2*trainingrstd persecond; update bias difference, integrate quaternion midpoint and feed correctedstate into GRU. Currentfrequencyheld.",
+  "empirical_limits": "train-derived amplitude/slew limits are only research constraints, not aircraft safety validation",
+  "causality": "targetmean uses observedhistory only; correction sees simulatedprefix only, not fullfutureGRUmean. Future reference suffix must not alter earlierpredictions. Bias startszero and uses finite slew; pose integrated with correctedrates.",
+  "oof_gate": "r1s fullwaveformRMSE gain>=5percent andr1swindowmeanRMSEgain>=10percent; everyseedpositive forboth, >=4of5flightpositive forwaveform; no allmetricp/q/r/velocity/attitude endpointregression>5percent at0.5/1s foranyseed",
+  "conditional_validation": "only if OOFgate passes: fitridge on all5trainingflights, attach to frozen3A1600 models, evaluate739developmentwindows once; never future measuredinputs. Otherwise no developmentcandidate evaluation.",
+  "controls": "always report reference-held sensitivity on trainingOOF; change in model reliance is not real counterfactual truth. No controller optimization or deployment.",
+  "absolute_gate": "p/q/r0.5s<=.15rad/s,attitude<=3deg,velocity<=.5m/s; controlresponse and closedloop evidence still separate",
+  "bootstrap": "2000 pairedwholeflight resamples seed910; fixedmodels only,5trainingflights, exploratory",
+  "sealed_test_accessed": false
+}

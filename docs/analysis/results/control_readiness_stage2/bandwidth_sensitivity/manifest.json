@@ -1,0 +1,84 @@
+{
+  "script_sha256": "26b678d32b69a28ede29392c00d778e7a514cee8dfbbdc221fcdea0b00adafda",
+  "primary_script_sha256": "7fa6722923199207e79dd1f900e3f86d168495f686dda419cad1a8be42ddc733",
+  "raw_logs": [
+    {
+      "partition": "train",
+      "path": "/home/zn/QgcLogs/2026.9.6/log_24_2026-9-6-06-28-38.ulg",
+      "sha256": "63967500f915ed124b1b4deacf8a47a563ab4419c0258c3522798577280c7dd0"
+    },
+    {
+      "partition": "train",
+      "path": "/home/zn/QgcLogs/2026.9.6/log_28_2026-9-6-07-01-38.ulg",
+      "sha256": "73dd94d60553a00efb3e2d9009430686c08ee611f11eb4e3f8e3a427f26df842"
+    },
+    {
+      "partition": "train",
+      "path": "/home/zn/QgcLogs/2026.9.6/log_17_2026-9-6-18-34-06.ulg",
+      "sha256": "37ff9f8ea4e2e378fc13394288aa145a462259e2f53fa15af9511082f0e6d558"
+    },
+    {
+      "partition": "train",
+      "path": "/home/zn/QgcLogs/2026.9.6/log_18_2026-9-6-18-46-20.ulg",
+      "sha256": "603a941c5ebbfcdf27b80b0d1c4b2de65dd4e114fdefb64bb70896e409c135a8"
+    },
+    {
+      "partition": "train",
+      "path": "/home/zn/QgcLogs/2026.9.6/log_19_2026-9-6-18-52-30.ulg",
+      "sha256": "30f27b3c2ee46a05ed6108ec01a2150cd5c8fedaf4f0cb7a1f0347698412aacd"
+    },
+    {
+      "partition": "train",
+      "path": "/home/zn/QgcLogs/2026.9.6/log_20_2026-9-6-18-58-10.ulg",
+      "sha256": "3b0afa4b3526fae934d9705082c0dbfe247fc39baff68014c06cf6642e71275e"
+    },
+    {
+      "partition": "validation",
+      "path": "/home/zn/QgcLogs/2026.9.7/log_21_2026-9-7-05-54-56.ulg",
+      "sha256": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088"
+    },
+    {
+      "partition": "validation",
+      "path": "/home/zn/QgcLogs/2026.9.7/log_22_2026-9-7-06-01-40.ulg",
+      "sha256": "a907493b8fd3708bac45e39fc54185e2fa4e9f9a35a71ba030f3f38b06c1d51f"
+    },
+    {
+      "partition": "validation",
+      "path": "/home/zn/QgcLogs/2026.9.7/log_23_2026-9-7-06-09-22.ulg",
+      "sha256": "4b5e90d7f0e7d8ecc77c4c680cde74d6848246d6878e3606503b97570bb9f462"
+    },
+    {
+      "partition": "validation",
+      "path": "/home/zn/QgcLogs/2026.9.7/log_24_2026-9-7-06-16-04.ulg",
+      "sha256": "a1945d5edee81010214065ee8ff847438d7306eb73e9a8aa359a727ff7a9070e"
+    },
+    {
+      "partition": "validation",
+      "path": "/home/zn/QgcLogs/2026.9.7/log_26_2026-9-7-06-30-26.ulg",
+      "sha256": "580d9dd51677020f5a87c43f51f9d7082d4157599eab9e148b683e4baa03eadd"
+    },
+    {
+      "partition": "validation",
+      "path": "/home/zn/QgcLogs/2026.9.7/log_27_2026-9-7-06-37-24.ulg",
+      "sha256": "f265efde972974cc8bad4223ace9abe36dceeddebf26d92fd0f9b1ae0498905b"
+    },
+    {
+      "partition": "validation",
+      "path": "/home/zn/QgcLogs/2026.9.7/log_28_2026-9-7-06-44-02.ulg",
+      "sha256": "8d1191724e9bb10dcc592dc354b6c8cc21f51ae79dd14e9960bc656411cb7758"
+    },
+    {
+      "partition": "validation",
+      "path": "/home/zn/QgcLogs/2026.9.7/log_29_2026-9-7-06-51-04.ulg",
+      "sha256": "0e3d4d085a0d8bcd87a2c76c5c3230e2ae238cf0d3b54051abd498e0b9c8bf8c"
+    },
+    {
+      "partition": "validation",
+      "path": "/home/zn/QgcLogs/2026.9.7/log_30_2026-9-7-06-58-22.ulg",
+      "sha256": "b9b276a937ef21b53dc65c8f8cdeb72063f754c0aa9b7a15448580fedd3e9933"
+    }
+  ],
+  "completed": true,
+  "sealed_test_opened": false,
+  "september19_opened": false
+}

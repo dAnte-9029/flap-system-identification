@@ -1,0 +1,58 @@
+[
+  {
+    "variant": "warm2_plus",
+    "q_improvement_percent": 9.764754765657946,
+    "all_seeds_q_improve": true,
+    "improving_flights": 5,
+    "protections_passed": 18,
+    "protections_total": 18,
+    "relative_gate": true,
+    "action_protections_passed": 12,
+    "action_protections_total": 12,
+    "absolute_passed": 3,
+    "absolute_total": 12,
+    "control_ready": false
+  },
+  {
+    "variant": "warm2_minus",
+    "q_improvement_percent": 9.773897897715223,
+    "all_seeds_q_improve": true,
+    "improving_flights": 5,
+    "protections_passed": 18,
+    "protections_total": 18,
+    "relative_gate": true,
+    "action_protections_passed": 12,
+    "action_protections_total": 12,
+    "absolute_passed": 3,
+    "absolute_total": 12,
+    "control_ready": false
+  },
+  {
+    "variant": "warm2_20ms",
+    "q_improvement_percent": 9.710083432084515,
+    "all_seeds_q_improve": true,
+    "improving_flights": 5,
+    "protections_passed": 18,
+    "protections_total": 18,
+    "relative_gate": true,
+    "action_protections_passed": 12,
+    "action_protections_total": 12,
+    "absolute_passed": 3,
+    "absolute_total": 12,
+    "control_ready": false
+  },
+  {
+    "variant": "warm2_delayed_feedback",
+    "q_improvement_percent": 9.790521481890424,
+    "all_seeds_q_improve": true,
+    "improving_flights": 5,
+    "protections_passed": 18,
+    "protections_total": 18,
+    "relative_gate": true,
+    "action_protections_passed": 12,
+    "action_protections_total": 12,
+    "absolute_passed": 3,
+    "absolute_total": 12,
+    "control_ready": false
+  }
+]

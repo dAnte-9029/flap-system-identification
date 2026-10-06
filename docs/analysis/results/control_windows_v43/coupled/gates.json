@@ -1,0 +1,114 @@
+[
+  {
+    "variant": "warm2_plus",
+    "tilt": {
+      "improvement_percent": -1.4059907119788662,
+      "improving_seeds": 0,
+      "improving_flights": 0,
+      "passed": false
+    },
+    "legacy_q": {
+      "improvement_percent": -3.8247412984641294,
+      "improving_seeds": 0,
+      "improving_flights": 0,
+      "passed": false
+    },
+    "protections_passed": 27,
+    "protections_total": 27,
+    "tilt_with_protections": false,
+    "absolute_passed": 3,
+    "absolute_total": 12,
+    "control_ready": false,
+    "surface_improvement_percent": -2.1434785506260656,
+    "surface_improving_seeds": 0,
+    "surface_improving_flights": 0,
+    "surface_target_passed": false,
+    "action_protections_passed": 12,
+    "action_protections_total": 12,
+    "coupled_relative_gate": false
+  },
+  {
+    "variant": "warm2_minus",
+    "tilt": {
+      "improvement_percent": -1.4292918770959284,
+      "improving_seeds": 0,
+      "improving_flights": 0,
+      "passed": false
+    },
+    "legacy_q": {
+      "improvement_percent": -3.8305063794831895,
+      "improving_seeds": 0,
+      "improving_flights": 0,
+      "passed": false
+    },
+    "protections_passed": 27,
+    "protections_total": 27,
+    "tilt_with_protections": false,
+    "absolute_passed": 3,
+    "absolute_total": 12,
+    "control_ready": false,
+    "surface_improvement_percent": -2.196495497345552,
+    "surface_improving_seeds": 0,
+    "surface_improving_flights": 0,
+    "surface_target_passed": false,
+    "action_protections_passed": 12,
+    "action_protections_total": 12,
+    "coupled_relative_gate": false
+  },
+  {
+    "variant": "warm2_20ms",
+    "tilt": {
+      "improvement_percent": -1.3799277973833401,
+      "improving_seeds": 0,
+      "improving_flights": 0,
+      "passed": false
+    },
+    "legacy_q": {
+      "improvement_percent": -3.8261226422575456,
+      "improving_seeds": 0,
+      "improving_flights": 0,
+      "passed": false
+    },
+    "protections_passed": 27,
+    "protections_total": 27,
+    "tilt_with_protections": false,
+    "absolute_passed": 3,
+    "absolute_total": 12,
+    "control_ready": false,
+    "surface_improvement_percent": -1.9774630694031847,
+    "surface_improving_seeds": 0,
+    "surface_improving_flights": 0,
+    "surface_target_passed": false,
+    "action_protections_passed": 12,
+    "action_protections_total": 12,
+    "coupled_relative_gate": false
+  },
+  {
+    "variant": "warm2_delayed_feedback",
+    "tilt": {
+      "improvement_percent": -1.4422221021584969,
+      "improving_seeds": 0,
+      "improving_flights": 0,
+      "passed": false
+    },
+    "legacy_q": {
+      "improvement_percent": -3.8434024576778025,
+      "improving_seeds": 0,
+      "improving_flights": 0,
+      "passed": false
+    },
+    "protections_passed": 27,
+    "protections_total": 27,
+    "tilt_with_protections": false,
+    "absolute_passed": 3,
+    "absolute_total": 12,
+    "control_ready": false,
+    "surface_improvement_percent": -2.1549928723746836,
+    "surface_improving_seeds": 0,
+    "surface_improving_flights": 0,
+    "surface_target_passed": false,
+    "action_protections_passed": 12,
+    "action_protections_total": 12,
+    "coupled_relative_gate": false
+  }
+]

@@ -1,0 +1,43 @@
+{
+  "artifacts": {
+    "dataset_manifest.json": "d94423e9e918494a386158d48fa00b29f8fbde1934910d383f97234add7bd001",
+    "decision.json": "11363068da2f88042210e196ba7ee0a3b722d9a7337233d7014aa08109993d06",
+    "fold0/manifest.json": "3c9d984cfef92518b0a4c4b8f287f627f1215208aac615226fa3200cca4cc719",
+    "fold0/normalization.npz": "44abf3c7a58d8c02edb03a7698e72420845e57e29cc6f2ca66a90c9136085bb3",
+    "fold0/normalization_rows.csv": "de412239d6d73ca5e6b40639de629558c270abf7a643c32f78615a91313d98f0",
+    "fold1/manifest.json": "bfa38f56e0f1000ea0566100252ab85a63fe7b6bd636c791fa07360880a36169",
+    "fold1/normalization.npz": "1c10f6e66a5858b8853434bc03224962c0c9ac7490b3887f02b4434bf395c842",
+    "fold1/normalization_rows.csv": "8986e92f97d0cf1166337865e46565e682eb2973dfd08cb55bd273402721cd38",
+    "fold2/manifest.json": "41d4b568dcf3ec5d2a3bd7352171c196916c2afe54efb4f2c9aeda60ff2ff9e5",
+    "fold2/normalization.npz": "bd82f3b6951f44738fe28096c28134eb1f50e45a2d12a28853be25ca762b200a",
+    "fold2/normalization_rows.csv": "e78f4b0013d2001b4da45bdbe77ef0760502813e0579be1120a2bb76558a8e7d",
+    "fold3/manifest.json": "f79dd063d8f8f36702dfb7b22a8e6f8e53b68df1a84652fc0b153a936f40329d",
+    "fold3/normalization.npz": "0a8ec020fdaef37ee064605761820e43ae1719f8b34571f93b3e57d5a031e12f",
+    "fold3/normalization_rows.csv": "fb5ac7e2bf664780233e339a653ece2e28a9df0b74199f8eb73ee7632c81e222",
+    "fold4/manifest.json": "54a889e9c030f042a1d9d2fbc80a1f003f37f04f2d4ba1245ebf2ad93cbbf75f",
+    "fold4/normalization.npz": "62f7177363acb32acc1146665ab3d6d690e3fe19b8599d7e3cb224cd4881c07f",
+    "fold4/normalization_rows.csv": "d5574ac2dddb7704e7ab4cc0abfce99271a2bf09433a93387ddf93d108a731c8",
+    "protocol.json": "4116637ee77b1cb25bc1c059343869622fc6a235a14ad17e7c4af5e759214376",
+    "report_zh.md": "e2d73257e8501c4a1d88416beb6751e978f58d57b46092e14ed2345788be7d68",
+    "test_results.json": "61005e5a5fe2d4cab499519bc6293a463cb07885d75e50906b3bb6f64e9cfcfa",
+    "training_plan.json": "ee6e73cb4a527a20e014d323ccd0ecc954948f6698508425fb9193be7f9ab466",
+    "verification.json": "29208e5b1324d3824fa409bcb3b3f3ab58e98f49c431f6426b63a5687fedf99e",
+    "windows.csv": "7aa14314e616023ffa6350475b00a344432366711ef4c2237dfbefc515304496",
+    "windows.npz": "eb06dd11d48ee727f2b8656ff6c7fc170a929e2769a40f1f3a9bf6e6467a2a9d"
+  },
+  "code": {
+    "scripts/prepare_actuator_inputs_v29.py": "40ba7a036b098e7100ebe642e498b7dfc65d0a0a962844b23781e91b85845aa0",
+    "scripts/actuator_inputs_v29.py": "069960ba55a66320bb02ac5bcb03b92d584cfb4b2b7574d4dd4599c54ea31143",
+    "tests/test_actuator_inputs_v29.py": "c6f416dbfc8b04b42bb0e8f7132e1afe72b1cfc20d59cde0c2c11d6b19eff397",
+    "src/system_identification/models/actuator_command_gru.py": "f73e5a762033d23ef90c349b1421147d309c7f85edc3694125269805e2a918b8",
+    "src/system_identification/models/reference_gru_unit_gravity.py": "0b80d78ef64f54840756f969c338c906224a44b8da32e5b067f522fd2758d213",
+    "src/system_identification/models/trajectory_main_v1.py": "b61dd09701b3bfe0176f1a406e4c511b58092fb080b47af115aa4c54681a7e5a",
+    "scripts/train_control_windows_v2.py": "5dcfdb408981224786abdc01ada52ef90a357260035ea1f249624704b0152865",
+    "scripts/reference_groupcv_v8.py": "c4a2857f5f1935e5996ea7d224eacee9af3c34cc95ce90d2437f789ec75b85bd",
+    "scripts/audit_controller_support_v26.py": "b589bb103d7baa2a8b04f0429e9951a88624e1ab9c8843de0cee5749656dedc9"
+  },
+  "training_started": false,
+  "model_promoted": false,
+  "validation_accessed": false,
+  "sealed_test_accessed": false
+}

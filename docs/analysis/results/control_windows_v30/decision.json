@@ -1,0 +1,8 @@
+{
+  "status": "training_and_evaluation_complete",
+  "model_promoted": false,
+  "control_ready": false,
+  "baseline_retained": "A1600",
+  "descriptive_gate": false,
+  "next_step": "冻结15模型，先按既有飞行/模式/扑频层定位q误差与输入支持，比较训练内和OOF差异；不继续盲目增加网络、删窗或改权重。"
+}

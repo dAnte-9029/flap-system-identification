@@ -1,0 +1,255 @@
+{
+  "status": "passed",
+  "checkpoints_replayed": 30,
+  "full_oof_replays": [
+    {
+      "fold": 0,
+      "seed": 17,
+      "arm": "zero_history_control",
+      "windows": 97,
+      "full_oof_exact": true,
+      "full_held_exact": true
+    },
+    {
+      "fold": 0,
+      "seed": 17,
+      "arm": "observed_history_control",
+      "windows": 97,
+      "full_oof_exact": true,
+      "full_held_exact": true
+    },
+    {
+      "fold": 0,
+      "seed": 23,
+      "arm": "zero_history_control",
+      "windows": 97,
+      "full_oof_exact": true,
+      "full_held_exact": true
+    },
+    {
+      "fold": 0,
+      "seed": 23,
+      "arm": "observed_history_control",
+      "windows": 97,
+      "full_oof_exact": true,
+      "full_held_exact": true
+    },
+    {
+      "fold": 0,
+      "seed": 42,
+      "arm": "zero_history_control",
+      "windows": 97,
+      "full_oof_exact": true,
+      "full_held_exact": true
+    },
+    {
+      "fold": 0,
+      "seed": 42,
+      "arm": "observed_history_control",
+      "windows": 97,
+      "full_oof_exact": true,
+      "full_held_exact": true
+    },
+    {
+      "fold": 1,
+      "seed": 17,
+      "arm": "zero_history_control",
+      "windows": 78,
+      "full_oof_exact": true,
+      "full_held_exact": true
+    },
+    {
+      "fold": 1,
+      "seed": 17,
+      "arm": "observed_history_control",
+      "windows": 78,
+      "full_oof_exact": true,
+      "full_held_exact": true
+    },
+    {
+      "fold": 1,
+      "seed": 23,
+      "arm": "zero_history_control",
+      "windows": 78,
+      "full_oof_exact": true,
+      "full_held_exact": true
+    },
+    {
+      "fold": 1,
+      "seed": 23,
+      "arm": "observed_history_control",
+      "windows": 78,
+      "full_oof_exact": true,
+      "full_held_exact": true
+    },
+    {
+      "fold": 1,
+      "seed": 42,
+      "arm": "zero_history_control",
+      "windows": 78,
+      "full_oof_exact": true,
+      "full_held_exact": true
+    },
+    {
+      "fold": 1,
+      "seed": 42,
+      "arm": "observed_history_control",
+      "windows": 78,
+      "full_oof_exact": true,
+      "full_held_exact": true
+    },
+    {
+      "fold": 2,
+      "seed": 17,
+      "arm": "zero_history_control",
+      "windows": 87,
+      "full_oof_exact": true,
+      "full_held_exact": true
+    },
+    {
+      "fold": 2,
+      "seed": 17,
+      "arm": "observed_history_control",
+      "windows": 87,
+      "full_oof_exact": true,
+      "full_held_exact": true
+    },
+    {
+      "fold": 2,
+      "seed": 23,
+      "arm": "zero_history_control",
+      "windows": 87,
+      "full_oof_exact": true,
+      "full_held_exact": true
+    },
+    {
+      "fold": 2,
+      "seed": 23,
+      "arm": "observed_history_control",
+      "windows": 87,
+      "full_oof_exact": true,
+      "full_held_exact": true
+    },
+    {
+      "fold": 2,
+      "seed": 42,
+      "arm": "zero_history_control",
+      "windows": 87,
+      "full_oof_exact": true,
+      "full_held_exact": true
+    },
+    {
+      "fold": 2,
+      "seed": 42,
+      "arm": "observed_history_control",
+      "windows": 87,
+      "full_oof_exact": true,
+      "full_held_exact": true
+    },
+    {
+      "fold": 3,
+      "seed": 17,
+      "arm": "zero_history_control",
+      "windows": 64,
+      "full_oof_exact": true,
+      "full_held_exact": true
+    },
+    {
+      "fold": 3,
+      "seed": 17,
+      "arm": "observed_history_control",
+      "windows": 64,
+      "full_oof_exact": true,
+      "full_held_exact": true
+    },
+    {
+      "fold": 3,
+      "seed": 23,
+      "arm": "zero_history_control",
+      "windows": 64,
+      "full_oof_exact": true,
+      "full_held_exact": true
+    },
+    {
+      "fold": 3,
+      "seed": 23,
+      "arm": "observed_history_control",
+      "windows": 64,
+      "full_oof_exact": true,
+      "full_held_exact": true
+    },
+    {
+      "fold": 3,
+      "seed": 42,
+      "arm": "zero_history_control",
+      "windows": 64,
+      "full_oof_exact": true,
+      "full_held_exact": true
+    },
+    {
+      "fold": 3,
+      "seed": 42,
+      "arm": "observed_history_control",
+      "windows": 64,
+      "full_oof_exact": true,
+      "full_held_exact": true
+    },
+    {
+      "fold": 4,
+      "seed": 17,
+      "arm": "zero_history_control",
+      "windows": 81,
+      "full_oof_exact": true,
+      "full_held_exact": true
+    },
+    {
+      "fold": 4,
+      "seed": 17,
+      "arm": "observed_history_control",
+      "windows": 81,
+      "full_oof_exact": true,
+      "full_held_exact": true
+    },
+    {
+      "fold": 4,
+      "seed": 23,
+      "arm": "zero_history_control",
+      "windows": 81,
+      "full_oof_exact": true,
+      "full_held_exact": true
+    },
+    {
+      "fold": 4,
+      "seed": 23,
+      "arm": "observed_history_control",
+      "windows": 81,
+      "full_oof_exact": true,
+      "full_held_exact": true
+    },
+    {
+      "fold": 4,
+      "seed": 42,
+      "arm": "zero_history_control",
+      "windows": 81,
+      "full_oof_exact": true,
+      "full_held_exact": true
+    },
+    {
+      "fold": 4,
+      "seed": 42,
+      "arm": "observed_history_control",
+      "windows": 81,
+      "full_oof_exact": true,
+      "full_held_exact": true
+    }
+  ],
+  "paired_initialization_and_draws": true,
+  "each_seed_arm_exactly_407_unique_oof": true,
+  "zero_vs_v23_full_fit_oof_exact": true,
+  "zero_vs_v23_cohorts": 30,
+  "zero_vs_v23_max_abs_difference": 0.0,
+  "independent_primary_protection_absolute_recomputed": true,
+  "parent_and_frozen_code_hashes": true,
+  "validation_accessed": false,
+  "sealed_test_accessed": false
+}

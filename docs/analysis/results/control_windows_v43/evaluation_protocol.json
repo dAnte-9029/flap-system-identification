@@ -1,0 +1,23 @@
+{
+  "status": "frozen_before_scoring",
+  "preparation_protocol_sha256": "f96ffcff5b4ea26da975129978251c275736c98aa3ffe873a4870de17c16eef0",
+  "evaluation": {
+    "primary": "OOF complete1s tiltRMSE improves>=5% vs v35, all3seeds improve and>=4/5flights improve.",
+    "protections": "Original18: p/r1s waveform andvelocity/attitude.5/1s endpoints perseed regress<=5%; addq1swave perseed androll/pitch1swave perseed,27total.",
+    "legacy": "Report originalq>=5%improvement condition separately; do not relabel tilt success as a q gate pass.",
+    "absolute": "Original active .5s p/q<=.15rad/s,attitude<=3deg,velocity<=.5m/s,12cells unchanged.",
+    "coupled": "All4v40variants andall407parents withgeneratedactions. Surface0/1 meanRMSE improves>=5%, allseeds and>=4/5flights improve; all4actionchannels perseed regress<=5%. Keep state protections and absolute gates on coupled trajectories.",
+    "promotion": "No automatic control-readiness promotion. Five flights repeatedly used for development; exactfirmware andindependentcontrolresponse remain unproven."
+  },
+  "code": {
+    "scripts/evaluate_attitude_v43.py": "be61afbf2cb00e0b4db45811f4a19cd9224988f532b463aee7cfd4889cc2536d",
+    "scripts/run_attitude_coupled_v43.py": "be5db10b78af0da24d3ad121de63f7ecbeaeeaa0e19937ad063297f8eac80cfe",
+    "scripts/verify_attitude_v43.py": "0df0227a428d04b7c716b4f932b50fd9b3e6db32411af29358e013544c647566",
+    "scripts/report_attitude_v43.py": "f88dbeae12404f5fda6fef822e27f76cc87d5b4c1dd7a59e27844e9d6e6ba8f8",
+    "tests/test_attitude_evaluation_v43.py": "1a3bf5d807575ece3a8292c9c152ba596b079076b93e51737ea3aa316475be86"
+  },
+  "cohort": "All407 originaltrain parents; exact existing5fold3seed split, no validation/sealed/reserved",
+  "aggregation": "Per-flight RMSE, equal-flight then equal-seed; never pool unequal flights for primary gates",
+  "baseline": "Frozenv35, all4v40 coupling variants and matchingteacher",
+  "promotion": false
+}

@@ -1,0 +1,43 @@
+{
+  "dataset": {
+    "dataset_id": "trajectory_v3_september_expanded",
+    "path": "dataset/trajectory_v3_september_expanded",
+    "manifest_sha256": "46b50d0b23a32b40339a4c07526711d0ff88b55584d309a56807c56905d2817e",
+    "sample_artifact_hashes": {
+      "samples_train.parquet": "cd95d9db29cfe741c2929d8730fbd09b26fafcc54107f5faa3cd9d49e861e46e"
+    },
+    "partitions": [
+      "train"
+    ],
+    "phase_contract": {
+      "definition": "logged wing_phase zero; Hall consistency is checked separately",
+      "installation_consistency": "not_confirmed",
+      "status": "unconfirmed_physical_pose"
+    },
+    "frequency_contract": {
+      "column": "flap_frequency_hz",
+      "ratio": 7.909090995788574,
+      "rescaling": "none; September logged ratio, not April ratio8"
+    }
+  },
+  "script_sha256": "a04e41f6ca338818c716a5e4f9cf0775b4db58f4db670cfe27d40b8e6257f624",
+  "method": "5-fold balanced whole-log holdout; PyTorch MLP64x64 tanh,25epochs plus Ridge(alpha=100) diagnostic",
+  "state_lags_s": [
+    0,
+    0.1,
+    0.2
+  ],
+  "control_history_lags_s": [
+    0.02,
+    0.1,
+    0.2
+  ],
+  "stride_samples": 5,
+  "seed": 17,
+  "test_opened": false,
+  "caveat": "Out-of-fold prediction residual includes predictor error, unobserved controller state and measurement noise; not independent excitation or a valid causal instrument",
+  "completed": true,
+  "rows": 58772,
+  "logs": 41,
+  "wall_time_s": 20.37510410696268
+}

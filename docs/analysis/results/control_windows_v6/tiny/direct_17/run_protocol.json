@@ -1,0 +1,19 @@
+{
+  "arm": "direct",
+  "seed": 17,
+  "scope": "tiny",
+  "parent_protocol_sha256": "ed8df29cc35537651ea62dfd89d65ef72eccc722c3f089a539f0657631cbb3b6",
+  "script_sha256": "01a72789130ff8106b63c374d9a483bbedd7a0f607e771884c3086d968eb76a3",
+  "model_sha256": "15df626f11f8ac489eeffdaeb2ade651b6c430bbb3a9c1410e2f001ae3dd7792",
+  "window_ids": [
+    "4446fd466bb7821d_0_union0_block0_480",
+    "4446fd466bb7821d_3_union0_block0_6228",
+    "98850e05e3b89ecb_0_union0_block3_2037",
+    "98850e05e3b89ecb_6_union0_block3_7611",
+    "8d835123654f62c7_1_union0_block5_5333",
+    "26ba9c99346eef34_4_union0_block0_3346",
+    "52364e098db4b9af_2_union0_block0_2752",
+    "52364e098db4b9af_7_union0_block5_8253"
+  ],
+  "probability": "all8 every update"
+}

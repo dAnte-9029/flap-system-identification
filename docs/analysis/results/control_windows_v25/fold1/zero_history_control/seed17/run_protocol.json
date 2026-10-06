@@ -1,0 +1,9 @@
+{
+  "fold": 1,
+  "seed": 17,
+  "arm": "zero_history_control",
+  "initial_parameters_sha256": "99f8ce83b88184987d73713c852120575f3f29bcad7bbad5ff5191ec192df56f",
+  "common_initial_parameters_sha256": "3477bf6bae63dfc87d1998bc78786f593d749a745defd81e6371e67b95dae4a4",
+  "draws_sha256": "fc210df2b0c93204f728a4cb4d3fe0d4a799f25ec28c88fb4bda4c3574628d47",
+  "parent_protocol_sha256": "5aa560cd1d81754d5e728ccddcf7b5f73c044c99f0965f411e3cb284ebee4569"
+}

@@ -1,0 +1,39 @@
+{
+  "status": "passed",
+  "windows_checked": 39304,
+  "log_caches_checked": 57,
+  "split_overlap": false,
+  "train_only_normalization_recomputed": true,
+  "future_measurement_poisoning_passed": true,
+  "examples": [
+    {
+      "window_id": "0236c82b1d416099_0_328",
+      "partition": "train",
+      "path": "dataset/reference_dynamics_data_v1/preflight_0.npz",
+      "sha256": "7cbdffc69261fec0db6021bcc3b96e8e319cfacf5cc0ca7e0d3d1fceb6a59b03"
+    },
+    {
+      "window_id": "1e21ffeef10489d5_0_734",
+      "partition": "train",
+      "path": "dataset/reference_dynamics_data_v1/preflight_1.npz",
+      "sha256": "cef1f19a549fc7e1d6c6e2a0fc9ba8aad867d0dd032f989bb0258c379bf994eb"
+    },
+    {
+      "window_id": "22d579d43c0160ee_0_1256",
+      "partition": "train",
+      "path": "dataset/reference_dynamics_data_v1/preflight_2.npz",
+      "sha256": "facf9a80c9605e7a88ac09e31253c69bdbb9f46b600172162b84ed5b3141a91b"
+    },
+    {
+      "window_id": "3e69d8cb82b17237_0_371",
+      "partition": "train",
+      "path": "dataset/reference_dynamics_data_v1/preflight_3.npz",
+      "sha256": "5215f2c4b72d4f9e62b9a2655ffe11db8242ba3d440429142badb7ad05fb27d5"
+    }
+  ],
+  "manifest_sha256": "130ddb710a54125d481cad22db2cf9c9f081536202984b2c2e289cc78465519e",
+  "loader_sha256": "6bec63852279509c7f37cd96ddfea673a479882c38828b4b292e06af91c7670c",
+  "preflight_script_sha256": "339e4b573b56f67876ad2deebd5a0e8111d0c525e333ed59174458515326afdb",
+  "model_training_started": false,
+  "sealed_test_accessed": false
+}

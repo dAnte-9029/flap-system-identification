@@ -1,0 +1,54 @@
+{
+  "dataset_id": "reference_dynamics_data_v1_contract",
+  "group": "3e1b1922309f00687fa63d61109c12efae400efaf59ba77a37540e5a05c1cc11",
+  "parent_sha256": "76756f5966550062b164764f83875933947b91dcec5795e7a8278358825f0a1e",
+  "source_dataset_manifest_sha256": "46b50d0b23a32b40339a4c07526711d0ff88b55584d309a56807c56905d2817e",
+  "windows_path": "docs/analysis/results/reference_dynamics_data_v1/training_contract/windows.csv",
+  "windows_sha256": "c1e2ab734909d12e2e8c3855cee5dcaa8b53b2ddfdd164cf66649fa3249ac4ab",
+  "cache_sha256": {
+    "dataset/reference_dynamics_data_v1/contract/26ba9c99346eef34.npz": "08159a90419eba88aa278a88cb3ae71ae1fa968c3dbf487f71aee53df3eba355",
+    "dataset/reference_dynamics_data_v1/contract/330300275b6589cd.npz": "73d45668103f7f45890aae037438f4a6bd309c025533b2367376f5748469aa57",
+    "dataset/reference_dynamics_data_v1/contract/4446fd466bb7821d.npz": "ff58c51e5f6b24a658fcba58ee3e28dd0f147a6bb73a90ea6800943801165375",
+    "dataset/reference_dynamics_data_v1/contract/52364e098db4b9af.npz": "5801d58118e7695b54e83cf2850e04b683b860ea0cafedc171d91d6fbfc08797",
+    "dataset/reference_dynamics_data_v1/contract/70bfd3142ae488fa.npz": "3b0c9835e5b9253fa76c92f3c963cffa48f8bba0ebe0b7f2dff324920d9fead0",
+    "dataset/reference_dynamics_data_v1/contract/8d835123654f62c7.npz": "7037dea0fd686a73ad8ee4f94a1573221f1736645cb6c978d35fbff79aa5c602",
+    "dataset/reference_dynamics_data_v1/contract/98850e05e3b89ecb.npz": "799a99539f8e7ae90d7a1917513225e2ee8b94cb62d01b4a073edd8c02829703",
+    "dataset/reference_dynamics_data_v1/contract/a4a32113afd95b96.npz": "56b17ea82d19be1c0530a8c29eaf9eb419891a18b78bce28b2ceb327c32472f0",
+    "dataset/reference_dynamics_data_v1/contract/b825d7c9b2ac5e3c.npz": "ebe85f8d01a11d91662abc209e2d320f1d0eb3570e66446cde23cc063ea7bebc",
+    "dataset/reference_dynamics_data_v1/contract/bc2e1f24eb256337.npz": "ebe07ac2a6f6f7e61027bc0b95901c4acc7fe5687d381fde8e23d4c721b0e1e1",
+    "dataset/reference_dynamics_data_v1/contract/c50cd3f13ed1b9f6.npz": "09745b900854134845c742805e42357dc03685c2701c1084f919bca897c55afa",
+    "dataset/reference_dynamics_data_v1/contract/d0e7f205cd3c76b8.npz": "e138c960e497ec0aa7e6ba6e4a761a12688066c0c9b50773ec4bf90110d995c5",
+    "dataset/reference_dynamics_data_v1/contract/da9ada57e954d581.npz": "66426a3b25426a9509f51fed65c67ddc5b28073727aec2fc14ea1f313c96da4a",
+    "dataset/reference_dynamics_data_v1/contract/f91beb7778cd51a9.npz": "5dfb7963d52c41e86e0978a36800ed9c8640d50ec0da4d55e4e5fb2b44d761a2",
+    "dataset/reference_dynamics_data_v1/contract/normalization.npz": "7162ee75f1f122d8f6f0aff64c53046f1837d50ac63c5e001fd2c11cbd1c403a"
+  },
+  "normalization_path": "dataset/reference_dynamics_data_v1/contract/normalization.npz",
+  "normalization_partitions": [
+    "train"
+  ],
+  "input_reference_width": 5,
+  "history_state_width": 14,
+  "history_actuator_width": 4,
+  "mode_context_width": 2,
+  "history_steps": 26,
+  "forecast_steps": 50,
+  "dt_s": 0.02,
+  "train_windows": 3535,
+  "validation_windows": 7071,
+  "train_flights": 5,
+  "validation_flights": 9,
+  "phase_contract": {
+    "definition": "logged wing_phase zero; Hall consistency is checked separately",
+    "installation_consistency": "not_confirmed",
+    "status": "unconfirmed_physical_pose"
+  },
+  "frequency_contract": {
+    "column": "flap_frequency_hz",
+    "ratio": 7.909090995788574,
+    "rescaling": "none; September logged ratio, not April ratio8"
+  },
+  "source_parameter_equivalence": "recorded selected controls + trim/manual scaling match; complete hardware/firmware path equivalence not asserted",
+  "model_training_started": false,
+  "control_validated": false,
+  "sealed_test_accessed": false
+}

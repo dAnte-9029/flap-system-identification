@@ -1,0 +1,17 @@
+{
+  "status": "passed",
+  "factual_model_runs": 9768,
+  "teacher_runs": 1628,
+  "model_controller_states_reconstructed": 488400,
+  "action_scalar_identities_checked": 1953600,
+  "factual_all_micro_actions_torques_refs_limits_exact": true,
+  "all407_preserved": true,
+  "v40_action_metrics_reproduced": true,
+  "support_strata_recompose_exactly": true,
+  "airspeed_filter_history_identical": true,
+  "oracle_probes_not_propagated": true,
+  "model_promoted": false,
+  "validation_accessed": false,
+  "sealed_test_accessed": false,
+  "reserved_accessed": false
+}

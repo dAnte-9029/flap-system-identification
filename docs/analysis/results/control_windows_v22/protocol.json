@@ -1,0 +1,43 @@
+{
+  "stage": "v22",
+  "scope": "all 407 original train windows; input-only audit; no training or exclusions",
+  "pins": {
+    "scripts/audit_manual_coverage_v22.py": "274760e37f6223dad15ddfc802caeba5332560cb96def4734119266fad970dd1",
+    "tests/test_manual_coverage_v22.py": "a39396c56ec4db21c9a5c7e28fb18967fb6ded53889396cbdae99e2dd180066d",
+    "docs/analysis/results/reference_dynamics_data_v1/training_contract/manifest.json": "3c046faa6ad492f6654a19b00090bc2fb84c57d3fcd868456cc79f30e6399b0d",
+    "docs/analysis/results/reference_dynamics_data_v1/training_ready/manifest.json": "76756f5966550062b164764f83875933947b91dcec5795e7a8278358825f0a1e",
+    "dataset/reference_dynamics_data_v1/manifest.json": "130ddb710a54125d481cad22db2cf9c9f081536202984b2c2e289cc78465519e",
+    "docs/analysis/results/control_windows_v2/manifest.json": "84cac37ebf73f47802a4b5d3afff48d97554ac3aedfdd1cb6fb9ec5d618b919f",
+    "docs/analysis/results/control_windows_v2/windows_v2.csv": "ae91b646fb0b35c9bc1a8c8e67b7e2277b11066e13676907154fdee95e340516",
+    "docs/analysis/results/control_windows_v19/reference_per_window.csv": "10f537518ac8f4b3610b5a6b66c701e01a57184e23f21c74441a4861c61eeee6",
+    "docs/analysis/results/control_windows_v21/delivery_manifest.json": "8a0603c94a539c40d145405db424e9cd1d72bf6c7bb22e238858a3847e5e1cd6",
+    "scripts/audit_manual_chain_v21.py": "d285276c7be1df172057b07274d86683d0bd6c56063ee9d6e920e6700d0508e9",
+    "scripts/reference_timing_v14.py": "783e8d532787705f4341d8aa911307b0cfe7333e1c9cdd5f96d630e29ebe975b"
+  },
+  "phase_contract": {
+    "definition": "logged wing_phase zero; Hall consistency is checked separately",
+    "installation_consistency": "not_confirmed",
+    "status": "unconfirmed_physical_pose"
+  },
+  "frequency_contract": {
+    "column": "flap_frequency_hz",
+    "ratio": 7.909090995788574,
+    "rescaling": "none; September logged ratio, not April ratio8"
+  },
+  "support": "origin-26..origin+50 inclusive; future reference origin..origin+49 (50 points)",
+  "methods": "Causal max(publication,sample) eligibility; max age of both. Distinct messages and value changes separately. RC comparisons at native RC publication times within each full support; compare different sample times, never simultaneous measurement errors.",
+  "activity": "Report continuous range plus <=1,1..2,>2 normalized RC count bins. One count=1/min(trim-min,max-trim), conservative larger normalized step. Numerical boundary tolerance 1e-4 count. Descriptive only, not a quality or exclusion gate.",
+  "rc": "Require valid RC channel/source/manual, ordered sample times and manual-enabled control at RC publication. Report >2 count differences and full values; no lag fitting or interpolation.",
+  "groups": [
+    "all",
+    "flight",
+    "mode",
+    "existing v19 OOF planned-reference stratum",
+    "flight x mode",
+    "manual activity"
+  ],
+  "summary": "Window counts; pooled 50-point future ages (equal per window); manual summaries apply only to mode15. RC evidence uses original full 1.52s support. No physical bandwidth or causality certification.",
+  "validation_accessed": false,
+  "sealed_test_accessed": false,
+  "models_loaded": false
+}

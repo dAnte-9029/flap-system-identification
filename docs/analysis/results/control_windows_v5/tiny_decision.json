@@ -1,0 +1,42 @@
+{
+  "decisions": [
+    {
+      "candidate": "raw100",
+      "comparator": "tiny50",
+      "readout": "raw50",
+      "waveform_gain_fraction": -0.11469326749622577,
+      "attitude_regression_fraction": -0.08307629649845427,
+      "velocity_regression_fraction": -0.04177776685939005,
+      "passed": false
+    },
+    {
+      "candidate": "aa50",
+      "comparator": "raw100",
+      "readout": "aa50",
+      "waveform_gain_fraction": 0.1861428399806242,
+      "attitude_regression_fraction": -0.03609743732580328,
+      "velocity_regression_fraction": -0.15885230694231656,
+      "passed": true
+    }
+  ],
+  "formal_arms": [
+    "raw100",
+    "aa50"
+  ],
+  "formal_seeds": [
+    17,
+    23,
+    42
+  ],
+  "comparator_reason": "raw100 required as matched internal-grid baseline whenever aa50 advances",
+  "train_only_gate": true,
+  "validation_used_for_gate": false,
+  "checkpoint_hashes": {
+    "raw100": "ba109b417de16e6594d33197ee64c34e7d5bb0a85c59c24b57c9d6d856be1fb4",
+    "aa50": "aa443196a0f531d4bb18dd9d13ced3fe430f6fc09c6b547ee4a99fb7a0f670fe"
+  },
+  "tiny50_upsampling": "causal previous-prediction hold at odd10ms; raw50 gate uses original20ms targets and predictions exactly",
+  "control_usable": false,
+  "reason": "small-cohort capacity gate only; no controller or causal control evidence",
+  "sealed_test_accessed": false
+}

@@ -1,0 +1,18 @@
+{
+  "v10_reproduction_max_abs": 4.440892098500626e-16,
+  "no_model_training": true,
+  "sealed_test_accessed": false,
+  "focused_tests_passed": 9,
+  "source_logs_verified": 5,
+  "windows_indices_verified": 407,
+  "full_source_hash_chain_verified": true,
+  "source_values_max_abs": 2.979493152199808e-08,
+  "fixedlag_cases": 120,
+  "fit_query_disjoint": true,
+  "audit_implementation_amendment": {
+    "reason": "Initial audit compared an ancestor manifest hash against its child; corrected to verify the full existing parent chain. No data, timing criteria or lag analysis changed.",
+    "original_script_sha256": "1f9c821e09fbaf274f7023543dd2de4ccb6749fa2faf07762976f9f7250b5f80",
+    "corrected_script_sha256": "42f0f7cf7463d9c8d8de786ede8ca11fa391f2d2f17aa963cdd5832f11cc63e4",
+    "original_failure": "source_dataset_manifest_sha256 denotes the ancestor pinned in source manifest, not the source manifest itself."
+  }
+}

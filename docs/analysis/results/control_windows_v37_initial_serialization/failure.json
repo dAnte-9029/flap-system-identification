@@ -1,0 +1,4 @@
+{
+  "status": "incomplete_serialization",
+  "reason": "Unused or invalid ULog fields contain NaN; strict JSON refused. Preserve missing values as null with explicit nonfinite field list, never fill with zero."
+}

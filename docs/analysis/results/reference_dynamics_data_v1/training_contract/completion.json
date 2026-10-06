@@ -1,0 +1,18 @@
+{
+  "status": "prepared",
+  "checked_windows": 10606,
+  "rejected_windows": 98,
+  "outputs": {
+    "windows.csv": "c1e2ab734909d12e2e8c3855cee5dcaa8b53b2ddfdd164cf66649fa3249ac4ab",
+    "protocol.json": "3b69fbf473d7d61a30de763f259484b137c5c179d264a05cb956d347d9f54c92",
+    "validation_mode3.csv": "1e4689c3843d5635e42db8c775a7266b0f290c79f59bc7e179066c7a3fdb099c",
+    "manifest.json": "3c046faa6ad492f6654a19b00090bc2fb84c57d3fcd868456cc79f30e6399b0d",
+    "validation_mode15.csv": "bac1c040128f258ac3f37cff35bd0a00c93115fe8ceec6ac26a3995233aa382e",
+    "train_mode3.csv": "4d4343be1366ae57f073d23df2e303ebcc30cc62e790a289eb84fa736e73d414",
+    "summary.csv": "769ad112841bc14e60345505428960581385225ad52d76e948865636cfafe78b",
+    "additional_rejections.csv": "15d67578ac8681a1582c9a9b1cca1baa8f48e897fd4dc6232d26cb6e889f806f",
+    "additional_control_parameters.json": "9c8a3964c0ce98087051503b9247200bd9d64c8f0a199f4efbcb377409273372",
+    "train_mode15.csv": "177d72666f7734aef39ef4dce5892f6dd96cb28b6472ff8fe965f3c2e41af9e7"
+  },
+  "training_started": false
+}

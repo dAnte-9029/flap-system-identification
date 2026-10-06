@@ -1,0 +1,86 @@
+{
+  "checked_windows": 1146,
+  "all_samples_match_source": true,
+  "no_shared_support_samples": true,
+  "source_segment_duration_s": {
+    "n": 66,
+    "mean": 33.45939393939394,
+    "minimum": 1.52,
+    "maximum": 150.12,
+    "quantiles": {
+      "p05": 2.62,
+      "p25": 7.27,
+      "p50": 26.82,
+      "p75": 45.12,
+      "p95": 82.97
+    }
+  },
+  "management_block_duration_s": {
+    "n": 254,
+    "mean": 8.699370078740158,
+    "minimum": 0.14,
+    "maximum": 10.0,
+    "quantiles": {
+      "p05": 2.47,
+      "p25": 9.39,
+      "p50": 10.0,
+      "p75": 10.0,
+      "p95": 10.0
+    }
+  },
+  "source_intersegment_gaps_s": {
+    "n": 52,
+    "mean": 1.2292307692307693,
+    "minimum": 0.08,
+    "maximum": 12.1,
+    "quantiles": {
+      "p05": 0.19000000000000006,
+      "p25": 1.02,
+      "p50": 1.08,
+      "p75": 1.145,
+      "p95": 1.8909999999999967
+    }
+  },
+  "window_support_gaps_s": {
+    "n": 1132,
+    "mean": 0.4543462897526501,
+    "minimum": 0.02,
+    "maximum": 13.04,
+    "quantiles": {
+      "p05": 0.02,
+      "p25": 0.08,
+      "p50": 0.18,
+      "p75": 0.56,
+      "p95": 1.68
+    }
+  },
+  "complete_context_by_partition": {
+    "train": 0,
+    "validation": 19
+  },
+  "mode_counts": [
+    {
+      "partition": "train",
+      "mode": 3,
+      "windows": 133
+    },
+    {
+      "partition": "train",
+      "mode": 15,
+      "windows": 274
+    },
+    {
+      "partition": "validation",
+      "mode": 3,
+      "windows": 185
+    },
+    {
+      "partition": "validation",
+      "mode": 15,
+      "windows": 554
+    }
+  ],
+  "quality_scope": "Q3 currently denotes servo command near-limit only; not an exhaustive difficult/disturbance classifier",
+  "statistical_scope": "Disjoint samples still share flight and event context; flight is inferential resampling unit",
+  "sealed_test_accessed": false
+}

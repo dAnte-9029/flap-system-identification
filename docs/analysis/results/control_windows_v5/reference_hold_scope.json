@@ -1,0 +1,10 @@
+{
+  "script_sha256": "f6a210c807dbd82c65d63fce5ff65ba5c3c2d8a910a4b55b5e614c6da0f35657",
+  "partitions": [
+    "validation"
+  ],
+  "frozen_models": true,
+  "purpose": "model reliance on planned reference sequence; output difference is NOT a measured counterfactual or causal-effect validation",
+  "no_optimizer": true,
+  "sealed_test_accessed": false
+}

@@ -1,0 +1,18 @@
+{
+  "stage": "v24",
+  "status": "audit_and_training_design_complete",
+  "windows_retained": 407,
+  "history_shape": [
+    407,
+    26,
+    8
+  ],
+  "baseline_retained": "A1600",
+  "promoted": false,
+  "training_started": false,
+  "next_training_runs": 30,
+  "scaled_airspeed_diagnostic_only": true,
+  "next_step": "Implement and validate the frozen encoder-only history extension, then run zero/observed paired arms with identical architecture and budget.",
+  "validation_accessed": false,
+  "sealed_test_accessed": false
+}

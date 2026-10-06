@@ -1,0 +1,29 @@
+{
+  "status": "complete",
+  "completed": [
+    {
+      "arm": "raw100",
+      "seed": 17
+    },
+    {
+      "arm": "aa50",
+      "seed": 17
+    },
+    {
+      "arm": "raw100",
+      "seed": 23
+    },
+    {
+      "arm": "aa50",
+      "seed": 23
+    },
+    {
+      "arm": "raw100",
+      "seed": 42
+    },
+    {
+      "arm": "aa50",
+      "seed": 42
+    }
+  ]
+}

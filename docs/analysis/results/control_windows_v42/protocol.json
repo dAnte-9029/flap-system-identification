@@ -1,0 +1,76 @@
+{
+  "stage": "v42 attitude-supervision preparation",
+  "status": "frozen_before_audit_and_calibration",
+  "code": {
+    "scripts/attitude_supervision_v42.py": "3c8c26bf8079b45b87a085e0ef59ceff673f28c722bf768637b6db401a593c0d",
+    "scripts/audit_attitude_kinematics_v42.py": "0386f1ce1e746faa3994bfc148713947b45f921fd4671e4a37b6e4a64990dc18",
+    "scripts/prepare_attitude_v42.py": "cfd232bfe11a5fb900f4f3385ee601825c1a48086bbcd962ab0ef04f6cacacc8",
+    "scripts/train_attitude_v42.py": "6f12403f0b7f3a9c72cfcb6e52f359de0908878ef1545ea2afb8331ed0de6110",
+    "scripts/run_attitude_training_v42.py": "50ce1c46621acc8de9f183aed58fa34a1dcbce7aec1edd758d37827605081248",
+    "tests/test_attitude_supervision_v42.py": "6f5009264128c7cff3cf8f2a7fbfa076c66d3a00c07e46a3e72470a085bfe6d8"
+  },
+  "parents": {
+    "docs/analysis/results/control_windows_v29": "49ffd01eb46a8fd80e6e193143b25be4212cc78fdb11725feb95c5a495e9b231",
+    "docs/analysis/results/control_windows_v33": "487d47eb0d69e6808b9a5a738fd33733fa45e3cfb9dd0717c562673b58e60773",
+    "docs/analysis/results/control_windows_v34": "0cad7b62d6c3dc01eb8fe9f2c93a2264423a4d867a96b812f028d5cec0ecf1b6",
+    "docs/analysis/results/control_windows_v35": "8329f834d415102d3949635fe39ea2c7f2ea8bf0d0aaa9ecee096102ac037e8a",
+    "docs/analysis/results/control_windows_v40": "8e29c423373d24461329cf2d75fb9781323986e860fabd93d62095fb5803ec8e",
+    "docs/analysis/results/control_windows_v41": "d8494dfcfd3ba51449f49afc849f8409fe104e10f728042671f3bb26e1caaa0f"
+  },
+  "scope": "Original407train parents, fixed5flightfolds3seeds, H26K50 and40070parameters; no developmentvalidation/sealed/reserved, no outcome-selected windows.",
+  "kinematics": {
+    "native": "Reintegrate everyv40modelrate tape with original midpoint quaternion update; require exact stored quaternion equality.",
+    "oracles": [
+      "native",
+      "true_p",
+      "true_q",
+      "true_r",
+      "true_pq",
+      "true_pr",
+      "true_qr",
+      "true_pqr",
+      "remove_window_rate_bias"
+    ],
+    "gate": "Primarywarm2_plus/v35 full1s true-rate tiltRMSE <=50%native; >=4/5flights improve. Otherwise stop before calibration/training preparation. This is a diagnostic suitability check, not a physical noise bound."
+  },
+  "loss": {
+    "formula": "L_new = unchanged_v35_full_plus_local_loss + lambda_fold * mean_batch_time(sum_xyz((g(qpred)-g(qtrue))^2))/.1^2",
+    "gravity": "g(q)=R_nb(q).T*[0,0,1], normalizeq; yaw and quaternion-sign invariant. No Euler singularity. Localmetric=d_pitch^2+cos(pitch)^2*d_roll^2, not equal Euler weights away from small pitch.",
+    "angle_scale_rad": 0.1,
+    "old_terms": "All v35 global attitude/rate/velocity plus localrate terms retained unchanged.",
+    "zero": "Exact call to v35objective withlocalweight1, skip extra loss graph."
+  },
+  "coefficient": {
+    "rule": "lambda_fold=clip(.5*median(norm(gradL_v35)/norm(gradL_tilt)),.01,10).",
+    "samples": "Exactly first4frozen32-parent draws for each of3seeds in thisfold; freshoriginalinitialization; pairedv34localoffsets;12gradientpairs. Commonweight across3seeds per fold.",
+    "exclusions": "No OOF gradients, no coefficient search, no recalibration after seeing final-model gradients.",
+    "final_fit_audit": "Same fixed fit-only batches at v35final checkpoints, report only. Does not set weight."
+  },
+  "training": {
+    "updates": 1600,
+    "batch": 32,
+    "local_batch": 32,
+    "seeds": [
+      17,
+      23,
+      42
+    ],
+    "folds": 5,
+    "optimizer": "AdamW lr3e-4 weight_decay1e-4 clip_grad_norm1",
+    "initialization": "Same original fresh40070parameter initialization asv35, not finetuning.",
+    "samples": "Exact v34parentdraws and localoffsets; no extra recurrent branch for tilt; extra quaternion operations/backprop still add cost.",
+    "control": "First full1600step zero-tilt fold0seed17 exactly reproduce frozenv35 weights/buffers.",
+    "candidate_training_this_preparation": false
+  },
+  "evaluation": {
+    "primary": "OOF complete1s tiltRMSE improves>=5% vs v35, all3seeds improve and>=4/5flights improve.",
+    "protections": "Original18: p/r1s waveform andvelocity/attitude.5/1s endpoints perseed regress<=5%; addq1swave perseed androll/pitch1swave perseed,27total.",
+    "legacy": "Report originalq>=5%improvement condition separately; do not relabel tilt success as a q gate pass.",
+    "absolute": "Original active .5s p/q<=.15rad/s,attitude<=3deg,velocity<=.5m/s,12cells unchanged.",
+    "coupled": "All4v40variants andall407parents withgeneratedactions. Surface0/1 meanRMSE improves>=5%, allseeds and>=4/5flights improve; all4actionchannels perseed regress<=5%. Keep state protections and absolute gates on coupled trajectories.",
+    "promotion": "No automatic control-readiness promotion. Five flights repeatedly used for development; exactfirmware andindependentcontrolresponse remain unproven."
+  },
+  "validation_accessed": false,
+  "sealed_test_accessed": false,
+  "reserved_accessed": false
+}

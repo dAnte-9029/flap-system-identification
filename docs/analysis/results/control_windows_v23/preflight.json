@@ -1,0 +1,10 @@
+{
+  "status": "passed",
+  "windows": 407,
+  "all_nonreference_inputs_and_labels_equal_v8": true,
+  "fit_only_reference_stats_independently_verified": true,
+  "reset_commands_zero": true,
+  "baseline_delivery_verified": true,
+  "tests_passed": 8,
+  "sealed_test_accessed": false
+}

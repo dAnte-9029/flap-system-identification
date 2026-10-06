@@ -1,0 +1,13 @@
+{
+  "stage_complete": true,
+  "diagnostic_only": true,
+  "dominant_sensitivity_channel": "manual_yaw",
+  "concentrated_window": 391,
+  "original_and_held_reference_support_flagged": true,
+  "log18_not_explained_by_same_input_support_heuristic": true,
+  "log18_max_abs_bias_delta_feature_spearman": 0.2660032392460078,
+  "model_promoted": false,
+  "control_validated": false,
+  "no_training": true,
+  "sealed_test_accessed": false
+}

@@ -1,0 +1,47 @@
+{
+  "dataset_id": "actuator_command_contract_v28",
+  "status": "audited_conditional_inputs_not_trained",
+  "windows": 407,
+  "partitions": [
+    "original_train"
+  ],
+  "parent_manifest": "docs/analysis/results/control_windows_v23/dataset_manifest.json",
+  "parent_manifest_sha256": "58446ec46138109d266aba1a9a08c8275278199b8a0ef18890f14a58c092ea8a",
+  "original_window_manifest": "docs/analysis/results/control_windows_v23/windows.csv",
+  "windows_sha256": "7aa14314e616023ffa6350475b00a344432366711ef4c2237dfbefc515304496",
+  "artifact": "actuator_grid.npz",
+  "artifact_sha256": "f13f1dca1d132962f76659dc9c6e9943556d5c86d35355f2f14b619852189034",
+  "channels": [
+    "motor0",
+    "servo0",
+    "servo1",
+    "servo2"
+  ],
+  "units": [
+    "normalized_motor_thrust_request",
+    "normalized_servo_command",
+    "normalized_servo_command",
+    "normalized_servo_command"
+  ],
+  "history": "command_grid[:,0:26] is origin-26..origin-1, exactly existing v23 past actuator history.",
+  "future": "command_grid[:,26:76] is origin..origin+49, four left-endpoint controls paired with unchanged states origin+1..origin+50.",
+  "grid": "query_us contains origin-26..origin+50,77points,dt20ms; finalcommand row is audit context, not an extra target/input.",
+  "timing": "Separate causal hold by topic with publication AND sample<=query. Preserve timestamps and occasional mixed source cycles. No fitted lag/interpolation. 50Hz logging may omit intermediate commands.",
+  "outputs": "pwm_grid is independently causal held actuator_outputs instance0 natural units microseconds for this hardware configuration; secondary chain check, not servo angle or measured actuator forces.",
+  "boundary": "Normalized post-allocation command -> output mapping/driver/actuator/aircraft. Remove attitude/rate controllers and allocator from learned dynamics boundary. Firmware still matters for output mapping.",
+  "conditional_limit": "Future flight-recorded actuator commands depend on feedback and disturbances. They are permissible ONLY for explicitly actuator-conditioned offline identification, not known inputs in a reference-driven autonomous prediction claim. Closed-loop use must generate actions from a controller rather than future logs.",
+  "identification_limit": "Independent flight actuator position/force and actual high-rate command waveform are not reconstructed. Rich command variation and full numerical input rank do not prove independent causal effectiveness.",
+  "fold_authority": "Unchanged v23 fold0..4 fit_indices/query_indices andseeds; no repartition. Fit-only unique-row normalization still to be prepared before training; no normalization fitted this audit.",
+  "phase_contract": {
+    "definition": "logged wing_phase zero; Hall consistency is checked separately",
+    "installation_consistency": "not_confirmed",
+    "status": "unconfirmed_physical_pose"
+  },
+  "frequency_contract": {
+    "column": "flap_frequency_hz",
+    "ratio": 7.909090995788574,
+    "rescaling": "none; September logged ratio, not April ratio8"
+  },
+  "validation_accessed": false,
+  "sealed_test_accessed": false
+}

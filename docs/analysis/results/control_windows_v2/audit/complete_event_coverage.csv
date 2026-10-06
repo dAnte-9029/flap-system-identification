@@ -1,0 +1,7 @@
+partition,axis,sign,clusters,flights
+validation,0,-1,18,5
+validation,0,1,16,5
+validation,1,-1,14,4
+validation,1,1,15,4
+validation,3,-1,4,4
+validation,3,1,3,3

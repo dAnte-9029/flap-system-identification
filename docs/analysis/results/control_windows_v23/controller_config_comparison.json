@@ -1,0 +1,12 @@
+{
+  "flights": [
+    "2026.9.6/log_20_2026-9-6-18-58-10.ulg",
+    "2026.9.6/log_17_2026-9-6-18-34-06.ulg",
+    "2026.9.6/log_28_2026-9-6-07-01-38.ulg",
+    "2026.9.6/log_19_2026-9-6-18-52-30.ulg",
+    "2026.9.6/log_18_2026-9-6-18-46-20.ulg"
+  ],
+  "compared_keys": 318,
+  "differences": {},
+  "scope": "FW_ CA_ PWM_MAIN_ TRIM_ logged parameters; not complete aircraft/mechanical invariance"
+}

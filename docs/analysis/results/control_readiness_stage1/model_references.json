@@ -1,0 +1,17 @@
+{
+  "models": [
+    {
+      "name": "S0",
+      "path": "/home/zn/flap-system-identification/artifacts/main_v2_increment_supervision/S0/model.pt",
+      "sha256": "0bc3f7bc1a72ff203cd32e6f2a14459b95f8c680afed7ca86e8f03e4a40cdf71"
+    },
+    {
+      "name": "S1",
+      "path": "/home/zn/flap-system-identification/artifacts/main_v2_increment_supervision/S1/model.pt",
+      "sha256": "a1de4f0476033fa3e27abd230c57abfbf14514387804d6f4d70b1f5c1c4da2f0"
+    }
+  ],
+  "historical_dataset": "dataset/trajectory_v1_august_f5_c4",
+  "scope": "identity_only_no_inference",
+  "historical_protocol_sha256": "a1a07c8be1817c8cc8f112764a701d8a6688ca403d0362d6d5170876c2be5aa8"
+}

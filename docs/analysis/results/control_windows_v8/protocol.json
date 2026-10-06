@@ -1,0 +1,54 @@
+{
+  "task": "whole-flight OOF dynamics and consistently trained phase schedule",
+  "source_pins": {
+    "docs/analysis/results/control_windows_v2/manifest.json": "84cac37ebf73f47802a4b5d3afff48d97554ac3aedfdd1cb6fb9ec5d618b919f",
+    "dataset/control_windows_v2/windows.npz": "5e2c0a77eb1a8a17a14fe27b3fec80811b501a89d5e99f1752a9ec52fae96b8b",
+    "docs/analysis/results/control_windows_v7/delivery_manifest.json": "f797b2a096815c1508d6ad9d0409a4959d927e40b7d9dd3aa7685232c2f9d887",
+    "docs/analysis/results/control_windows_v4/diagnostic_future_phase.npz": "cc7913924596910002b3b3db357086e4043be1143cbb8207708bb0f55e78b095",
+    "scripts/prepare_reference_groupcv_v8.py": "61fe23f0cd5fa07b0a993d6c468eab2fc671b3a35202a25a3a055c5fe89f0274",
+    "scripts/reference_groupcv_v8.py": "c4a2857f5f1935e5996ea7d224eacee9af3c34cc95ce90d2437f789ec75b85bd",
+    "scripts/train_reference_groupcv_v8.py": "95ad365e28bfd7e64a8b6a9a8bdd02b3393aef3007cbe39cabcc83c5f1fbb072",
+    "scripts/run_reference_groupcv_v8.py": "de6ba191db0fc972b8d78d4408e47b9aa5ab5c4c72e7a2eea70d8b7a335c5b44",
+    "src/system_identification/models/reference_gru_phase_schedule.py": "e1713d1ad43bcbc58caf0c1d0644a967a53c04494989697a654fd7001bf6850e",
+    "tests/test_reference_groupcv_v8.py": "4840b43973a64e9f7f33c185ece24e960c8f71ef1ee1c0f5e5e628bbb9c736b1"
+  },
+  "data_authority": "docs/analysis/results/control_windows_v2/manifest.json",
+  "phase_contract": {
+    "definition": "logged wing_phase zero; Hall consistency is checked separately",
+    "installation_consistency": "not_confirmed",
+    "status": "unconfirmed_physical_pose"
+  },
+  "frequency_contract": {
+    "column": "flap_frequency_hz",
+    "ratio": 7.909090995788574,
+    "rescaling": "none; September logged ratio, not April ratio8"
+  },
+  "partitions": "CV only original407trainingwindows/5flights; no new splitting or screening; developmentvalidation not used for CV choices; sealed/reserved not accessed",
+  "arms": [
+    "hold",
+    "phase"
+  ],
+  "seeds": [
+    17,
+    23,
+    42
+  ],
+  "folds": 5,
+  "steps": 1600,
+  "batch": 32,
+  "hidden": 64,
+  "parameters": 40070,
+  "optimizer": "AdamW lr3e-4 wd1e-4 clip1; same original normalized rate+velocity+0.2attitude loss",
+  "sampling": "equal flight probability, uniform windows within each fit flight; paired arms same RNG draws, same initialization and fold normalization; fixed final checkpoint",
+  "normalization": "exact v2 unique-row recipe refit on4fitflights; same normalization for paired arms; no heldflight statistic or old GRU warm start",
+  "phase_method": "ridge10 fixed from v7; no new search. For each outerfold training flight, phase predictor fit only other3fitflights. Outerquery predicted from4fitflights. No own-flight future phase in training features.",
+  "phase_scope": "train/inference history-predicted phase schedules; recurrent frequency context still heldcurrent. crossfit stacking uses3flight phase fits forGRUtraining and4forouterquery; not a full frequency-model change",
+  "selection_limit": "ridge10 family informed by prior v7 analysis of these trainingflights; current OOF is development evidence, not pristine untouched validation",
+  "cv_primary": "activep/q endpoints0.5/1s, equal available flights then axis/horizon then seeds; no window counting as independent trials",
+  "cv_gate": ">=5percent mean improvement, all3seedpositive, >=4of5flightpositive, noallmetric>5percent regression .5/1s; phase candidate full refit only if gate passes",
+  "conditional_full": "if CV gate passes train phase all407 x3seed1600 using5flight crossfit schedules; compare fixed developmentvalidation against frozenA1600. Otherwise do not run fullcandidate training.",
+  "validation_diagnostic": "after CV decision is frozen, evaluate15heldfrequencyfoldmodels on same739developmentvalidation windows, to compare heldsame-day vs nextday at matched training size/model; not a causal day effect",
+  "control_gate": "absolute0.5s activep/q<=.15rad/s attitude<=3deg velocity<=.5m/s allseeds plus independentresponse/closedloop evidence. OOF RMSE alone does not establish control usability",
+  "bootstrap": "2000 paired wholeflight resamples seed908; five flights only, exploratory interval",
+  "sealed_test_accessed": false
+}

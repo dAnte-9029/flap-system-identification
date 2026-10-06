@@ -1,0 +1,5 @@
+block,weak_windows,total_windows,weak_flights,both_strata_at_least8_flights
+age,97,407,1,0
+all,99,407,2,0
+compression,18,407,5,0
+integral,22,407,5,1

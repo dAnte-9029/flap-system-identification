@@ -1,0 +1,5 @@
+{
+  "prior_report": "docs/analysis/results/control_windows_v18/report_zh.md",
+  "sha256": "50276d26702f8c2459d5671f4671c315e5c36e2ee59d8ba89b757c5279959486",
+  "use": "Distinguish earlier origin-only q auxiliary loss; no prior stage data loaded."
+}

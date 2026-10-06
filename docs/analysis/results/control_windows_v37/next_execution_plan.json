@@ -1,0 +1,38 @@
+{
+  "status": "prepared_not_executed",
+  "name": "c9af controller component replay before learned-model closed loop",
+  "source_contract": "docs/analysis/results/control_windows_v37/source_provenance.json",
+  "origin_manifest": "docs/analysis/results/control_windows_v37/origin_observations.json",
+  "allowed_logs": "Exactly5originaltrain sources pinned here; all407 parents retained; causal preceding raw history may be used for warmup",
+  "stages": [
+    {
+      "id": "source_adapter",
+      "work": "Implement exact-c9af attitude/rate/compression/allocation adapter with explicit serializable state, manual yaw addition and publication/update ordering. Do not inject e624-only FLAP_SLOW_EN default.",
+      "verification": "C++/Python component arithmetic on same supplied complete states and inputs; sign-sensitive HPF, pre/post integral, old/new compression gain and preceding allocation feedback tests."
+    },
+    {
+      "id": "teacher_state_replay",
+      "work": "Drive controller from available logged actual state/reference history; compare rate setpoints, torque, allocated commands. Future measured states are allowed ONLY in this named controller-component diagnostic, not a model forecast.",
+      "verification": "Full407 parents, perflight/peraxis errors and timing/coverage. Initial conditions explicit; cold/causal warmup differences recorded. Never inject future logged integrals/gains/torque as generated controller state or fit gains to targets."
+    },
+    {
+      "id": "state_clock_sensitivity",
+      "work": "Before selecting a replay recipe freeze warmup durations, initial-state variants and clock approximations; report all variants rather than selecting best against targets.",
+      "verification": "Signed HPF and previous-effort ambiguity, held sensor and reference updates, allocator feedback timing. dt inference is diagnostic only; no claim that resampling recovers missing cycles."
+    },
+    {
+      "id": "model_adapter",
+      "work": "Expose persistent H26 initialized GRU step at20ms; causal model-generated future actions only. Do not reencode hidden from future real state or feed observed future phase/airspeed.",
+      "verification": "With prerecorded identical command tape, every step matches frozen native50step output; save/restore and future-prefix causality tests. Tapes used here for adapter parity only."
+    },
+    {
+      "id": "conditional_closed_loop_gate",
+      "work": "Only after controller reproduction and model-adapter evidence, freeze an explicit multirate approximation and acceptance criteria before learned-model replay.",
+      "verification": "Recorded attitude/thrust/yaw tapes are conditioning, not Mission/TECS/navigation replay or independent exogenous excitation. Compare both states/actions; track causal past-state and marginal command support; do not use offline future-support bins as online confidence."
+    }
+  ],
+  "no_new_training": true,
+  "no_new_controller_design": true,
+  "no_real_flight": true,
+  "exact_replay_not_available_from_partial_snapshots": true
+}

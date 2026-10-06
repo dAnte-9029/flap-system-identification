@@ -1,0 +1,143 @@
+{
+  "dataset_id": "trajectory_v2_september_phase_observed",
+  "registry_entry": {
+    "lifecycle_status": "active_observed_phase_physical_zero_unconfirmed",
+    "intended_use": "September neural trajectory surrogate train_validation",
+    "manifest_path": "dataset/trajectory_v2_september_phase_observed/manifest.json",
+    "manifest_sha256": "a3b831f1eaff24f8efb71a2ff895ae851a191122c912dca3540f39a84e92f9c0",
+    "config_path": "configs/data/trajectory_september_v2.yaml",
+    "partitions_materialized": [
+      "train",
+      "validation"
+    ],
+    "sealed_test_requires_separate_gate": true
+  },
+  "manifest_absolute_path": "/home/zn/flap-system-identification/dataset/trajectory_v2_september_phase_observed/manifest.json",
+  "manifest_sha256": "a3b831f1eaff24f8efb71a2ff895ae851a191122c912dca3540f39a84e92f9c0",
+  "verified_artifacts": [
+    {
+      "path": "/home/zn/flap-system-identification/dataset/trajectory_v2_september_phase_observed/samples_train.parquet",
+      "sha256": "0ae06d90cfe843add820c551930a7685a640bfacce4002967805c744f1242104"
+    },
+    {
+      "path": "/home/zn/flap-system-identification/dataset/trajectory_v2_september_phase_observed/samples_validation.parquet",
+      "sha256": "fbf499fc0aaf2bf70c00a8f1d43954bd64531fc1692a18e910de68d88308d3e5"
+    },
+    {
+      "path": "/home/zn/flap-system-identification/dataset/trajectory_v2_september_phase_observed/windows_train_core_1s.parquet",
+      "sha256": "82179015529ec0183b90af6a0c31256706d4f9d27e4a8b2f8b8974728dec9555"
+    },
+    {
+      "path": "/home/zn/flap-system-identification/dataset/trajectory_v2_september_phase_observed/windows_train_core_2s.parquet",
+      "sha256": "ffd965e1585a9cb46434c2878893e3d372e2e9d6ce36b0eadf92469fa962ce72"
+    },
+    {
+      "path": "/home/zn/flap-system-identification/dataset/trajectory_v2_september_phase_observed/windows_train_core_3s.parquet",
+      "sha256": "235ae01243df7f66e4c2e5b64be63d856919a764327b6f9c91c339d498fe73a3"
+    },
+    {
+      "path": "/home/zn/flap-system-identification/dataset/trajectory_v2_september_phase_observed/windows_train_core_5s.parquet",
+      "sha256": "9a951425964e21b761a685e6b33fa5df2187b769a7589a082e0ad881cb0bcb49"
+    },
+    {
+      "path": "/home/zn/flap-system-identification/dataset/trajectory_v2_september_phase_observed/windows_train_hall_phase_1s.parquet",
+      "sha256": "de9dde99e1f4a435dd748430c98c098ea8faf882f1408de2e81274d3af7691ca"
+    },
+    {
+      "path": "/home/zn/flap-system-identification/dataset/trajectory_v2_september_phase_observed/windows_train_hall_phase_2s.parquet",
+      "sha256": "604025ea548e98cb4e62588ea608a06fec6f5d2499c1dd03135a62b169108eb8"
+    },
+    {
+      "path": "/home/zn/flap-system-identification/dataset/trajectory_v2_september_phase_observed/windows_train_hall_phase_3s.parquet",
+      "sha256": "add3eb8e6013a7155e5a739aab16cea9ee56724af20ec9e44c7ba99a8282bafe"
+    },
+    {
+      "path": "/home/zn/flap-system-identification/dataset/trajectory_v2_september_phase_observed/windows_train_hall_phase_5s.parquet",
+      "sha256": "7f893ed04af0504fd64819f2d45825eca97d0be4becc17b1d00bb8b3a4a732aa"
+    },
+    {
+      "path": "/home/zn/flap-system-identification/dataset/trajectory_v2_september_phase_observed/windows_train_logged_phase_1s.parquet",
+      "sha256": "e316e3906e1327fcd3bcfd0c99cfc534b8c999b85ce57107f7a85692356acfb6"
+    },
+    {
+      "path": "/home/zn/flap-system-identification/dataset/trajectory_v2_september_phase_observed/windows_train_logged_phase_2s.parquet",
+      "sha256": "ea000285fc79273b57f54fdc98239e73d35f5c21e32abe069bed13ec86dc0bc6"
+    },
+    {
+      "path": "/home/zn/flap-system-identification/dataset/trajectory_v2_september_phase_observed/windows_train_logged_phase_3s.parquet",
+      "sha256": "3a1342592c69ef129bd7b56d3e64381f565b24b8c12561bb1e01f1f99ebd153a"
+    },
+    {
+      "path": "/home/zn/flap-system-identification/dataset/trajectory_v2_september_phase_observed/windows_train_logged_phase_5s.parquet",
+      "sha256": "4af231e8ff7492b1f7f8b0a78d4ea6a98c96fa56ad6cbbe9461ab3f9baf90396"
+    },
+    {
+      "path": "/home/zn/flap-system-identification/dataset/trajectory_v2_september_phase_observed/windows_validation_core_1s.parquet",
+      "sha256": "625b2d3e6c98a8eb35c7718c5bd29152c72ebc247e4da1ae507cc76efbec78bd"
+    },
+    {
+      "path": "/home/zn/flap-system-identification/dataset/trajectory_v2_september_phase_observed/windows_validation_core_2s.parquet",
+      "sha256": "8c64e088ba25ef44f44f70d4f8107790d096cb381c343b53d01fb8efb7f25137"
+    },
+    {
+      "path": "/home/zn/flap-system-identification/dataset/trajectory_v2_september_phase_observed/windows_validation_core_3s.parquet",
+      "sha256": "50563e23853f147a5fb1e5cb18f62cd6073f5f957977a5c1c640023ca0999c63"
+    },
+    {
+      "path": "/home/zn/flap-system-identification/dataset/trajectory_v2_september_phase_observed/windows_validation_core_5s.parquet",
+      "sha256": "4583e5834985d903091c40f7658916e4d41c666614e41a15beb7992de3901f09"
+    },
+    {
+      "path": "/home/zn/flap-system-identification/dataset/trajectory_v2_september_phase_observed/windows_validation_hall_phase_1s.parquet",
+      "sha256": "0438e500c3a4c1648a6a997cd28abf5cdce3f6e62aceae9a5286da59a37bc07e"
+    },
+    {
+      "path": "/home/zn/flap-system-identification/dataset/trajectory_v2_september_phase_observed/windows_validation_hall_phase_2s.parquet",
+      "sha256": "97dfcc9e96629920a90fa65dfc0e01de7312caf90a3f37bc134cb306de3b1842"
+    },
+    {
+      "path": "/home/zn/flap-system-identification/dataset/trajectory_v2_september_phase_observed/windows_validation_hall_phase_3s.parquet",
+      "sha256": "b8425ae2b82439ccfc275d22f171be61d3b40ff8274ced626bab7658f8285718"
+    },
+    {
+      "path": "/home/zn/flap-system-identification/dataset/trajectory_v2_september_phase_observed/windows_validation_hall_phase_5s.parquet",
+      "sha256": "52fae9fc289a915773fea4fc376176628208feedd77688b9c9325452dd32fceb"
+    },
+    {
+      "path": "/home/zn/flap-system-identification/dataset/trajectory_v2_september_phase_observed/windows_validation_logged_phase_1s.parquet",
+      "sha256": "7afc8bda714d106618d1d8b7eaa11ec84699e03423f04b731d917e88257fec63"
+    },
+    {
+      "path": "/home/zn/flap-system-identification/dataset/trajectory_v2_september_phase_observed/windows_validation_logged_phase_2s.parquet",
+      "sha256": "173a465ffdc8e392cf477352fa34dc04ef7a39c76469521efb0d5792f3d5c475"
+    },
+    {
+      "path": "/home/zn/flap-system-identification/dataset/trajectory_v2_september_phase_observed/windows_validation_logged_phase_3s.parquet",
+      "sha256": "0b56307585b2cd860f7c3690578df6b7965f93b47af2932ecf85333162fb4d42"
+    },
+    {
+      "path": "/home/zn/flap-system-identification/dataset/trajectory_v2_september_phase_observed/windows_validation_logged_phase_5s.parquet",
+      "sha256": "8f4c100f0e4b0be2c634be7b34593b27af6a7eb5d86d0b94d2442786e804d2ad"
+    }
+  ],
+  "frames": {
+    "body_rate": "FRD rad/s",
+    "phase": "radians, logged zero; physical pose unconfirmed",
+    "position_velocity": "local NED m, m/s",
+    "quaternion": "wxyz body FRD to NED"
+  },
+  "frequency_contract": {
+    "column": "flap_frequency_hz",
+    "ratio": 7.909090995788574,
+    "rescaling": "none; September logged ratio, not April ratio8"
+  },
+  "phase_zero": {
+    "status": "unconfirmed_physical_pose",
+    "definition": "logged wing_phase zero; Hall consistency is checked separately",
+    "installation_consistency": "not_confirmed"
+  },
+  "partitions": [
+    "train",
+    "validation"
+  ]
+}

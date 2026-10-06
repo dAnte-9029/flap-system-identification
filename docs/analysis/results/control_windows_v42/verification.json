@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "kinematics_gate": true,
+  "fit_only_calibration": true,
+  "preflight_runs": 15,
+  "complete1600_zero_reproduction": true,
+  "candidate_training_started": false,
+  "model_promoted": false,
+  "validation_accessed": false,
+  "sealed_test_accessed": false,
+  "reserved_accessed": false
+}

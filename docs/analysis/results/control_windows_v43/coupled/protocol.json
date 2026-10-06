@@ -1,0 +1,32 @@
+{
+  "preparation_sha256": "4f289081702bdc59c4ec6dbe785d268971a1aa8956328689131dc46e0f501492",
+  "conditions_parent_sha256": "8e29c423373d24461329cf2d75fb9781323986e860fabd93d62095fb5803ec8e",
+  "variants": [
+    [
+      "warm2_plus",
+      2500,
+      "source_no_interleave"
+    ],
+    [
+      "warm2_minus",
+      2500,
+      "source_no_interleave"
+    ],
+    [
+      "warm2_20ms",
+      20000,
+      "source_no_interleave"
+    ],
+    [
+      "warm2_delayed_feedback",
+      2500,
+      "delayed_allocation"
+    ]
+  ],
+  "code": {
+    "scripts/run_attitude_coupled_v43.py": "be5db10b78af0da24d3ad121de63f7ecbeaeeaa0e19937ad063297f8eac80cfe",
+    "scripts/coupled_replay_v40.py": "e98472516416130a4cd380bd64d677a12eab9d485463282dfec99ee871618602"
+  },
+  "conditions": "Exact v40 causal warmup, reference tapes, fixedCAS, model20ms first-command hold, native allocation; future plant/log actions absent.",
+  "baseline": "Reuse all frozen v35 trajectories and matched teacher, no controller tuning or new clamps."
+}

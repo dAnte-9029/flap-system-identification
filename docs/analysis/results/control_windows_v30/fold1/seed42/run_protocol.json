@@ -1,0 +1,13 @@
+{
+  "fold": 1,
+  "seed": 42,
+  "initial_parameter_sha256": "29f7a7d2c8510a917054efc2ce4c022ad56cd9db4a984df0174325320e0e1482",
+  "draws_path": "docs/analysis/results/control_windows_v8/fold1/hold_42/sample_draws.npz",
+  "draws_sha256": "da3d9c9273790ba9f8a412dc7043eb6e04450ef7c3765f76d3f1fe348adfd842",
+  "control_checkpoint": "docs/analysis/results/control_windows_v23/fold1/seed42/final.pt",
+  "control_checkpoint_sha256": "3baf0f92bbf9035a3c97219d5fe86801222c5bd8a620d1d20ad1b3eca6552753",
+  "normalization_sha256": "1c10f6e66a5858b8853434bc03224962c0c9ac7490b3887f02b4434bf395c842",
+  "steps": 1600,
+  "batch": 32,
+  "protocol_sha256": "b8320c842cf7700b3f50b2169231fdf7d0cc50e45373d83a8f61f9f6e8669c80"
+}

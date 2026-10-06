@@ -1,0 +1,11 @@
+{
+  "status": "diagnostic_complete",
+  "windows_retained": 407,
+  "models_changed": 0,
+  "model_promoted": false,
+  "finding": "Age history carries flight-dependent support shift, most clearlylog17; neither support distance nor mode/frequency uniquely explains q regression. Centered waveform error increases while mean bias slightly improves.",
+  "next": "Prepared same-budget six-physical-history-channel ablation with age normalized tozero; not started.",
+  "baseline_retained": "A1600",
+  "validation_accessed": false,
+  "sealed_test_accessed": false
+}

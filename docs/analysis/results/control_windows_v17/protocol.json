@@ -1,0 +1,41 @@
+{
+  "stage": "v17 single-step objective contrast",
+  "source_pins": {
+    "docs/analysis/results/reference_dynamics_data_v1/training_contract/manifest.json": "3c046faa6ad492f6654a19b00090bc2fb84c57d3fcd868456cc79f30e6399b0d",
+    "docs/analysis/results/control_windows_v2/manifest.json": "84cac37ebf73f47802a4b5d3afff48d97554ac3aedfdd1cb6fb9ec5d618b919f",
+    "dataset/control_windows_v2/windows.npz": "5e2c0a77eb1a8a17a14fe27b3fec80811b501a89d5e99f1752a9ec52fae96b8b",
+    "docs/analysis/results/control_windows_v8/delivery_manifest.json": "bf358676286f34af65bc140435eea00a978ebf7c3f1e018cb2eff9e349483ad6",
+    "docs/analysis/results/control_windows_v16/delivery_manifest.json": "f7e7d6e535cba1b11d7222c3d2a4639f9a9bb258a3d97ffccaad82c4b351089d",
+    "scripts/prepare_reference_single_step_v17.py": "6e56a120c381d1094ab1d5bc385032cc3dee5ebbf3334493720affa4fe3afc5a",
+    "scripts/reference_single_step_v17.py": "f95c6947737c67a5f6e022e7f4416ec2fd53403629104714598e1d20c826822f",
+    "scripts/train_reference_single_step_v17.py": "a49f5b30e3585950186e2cf82850a60bfb5daa229124f0734e5a7a62450a247c",
+    "scripts/run_reference_single_step_v17.py": "8d32955d6389d605b8697316bf66059eafed5e6daec166be8178e878c2658964",
+    "tests/test_reference_single_step_v17.py": "25d3ad7d7df6e13111a040e9c8753d322a017b62ceb0e5d560c5827a10bd3233",
+    "scripts/train_control_windows_v2.py": "5dcfdb408981224786abdc01ada52ef90a357260035ea1f249624704b0152865",
+    "scripts/reference_groupcv_v8.py": "c4a2857f5f1935e5996ea7d224eacee9af3c34cc95ce90d2437f789ec75b85bd",
+    "src/system_identification/models/reference_gru_unit_gravity.py": "0b80d78ef64f54840756f969c338c906224a44b8da32e5b067f522fd2758d213",
+    "src/system_identification/models/reference_gru_phase_schedule.py": "e1713d1ad43bcbc58caf0c1d0644a967a53c04494989697a654fd7001bf6850e"
+  },
+  "phase_contract": {
+    "definition": "logged wing_phase zero; Hall consistency is checked separately",
+    "installation_consistency": "not_confirmed",
+    "status": "unconfirmed_physical_pose"
+  },
+  "frequency_contract": {
+    "column": "flap_frequency_hz",
+    "ratio": 7.909090995788574,
+    "rescaling": "none; September logged ratio, not April ratio8"
+  },
+  "data": "Same407 originaltrain parents/5flights/H26/K50; only same5 outerfold fit/query IDs. No new origins, no filtering, no development or sealed/reserved evaluation.",
+  "model": "Unchanged ReferenceGRUPhaseSchedule(phase_start=None),40070parameters,units and clamps. Fresh initialization exactly matching each v8hold seed; same fold normalization and recorded1600x32 minibatch index tapes.",
+  "objective": "Original normalized rate+velocity+0.2 quaternion loss, restricted to original first20ms target for ALL states; no extra weight or new target. Encode complete26history, run decoder1step in training. No teacher-forcing laterorigins. At evaluation run normal autonomous50steps.",
+  "budget": "15runs:5folds xseeds17/23/42,1600AdamW updates lr3e-4 wd1e-4 clip1 batch32. Same updates/windowexposures, NOT equalFLOPs, targetpoints or gradientpath. Fixed finalcheckpoint, noearlystopping.",
+  "implementation_check": "Before training eachrun compare full50step-forward prefix loss/parameter gradients to truncated1step forward on samefirstminibatch; initialparameter hash and tapes match v8.",
+  "metrics": "Identical full50future targets; perflight RMSE forfirst20ms and fullprefix .1/.2/.5/1s, plus .5/1s endpoints. Perflight/seed equalweight, repeated fitfolds averaged per sourceflight. Rate increment std/correlation/sign asv16; allstates and perflight/seed retained. Normalize quaternions for angle metric to avoid norm rounding at20ms, same for botharms.",
+  "diagnostic_gate": "Equalflight/axis(p,q)/seed first20ms RMSE improvement>=5percent; all3seed improvements>0 and>=4of5flight improvements>0. Report fit andOOF independently. Not a controller acceptance gate.",
+  "protection": "Eachseed p/q/r/velocity/attitude fullprefix .5and1s RMSE regression<=5percent vs v8hold; finite50step trajectories allwindows. If one-step improves but protection fails, classify as short-horizon versus rollout tradeoff; no model promotion.",
+  "absolute": "Report .5s endpoints for eachseed: p/q/r<=.15rad/s,velocity<=.5m/s,attitude<=3deg. Passing absolute and relative checks is still not independent control-response evidence.",
+  "inference": "History and plannedreference prefix only; no future measuredstates,commands,phase/frequency input. Fit is in-sample; OOF reusedresearch not blind. No causal/noise conclusion from loss contrast alone.",
+  "after": "No automatic all407refit, developmentevaluation or controller optimization in thisstage; freeze OOF decision first.",
+  "sealed_test_accessed": false
+}

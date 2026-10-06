@@ -1,0 +1,20 @@
+[
+  {
+    "seed": 17,
+    "utility_change": -0.019568448352057524,
+    "effect_ratio": 1.0424951319918152,
+    "passes": true
+  },
+  {
+    "seed": 23,
+    "utility_change": 0.001711867615254839,
+    "effect_ratio": 1.1434703842653222,
+    "passes": false
+  },
+  {
+    "seed": 42,
+    "utility_change": 0.001997414798395311,
+    "effect_ratio": 1.2250241818347558,
+    "passes": false
+  }
+]

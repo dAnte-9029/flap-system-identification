@@ -1,0 +1,17 @@
+{
+  "same_day_oof_vs_fit": {
+    "p": 0.09759763659269405,
+    "q": 0.38055090164147964,
+    "r": 0.5051411670826544,
+    "velocity": 0.24079676667882444,
+    "attitude": 0.6990791332933057
+  },
+  "development_vs_same_day_oof": {
+    "p": 0.028796004613627302,
+    "q": -0.13309291177034865,
+    "r": -0.16532200663980834,
+    "velocity": -0.26150156646733436,
+    "attitude": -0.15979280477647706
+  },
+  "caveat": "different evaluation populations; model/training size matched for nextday audit, not causal day attribution"
+}

@@ -1,0 +1,13 @@
+{
+  "stage": "v35 execute v34 frozen joint supervision",
+  "preparation_delivery_sha256": "0cad7b62d6c3dc01eb8fe9f2c93a2264423a4d867a96b812f028d5cec0ecf1b6",
+  "preparation_protocol_sha256": "4addecd70838e0490054c59a8649e1f857bcec11df43b47510de389b041ed337",
+  "candidate_runs": 15,
+  "zero_weight_reproduction_runs": 1,
+  "coefficient": 1.0,
+  "steps": 1600,
+  "batch": 32,
+  "max_workers": 6,
+  "validation_accessed": false,
+  "sealed_test_accessed": false
+}

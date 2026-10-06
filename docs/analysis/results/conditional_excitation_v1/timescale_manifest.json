@@ -1,0 +1,35 @@
+{
+  "dataset": {
+    "dataset_id": "trajectory_v3_september_expanded",
+    "path": "dataset/trajectory_v3_september_expanded",
+    "manifest_sha256": "46b50d0b23a32b40339a4c07526711d0ff88b55584d309a56807c56905d2817e",
+    "sample_artifact_hashes": {
+      "samples_train.parquet": "cd95d9db29cfe741c2929d8730fbd09b26fafcc54107f5faa3cd9d49e861e46e"
+    },
+    "partitions": [
+      "train"
+    ],
+    "phase_contract": {
+      "definition": "logged wing_phase zero; Hall consistency is checked separately",
+      "installation_consistency": "not_confirmed",
+      "status": "unconfirmed_physical_pose"
+    },
+    "frequency_contract": {
+      "column": "flap_frequency_hz",
+      "ratio": 7.909090995788574,
+      "rescaling": "none; September logged ratio, not April ratio8"
+    }
+  },
+  "script_sha256": "3ea675b56d5956842a6f74d873cf6a6a1e7eef5be16cb63b91d136038fbd122e",
+  "lags_s": [
+    0.02,
+    0.1,
+    0.5,
+    1.0
+  ],
+  "local_neighbors": 32,
+  "held_log_query_stride": 20,
+  "features": "current and 0.1/0.2s past state, no action; standardized from fold training only",
+  "test_opened": false,
+  "note": "Local neighbor width is descriptive and depends on state distances; cannot establish exogenous excitation"
+}

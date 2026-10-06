@@ -1,0 +1,10 @@
+{
+  "script_sha256": "f194ccae48fc913db128b505469e8a85284d125d256da570b2ead1e4de64b9d4",
+  "source_hashes": {
+    "src/modules/fw_att_control/fw_pitch_controller.cpp": "5920fccf30ac6dab3ea7618df4661522448c276b127359ed537cc083261e66f4",
+    "src/modules/fw_att_control/fw_roll_controller.cpp": "51fab211b67ec194cb72e4adb085f89d9312e962cf89b4db2b4f3981515cf510",
+    "src/modules/fw_att_control/fw_yaw_controller.cpp": "8b7472c83e10486f081763e70f25e6125fbe4146457b9507eff02423a199e5c6",
+    "src/modules/fw_att_control/FixedwingAttitudeControl.cpp": "40f9f25c116e6e59c8620b1e0b09642f8f77085f465077d3a19dd5408412d8f8"
+  },
+  "scope": "same three Sep18 logs; AUTO attitude replay and conditional Roll B2b arithmetic; not full controller equivalence"
+}

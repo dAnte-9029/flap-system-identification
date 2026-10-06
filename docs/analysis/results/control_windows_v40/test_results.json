@@ -1,0 +1,6 @@
+{
+  "passed": 3,
+  "command": "pytest -q tests/test_coupled_replay_v40.py",
+  "unchanged_test_result_reused": true,
+  "strict_numpy_scalar_json_roundtrip_passed": true
+}

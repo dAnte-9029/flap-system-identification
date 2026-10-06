@@ -1,0 +1,25 @@
+{
+  "status": "proposed_not_started",
+  "objective": "Fit-only gradient-interaction audit of tilt and centered angular-rate supervision",
+  "hypothesis": "Additional tilt supervision trades centered short-time angular-rate fidelity for integrated attitude fit; test its gradient interaction on fit-only batches.",
+  "checkpoints": "Freeze all15v35 and15v43 finalcheckpoints; no parameter updates.",
+  "batches": "Use exactly the v42 calibration parentdraws/localoffsets: first4original batches for eachfold/seed, fit only. Never choose batches from OOF error.",
+  "terms": [
+    "Unchangedv35 fullpluslocal objective",
+    "v42unitgravity tilt loss",
+    "Fixed normalized p/q/r rate error components: fullwave, windowmean, centeredwave; keep originalrate scales"
+  ],
+  "diagnostics": [
+    "Per-term parameter gradientnorms and pairwise dot/cosine at same model/batch; separately report weightedtilt vs centeredp/q.",
+    "Report eachfold/seed and distribution of batchsigns; no coefficient search, modelupdate, or OOFgradient use.",
+    "A negative dot is local gradient competition, not proof of historical optimizer causality or inevitable Pareto tradeoff. Positive dots likewise do not prove all optimization steps compatible.",
+    "Use the audit to decide whether one protected-waveform training comparison is justified; prepare its contract separately before any training."
+  ],
+  "training": false,
+  "controller_tuning": false,
+  "new_flight": false,
+  "model_promoted": false,
+  "validation_accessed": false,
+  "sealed_test_accessed": false,
+  "reserved_accessed": false
+}

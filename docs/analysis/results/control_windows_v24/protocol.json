@@ -1,0 +1,39 @@
+{
+  "stage": "v24 controller history audit and materialization",
+  "pins": {
+    "scripts/audit_controller_history_v24.py": "40707accbe3c2859a53f38df1519581cee59916bdbea4b88533561b47985d73a",
+    "scripts/controller_history_v24.py": "0b8db68bbdea235121ec4dab2b827d688ca335eb6bd2539ae2e2a3b66b1197d3",
+    "tests/test_controller_history_v24.py": "390d033fd6d5caf2e700340c4af0f8af38202f604b0d2aae2068d151cfd6b87a",
+    "docs/analysis/results/control_windows_v23/delivery_manifest.json": "3b060e6e77850b9de52a4a3fc5d286dad31251c4d4fd5e8577c07e971480f4a5",
+    "docs/analysis/results/control_windows_v23/dataset_manifest.json": "58446ec46138109d266aba1a9a08c8275278199b8a0ef18890f14a58c092ea8a",
+    "docs/analysis/results/control_windows_v23/windows.csv": "7aa14314e616023ffa6350475b00a344432366711ef4c2237dfbefc515304496"
+  },
+  "scope": "same407 original train parents; only 26 historical instants per parent. No training, no outcome filtering, no validation/sealed/reserved.",
+  "source_features": [
+    "integral_p_post",
+    "integral_q_post",
+    "integral_r_post",
+    "compression_p",
+    "compression_q",
+    "compression_r",
+    "integral_publication_age_s",
+    "compression_publication_age_s"
+  ],
+  "integral": "rate_ctrl_status post-update integral. Publication timestamp only. Different semantic time from pre-update rate_ctrl_terms.i_term.",
+  "compression": "Published gains after compression.update; not necessarily the gains used by the same cycle torque. Use only as past observation plus publication age.",
+  "timing": "origin-25..origin inclusive. Causal latest publication hold separately for each group. Age is publication age, never physical sampling latency.",
+  "scaling_diagnostic": "Exact timestamp_sample join of rate_ctrl_terms and vehicle_angular_velocity. rate_sp_used=p_term/P+rate. scale=rate_sp_used*FF/ff_term; per-axis |ff_term|>=1e-3, positive finite ratios, largest-|ff_term| axis chosen. No time shifts, target response or rate reference hold. Remains diagnostic, excluded from training features.",
+  "integral_pairing": "First status after terms publication within1ms, before next terms publication, one-to-one; timing consistency only because status has no timestamp_sample.",
+  "normalization": "fit-only unique historical rows;8 mean/std floor1e-4, same normalization for both future comparison arms",
+  "phase_contract": {
+    "definition": "logged wing_phase zero; Hall consistency is checked separately",
+    "installation_consistency": "not_confirmed",
+    "status": "unconfirmed_physical_pose"
+  },
+  "frequency_contract": {
+    "column": "flap_frequency_hz",
+    "ratio": 7.909090995788574,
+    "rescaling": "none; September logged ratio, not April ratio8"
+  },
+  "sealed_test_accessed": false
+}

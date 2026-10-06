@@ -1,0 +1,37 @@
+[
+  {
+    "fold": 0,
+    "weight": 0.13904104631114328,
+    "unclipped_weight": 0.13904104631114328,
+    "clipped": false,
+    "gradient_pairs": 12
+  },
+  {
+    "fold": 1,
+    "weight": 0.14048262253683813,
+    "unclipped_weight": 0.14048262253683813,
+    "clipped": false,
+    "gradient_pairs": 12
+  },
+  {
+    "fold": 2,
+    "weight": 0.13967515217299126,
+    "unclipped_weight": 0.13967515217299126,
+    "clipped": false,
+    "gradient_pairs": 12
+  },
+  {
+    "fold": 3,
+    "weight": 0.1396802296218662,
+    "unclipped_weight": 0.1396802296218662,
+    "clipped": false,
+    "gradient_pairs": 12
+  },
+  {
+    "fold": 4,
+    "weight": 0.1378461332153076,
+    "unclipped_weight": 0.1378461332153076,
+    "clipped": false,
+    "gradient_pairs": 12
+  }
+]

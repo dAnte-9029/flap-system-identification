@@ -1,0 +1,85 @@
+{
+  "dataset_id": "controller_history_train_v24",
+  "features": [
+    "integral_p_post",
+    "integral_q_post",
+    "integral_r_post",
+    "compression_p",
+    "compression_q",
+    "compression_r",
+    "integral_publication_age_s",
+    "compression_publication_age_s"
+  ],
+  "shape": [
+    407,
+    26,
+    8
+  ],
+  "arrays_sha256": "5458d4c3589444a512054ad6ca3700536d27f33aa7476793f17ccb59367e0537",
+  "protocol_sha256": "4d09664c18dceb6771ffee2c854e8748af5323de02201661ab935bd74bfa79b9",
+  "parent_dataset_manifest_sha256": "58446ec46138109d266aba1a9a08c8275278199b8a0ef18890f14a58c092ea8a",
+  "sources": [
+    {
+      "log_id": "2026.9.6/log_20_2026-9-6-18-58-10.ulg",
+      "source": {
+        "path": "/home/zn/QgcLogs/2026.9.6/log_20_2026-9-6-18-58-10.ulg",
+        "sha256": "3b0afa4b3526fae934d9705082c0dbfe247fc39baff68014c06cf6642e71275e",
+        "partition": "train"
+      },
+      "cache": "dataset/reference_dynamics_data_v1/contract/26ba9c99346eef34.npz",
+      "cache_sha256": "08159a90419eba88aa278a88cb3ae71ae1fa968c3dbf487f71aee53df3eba355"
+    },
+    {
+      "log_id": "2026.9.6/log_17_2026-9-6-18-34-06.ulg",
+      "source": {
+        "path": "/home/zn/QgcLogs/2026.9.6/log_17_2026-9-6-18-34-06.ulg",
+        "sha256": "37ff9f8ea4e2e378fc13394288aa145a462259e2f53fa15af9511082f0e6d558",
+        "partition": "train"
+      },
+      "cache": "dataset/reference_dynamics_data_v1/contract/4446fd466bb7821d.npz",
+      "cache_sha256": "ff58c51e5f6b24a658fcba58ee3e28dd0f147a6bb73a90ea6800943801165375"
+    },
+    {
+      "log_id": "2026.9.6/log_28_2026-9-6-07-01-38.ulg",
+      "source": {
+        "path": "/home/zn/QgcLogs/2026.9.6/log_28_2026-9-6-07-01-38.ulg",
+        "sha256": "73dd94d60553a00efb3e2d9009430686c08ee611f11eb4e3f8e3a427f26df842",
+        "partition": "train"
+      },
+      "cache": "dataset/reference_dynamics_data_v1/contract/52364e098db4b9af.npz",
+      "cache_sha256": "5801d58118e7695b54e83cf2850e04b683b860ea0cafedc171d91d6fbfc08797"
+    },
+    {
+      "log_id": "2026.9.6/log_19_2026-9-6-18-52-30.ulg",
+      "source": {
+        "path": "/home/zn/QgcLogs/2026.9.6/log_19_2026-9-6-18-52-30.ulg",
+        "sha256": "30f27b3c2ee46a05ed6108ec01a2150cd5c8fedaf4f0cb7a1f0347698412aacd",
+        "partition": "train"
+      },
+      "cache": "dataset/reference_dynamics_data_v1/contract/8d835123654f62c7.npz",
+      "cache_sha256": "7037dea0fd686a73ad8ee4f94a1573221f1736645cb6c978d35fbff79aa5c602"
+    },
+    {
+      "log_id": "2026.9.6/log_18_2026-9-6-18-46-20.ulg",
+      "source": {
+        "path": "/home/zn/QgcLogs/2026.9.6/log_18_2026-9-6-18-46-20.ulg",
+        "sha256": "603a941c5ebbfcdf27b80b0d1c4b2de65dd4e114fdefb64bb70896e409c135a8",
+        "partition": "train"
+      },
+      "cache": "dataset/reference_dynamics_data_v1/contract/98850e05e3b89ecb.npz",
+      "cache_sha256": "799a99539f8e7ae90d7a1917513225e2ee8b94cb62d01b4a073edd8c02829703"
+    }
+  ],
+  "phase_contract": {
+    "definition": "logged wing_phase zero; Hall consistency is checked separately",
+    "installation_consistency": "not_confirmed",
+    "status": "unconfirmed_physical_pose"
+  },
+  "frequency_contract": {
+    "column": "flap_frequency_hz",
+    "ratio": 7.909090995788574,
+    "rescaling": "none; September logged ratio, not April ratio8"
+  },
+  "use": "Only encoder past observations; no future controller state tensor exists. Combine with unchanged v23 train inputs/labels.",
+  "sealed_test_accessed": false
+}

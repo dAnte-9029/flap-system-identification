@@ -1,0 +1,16 @@
+{
+  "stage_complete": true,
+  "diagnostic_only": true,
+  "no_training": true,
+  "model_promoted": false,
+  "control_validated": false,
+  "seed23_log18_net_attitude_mse_share": 0.9140131933417996,
+  "seed23_log18_q_tape_share": 0.838570465992029,
+  "seed23_log18_late_tape_share": 0.861841675212118,
+  "reference_delta_energy_log28_share": {
+    "23": 0.7897227101500118,
+    "42": 0.9305473754578463
+  },
+  "development_evaluated": false,
+  "sealed_test_accessed": false
+}

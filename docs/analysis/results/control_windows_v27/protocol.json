@@ -1,0 +1,61 @@
+{
+  "stage": "v27",
+  "design": {
+    "status": "prepared_not_started",
+    "question": "Does removing publication-age channels prevent loss of generalization while retaining integral/compression history?",
+    "evidence": "Age summary support differs strongly forlog17, but coveredlog19 also regresses. Association is insufficient; controlled ablation required before causal attribution.",
+    "candidate": "Samev25architecture33input/41606parameters; use first6historicalcontroller channels, set normalized last2publication-age channels tozero. No futurecontroller features.",
+    "controls": "Frozenv25 zero_history_control andobserved_history_control. No retraining controls if exact shared weights/draws/environment reproduce. Candidate15runs5foldx3seed1600steps, sameoriginal407trainwindows,normalization,init,stored32batchdraws,AdamW/full1sloss.",
+    "primary": "Againstzero arm: qfull1sOOF>=5% improvement, all3seedpositive,>=4/5flightpositive; same18protections<=5%regression andoriginal12absoluteactivegates. Full8arm comparison secondary.",
+    "limit": "No tuned thresholds, sample removal, developmentvalidation/test access or automaticcontrolpromotion; a failed candidate does not justify deletinglog17.",
+    "training_started": false
+  },
+  "design_sha256": "3cfc8e89d957d8462f37c041bb45d104246b42a25297500a561f6370bb9418c2",
+  "code_pins": {
+    "scripts/prepare_controller_history_v25.py": "ae5c30481ba3d063ec906bffae8cef8e5b5ea45aa664bf3cc6629ca945d6727e",
+    "scripts/controller_history_training_v25.py": "347a28565be767578fc1ca8939c436673f65dd6304009e905032a6950583b6a3",
+    "scripts/train_controller_history_v25.py": "b7dc3ce7accccecfa62287dc5cf5eeb9eef387a358357e052b1644ed7f9d2e8b",
+    "scripts/run_controller_history_v25.py": "69b1657645241b7d8ac886ece683d93232ecaa1b8294f50f93ea938c65f41280",
+    "scripts/evaluate_controller_history_v25.py": "77e392ab7184cb125b3895a66871beb05ca4941424d015ead60362c28872707f",
+    "src/system_identification/models/reference_gru_controller_history.py": "461ef8074a5f8cb873de67effc5760a0ce00b228ebc5ede47f40a065ad641c65",
+    "tests/test_controller_history_model_v25.py": "d7cd75da5612e6484bf8cf9abe0a40fda5f8b07c558061fb31cdb232fc87fa44",
+    "scripts/evaluate_rate_reference_v23.py": "5163221923f69cf99029250e85df28398e5e1c253e727c8146684ff1c2baa4f2",
+    "scripts/rate_reference_v23.py": "65877e520993bf9be15bf705e225a7c02104a1cb3072ff8bc36ed81c0da2dac0",
+    "src/system_identification/models/reference_gru_unit_gravity.py": "0b80d78ef64f54840756f969c338c906224a44b8da32e5b067f522fd2758d213",
+    "scripts/train_control_windows_v2.py": "5dcfdb408981224786abdc01ada52ef90a357260035ea1f249624704b0152865",
+    "scripts/prepare_controller_no_age_v27.py": "501276da8e0402c8f471549e2480c3494e7f87ad4532538563e0d90ece22e9f4",
+    "scripts/controller_no_age_v27.py": "5775337b0f407ce6f5b6b4451775b9aacfea535b7f3a1316223a7e27f6770431",
+    "scripts/train_controller_no_age_v27.py": "4ad9997c0027cb2c465f4b958a5afc4aae7e8dae66bc9d06997290e781abf425",
+    "scripts/run_controller_no_age_v27.py": "b23a36f8c00a1245cfc3aa4032880ba80d873822922c2f623829b8619b01f73a",
+    "scripts/evaluate_controller_no_age_v27.py": "89bb67106790b99b3d5fd73343e2c8e84eb5e4c465fbcb38548a24d98936fc47",
+    "src/system_identification/models/reference_gru_controller_no_age.py": "4fd2437153c744118c582fece1bf65e2027f4d44d550cd7b412b629a599eeba8",
+    "tests/test_controller_no_age_v27.py": "67b45d6e7731a9222b27547ac7811c8961e9aa91a886034f885dee39e96e4f15"
+  },
+  "parents": {
+    "docs/analysis/results/control_windows_v23": "3b060e6e77850b9de52a4a3fc5d286dad31251c4d4fd5e8577c07e971480f4a5",
+    "docs/analysis/results/control_windows_v24": "5611fa42901e3ff257efdf8f5750c1a40fea8a7e152ded81ac17cc063cba5cd0",
+    "docs/analysis/results/control_windows_v25": "23256e33cf29a562a081b6cdb56c29e7708bc8953e14156030f0021ae051440e",
+    "docs/analysis/results/control_windows_v26": "b1a1dc7e29e6dddd348aabfc193d0fc032dc27ce1c73f86a5bb81994a8256cc8"
+  },
+  "runtime": {
+    "python": "3.11.14 (main, Oct 21 2025, 18:31:21) [GCC 11.2.0]",
+    "executable": "/home/zn/anaconda3/envs/flap-train-gpu/bin/python",
+    "torch": "2.7.0+cu128",
+    "numpy": "1.26.0",
+    "pandas": "2.3.3"
+  },
+  "control_reuse": "Exactly reproduce fold0 seed17 zero control1600steps before candidate launch; check all15paired initial weights and draws.",
+  "reference_hold": "Same predeclaredv25 diagnostic: hold future rate3/thrust atorigin, resetunchanged; not counterfactual truth.",
+  "phase_contract": {
+    "definition": "logged wing_phase zero; Hall consistency is checked separately",
+    "installation_consistency": "not_confirmed",
+    "status": "unconfirmed_physical_pose"
+  },
+  "frequency_contract": {
+    "column": "flap_frequency_hz",
+    "ratio": 7.909090995788574,
+    "rescaling": "none; September logged ratio, not April ratio8"
+  },
+  "validation_accessed": false,
+  "sealed_test_accessed": false
+}

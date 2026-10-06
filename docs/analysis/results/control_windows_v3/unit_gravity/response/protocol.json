@@ -1,0 +1,19 @@
+{
+  "models": [
+    "A800",
+    "A_long1600"
+  ],
+  "seeds": [
+    17,
+    23,
+    42
+  ],
+  "selection": "all19 complete validation input-event contexts fixed by v2; no response-based removal",
+  "free_run": "one observed initialization then full remaining context; 3.7-37.7s is extrapolation beyond1s training and not a nominal1s score",
+  "waveform": "0.2s causal mean rate, baseline last0.2s observed history; all p/q/r coupling retained",
+  "measurable": "observed peak magnitude > max(3*preinput background MAD scale,0.05rad/s); unmeasurable cases retained",
+  "timing": "time of absolute waveform peak, NOT isolated input-response/physical actuator delay",
+  "nominal": "same disjoint1s validation predictions restricted to support fully inside each complete context, separate from full-run stress",
+  "model_choice": "A_long was predeclared before training; not selected from validation outcomes",
+  "sealed_test_accessed": false
+}

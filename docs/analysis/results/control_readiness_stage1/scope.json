@@ -1,0 +1,20 @@
+{
+  "development_full_topics_day": 18,
+  "header_only_days": [
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    19
+  ],
+  "reserved_from_this_audit_day": 19,
+  "reservation_not_claim_of_prior_unseen": true,
+  "no_test_or_earlier_log_open": true,
+  "script_sha256": "ec86f32d909ba5a703bdcd59c75f8846810cece9bf44da377b9296da42ad562d",
+  "python": "/home/zn/anaconda3/envs/flap-train-gpu/bin/python",
+  "target_commit": "e624a99f2955addbf76681e636c44162a0c03055",
+  "source_branch": "TCN"
+}

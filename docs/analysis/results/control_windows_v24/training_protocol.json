@@ -1,0 +1,37 @@
+{
+  "stage": "v24 frozen next training design",
+  "status": "prepared_not_started",
+  "parent": "control_windows_v23",
+  "windows": 407,
+  "history_steps": 26,
+  "horizon": 50,
+  "dt_s": 0.02,
+  "folds": 5,
+  "seeds": [
+    17,
+    23,
+    42
+  ],
+  "steps": 1600,
+  "batch": 32,
+  "arms": [
+    "zero_history_control",
+    "observed_history_control"
+  ],
+  "runs": 30,
+  "input": "Append8 normalized controller observations only to historical encoder rows:3postintegrals,3publishedcompressiongains,2publicationages. No appended rollout features, future controller signals, recovered airspeed scaling, or additional targets.",
+  "architecture": "Same unit-gravity GRU64 rate-reference model; encoder input25->33 only, total41606parameters (+1536). Cell/head/derivative bounds/phase schedule unchanged. Both arms use identical enlarged architecture.",
+  "initialization": "Instantiate original v23 model under each original seed first. Copy every original parameter into enlarged model, append8 all-zero columns to encoder weight_ih_l0; copy all other encoder weights/biases. Same initial trainable weights between arms; check initial predictions against original implementation.",
+  "zero_control": "Zero the appended8 channels AFTER normalization. This preserves identical parameter capacity without conveying controller information. Rerun all15 zero-control fits; frozenv23 is secondary reference, not the sole capacity control.",
+  "normalization": "Use prepared fold*/controller_normalization.npz fitted only on unique historical rows in the4fitflights. All v23 state/reference/actuator/label normalization unchanged.",
+  "pairing": "Identical v8/v23 stored1600x32 draws and common initial weights for each fold/seed, AdamWlr3e-4 wd1e-4 clip1, original full1s loss, no q first-step auxiliary loss. Fixed final checkpoint.",
+  "primary": "q complete1s OOF waveform RMSE: >=5% mean flight/seed improvement vs zero arm, all3seeds positive, >=4/5flights positive.",
+  "protections": "p/r full1s waveform and velocity/attitude .5/1s endpoints no>5% regression per seed, same flight-equal aggregation asv23. Report p/q<=.15rad/s,attitude<=3deg,velocity<=.5m/s at.5s on unchanged original active windows for every seed.",
+  "evaluation": "Fit and OOF, horizons20ms/100ms/.5s/1s, original modes/flight strata retained. Held rate3/thrust diagnostic optional only if frozen before launch; no feedback future state as known input.",
+  "causal_checks": "All observation publications<=each historical query<=origin; altering messages afterorigin must not change history. Future reference suffix cannot alter earlier predictions. No hidden normalization fit on query flights.",
+  "limitations": "Tests the joint block of observed integral/compression/age information, not separate causal contributions. Published gains are stale observations and do not restore all spectral/filter states. The conditional rate-reference task still differs from an exogenous attitude-input task.",
+  "decision": "If primary/protections fail, retainA1600 and v23 as research baselines; do not alterthresholds, deletewindows, scancoefficients or promotecontrol. If numericalgatespass, proceed only to independent control-response/closed-loop evidence, never automatic deployment.",
+  "training_started": false,
+  "validation_accessed": false,
+  "sealed_test_accessed": false
+}

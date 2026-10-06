@@ -1,0 +1,8 @@
+{
+  "raw_logs": "stage2 admitted September18 logs only",
+  "sealed_test_opened": false,
+  "september19_opened": false,
+  "firmware": "e624a99f2955addbf76681e636c44162a0c03055",
+  "controller": "pitch rate only; no roll B2b",
+  "performance_tuned": false
+}

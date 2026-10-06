@@ -1,0 +1,75 @@
+{
+  "primary_gain_fraction": -0.09373991768273826,
+  "paired_flight_bootstrap_gain_95percent": [
+    -0.11050195767586439,
+    -0.07587492992517907
+  ],
+  "relative_gate_passed": false,
+  "absolute_by_seed": [
+    {
+      "arm": "A1600",
+      "seed": 17,
+      "active_p": 0.15943416888888887,
+      "active_q": 0.14305668344444444,
+      "attitude_deg": 4.605790054756516,
+      "velocity": 0.28320813111111115,
+      "passed": false
+    },
+    {
+      "arm": "A1600",
+      "seed": 23,
+      "active_p": 0.16601969666666666,
+      "active_q": 0.14478174055555554,
+      "attitude_deg": 4.638581607118431,
+      "velocity": 0.29062062888888884,
+      "passed": false
+    },
+    {
+      "arm": "A1600",
+      "seed": 42,
+      "active_p": 0.16335476511111113,
+      "active_q": 0.14271428333333336,
+      "attitude_deg": 4.6782984748853025,
+      "velocity": 0.2913134188888889,
+      "passed": false
+    },
+    {
+      "arm": "slow",
+      "seed": 17,
+      "active_p": 0.18333663999999997,
+      "active_q": 0.15751660722222222,
+      "attitude_deg": 4.851308174083234,
+      "velocity": 0.28229228333333334,
+      "passed": false
+    },
+    {
+      "arm": "slow",
+      "seed": 23,
+      "active_p": 0.1824480088888889,
+      "active_q": 0.15941219222222225,
+      "attitude_deg": 4.85002824366469,
+      "velocity": 0.29070381222222225,
+      "passed": false
+    },
+    {
+      "arm": "slow",
+      "seed": 42,
+      "active_p": 0.18100980333333333,
+      "active_q": 0.16222806333333337,
+      "attitude_deg": 4.795972317666154,
+      "velocity": 0.2853328377777778,
+      "passed": false
+    }
+  ],
+  "absolute_slow_gate_passed": false,
+  "causal_control_response_validated": false,
+  "optimizer_started": false,
+  "reason": "No independent causal response certification; absolute/relative gates must also pass before bounded optimizer.",
+  "main_horizon_s": [
+    0.5,
+    1.0
+  ],
+  "long_free_running_used_as_nominal_gate": false,
+  "instantaneous_model_replaced": false,
+  "sealed_test_accessed": false
+}

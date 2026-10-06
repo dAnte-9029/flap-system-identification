@@ -1,0 +1,5 @@
+{
+  "averaged_rate": "diagnostic0.2s causal averaging adds filtering delay; not substituted for frozen raw-state gate",
+  "reference_hold": "model dependence diagnostic, not a measured counterfactual",
+  "sealed_test_accessed": false
+}

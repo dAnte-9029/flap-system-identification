@@ -1,0 +1,22 @@
+{
+  "status": "prepared_not_executed",
+  "next_stage": "Persistent model step adapter parity; no controller or model tuning",
+  "parents": [
+    "control_windows_v30",
+    "control_windows_v35",
+    "control_windows_v38"
+  ],
+  "model_scope": "Frozen v30/v35 5fold x3seed OOF models, same407 originaltrain parents; no developmentvalidation/sealed/reserved.",
+  "tasks": [
+    "Expose H26 initialization and persistent20ms step with complete hidden, dynamic state, previous command, fixed phase/frequency and airspeed-proxy state; keep native operations unchanged.",
+    "On identical prerecorded command tapes, compare all50 steps with each frozen native output; tapes are adapter arithmetic checks only, not autonomous forecasts. Freeze tolerances before execution.",
+    "Verify checkpoint/statistics hashes, save/restore continuation, interleaved independent sessions and future-input-prefix causality. No future measured state reencoding.",
+    "Before any learned-model closed loop, freeze explicit400Hz-controller/50Hz-model coupling, reference tapes, airspeed/acceleration/phase assumptions and controller initialization. Retain multiple clock/state hypotheses; do not select20ms by lowest error.",
+    "Define comparison of generated commands and states, support excursions and sensitivity against the measured-state controller baseline. Keep physical limits and record interventions. Set acceptance criteria before model replay; numerical completion alone is not control readiness."
+  ],
+  "controller_reproduction_limit": "Component arithmetic verified; exact initial state and native scheduler unavailable. Current teacher errors are a diagnostic baseline, not a passed fidelity gate.",
+  "learned_model_replay_ready": false,
+  "no_training": true,
+  "no_controller_design": true,
+  "no_real_flight": true
+}

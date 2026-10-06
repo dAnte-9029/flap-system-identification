@@ -1,0 +1,16 @@
+{
+  "status": "complete",
+  "logs_parsed": 58,
+  "sealed_test_accessed": false,
+  "outputs": {
+    "candidates.csv": "9e014daa4135bdca23c4463166c820f4f63c058afcd61adeaab00f45d2b870a7",
+    "continuous_segments.csv": "8ae15b70affc695e0f2c2ee349db81c3cf2290cfe56ef7d8dcaad794afc10282",
+    "inventory.csv": "37f97f8a8ee10600e447eb399f3b2624ce4ad2e23cd0862856656c933d408fde",
+    "logs.csv": "c19f1b89c7923c39b17ac09a0489875ee74bc39bfb306e5750e05ab20cdde59b",
+    "protocol.json": "db08cbdecd85100afecde245d4538512d5a12a61f90c17ebaa2d3e6ea07f559d",
+    "sources.json": "1bc02732be50a8f4f5f76f7a2c82000fd7a6f2a98ddc9926eeb0c1f91b558832",
+    "topic_cadence.csv": "131857d352a64d4cad7cc29f1e9a80b2ceb2cf87a335f9ec500d7175e0722c51"
+  },
+  "causal_identification_validated": false,
+  "flight_replacement_established": false
+}

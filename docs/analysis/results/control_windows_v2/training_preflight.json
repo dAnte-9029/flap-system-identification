@@ -1,0 +1,14 @@
+{
+  "arm": "A",
+  "seed": 0,
+  "steps": 20,
+  "elapsed_s": 1.7326120994985104,
+  "final_batch_loss": 4.497583866119385,
+  "exposure_min": 0,
+  "exposure_median": 1.0,
+  "exposure_max": 6,
+  "purpose": "train-only finite-gradient/runtime check; not a model candidate",
+  "validation_scored": false,
+  "torch_version": "2.7.0+cu128",
+  "cpu_threads": 1
+}

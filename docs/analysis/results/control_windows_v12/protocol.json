@@ -1,0 +1,44 @@
+{
+  "stage": "v12 p/q history-conditional waveform mismatch localization",
+  "source_pins": {
+    "docs/analysis/results/control_windows_v8/delivery_manifest.json": "bf358676286f34af65bc140435eea00a978ebf7c3f1e018cb2eff9e349483ad6",
+    "docs/analysis/results/control_windows_v10/delivery_manifest.json": "9c7d8193c1ff8fcfe2853df17408b6a7fad72102e0f9c2c16ae3aa066b6e4da7",
+    "docs/analysis/results/control_windows_v11/delivery_manifest.json": "67e84b1abc0203db626e0a02a7ab3976c6941f3264df173cee39893b134591d3",
+    "docs/analysis/results/control_windows_v2/manifest.json": "84cac37ebf73f47802a4b5d3afff48d97554ac3aedfdd1cb6fb9ec5d618b919f",
+    "docs/analysis/results/control_windows_v2/windows_v2.csv": "ae91b646fb0b35c9bc1a8c8e67b7e2277b11066e13676907154fdee95e340516",
+    "dataset/control_windows_v2/windows.npz": "5e2c0a77eb1a8a17a14fe27b3fec80811b501a89d5e99f1752a9ec52fae96b8b",
+    "scripts/run_reference_condition_diagnostics_v12.py": "619e341f9d9ac76c0a84cee05782183cf94aa27a88eb4cf741563389e7d16aae",
+    "scripts/reference_condition_diagnostics_v12.py": "409f8a48ec43604ee553ef1e69e3b12a026a7259028159902723de18cfb0846f",
+    "tests/test_reference_condition_diagnostics_v12.py": "b724fc9ce7368f95552b12ce29978599ca588d202583d203eae679f5380f0982"
+  },
+  "data": "407 originaltrain windows,5sameouterfolds x3frozenv8holdseeds; no development evaluation, sealed/reserved access, modeltraining or sample removal",
+  "phase_contract": {
+    "definition": "logged wing_phase zero; Hall consistency is checked separately",
+    "installation_consistency": "not_confirmed",
+    "status": "unconfirmed_physical_pose"
+  },
+  "frequency_contract": {
+    "column": "flap_frequency_hz",
+    "ratio": 7.909090995788574,
+    "rescaling": "none; September logged ratio, not April ratio8"
+  },
+  "strata": [
+    "body_speed",
+    "frequency_mean",
+    "frequency_std",
+    "rate_std",
+    "rate_abs_mean",
+    "reference_std",
+    "reference_step_rms",
+    "actuator_step_rms",
+    "mode"
+  ],
+  "features": "all features use history only. axis-specific rate and roll/pitch reference statistics. Actuator change RMS over all4history channels. Body speed is body velocity norm, not airspeed.",
+  "thresholds": "fit flight-balanced empirical terciles on4outerfitflights; apply unchanged to samefold fit/query. Values<=lower inlow, <=upper inmid, remaininghigh; ties may empty bins. Mode is origin mode.",
+  "waveform": "0.5 and1s fullprefix: waveformRMSE, centeredRMSE divided by RMS truthstd, RMS predstd/truthstd, mean perwindow correlation (undefined excluded and counted), exact bias/amplitude/shape MSE decomposition",
+  "reference": "paired sameGRU replay observedfuture reference vs all5referencechannels held at last historical reference. Report outputcontrastRMS and 1-factualRMSE/heldRMSE against same observed truth. This is predictive usefulness of recorded references, not aircraft counterfactual response or causal effect.",
+  "aggregation": "windowMSE->flightRMSE->equalflight/equalseed summary. Fit cohort repeated acrossfolds is descriptive training fit, not independent sample count.",
+  "screen": "prespecified exploratory1s high/low normalizedcenterederror: at least8windows perextreme perflight; >=4pairedflights; geometricmean ratio>=1.2 or<=1/1.2; same direction in>=4flights andall3seeds; mean correlation worsens in matching direction for>=4flights. Display .5s separately; no automatic model choice frommany comparisons.",
+  "limits": "8continuouscovariates x2axes, repeated-development flights, correlated features/mode/motion; no p-values or causal/root-cause claim, no filtering using errors. If support insufficient report it. No promotion or controller work.",
+  "sealed_test_accessed": false
+}

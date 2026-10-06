@@ -1,0 +1,30 @@
+{
+  "dataset": {
+    "dataset_id": "trajectory_v3_september_expanded",
+    "path": "dataset/trajectory_v3_september_expanded",
+    "manifest_sha256": "46b50d0b23a32b40339a4c07526711d0ff88b55584d309a56807c56905d2817e",
+    "sample_artifact_hashes": {
+      "samples_train.parquet": "cd95d9db29cfe741c2929d8730fbd09b26fafcc54107f5faa3cd9d49e861e46e"
+    },
+    "partitions": [
+      "train"
+    ],
+    "phase_contract": {
+      "definition": "logged wing_phase zero; Hall consistency is checked separately",
+      "installation_consistency": "not_confirmed",
+      "status": "unconfirmed_physical_pose"
+    },
+    "frequency_contract": {
+      "column": "flap_frequency_hz",
+      "ratio": 7.909090995788574,
+      "rescaling": "none; September logged ratio, not April ratio8"
+    }
+  },
+  "script_sha256": "fd8c0941e654e660d5b80b8890db1efd541d64ec40c1af1f659926380e9afe9f",
+  "input_sha256": {
+    "per_log_metrics.csv": "b8c168ea454e82acba45c6ea5fa2f9995e3a35ac3fda6c1cb86726833f2e8cd0",
+    "action_change_by_horizon.csv": "bff9927890b3c143f4ea2f7844e47c2810018b944dfe51d5de911510864e7f1f",
+    "local_state_action_support.csv": "0413ddce3171225a0650602452bf000a91c827fa245686df54743740c9e5b1ed"
+  },
+  "test_opened": false
+}

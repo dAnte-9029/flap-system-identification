@@ -1,0 +1,14 @@
+{
+  "windows": 407,
+  "history_steps": 26,
+  "features": 8,
+  "history_points": 10582,
+  "tests_passed": 3,
+  "source_holds_independently_verified": true,
+  "all_publications_no_later_than_query": true,
+  "no_future_controller_tensor": true,
+  "fit_only_normalizations_verified": true,
+  "gyro_and_terms_sample_timestamps_unique": true,
+  "trained": false,
+  "sealed_test_accessed": false
+}

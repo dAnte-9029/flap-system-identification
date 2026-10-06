@@ -1,0 +1,152 @@
+{
+  "status": "passed",
+  "checks": [
+    {
+      "fold": 0,
+      "seed": 17,
+      "disposable_steps": 3,
+      "zero_parameters_and_optimizer_exact": true,
+      "candidate_finite_and_nonzero_effect": true,
+      "buffers_unchanged": true,
+      "fit_only_parent_and_local_sampling": true
+    },
+    {
+      "fold": 0,
+      "seed": 23,
+      "disposable_steps": 3,
+      "zero_parameters_and_optimizer_exact": true,
+      "candidate_finite_and_nonzero_effect": true,
+      "buffers_unchanged": true,
+      "fit_only_parent_and_local_sampling": true
+    },
+    {
+      "fold": 0,
+      "seed": 42,
+      "disposable_steps": 3,
+      "zero_parameters_and_optimizer_exact": true,
+      "candidate_finite_and_nonzero_effect": true,
+      "buffers_unchanged": true,
+      "fit_only_parent_and_local_sampling": true
+    },
+    {
+      "fold": 1,
+      "seed": 17,
+      "disposable_steps": 3,
+      "zero_parameters_and_optimizer_exact": true,
+      "candidate_finite_and_nonzero_effect": true,
+      "buffers_unchanged": true,
+      "fit_only_parent_and_local_sampling": true
+    },
+    {
+      "fold": 1,
+      "seed": 23,
+      "disposable_steps": 3,
+      "zero_parameters_and_optimizer_exact": true,
+      "candidate_finite_and_nonzero_effect": true,
+      "buffers_unchanged": true,
+      "fit_only_parent_and_local_sampling": true
+    },
+    {
+      "fold": 1,
+      "seed": 42,
+      "disposable_steps": 3,
+      "zero_parameters_and_optimizer_exact": true,
+      "candidate_finite_and_nonzero_effect": true,
+      "buffers_unchanged": true,
+      "fit_only_parent_and_local_sampling": true
+    },
+    {
+      "fold": 2,
+      "seed": 17,
+      "disposable_steps": 3,
+      "zero_parameters_and_optimizer_exact": true,
+      "candidate_finite_and_nonzero_effect": true,
+      "buffers_unchanged": true,
+      "fit_only_parent_and_local_sampling": true
+    },
+    {
+      "fold": 2,
+      "seed": 23,
+      "disposable_steps": 3,
+      "zero_parameters_and_optimizer_exact": true,
+      "candidate_finite_and_nonzero_effect": true,
+      "buffers_unchanged": true,
+      "fit_only_parent_and_local_sampling": true
+    },
+    {
+      "fold": 2,
+      "seed": 42,
+      "disposable_steps": 3,
+      "zero_parameters_and_optimizer_exact": true,
+      "candidate_finite_and_nonzero_effect": true,
+      "buffers_unchanged": true,
+      "fit_only_parent_and_local_sampling": true
+    },
+    {
+      "fold": 3,
+      "seed": 17,
+      "disposable_steps": 3,
+      "zero_parameters_and_optimizer_exact": true,
+      "candidate_finite_and_nonzero_effect": true,
+      "buffers_unchanged": true,
+      "fit_only_parent_and_local_sampling": true
+    },
+    {
+      "fold": 3,
+      "seed": 23,
+      "disposable_steps": 3,
+      "zero_parameters_and_optimizer_exact": true,
+      "candidate_finite_and_nonzero_effect": true,
+      "buffers_unchanged": true,
+      "fit_only_parent_and_local_sampling": true
+    },
+    {
+      "fold": 3,
+      "seed": 42,
+      "disposable_steps": 3,
+      "zero_parameters_and_optimizer_exact": true,
+      "candidate_finite_and_nonzero_effect": true,
+      "buffers_unchanged": true,
+      "fit_only_parent_and_local_sampling": true
+    },
+    {
+      "fold": 4,
+      "seed": 17,
+      "disposable_steps": 3,
+      "zero_parameters_and_optimizer_exact": true,
+      "candidate_finite_and_nonzero_effect": true,
+      "buffers_unchanged": true,
+      "fit_only_parent_and_local_sampling": true
+    },
+    {
+      "fold": 4,
+      "seed": 23,
+      "disposable_steps": 3,
+      "zero_parameters_and_optimizer_exact": true,
+      "candidate_finite_and_nonzero_effect": true,
+      "buffers_unchanged": true,
+      "fit_only_parent_and_local_sampling": true
+    },
+    {
+      "fold": 4,
+      "seed": 42,
+      "disposable_steps": 3,
+      "zero_parameters_and_optimizer_exact": true,
+      "candidate_finite_and_nonzero_effect": true,
+      "buffers_unchanged": true,
+      "fit_only_parent_and_local_sampling": true
+    }
+  ],
+  "tests_passed": 8,
+  "formal_training_started": false,
+  "temporary_optimizer_updates": 135,
+  "temporary_checkpoints_retained": 0,
+  "exposure_min": 98,
+  "exposure_max": 241,
+  "min_local_anchors_covered": 50,
+  "all_parent_offset_counts_balanced": true,
+  "local_data_fit_only": true,
+  "normalization_refit": false,
+  "validation_accessed": false,
+  "sealed_test_accessed": false
+}

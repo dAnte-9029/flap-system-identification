@@ -1,0 +1,8 @@
+{
+  "status": "passed",
+  "per_window_metric_values_recomputed": 273504,
+  "causal_generated_support_points_recomputed": 488400,
+  "fit_only_bounds_exact": true,
+  "applied_command_is_interval_left_endpoint": true,
+  "all_windows_retained": true
+}

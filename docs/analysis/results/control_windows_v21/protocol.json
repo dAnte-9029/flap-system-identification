@@ -1,0 +1,65 @@
+{
+  "stage": "v21",
+  "target": {
+    "window_id": "52364e098db4b9af_7_union0_block2_6924",
+    "array_index": 391,
+    "log_id": "2026.9.6/log_28_2026-9-6-07-01-38.ulg",
+    "partition": "train",
+    "cache": "dataset/reference_dynamics_data_v1/contract/52364e098db4b9af.npz",
+    "segment_id": "52364e098db4b9af_7_union0",
+    "block_id": "52364e098db4b9af_7_union0_block2",
+    "origin_index": 6924,
+    "mode": 15,
+    "quality": "Q1",
+    "active_reference": true,
+    "near_limit": false,
+    "event_clusters": "52364e098db4b9af_7_union0_event0",
+    "start_timestamp_us": 547397212,
+    "end_timestamp_us": 548917212,
+    "roll_range_rad": 0.2158146798610687,
+    "pitch_range_rad": 0.0031605660915374,
+    "manual_yaw_range": 0.509523868560791,
+    "manual_yaw_initial": -0.19047604501247406,
+    "manual_yaw_future_min": -0.5119046568870544,
+    "manual_yaw_future_max": -0.0023808006662875414,
+    "origin_timestamp_us": 547917212
+  },
+  "interval_us": [
+    544917212,
+    550917212
+  ],
+  "methods": [
+    "all native rows plus preceding row",
+    "causal zero order hold using max(publication,sample)",
+    "exact sample timestamp joins where available",
+    "fixed source semantics; no fitted lag"
+  ],
+  "exclusions": "none; target selected for v20 diagnosis, not representative of all windows",
+  "raw_source": {
+    "path": "/home/zn/QgcLogs/2026.9.6/log_28_2026-9-6-07-01-38.ulg",
+    "sha256": "73dd94d60553a00efb3e2d9009430686c08ee611f11eb4e3f8e3a427f26df842",
+    "partition": "train"
+  },
+  "firmware_commit": "c9af571575af33d5403fbb479256848797c801e2",
+  "pins": {
+    "docs/analysis/results/control_windows_v20/window391.json": "67c9164d918ad8141d32492c5a4350dc19d2041651b4fbe1697eef427d28199c",
+    "docs/analysis/results/reference_dynamics_data_v1/training_contract/manifest.json": "3c046faa6ad492f6654a19b00090bc2fb84c57d3fcd868456cc79f30e6399b0d",
+    "dataset/reference_dynamics_data_v1/manifest.json": "130ddb710a54125d481cad22db2cf9c9f081536202984b2c2e289cc78465519e",
+    "docs/analysis/results/reference_dynamics_data_v1/training_ready/manifest.json": "76756f5966550062b164764f83875933947b91dcec5795e7a8278358825f0a1e",
+    "dataset/reference_dynamics_data_v1/contract/52364e098db4b9af.npz": "5801d58118e7695b54e83cf2850e04b683b860ea0cafedc171d91d6fbfc08797"
+  },
+  "phase_contract": {
+    "definition": "logged wing_phase zero; Hall consistency is checked separately",
+    "installation_consistency": "not_confirmed",
+    "status": "unconfirmed_physical_pose"
+  },
+  "frequency_contract": {
+    "column": "flap_frequency_hz",
+    "ratio": 7.909090995788574,
+    "rescaling": "none; September logged ratio, not April ratio8"
+  },
+  "models_changed": false,
+  "training_started": false,
+  "validation_accessed": false,
+  "sealed_test_accessed": false
+}

@@ -1,0 +1,8 @@
+{
+  "torque_unachieved_grid_points": 106,
+  "torque_unachieved_unique_status_messages": 11,
+  "affected_windows": 5,
+  "mixed_motor_servo_sample_grid_points": 28,
+  "failure_mask_nonzero": 0,
+  "stop_mask_nonzero": 0
+}

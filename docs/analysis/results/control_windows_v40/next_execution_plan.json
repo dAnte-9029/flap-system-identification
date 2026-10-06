@@ -1,0 +1,15 @@
+{
+  "status": "prepared_not_executed",
+  "objective": "Frozen state-to-command error propagation audit, before further training",
+  "data": "Same407 originaltrain parents and30 frozen models; retain4clock/state hypotheses, no new validation/sealed/reserved.",
+  "tasks": [
+    "Reconstruct controller internal states from the saved model-state trajectories and condition tapes; first reproduce existing actions exactly.",
+    "Freeze cross-comparisons of model versus measured attitude/rates at identical controller internal state, and model-history versus teacher-history controller states at identical plant state. Report time-dependent action changes, source saturation and coupling.",
+    "Use separately named offline oracle replacements for p/q/r and roll/pitch; retain all windows and variants. Do not treat future-truth substitutions as deployable corrections or add nonlinear effects as if independent.",
+    "Localize action-error onset by horizon/flight/mode and original support; decide whether local state-error learning or controller initialization/scheduling warrants the next controlled experiment. No automatic tuning, architecture search, window removal or real flight."
+  ],
+  "rationale": "v35 relative benefit persists, but p/q/attitude absolute gates fail and generated surface commands are much less faithful than matched teacher commands.",
+  "no_training": true,
+  "no_controller_tuning": true,
+  "no_real_flight": true
+}

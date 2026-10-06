@@ -1,0 +1,9 @@
+{
+  "status": "passed",
+  "all_event_selections_recomputed": true,
+  "fit_only_thresholds_recomputed": true,
+  "response_traces_recomputed": 2472,
+  "event_rows": 412,
+  "same_parents_retained": 407,
+  "response_mse_and_sustained_signs_match": true
+}

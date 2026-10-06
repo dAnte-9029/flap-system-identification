@@ -1,0 +1,35 @@
+{
+  "parent_manifest_sha256": "3c046faa6ad492f6654a19b00090bc2fb84c57d3fcd868456cc79f30e6399b0d",
+  "script_sha256": "3a4863bd9d9010fc2dbbadd1909d5f3a0ac56864bd35cd1c0a571ce6d3f99dec",
+  "plan_sha256": "74e792b0e6694c5e4a7893742afec8370b06da28ff7d5bc188a2889a0bee3d1c",
+  "partitions": [
+    "train",
+    "validation"
+  ],
+  "sealed_test_accessed": false,
+  "split": "Formal comparison retains original5train/9validation flights: no shared flight, no block split or validation reassignment; pooled exploration is descriptive only",
+  "group": "3e1b1922309f00687fa63d61109c12efae400efaf59ba77a37540e5a05c1cc11",
+  "dt_s": 0.02,
+  "history_steps": 26,
+  "forecast_steps": 50,
+  "block_steps": 500,
+  "event_thresholds": [
+    0.017453292519943295,
+    0.017453292519943295,
+    0.05,
+    0.03,
+    0.03
+  ],
+  "event_rule": "per-channel cumulative change from last event,0.2s refractory; events and sign from references only",
+  "actuator_events": "secondary diagnostic thresholds from train command q75 absolute0.2s changes, floor0.01; not a window-selection criterion",
+  "window_rule": "event-first chronology origin0.1s before event when possible; background1.6s grid; forbid shared support samples; no crossing10s blocks",
+  "context": "1s before and3s after last event; overlapping contexts merged as event clusters, truncated contexts marked",
+  "quality_classes": "Q3 if any supplied servo command abs>=.98 in support; else Q1 if reference range threshold passed; else Q2. No response labels/GRU error used",
+  "nominal_scope": "all originally admitted airborne same-config modes/states; no additional outcome-based cruise exclusion",
+  "A": "all valid, flight-equal",
+  "B": "same count as C within each log+mode, fixed random seed1309, flight-equal",
+  "C": "Q1 only, flight-equal",
+  "D": "all valid, flight-equal then within-flight Q1:Q2:Q3=3:1:1",
+  "normalization": "A train unique rows only, common to all arms; no validation fitting",
+  "formal_training_started": false
+}

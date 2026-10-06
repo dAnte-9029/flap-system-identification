@@ -1,0 +1,12 @@
+{
+  "status": "complete",
+  "sealed_test_accessed": false,
+  "tests": "9 passed",
+  "artifacts": {
+    "primary_summary.csv": "b912c1d97011ad61b306b15c193a3ca22f1ca4cc6336cae68ec8806e15c1646b",
+    "configuration_groups.csv": "063bbdaa38b1530792d02e47aa1777e3e85406af0fa676fc5953300a4363ef41",
+    "examples.png": "a201912e5620de53799ec89410f29bc0e6d6039116c6460a007c28d34173a46d",
+    "example_selection.json": "7e979d489338872c78b429bf0e8b1a7d129b9d9116b5c74e35b6c68b7dbdd994",
+    "report_zh.md": "3a4b4838e6f71794debcbc63407f4dc049c351a7cf16c9301ad7087f02607ce4"
+  }
+}

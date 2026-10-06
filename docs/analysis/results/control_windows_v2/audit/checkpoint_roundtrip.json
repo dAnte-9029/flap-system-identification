@@ -1,0 +1,10 @@
+{
+  "checkpoint": "A_17",
+  "reloaded_final_checkpoint_matches_saved_predictions": true,
+  "max_abs_errors": {
+    "velocity_n": 0.0,
+    "quaternion": 0.0,
+    "rates_b": 0.0
+  },
+  "parameters": 40070
+}

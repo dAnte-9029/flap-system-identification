@@ -1,0 +1,228 @@
+{
+  "status": "complete",
+  "comparisons": [
+    {
+      "comparison": "budget",
+      "candidate": "integrated6400",
+      "baseline": "integrated1600",
+      "primary_gain_fraction": -0.022335089676146724,
+      "seed_gain_fraction": [
+        -0.02292760209073119,
+        -0.01000567882583514,
+        -0.03432049548049032
+      ],
+      "baseline_seed_scores": [
+        0.41866634111111106,
+        0.42570566583333336,
+        0.41722701194444445
+      ],
+      "candidate_seed_scores": [
+        0.4282653563888889,
+        0.42996513999999997,
+        0.4315464497222222
+      ],
+      "paired_flight_bootstrap95": [
+        -0.05546505108856538,
+        0.009977364754551845
+      ],
+      "maximum_all_metric_regression": 0.309097375558149,
+      "relative_pass": false
+    },
+    {
+      "comparison": "output1600",
+      "candidate": "direct1600",
+      "baseline": "integrated1600",
+      "primary_gain_fraction": -0.007414859039069022,
+      "seed_gain_fraction": [
+        -0.015498324816903608,
+        0.004656009077456114,
+        -0.011619672864168429
+      ],
+      "baseline_seed_scores": [
+        0.41866634111111106,
+        0.42570566583333336,
+        0.41722701194444445
+      ],
+      "candidate_seed_scores": [
+        0.42515496805555564,
+        0.42372357638888886,
+        0.4220750533333334
+      ],
+      "paired_flight_bootstrap95": [
+        -0.02970143182705391,
+        0.015907829637958434
+      ],
+      "maximum_all_metric_regression": 0.10953861564164846,
+      "relative_pass": false
+    },
+    {
+      "comparison": "output6400",
+      "candidate": "direct6400",
+      "baseline": "integrated6400",
+      "primary_gain_fraction": -0.06366951103258867,
+      "seed_gain_fraction": [
+        -0.07855406713076918,
+        -0.04845270001294644,
+        -0.06405917605809108
+      ],
+      "baseline_seed_scores": [
+        0.4282653563888889,
+        0.42996513999999997,
+        0.4315464497222222
+      ],
+      "candidate_seed_scores": [
+        0.46190734194444444,
+        0.45079811194444447,
+        0.4591909597222222
+      ],
+      "paired_flight_bootstrap95": [
+        -0.08352624713124697,
+        -0.04186306794868213
+      ],
+      "maximum_all_metric_regression": 0.13755555865046598,
+      "relative_pass": false
+    },
+    {
+      "comparison": "combined",
+      "candidate": "direct6400",
+      "baseline": "integrated1600",
+      "primary_gain_fraction": -0.0874266649472848,
+      "seed_gain_fraction": [
+        -0.10328272561528307,
+        -0.058943180993355604,
+        -0.10057821420096702
+      ],
+      "baseline_seed_scores": [
+        0.41866634111111106,
+        0.42570566583333336,
+        0.41722701194444445
+      ],
+      "candidate_seed_scores": [
+        0.46190734194444444,
+        0.45079811194444447,
+        0.4591909597222222
+      ],
+      "paired_flight_bootstrap95": [
+        -0.12878980914701968,
+        -0.04530699539110383
+      ],
+      "maximum_all_metric_regression": 0.27829651648691267,
+      "relative_pass": false
+    }
+  ],
+  "absolute_by_seed": [
+    {
+      "arm": "direct1600",
+      "seed": 17,
+      "active_p": 0.52697532,
+      "active_q": 0.29521693555555556,
+      "attitude_deg": 4.613524704878081,
+      "velocity": 0.2824123677777778,
+      "passed": false
+    },
+    {
+      "arm": "direct1600",
+      "seed": 23,
+      "active_p": 0.5334802188888889,
+      "active_q": 0.28868854555555556,
+      "attitude_deg": 4.7133767845681565,
+      "velocity": 0.29189787666666667,
+      "passed": false
+    },
+    {
+      "arm": "direct1600",
+      "seed": 42,
+      "active_p": 0.5328921466666667,
+      "active_q": 0.2899857211111111,
+      "attitude_deg": 4.569020965718824,
+      "velocity": 0.28835857111111113,
+      "passed": false
+    },
+    {
+      "arm": "direct6400",
+      "seed": 17,
+      "active_p": 0.5790311977777778,
+      "active_q": 0.3024187122222222,
+      "attitude_deg": 5.671676746391627,
+      "velocity": 0.28202211222222223,
+      "passed": false
+    },
+    {
+      "arm": "direct6400",
+      "seed": 23,
+      "active_p": 0.5761872144444444,
+      "active_q": 0.2844915933333334,
+      "attitude_deg": 5.80048520268134,
+      "velocity": 0.2755697811111111,
+      "passed": false
+    },
+    {
+      "arm": "direct6400",
+      "seed": 42,
+      "active_p": 0.5755019122222222,
+      "active_q": 0.2920437011111111,
+      "attitude_deg": 5.640166766927268,
+      "velocity": 0.2950845666666667,
+      "passed": false
+    },
+    {
+      "arm": "integrated1600",
+      "seed": 17,
+      "active_p": 0.5238233644444444,
+      "active_q": 0.2914844088888889,
+      "attitude_deg": 4.605790054756516,
+      "velocity": 0.28320813111111115,
+      "passed": false
+    },
+    {
+      "arm": "integrated1600",
+      "seed": 23,
+      "active_p": 0.51822816,
+      "active_q": 0.30691476333333334,
+      "attitude_deg": 4.638581607118431,
+      "velocity": 0.2906206288888889,
+      "passed": false
+    },
+    {
+      "arm": "integrated1600",
+      "seed": 42,
+      "active_p": 0.5169446699999999,
+      "active_q": 0.29948045111111105,
+      "attitude_deg": 4.6782984748853025,
+      "velocity": 0.29131341888888884,
+      "passed": false
+    },
+    {
+      "arm": "integrated6400",
+      "seed": 17,
+      "active_p": 0.5455876088888888,
+      "active_q": 0.28374675888888895,
+      "attitude_deg": 5.582884458288569,
+      "velocity": 0.27025498666666664,
+      "passed": false
+    },
+    {
+      "arm": "integrated6400",
+      "seed": 23,
+      "active_p": 0.5545899233333333,
+      "active_q": 0.2728609822222222,
+      "attitude_deg": 5.385843069331708,
+      "velocity": 0.28576264888888886,
+      "passed": false
+    },
+    {
+      "arm": "integrated6400",
+      "seed": 42,
+      "active_p": 0.5568334988888889,
+      "active_q": 0.28193647555555557,
+      "attitude_deg": 5.3514257746909,
+      "velocity": 0.2641318355555555,
+      "passed": false
+    }
+  ],
+  "independent_causal_control_response_validated": false,
+  "controller_optimization_started": false,
+  "control_validated": false,
+  "response_scope": "reference ablation demonstrates model reliance, not measured counterfactual truth",
+  "sealed_test_accessed": false
+}

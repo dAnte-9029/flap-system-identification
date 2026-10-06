@@ -1,0 +1,17 @@
+{
+  "status": "state_to_command_audit_complete",
+  "all407_retained": true,
+  "source_model_trajectories": 9768,
+  "controller_states_reconstructed": 488400,
+  "oracle_branches": 14,
+  "oracle_queries": 6837600,
+  "roll_substitution_improves_all_flight_seed_groups_per_variant": true,
+  "priority": "Prepare attitude-focused model learning comparison; do not first tune controller initialization/gains",
+  "not_a_unique_physical_or_training_root_cause": true,
+  "oracle_propagated": false,
+  "model_promoted": false,
+  "control_ready": false,
+  "validation_accessed": false,
+  "sealed_test_accessed": false,
+  "reserved_accessed": false
+}

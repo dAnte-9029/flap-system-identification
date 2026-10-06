@@ -1,0 +1,20 @@
+{
+  "parent_sha256": "76756f5966550062b164764f83875933947b91dcec5795e7a8278358825f0a1e",
+  "script_sha256": "f10e2e06d9c8de81e24b259bbc1518402108e46f81d02caf0f8fe202c0ff55f3",
+  "scope": "same selected firmware/config cohort; augment pilot-yaw command reference; causal event-held mission subtype metadata",
+  "input_order": [
+    "roll_reference_rad",
+    "pitch_reference_rad",
+    "logged_yaw_sp_move_rate",
+    "thrust_body_x",
+    "manual_yaw_normalized"
+  ],
+  "current_mode_context": "nav3/nav15 one-hot; not future observed mode",
+  "manual_yaw": "Stabilized: last valid manual sample with publication/sample<=query and age<=0.3s; Mission: manual path inactive under selected flags, set0; do not pretend200ms logging is high-rate truth",
+  "mission_kind": "last published current.type/current.valid held until next event; record age, not assume periodic publisher; type0 is position target, not proof of geometrically straight/level flight",
+  "selection": "retain full original selected windows only if additional reference finite/fresh throughout history and future; no response metric selection",
+  "chain_boundary": "archived source reveals manual yaw additive path; logged yaw_sp_move_rate alone is insufficient; matching firmware source and hardware still need verification before control claims",
+  "source_evidence_sha256": "40f9f25c116e6e59c8620b1e0b09642f8f77085f465077d3a19dd5408412d8f8",
+  "sealed_test_accessed": false,
+  "training_started": false
+}
