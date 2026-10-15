@@ -1,0 +1,16 @@
+{
+  "status": "frozen_before_any_evaluation",
+  "code": {
+    "scripts/evaluate_paper_ablation_v46.py": "2c5485178a45653d7f672104b5be3106696fc539bb965b717d59df91355c62ef",
+    "scripts/verify_paper_ablation_v46.py": "8f29475d60507bbcee6c9369c491c516eb867f441a7aaa0ed793b209fba80212",
+    "tests/test_paper_ablation_evaluation_v46.py": "52148606b36e27f625c34ed9471f449ac94fe6cf55391959a5768e7375e83a28"
+  },
+  "metrics_protocol_sha256": "94faae1aa1e0821e21c45e0f15cf25ef9b1ce7a3abe269fcfc22f3f120d6b69b",
+  "amendments": [
+    {
+      "reason": "Fix analytical accelerating-spin test expected angle from 1.5*t to 1.5*t**2; no production or training changes, no results evaluated.",
+      "old_test_sha256": "df559a40598c08a8bf55fa0b1e771d9f3f05bf1aefbad74fc71eb1f93056c03e",
+      "new_test_sha256": "52148606b36e27f625c34ed9471f449ac94fe6cf55391959a5768e7375e83a28"
+    }
+  ]
+}

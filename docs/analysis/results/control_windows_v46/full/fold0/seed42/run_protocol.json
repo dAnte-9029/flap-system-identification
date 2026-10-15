@@ -1,0 +1,11 @@
+{
+  "arm": "full",
+  "fold": 0,
+  "seed": 42,
+  "sample_plan": "fold0/seed42/sample_plan.npz",
+  "sample_plan_sha256": "bfae535bccc7940f1e1ac38faab11ac80817b09eb1e8ffe4229e3098f54df536",
+  "normalization_sha256": "44abf3c7a58d8c02edb03a7698e72420845e57e29cc6f2ca66a90c9136085bb3",
+  "initial_parameter_sha256": "14482b364165a36ee904d986c2202aec140c154df5fa033b74e850d2832f3e2c",
+  "parameter_count": 40265,
+  "protocol_sha256": "94faae1aa1e0821e21c45e0f15cf25ef9b1ce7a3abe269fcfc22f3f120d6b69b"
+}

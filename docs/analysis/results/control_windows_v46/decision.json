@@ -1,0 +1,18 @@
+{
+  "adopt_new_model": false,
+  "retained_baseline": "A1600/v35",
+  "control_ready": false,
+  "finding": "Neither multihead nor decoupled outperforms v35 under the frozen matched-total-parameter budget. Decoupled improves only against the weaker independent-attitude full control.",
+  "q_wave_rmse": {
+    "baseline": 0.322464,
+    "full": 0.449654,
+    "multihead": 0.430377,
+    "decoupled": 0.328382
+  },
+  "diagnosis": "Decoupled p/q centered waveform errors remain essentially unchanged; q segment mean error is larger. Local20ms rate prediction also does not improve. Independent attitude output breaks the original hard rate-integration consistency.",
+  "causal_limits": "Does not identify a unique physical cause, prove sensor noise or poor coverage, or rule out other widths, parameter budgets, training budgets, objectives or kinematic constraints.",
+  "next_focus": "Retain hard quaternion integration; continue observation-contract/high-frequency-p predictability and q recurrent/context diagnostics before further architecture sweeps.",
+  "validation_accessed": false,
+  "sealed_test_accessed": false,
+  "closed_loop_evaluated": false
+}

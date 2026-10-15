@@ -1,0 +1,356 @@
+{
+  "status": "frozen_before_training",
+  "version": "paper_predictor_v46",
+  "dataset_id": "trajectory_v3_september_expanded",
+  "registry_entry": {
+    "lifecycle_status": "active_expanded_observed_phase_physical_zero_unconfirmed",
+    "intended_use": "expanded September surrogate train_validation",
+    "manifest_path": "dataset/trajectory_v3_september_expanded/manifest.json",
+    "manifest_sha256": "46b50d0b23a32b40339a4c07526711d0ff88b55584d309a56807c56905d2817e",
+    "partitions_materialized": [
+      "train",
+      "validation"
+    ],
+    "sealed_test_requires_separate_gate": true
+  },
+  "parent_data_contract": {
+    "dataset_id": "actuator_conditioned_train_v29",
+    "partition": "original_train_only",
+    "windows": 407,
+    "flights": 5,
+    "history_steps": 26,
+    "rollout_steps": 50,
+    "authority": "docs/analysis/results/control_windows_v29/protocol.json",
+    "protocol_sha256": "4116637ee77b1cb25bc1c059343869622fc6a235a14ad17e7c4af5e759214376",
+    "parent_manifest_sha256": "58446ec46138109d266aba1a9a08c8275278199b8a0ef18890f14a58c092ea8a",
+    "command_contract_sha256": "3a9bbc7653f8a8dc3e0ace031fcda952a0cd8c73012b8540eb75e709dc7a5074",
+    "arrays_sha256": "eb06dd11d48ee727f2b8656ff6c7fc170a929e2769a40f1f3a9bf6e6467a2a9d",
+    "windows_sha256": "7aa14314e616023ffa6350475b00a344432366711ef4c2237dfbefc515304496",
+    "shapes": {
+      "input_history_state": [
+        407,
+        26,
+        14
+      ],
+      "input_history_actuator": [
+        407,
+        26,
+        4
+      ],
+      "input_initial_quaternion": [
+        407,
+        4
+      ],
+      "input_initial_velocity_n": [
+        407,
+        3
+      ],
+      "input_initial_rates_b": [
+        407,
+        3
+      ],
+      "input_dt_s": [
+        407,
+        50
+      ],
+      "input_current_mode": [
+        407,
+        2
+      ],
+      "label_quaternion": [
+        407,
+        50,
+        4
+      ],
+      "label_velocity_n": [
+        407,
+        50,
+        3
+      ],
+      "label_rates_b": [
+        407,
+        50,
+        3
+      ],
+      "input_history_command": [
+        407,
+        26,
+        4
+      ],
+      "input_future_command": [
+        407,
+        50,
+        4
+      ]
+    },
+    "sources": [
+      {
+        "log_id": "2026.9.6/log_20_2026-9-6-18-58-10.ulg",
+        "source": {
+          "path": "/home/zn/QgcLogs/2026.9.6/log_20_2026-9-6-18-58-10.ulg",
+          "sha256": "3b0afa4b3526fae934d9705082c0dbfe247fc39baff68014c06cf6642e71275e",
+          "partition": "train"
+        },
+        "cache": "dataset/reference_dynamics_data_v1/contract/26ba9c99346eef34.npz",
+        "cache_sha256": "08159a90419eba88aa278a88cb3ae71ae1fa968c3dbf487f71aee53df3eba355"
+      },
+      {
+        "log_id": "2026.9.6/log_17_2026-9-6-18-34-06.ulg",
+        "source": {
+          "path": "/home/zn/QgcLogs/2026.9.6/log_17_2026-9-6-18-34-06.ulg",
+          "sha256": "37ff9f8ea4e2e378fc13394288aa145a462259e2f53fa15af9511082f0e6d558",
+          "partition": "train"
+        },
+        "cache": "dataset/reference_dynamics_data_v1/contract/4446fd466bb7821d.npz",
+        "cache_sha256": "ff58c51e5f6b24a658fcba58ee3e28dd0f147a6bb73a90ea6800943801165375"
+      },
+      {
+        "log_id": "2026.9.6/log_28_2026-9-6-07-01-38.ulg",
+        "source": {
+          "path": "/home/zn/QgcLogs/2026.9.6/log_28_2026-9-6-07-01-38.ulg",
+          "sha256": "73dd94d60553a00efb3e2d9009430686c08ee611f11eb4e3f8e3a427f26df842",
+          "partition": "train"
+        },
+        "cache": "dataset/reference_dynamics_data_v1/contract/52364e098db4b9af.npz",
+        "cache_sha256": "5801d58118e7695b54e83cf2850e04b683b860ea0cafedc171d91d6fbfc08797"
+      },
+      {
+        "log_id": "2026.9.6/log_19_2026-9-6-18-52-30.ulg",
+        "source": {
+          "path": "/home/zn/QgcLogs/2026.9.6/log_19_2026-9-6-18-52-30.ulg",
+          "sha256": "30f27b3c2ee46a05ed6108ec01a2150cd5c8fedaf4f0cb7a1f0347698412aacd",
+          "partition": "train"
+        },
+        "cache": "dataset/reference_dynamics_data_v1/contract/8d835123654f62c7.npz",
+        "cache_sha256": "7037dea0fd686a73ad8ee4f94a1573221f1736645cb6c978d35fbff79aa5c602"
+      },
+      {
+        "log_id": "2026.9.6/log_18_2026-9-6-18-46-20.ulg",
+        "source": {
+          "path": "/home/zn/QgcLogs/2026.9.6/log_18_2026-9-6-18-46-20.ulg",
+          "sha256": "603a941c5ebbfcdf27b80b0d1c4b2de65dd4e114fdefb64bb70896e409c135a8",
+          "partition": "train"
+        },
+        "cache": "dataset/reference_dynamics_data_v1/contract/98850e05e3b89ecb.npz",
+        "cache_sha256": "799a99539f8e7ae90d7a1917513225e2ee8b94cb62d01b4a073edd8c02829703"
+      }
+    ],
+    "channel_order": [
+      "motor0",
+      "servo0",
+      "servo1",
+      "servo2"
+    ],
+    "units": [
+      "normalized_motor_thrust_request",
+      "normalized_servo_command",
+      "normalized_servo_command",
+      "normalized_servo_command"
+    ],
+    "phase_contract": {
+      "definition": "logged wing_phase zero; Hall consistency is checked separately",
+      "installation_consistency": "not_confirmed",
+      "status": "unconfirmed_physical_pose"
+    },
+    "frequency_contract": {
+      "column": "flap_frequency_hz",
+      "ratio": 7.909090995788574,
+      "rescaling": "none; September logged ratio, not April ratio8"
+    },
+    "validation_accessed": false,
+    "sealed_test_accessed": false
+  },
+  "pins": {
+    "/home/zn/QgcLogs/2026.9.6/log_17_2026-9-6-18-34-06.ulg": "37ff9f8ea4e2e378fc13394288aa145a462259e2f53fa15af9511082f0e6d558",
+    "/home/zn/QgcLogs/2026.9.6/log_18_2026-9-6-18-46-20.ulg": "603a941c5ebbfcdf27b80b0d1c4b2de65dd4e114fdefb64bb70896e409c135a8",
+    "/home/zn/QgcLogs/2026.9.6/log_19_2026-9-6-18-52-30.ulg": "30f27b3c2ee46a05ed6108ec01a2150cd5c8fedaf4f0cb7a1f0347698412aacd",
+    "/home/zn/QgcLogs/2026.9.6/log_20_2026-9-6-18-58-10.ulg": "3b0afa4b3526fae934d9705082c0dbfe247fc39baff68014c06cf6642e71275e",
+    "/home/zn/QgcLogs/2026.9.6/log_28_2026-9-6-07-01-38.ulg": "73dd94d60553a00efb3e2d9009430686c08ee611f11eb4e3f8e3a427f26df842",
+    "configs/data/trajectory_dataset_registry.yaml": "3cbebc8996d1a1c233d906359aedd47c7bd23cee0c25aa988f4ce51ec1cbba49",
+    "dataset/reference_dynamics_data_v1/contract/26ba9c99346eef34.npz": "08159a90419eba88aa278a88cb3ae71ae1fa968c3dbf487f71aee53df3eba355",
+    "dataset/reference_dynamics_data_v1/contract/4446fd466bb7821d.npz": "ff58c51e5f6b24a658fcba58ee3e28dd0f147a6bb73a90ea6800943801165375",
+    "dataset/reference_dynamics_data_v1/contract/52364e098db4b9af.npz": "5801d58118e7695b54e83cf2850e04b683b860ea0cafedc171d91d6fbfc08797",
+    "dataset/reference_dynamics_data_v1/contract/8d835123654f62c7.npz": "7037dea0fd686a73ad8ee4f94a1573221f1736645cb6c978d35fbff79aa5c602",
+    "dataset/reference_dynamics_data_v1/contract/98850e05e3b89ecb.npz": "799a99539f8e7ae90d7a1917513225e2ee8b94cb62d01b4a073edd8c02829703",
+    "dataset/trajectory_v3_september_expanded/manifest.json": "46b50d0b23a32b40339a4c07526711d0ff88b55584d309a56807c56905d2817e",
+    "docs/analysis/results/control_windows_v29/dataset_manifest.json": "d94423e9e918494a386158d48fa00b29f8fbde1934910d383f97234add7bd001",
+    "docs/analysis/results/control_windows_v29/delivery_manifest.json": "49ffd01eb46a8fd80e6e193143b25be4212cc78fdb11725feb95c5a495e9b231",
+    "docs/analysis/results/control_windows_v29/fold0/manifest.json": "3c9d984cfef92518b0a4c4b8f287f627f1215208aac615226fa3200cca4cc719",
+    "docs/analysis/results/control_windows_v29/fold0/normalization.npz": "44abf3c7a58d8c02edb03a7698e72420845e57e29cc6f2ca66a90c9136085bb3",
+    "docs/analysis/results/control_windows_v29/fold1/manifest.json": "bfa38f56e0f1000ea0566100252ab85a63fe7b6bd636c791fa07360880a36169",
+    "docs/analysis/results/control_windows_v29/fold1/normalization.npz": "1c10f6e66a5858b8853434bc03224962c0c9ac7490b3887f02b4434bf395c842",
+    "docs/analysis/results/control_windows_v29/fold2/manifest.json": "41d4b568dcf3ec5d2a3bd7352171c196916c2afe54efb4f2c9aeda60ff2ff9e5",
+    "docs/analysis/results/control_windows_v29/fold2/normalization.npz": "bd82f3b6951f44738fe28096c28134eb1f50e45a2d12a28853be25ca762b200a",
+    "docs/analysis/results/control_windows_v29/fold3/manifest.json": "f79dd063d8f8f36702dfb7b22a8e6f8e53b68df1a84652fc0b153a936f40329d",
+    "docs/analysis/results/control_windows_v29/fold3/normalization.npz": "0a8ec020fdaef37ee064605761820e43ae1719f8b34571f93b3e57d5a031e12f",
+    "docs/analysis/results/control_windows_v29/fold4/manifest.json": "54a889e9c030f042a1d9d2fbc80a1f003f37f04f2d4ba1245ebf2ad93cbbf75f",
+    "docs/analysis/results/control_windows_v29/fold4/normalization.npz": "62f7177363acb32acc1146665ab3d6d690e3fe19b8599d7e3cb224cd4881c07f",
+    "docs/analysis/results/control_windows_v29/windows.csv": "7aa14314e616023ffa6350475b00a344432366711ef4c2237dfbefc515304496",
+    "docs/analysis/results/control_windows_v29/windows.npz": "eb06dd11d48ee727f2b8656ff6c7fc170a929e2769a40f1f3a9bf6e6467a2a9d",
+    "docs/analysis/results/control_windows_v33/delivery_manifest.json": "487d47eb0d69e6808b9a5a738fd33733fa45e3cfb9dd0717c562673b58e60773",
+    "docs/analysis/results/control_windows_v33/rolling_inputs.npz": "47251bc60673f3723cdfa144c0d52f20d91f8f5d971a0aca56bbed052505d28d",
+    "docs/analysis/results/control_windows_v34/delivery_manifest.json": "0cad7b62d6c3dc01eb8fe9f2c93a2264423a4d867a96b812f028d5cec0ecf1b6",
+    "docs/analysis/results/control_windows_v34/fold0/seed17/sample_plan.npz": "45e7a51fc8492aff70ea57a0f86b6999f0d236a1021ad97e9828184e1af5c54e",
+    "docs/analysis/results/control_windows_v34/fold0/seed23/sample_plan.npz": "4f3addee7e7d186c0eeb58218a082f80e769a5c77f8108482796ac068da19743",
+    "docs/analysis/results/control_windows_v34/fold0/seed42/sample_plan.npz": "bfae535bccc7940f1e1ac38faab11ac80817b09eb1e8ffe4229e3098f54df536",
+    "docs/analysis/results/control_windows_v34/fold1/seed17/sample_plan.npz": "64dda76fae64dcf053a43a1c268b7415773e51f0c3f7f046ed25412543a615e5",
+    "docs/analysis/results/control_windows_v34/fold1/seed23/sample_plan.npz": "9f81a200acd503fdca656f491cfc345a232d3ac723440adf6701d320159caee9",
+    "docs/analysis/results/control_windows_v34/fold1/seed42/sample_plan.npz": "f3e4e23f4ec9d3649b00845cda81b9b12431f255db1d4391251b2c92c4e327b2",
+    "docs/analysis/results/control_windows_v34/fold2/seed17/sample_plan.npz": "36bebf9f71986b7beaa872892f3f09309a6af4d9cbcbe75886bea0e0ab4b1982",
+    "docs/analysis/results/control_windows_v34/fold2/seed23/sample_plan.npz": "c7cb22c48294e8a0914ebb5cb664beea1aa9076e1e4b530b75630f4453f2503f",
+    "docs/analysis/results/control_windows_v34/fold2/seed42/sample_plan.npz": "4be95b11cf4cbbf0a7650cab7737259f5d43195b2831823d34ea8dc130679be0",
+    "docs/analysis/results/control_windows_v34/fold3/seed17/sample_plan.npz": "858835f6a8ad29aa925a004b95851f0bf95497669c2bd1f36a5b5f0a577cf09d",
+    "docs/analysis/results/control_windows_v34/fold3/seed23/sample_plan.npz": "f5219bff8aab6622c3bf37e695c0b1409422b4d4e5099c13a652c2fab0a1f540",
+    "docs/analysis/results/control_windows_v34/fold3/seed42/sample_plan.npz": "74427256f02e25be45caae8aa058a9d14aeae7402cb55b44c018adaab4e69abd",
+    "docs/analysis/results/control_windows_v34/fold4/seed17/sample_plan.npz": "b5eb1d7b8a67908f56b80809023c2aecf0fba3338940f0c97af6674773a77128",
+    "docs/analysis/results/control_windows_v34/fold4/seed23/sample_plan.npz": "4446247ffcb56128d4efe6c0ff74f57bddeb8b087a6d650a3c2672c8b82fd054",
+    "docs/analysis/results/control_windows_v34/fold4/seed42/sample_plan.npz": "b9339e44ec0e3f18547cb1da6d4fca77964b03c3d79a5359ebc429fc698da9f4",
+    "docs/analysis/results/control_windows_v34/training_plan.json": "cc3672dabb8cd33eb9aed26d2dad4c9b8c041fbae3c0faedd6c151f2a25054e0",
+    "docs/analysis/results/control_windows_v35/delivery_manifest.json": "8329f834d415102d3949635fe39ea2c7f2ea8bf0d0aaa9ecee096102ac037e8a",
+    "docs/analysis/results/control_windows_v35/fold0/joint_increment/seed17/final.pt": "9ea9b062062486f4560986b1a83fe6f7addb1e082023e2449e59e6cd915e4c03",
+    "docs/analysis/results/control_windows_v35/fold0/joint_increment/seed17/fit_predictions.npz": "33f42503611ae4060db327ed9059a8bc22bb2d156e40697cf605c750952ea36e",
+    "docs/analysis/results/control_windows_v35/fold0/joint_increment/seed17/oof_predictions.npz": "9939f702a5b46f7658dee7cbfce001b519ba1517595635194d524f9a6832c92b",
+    "docs/analysis/results/control_windows_v35/fold0/joint_increment/seed17/rolling_predictions.npz": "33d1cf2a02dd4c8688bff735e94616a6f248d573f8f8b625be918247fa257fd5",
+    "docs/analysis/results/control_windows_v35/fold0/joint_increment/seed23/final.pt": "b7ea0615e0bc6a2891b18c6b1b93daf20bd8c7932956f4cf5e0e00555052c9a6",
+    "docs/analysis/results/control_windows_v35/fold0/joint_increment/seed23/fit_predictions.npz": "a796b08467261167c1dd0b5160efda1d892126e4b9e3fde187ec1ab1863abd46",
+    "docs/analysis/results/control_windows_v35/fold0/joint_increment/seed23/oof_predictions.npz": "637a9f8e6e18e8721d176a7f53230b7c5b8ff71f0a13a5cdf17bc598bd0402a4",
+    "docs/analysis/results/control_windows_v35/fold0/joint_increment/seed23/rolling_predictions.npz": "78efc865fd1cf7c2b28abc370d541ab9eb15d53355d2aee337afaff680939143",
+    "docs/analysis/results/control_windows_v35/fold0/joint_increment/seed42/final.pt": "804bdc6a8340327065384952e0565ec67d929544507582253fd651a665da028d",
+    "docs/analysis/results/control_windows_v35/fold0/joint_increment/seed42/fit_predictions.npz": "5c140a3bd11dd94c6e0273a169ecbf84543b9817ac2b89e3e5e1816edce180b6",
+    "docs/analysis/results/control_windows_v35/fold0/joint_increment/seed42/oof_predictions.npz": "55d0a7b2af7386cd457ae2dd2c3141e00df2bda957bdcfc624b5ce30cf44893d",
+    "docs/analysis/results/control_windows_v35/fold0/joint_increment/seed42/rolling_predictions.npz": "839001e2b961df57edc28e1a5d7ec4926853f863ab6d0207767f0681224c8899",
+    "docs/analysis/results/control_windows_v35/fold1/joint_increment/seed17/final.pt": "d213b868659a7d3ced392014abd4cc277156456df2be4cf6fd85f42b7a8137a3",
+    "docs/analysis/results/control_windows_v35/fold1/joint_increment/seed17/fit_predictions.npz": "3aeaeade33acbaa201c674ec909efba5a4e7c9a93933e2149e6f35c2fce635a7",
+    "docs/analysis/results/control_windows_v35/fold1/joint_increment/seed17/oof_predictions.npz": "9a7e30713b6d7fcb916fc9e28a559dd6f97070d4f47dc72d93cf5d95d8413de0",
+    "docs/analysis/results/control_windows_v35/fold1/joint_increment/seed17/rolling_predictions.npz": "6c859b2500a66908b45bf25349e15c1000c4602c233b9d123fb1571ae0fc755c",
+    "docs/analysis/results/control_windows_v35/fold1/joint_increment/seed23/final.pt": "5ac4619d72f3f6d0eef217d74429ce40dc34ead3e34556cc11b905dea63125a8",
+    "docs/analysis/results/control_windows_v35/fold1/joint_increment/seed23/fit_predictions.npz": "718ee75963f0f6d1234ca7d11f4bda15ba796c117ea23f524db954fe49b01807",
+    "docs/analysis/results/control_windows_v35/fold1/joint_increment/seed23/oof_predictions.npz": "ca9b049e4ba74dcd4c086983ddd08d60cc2e1757233750f8b105cd29fa2ba8bb",
+    "docs/analysis/results/control_windows_v35/fold1/joint_increment/seed23/rolling_predictions.npz": "6bb8f9734d14500663c31b08e4befb795bf15dbd5900caa317de98be42d01110",
+    "docs/analysis/results/control_windows_v35/fold1/joint_increment/seed42/final.pt": "d58734703b8e2d9eb8e9551bb3aa8c0bccc69fb1d6c77429a69459b9762bc62f",
+    "docs/analysis/results/control_windows_v35/fold1/joint_increment/seed42/fit_predictions.npz": "0ef0cec5441b177466c24018a709204fb03600d3f4135335c7daf33adaec090e",
+    "docs/analysis/results/control_windows_v35/fold1/joint_increment/seed42/oof_predictions.npz": "4fdc1ade23c5952eeffcefc6a6ba3891bcbc0ea2fb17f515528376464b0625a3",
+    "docs/analysis/results/control_windows_v35/fold1/joint_increment/seed42/rolling_predictions.npz": "42a2ef106dbc8c309c55fbf2630a10499ca19a57f5b58263c9a68b66ffb32c80",
+    "docs/analysis/results/control_windows_v35/fold2/joint_increment/seed17/final.pt": "0c5167fb1758e0bdaefb2f05317a59e561a63d62feb81867f038f6cfe5e9c548",
+    "docs/analysis/results/control_windows_v35/fold2/joint_increment/seed17/fit_predictions.npz": "62bf55da476f3170d8cc856344566f16f30e4124c175aaff2d833f8528ba92d2",
+    "docs/analysis/results/control_windows_v35/fold2/joint_increment/seed17/oof_predictions.npz": "0d7bc90c5ccb7736904a7252c4102b754fbaebeb57bbc6fc4e22db744c457a79",
+    "docs/analysis/results/control_windows_v35/fold2/joint_increment/seed17/rolling_predictions.npz": "afd1f0a16733cbdab71149985791e4f377838bdb80f33f32106522aacd16041c",
+    "docs/analysis/results/control_windows_v35/fold2/joint_increment/seed23/final.pt": "69da762107b57e9ed87b050e63792cb82da3e034e248c252f2903f348f1883e3",
+    "docs/analysis/results/control_windows_v35/fold2/joint_increment/seed23/fit_predictions.npz": "1d41942e3d4ca23135eb49afcdf6be6b125e714eb6ab011a8d0847b4efd270b8",
+    "docs/analysis/results/control_windows_v35/fold2/joint_increment/seed23/oof_predictions.npz": "87efe4bcab7063874ed22f1e2c9749f110482e3b37ae162cf9b870e4090ac9b0",
+    "docs/analysis/results/control_windows_v35/fold2/joint_increment/seed23/rolling_predictions.npz": "87b569fec6c51ac12694f946750d115c6ad32eee88557626264676b2d5f972ae",
+    "docs/analysis/results/control_windows_v35/fold2/joint_increment/seed42/final.pt": "9752831cb778d076f50c7a08efbad67e7590c3642f18982458ae6423d6ad43f6",
+    "docs/analysis/results/control_windows_v35/fold2/joint_increment/seed42/fit_predictions.npz": "035de5e4e6851f1b19c3f4c95724ba359d3193b4be96d69f84a77dde3ca5e3e3",
+    "docs/analysis/results/control_windows_v35/fold2/joint_increment/seed42/oof_predictions.npz": "b6fe1aa7416eb83d0b77088336f4e69b54d85f385465f085ea8bc49ea86e219b",
+    "docs/analysis/results/control_windows_v35/fold2/joint_increment/seed42/rolling_predictions.npz": "1b32ffd9e55c7670be7a07642c4d319748b219537c1d8b38840181c6e6246f19",
+    "docs/analysis/results/control_windows_v35/fold3/joint_increment/seed17/final.pt": "1e7738d52acff0dcbee98dfafb7b305d367118908bcd91c5dd0f17ccfa380e35",
+    "docs/analysis/results/control_windows_v35/fold3/joint_increment/seed17/fit_predictions.npz": "c90c6480a4974c8a0d8074655800efec6f431ecec7061806ac2f4869d5b3a256",
+    "docs/analysis/results/control_windows_v35/fold3/joint_increment/seed17/oof_predictions.npz": "a4dc52b9fb9f54f457fe7c36cb38ba35e11a5cc75ecaf1b84d8756f080920228",
+    "docs/analysis/results/control_windows_v35/fold3/joint_increment/seed17/rolling_predictions.npz": "c068d080b1799494b7f46c84246c89fcc30fba388d7c8a701d0482817013889f",
+    "docs/analysis/results/control_windows_v35/fold3/joint_increment/seed23/final.pt": "f70a1c09235d9bb33e9b06daf216c80b6a89c7871ef62430464fd63ec7c1e8c3",
+    "docs/analysis/results/control_windows_v35/fold3/joint_increment/seed23/fit_predictions.npz": "614eb430ccd037a1b9731b40b53f345539fc5179755a3dc2bb5ead5ae261bd9c",
+    "docs/analysis/results/control_windows_v35/fold3/joint_increment/seed23/oof_predictions.npz": "d33365793572214fdc3e63d6b75bb7f381e8db3ce4afe09e725c17fea6f764d4",
+    "docs/analysis/results/control_windows_v35/fold3/joint_increment/seed23/rolling_predictions.npz": "274af683d700c6c3a063f744d533b6d4b1f5281ff8d9d0f34717be60e415051c",
+    "docs/analysis/results/control_windows_v35/fold3/joint_increment/seed42/final.pt": "3b3b631ce60631d757c56386ebcf6076c6ecf478ab213410cd0532a487a480cf",
+    "docs/analysis/results/control_windows_v35/fold3/joint_increment/seed42/fit_predictions.npz": "2811d2878aac29d7acc7c50544fed0f146f3d4f13af8e905e69e33aa903711a6",
+    "docs/analysis/results/control_windows_v35/fold3/joint_increment/seed42/oof_predictions.npz": "0e5a77e8e2972272afd6499ad795eb8e20928cf9a32a8e2fc264dfbe2a8edee1",
+    "docs/analysis/results/control_windows_v35/fold3/joint_increment/seed42/rolling_predictions.npz": "8402966bb9f8e44bcd82754a070e00fb53b9cd5ad6085f84e0620e0df0f35698",
+    "docs/analysis/results/control_windows_v35/fold4/joint_increment/seed17/final.pt": "83b95ae4087fddf4605c6f9205ba8963793576ba25875495bc0789443e09f103",
+    "docs/analysis/results/control_windows_v35/fold4/joint_increment/seed17/fit_predictions.npz": "899c2f217d49dcb59dd573109e845626b8fa3bfc9dfd9ddce390f5c57b4142c2",
+    "docs/analysis/results/control_windows_v35/fold4/joint_increment/seed17/oof_predictions.npz": "a2436d9fb8fc4da15ebe82f0da1fea288b85f8cdba3165ab185232f0097fd3e6",
+    "docs/analysis/results/control_windows_v35/fold4/joint_increment/seed17/rolling_predictions.npz": "3987d7cb42ffa78f3dbed6e50da4b4707192f6481150938ad06d1972299785db",
+    "docs/analysis/results/control_windows_v35/fold4/joint_increment/seed23/final.pt": "e99fe62302c37b1662626efdab119365447fd55a7e113aeffffcbbe3fb27fe33",
+    "docs/analysis/results/control_windows_v35/fold4/joint_increment/seed23/fit_predictions.npz": "ce9143e5575cf6c8be4bea2fd041e64ac4955e720e7267eb2dc62df57e249fc0",
+    "docs/analysis/results/control_windows_v35/fold4/joint_increment/seed23/oof_predictions.npz": "a203cbf49cc3694e98285b8a13580ddc8b80ec1d5f9645a4fe9586f5deb0a8f7",
+    "docs/analysis/results/control_windows_v35/fold4/joint_increment/seed23/rolling_predictions.npz": "751b8077935be46639ae13567e1724ae041a9df73838e00bcf8a3d947eedaf80",
+    "docs/analysis/results/control_windows_v35/fold4/joint_increment/seed42/final.pt": "f7df566a50d10724c9b41e1c5a4302ecd170a3fd77ce21cdbd4c130d5354d57f",
+    "docs/analysis/results/control_windows_v35/fold4/joint_increment/seed42/fit_predictions.npz": "eeb898960f5cd2152e2caec2161c496ffdec5c7e3e30e2a04af4d5712b79d946",
+    "docs/analysis/results/control_windows_v35/fold4/joint_increment/seed42/oof_predictions.npz": "f9eb4188e2896aa9673356e38f5dcd7e73d48d9df8105a391d9690f479d6b291",
+    "docs/analysis/results/control_windows_v35/fold4/joint_increment/seed42/rolling_predictions.npz": "f1e6928cd066167676ce7e6ec5854db2523ea38b2d8683bd1ea1bb98e71026ee",
+    "docs/papers/Rao 等 - 2024 - Learning Long-Horizon Predictions for Quadrotor Dynamics.pdf": "5885a7210d5395099a2158420deb88f2e3cc526a2df99d0afa2b0948cd9e951e",
+    "scripts/actuator_inputs_v29.py": "069960ba55a66320bb02ac5bcb03b92d584cfb4b2b7574d4dd4599c54ea31143",
+    "scripts/actuator_training_v30.py": "5cbcec140f631b2713b5e977fd1c31946851d7c03f355bd28f7ef599ede75465",
+    "scripts/audit_controller_support_v26.py": "b589bb103d7baa2a8b04f0429e9951a88624e1ab9c8843de0cee5749656dedc9",
+    "scripts/audit_rolling_history_v33.py": "70d41c1bb1179bed09adf33f9da2e01282923aa26ba3c6f86a93afe1e9b1727f",
+    "scripts/evaluate_joint_increment_v35.py": "378e3a399400993398b8fb34b61fcb8fb3d978d2f952ee75270b6956e770a338",
+    "scripts/joint_increment_v34.py": "7a28c9b196e56351db98cf48160a00d162bc66551dea92f20d9c1de9cd4f4138",
+    "scripts/paper_ablation_v46.py": "d72498644e6ed0eeab87f9301c9a5d9bb6ee04203bc2aa6568dadfa83fa3118c",
+    "scripts/prepare_actuator_inputs_v29.py": "40ba7a036b098e7100ebe642e498b7dfc65d0a0a962844b23781e91b85845aa0",
+    "scripts/prepare_joint_increment_v34.py": "f82beda16590aeb20c43948c93050c733593c1666d2fcc158ac1171bacb941e9",
+    "scripts/reference_groupcv_v8.py": "c4a2857f5f1935e5996ea7d224eacee9af3c34cc95ce90d2437f789ec75b85bd",
+    "scripts/report_joint_increment_v35.py": "021cb2062c5caaa6c9c07faffec56657603a670399ecd0ee4288effce4da6723",
+    "scripts/report_rolling_history_v33.py": "28fdddff48f7ac1d97f900d319ea00f8e44851bae728728203202621679495bd",
+    "scripts/rolling_history_v33.py": "c2dec7f14d51b46c087788c772d546d758fd93236440bdf44effa74f36c86c6d",
+    "scripts/rolling_joint_increment_v35.py": "2439d72ccdfc90742c2a49ab075782f4c9931ac3f7ed0c02e14cd55371aac2c8",
+    "scripts/rollout_trace_v32.py": "b5652215773e0cf528a7da14bad41caf2cdd6cd7242ef2226009248631935ccb",
+    "scripts/run_joint_increment_v34.py": "168d2fed8f86802e08cfb31ff87a75f70f3305976866b65f9107cb4051d0e775",
+    "scripts/train_control_windows_v2.py": "5dcfdb408981224786abdc01ada52ef90a357260035ea1f249624704b0152865",
+    "scripts/train_joint_increment_v34.py": "5c02852169c6e6eed2d4d425ad16d70f7d2adac84c6c295a7230992b31626180",
+    "scripts/verify_joint_increment_v35.py": "abf4bcffc60b964506d1e49e624fddca9e76dfc1e64d6c86d171b03a9de6121d",
+    "src/system_identification/data/reference_windows.py": "064945839984cae347a54cb681daf24b4dbfd67574d5adfb3f88a5be9d50ba44",
+    "src/system_identification/models/actuator_command_gru.py": "f73e5a762033d23ef90c349b1421147d309c7f85edc3694125269805e2a918b8",
+    "src/system_identification/models/paper_predictors.py": "d22e40d6429982473e73a3f7d80b884326fc2dda49c033b8468d970ddcb3ecdc",
+    "src/system_identification/models/reference_gru_unit_gravity.py": "0b80d78ef64f54840756f969c338c906224a44b8da32e5b067f522fd2758d213",
+    "src/system_identification/models/trajectory_main_v1.py": "b61dd09701b3bfe0176f1a406e4c511b58092fb080b47af115aa4c54681a7e5a",
+    "tests/test_actuator_inputs_v29.py": "c6f416dbfc8b04b42bb0e8f7132e1afe72b1cfc20d59cde0c2c11d6b19eff397",
+    "tests/test_joint_increment_evaluation_v35.py": "1484e6658771c676bfe2e4f08e8d7c993412c888a7c302c23f083c364e136fa1",
+    "tests/test_joint_increment_v34.py": "5915abcc2b94c063c7e4b93d89413f2f3c9a2839c3b18162272051910d90caee",
+    "tests/test_paper_predictors_v46.py": "eb915f80c4109c1e79cccabf96738c27b74ce1c81bd189b8d75c51ed378cb9f7",
+    "tests/test_rolling_history_v33.py": "0568438ecd6eee89a197747fa5281fe9b99511633e096239e1dcc0d4d37eec61",
+    "tests/test_rollout_trace_v32.py": "d64248f76f586589f383b3a2ada42129432c8ef944c67fe804bbbe0d586468aa"
+  },
+  "scope": "407 original train windows; 5 leave-one-flight-out folds; seeds17,23,42. Repeated-development OOF, not an untouched test.",
+  "paper": {
+    "pdf": "docs/papers/Rao 等 - 2024 - Learning Long-Horizon Predictions for Quadrotor Dynamics.pdf",
+    "doi": "10.1109/IROS58592.2024.10801793",
+    "repository": "https://github.com/arplaboratory/long-horizon-dynamics",
+    "inspected_commit": "a8451a119b9096eda980f71b55dbb05012b8c47a",
+    "source_files": {
+      "lighting": "241976b16055c5c43229056bfac85acc1e02e028bc4b76bf1ea0085540a1d48c",
+      "gru": "a6fbcb90bdf6a2c07f79d56ce2c5f6494b22abf1b8ac236b27cbbc806eb1b0ae",
+      "eval": "f8d44c26f159e6712052607ca173a678074d18095bc5086051082930905c9a66"
+    },
+    "definition": "Figure2/SectionIV-C: z=(linear velocity, angular velocity) versus attitude; multihead shares encoder; decoupled uses separate encoders/decoders.",
+    "code_caveat": "lighting.py unroll_step AND eval_trajectory substitute true complementary states. We do not: our primary protocol jointly rolls all predicted states.",
+    "adaptation": "GRU H26/K50 at50Hz; body derivative velocity integration as v35; attitude exp-map3 instead of unconstrained quaternion4. No paper TCN, H20/U10/100Hz, or paper metric reproduction."
+  },
+  "architecture": {
+    "baseline": "Frozen v35 physical quaternion integration,40070parameters.",
+    "full": "Shared GRU64 plus head64->9:6 velocity derivatives and3 attitude tangent corrections. Controls change of quaternion update.",
+    "multihead": "Shared GRU64 plus separate32wide heads6 and3. Same attitude update as full.",
+    "decoupled": "Two GRU42 plus42wide heads6 and3. Stop gradients through complementary predicted states, including rotation for acceleration; own recurrent graph retained.",
+    "attitude": "q_next=q*Exp((observed_initial_rate+clamp(tangent,-6,6))*dt); unit quaternion normalized. Same initial constant-rate predictor in all arms.",
+    "capacity": "39531/39977/40265 total parameters within1.5percent of40070. Equal total budget, not equal per-module width. No capacity tuning.",
+    "gradient": "Decoupled parameter losses are separated by stop-gradient; AdamW hyperparameters and global norm clip1 stay fixed. Global clipping still shares a scalar between modules."
+  },
+  "training": {
+    "updates": 1600,
+    "batch": 32,
+    "local_batch": 32,
+    "lr": 0.0003,
+    "weight_decay": 0.0001,
+    "clip": 1.0,
+    "optimizer": "AdamW",
+    "local_weight": 1.0,
+    "objective": "Unchanged v35 full normalized rate+velocity+.2attitude, plus local normalized rate. Exact v34 parent/offset plans; final checkpoint only.",
+    "initialization": "Same seeds; full/multihead encoder and cell tensors equal v35 at initialization; output topology differs. Decoupled independent branches, width42, recorded fingerprints.",
+    "repeats": "Exactly3newarms*5folds*3seeds=45runs. No failed-result retuning."
+  },
+  "evaluation": {
+    "primary": "v35 original gate: full1s qRMSE >=5percent gain, eachseedpositive, >=4/5flightpositive; report both newarms vs full as structural contrast.",
+    "protections": "18cells: eachseed p/r1swave and velocity/attitude .5/1sendpoint, <=5percent regression.",
+    "absolute": "12cells: active .5sendpoint p/q<=.15rad/s, velocity<=.5m/s, attitude<=3degrees.",
+    "diagnostics": "p/q/r wave, segmentmeanbias, centeredwave, Pearson correlation, local fresh-history20ms rate, quaternion-to-integrated-predicted-rate discrepancy; all407preserved.",
+    "promotion": "No control-ready or physical-causal promotion from these reused-development OOF metrics; no closed-loop trial."
+  },
+  "environment": {
+    "python": "/home/zn/anaconda3/envs/flap-train-gpu/bin/python",
+    "torch": "2.7.0+cu128",
+    "numpy": "1.26.0",
+    "platform": "Linux-5.15.0-186-generic-x86_64-with-glibc2.35"
+  },
+  "validation_accessed": false,
+  "sealed_test_accessed": false,
+  "reserved_accessed": false,
+  "control_ready": false
+}

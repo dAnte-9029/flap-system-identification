@@ -1,0 +1,72 @@
+{
+  "gates": [
+    {
+      "arm": "full",
+      "control": "baseline",
+      "q_gain_percent": -39.443068046872895,
+      "positive_seeds": 0,
+      "positive_flights": 0,
+      "protections_passed": 1,
+      "protections_total": 18,
+      "descriptive_gate": false,
+      "absolute_passed": 1,
+      "absolute_total": 12
+    },
+    {
+      "arm": "multihead",
+      "control": "baseline",
+      "q_gain_percent": -33.46512946930416,
+      "positive_seeds": 0,
+      "positive_flights": 0,
+      "protections_passed": 1,
+      "protections_total": 18,
+      "descriptive_gate": false,
+      "absolute_passed": 0,
+      "absolute_total": 12
+    },
+    {
+      "arm": "decoupled",
+      "control": "baseline",
+      "q_gain_percent": -1.835100728047867,
+      "positive_seeds": 0,
+      "positive_flights": 1,
+      "protections_passed": 9,
+      "protections_total": 18,
+      "descriptive_gate": false,
+      "absolute_passed": 3,
+      "absolute_total": 12
+    },
+    {
+      "arm": "multihead",
+      "control": "full",
+      "q_gain_percent": 4.287010219510723,
+      "positive_seeds": 3,
+      "positive_flights": 5,
+      "protections_passed": 16,
+      "protections_total": 18,
+      "descriptive_gate": false,
+      "absolute_passed": 0,
+      "absolute_total": 12
+    },
+    {
+      "arm": "decoupled",
+      "control": "full",
+      "q_gain_percent": 26.970123252152888,
+      "positive_seeds": 3,
+      "positive_flights": 5,
+      "protections_passed": 18,
+      "protections_total": 18,
+      "descriptive_gate": true,
+      "absolute_passed": 3,
+      "absolute_total": 12
+    }
+  ],
+  "baseline_metrics_reproduced": true,
+  "completed_runs": 45,
+  "checkpoint_selection": "final1600only",
+  "validation_accessed": false,
+  "sealed_test_accessed": false,
+  "reserved_accessed": false,
+  "control_ready": false,
+  "qualification": "Repeated-development original-train OOF; descriptive paired comparisons only. No causal root-cause or closed-loop claim."
+}

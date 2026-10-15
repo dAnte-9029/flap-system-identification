@@ -1,0 +1,11 @@
+{
+  "arm": "multihead",
+  "fold": 3,
+  "seed": 17,
+  "sample_plan": "fold3/seed17/sample_plan.npz",
+  "sample_plan_sha256": "858835f6a8ad29aa925a004b95851f0bf95497669c2bd1f36a5b5f0a577cf09d",
+  "normalization_sha256": "0a8ec020fdaef37ee064605761820e43ae1719f8b34571f93b3e57d5a031e12f",
+  "initial_parameter_sha256": "f715cfe588158ae73536bce77f40eea078fd91fb4c2ae0f9a89a8d92983c2474",
+  "parameter_count": 39977,
+  "protocol_sha256": "94faae1aa1e0821e21c45e0f15cf25ef9b1ce7a3abe269fcfc22f3f120d6b69b"
+}

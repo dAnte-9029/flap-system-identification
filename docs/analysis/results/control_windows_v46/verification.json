@@ -1,0 +1,15 @@
+{
+  "status": "passed",
+  "completed_training_runs": 45,
+  "independent_scalar_metrics": 976800,
+  "max_quaternion_norm_error": 1.2922994474529048e-07,
+  "all_checkpoint_metadata_hashes_and_buffers_verified": true,
+  "unchanged_parent_pins_verified": true,
+  "baseline_oof_prediction_replays": 15,
+  "candidate_oof_reloads": 45,
+  "baseline_aggregate_metrics_reproduced": true,
+  "evaluation_sources_frozen_before_results": true,
+  "validation_accessed": false,
+  "sealed_test_accessed": false,
+  "reserved_accessed": false
+}

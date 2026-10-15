@@ -1,5 +1,14 @@
 # Project State
 
+## 2026-10-15：Rao multihead / decoupled 消融 v46（完成45组训练，未超过 v35）
+
+- [完整报告与曲线](analysis/results/control_windows_v46/report_zh.html)、[冻结协议](analysis/results/control_windows_v46/protocol.json)、[逐航次结果](analysis/results/control_windows_v46/metrics_per_flight.csv)：原407训练父窗、5航次留一、3种子，三个新结构各15次1600更新。复用v34原抽样/局部偏移、fit-only归一化、H26/K50和v35原损失。参数baseline/full/multihead/decoupled为40070/40265/39977/39531；无删窗、滤波或验证/sealed/reserved数据访问。
+- 论文Figure2/IV-C按“线速度+角速度”与“姿态”拆分，而非按p/q/r拆分。固定commit的作者公开实现训练和评估时补入真实互补状态；本次只交换预测状态，自主滚动，不是论文数值复现。新增full单头独立姿态预测对照，再比较共享编码器双头multihead与独立编码器/递归单元decoupled。新姿态输出统一采用SO(3)三维增量；decoupled互补状态stop-gradient，仍保留预测值耦合与同一全局梯度裁剪。
+- 完整1秒OOF p/q/r RMSE：v35为0.506011/0.322464/0.177980；full为0.544992/0.449654/0.191560；multihead为0.538918/0.430377/0.192430；decoupled为0.508921/0.328382/0.184684 rad/s。姿态波形分别5.795/6.794/6.911/6.624度。相对v35，multihead的q退化33.465%，decoupled退化1.835%，两者全部3种子均无q改善；相对保护分别1/18、9/18，绝对门槛0/12、3/12，均不采用。
+- decoupled相对full的q改善26.970%，3种子与5航次均改善，保护18/18；说明拆分对独立姿态预测这一模型族有帮助，但不能称为优于现有硬积分v35。full/multihead在fit折的q误差也明显更差，不能把其退化仅归于OOF事件覆盖或过拟合；当前有限预算下的表示/优化机制仍需区分。
+- decoupled与v35的去均值波形p为0.497566/0.497870、q为0.314977/0.314896，主要波形短板基本保留；q片段均值偏差RMSE由0.066087增至0.087885。重新观察H26后的20ms局部q由0.155803变为0.163433，同样无改善。decoupled独立姿态与其预测角速度积分所得姿态在1秒端点相差8.936度RMSE，不能视为运动学一致的替代模型。
+- 19项测试通过；45候选OOF重载、15原v35预测重放逐值一致；独立复算976800个窗口指标、检查全部模型/抽样/统计哈希与四元数单位范数，见[复核](analysis/results/control_windows_v46/verification.json)。保留A1600/v35，control_ready=false；未运行新结构闭环，不以失败消融证明采样率或数据覆盖是唯一根因，也不排除其他容量/优化预算下的拆分收益。
+
 ## 2026-09-29：v43残余误差诊断 v44（完成，定位短时波形代价与滚转收益失效）
 
 - [执行报告](analysis/results/control_windows_v44/report_zh.md)与[逐时刻曲线](analysis/results/control_windows_v44/error_curves.png)：固定v35/v43各15模型、407原train父窗、5折3seed，比较fit/OOF和4种闭环，共10989对轨迹。fit同一源窗口在4个训练fold中的结果是不同模型视角，不增加独立样本；未训练、改权重、删窗、调控制器或访问开发验证/sealed/reserved。

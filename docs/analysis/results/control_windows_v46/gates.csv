@@ -1,0 +1,6 @@
+arm,control,q_gain_percent,positive_seeds,positive_flights,protections_passed,protections_total,descriptive_gate,absolute_passed,absolute_total
+full,baseline,-39.443068046872895,0,0,1,18,False,1,12
+multihead,baseline,-33.46512946930416,0,0,1,18,False,0,12
+decoupled,baseline,-1.835100728047867,0,1,9,18,False,3,12
+multihead,full,4.287010219510723,3,5,16,18,False,0,12
+decoupled,full,26.970123252152888,3,5,18,18,True,3,12

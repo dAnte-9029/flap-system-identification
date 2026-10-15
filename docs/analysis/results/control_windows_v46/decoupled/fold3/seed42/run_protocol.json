@@ -1,0 +1,11 @@
+{
+  "arm": "decoupled",
+  "fold": 3,
+  "seed": 42,
+  "sample_plan": "fold3/seed42/sample_plan.npz",
+  "sample_plan_sha256": "74427256f02e25be45caae8aa058a9d14aeae7402cb55b44c018adaab4e69abd",
+  "normalization_sha256": "0a8ec020fdaef37ee064605761820e43ae1719f8b34571f93b3e57d5a031e12f",
+  "initial_parameter_sha256": "4bee806536f287b3cced0fb3bcc3cbd488b96c8b8a0b8a3e57ea520a8cf8acc0",
+  "parameter_count": 39531,
+  "protocol_sha256": "94faae1aa1e0821e21c45e0f15cf25ef9b1ce7a3abe269fcfc22f3f120d6b69b"
+}
