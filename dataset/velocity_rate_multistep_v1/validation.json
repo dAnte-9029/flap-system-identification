@@ -1,0 +1,432 @@
+{
+  "status": "passed",
+  "loader_cohorts": [
+    {
+      "split": "train",
+      "group": "main_50hz",
+      "history_us": 250000,
+      "horizon_us": 100000,
+      "windows": 111677
+    },
+    {
+      "split": "train",
+      "group": "main_50hz",
+      "history_us": 250000,
+      "horizon_us": 200000,
+      "windows": 111440
+    },
+    {
+      "split": "train",
+      "group": "main_50hz",
+      "history_us": 250000,
+      "horizon_us": 500000,
+      "windows": 110741
+    },
+    {
+      "split": "train",
+      "group": "main_50hz",
+      "history_us": 250000,
+      "horizon_us": 1000000,
+      "windows": 108480
+    },
+    {
+      "split": "train",
+      "group": "main_50hz",
+      "history_us": 250000,
+      "horizon_us": 2000000,
+      "windows": 107251
+    },
+    {
+      "split": "train",
+      "group": "main_50hz",
+      "history_us": 500000,
+      "horizon_us": 100000,
+      "windows": 111096
+    },
+    {
+      "split": "train",
+      "group": "main_50hz",
+      "history_us": 500000,
+      "horizon_us": 200000,
+      "windows": 110863
+    },
+    {
+      "split": "train",
+      "group": "main_50hz",
+      "history_us": 500000,
+      "horizon_us": 500000,
+      "windows": 110175
+    },
+    {
+      "split": "train",
+      "group": "main_50hz",
+      "history_us": 500000,
+      "horizon_us": 1000000,
+      "windows": 107920
+    },
+    {
+      "split": "train",
+      "group": "main_50hz",
+      "history_us": 500000,
+      "horizon_us": 2000000,
+      "windows": 106701
+    },
+    {
+      "split": "train",
+      "group": "sparse_10hz",
+      "history_us": 250000,
+      "horizon_us": 100000,
+      "windows": 23390
+    },
+    {
+      "split": "train",
+      "group": "sparse_10hz",
+      "history_us": 250000,
+      "horizon_us": 200000,
+      "windows": 23374
+    },
+    {
+      "split": "train",
+      "group": "sparse_10hz",
+      "history_us": 250000,
+      "horizon_us": 500000,
+      "windows": 23325
+    },
+    {
+      "split": "train",
+      "group": "sparse_10hz",
+      "history_us": 250000,
+      "horizon_us": 1000000,
+      "windows": 23239
+    },
+    {
+      "split": "train",
+      "group": "sparse_10hz",
+      "history_us": 250000,
+      "horizon_us": 2000000,
+      "windows": 23070
+    },
+    {
+      "split": "train",
+      "group": "sparse_10hz",
+      "history_us": 500000,
+      "horizon_us": 100000,
+      "windows": 23347
+    },
+    {
+      "split": "train",
+      "group": "sparse_10hz",
+      "history_us": 500000,
+      "horizon_us": 200000,
+      "windows": 23331
+    },
+    {
+      "split": "train",
+      "group": "sparse_10hz",
+      "history_us": 500000,
+      "horizon_us": 500000,
+      "windows": 23282
+    },
+    {
+      "split": "train",
+      "group": "sparse_10hz",
+      "history_us": 500000,
+      "horizon_us": 1000000,
+      "windows": 23196
+    },
+    {
+      "split": "train",
+      "group": "sparse_10hz",
+      "history_us": 500000,
+      "horizon_us": 2000000,
+      "windows": 23027
+    },
+    {
+      "split": "validation",
+      "group": "main_50hz",
+      "history_us": 250000,
+      "horizon_us": 100000,
+      "windows": 37104
+    },
+    {
+      "split": "validation",
+      "group": "main_50hz",
+      "history_us": 250000,
+      "horizon_us": 200000,
+      "windows": 37063
+    },
+    {
+      "split": "validation",
+      "group": "main_50hz",
+      "history_us": 250000,
+      "horizon_us": 500000,
+      "windows": 36945
+    },
+    {
+      "split": "validation",
+      "group": "main_50hz",
+      "history_us": 250000,
+      "horizon_us": 1000000,
+      "windows": 36424
+    },
+    {
+      "split": "validation",
+      "group": "main_50hz",
+      "history_us": 250000,
+      "horizon_us": 2000000,
+      "windows": 36361
+    },
+    {
+      "split": "validation",
+      "group": "main_50hz",
+      "history_us": 500000,
+      "horizon_us": 100000,
+      "windows": 37011
+    },
+    {
+      "split": "validation",
+      "group": "main_50hz",
+      "history_us": 500000,
+      "horizon_us": 200000,
+      "windows": 36970
+    },
+    {
+      "split": "validation",
+      "group": "main_50hz",
+      "history_us": 500000,
+      "horizon_us": 500000,
+      "windows": 36852
+    },
+    {
+      "split": "validation",
+      "group": "main_50hz",
+      "history_us": 500000,
+      "horizon_us": 1000000,
+      "windows": 36332
+    },
+    {
+      "split": "validation",
+      "group": "main_50hz",
+      "history_us": 500000,
+      "horizon_us": 2000000,
+      "windows": 36268
+    },
+    {
+      "split": "validation",
+      "group": "sparse_10hz",
+      "history_us": 250000,
+      "horizon_us": 100000,
+      "windows": 9617
+    },
+    {
+      "split": "validation",
+      "group": "sparse_10hz",
+      "history_us": 250000,
+      "horizon_us": 200000,
+      "windows": 9611
+    },
+    {
+      "split": "validation",
+      "group": "sparse_10hz",
+      "history_us": 250000,
+      "horizon_us": 500000,
+      "windows": 9590
+    },
+    {
+      "split": "validation",
+      "group": "sparse_10hz",
+      "history_us": 250000,
+      "horizon_us": 1000000,
+      "windows": 9556
+    },
+    {
+      "split": "validation",
+      "group": "sparse_10hz",
+      "history_us": 250000,
+      "horizon_us": 2000000,
+      "windows": 9489
+    },
+    {
+      "split": "validation",
+      "group": "sparse_10hz",
+      "history_us": 500000,
+      "horizon_us": 100000,
+      "windows": 9597
+    },
+    {
+      "split": "validation",
+      "group": "sparse_10hz",
+      "history_us": 500000,
+      "horizon_us": 200000,
+      "windows": 9591
+    },
+    {
+      "split": "validation",
+      "group": "sparse_10hz",
+      "history_us": 500000,
+      "horizon_us": 500000,
+      "windows": 9570
+    },
+    {
+      "split": "validation",
+      "group": "sparse_10hz",
+      "history_us": 500000,
+      "horizon_us": 1000000,
+      "windows": 9536
+    },
+    {
+      "split": "validation",
+      "group": "sparse_10hz",
+      "history_us": 500000,
+      "horizon_us": 2000000,
+      "windows": 9469
+    },
+    {
+      "split": "test",
+      "group": "main_50hz",
+      "history_us": 250000,
+      "horizon_us": 100000,
+      "windows": 35065
+    },
+    {
+      "split": "test",
+      "group": "main_50hz",
+      "history_us": 250000,
+      "horizon_us": 200000,
+      "windows": 35025
+    },
+    {
+      "split": "test",
+      "group": "main_50hz",
+      "history_us": 250000,
+      "horizon_us": 500000,
+      "windows": 34887
+    },
+    {
+      "split": "test",
+      "group": "main_50hz",
+      "history_us": 250000,
+      "horizon_us": 1000000,
+      "windows": 34258
+    },
+    {
+      "split": "test",
+      "group": "main_50hz",
+      "history_us": 250000,
+      "horizon_us": 2000000,
+      "windows": 34224
+    },
+    {
+      "split": "test",
+      "group": "main_50hz",
+      "history_us": 500000,
+      "horizon_us": 100000,
+      "windows": 34959
+    },
+    {
+      "split": "test",
+      "group": "main_50hz",
+      "history_us": 500000,
+      "horizon_us": 200000,
+      "windows": 34919
+    },
+    {
+      "split": "test",
+      "group": "main_50hz",
+      "history_us": 500000,
+      "horizon_us": 500000,
+      "windows": 34781
+    },
+    {
+      "split": "test",
+      "group": "main_50hz",
+      "history_us": 500000,
+      "horizon_us": 1000000,
+      "windows": 34152
+    },
+    {
+      "split": "test",
+      "group": "main_50hz",
+      "history_us": 500000,
+      "horizon_us": 2000000,
+      "windows": 34120
+    },
+    {
+      "split": "test",
+      "group": "sparse_10hz",
+      "history_us": 250000,
+      "horizon_us": 100000,
+      "windows": 5981
+    },
+    {
+      "split": "test",
+      "group": "sparse_10hz",
+      "history_us": 250000,
+      "horizon_us": 200000,
+      "windows": 5977
+    },
+    {
+      "split": "test",
+      "group": "sparse_10hz",
+      "history_us": 250000,
+      "horizon_us": 500000,
+      "windows": 5967
+    },
+    {
+      "split": "test",
+      "group": "sparse_10hz",
+      "history_us": 250000,
+      "horizon_us": 1000000,
+      "windows": 5948
+    },
+    {
+      "split": "test",
+      "group": "sparse_10hz",
+      "history_us": 250000,
+      "horizon_us": 2000000,
+      "windows": 5911
+    },
+    {
+      "split": "test",
+      "group": "sparse_10hz",
+      "history_us": 500000,
+      "horizon_us": 100000,
+      "windows": 5973
+    },
+    {
+      "split": "test",
+      "group": "sparse_10hz",
+      "history_us": 500000,
+      "horizon_us": 200000,
+      "windows": 5969
+    },
+    {
+      "split": "test",
+      "group": "sparse_10hz",
+      "history_us": 500000,
+      "horizon_us": 500000,
+      "windows": 5959
+    },
+    {
+      "split": "test",
+      "group": "sparse_10hz",
+      "history_us": 500000,
+      "horizon_us": 1000000,
+      "windows": 5940
+    },
+    {
+      "split": "test",
+      "group": "sparse_10hz",
+      "history_us": 500000,
+      "horizon_us": 2000000,
+      "windows": 5903
+    }
+  ],
+  "all_windows_validated": true,
+  "source_inputs_unchanged": true,
+  "duplicate_state_fingerprints": {
+    "train:validation": 0,
+    "train:test": 0,
+    "validation:test": 0
+  }
+}

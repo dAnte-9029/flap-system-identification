@@ -1,0 +1,76 @@
+dataset_id: velocity_rate_multistep_v1
+source_root: /home/zn/QgcLogs
+source_files:
+  flights: analysis_out/flight_segments_20260906_20261013_usable.csv
+  exclude: analysis_out/ekf_window_exclusions_20260906_20261013/excluded_intervals.csv
+  review: analysis_out/ekf_window_exclusions_20260906_20261013/review_intervals.csv
+source_sha256:
+  flights: 9e5647105658f726a1e065457f6e64139af6ce98817f6682331350323eb091e6
+  exclude: 7d69cc063495313b993dc72292392e3348c460ea75caaf2bd17a09bc09aa1d6f
+  review: 9f63affa104fae9683d248f7c6ca2431a00a7b7b935335ebf7b6426d87fcc52d
+expected_flights: 194
+output_root: dataset/velocity_rate_multistep_v1
+firmware_repository: /home/zn/PX4-Autopilot
+firmware_remote: https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot
+verified_firmware_source_sha256:
+  src/modules/wing_phase/WingPhase.cpp: 0a0ca2ee9da44daa21409dee24aa2901a8f04f7250649b7c7675ebe4ed67b945
+  src/drivers/encoder/as5600/AS5600.cpp: 1910d0fe889c03b229cd84ec4f8887271cfcbbbfb6ba0797bb4ec6860cd7ac3d
+  msg/versioned/VehicleLocalPosition.msg: 87d7540cb4207d044d69ff9af11c51f7cd2883f4160fc62650e17d80cbbec5db
+  msg/versioned/VehicleAttitude.msg: d23f153b574daad31f21f767bc6e2781bcd486bb9e56c605b8b6fd10814b1c74
+  msg/versioned/VehicleAngularVelocity.msg: 4d713992ec958004629e5c8cbb5e83df2824c6df06e4cb4b06b3e0e3127bb3bf
+  msg/versioned/ActuatorMotors.msg: 40d89fe296ce86b005ad67798b109c843698811dea3ed12d9662c9b8f032e386
+  msg/versioned/ActuatorServos.msg: 6f3fe07cbcae4b472d50de20c6eec294313d64bd9113d02eb7b0d6597f18268b
+inherit_split_files:
+  - configs/data/trajectory_september_v2.yaml
+  - configs/data/velocity_rate_multistep_v1_inherited_split.json
+split_dates:
+  train: [2026-09-06, 2026-09-11, 2026-09-12, 2026-09-13, 2026-09-14,
+          2026-09-15, 2026-09-16, 2026-09-18, 2026-09-22, 2026-09-23,
+          2026-09-24, 2026-09-25, 2026-09-27, 2026-09-28, 2026-09-29,
+          2026-10-10, 2026-10-12]
+  validation: [2026-09-07, 2026-09-17, 2026-09-26, 2026-10-11]
+  test: [2026-09-08, 2026-09-19, 2026-10-13]
+frozen_test_dates: [2026-09-08, 2026-09-19]
+history_us: [250000, 500000]
+horizon_us: [100000, 200000, 500000, 1000000, 2000000]
+origin_stride_us: 100000
+groups:
+  main_50hz:
+    minimum_rate_hz: 30
+    maximum_state_gap_us: 40000
+    target_pair_tolerance_us: 12000
+    horizon_tolerance_us: 12000
+    history_attitude_age_us: 50000
+  sparse_10hz:
+    minimum_rate_hz: 5
+    maximum_state_gap_us: 160000
+    target_pair_tolerance_us: 30000
+    horizon_tolerance_us: 30000
+    history_attitude_age_us: 100000
+history_rate_age_us: 50000
+control_age_us: 160000
+encoder_age_us: 50000
+frequency_age_us: 120000
+control_mapping:
+  motor: actuator_motors.control[0]
+  left_elevon: actuator_servos.control[0]
+  right_elevon: actuator_servos.control[1]
+  rudder: actuator_servos.control[2]
+required_mapping_parameters:
+  CA_SV_CS_COUNT: 3
+  CA_SV_CS0_TYPE: 5
+  CA_SV_CS1_TYPE: 6
+  CA_SV_CS2_TYPE: 4
+  PWM_MAIN_FUNC1: 201
+  PWM_MAIN_FUNC2: 202
+  PWM_MAIN_FUNC3: 101
+  PWM_MAIN_FUNC5: 203
+phase:
+  counts_per_motor_revolution: 4096
+  ratio_source: per_log_FLAP_RATIO
+  physical_ratio_independently_verified: false
+  absolute_zero_shared_across_logs: false
+  history_source: encoder_count_log_origin_relative
+  wing_phase_history_allowed: false
+normalization: train_valid_samples_only
+test_policy: materialize_for_dataset_QA_only_no_training_or_model_selection

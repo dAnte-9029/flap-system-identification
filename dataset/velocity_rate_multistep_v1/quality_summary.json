@@ -1,0 +1,3725 @@
+{
+  "approved_flights": 194,
+  "reviewed_duration_s": 28725.458475,
+  "sampling_groups": {
+    "main_50hz": 149,
+    "sparse_10hz": 45
+  },
+  "partitions": {
+    "train": {
+      "samples": 708821,
+      "valid_samples": 703522,
+      "valid_sample_fraction": 0.9925242056880369,
+      "continuous_valid_duration_s": 17279.636218000003,
+      "primary_window_union_duration_s": 17253.407026,
+      "flights": 122,
+      "flights_with_windows": 122,
+      "windows": 1328925,
+      "windows_by_task": [
+        {
+          "sampling_group": "main_50hz",
+          "history_us": 250000,
+          "horizon_us": 100000,
+          "windows": 111677,
+          "flights": 94,
+          "future_count_quantiles": [
+            5.0,
+            5.0,
+            5.0,
+            6.0,
+            6.0
+          ],
+          "actual_horizon_s_quantiles": [
+            0.088686,
+            0.089806,
+            0.09979199999999999,
+            0.109787,
+            0.109802
+          ],
+          "review_windows": 1741
+        },
+        {
+          "sampling_group": "main_50hz",
+          "history_us": 250000,
+          "horizon_us": 200000,
+          "windows": 111440,
+          "flights": 94,
+          "future_count_quantiles": [
+            10.0,
+            10.0,
+            10.0,
+            10.0,
+            11.0
+          ],
+          "actual_horizon_s_quantiles": [
+            0.18956699999999999,
+            0.19709,
+            0.199587,
+            0.20957299999999998,
+            0.209611
+          ],
+          "review_windows": 1780
+        },
+        {
+          "sampling_group": "main_50hz",
+          "history_us": 250000,
+          "horizon_us": 500000,
+          "windows": 110741,
+          "flights": 94,
+          "future_count_quantiles": [
+            25.0,
+            25.0,
+            25.0,
+            26.0,
+            26.0
+          ],
+          "actual_horizon_s_quantiles": [
+            0.488892,
+            0.48902199999999996,
+            0.49899899999999997,
+            0.509014,
+            0.5090549999999999
+          ],
+          "review_windows": 1876
+        },
+        {
+          "sampling_group": "main_50hz",
+          "history_us": 250000,
+          "horizon_us": 1000000,
+          "windows": 108480,
+          "flights": 94,
+          "future_count_quantiles": [
+            50.0,
+            50.0,
+            50.0,
+            50.0,
+            51.0
+          ],
+          "actual_horizon_s_quantiles": [
+            0.988,
+            0.995304,
+            0.99796,
+            1.008067,
+            1.00813
+          ],
+          "review_windows": 2020
+        },
+        {
+          "sampling_group": "main_50hz",
+          "history_us": 250000,
+          "horizon_us": 2000000,
+          "windows": 107251,
+          "flights": 94,
+          "future_count_quantiles": [
+            99.0,
+            100.0,
+            100.0,
+            100.0,
+            101.0
+          ],
+          "actual_horizon_s_quantiles": [
+            1.990591,
+            1.990856,
+            2.000453,
+            2.006251,
+            2.011151
+          ],
+          "review_windows": 2254
+        },
+        {
+          "sampling_group": "main_50hz",
+          "history_us": 500000,
+          "horizon_us": 100000,
+          "windows": 111096,
+          "flights": 94,
+          "future_count_quantiles": [
+            5.0,
+            5.0,
+            5.0,
+            6.0,
+            6.0
+          ],
+          "actual_horizon_s_quantiles": [
+            0.088686,
+            0.089806,
+            0.09979199999999999,
+            0.109787,
+            0.109802
+          ],
+          "review_windows": 1831
+        },
+        {
+          "sampling_group": "main_50hz",
+          "history_us": 500000,
+          "horizon_us": 200000,
+          "windows": 110863,
+          "flights": 94,
+          "future_count_quantiles": [
+            10.0,
+            10.0,
+            10.0,
+            10.0,
+            11.0
+          ],
+          "actual_horizon_s_quantiles": [
+            0.18956699999999999,
+            0.19709,
+            0.199587,
+            0.20957299999999998,
+            0.209611
+          ],
+          "review_windows": 1866
+        },
+        {
+          "sampling_group": "main_50hz",
+          "history_us": 500000,
+          "horizon_us": 500000,
+          "windows": 110175,
+          "flights": 94,
+          "future_count_quantiles": [
+            25.0,
+            25.0,
+            25.0,
+            26.0,
+            26.0
+          ],
+          "actual_horizon_s_quantiles": [
+            0.488892,
+            0.48902199999999996,
+            0.49899899999999997,
+            0.509014,
+            0.5090549999999999
+          ],
+          "review_windows": 1955
+        },
+        {
+          "sampling_group": "main_50hz",
+          "history_us": 500000,
+          "horizon_us": 1000000,
+          "windows": 107920,
+          "flights": 94,
+          "future_count_quantiles": [
+            50.0,
+            50.0,
+            50.0,
+            50.0,
+            51.0
+          ],
+          "actual_horizon_s_quantiles": [
+            0.988,
+            0.995304,
+            0.99796,
+            1.008067,
+            1.00813
+          ],
+          "review_windows": 2090
+        },
+        {
+          "sampling_group": "main_50hz",
+          "history_us": 500000,
+          "horizon_us": 2000000,
+          "windows": 106701,
+          "flights": 94,
+          "future_count_quantiles": [
+            99.0,
+            100.0,
+            100.0,
+            100.0,
+            101.0
+          ],
+          "actual_horizon_s_quantiles": [
+            1.990591,
+            1.990856,
+            2.000453,
+            2.006251,
+            2.011151
+          ],
+          "review_windows": 2300
+        },
+        {
+          "sampling_group": "sparse_10hz",
+          "history_us": 250000,
+          "horizon_us": 100000,
+          "windows": 23390,
+          "flights": 28,
+          "future_count_quantiles": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "actual_horizon_s_quantiles": [
+            0.088701,
+            0.08871699999999999,
+            0.099795,
+            0.109778,
+            0.110164
+          ],
+          "review_windows": 98
+        },
+        {
+          "sampling_group": "sparse_10hz",
+          "history_us": 250000,
+          "horizon_us": 200000,
+          "windows": 23374,
+          "flights": 28,
+          "future_count_quantiles": [
+            2.0,
+            2.0,
+            2.0,
+            2.0,
+            2.0
+          ],
+          "actual_horizon_s_quantiles": [
+            0.18959099999999998,
+            0.19025699999999998,
+            0.19959,
+            0.209565,
+            0.210312
+          ],
+          "review_windows": 100
+        },
+        {
+          "sampling_group": "sparse_10hz",
+          "history_us": 250000,
+          "horizon_us": 500000,
+          "windows": 23325,
+          "flights": 28,
+          "future_count_quantiles": [
+            5.0,
+            5.0,
+            5.0,
+            5.0,
+            5.0
+          ],
+          "actual_horizon_s_quantiles": [
+            0.488944,
+            0.48899099999999995,
+            0.499002,
+            0.508979,
+            0.510726
+          ],
+          "review_windows": 101
+        },
+        {
+          "sampling_group": "sparse_10hz",
+          "history_us": 250000,
+          "horizon_us": 1000000,
+          "windows": 23239,
+          "flights": 28,
+          "future_count_quantiles": [
+            10.0,
+            10.0,
+            10.0,
+            10.0,
+            10.0
+          ],
+          "actual_horizon_s_quantiles": [
+            0.987869,
+            0.9880019999999999,
+            0.9979709999999999,
+            1.007973,
+            1.011439
+          ],
+          "review_windows": 103
+        },
+        {
+          "sampling_group": "sparse_10hz",
+          "history_us": 250000,
+          "horizon_us": 2000000,
+          "windows": 23070,
+          "flights": 28,
+          "future_count_quantiles": [
+            20.0,
+            20.0,
+            20.0,
+            20.0,
+            20.0
+          ],
+          "actual_horizon_s_quantiles": [
+            1.9858559999999998,
+            1.9909089999999998,
+            2.000731,
+            2.006231,
+            2.0110099999999997
+          ],
+          "review_windows": 103
+        },
+        {
+          "sampling_group": "sparse_10hz",
+          "history_us": 500000,
+          "horizon_us": 100000,
+          "windows": 23347,
+          "flights": 28,
+          "future_count_quantiles": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "actual_horizon_s_quantiles": [
+            0.088701,
+            0.08871699999999999,
+            0.099795,
+            0.109778,
+            0.110164
+          ],
+          "review_windows": 99
+        },
+        {
+          "sampling_group": "sparse_10hz",
+          "history_us": 500000,
+          "horizon_us": 200000,
+          "windows": 23331,
+          "flights": 28,
+          "future_count_quantiles": [
+            2.0,
+            2.0,
+            2.0,
+            2.0,
+            2.0
+          ],
+          "actual_horizon_s_quantiles": [
+            0.18959099999999998,
+            0.19025699999999998,
+            0.19959,
+            0.209565,
+            0.210312
+          ],
+          "review_windows": 101
+        },
+        {
+          "sampling_group": "sparse_10hz",
+          "history_us": 500000,
+          "horizon_us": 500000,
+          "windows": 23282,
+          "flights": 28,
+          "future_count_quantiles": [
+            5.0,
+            5.0,
+            5.0,
+            5.0,
+            5.0
+          ],
+          "actual_horizon_s_quantiles": [
+            0.488944,
+            0.48899099999999995,
+            0.499002,
+            0.508979,
+            0.510726
+          ],
+          "review_windows": 101
+        },
+        {
+          "sampling_group": "sparse_10hz",
+          "history_us": 500000,
+          "horizon_us": 1000000,
+          "windows": 23196,
+          "flights": 28,
+          "future_count_quantiles": [
+            10.0,
+            10.0,
+            10.0,
+            10.0,
+            10.0
+          ],
+          "actual_horizon_s_quantiles": [
+            0.987869,
+            0.9880019499999999,
+            0.9979709999999999,
+            1.007973,
+            1.011439
+          ],
+          "review_windows": 102
+        },
+        {
+          "sampling_group": "sparse_10hz",
+          "history_us": 500000,
+          "horizon_us": 2000000,
+          "windows": 23027,
+          "flights": 28,
+          "future_count_quantiles": [
+            20.0,
+            20.0,
+            20.0,
+            20.0,
+            20.0
+          ],
+          "actual_horizon_s_quantiles": [
+            1.9858559999999998,
+            1.9909092599999998,
+            2.00073,
+            2.00623,
+            2.0110099999999997
+          ],
+          "review_windows": 102
+        }
+      ],
+      "invalid_counts_overlapping": {
+        "valid_history_state": 1223,
+        "valid_control": 2773,
+        "valid_target_state": 1142,
+        "valid_encoder": 7507,
+        "valid_frequency": 7438
+      },
+      "excluded_rows": 2385,
+      "control_gap_rows": 344,
+      "review_rows": 9592,
+      "controls": {
+        "control_flap_motor_normalized": {
+          "quantiles": [
+            0.021042076870799065,
+            0.3346693217754364,
+            0.67132368683815,
+            0.8769999146461487,
+            0.9999999403953552
+          ],
+          "saturation_fraction": 0.00044756163886874547
+        },
+        "control_left_elevon_normalized": {
+          "quantiles": [
+            -1.0,
+            -0.6040057474374771,
+            -0.12598270922899246,
+            0.6982542252540616,
+            1.0
+          ],
+          "saturation_fraction": 0.0005906114031907179
+        },
+        "control_right_elevon_normalized": {
+          "quantiles": [
+            -1.0,
+            -0.628097106218338,
+            0.019819541834294796,
+            0.84784565448761,
+            1.0
+          ],
+          "saturation_fraction": 0.005239020576504713
+        },
+        "control_rudder_normalized": {
+          "quantiles": [
+            -1.0,
+            -0.2845180335640907,
+            -0.023391720838844776,
+            0.24603871285915382,
+            0.9122996926307678
+          ],
+          "saturation_fraction": 4.957170050761421e-05
+        }
+      },
+      "frequency_hz_quantiles": [
+        0.0,
+        1.9981350779533387,
+        3.7725725173950195,
+        4.78467926979065,
+        5.549951553344727
+      ],
+      "speed_m_s_quantiles": [
+        0.1362123910376776,
+        4.030783522728632,
+        7.244403221412897,
+        11.10730812645461,
+        16.53359052143191
+      ],
+      "rate_rad_s_quantiles": [
+        0.006288398928985163,
+        0.1372312783031182,
+        0.6713236415492446,
+        1.8135166847917543,
+        17.059355205682554
+      ],
+      "nav_state_counts": {
+        "3.0": 454283,
+        "15.0": 254277,
+        "12.0": 131,
+        "4.0": 122,
+        "0.0": 8
+      },
+      "mode_change_rows": 287,
+      "high_dynamics_rows": 4280,
+      "native_control_coverage": {
+        "motor": {
+          "native_rows": 708776,
+          "finite_rows": 705967,
+          "finite_fraction": 0.9960368296894929,
+          "value_quantiles": [
+            0.020040063187479973,
+            0.3346693217754364,
+            0.6713284850120544,
+            0.8769999146461487,
+            0.9999999403953552
+          ],
+          "saturation_fraction": 0.00044761299040890014,
+          "changed_edge_fraction": 0.7256645944429647,
+          "absolute_change_quantiles": [
+            0.0,
+            0.0,
+            0.0017984509468078613,
+            0.013179898262023926,
+            0.36759448051452637
+          ],
+          "recorded_dt_s_quantiles": [
+            0.012443,
+            0.017234,
+            0.019958999999999998,
+            0.10229099999999999,
+            2.659897
+          ],
+          "note": "recorded allocated commands, not all unlogged actuator updates or measured angles"
+        },
+        "left_elevon": {
+          "native_rows": 708775,
+          "finite_rows": 708775,
+          "finite_fraction": 1.0,
+          "value_quantiles": [
+            -1.0,
+            -0.6038453936576843,
+            -0.12499916553497314,
+            0.7032244157791139,
+            1.0
+          ],
+          "saturation_fraction": 0.0007195513385771225,
+          "changed_edge_fraction": 0.9989896324435231,
+          "absolute_change_quantiles": [
+            0.0,
+            0.0002544677257537842,
+            0.015010654926300049,
+            0.10682257387787102,
+            1.222075492143631
+          ],
+          "recorded_dt_s_quantiles": [
+            0.012443,
+            0.017234,
+            0.019958999999999998,
+            0.10229099999999999,
+            2.659897
+          ],
+          "note": "recorded allocated commands, not all unlogged actuator updates or measured angles"
+        },
+        "right_elevon": {
+          "native_rows": 708775,
+          "finite_rows": 708775,
+          "finite_fraction": 1.0,
+          "value_quantiles": [
+            -1.0,
+            -0.6275719130039216,
+            0.020884811878204346,
+            0.852006577253342,
+            1.0
+          ],
+          "saturation_fraction": 0.005398045924306021,
+          "changed_edge_fraction": 0.9951428978639757,
+          "absolute_change_quantiles": [
+            0.0,
+            0.0001484006643295288,
+            0.014917626976966858,
+            0.10194630444049826,
+            1.1889047026634216
+          ],
+          "recorded_dt_s_quantiles": [
+            0.012443,
+            0.017234,
+            0.019958999999999998,
+            0.10229099999999999,
+            2.659897
+          ],
+          "note": "recorded allocated commands, not all unlogged actuator updates or measured angles"
+        },
+        "rudder": {
+          "native_rows": 708775,
+          "finite_rows": 708775,
+          "finite_fraction": 1.0,
+          "value_quantiles": [
+            -1.0,
+            -0.28714338421821595,
+            -0.023682327941060066,
+            0.24717950046062484,
+            1.0
+          ],
+          "saturation_fraction": 0.00012133610807378929,
+          "changed_edge_fraction": 0.997993376165768,
+          "absolute_change_quantiles": [
+            0.0,
+            5.2145943045616156e-05,
+            0.0030086934566497803,
+            0.030051963627338387,
+            0.6644865290727466
+          ],
+          "recorded_dt_s_quantiles": [
+            0.012443,
+            0.017234,
+            0.019958999999999998,
+            0.10229099999999999,
+            2.659897
+          ],
+          "note": "recorded allocated commands, not all unlogged actuator updates or measured angles"
+        }
+      },
+      "reviewed_duration_s": 17436.545404999993,
+      "unusable_continuous_duration_fraction": 0.008998868947687089
+    },
+    "validation": {
+      "samples": 238576,
+      "valid_samples": 237178,
+      "valid_sample_fraction": 0.9941402320434578,
+      "continuous_valid_duration_s": 6211.571659,
+      "primary_window_union_duration_s": 6208.398572000001,
+      "flights": 39,
+      "flights_with_windows": 39,
+      "windows": 462956,
+      "windows_by_task": [
+        {
+          "sampling_group": "main_50hz",
+          "history_us": 250000,
+          "horizon_us": 100000,
+          "windows": 37104,
+          "flights": 27,
+          "future_count_quantiles": [
+            5.0,
+            5.0,
+            5.0,
+            6.0,
+            6.0
+          ],
+          "actual_horizon_s_quantiles": [
+            0.088698,
+            0.089806,
+            0.099785,
+            0.109779,
+            0.109787
+          ],
+          "review_windows": 931
+        },
+        {
+          "sampling_group": "main_50hz",
+          "history_us": 250000,
+          "horizon_us": 200000,
+          "windows": 37063,
+          "flights": 27,
+          "future_count_quantiles": [
+            10.0,
+            10.0,
+            10.0,
+            10.0,
+            11.0
+          ],
+          "actual_horizon_s_quantiles": [
+            0.18958899999999998,
+            0.19710799999999998,
+            0.199573,
+            0.209551,
+            0.209592
+          ],
+          "review_windows": 945
+        },
+        {
+          "sampling_group": "main_50hz",
+          "history_us": 250000,
+          "horizon_us": 500000,
+          "windows": 36945,
+          "flights": 27,
+          "future_count_quantiles": [
+            25.0,
+            25.0,
+            25.0,
+            25.0,
+            26.0
+          ],
+          "actual_horizon_s_quantiles": [
+            0.488942,
+            0.49276899999999996,
+            0.499,
+            0.508976,
+            0.509011
+          ],
+          "review_windows": 976
+        },
+        {
+          "sampling_group": "main_50hz",
+          "history_us": 250000,
+          "horizon_us": 1000000,
+          "windows": 36424,
+          "flights": 27,
+          "future_count_quantiles": [
+            50.0,
+            50.0,
+            50.0,
+            50.0,
+            51.0
+          ],
+          "actual_horizon_s_quantiles": [
+            0.988,
+            0.995398,
+            0.9979349999999999,
+            1.007977,
+            1.008031
+          ],
+          "review_windows": 1000
+        },
+        {
+          "sampling_group": "main_50hz",
+          "history_us": 250000,
+          "horizon_us": 2000000,
+          "windows": 36361,
+          "flights": 27,
+          "future_count_quantiles": [
+            99.0,
+            100.0,
+            100.0,
+            100.0,
+            100.0
+          ],
+          "actual_horizon_s_quantiles": [
+            1.990772,
+            1.9908295999999999,
+            2.000723,
+            2.0106294,
+            2.010872
+          ],
+          "review_windows": 1103
+        },
+        {
+          "sampling_group": "main_50hz",
+          "history_us": 500000,
+          "horizon_us": 100000,
+          "windows": 37011,
+          "flights": 27,
+          "future_count_quantiles": [
+            5.0,
+            5.0,
+            5.0,
+            6.0,
+            6.0
+          ],
+          "actual_horizon_s_quantiles": [
+            0.088698,
+            0.089806,
+            0.099785,
+            0.109779,
+            0.109787
+          ],
+          "review_windows": 961
+        },
+        {
+          "sampling_group": "main_50hz",
+          "history_us": 500000,
+          "horizon_us": 200000,
+          "windows": 36970,
+          "flights": 27,
+          "future_count_quantiles": [
+            10.0,
+            10.0,
+            10.0,
+            10.0,
+            11.0
+          ],
+          "actual_horizon_s_quantiles": [
+            0.18958899999999998,
+            0.19710799999999998,
+            0.199573,
+            0.209551,
+            0.209592
+          ],
+          "review_windows": 972
+        },
+        {
+          "sampling_group": "main_50hz",
+          "history_us": 500000,
+          "horizon_us": 500000,
+          "windows": 36852,
+          "flights": 27,
+          "future_count_quantiles": [
+            25.0,
+            25.0,
+            25.0,
+            25.0,
+            26.0
+          ],
+          "actual_horizon_s_quantiles": [
+            0.488942,
+            0.49276899999999996,
+            0.499,
+            0.508976,
+            0.509011
+          ],
+          "review_windows": 1002
+        },
+        {
+          "sampling_group": "main_50hz",
+          "history_us": 500000,
+          "horizon_us": 1000000,
+          "windows": 36332,
+          "flights": 27,
+          "future_count_quantiles": [
+            50.0,
+            50.0,
+            50.0,
+            50.0,
+            51.0
+          ],
+          "actual_horizon_s_quantiles": [
+            0.988,
+            0.995398,
+            0.9979349999999999,
+            1.007977,
+            1.008031
+          ],
+          "review_windows": 1022
+        },
+        {
+          "sampling_group": "main_50hz",
+          "history_us": 500000,
+          "horizon_us": 2000000,
+          "windows": 36268,
+          "flights": 27,
+          "future_count_quantiles": [
+            99.0,
+            100.0,
+            100.0,
+            100.0,
+            100.0
+          ],
+          "actual_horizon_s_quantiles": [
+            1.990773,
+            1.9908299999999999,
+            2.000723,
+            2.01062933,
+            2.010872
+          ],
+          "review_windows": 1121
+        },
+        {
+          "sampling_group": "sparse_10hz",
+          "history_us": 250000,
+          "horizon_us": 100000,
+          "windows": 9617,
+          "flights": 12,
+          "future_count_quantiles": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "actual_horizon_s_quantiles": [
+            0.088693,
+            0.088706,
+            0.09978999999999999,
+            0.109775,
+            0.109787
+          ],
+          "review_windows": 71
+        },
+        {
+          "sampling_group": "sparse_10hz",
+          "history_us": 250000,
+          "horizon_us": 200000,
+          "windows": 9611,
+          "flights": 12,
+          "future_count_quantiles": [
+            2.0,
+            2.0,
+            2.0,
+            2.0,
+            2.0
+          ],
+          "actual_horizon_s_quantiles": [
+            0.189581,
+            0.18961899999999998,
+            0.19958299999999998,
+            0.209558,
+            0.209592
+          ],
+          "review_windows": 73
+        },
+        {
+          "sampling_group": "sparse_10hz",
+          "history_us": 250000,
+          "horizon_us": 500000,
+          "windows": 9590,
+          "flights": 12,
+          "future_count_quantiles": [
+            5.0,
+            5.0,
+            5.0,
+            5.0,
+            5.0
+          ],
+          "actual_horizon_s_quantiles": [
+            0.48891599999999996,
+            0.48896999999999996,
+            0.498974,
+            0.508972,
+            0.509008
+          ],
+          "review_windows": 75
+        },
+        {
+          "sampling_group": "sparse_10hz",
+          "history_us": 250000,
+          "horizon_us": 1000000,
+          "windows": 9556,
+          "flights": 12,
+          "future_count_quantiles": [
+            10.0,
+            10.0,
+            10.0,
+            10.0,
+            10.0
+          ],
+          "actual_horizon_s_quantiles": [
+            0.9878119999999999,
+            0.987961,
+            0.9979429999999999,
+            1.00796845,
+            1.008036
+          ],
+          "review_windows": 81
+        },
+        {
+          "sampling_group": "sparse_10hz",
+          "history_us": 250000,
+          "horizon_us": 2000000,
+          "windows": 9489,
+          "flights": 12,
+          "future_count_quantiles": [
+            20.0,
+            20.0,
+            20.0,
+            20.0,
+            20.0
+          ],
+          "actual_horizon_s_quantiles": [
+            1.9857449999999999,
+            1.99076088,
+            1.995977,
+            2.01050712,
+            2.01577
+          ],
+          "review_windows": 91
+        },
+        {
+          "sampling_group": "sparse_10hz",
+          "history_us": 500000,
+          "horizon_us": 100000,
+          "windows": 9597,
+          "flights": 12,
+          "future_count_quantiles": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "actual_horizon_s_quantiles": [
+            0.088693,
+            0.088706,
+            0.09978999999999999,
+            0.109775,
+            0.109787
+          ],
+          "review_windows": 72
+        },
+        {
+          "sampling_group": "sparse_10hz",
+          "history_us": 500000,
+          "horizon_us": 200000,
+          "windows": 9591,
+          "flights": 12,
+          "future_count_quantiles": [
+            2.0,
+            2.0,
+            2.0,
+            2.0,
+            2.0
+          ],
+          "actual_horizon_s_quantiles": [
+            0.189581,
+            0.18961899999999998,
+            0.19958299999999998,
+            0.209558,
+            0.209592
+          ],
+          "review_windows": 74
+        },
+        {
+          "sampling_group": "sparse_10hz",
+          "history_us": 500000,
+          "horizon_us": 500000,
+          "windows": 9570,
+          "flights": 12,
+          "future_count_quantiles": [
+            5.0,
+            5.0,
+            5.0,
+            5.0,
+            5.0
+          ],
+          "actual_horizon_s_quantiles": [
+            0.48891599999999996,
+            0.48896999999999996,
+            0.498974,
+            0.508972,
+            0.509008
+          ],
+          "review_windows": 76
+        },
+        {
+          "sampling_group": "sparse_10hz",
+          "history_us": 500000,
+          "horizon_us": 1000000,
+          "windows": 9536,
+          "flights": 12,
+          "future_count_quantiles": [
+            10.0,
+            10.0,
+            10.0,
+            10.0,
+            10.0
+          ],
+          "actual_horizon_s_quantiles": [
+            0.9878119999999999,
+            0.987961,
+            0.9979429999999999,
+            1.007967,
+            1.008036
+          ],
+          "review_windows": 82
+        },
+        {
+          "sampling_group": "sparse_10hz",
+          "history_us": 500000,
+          "horizon_us": 2000000,
+          "windows": 9469,
+          "flights": 12,
+          "future_count_quantiles": [
+            20.0,
+            20.0,
+            20.0,
+            20.0,
+            20.0
+          ],
+          "actual_horizon_s_quantiles": [
+            1.9857449999999999,
+            1.99076068,
+            1.995977,
+            2.01050564,
+            2.01577
+          ],
+          "review_windows": 92
+        }
+      ],
+      "invalid_counts_overlapping": {
+        "valid_history_state": 16,
+        "valid_control": 1007,
+        "valid_target_state": 27,
+        "valid_encoder": 0,
+        "valid_frequency": 0
+      },
+      "excluded_rows": 344,
+      "control_gap_rows": 2,
+      "review_rows": 5315,
+      "controls": {
+        "control_flap_motor_normalized": {
+          "quantiles": [
+            0.021042076870799065,
+            0.3797594904899597,
+            0.6697843670845032,
+            0.8754500341415413,
+            0.9799999594688416
+          ],
+          "saturation_fraction": 0.0
+        },
+        "control_left_elevon_normalized": {
+          "quantiles": [
+            -1.0,
+            -0.5895181894302368,
+            -0.12393630295991898,
+            0.7048239707946777,
+            1.0
+          ],
+          "saturation_fraction": 0.0007787211294402889
+        },
+        "control_right_elevon_normalized": {
+          "quantiles": [
+            -1.0,
+            -0.5646123290061951,
+            0.06976091116666794,
+            0.9083188676834107,
+            1.0
+          ],
+          "saturation_fraction": 0.005404745568655843
+        },
+        "control_rudder_normalized": {
+          "quantiles": [
+            -0.5146602392196655,
+            -0.3126732695102692,
+            -0.014744178391993046,
+            0.2909170472621918,
+            0.8911934494972229
+          ],
+          "saturation_fraction": 0.0
+        }
+      },
+      "frequency_hz_quantiles": [
+        0.0,
+        2.108373522758484,
+        3.7432334423065186,
+        4.761240839958191,
+        5.284553527832031
+      ],
+      "speed_m_s_quantiles": [
+        0.27844781536600516,
+        4.603183683240922,
+        7.117311912435576,
+        10.604148901889227,
+        15.753354129052456
+      ],
+      "rate_rad_s_quantiles": [
+        0.013241904024733646,
+        0.14232892393264363,
+        0.694262643731749,
+        1.9435491566964025,
+        11.37884013506921
+      ],
+      "nav_state_counts": {
+        "3.0": 121954,
+        "15.0": 115750,
+        "4.0": 872
+      },
+      "mode_change_rows": 75,
+      "high_dynamics_rows": 1972,
+      "native_control_coverage": {
+        "motor": {
+          "native_rows": 238574,
+          "finite_rows": 237546,
+          "finite_fraction": 0.9956910644076891,
+          "value_quantiles": [
+            0.021042076870799065,
+            0.3797594904899597,
+            0.6698160171508789,
+            0.8757002592086791,
+            0.9799999594688416
+          ],
+          "saturation_fraction": 0.0,
+          "changed_edge_fraction": 0.610192541693508,
+          "absolute_change_quantiles": [
+            0.0,
+            0.0,
+            0.001000046730041504,
+            0.013178050518035889,
+            0.31062123365700245
+          ],
+          "recorded_dt_s_quantiles": [
+            0.012282,
+            0.017225999999999998,
+            0.019957,
+            0.102292,
+            0.105962
+          ],
+          "note": "recorded allocated commands, not all unlogged actuator updates or measured angles"
+        },
+        "left_elevon": {
+          "native_rows": 238574,
+          "finite_rows": 238574,
+          "finite_fraction": 1.0,
+          "value_quantiles": [
+            -1.0,
+            -0.5895203298330307,
+            -0.12298129126429558,
+            0.7082281124591827,
+            1.0
+          ],
+          "saturation_fraction": 0.0009179541777394017,
+          "changed_edge_fraction": 0.9988093990399731,
+          "absolute_change_quantiles": [
+            0.0,
+            0.00027721017599105843,
+            0.016672790050506592,
+            0.11435333527624614,
+            0.9992425033124164
+          ],
+          "recorded_dt_s_quantiles": [
+            0.012282,
+            0.017225999999999998,
+            0.019957,
+            0.102292,
+            0.105962
+          ],
+          "note": "recorded allocated commands, not all unlogged actuator updates or measured angles"
+        },
+        "right_elevon": {
+          "native_rows": 238574,
+          "finite_rows": 238574,
+          "finite_fraction": 1.0,
+          "value_quantiles": [
+            -1.0,
+            -0.563582152724266,
+            0.07072297856211662,
+            0.9120008355379098,
+            1.0
+          ],
+          "saturation_fraction": 0.005566407068666326,
+          "changed_edge_fraction": 0.9953759406376422,
+          "absolute_change_quantiles": [
+            0.0,
+            0.0001760825514793396,
+            0.01649002730846405,
+            0.09826206211000685,
+            0.8467587232589722
+          ],
+          "recorded_dt_s_quantiles": [
+            0.012282,
+            0.017225999999999998,
+            0.019957,
+            0.102292,
+            0.105962
+          ],
+          "note": "recorded allocated commands, not all unlogged actuator updates or measured angles"
+        },
+        "rudder": {
+          "native_rows": 238574,
+          "finite_rows": 238574,
+          "finite_fraction": 1.0,
+          "value_quantiles": [
+            -1.0,
+            -0.31681467294692994,
+            -0.014920958783477545,
+            0.2926449611783026,
+            0.8911934494972229
+          ],
+          "saturation_fraction": 2.9341001114958043e-05,
+          "changed_edge_fraction": 0.9984488649464439,
+          "absolute_change_quantiles": [
+            0.0,
+            6.073221564292908e-05,
+            0.0034051500260829926,
+            0.03211549889296297,
+            0.7381448298692703
+          ],
+          "recorded_dt_s_quantiles": [
+            0.012282,
+            0.017225999999999998,
+            0.019957,
+            0.102292,
+            0.105962
+          ],
+          "note": "recorded allocated commands, not all unlogged actuator updates or measured angles"
+        }
+      },
+      "reviewed_duration_s": 6250.047167,
+      "unusable_continuous_duration_fraction": 0.006156034822128786
+    },
+    "test": {
+      "samples": 217299,
+      "valid_samples": 216061,
+      "valid_sample_fraction": 0.9943027809607959,
+      "continuous_valid_duration_s": 5008.9881829999995,
+      "primary_window_union_duration_s": 5005.942275999999,
+      "flights": 33,
+      "flights_with_windows": 33,
+      "windows": 405918,
+      "windows_by_task": [
+        {
+          "sampling_group": "main_50hz",
+          "history_us": 250000,
+          "horizon_us": 100000,
+          "windows": 35065,
+          "flights": 28,
+          "future_count_quantiles": [
+            5.0,
+            5.0,
+            5.0,
+            6.0,
+            6.0
+          ],
+          "actual_horizon_s_quantiles": [
+            0.088693,
+            0.089806,
+            0.09979299999999999,
+            0.10978399999999999,
+            0.109789
+          ],
+          "review_windows": 1211
+        },
+        {
+          "sampling_group": "main_50hz",
+          "history_us": 250000,
+          "horizon_us": 200000,
+          "windows": 35025,
+          "flights": 28,
+          "future_count_quantiles": [
+            10.0,
+            10.0,
+            10.0,
+            10.0,
+            11.0
+          ],
+          "actual_horizon_s_quantiles": [
+            0.18958699999999998,
+            0.197101,
+            0.199589,
+            0.20957499999999998,
+            0.20959699999999998
+          ],
+          "review_windows": 1228
+        },
+        {
+          "sampling_group": "main_50hz",
+          "history_us": 250000,
+          "horizon_us": 500000,
+          "windows": 34887,
+          "flights": 28,
+          "future_count_quantiles": [
+            25.0,
+            25.0,
+            25.0,
+            26.0,
+            26.0
+          ],
+          "actual_horizon_s_quantiles": [
+            0.488936,
+            0.489012,
+            0.49899099999999996,
+            0.508998,
+            0.509018
+          ],
+          "review_windows": 1271
+        },
+        {
+          "sampling_group": "main_50hz",
+          "history_us": 250000,
+          "horizon_us": 1000000,
+          "windows": 34258,
+          "flights": 28,
+          "future_count_quantiles": [
+            50.0,
+            50.0,
+            50.0,
+            50.0,
+            51.0
+          ],
+          "actual_horizon_s_quantiles": [
+            0.988,
+            0.9953609999999999,
+            0.997976,
+            1.0080179999999999,
+            1.008054
+          ],
+          "review_windows": 1334
+        },
+        {
+          "sampling_group": "main_50hz",
+          "history_us": 250000,
+          "horizon_us": 2000000,
+          "windows": 34224,
+          "flights": 28,
+          "future_count_quantiles": [
+            99.0,
+            100.0,
+            100.0,
+            100.0,
+            100.0
+          ],
+          "actual_horizon_s_quantiles": [
+            1.990719,
+            1.990799,
+            1.9961369999999998,
+            2.006122,
+            2.010993
+          ],
+          "review_windows": 1395
+        },
+        {
+          "sampling_group": "main_50hz",
+          "history_us": 500000,
+          "horizon_us": 100000,
+          "windows": 34959,
+          "flights": 28,
+          "future_count_quantiles": [
+            5.0,
+            5.0,
+            5.0,
+            6.0,
+            6.0
+          ],
+          "actual_horizon_s_quantiles": [
+            0.088693,
+            0.089806,
+            0.09979299999999999,
+            0.10978399999999999,
+            0.109789
+          ],
+          "review_windows": 1251
+        },
+        {
+          "sampling_group": "main_50hz",
+          "history_us": 500000,
+          "horizon_us": 200000,
+          "windows": 34919,
+          "flights": 28,
+          "future_count_quantiles": [
+            10.0,
+            10.0,
+            10.0,
+            10.0,
+            11.0
+          ],
+          "actual_horizon_s_quantiles": [
+            0.18958699999999998,
+            0.197101,
+            0.199589,
+            0.20957499999999998,
+            0.20959699999999998
+          ],
+          "review_windows": 1266
+        },
+        {
+          "sampling_group": "main_50hz",
+          "history_us": 500000,
+          "horizon_us": 500000,
+          "windows": 34781,
+          "flights": 28,
+          "future_count_quantiles": [
+            25.0,
+            25.0,
+            25.0,
+            26.0,
+            26.0
+          ],
+          "actual_horizon_s_quantiles": [
+            0.488936,
+            0.489012,
+            0.49899099999999996,
+            0.508998,
+            0.509018
+          ],
+          "review_windows": 1306
+        },
+        {
+          "sampling_group": "main_50hz",
+          "history_us": 500000,
+          "horizon_us": 1000000,
+          "windows": 34152,
+          "flights": 28,
+          "future_count_quantiles": [
+            50.0,
+            50.0,
+            50.0,
+            50.0,
+            51.0
+          ],
+          "actual_horizon_s_quantiles": [
+            0.988,
+            0.9953609999999999,
+            0.997976,
+            1.0080179999999999,
+            1.008054
+          ],
+          "review_windows": 1357
+        },
+        {
+          "sampling_group": "main_50hz",
+          "history_us": 500000,
+          "horizon_us": 2000000,
+          "windows": 34120,
+          "flights": 28,
+          "future_count_quantiles": [
+            99.0,
+            100.0,
+            100.0,
+            100.0,
+            100.0
+          ],
+          "actual_horizon_s_quantiles": [
+            1.990719,
+            1.9907981899999998,
+            1.996138,
+            2.006122,
+            2.010993
+          ],
+          "review_windows": 1403
+        },
+        {
+          "sampling_group": "sparse_10hz",
+          "history_us": 250000,
+          "horizon_us": 100000,
+          "windows": 5981,
+          "flights": 5,
+          "future_count_quantiles": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "actual_horizon_s_quantiles": [
+            0.088921,
+            0.08892599999999999,
+            0.10012199999999999,
+            0.110135,
+            0.11014199999999999
+          ],
+          "review_windows": 0
+        },
+        {
+          "sampling_group": "sparse_10hz",
+          "history_us": 250000,
+          "horizon_us": 200000,
+          "windows": 5977,
+          "flights": 5,
+          "future_count_quantiles": [
+            2.0,
+            2.0,
+            2.0,
+            2.0,
+            2.0
+          ],
+          "actual_horizon_s_quantiles": [
+            0.19023099999999998,
+            0.19023299999999999,
+            0.20024499999999998,
+            0.20751,
+            0.21027099999999999
+          ],
+          "review_windows": 0
+        },
+        {
+          "sampling_group": "sparse_10hz",
+          "history_us": 250000,
+          "horizon_us": 500000,
+          "windows": 5967,
+          "flights": 5,
+          "future_count_quantiles": [
+            5.0,
+            5.0,
+            5.0,
+            5.0,
+            5.0
+          ],
+          "actual_horizon_s_quantiles": [
+            0.490597,
+            0.49060099999999995,
+            0.5006229999999999,
+            0.5039549999999999,
+            0.510629
+          ],
+          "review_windows": 0
+        },
+        {
+          "sampling_group": "sparse_10hz",
+          "history_us": 250000,
+          "horizon_us": 1000000,
+          "windows": 5948,
+          "flights": 5,
+          "future_count_quantiles": [
+            10.0,
+            10.0,
+            10.0,
+            10.0,
+            10.0
+          ],
+          "actual_horizon_s_quantiles": [
+            0.988027,
+            0.9881249999999999,
+            1.001222,
+            1.0078935299999998,
+            1.011245
+          ],
+          "review_windows": 0
+        },
+        {
+          "sampling_group": "sparse_10hz",
+          "history_us": 250000,
+          "horizon_us": 2000000,
+          "windows": 5911,
+          "flights": 5,
+          "future_count_quantiles": [
+            20.0,
+            20.0,
+            20.0,
+            20.0,
+            20.0
+          ],
+          "actual_horizon_s_quantiles": [
+            1.992427,
+            1.9924309999999998,
+            2.002448,
+            2.0059209,
+            2.005977
+          ],
+          "review_windows": 0
+        },
+        {
+          "sampling_group": "sparse_10hz",
+          "history_us": 500000,
+          "horizon_us": 100000,
+          "windows": 5973,
+          "flights": 5,
+          "future_count_quantiles": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "actual_horizon_s_quantiles": [
+            0.088921,
+            0.08892599999999999,
+            0.10012199999999999,
+            0.110135,
+            0.11014199999999999
+          ],
+          "review_windows": 0
+        },
+        {
+          "sampling_group": "sparse_10hz",
+          "history_us": 500000,
+          "horizon_us": 200000,
+          "windows": 5969,
+          "flights": 5,
+          "future_count_quantiles": [
+            2.0,
+            2.0,
+            2.0,
+            2.0,
+            2.0
+          ],
+          "actual_horizon_s_quantiles": [
+            0.19023099999999998,
+            0.19023299999999999,
+            0.20024499999999998,
+            0.20750932,
+            0.21027099999999999
+          ],
+          "review_windows": 0
+        },
+        {
+          "sampling_group": "sparse_10hz",
+          "history_us": 500000,
+          "horizon_us": 500000,
+          "windows": 5959,
+          "flights": 5,
+          "future_count_quantiles": [
+            5.0,
+            5.0,
+            5.0,
+            5.0,
+            5.0
+          ],
+          "actual_horizon_s_quantiles": [
+            0.490597,
+            0.49060099999999995,
+            0.5006229999999999,
+            0.5039549999999999,
+            0.510629
+          ],
+          "review_windows": 0
+        },
+        {
+          "sampling_group": "sparse_10hz",
+          "history_us": 500000,
+          "horizon_us": 1000000,
+          "windows": 5940,
+          "flights": 5,
+          "future_count_quantiles": [
+            10.0,
+            10.0,
+            10.0,
+            10.0,
+            10.0
+          ],
+          "actual_horizon_s_quantiles": [
+            0.988027,
+            0.9881249999999999,
+            1.001222,
+            1.0078936099999998,
+            1.011245
+          ],
+          "review_windows": 0
+        },
+        {
+          "sampling_group": "sparse_10hz",
+          "history_us": 500000,
+          "horizon_us": 2000000,
+          "windows": 5903,
+          "flights": 5,
+          "future_count_quantiles": [
+            20.0,
+            20.0,
+            20.0,
+            20.0,
+            20.0
+          ],
+          "actual_horizon_s_quantiles": [
+            1.992427,
+            1.9924309999999998,
+            2.002448,
+            2.0059199999999997,
+            2.005975
+          ],
+          "review_windows": 0
+        }
+      ],
+      "invalid_counts_overlapping": {
+        "valid_history_state": 1,
+        "valid_control": 1179,
+        "valid_target_state": 22,
+        "valid_encoder": 1,
+        "valid_frequency": 0
+      },
+      "excluded_rows": 5,
+      "control_gap_rows": 3,
+      "review_rows": 6725,
+      "controls": {
+        "control_flap_motor_normalized": {
+          "quantiles": [
+            0.020040063187479973,
+            0.3286572992801666,
+            0.6895499527454376,
+            0.8709839230775833,
+            0.9586709141731262
+          ],
+          "saturation_fraction": 0.0
+        },
+        "control_left_elevon_normalized": {
+          "quantiles": [
+            -0.9895544648170471,
+            -0.5952445656061173,
+            -0.21139825880527496,
+            0.6100714993476867,
+            1.0
+          ],
+          "saturation_fraction": 0.00018508236165093466
+        },
+        "control_right_elevon_normalized": {
+          "quantiles": [
+            -1.0,
+            -0.5867961472272873,
+            0.1251019462943077,
+            0.9457092750072479,
+            1.0
+          ],
+          "saturation_fraction": 0.008254673329631685
+        },
+        "control_rudder_normalized": {
+          "quantiles": [
+            -0.4838721454143524,
+            -0.2955871641635895,
+            0.012546220794320107,
+            0.2904028308391571,
+            0.6987001299858093
+          ],
+          "saturation_fraction": 0.0
+        }
+      },
+      "frequency_hz_quantiles": [
+        0.0,
+        1.83468154668808,
+        3.822112798690796,
+        4.763892803192138,
+        5.307699203491211
+      ],
+      "speed_m_s_quantiles": [
+        0.30580786505650337,
+        3.9665898589583626,
+        7.372857311681242,
+        11.264545606356194,
+        14.18349158832415
+      ],
+      "rate_rad_s_quantiles": [
+        0.003195823195610305,
+        0.16631345758961355,
+        0.746249897393324,
+        1.9303544296617987,
+        13.03719922417966
+      ],
+      "nav_state_counts": {
+        "3.0": 142084,
+        "15.0": 75182,
+        "0.0": 33
+      },
+      "mode_change_rows": 88,
+      "high_dynamics_rows": 1771,
+      "native_control_coverage": {
+        "motor": {
+          "native_rows": 217296,
+          "finite_rows": 216098,
+          "finite_fraction": 0.9944867830056697,
+          "value_quantiles": [
+            0.020040063187479973,
+            0.32763331830501574,
+            0.6895378530025482,
+            0.8709696453809738,
+            0.9586709141731262
+          ],
+          "saturation_fraction": 0.0,
+          "changed_edge_fraction": 0.7319590491706162,
+          "absolute_change_quantiles": [
+            0.0,
+            0.0,
+            0.002049684524536133,
+            0.013209267854690551,
+            0.26746928691864014
+          ],
+          "recorded_dt_s_quantiles": [
+            0.012315999999999999,
+            0.017234,
+            0.019958999999999998,
+            0.101284,
+            0.110135
+          ],
+          "note": "recorded allocated commands, not all unlogged actuator updates or measured angles"
+        },
+        "left_elevon": {
+          "native_rows": 217296,
+          "finite_rows": 217296,
+          "finite_fraction": 1.0,
+          "value_quantiles": [
+            -0.9895544648170471,
+            -0.5957643955945969,
+            -0.21024417132139206,
+            0.6179087489843363,
+            1.0
+          ],
+          "saturation_fraction": 0.0002623149988955158,
+          "changed_edge_fraction": 0.9991853191753773,
+          "absolute_change_quantiles": [
+            0.0,
+            0.00025928735733032226,
+            0.015319228172302246,
+            0.10359161641448744,
+            0.8196074366569519
+          ],
+          "recorded_dt_s_quantiles": [
+            0.012315999999999999,
+            0.017234,
+            0.019958999999999998,
+            0.101284,
+            0.110135
+          ],
+          "note": "recorded allocated commands, not all unlogged actuator updates or measured angles"
+        },
+        "right_elevon": {
+          "native_rows": 217296,
+          "finite_rows": 217296,
+          "finite_fraction": 1.0,
+          "value_quantiles": [
+            -1.0,
+            -0.5857152462005616,
+            0.12635453790426254,
+            0.9510258316993712,
+            1.0
+          ],
+          "saturation_fraction": 0.008449304174950299,
+          "changed_edge_fraction": 0.9923686960043818,
+          "absolute_change_quantiles": [
+            0.0,
+            8.952200412750243e-05,
+            0.016784459352493286,
+            0.09688742972910407,
+            1.0000000411052028
+          ],
+          "recorded_dt_s_quantiles": [
+            0.012315999999999999,
+            0.017234,
+            0.019958999999999998,
+            0.101284,
+            0.110135
+          ],
+          "note": "recorded allocated commands, not all unlogged actuator updates or measured angles"
+        },
+        "rudder": {
+          "native_rows": 217296,
+          "finite_rows": 217296,
+          "finite_fraction": 1.0,
+          "value_quantiles": [
+            -1.0,
+            -0.29991277903318403,
+            0.012239803560078144,
+            0.29128761589527036,
+            1.0
+          ],
+          "saturation_fraction": 6.9030262867241e-05,
+          "changed_edge_fraction": 0.998329213902045,
+          "absolute_change_quantiles": [
+            0.0,
+            6.232127547264098e-05,
+            0.0035352110862731934,
+            0.03185564924031498,
+            0.9999999632127583
+          ],
+          "recorded_dt_s_quantiles": [
+            0.012315999999999999,
+            0.017234,
+            0.019958999999999998,
+            0.101284,
+            0.110135
+          ],
+          "note": "recorded allocated commands, not all unlogged actuator updates or measured angles"
+        }
+      },
+      "reviewed_duration_s": 5038.865903,
+      "unusable_continuous_duration_fraction": 0.005929453288727515
+    }
+  },
+  "window_rejections": [
+    {
+      "flight_id": "4c77a3e74b4c8e26d021fd1fa2bc618a2f2f52e005eb5022ecdf680c40678bfb:1",
+      "candidate": 4680,
+      "duration_or_edge": 104,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 0,
+      "invalid_or_gap_or_nonunique_target": 2
+    },
+    {
+      "flight_id": "37ff9f8ea4e2e378fc13394288aa145a462259e2f53fa15af9511082f0e6d558:1",
+      "candidate": 15690,
+      "duration_or_edge": 106,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 78,
+      "invalid_or_gap_or_nonunique_target": 4
+    },
+    {
+      "flight_id": "603a941c5ebbfcdf27b80b0d1c4b2de65dd4e114fdefb64bb70896e409c135a8:1",
+      "candidate": 12740,
+      "duration_or_edge": 104,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 50,
+      "invalid_or_gap_or_nonunique_target": 2
+    },
+    {
+      "flight_id": "30f27b3c2ee46a05ed6108ec01a2150cd5c8fedaf4f0cb7a1f0347698412aacd:1",
+      "candidate": 13430,
+      "duration_or_edge": 108,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 0,
+      "invalid_or_gap_or_nonunique_target": 177
+    },
+    {
+      "flight_id": "3b0afa4b3526fae934d9705082c0dbfe247fc39baff68014c06cf6642e71275e:1",
+      "candidate": 10740,
+      "duration_or_edge": 118,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 96,
+      "invalid_or_gap_or_nonunique_target": 4
+    },
+    {
+      "flight_id": "63967500f915ed124b1b4deacf8a47a563ab4419c0258c3522798577280c7dd0:1",
+      "candidate": 12500,
+      "duration_or_edge": 104,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 0,
+      "invalid_or_gap_or_nonunique_target": 60
+    },
+    {
+      "flight_id": "73dd94d60553a00efb3e2d9009430686c08ee611f11eb4e3f8e3a427f26df842:1",
+      "candidate": 13430,
+      "duration_or_edge": 118,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 101,
+      "invalid_or_gap_or_nonunique_target": 7
+    },
+    {
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "candidate": 14470,
+      "duration_or_edge": 110,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 14,
+      "invalid_or_gap_or_nonunique_target": 24
+    },
+    {
+      "flight_id": "a907493b8fd3708bac45e39fc54185e2fa4e9f9a35a71ba030f3f38b06c1d51f:1",
+      "candidate": 15790,
+      "duration_or_edge": 112,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 220,
+      "reset": 0,
+      "invalid_or_gap_or_nonunique_target": 2
+    },
+    {
+      "flight_id": "4b5e90d7f0e7d8ecc77c4c680cde74d6848246d6878e3606503b97570bb9f462:1",
+      "candidate": 14000,
+      "duration_or_edge": 106,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 36,
+      "invalid_or_gap_or_nonunique_target": 2
+    },
+    {
+      "flight_id": "a1945d5edee81010214065ee8ff847438d7306eb73e9a8aa359a727ff7a9070e:1",
+      "candidate": 13980,
+      "duration_or_edge": 164,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 104,
+      "invalid_or_gap_or_nonunique_target": 2
+    },
+    {
+      "flight_id": "580d9dd51677020f5a87c43f51f9d7082d4157599eab9e148b683e4baa03eadd:1",
+      "candidate": 12750,
+      "duration_or_edge": 142,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 42,
+      "invalid_or_gap_or_nonunique_target": 94
+    },
+    {
+      "flight_id": "f265efde972974cc8bad4223ace9abe36dceeddebf26d92fd0f9b1ae0498905b:1",
+      "candidate": 13450,
+      "duration_or_edge": 116,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 224,
+      "reset": 0,
+      "invalid_or_gap_or_nonunique_target": 0
+    },
+    {
+      "flight_id": "8d1191724e9bb10dcc592dc354b6c8cc21f51ae79dd14e9960bc656411cb7758:1",
+      "candidate": 12420,
+      "duration_or_edge": 118,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 158,
+      "reset": 0,
+      "invalid_or_gap_or_nonunique_target": 0
+    },
+    {
+      "flight_id": "0e3d4d085a0d8bcd87a2c76c5c3230e2ae238cf0d3b54051abd498e0b9c8bf8c:1",
+      "candidate": 17400,
+      "duration_or_edge": 194,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 0,
+      "invalid_or_gap_or_nonunique_target": 50
+    },
+    {
+      "flight_id": "b9b276a937ef21b53dc65c8f8cdeb72063f754c0aa9b7a15448580fedd3e9933:1",
+      "candidate": 14120,
+      "duration_or_edge": 184,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 284,
+      "reset": 0,
+      "invalid_or_gap_or_nonunique_target": 96
+    },
+    {
+      "flight_id": "8ea1a9652b9bcb07c2e8a028fd0e2e1c07f3b611c6754fc7011006ec6f72f1a2:2",
+      "candidate": 11450,
+      "duration_or_edge": 104,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 130,
+      "invalid_or_gap_or_nonunique_target": 2
+    },
+    {
+      "flight_id": "41d11cab7c29a50e3d8b308e359b69b800425d2c50232f57cf8633638ae779ae:1",
+      "candidate": 9670,
+      "duration_or_edge": 104,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 30,
+      "invalid_or_gap_or_nonunique_target": 2
+    },
+    {
+      "flight_id": "beb4f5cd49db700b4070625816bce259ed2e23c1578dc54d5d3dbaed7ed88ac3:1",
+      "candidate": 14340,
+      "duration_or_edge": 98,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 0,
+      "invalid_or_gap_or_nonunique_target": 264
+    },
+    {
+      "flight_id": "fbd85cc58f867e96946b0d1dfdccbfd6552f226b47a70b21937ca8a06f42be6d:1",
+      "candidate": 13450,
+      "duration_or_edge": 162,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 32,
+      "invalid_or_gap_or_nonunique_target": 102
+    },
+    {
+      "flight_id": "12a319f5d82a85943caa072d0c2aeb302ea530cefabce53b4a325e463e502af5:1",
+      "candidate": 13000,
+      "duration_or_edge": 168,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 46,
+      "invalid_or_gap_or_nonunique_target": 102
+    },
+    {
+      "flight_id": "e7bb1d4beebb4a33ffe62dc5940d65c20a7bcfc8f5ac829ee99077fb06f6dc1d:1",
+      "candidate": 12560,
+      "duration_or_edge": 162,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 16,
+      "invalid_or_gap_or_nonunique_target": 80
+    },
+    {
+      "flight_id": "b54473daf2edded6bdf87803b1b47c5ccc0f4ce0a7c1b0481d8714a6d35ee98a:1",
+      "candidate": 12790,
+      "duration_or_edge": 170,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 82,
+      "invalid_or_gap_or_nonunique_target": 2
+    },
+    {
+      "flight_id": "0ad472f5e6d2fdd7f5a94c403a49e07e089f7d16de603f5703d4e2260938cc5b:1",
+      "candidate": 8210,
+      "duration_or_edge": 146,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 0,
+      "invalid_or_gap_or_nonunique_target": 64
+    },
+    {
+      "flight_id": "65c8b8b39c7ac62f8abcc600c7676294c46c99a1d1d19a1d6e3c588608eb834b:1",
+      "candidate": 10890,
+      "duration_or_edge": 102,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 256,
+      "reset": 4,
+      "invalid_or_gap_or_nonunique_target": 4
+    },
+    {
+      "flight_id": "91d881515e157525f6527c8f148973cfd995ee64a2523f74d8896f9876f323c3:1",
+      "candidate": 7810,
+      "duration_or_edge": 104,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 60,
+      "invalid_or_gap_or_nonunique_target": 4
+    },
+    {
+      "flight_id": "531a4f5ad9f0770e3a369375c0113cffc3f1ec6ea7070378ce84b234546fb2d9:1",
+      "candidate": 14950,
+      "duration_or_edge": 104,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 1700,
+      "reset": 0,
+      "invalid_or_gap_or_nonunique_target": 0
+    },
+    {
+      "flight_id": "782597332cc8092c8efde5db2630b46f194dde68f603c6550458d5b6a3d6659a:1",
+      "candidate": 12860,
+      "duration_or_edge": 110,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 320,
+      "reset": 0,
+      "invalid_or_gap_or_nonunique_target": 0
+    },
+    {
+      "flight_id": "bfa039195c11191d289e8734be1ee330bf4dbdf3648ae474932471f408425a18:1",
+      "candidate": 12280,
+      "duration_or_edge": 108,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 0,
+      "invalid_or_gap_or_nonunique_target": 36
+    },
+    {
+      "flight_id": "a978956f5f191a4daabd24086ef734b611060f7467063c838c8c78bc898a5a68:1",
+      "candidate": 13250,
+      "duration_or_edge": 156,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 154,
+      "reset": 0,
+      "invalid_or_gap_or_nonunique_target": 98
+    },
+    {
+      "flight_id": "6c5b344e087a1a7ab333f75405589cdf20fdd2ad091eba2768e27de76b076dc3:1",
+      "candidate": 14150,
+      "duration_or_edge": 104,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 200,
+      "reset": 0,
+      "invalid_or_gap_or_nonunique_target": 6
+    },
+    {
+      "flight_id": "ae5e395aee6f5c69eb5590a2acf890ae400c9328975f6f91444fca5cc4a7c496:1",
+      "candidate": 11450,
+      "duration_or_edge": 152,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 66,
+      "invalid_or_gap_or_nonunique_target": 4
+    },
+    {
+      "flight_id": "e4e166c6cda3c88bd0030f598b72b425c082fcdf1eac351c5083943b804c0d02:1",
+      "candidate": 14540,
+      "duration_or_edge": 176,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 364,
+      "reset": 0,
+      "invalid_or_gap_or_nonunique_target": 0
+    },
+    {
+      "flight_id": "1ff5d67cf8ef2d676896165abd64634dfa9fd343787ea606030358215ef56e64:1",
+      "candidate": 18000,
+      "duration_or_edge": 176,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 382,
+      "reset": 0,
+      "invalid_or_gap_or_nonunique_target": 100
+    },
+    {
+      "flight_id": "dea67a9ed3019a32b7b11f43c8fa6668c4142849622f29d836f287defdfacbe1:1",
+      "candidate": 12470,
+      "duration_or_edge": 162,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 0,
+      "invalid_or_gap_or_nonunique_target": 84
+    },
+    {
+      "flight_id": "15c586c0d48d09ef0036618bf1823d6475213c751d473dba6f0fa0732809b7eb:1",
+      "candidate": 12570,
+      "duration_or_edge": 106,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 60,
+      "invalid_or_gap_or_nonunique_target": 98
+    },
+    {
+      "flight_id": "a2a85d1807255e9cb45b0c04ba77c38ec0679f6c3a286846f7deff1ba72be945:1",
+      "candidate": 12890,
+      "duration_or_edge": 108,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 102,
+      "reset": 52,
+      "invalid_or_gap_or_nonunique_target": 2
+    },
+    {
+      "flight_id": "3de9134406746aa184281244591d0403f426022d5789a6d9f2d441b89f3b519e:1",
+      "candidate": 12620,
+      "duration_or_edge": 174,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 556,
+      "reset": 0,
+      "invalid_or_gap_or_nonunique_target": 0
+    },
+    {
+      "flight_id": "95b2e74ad704fbe261d081ad317f01a9bba5c99b3c2f32b64e3a5e57602164a8:1",
+      "candidate": 13030,
+      "duration_or_edge": 174,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 56,
+      "invalid_or_gap_or_nonunique_target": 90
+    },
+    {
+      "flight_id": "3746db93c8eb02d5b94167d21d11701b5caaeffdd909b7f61a4c70b7519129d0:1",
+      "candidate": 8140,
+      "duration_or_edge": 112,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 0,
+      "invalid_or_gap_or_nonunique_target": 0
+    },
+    {
+      "flight_id": "19b10fde39323f915235f7ff29ac3bc6311d9ceb6b07e2dbda5915400b8eee3d:1",
+      "candidate": 13340,
+      "duration_or_edge": 112,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 159,
+      "reset": 0,
+      "invalid_or_gap_or_nonunique_target": 108
+    },
+    {
+      "flight_id": "4c2fe9e7a473a190664b44652f2ef5c6977aa8ff1c46224e008d5b458a22cfa5:1",
+      "candidate": 13340,
+      "duration_or_edge": 108,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 0,
+      "invalid_or_gap_or_nonunique_target": 196
+    },
+    {
+      "flight_id": "05eed2dc698464ca4a4508a2906176f8a91e65b148601f45c03f3279286d800a:1",
+      "candidate": 15420,
+      "duration_or_edge": 104,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 120,
+      "reset": 2,
+      "invalid_or_gap_or_nonunique_target": 97
+    },
+    {
+      "flight_id": "5e074998eb0cf7d7db4fad4033b56d08d91bc2c176c5bae3f56b128505c46081:1",
+      "candidate": 10420,
+      "duration_or_edge": 102,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 4,
+      "invalid_or_gap_or_nonunique_target": 4
+    },
+    {
+      "flight_id": "60cc2db103282bd4493a0ad3f8e4c05a529c53513507225d54564018a6f97edb:1",
+      "candidate": 10470,
+      "duration_or_edge": 150,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 82,
+      "invalid_or_gap_or_nonunique_target": 385
+    },
+    {
+      "flight_id": "22a70d54b3683faa403f63c18c1d90d02d2a5aba7d95c2e8c1bf5d6457acbc29:1",
+      "candidate": 9370,
+      "duration_or_edge": 106,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 0,
+      "invalid_or_gap_or_nonunique_target": 0
+    },
+    {
+      "flight_id": "5abe5e80b02948c33d55cfa19837725934dbb0caa2132facd63e2129cf792952:1",
+      "candidate": 12400,
+      "duration_or_edge": 102,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 66,
+      "invalid_or_gap_or_nonunique_target": 8
+    },
+    {
+      "flight_id": "fe46c4e6013752f8e0901f623ced378c392b5726c88c5a57cb84f4b6ffd4fe71:1",
+      "candidate": 12120,
+      "duration_or_edge": 100,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 100,
+      "invalid_or_gap_or_nonunique_target": 0
+    },
+    {
+      "flight_id": "5039763b2a8ddf31fff88c2d54827101cca997f0c73bf8e0732afdbc766641f2:1",
+      "candidate": 11990,
+      "duration_or_edge": 100,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 126,
+      "invalid_or_gap_or_nonunique_target": 196
+    },
+    {
+      "flight_id": "d071d49da500ef84328acf9b8905b5bb618c3a8ef5ad719e49f13358d93b073e:1",
+      "candidate": 12320,
+      "duration_or_edge": 108,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 62,
+      "invalid_or_gap_or_nonunique_target": 98
+    },
+    {
+      "flight_id": "fc53971260c2cf62f71d76af1379ae29bedabca21e3f49aaa4cb9d63c6510dbb:1",
+      "candidate": 10490,
+      "duration_or_edge": 110,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 94,
+      "reset": 50,
+      "invalid_or_gap_or_nonunique_target": 4
+    },
+    {
+      "flight_id": "1894725285badf0fbb07369e0f13cf92c8f213b636349d38c7280a2ee5af2e75:1",
+      "candidate": 12080,
+      "duration_or_edge": 110,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 0,
+      "invalid_or_gap_or_nonunique_target": 78
+    },
+    {
+      "flight_id": "5734013eecffc074bd5f9d844a284e7575cbd84670f69c0e482971024539664c:1",
+      "candidate": 9250,
+      "duration_or_edge": 106,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 80,
+      "invalid_or_gap_or_nonunique_target": 2
+    },
+    {
+      "flight_id": "ac54f8f57c72d2254c2ee11f10d5bbd541815f3ac31040ac7c734e863e56c8c7:1",
+      "candidate": 12070,
+      "duration_or_edge": 104,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 88,
+      "invalid_or_gap_or_nonunique_target": 98
+    },
+    {
+      "flight_id": "6b483c323ce93d7d6e97606814c4c292f1e69bd2e7b00babc97d8df6a4a18b61:1",
+      "candidate": 11620,
+      "duration_or_edge": 106,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 130,
+      "invalid_or_gap_or_nonunique_target": 0
+    },
+    {
+      "flight_id": "9258b097970593d85c54daa5d13905f8b7b1c9bcab8d800ddd78e14e6be8f0c5:1",
+      "candidate": 11280,
+      "duration_or_edge": 124,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 82,
+      "invalid_or_gap_or_nonunique_target": 134
+    },
+    {
+      "flight_id": "72b77806f1d23dd9d32bf76275b6a94d3cc4dd2f860a9394fd1b3e42ab10c8de:1",
+      "candidate": 12570,
+      "duration_or_edge": 132,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 100,
+      "reset": 104,
+      "invalid_or_gap_or_nonunique_target": 200
+    },
+    {
+      "flight_id": "1d0eccb6bff5bbec48711611b652a5d920c132c230ac1801fe8b53314ce52ebc:1",
+      "candidate": 12580,
+      "duration_or_edge": 110,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 58,
+      "invalid_or_gap_or_nonunique_target": 2
+    },
+    {
+      "flight_id": "b472f27bdb908bca69c4d18cc793cde099d4632285026878d766c2bc912a6949:1",
+      "candidate": 13330,
+      "duration_or_edge": 106,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 104,
+      "reset": 58,
+      "invalid_or_gap_or_nonunique_target": 2
+    },
+    {
+      "flight_id": "8c24613d6cd518a0391183fe8c8f51198d2d1af8b05962081aa36180eb12f5fb:1",
+      "candidate": 11870,
+      "duration_or_edge": 162,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 0,
+      "invalid_or_gap_or_nonunique_target": 172
+    },
+    {
+      "flight_id": "5bc50ebb95abd5fb7653cf7e9dd046323e866b146da223125bb1bb8f3ef11f9d:1",
+      "candidate": 11320,
+      "duration_or_edge": 112,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 58,
+      "invalid_or_gap_or_nonunique_target": 4
+    },
+    {
+      "flight_id": "c1b477a8bc2758431548cbfe085aa083f8d52725c18ca0daa588fe59d7d8dfc3:1",
+      "candidate": 12740,
+      "duration_or_edge": 106,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 0,
+      "invalid_or_gap_or_nonunique_target": 78
+    },
+    {
+      "flight_id": "c728467cbea2bad08f7f060c6498120efe8cd4f54a3b5cf156d82939cf174480:1",
+      "candidate": 9970,
+      "duration_or_edge": 108,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 100,
+      "reset": 106,
+      "invalid_or_gap_or_nonunique_target": 0
+    },
+    {
+      "flight_id": "856d76e3776563b908ba57d66d69edb41430b0b30764fa9628d6acbbf152ae40:1",
+      "candidate": 12880,
+      "duration_or_edge": 174,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 52,
+      "invalid_or_gap_or_nonunique_target": 122
+    },
+    {
+      "flight_id": "31e75b37cc415dcef5333627728330aca2156b8652dd56f2d5c1dcfb22fc7d17:1",
+      "candidate": 12230,
+      "duration_or_edge": 106,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 66,
+      "invalid_or_gap_or_nonunique_target": 4
+    },
+    {
+      "flight_id": "7e4d29d0fbb4e521eb4f3753cf8441194be4952c0c554cf7bd7e72c214cb7964:1",
+      "candidate": 13250,
+      "duration_or_edge": 104,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 0,
+      "invalid_or_gap_or_nonunique_target": 0
+    },
+    {
+      "flight_id": "8620264e85a695408ff6544c6d8519af2b205b34e2dc5ce25f301b8e35a758a4:1",
+      "candidate": 13930,
+      "duration_or_edge": 100,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 22,
+      "invalid_or_gap_or_nonunique_target": 0
+    },
+    {
+      "flight_id": "9825334a4fa07f2a573b64f455b15587204a8deee5747aa7b45aa653c794a2d6:1",
+      "candidate": 10920,
+      "duration_or_edge": 102,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 46,
+      "invalid_or_gap_or_nonunique_target": 291
+    },
+    {
+      "flight_id": "6e42772f0cd8a2c2cc6134f00fcad349c32e55ccfa28ffed7324600b66f11f68:1",
+      "candidate": 12440,
+      "duration_or_edge": 106,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 102,
+      "reset": 90,
+      "invalid_or_gap_or_nonunique_target": 4
+    },
+    {
+      "flight_id": "99fcc78fce71ab4176468bf9f5ff061f50be69ea71fe648086d152ddf94c1c87:1",
+      "candidate": 12370,
+      "duration_or_edge": 150,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 0,
+      "invalid_or_gap_or_nonunique_target": 6
+    },
+    {
+      "flight_id": "ffb298b75d051684c09069a19c2fcd9a744a5aa74ddc91d97d4c7a89b2fecb3a:1",
+      "candidate": 11560,
+      "duration_or_edge": 104,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 2,
+      "invalid_or_gap_or_nonunique_target": 2
+    },
+    {
+      "flight_id": "555013e8efd61db4be706244554d53a2db3acf99912a147d9e2c0c9225fb1156:1",
+      "candidate": 10170,
+      "duration_or_edge": 112,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 0,
+      "invalid_or_gap_or_nonunique_target": 197
+    },
+    {
+      "flight_id": "0ccaea41f83ce586b98bf5f8b57d59a3b373420814396c9724405997d22fbb0f:1",
+      "candidate": 12880,
+      "duration_or_edge": 104,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 0,
+      "invalid_or_gap_or_nonunique_target": 138
+    },
+    {
+      "flight_id": "d1029644def3e9aaf28edc9a47d7c06eb50790c47c221994be2738bd8cb7fa3b:1",
+      "candidate": 14220,
+      "duration_or_edge": 104,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 54,
+      "invalid_or_gap_or_nonunique_target": 100
+    },
+    {
+      "flight_id": "c79e10ff47a4d152fc9eee3de0f9a925562f9e1921418b3485b197e50f5750be:1",
+      "candidate": 12120,
+      "duration_or_edge": 104,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 0,
+      "invalid_or_gap_or_nonunique_target": 544
+    },
+    {
+      "flight_id": "11be9c2dde6c15d2c5c51f3d7b22a44f92a5e8baa5b5535c3ec961671c2fdf73:1",
+      "candidate": 12400,
+      "duration_or_edge": 98,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 164,
+      "invalid_or_gap_or_nonunique_target": 4
+    },
+    {
+      "flight_id": "129daba37d9917950222779c3efb9977e69708667fcac8b7ebd7e968e58cf2e2:1",
+      "candidate": 12290,
+      "duration_or_edge": 106,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 92,
+      "invalid_or_gap_or_nonunique_target": 4
+    },
+    {
+      "flight_id": "64dcd437b8af3b43e19fb625bdb9ab854e791966a707a04eee0f4db1acc18a9d:1",
+      "candidate": 10910,
+      "duration_or_edge": 162,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 0,
+      "invalid_or_gap_or_nonunique_target": 148
+    },
+    {
+      "flight_id": "329162d9984d868b7e7773c3a646f70b1c5b4593afef4477d75ad710afbc3b9a:1",
+      "candidate": 12920,
+      "duration_or_edge": 130,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 128,
+      "invalid_or_gap_or_nonunique_target": 94
+    },
+    {
+      "flight_id": "c9caf10ce8ad7928c2314341b27a3c4221f0418e8f295a7687d04118284b785d:1",
+      "candidate": 13360,
+      "duration_or_edge": 178,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 26,
+      "invalid_or_gap_or_nonunique_target": 96
+    },
+    {
+      "flight_id": "8b2c88727ccf6539c023c7eec8c18755cddb28e55d95eb58fcdd9b0a265b57b2:1",
+      "candidate": 13380,
+      "duration_or_edge": 148,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 32,
+      "invalid_or_gap_or_nonunique_target": 4
+    },
+    {
+      "flight_id": "02b3f6a51a07f7d86d68f7ad615eae33873451705bf91289ac379d3f46a8146e:1",
+      "candidate": 13700,
+      "duration_or_edge": 110,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 49,
+      "invalid_or_gap_or_nonunique_target": 211
+    },
+    {
+      "flight_id": "0d5e5dbce4d6ea2a059df10d152bafc121833f3a14c88bbb57ae4edc47bec9a9:1",
+      "candidate": 12680,
+      "duration_or_edge": 106,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 90,
+      "invalid_or_gap_or_nonunique_target": 4
+    },
+    {
+      "flight_id": "dca519e722cbd697754ce36b6528672120535ccd219f4682e0379b20ff4d79a8:1",
+      "candidate": 12590,
+      "duration_or_edge": 186,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 162,
+      "invalid_or_gap_or_nonunique_target": 74
+    },
+    {
+      "flight_id": "7417500f121ab7dacaf01f0903d8062b893b18f829c80dcae9f1cc45e4243d5e:1",
+      "candidate": 13560,
+      "duration_or_edge": 176,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 96,
+      "reset": 74,
+      "invalid_or_gap_or_nonunique_target": 4
+    },
+    {
+      "flight_id": "2aeb238b9f82f7d7cd977a1086764a2e689eb30bcd46956abdfed92fc77e1a6f:1",
+      "candidate": 13370,
+      "duration_or_edge": 172,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 61,
+      "invalid_or_gap_or_nonunique_target": 3
+    },
+    {
+      "flight_id": "8a6e4d12518dc16ec397388842a77962805057279abc620a720f4f0b8c76321b:1",
+      "candidate": 13000,
+      "duration_or_edge": 168,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 66,
+      "invalid_or_gap_or_nonunique_target": 96
+    },
+    {
+      "flight_id": "6436c5c33392ae7a997592f746b37d79d70d417475c960aec87412873be0c2ba:1",
+      "candidate": 13850,
+      "duration_or_edge": 172,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 40,
+      "invalid_or_gap_or_nonunique_target": 100
+    },
+    {
+      "flight_id": "874cf579fef908272bcada7a1ffac22ecee2e3a70cafd2439c09b6b5adee3aec:1",
+      "candidate": 11490,
+      "duration_or_edge": 162,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 100,
+      "reset": 164,
+      "invalid_or_gap_or_nonunique_target": 198
+    },
+    {
+      "flight_id": "5aed73e0cd0d4710f5670adc97ef50360dd0bc4f022b5a2fddeee0c40f2cb78a:1",
+      "candidate": 10300,
+      "duration_or_edge": 156,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 42,
+      "invalid_or_gap_or_nonunique_target": 0
+    },
+    {
+      "flight_id": "f8fdb43736c3cb2d535efde45bc17d3b279e6e04dae9771fdcfab95421a84f03:1",
+      "candidate": 11390,
+      "duration_or_edge": 154,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 102,
+      "reset": 96,
+      "invalid_or_gap_or_nonunique_target": 30
+    },
+    {
+      "flight_id": "642e50e4c1d984910cff8c5bf098c00cc1f962f60e20941f8602461caf6d9c04:1",
+      "candidate": 9930,
+      "duration_or_edge": 104,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 30,
+      "invalid_or_gap_or_nonunique_target": 2
+    },
+    {
+      "flight_id": "40fe3968b0051bbe6b3cdb77b92ad8f6bc68578a0a76f123a8bf1bb371175fb6:1",
+      "candidate": 11890,
+      "duration_or_edge": 176,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 98,
+      "reset": 0,
+      "invalid_or_gap_or_nonunique_target": 66
+    },
+    {
+      "flight_id": "367cfee45a6abc8c3f3ac970d8cd6515ece9f9d5bbde708d3ee53dd72a8b4098:1",
+      "candidate": 12960,
+      "duration_or_edge": 182,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 106,
+      "reset": 0,
+      "invalid_or_gap_or_nonunique_target": 102
+    },
+    {
+      "flight_id": "7776c02279408943be82a7ab8ac9f7fad67cf642d73f2d6446c4f2eb949c0922:1",
+      "candidate": 11460,
+      "duration_or_edge": 116,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 210,
+      "reset": 40,
+      "invalid_or_gap_or_nonunique_target": 4
+    },
+    {
+      "flight_id": "277584f21d30a39f3b2fb9cb6884e2c263b97f12ae17a4eaa1c64c023cfea8a5:1",
+      "candidate": 11190,
+      "duration_or_edge": 116,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 174,
+      "reset": 36,
+      "invalid_or_gap_or_nonunique_target": 2
+    },
+    {
+      "flight_id": "580c4b33bc9eba1241a9579b19705bc1d9e30678168e8e8919bbab8635bc09da:1",
+      "candidate": 10300,
+      "duration_or_edge": 160,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 198,
+      "reset": 0,
+      "invalid_or_gap_or_nonunique_target": 2
+    },
+    {
+      "flight_id": "67563cdadab0ebdd58c7d2692bb50e39bee80a8afd230c00639fe975df6e73b4:1",
+      "candidate": 10500,
+      "duration_or_edge": 155,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 0,
+      "invalid_or_gap_or_nonunique_target": 204
+    },
+    {
+      "flight_id": "91efff1aca54c8fcbafcc3fa5f089339d7445077a50b905a5368be205ce389e9:1",
+      "candidate": 10500,
+      "duration_or_edge": 154,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 99,
+      "reset": 0,
+      "invalid_or_gap_or_nonunique_target": 6
+    },
+    {
+      "flight_id": "74a22ee9334cb525aec5257f6f852240f695ed38934ec50cb7960af69c723adb:1",
+      "candidate": 11450,
+      "duration_or_edge": 168,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 102,
+      "reset": 160,
+      "invalid_or_gap_or_nonunique_target": 2
+    },
+    {
+      "flight_id": "bb1f0984727ec1aa0d2a8eb18164d581e4b1fb387ace936abdf485b258ae125e:1",
+      "candidate": 12410,
+      "duration_or_edge": 172,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 101,
+      "reset": 0,
+      "invalid_or_gap_or_nonunique_target": 196
+    },
+    {
+      "flight_id": "132368b0811cbfe0949bd7b8fd033aee173d390f671341368d591b5d3377e880:1",
+      "candidate": 11530,
+      "duration_or_edge": 202,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 120,
+      "reset": 44,
+      "invalid_or_gap_or_nonunique_target": 190
+    },
+    {
+      "flight_id": "158acd45674d2b5008263b6098f986c758a966ac27bab4b2ef465b1c430ccd42:1",
+      "candidate": 11440,
+      "duration_or_edge": 104,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 0,
+      "invalid_or_gap_or_nonunique_target": 6
+    },
+    {
+      "flight_id": "4cb7cd25d37ed3fce01ddeca9d7331177fb877de4a8829af6070312edf0f9c99:1",
+      "candidate": 11940,
+      "duration_or_edge": 178,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 336,
+      "reset": 84,
+      "invalid_or_gap_or_nonunique_target": 106
+    },
+    {
+      "flight_id": "e3e4c7669ab5352358121e438acf850a62ada4d8c98393228fdc39f226f242d5:1",
+      "candidate": 12750,
+      "duration_or_edge": 138,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 421,
+      "reset": 30,
+      "invalid_or_gap_or_nonunique_target": 1239
+    },
+    {
+      "flight_id": "290900a6a78dc77c2ff928175e38ea64dbc50510e73388507878ff33e6533612:1",
+      "candidate": 11780,
+      "duration_or_edge": 236,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 417,
+      "reset": 0,
+      "invalid_or_gap_or_nonunique_target": 156
+    },
+    {
+      "flight_id": "51e24013769d84701c9c2f56285aab404e516485e90cae7731a8e7769ab0a2af:1",
+      "candidate": 11650,
+      "duration_or_edge": 166,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 184,
+      "reset": 62,
+      "invalid_or_gap_or_nonunique_target": 2
+    },
+    {
+      "flight_id": "7439efba12b9d2e65a092e795ecf0bd41089a89ec804f38ad1b3d065f1a5cb58:1",
+      "candidate": 12310,
+      "duration_or_edge": 210,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 338,
+      "reset": 56,
+      "invalid_or_gap_or_nonunique_target": 0
+    },
+    {
+      "flight_id": "147419bbd645e812049c68be1dd6f246a9bb83d1cac2a4a707c6e3112fb48867:1",
+      "candidate": 12640,
+      "duration_or_edge": 192,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 340,
+      "reset": 0,
+      "invalid_or_gap_or_nonunique_target": 98
+    },
+    {
+      "flight_id": "01a4a8c5def815f65ead5b70f05854cb388e6874bbc49344ecf0bccdfb5ace2b:1",
+      "candidate": 12020,
+      "duration_or_edge": 148,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 312,
+      "reset": 0,
+      "invalid_or_gap_or_nonunique_target": 94
+    },
+    {
+      "flight_id": "f359c4988644892a1e16716684f44505f6fe58721ff2266673b42d2e4b3b5f15:1",
+      "candidate": 10960,
+      "duration_or_edge": 192,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 281,
+      "reset": 0,
+      "invalid_or_gap_or_nonunique_target": 4
+    },
+    {
+      "flight_id": "c9a36248efd5b8452c1fb26edf2dd5fc817ef7202d5950f3d0860f83c8ed4f1c:1",
+      "candidate": 11140,
+      "duration_or_edge": 162,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 188,
+      "reset": 44,
+      "invalid_or_gap_or_nonunique_target": 2
+    },
+    {
+      "flight_id": "5d6e94cb4e4936623ae1bd9dae58a98bcfc1ef9787e8ee2a35f0f881b1896b82:1",
+      "candidate": 11090,
+      "duration_or_edge": 164,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 336,
+      "reset": 48,
+      "invalid_or_gap_or_nonunique_target": 106
+    },
+    {
+      "flight_id": "284731a01071468a9862d0cdce9238e8a2ce7375911acd40c46a49640e67111d:1",
+      "candidate": 12440,
+      "duration_or_edge": 122,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 150,
+      "reset": 2,
+      "invalid_or_gap_or_nonunique_target": 4
+    },
+    {
+      "flight_id": "9886a928186752896c5fdfa1d2b823298cf225761e3fc326833bfe243df84302:1",
+      "candidate": 11670,
+      "duration_or_edge": 142,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 240,
+      "reset": 0,
+      "invalid_or_gap_or_nonunique_target": 106
+    },
+    {
+      "flight_id": "f7b2d4a76f11c9f64a7a14dcf675eb56005672fd85c7fe4f05b7115dbe7c02e2:1",
+      "candidate": 12670,
+      "duration_or_edge": 242,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 784,
+      "reset": 0,
+      "invalid_or_gap_or_nonunique_target": 0
+    },
+    {
+      "flight_id": "fc0b07970aca085de1eb965b40c2883d37440051f3376f2a70f771c333d4f969:1",
+      "candidate": 13770,
+      "duration_or_edge": 114,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 218,
+      "reset": 0,
+      "invalid_or_gap_or_nonunique_target": 911
+    },
+    {
+      "flight_id": "d1263c4d04bdf8994a7711d9721f5f95911bb108c20ad462ce9b5acb4ac6563e:1",
+      "candidate": 12630,
+      "duration_or_edge": 338,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 705,
+      "reset": 0,
+      "invalid_or_gap_or_nonunique_target": 0
+    },
+    {
+      "flight_id": "b0b2f37ee0122605e0f5fb5e5da6dcca85e52c539cf27cb832d14fd461028425:1",
+      "candidate": 13130,
+      "duration_or_edge": 148,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 232,
+      "reset": 0,
+      "invalid_or_gap_or_nonunique_target": 4
+    },
+    {
+      "flight_id": "f8707127db06631c1da9631e5e26068ff9ca9d09389bc901cdea5453dc3965cd:1",
+      "candidate": 12250,
+      "duration_or_edge": 128,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 216,
+      "reset": 0,
+      "invalid_or_gap_or_nonunique_target": 98
+    },
+    {
+      "flight_id": "c07bdc4184a5800d6d2faf6bba0f9d45c8c52cdaab26f14944102ad672838510:1",
+      "candidate": 12610,
+      "duration_or_edge": 108,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 139,
+      "invalid_or_gap_or_nonunique_target": 3
+    },
+    {
+      "flight_id": "b5be88943c2c096d750a057375566c1e3812f30e42155d06c6ccafe4b713d9e0:1",
+      "candidate": 12780,
+      "duration_or_edge": 106,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 71,
+      "invalid_or_gap_or_nonunique_target": 311
+    },
+    {
+      "flight_id": "7140f8e656e0558ee00c851bcbff461d0c685d1c4d3bdf046b1d0ffcc120259f:1",
+      "candidate": 17340,
+      "duration_or_edge": 106,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 0,
+      "invalid_or_gap_or_nonunique_target": 24
+    },
+    {
+      "flight_id": "7ac7478f2dbfed10646618cf4ce9a50c0fa793c3adb307c0446f968f622096e3:1",
+      "candidate": 16570,
+      "duration_or_edge": 182,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 20,
+      "invalid_or_gap_or_nonunique_target": 100
+    },
+    {
+      "flight_id": "d33e53d14a9d7c1d7a8ab7a211f430d17b75addc2844c157ee5ccee51faa5854:1",
+      "candidate": 12980,
+      "duration_or_edge": 106,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 0,
+      "invalid_or_gap_or_nonunique_target": 2
+    },
+    {
+      "flight_id": "3bb6ff6472a11102b2cd3d4b64d26f3a6795f2c8411df1564b54cf7acbab1fc7:1",
+      "candidate": 19300,
+      "duration_or_edge": 104,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 48,
+      "invalid_or_gap_or_nonunique_target": 62
+    },
+    {
+      "flight_id": "05c2f81037b89babb98b66a43ceb29e4cdc37ea53d15b671d3716f02cbcddbc7:1",
+      "candidate": 12860,
+      "duration_or_edge": 117,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 126,
+      "reset": 0,
+      "invalid_or_gap_or_nonunique_target": 2
+    },
+    {
+      "flight_id": "dda8db581b4fc5dd656c3f02517fef1083358a8d7ee58bf9b8074d121a225909:1",
+      "candidate": 12860,
+      "duration_or_edge": 162,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 10,
+      "invalid_or_gap_or_nonunique_target": 173
+    },
+    {
+      "flight_id": "5b1381497c5cc6f171c55d95ebd46c8e2adda297ba900f05bf992fbf2d2dfab3:1",
+      "candidate": 22050,
+      "duration_or_edge": 204,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 57,
+      "invalid_or_gap_or_nonunique_target": 11
+    },
+    {
+      "flight_id": "c54472c2087b336ae844b7a8eb68bf6a82ec2ee35ba3665685c9a5f90e1fa72c:1",
+      "candidate": 13200,
+      "duration_or_edge": 174,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 6,
+      "invalid_or_gap_or_nonunique_target": 2
+    },
+    {
+      "flight_id": "cf30cfdfea999296c9d6aa59f1fdb0a82890e4f43b9c0340da9a7405bd506bbb:1",
+      "candidate": 13920,
+      "duration_or_edge": 174,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 10,
+      "invalid_or_gap_or_nonunique_target": 36
+    },
+    {
+      "flight_id": "dac13c5fddff96754ff1da7031bbb7016e85b942a71d8707fd3d010ae99ece0b:1",
+      "candidate": 11390,
+      "duration_or_edge": 158,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 0,
+      "invalid_or_gap_or_nonunique_target": 2
+    },
+    {
+      "flight_id": "9e197aa35ec1449ce9ad12c6d154677cb6528b7c1f29875bd3bc31c2cfed539c:1",
+      "candidate": 12080,
+      "duration_or_edge": 156,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 102,
+      "reset": 117,
+      "invalid_or_gap_or_nonunique_target": 7
+    },
+    {
+      "flight_id": "bc135e67b0c5a06604ace3d4eab3d9f7a3f018b758f4c49adfdf3e01d2ed72c2:1",
+      "candidate": 12190,
+      "duration_or_edge": 154,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 158,
+      "invalid_or_gap_or_nonunique_target": 94
+    },
+    {
+      "flight_id": "843caadb261759f6b0fc2393fd50481ba7e4896e4657acdfd440e62817563014:1",
+      "candidate": 14410,
+      "duration_or_edge": 104,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 2,
+      "invalid_or_gap_or_nonunique_target": 0
+    },
+    {
+      "flight_id": "9723ebfeb4a7b483ef81b580da6f4b6cf723d75a3ef49e5cccc3ce5378762373:1",
+      "candidate": 11870,
+      "duration_or_edge": 164,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 0,
+      "invalid_or_gap_or_nonunique_target": 46
+    },
+    {
+      "flight_id": "961d925ce5f1fc9e02845864340a0864eec811ac584cc4b1546208856dd5a138:1",
+      "candidate": 11550,
+      "duration_or_edge": 160,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 212,
+      "reset": 0,
+      "invalid_or_gap_or_nonunique_target": 176
+    },
+    {
+      "flight_id": "fdc08d47813835b46ffbb985b19cb82f97756455c2e070d6bb0271bd419f5e6a:1",
+      "candidate": 13290,
+      "duration_or_edge": 162,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 36,
+      "invalid_or_gap_or_nonunique_target": 4
+    },
+    {
+      "flight_id": "f2193a9c012570718c42057e60269b13d50e7a9324ff9aa42e326326b2fb8ec6:1",
+      "candidate": 12350,
+      "duration_or_edge": 158,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 14,
+      "invalid_or_gap_or_nonunique_target": 0
+    },
+    {
+      "flight_id": "b580e7f3b3e45522e06110849be1e3735f831ac40ad50ddea45f68fbd3c73bce:1",
+      "candidate": 12160,
+      "duration_or_edge": 172,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 46,
+      "invalid_or_gap_or_nonunique_target": 99
+    },
+    {
+      "flight_id": "6180f025a0d896b0955d73a444199e6a48f756e4f6e9c16049f9268fc63f3e04:1",
+      "candidate": 12100,
+      "duration_or_edge": 168,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 691,
+      "reset": 26,
+      "invalid_or_gap_or_nonunique_target": 94
+    },
+    {
+      "flight_id": "070c1cac4a1db7a1e12839c0ee7251c2840ddd609744f90254ec5fa4557be958:2",
+      "candidate": 11410,
+      "duration_or_edge": 124,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 514,
+      "reset": 26,
+      "invalid_or_gap_or_nonunique_target": 30
+    },
+    {
+      "flight_id": "f7af9362d46af843e6dbf058f833477ef41c7fc7bd2f0d56dae9db8f2692b772:1",
+      "candidate": 13170,
+      "duration_or_edge": 122,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 290,
+      "reset": 46,
+      "invalid_or_gap_or_nonunique_target": 0
+    },
+    {
+      "flight_id": "4c61febf6308aad79838953b01f19bfe9c47abcb539fd8dd1d82a0e94e156bd4:1",
+      "candidate": 13890,
+      "duration_or_edge": 178,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 492,
+      "reset": 24,
+      "invalid_or_gap_or_nonunique_target": 119
+    },
+    {
+      "flight_id": "66c67681914186218e253dbe6f0e937c389ffc864d4867da268325f38d966f80:1",
+      "candidate": 12440,
+      "duration_or_edge": 140,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 600,
+      "reset": 78,
+      "invalid_or_gap_or_nonunique_target": 0
+    },
+    {
+      "flight_id": "c74bf60338d0b990da6cdf8d8d58474cf5a72da72e4a3791e500d2da360965dc:1",
+      "candidate": 13290,
+      "duration_or_edge": 148,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 394,
+      "reset": 50,
+      "invalid_or_gap_or_nonunique_target": 2
+    },
+    {
+      "flight_id": "b2ce8bed974163b4573f016763202693dd1fd5e4bb687f89befc384125906f06:1",
+      "candidate": 13530,
+      "duration_or_edge": 148,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 411,
+      "reset": 66,
+      "invalid_or_gap_or_nonunique_target": 193
+    },
+    {
+      "flight_id": "6d8c5004aa2805081552e15e7c5cfcab317bc153ee58592a7c7526d78c4a0505:1",
+      "candidate": 12400,
+      "duration_or_edge": 160,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 618,
+      "reset": 42,
+      "invalid_or_gap_or_nonunique_target": 202
+    },
+    {
+      "flight_id": "6e4b22e8c7d6a525b047c5cac96ed3c91f3b91392d6fddf7ce35b8bf72e62573:1",
+      "candidate": 11860,
+      "duration_or_edge": 138,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 302,
+      "reset": 6,
+      "invalid_or_gap_or_nonunique_target": 50
+    },
+    {
+      "flight_id": "00d803ef294b0e2907520c488d89345a9ef54f2936940828ab3e1df104d715b2:1",
+      "candidate": 6570,
+      "duration_or_edge": 65,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 46,
+      "invalid_or_gap_or_nonunique_target": 5
+    },
+    {
+      "flight_id": "577bb3e13672746298c2b07ddae4468a522e1e1e0ca2a776b7bf47aa2835beb1:1",
+      "candidate": 6450,
+      "duration_or_edge": 67,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 0,
+      "invalid_or_gap_or_nonunique_target": 0
+    },
+    {
+      "flight_id": "e43e4b5a13b89de35ff12ba50e7c0bb98c608db8142c9405a26688e709225c05:1",
+      "candidate": 7260,
+      "duration_or_edge": 71,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 40,
+      "invalid_or_gap_or_nonunique_target": 0
+    },
+    {
+      "flight_id": "0b07f8b083babb22c7578d32e14ede2886903dfe05c51c1cd53f5568120aa490:1",
+      "candidate": 6470,
+      "duration_or_edge": 61,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 4,
+      "invalid_or_gap_or_nonunique_target": 47
+    },
+    {
+      "flight_id": "074a4578148db3f939476075d981f9222e5279e6962ce9bc93de6841a1bd1ec4:1",
+      "candidate": 6540,
+      "duration_or_edge": 61,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 8,
+      "invalid_or_gap_or_nonunique_target": 39
+    },
+    {
+      "flight_id": "4e0c83227e5f95316a6221ab2428a2138079bcf10fa0403b318edde03143f420:1",
+      "candidate": 7020,
+      "duration_or_edge": 61,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 0,
+      "invalid_or_gap_or_nonunique_target": 30
+    },
+    {
+      "flight_id": "2f0f47422f9ee289467bdc2b2efe0b23caff3bbd2b8c4c7090db13b09b0032c8:1",
+      "candidate": 7650,
+      "duration_or_edge": 65,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 50,
+      "invalid_or_gap_or_nonunique_target": 0
+    },
+    {
+      "flight_id": "89fbf848c8f15d95ebeb6bb58d6ec857bbc6cf65094f75cd986a4a661c0c44cf:1",
+      "candidate": 6730,
+      "duration_or_edge": 63,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 42,
+      "invalid_or_gap_or_nonunique_target": 5
+    },
+    {
+      "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+      "candidate": 7590,
+      "duration_or_edge": 71,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 30,
+      "reset": 0,
+      "invalid_or_gap_or_nonunique_target": 0
+    },
+    {
+      "flight_id": "58964d09038a4b0aaaad819e7b853daf34d01c716a0332fb5b543d918d797bcc:1",
+      "candidate": 7060,
+      "duration_or_edge": 65,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 66,
+      "invalid_or_gap_or_nonunique_target": 5
+    },
+    {
+      "flight_id": "1a2f3f28b2bc9096e90f68bee1897d7da44918ca0d568d8b8c44672228addb06:1",
+      "candidate": 7570,
+      "duration_or_edge": 67,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 0,
+      "invalid_or_gap_or_nonunique_target": 5
+    },
+    {
+      "flight_id": "639068bda89a25c019dec70adeaf32ada88119bed17d20b09f0d48f91231146a:1",
+      "candidate": 6870,
+      "duration_or_edge": 61,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 0,
+      "invalid_or_gap_or_nonunique_target": 5
+    },
+    {
+      "flight_id": "51b14f03c6f5f6c84a8dfeceea3c5e86e4ed008a19f1f176abaa84663efaa1e4:1",
+      "candidate": 7380,
+      "duration_or_edge": 61,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 92,
+      "reset": 0,
+      "invalid_or_gap_or_nonunique_target": 0
+    },
+    {
+      "flight_id": "6e85c320a2a3e46df78ae6ad480ebec5afe2d3f78abb6084d4623b8f313db32f:1",
+      "candidate": 7410,
+      "duration_or_edge": 61,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 50,
+      "invalid_or_gap_or_nonunique_target": 0
+    },
+    {
+      "flight_id": "4d23bcddc841239bc48be8c9c89a9f70a26e5c2ca95a053805efda24b4cb641c:1",
+      "candidate": 8140,
+      "duration_or_edge": 61,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 130,
+      "reset": 0,
+      "invalid_or_gap_or_nonunique_target": 0
+    },
+    {
+      "flight_id": "0451d1a43890608c6b767e31fc9f342d905b82c9394689649574157a6b2e9764:1",
+      "candidate": 8690,
+      "duration_or_edge": 61,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 24,
+      "invalid_or_gap_or_nonunique_target": 5
+    },
+    {
+      "flight_id": "e90e0d42c4b97a0769107ca94c1ca462135040c0bf832b5abbe0c23464df890f:1",
+      "candidate": 10870,
+      "duration_or_edge": 65,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 0,
+      "invalid_or_gap_or_nonunique_target": 5
+    },
+    {
+      "flight_id": "bd26ee146ebaf890bd945730dd7a2bc39b88ae92fcdf028d81a5db255a02ac45:1",
+      "candidate": 11010,
+      "duration_or_edge": 65,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 64,
+      "invalid_or_gap_or_nonunique_target": 0
+    },
+    {
+      "flight_id": "e09b2ec1b35d10ce5dc571a850fd0d5c3cbcf241fc691a2c625574aba4646262:1",
+      "candidate": 6570,
+      "duration_or_edge": 61,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 54,
+      "invalid_or_gap_or_nonunique_target": 0
+    },
+    {
+      "flight_id": "50e29035713d7b518d2f9f4e035cdd8505351e34102ac618fa34ce7f391f1d01:1",
+      "candidate": 6620,
+      "duration_or_edge": 69,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 30,
+      "invalid_or_gap_or_nonunique_target": 0
+    },
+    {
+      "flight_id": "13697091192ed665925a923321e2700320e12e8e3dc732caf95eaf328cc84733:1",
+      "candidate": 7630,
+      "duration_or_edge": 61,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 60,
+      "invalid_or_gap_or_nonunique_target": 5
+    },
+    {
+      "flight_id": "5a65e381f2befd7d8f8ca5a5812b5639a5534563eb094a72b6a05adfb09647a0:1",
+      "candidate": 8260,
+      "duration_or_edge": 61,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 76,
+      "invalid_or_gap_or_nonunique_target": 4
+    },
+    {
+      "flight_id": "b02d93738477786af358a1559f101aab17a1bdd4185726bf8b788285ef941a9d:1",
+      "candidate": 7430,
+      "duration_or_edge": 67,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 34,
+      "invalid_or_gap_or_nonunique_target": 5
+    },
+    {
+      "flight_id": "f7e3cd760c51d9f48201912e3b7b89bc1528ad83b9ee264cdb13592ff95c3d52:1",
+      "candidate": 10190,
+      "duration_or_edge": 71,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 0,
+      "invalid_or_gap_or_nonunique_target": 72
+    },
+    {
+      "flight_id": "86e1923831d3c5165b8e24939e9cc3db4bf7f8c160e9bb52691278fce4855655:1",
+      "candidate": 12190,
+      "duration_or_edge": 116,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 60,
+      "invalid_or_gap_or_nonunique_target": 10
+    },
+    {
+      "flight_id": "55e7867c70bd1be1691cdb22f6970ce9ca68dd25aa44ab0956f663e0b848d27d:1",
+      "candidate": 13450,
+      "duration_or_edge": 114,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 36,
+      "invalid_or_gap_or_nonunique_target": 10
+    },
+    {
+      "flight_id": "42c42c58c21c2fc429bb4e41b46a5c0cbc5f1f076e24f035e09f27f3ed6b8ae6:1",
+      "candidate": 6720,
+      "duration_or_edge": 65,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 0,
+      "invalid_or_gap_or_nonunique_target": 5
+    },
+    {
+      "flight_id": "1ac6c9e0f63f76b943e5ebe7b87c3743fa64291fcf1afb316f7269e060833f9d:1",
+      "candidate": 6830,
+      "duration_or_edge": 65,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 0,
+      "invalid_or_gap_or_nonunique_target": 11
+    },
+    {
+      "flight_id": "960410f28c48aa5625a9f635a20c64f4b169dd4fab906ca1855cbc468ba74a66:1",
+      "candidate": 9800,
+      "duration_or_edge": 63,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 76,
+      "invalid_or_gap_or_nonunique_target": 10
+    },
+    {
+      "flight_id": "6204f55d3b88856948273322449b95994e5c46938146930bf6eca45b78d27636:1",
+      "candidate": 12810,
+      "duration_or_edge": 84,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 28,
+      "invalid_or_gap_or_nonunique_target": 13
+    },
+    {
+      "flight_id": "c6cf0da0f789424ac46e8ed05ec154342a808feb090ccc78141dc5c9f56c599d:1",
+      "candidate": 14660,
+      "duration_or_edge": 82,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 34,
+      "invalid_or_gap_or_nonunique_target": 15
+    },
+    {
+      "flight_id": "7cc9ef8d0a059873cb975aa9e410f2ee5f026c6c3184593f5c5518d5a81e21d3:1",
+      "candidate": 7080,
+      "duration_or_edge": 65,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 15,
+      "reset": 0,
+      "invalid_or_gap_or_nonunique_target": 36
+    },
+    {
+      "flight_id": "c5951ccd4e17890e268417a5a248a5099f3063aeec5912a48cb0d3e8ae1cda40:1",
+      "candidate": 8400,
+      "duration_or_edge": 61,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 0,
+      "invalid_or_gap_or_nonunique_target": 5
+    },
+    {
+      "flight_id": "28516b6a7b7ec0279112d0576bcc895b8768e7eaf83b60c813ffb89ba3647332:1",
+      "candidate": 9600,
+      "duration_or_edge": 71,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 0,
+      "invalid_or_gap_or_nonunique_target": 5
+    },
+    {
+      "flight_id": "f4fce918e31d91a92d26bfafea861dab7c2b7f5348119f759e9aaaaeb1ddc905:1",
+      "candidate": 2900,
+      "duration_or_edge": 61,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 165,
+      "reset": 0,
+      "invalid_or_gap_or_nonunique_target": 0
+    },
+    {
+      "flight_id": "e4e89ed905aeed5e9ce20c8c47ba544199a59913480abd8edefeba435862000b:1",
+      "candidate": 9890,
+      "duration_or_edge": 73,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 28,
+      "invalid_or_gap_or_nonunique_target": 0
+    },
+    {
+      "flight_id": "898aaaf1439dff39326a0b1e0c6254fc58a8090a5df45e40038443c4c345b595:1",
+      "candidate": 10170,
+      "duration_or_edge": 73,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 28,
+      "invalid_or_gap_or_nonunique_target": 0
+    },
+    {
+      "flight_id": "6f19bb2921920e1975cea530249c5471b2a72269042030443d51736c3824e96f:1",
+      "candidate": 8030,
+      "duration_or_edge": 69,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 102,
+      "invalid_or_gap_or_nonunique_target": 0
+    },
+    {
+      "flight_id": "0388e0d4a0855f5bad87c7826cc828511176471e7883645a1b1b3facacdb7486:1",
+      "candidate": 8310,
+      "duration_or_edge": 65,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 0,
+      "invalid_or_gap_or_nonunique_target": 10
+    },
+    {
+      "flight_id": "128dbcad912a7f53a150aea537e4467f8eb6cb8babac89ac1dab273320dc9d68:1",
+      "candidate": 7970,
+      "duration_or_edge": 65,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 0,
+      "invalid_or_gap_or_nonunique_target": 10
+    },
+    {
+      "flight_id": "0351f48c71baf3592e4af903f3de24023480de214f8cea0af8080da67c5c7799:1",
+      "candidate": 10690,
+      "duration_or_edge": 65,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 118,
+      "invalid_or_gap_or_nonunique_target": 5
+    },
+    {
+      "flight_id": "2994e140025bf47524f568aad5977d1f459884b5775ba93dbc2ceb68e15f2eb9:1",
+      "candidate": 13810,
+      "duration_or_edge": 116,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 30,
+      "invalid_or_gap_or_nonunique_target": 20
+    },
+    {
+      "flight_id": "a7f420e3922f236f5c1fde7e0117939c268a03567384586aec2e6f2f830e20b4:1",
+      "candidate": 9000,
+      "duration_or_edge": 63,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 10,
+      "invalid_or_gap_or_nonunique_target": 10
+    },
+    {
+      "flight_id": "2cfc960e900e2a8e7ce2d092e3e781a005697671208ea59ee54a2b6cb3084364:1",
+      "candidate": 8540,
+      "duration_or_edge": 73,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 26,
+      "invalid_or_gap_or_nonunique_target": 0
+    },
+    {
+      "flight_id": "abf833611ec0b30b76aa82d78dc5c77ee12c0b762595544d170b863105e84ad7:1",
+      "candidate": 18210,
+      "duration_or_edge": 116,
+      "next_target_not_future_at_decision": 0,
+      "exclude": 0,
+      "reset": 20,
+      "invalid_or_gap_or_nonunique_target": 50
+    }
+  ],
+  "firmware_identity_missing": [
+    "9.25-2数据/target_1723_reconstructed.ulg"
+  ],
+  "cross_split_duplicate_state_fingerprints": {
+    "train:validation": 0,
+    "train:test": 0,
+    "validation:test": 0
+  },
+  "qa": "exhaustive timestamps/windows/exclusions; loader smoke; no training"
+}

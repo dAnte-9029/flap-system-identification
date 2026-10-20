@@ -1,0 +1,16 @@
+{
+  "config_hash": "b7223a017ef3c57d20325a437b0fe6b661daafb3ec288a5c1ab06bdcf90cefbd",
+  "sources": {
+    "flights": "9e5647105658f726a1e065457f6e64139af6ce98817f6682331350323eb091e6",
+    "exclude": "7d69cc063495313b993dc72292392e3348c460ea75caaf2bd17a09bc09aa1d6f",
+    "review": "9f63affa104fae9683d248f7c6ca2431a00a7b7b935335ebf7b6426d87fcc52d"
+  },
+  "code": {
+    "src/system_identification/data/velocity_rate_build.py": "8ef9454551b859f0b8c8743349e28e2c08e832858c70a182346ca886fb0bf658",
+    "src/system_identification/data/velocity_rate_dataset.py": "ad82b1695f6f4c425885f08c42d25b7c939801d44020db7149aba87486981e4d",
+    "scripts/build_velocity_rate_dataset.py": "2483ee3f5f3371d35fea175e62320764a90479244a48977b8d3f2f28fe98ba96",
+    "scripts/audit_velocity_rate_firmware.py": "74275d64a6a34e000a2257d9006c88ccc35996c59594c095fd46bf07bb9bcc52",
+    "scripts/verify_velocity_rate_dataset.py": "9514cda604da7ae6d641dbbda36ace84c21c2b1c22d12056ac15c780019320aa",
+    "src/system_identification/data/trajectory_dataset.py": "97ee703af0eb3cce78b9091e3a729ced9f902eccd1a7d526506af13578fbe644"
+  }
+}

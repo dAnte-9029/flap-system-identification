@@ -1,0 +1,24 @@
+schema_version: velocity_rate_dataset_registry_v1
+default_dataset_id: velocity_rate_multistep_v1
+datasets:
+  velocity_rate_multistep_v1:
+    lifecycle_status: prepared_native_observations_with_explicit_quality_masks
+    repository_relative_root: dataset/velocity_rate_multistep_v1
+    manifest_path: dataset/velocity_rate_multistep_v1/dataset_manifest.json
+    manifest_sha256: 8afb8623bf7174e4da5b2044f644331b8b251433fed3576f6dcdab470935bcb5
+    config_path: configs/data/velocity_rate_multistep_v1.yaml
+    storage: local_parquet_reproducible_metadata_committed
+    partitions: [train, validation, test]
+    default_partitions: [train, validation]
+    test_loader_requires_explicit_allow_test: true
+    historical_test_dates_preserved: [2026-09-08, 2026-09-19]
+    observed_state_target: [position_ned, velocity_ned, quaternion_frd_to_ned, angular_velocity_frd]
+    acceleration_labels: false
+    physical_truth: false
+    counterfactual_control_validation: false
+    firmware_unknown_logs: 1
+policy:
+  silent_fallback_allowed: false
+  normalization_training_only: true
+  future_state_phase_frequency_as_input: forbidden
+  future_logged_controls: conditional_replay_only

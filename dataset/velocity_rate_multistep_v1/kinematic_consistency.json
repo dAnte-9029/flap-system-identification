@@ -1,0 +1,191 @@
+{
+  "use": "observation consistency diagnostic only, not physical trajectory error or a training label",
+  "integrator": "trapezoidal v_N, right-multiplied body-rate midpoint exponential",
+  "sampling": "actual local-position measurement dt, paired q/omega timing offsets retained",
+  "aggregation": "per-flight window endpoint RMSE, across flights mean and sample standard deviation",
+  "history_us": 500000,
+  "model_training": false,
+  "selection_or_filtering": false,
+  "summary": [
+    {
+      "split": "test",
+      "sampling_group": "main_50hz",
+      "horizon_us": 100000,
+      "flights": 28,
+      "windows": 34959,
+      "position_endpoint_rmse_m": {
+        "mean": 0.030093200688589998,
+        "sample_std": 0.046771001947774775
+      },
+      "attitude_endpoint_rmse_deg": {
+        "mean": 0.6601040791838347,
+        "sample_std": 0.07543572761936185
+      }
+    },
+    {
+      "split": "test",
+      "sampling_group": "main_50hz",
+      "horizon_us": 200000,
+      "flights": 28,
+      "windows": 34919,
+      "position_endpoint_rmse_m": {
+        "mean": 0.05673065362307443,
+        "sample_std": 0.09177020400893543
+      },
+      "attitude_endpoint_rmse_deg": {
+        "mean": 0.7200967272809304,
+        "sample_std": 0.09989930485500605
+      }
+    },
+    {
+      "split": "test",
+      "sampling_group": "sparse_10hz",
+      "horizon_us": 100000,
+      "flights": 5,
+      "windows": 5973,
+      "position_endpoint_rmse_m": {
+        "mean": 0.021340556450030943,
+        "sample_std": 0.000759844833935783
+      },
+      "attitude_endpoint_rmse_deg": {
+        "mean": 2.8472447067554705,
+        "sample_std": 0.1367170506930421
+      }
+    },
+    {
+      "split": "test",
+      "sampling_group": "sparse_10hz",
+      "horizon_us": 200000,
+      "flights": 5,
+      "windows": 5969,
+      "position_endpoint_rmse_m": {
+        "mean": 0.029712843206044635,
+        "sample_std": 0.0015054274521650428
+      },
+      "attitude_endpoint_rmse_deg": {
+        "mean": 4.077802357117478,
+        "sample_std": 0.20601191221380993
+      }
+    },
+    {
+      "split": "train",
+      "sampling_group": "main_50hz",
+      "horizon_us": 100000,
+      "flights": 94,
+      "windows": 111096,
+      "position_endpoint_rmse_m": {
+        "mean": 0.03073392125812938,
+        "sample_std": 0.02898201865472577
+      },
+      "attitude_endpoint_rmse_deg": {
+        "mean": 0.6254559315247968,
+        "sample_std": 0.12774397250882297
+      }
+    },
+    {
+      "split": "train",
+      "sampling_group": "main_50hz",
+      "horizon_us": 200000,
+      "flights": 94,
+      "windows": 110863,
+      "position_endpoint_rmse_m": {
+        "mean": 0.058534016539311014,
+        "sample_std": 0.05688167801396993
+      },
+      "attitude_endpoint_rmse_deg": {
+        "mean": 0.7259210133618665,
+        "sample_std": 0.14955580586385991
+      }
+    },
+    {
+      "split": "train",
+      "sampling_group": "sparse_10hz",
+      "horizon_us": 100000,
+      "flights": 28,
+      "windows": 23347,
+      "position_endpoint_rmse_m": {
+        "mean": 0.038070900503908246,
+        "sample_std": 0.026054521469428982
+      },
+      "attitude_endpoint_rmse_deg": {
+        "mean": 2.6925154219951346,
+        "sample_std": 0.3188669005413463
+      }
+    },
+    {
+      "split": "train",
+      "sampling_group": "sparse_10hz",
+      "horizon_us": 200000,
+      "flights": 28,
+      "windows": 23331,
+      "position_endpoint_rmse_m": {
+        "mean": 0.06401742631580244,
+        "sample_std": 0.041622848434233854
+      },
+      "attitude_endpoint_rmse_deg": {
+        "mean": 3.778430767373576,
+        "sample_std": 0.4387154859180509
+      }
+    },
+    {
+      "split": "validation",
+      "sampling_group": "main_50hz",
+      "horizon_us": 100000,
+      "flights": 27,
+      "windows": 37011,
+      "position_endpoint_rmse_m": {
+        "mean": 0.028749405160101184,
+        "sample_std": 0.02501894119991297
+      },
+      "attitude_endpoint_rmse_deg": {
+        "mean": 0.7253960802275622,
+        "sample_std": 0.10442189790536513
+      }
+    },
+    {
+      "split": "validation",
+      "sampling_group": "main_50hz",
+      "horizon_us": 200000,
+      "flights": 27,
+      "windows": 36970,
+      "position_endpoint_rmse_m": {
+        "mean": 0.055215782853980176,
+        "sample_std": 0.04938429495960983
+      },
+      "attitude_endpoint_rmse_deg": {
+        "mean": 0.8773481116047788,
+        "sample_std": 0.14634853295076564
+      }
+    },
+    {
+      "split": "validation",
+      "sampling_group": "sparse_10hz",
+      "horizon_us": 100000,
+      "flights": 12,
+      "windows": 9597,
+      "position_endpoint_rmse_m": {
+        "mean": 0.02567755982461943,
+        "sample_std": 0.0039816074737843606
+      },
+      "attitude_endpoint_rmse_deg": {
+        "mean": 2.21818464772212,
+        "sample_std": 0.16336095326798664
+      }
+    },
+    {
+      "split": "validation",
+      "sampling_group": "sparse_10hz",
+      "horizon_us": 200000,
+      "flights": 12,
+      "windows": 9591,
+      "position_endpoint_rmse_m": {
+        "mean": 0.040258447284259036,
+        "sample_std": 0.0089243522130389
+      },
+      "attitude_endpoint_rmse_deg": {
+        "mean": 2.9211043011103475,
+        "sample_std": 0.2630899232083977
+      }
+    }
+  ]
+}

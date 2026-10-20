@@ -1,0 +1,152 @@
+{
+  "partition": "train",
+  "fit_scope": "unique valid native rows, not overlapping windows",
+  "columns": {
+    "position_ned_m_x": {
+      "mean": 14.43040657127861,
+      "std": 136.82308761141505,
+      "count": 703522,
+      "constant": false
+    },
+    "position_ned_m_y": {
+      "mean": 47.60813506827478,
+      "std": 53.52114541730157,
+      "count": 703522,
+      "constant": false
+    },
+    "position_ned_m_z": {
+      "mean": -17.870038692074168,
+      "std": 6.143951931630561,
+      "count": 703522,
+      "constant": false
+    },
+    "velocity_ned_m_s_x": {
+      "mean": -0.053517189788854794,
+      "std": 5.808513578160049,
+      "count": 703522,
+      "constant": false
+    },
+    "velocity_ned_m_s_y": {
+      "mean": 0.2080178872593098,
+      "std": 4.602595791381453,
+      "count": 703522,
+      "constant": false
+    },
+    "velocity_ned_m_s_z": {
+      "mean": -0.10638408621039715,
+      "std": 0.8958540583297476,
+      "count": 703522,
+      "constant": false
+    },
+    "attitude_q_w": {
+      "mean": 0.00022292700385914043,
+      "std": 0.7374825010561807,
+      "count": 703522,
+      "constant": false
+    },
+    "attitude_q_x": {
+      "mean": -0.010960582092800628,
+      "std": 0.11963384497109446,
+      "count": 703522,
+      "constant": false
+    },
+    "attitude_q_y": {
+      "mean": 0.0007239164026302794,
+      "std": 0.12472767057317226,
+      "count": 703522,
+      "constant": false
+    },
+    "attitude_q_z": {
+      "mean": 0.05750336456501945,
+      "std": 0.6502495350596431,
+      "count": 703522,
+      "constant": false
+    },
+    "angular_velocity_body_rad_s_x": {
+      "mean": -0.009220783806226101,
+      "std": 0.5319153695937175,
+      "count": 703522,
+      "constant": false
+    },
+    "angular_velocity_body_rad_s_y": {
+      "mean": 0.047140394689075375,
+      "std": 0.5167504324084538,
+      "count": 703522,
+      "constant": false
+    },
+    "angular_velocity_body_rad_s_z": {
+      "mean": 0.027671077562134345,
+      "std": 0.30480399358660165,
+      "count": 703522,
+      "constant": false
+    },
+    "control_flap_motor_normalized": {
+      "mean": 0.6590688785251506,
+      "std": 0.1095735011965717,
+      "count": 703522,
+      "constant": false
+    },
+    "control_left_elevon_normalized": {
+      "mean": -0.09193836261991169,
+      "std": 0.28003822101823533,
+      "count": 703522,
+      "constant": false
+    },
+    "control_right_elevon_normalized": {
+      "mean": 0.034638790917142004,
+      "std": 0.32632686746824685,
+      "count": 703522,
+      "constant": false
+    },
+    "control_rudder_normalized": {
+      "mean": -0.027212629691252117,
+      "std": 0.129728835051482,
+      "count": 703522,
+      "constant": false
+    },
+    "relative_flap_phase_sin": {
+      "mean": 0.019059101896997714,
+      "std": 0.7132148508563181,
+      "count": 696208,
+      "constant": false
+    },
+    "relative_flap_phase_cos": {
+      "mean": -0.003597861180306855,
+      "std": 0.7006781132316585,
+      "count": 696208,
+      "constant": false
+    },
+    "flap_frequency_hz": {
+      "mean": 3.7202062567213887,
+      "std": 0.5257295861997479,
+      "count": 696208,
+      "constant": false
+    }
+  },
+  "state_columns": [
+    "position_ned_m_x",
+    "position_ned_m_y",
+    "position_ned_m_z",
+    "velocity_ned_m_s_x",
+    "velocity_ned_m_s_y",
+    "velocity_ned_m_s_z",
+    "attitude_q_w",
+    "attitude_q_x",
+    "attitude_q_y",
+    "attitude_q_z",
+    "angular_velocity_body_rad_s_x",
+    "angular_velocity_body_rad_s_y",
+    "angular_velocity_body_rad_s_z"
+  ],
+  "control_columns": [
+    "control_flap_motor_normalized",
+    "control_left_elevon_normalized",
+    "control_right_elevon_normalized",
+    "control_rudder_normalized"
+  ],
+  "phase_columns": [
+    "relative_flap_phase_sin",
+    "relative_flap_phase_cos",
+    "flap_frequency_hz"
+  ]
+}

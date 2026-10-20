@@ -1,0 +1,954 @@
+[
+  {
+    "commit": "0369024bbc9caaec19a12a6f5ce2eb68fab55c93",
+    "source": "src/modules/wing_phase/WingPhase.cpp",
+    "status": "verified_exact_commit",
+    "sha256": "0a0ca2ee9da44daa21409dee24aa2901a8f04f7250649b7c7675ebe4ed67b945",
+    "origin": "exact_commit_https",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/0369024bbc9caaec19a12a6f5ce2eb68fab55c93/src/modules/wing_phase/WingPhase.cpp"
+  },
+  {
+    "commit": "0369024bbc9caaec19a12a6f5ce2eb68fab55c93",
+    "source": "src/drivers/encoder/as5600/AS5600.cpp",
+    "status": "verified_exact_commit",
+    "sha256": "1910d0fe889c03b229cd84ec4f8887271cfcbbbfb6ba0797bb4ec6860cd7ac3d",
+    "origin": "exact_commit_https",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/0369024bbc9caaec19a12a6f5ce2eb68fab55c93/src/drivers/encoder/as5600/AS5600.cpp"
+  },
+  {
+    "commit": "0369024bbc9caaec19a12a6f5ce2eb68fab55c93",
+    "source": "msg/versioned/VehicleLocalPosition.msg",
+    "status": "verified_exact_commit",
+    "sha256": "87d7540cb4207d044d69ff9af11c51f7cd2883f4160fc62650e17d80cbbec5db",
+    "origin": "exact_commit_https",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/0369024bbc9caaec19a12a6f5ce2eb68fab55c93/msg/versioned/VehicleLocalPosition.msg"
+  },
+  {
+    "commit": "0369024bbc9caaec19a12a6f5ce2eb68fab55c93",
+    "source": "msg/versioned/VehicleAttitude.msg",
+    "status": "verified_exact_commit",
+    "sha256": "d23f153b574daad31f21f767bc6e2781bcd486bb9e56c605b8b6fd10814b1c74",
+    "origin": "exact_commit_https",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/0369024bbc9caaec19a12a6f5ce2eb68fab55c93/msg/versioned/VehicleAttitude.msg"
+  },
+  {
+    "commit": "0369024bbc9caaec19a12a6f5ce2eb68fab55c93",
+    "source": "msg/versioned/VehicleAngularVelocity.msg",
+    "status": "verified_exact_commit",
+    "sha256": "4d713992ec958004629e5c8cbb5e83df2824c6df06e4cb4b06b3e0e3127bb3bf",
+    "origin": "exact_commit_https",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/0369024bbc9caaec19a12a6f5ce2eb68fab55c93/msg/versioned/VehicleAngularVelocity.msg"
+  },
+  {
+    "commit": "0369024bbc9caaec19a12a6f5ce2eb68fab55c93",
+    "source": "msg/versioned/ActuatorMotors.msg",
+    "status": "verified_exact_commit",
+    "sha256": "40d89fe296ce86b005ad67798b109c843698811dea3ed12d9662c9b8f032e386",
+    "origin": "exact_commit_https",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/0369024bbc9caaec19a12a6f5ce2eb68fab55c93/msg/versioned/ActuatorMotors.msg"
+  },
+  {
+    "commit": "0369024bbc9caaec19a12a6f5ce2eb68fab55c93",
+    "source": "msg/versioned/ActuatorServos.msg",
+    "status": "verified_exact_commit",
+    "sha256": "6f3fe07cbcae4b472d50de20c6eec294313d64bd9113d02eb7b0d6597f18268b",
+    "origin": "exact_commit_https",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/0369024bbc9caaec19a12a6f5ce2eb68fab55c93/msg/versioned/ActuatorServos.msg"
+  },
+  {
+    "commit": "0e3c15559cf9ae2264502b99849dc2e2240141e5",
+    "source": "src/modules/wing_phase/WingPhase.cpp",
+    "status": "verified_exact_commit",
+    "sha256": "0a0ca2ee9da44daa21409dee24aa2901a8f04f7250649b7c7675ebe4ed67b945",
+    "origin": "exact_commit_https",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/0e3c15559cf9ae2264502b99849dc2e2240141e5/src/modules/wing_phase/WingPhase.cpp"
+  },
+  {
+    "commit": "0e3c15559cf9ae2264502b99849dc2e2240141e5",
+    "source": "src/drivers/encoder/as5600/AS5600.cpp",
+    "status": "verified_exact_commit",
+    "sha256": "1910d0fe889c03b229cd84ec4f8887271cfcbbbfb6ba0797bb4ec6860cd7ac3d",
+    "origin": "exact_commit_https",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/0e3c15559cf9ae2264502b99849dc2e2240141e5/src/drivers/encoder/as5600/AS5600.cpp"
+  },
+  {
+    "commit": "0e3c15559cf9ae2264502b99849dc2e2240141e5",
+    "source": "msg/versioned/VehicleLocalPosition.msg",
+    "status": "verified_exact_commit",
+    "sha256": "87d7540cb4207d044d69ff9af11c51f7cd2883f4160fc62650e17d80cbbec5db",
+    "origin": "exact_commit_https",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/0e3c15559cf9ae2264502b99849dc2e2240141e5/msg/versioned/VehicleLocalPosition.msg"
+  },
+  {
+    "commit": "0e3c15559cf9ae2264502b99849dc2e2240141e5",
+    "source": "msg/versioned/VehicleAttitude.msg",
+    "status": "verified_exact_commit",
+    "sha256": "d23f153b574daad31f21f767bc6e2781bcd486bb9e56c605b8b6fd10814b1c74",
+    "origin": "exact_commit_https",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/0e3c15559cf9ae2264502b99849dc2e2240141e5/msg/versioned/VehicleAttitude.msg"
+  },
+  {
+    "commit": "0e3c15559cf9ae2264502b99849dc2e2240141e5",
+    "source": "msg/versioned/VehicleAngularVelocity.msg",
+    "status": "verified_exact_commit",
+    "sha256": "4d713992ec958004629e5c8cbb5e83df2824c6df06e4cb4b06b3e0e3127bb3bf",
+    "origin": "exact_commit_https",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/0e3c15559cf9ae2264502b99849dc2e2240141e5/msg/versioned/VehicleAngularVelocity.msg"
+  },
+  {
+    "commit": "0e3c15559cf9ae2264502b99849dc2e2240141e5",
+    "source": "msg/versioned/ActuatorMotors.msg",
+    "status": "verified_exact_commit",
+    "sha256": "40d89fe296ce86b005ad67798b109c843698811dea3ed12d9662c9b8f032e386",
+    "origin": "exact_commit_https",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/0e3c15559cf9ae2264502b99849dc2e2240141e5/msg/versioned/ActuatorMotors.msg"
+  },
+  {
+    "commit": "0e3c15559cf9ae2264502b99849dc2e2240141e5",
+    "source": "msg/versioned/ActuatorServos.msg",
+    "status": "verified_exact_commit",
+    "sha256": "6f3fe07cbcae4b472d50de20c6eec294313d64bd9113d02eb7b0d6597f18268b",
+    "origin": "exact_commit_https",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/0e3c15559cf9ae2264502b99849dc2e2240141e5/msg/versioned/ActuatorServos.msg"
+  },
+  {
+    "commit": "19a108f17666942d199fb3856be5e85bc9aa6f83",
+    "source": "src/modules/wing_phase/WingPhase.cpp",
+    "status": "verified_exact_commit",
+    "sha256": "0a0ca2ee9da44daa21409dee24aa2901a8f04f7250649b7c7675ebe4ed67b945",
+    "origin": "exact_commit_https",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/19a108f17666942d199fb3856be5e85bc9aa6f83/src/modules/wing_phase/WingPhase.cpp"
+  },
+  {
+    "commit": "19a108f17666942d199fb3856be5e85bc9aa6f83",
+    "source": "src/drivers/encoder/as5600/AS5600.cpp",
+    "status": "verified_exact_commit",
+    "sha256": "1910d0fe889c03b229cd84ec4f8887271cfcbbbfb6ba0797bb4ec6860cd7ac3d",
+    "origin": "exact_commit_https",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/19a108f17666942d199fb3856be5e85bc9aa6f83/src/drivers/encoder/as5600/AS5600.cpp"
+  },
+  {
+    "commit": "19a108f17666942d199fb3856be5e85bc9aa6f83",
+    "source": "msg/versioned/VehicleLocalPosition.msg",
+    "status": "verified_exact_commit",
+    "sha256": "87d7540cb4207d044d69ff9af11c51f7cd2883f4160fc62650e17d80cbbec5db",
+    "origin": "exact_commit_https",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/19a108f17666942d199fb3856be5e85bc9aa6f83/msg/versioned/VehicleLocalPosition.msg"
+  },
+  {
+    "commit": "19a108f17666942d199fb3856be5e85bc9aa6f83",
+    "source": "msg/versioned/VehicleAttitude.msg",
+    "status": "verified_exact_commit",
+    "sha256": "d23f153b574daad31f21f767bc6e2781bcd486bb9e56c605b8b6fd10814b1c74",
+    "origin": "exact_commit_https",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/19a108f17666942d199fb3856be5e85bc9aa6f83/msg/versioned/VehicleAttitude.msg"
+  },
+  {
+    "commit": "19a108f17666942d199fb3856be5e85bc9aa6f83",
+    "source": "msg/versioned/VehicleAngularVelocity.msg",
+    "status": "verified_exact_commit",
+    "sha256": "4d713992ec958004629e5c8cbb5e83df2824c6df06e4cb4b06b3e0e3127bb3bf",
+    "origin": "exact_commit_https",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/19a108f17666942d199fb3856be5e85bc9aa6f83/msg/versioned/VehicleAngularVelocity.msg"
+  },
+  {
+    "commit": "19a108f17666942d199fb3856be5e85bc9aa6f83",
+    "source": "msg/versioned/ActuatorMotors.msg",
+    "status": "verified_exact_commit",
+    "sha256": "40d89fe296ce86b005ad67798b109c843698811dea3ed12d9662c9b8f032e386",
+    "origin": "exact_commit_https",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/19a108f17666942d199fb3856be5e85bc9aa6f83/msg/versioned/ActuatorMotors.msg"
+  },
+  {
+    "commit": "19a108f17666942d199fb3856be5e85bc9aa6f83",
+    "source": "msg/versioned/ActuatorServos.msg",
+    "status": "verified_exact_commit",
+    "sha256": "6f3fe07cbcae4b472d50de20c6eec294313d64bd9113d02eb7b0d6597f18268b",
+    "origin": "exact_commit_https",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/19a108f17666942d199fb3856be5e85bc9aa6f83/msg/versioned/ActuatorServos.msg"
+  },
+  {
+    "commit": "229adb4c62d9883a7a0d7e9cbc65ac319f5de97d",
+    "source": "src/modules/wing_phase/WingPhase.cpp",
+    "status": "verified_exact_commit",
+    "sha256": "0a0ca2ee9da44daa21409dee24aa2901a8f04f7250649b7c7675ebe4ed67b945",
+    "origin": "exact_commit_https",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/229adb4c62d9883a7a0d7e9cbc65ac319f5de97d/src/modules/wing_phase/WingPhase.cpp"
+  },
+  {
+    "commit": "229adb4c62d9883a7a0d7e9cbc65ac319f5de97d",
+    "source": "src/drivers/encoder/as5600/AS5600.cpp",
+    "status": "verified_exact_commit",
+    "sha256": "1910d0fe889c03b229cd84ec4f8887271cfcbbbfb6ba0797bb4ec6860cd7ac3d",
+    "origin": "exact_commit_https",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/229adb4c62d9883a7a0d7e9cbc65ac319f5de97d/src/drivers/encoder/as5600/AS5600.cpp"
+  },
+  {
+    "commit": "229adb4c62d9883a7a0d7e9cbc65ac319f5de97d",
+    "source": "msg/versioned/VehicleLocalPosition.msg",
+    "status": "verified_exact_commit",
+    "sha256": "87d7540cb4207d044d69ff9af11c51f7cd2883f4160fc62650e17d80cbbec5db",
+    "origin": "exact_commit_https",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/229adb4c62d9883a7a0d7e9cbc65ac319f5de97d/msg/versioned/VehicleLocalPosition.msg"
+  },
+  {
+    "commit": "229adb4c62d9883a7a0d7e9cbc65ac319f5de97d",
+    "source": "msg/versioned/VehicleAttitude.msg",
+    "status": "verified_exact_commit",
+    "sha256": "d23f153b574daad31f21f767bc6e2781bcd486bb9e56c605b8b6fd10814b1c74",
+    "origin": "exact_commit_https",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/229adb4c62d9883a7a0d7e9cbc65ac319f5de97d/msg/versioned/VehicleAttitude.msg"
+  },
+  {
+    "commit": "229adb4c62d9883a7a0d7e9cbc65ac319f5de97d",
+    "source": "msg/versioned/VehicleAngularVelocity.msg",
+    "status": "verified_exact_commit",
+    "sha256": "4d713992ec958004629e5c8cbb5e83df2824c6df06e4cb4b06b3e0e3127bb3bf",
+    "origin": "exact_commit_https",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/229adb4c62d9883a7a0d7e9cbc65ac319f5de97d/msg/versioned/VehicleAngularVelocity.msg"
+  },
+  {
+    "commit": "229adb4c62d9883a7a0d7e9cbc65ac319f5de97d",
+    "source": "msg/versioned/ActuatorMotors.msg",
+    "status": "verified_exact_commit",
+    "sha256": "40d89fe296ce86b005ad67798b109c843698811dea3ed12d9662c9b8f032e386",
+    "origin": "exact_commit_https",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/229adb4c62d9883a7a0d7e9cbc65ac319f5de97d/msg/versioned/ActuatorMotors.msg"
+  },
+  {
+    "commit": "229adb4c62d9883a7a0d7e9cbc65ac319f5de97d",
+    "source": "msg/versioned/ActuatorServos.msg",
+    "status": "verified_exact_commit",
+    "sha256": "6f3fe07cbcae4b472d50de20c6eec294313d64bd9113d02eb7b0d6597f18268b",
+    "origin": "exact_commit_https",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/229adb4c62d9883a7a0d7e9cbc65ac319f5de97d/msg/versioned/ActuatorServos.msg"
+  },
+  {
+    "commit": "3f42d7052c958c7f65e2f26a763d909bb84fa7f6",
+    "source": "src/modules/wing_phase/WingPhase.cpp",
+    "status": "verified_exact_commit",
+    "sha256": "0a0ca2ee9da44daa21409dee24aa2901a8f04f7250649b7c7675ebe4ed67b945",
+    "origin": "local_git_object",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/3f42d7052c958c7f65e2f26a763d909bb84fa7f6/src/modules/wing_phase/WingPhase.cpp"
+  },
+  {
+    "commit": "3f42d7052c958c7f65e2f26a763d909bb84fa7f6",
+    "source": "src/drivers/encoder/as5600/AS5600.cpp",
+    "status": "verified_exact_commit",
+    "sha256": "1910d0fe889c03b229cd84ec4f8887271cfcbbbfb6ba0797bb4ec6860cd7ac3d",
+    "origin": "local_git_object",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/3f42d7052c958c7f65e2f26a763d909bb84fa7f6/src/drivers/encoder/as5600/AS5600.cpp"
+  },
+  {
+    "commit": "3f42d7052c958c7f65e2f26a763d909bb84fa7f6",
+    "source": "msg/versioned/VehicleLocalPosition.msg",
+    "status": "verified_exact_commit",
+    "sha256": "87d7540cb4207d044d69ff9af11c51f7cd2883f4160fc62650e17d80cbbec5db",
+    "origin": "local_git_object",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/3f42d7052c958c7f65e2f26a763d909bb84fa7f6/msg/versioned/VehicleLocalPosition.msg"
+  },
+  {
+    "commit": "3f42d7052c958c7f65e2f26a763d909bb84fa7f6",
+    "source": "msg/versioned/VehicleAttitude.msg",
+    "status": "verified_exact_commit",
+    "sha256": "d23f153b574daad31f21f767bc6e2781bcd486bb9e56c605b8b6fd10814b1c74",
+    "origin": "local_git_object",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/3f42d7052c958c7f65e2f26a763d909bb84fa7f6/msg/versioned/VehicleAttitude.msg"
+  },
+  {
+    "commit": "3f42d7052c958c7f65e2f26a763d909bb84fa7f6",
+    "source": "msg/versioned/VehicleAngularVelocity.msg",
+    "status": "verified_exact_commit",
+    "sha256": "4d713992ec958004629e5c8cbb5e83df2824c6df06e4cb4b06b3e0e3127bb3bf",
+    "origin": "local_git_object",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/3f42d7052c958c7f65e2f26a763d909bb84fa7f6/msg/versioned/VehicleAngularVelocity.msg"
+  },
+  {
+    "commit": "3f42d7052c958c7f65e2f26a763d909bb84fa7f6",
+    "source": "msg/versioned/ActuatorMotors.msg",
+    "status": "verified_exact_commit",
+    "sha256": "40d89fe296ce86b005ad67798b109c843698811dea3ed12d9662c9b8f032e386",
+    "origin": "local_git_object",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/3f42d7052c958c7f65e2f26a763d909bb84fa7f6/msg/versioned/ActuatorMotors.msg"
+  },
+  {
+    "commit": "3f42d7052c958c7f65e2f26a763d909bb84fa7f6",
+    "source": "msg/versioned/ActuatorServos.msg",
+    "status": "verified_exact_commit",
+    "sha256": "6f3fe07cbcae4b472d50de20c6eec294313d64bd9113d02eb7b0d6597f18268b",
+    "origin": "local_git_object",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/3f42d7052c958c7f65e2f26a763d909bb84fa7f6/msg/versioned/ActuatorServos.msg"
+  },
+  {
+    "commit": "49d49b63c62c9eb0a8df018337f50995aec75455",
+    "source": "src/modules/wing_phase/WingPhase.cpp",
+    "status": "verified_exact_commit",
+    "sha256": "0a0ca2ee9da44daa21409dee24aa2901a8f04f7250649b7c7675ebe4ed67b945",
+    "origin": "exact_commit_https",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/49d49b63c62c9eb0a8df018337f50995aec75455/src/modules/wing_phase/WingPhase.cpp"
+  },
+  {
+    "commit": "49d49b63c62c9eb0a8df018337f50995aec75455",
+    "source": "src/drivers/encoder/as5600/AS5600.cpp",
+    "status": "verified_exact_commit",
+    "sha256": "1910d0fe889c03b229cd84ec4f8887271cfcbbbfb6ba0797bb4ec6860cd7ac3d",
+    "origin": "exact_commit_https",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/49d49b63c62c9eb0a8df018337f50995aec75455/src/drivers/encoder/as5600/AS5600.cpp"
+  },
+  {
+    "commit": "49d49b63c62c9eb0a8df018337f50995aec75455",
+    "source": "msg/versioned/VehicleLocalPosition.msg",
+    "status": "verified_exact_commit",
+    "sha256": "87d7540cb4207d044d69ff9af11c51f7cd2883f4160fc62650e17d80cbbec5db",
+    "origin": "exact_commit_https",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/49d49b63c62c9eb0a8df018337f50995aec75455/msg/versioned/VehicleLocalPosition.msg"
+  },
+  {
+    "commit": "49d49b63c62c9eb0a8df018337f50995aec75455",
+    "source": "msg/versioned/VehicleAttitude.msg",
+    "status": "verified_exact_commit",
+    "sha256": "d23f153b574daad31f21f767bc6e2781bcd486bb9e56c605b8b6fd10814b1c74",
+    "origin": "exact_commit_https",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/49d49b63c62c9eb0a8df018337f50995aec75455/msg/versioned/VehicleAttitude.msg"
+  },
+  {
+    "commit": "49d49b63c62c9eb0a8df018337f50995aec75455",
+    "source": "msg/versioned/VehicleAngularVelocity.msg",
+    "status": "verified_exact_commit",
+    "sha256": "4d713992ec958004629e5c8cbb5e83df2824c6df06e4cb4b06b3e0e3127bb3bf",
+    "origin": "exact_commit_https",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/49d49b63c62c9eb0a8df018337f50995aec75455/msg/versioned/VehicleAngularVelocity.msg"
+  },
+  {
+    "commit": "49d49b63c62c9eb0a8df018337f50995aec75455",
+    "source": "msg/versioned/ActuatorMotors.msg",
+    "status": "verified_exact_commit",
+    "sha256": "40d89fe296ce86b005ad67798b109c843698811dea3ed12d9662c9b8f032e386",
+    "origin": "exact_commit_https",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/49d49b63c62c9eb0a8df018337f50995aec75455/msg/versioned/ActuatorMotors.msg"
+  },
+  {
+    "commit": "49d49b63c62c9eb0a8df018337f50995aec75455",
+    "source": "msg/versioned/ActuatorServos.msg",
+    "status": "verified_exact_commit",
+    "sha256": "6f3fe07cbcae4b472d50de20c6eec294313d64bd9113d02eb7b0d6597f18268b",
+    "origin": "exact_commit_https",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/49d49b63c62c9eb0a8df018337f50995aec75455/msg/versioned/ActuatorServos.msg"
+  },
+  {
+    "commit": "4cd4d0ac56bc193bcab2abd3ba9eb4f6e1c9a7da",
+    "source": "src/modules/wing_phase/WingPhase.cpp",
+    "status": "verified_exact_commit",
+    "sha256": "0a0ca2ee9da44daa21409dee24aa2901a8f04f7250649b7c7675ebe4ed67b945",
+    "origin": "local_git_object",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/4cd4d0ac56bc193bcab2abd3ba9eb4f6e1c9a7da/src/modules/wing_phase/WingPhase.cpp"
+  },
+  {
+    "commit": "4cd4d0ac56bc193bcab2abd3ba9eb4f6e1c9a7da",
+    "source": "src/drivers/encoder/as5600/AS5600.cpp",
+    "status": "verified_exact_commit",
+    "sha256": "1910d0fe889c03b229cd84ec4f8887271cfcbbbfb6ba0797bb4ec6860cd7ac3d",
+    "origin": "local_git_object",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/4cd4d0ac56bc193bcab2abd3ba9eb4f6e1c9a7da/src/drivers/encoder/as5600/AS5600.cpp"
+  },
+  {
+    "commit": "4cd4d0ac56bc193bcab2abd3ba9eb4f6e1c9a7da",
+    "source": "msg/versioned/VehicleLocalPosition.msg",
+    "status": "verified_exact_commit",
+    "sha256": "87d7540cb4207d044d69ff9af11c51f7cd2883f4160fc62650e17d80cbbec5db",
+    "origin": "local_git_object",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/4cd4d0ac56bc193bcab2abd3ba9eb4f6e1c9a7da/msg/versioned/VehicleLocalPosition.msg"
+  },
+  {
+    "commit": "4cd4d0ac56bc193bcab2abd3ba9eb4f6e1c9a7da",
+    "source": "msg/versioned/VehicleAttitude.msg",
+    "status": "verified_exact_commit",
+    "sha256": "d23f153b574daad31f21f767bc6e2781bcd486bb9e56c605b8b6fd10814b1c74",
+    "origin": "local_git_object",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/4cd4d0ac56bc193bcab2abd3ba9eb4f6e1c9a7da/msg/versioned/VehicleAttitude.msg"
+  },
+  {
+    "commit": "4cd4d0ac56bc193bcab2abd3ba9eb4f6e1c9a7da",
+    "source": "msg/versioned/VehicleAngularVelocity.msg",
+    "status": "verified_exact_commit",
+    "sha256": "4d713992ec958004629e5c8cbb5e83df2824c6df06e4cb4b06b3e0e3127bb3bf",
+    "origin": "local_git_object",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/4cd4d0ac56bc193bcab2abd3ba9eb4f6e1c9a7da/msg/versioned/VehicleAngularVelocity.msg"
+  },
+  {
+    "commit": "4cd4d0ac56bc193bcab2abd3ba9eb4f6e1c9a7da",
+    "source": "msg/versioned/ActuatorMotors.msg",
+    "status": "verified_exact_commit",
+    "sha256": "40d89fe296ce86b005ad67798b109c843698811dea3ed12d9662c9b8f032e386",
+    "origin": "local_git_object",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/4cd4d0ac56bc193bcab2abd3ba9eb4f6e1c9a7da/msg/versioned/ActuatorMotors.msg"
+  },
+  {
+    "commit": "4cd4d0ac56bc193bcab2abd3ba9eb4f6e1c9a7da",
+    "source": "msg/versioned/ActuatorServos.msg",
+    "status": "verified_exact_commit",
+    "sha256": "6f3fe07cbcae4b472d50de20c6eec294313d64bd9113d02eb7b0d6597f18268b",
+    "origin": "local_git_object",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/4cd4d0ac56bc193bcab2abd3ba9eb4f6e1c9a7da/msg/versioned/ActuatorServos.msg"
+  },
+  {
+    "commit": "6f4f6aa05e3f1010f67357d5391d4e1fd20e5941",
+    "source": "src/modules/wing_phase/WingPhase.cpp",
+    "status": "verified_exact_commit",
+    "sha256": "0a0ca2ee9da44daa21409dee24aa2901a8f04f7250649b7c7675ebe4ed67b945",
+    "origin": "exact_commit_https",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/6f4f6aa05e3f1010f67357d5391d4e1fd20e5941/src/modules/wing_phase/WingPhase.cpp"
+  },
+  {
+    "commit": "6f4f6aa05e3f1010f67357d5391d4e1fd20e5941",
+    "source": "src/drivers/encoder/as5600/AS5600.cpp",
+    "status": "verified_exact_commit",
+    "sha256": "1910d0fe889c03b229cd84ec4f8887271cfcbbbfb6ba0797bb4ec6860cd7ac3d",
+    "origin": "exact_commit_https",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/6f4f6aa05e3f1010f67357d5391d4e1fd20e5941/src/drivers/encoder/as5600/AS5600.cpp"
+  },
+  {
+    "commit": "6f4f6aa05e3f1010f67357d5391d4e1fd20e5941",
+    "source": "msg/versioned/VehicleLocalPosition.msg",
+    "status": "verified_exact_commit",
+    "sha256": "87d7540cb4207d044d69ff9af11c51f7cd2883f4160fc62650e17d80cbbec5db",
+    "origin": "exact_commit_https",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/6f4f6aa05e3f1010f67357d5391d4e1fd20e5941/msg/versioned/VehicleLocalPosition.msg"
+  },
+  {
+    "commit": "6f4f6aa05e3f1010f67357d5391d4e1fd20e5941",
+    "source": "msg/versioned/VehicleAttitude.msg",
+    "status": "verified_exact_commit",
+    "sha256": "d23f153b574daad31f21f767bc6e2781bcd486bb9e56c605b8b6fd10814b1c74",
+    "origin": "exact_commit_https",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/6f4f6aa05e3f1010f67357d5391d4e1fd20e5941/msg/versioned/VehicleAttitude.msg"
+  },
+  {
+    "commit": "6f4f6aa05e3f1010f67357d5391d4e1fd20e5941",
+    "source": "msg/versioned/VehicleAngularVelocity.msg",
+    "status": "verified_exact_commit",
+    "sha256": "4d713992ec958004629e5c8cbb5e83df2824c6df06e4cb4b06b3e0e3127bb3bf",
+    "origin": "exact_commit_https",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/6f4f6aa05e3f1010f67357d5391d4e1fd20e5941/msg/versioned/VehicleAngularVelocity.msg"
+  },
+  {
+    "commit": "6f4f6aa05e3f1010f67357d5391d4e1fd20e5941",
+    "source": "msg/versioned/ActuatorMotors.msg",
+    "status": "verified_exact_commit",
+    "sha256": "40d89fe296ce86b005ad67798b109c843698811dea3ed12d9662c9b8f032e386",
+    "origin": "exact_commit_https",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/6f4f6aa05e3f1010f67357d5391d4e1fd20e5941/msg/versioned/ActuatorMotors.msg"
+  },
+  {
+    "commit": "6f4f6aa05e3f1010f67357d5391d4e1fd20e5941",
+    "source": "msg/versioned/ActuatorServos.msg",
+    "status": "verified_exact_commit",
+    "sha256": "6f3fe07cbcae4b472d50de20c6eec294313d64bd9113d02eb7b0d6597f18268b",
+    "origin": "exact_commit_https",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/6f4f6aa05e3f1010f67357d5391d4e1fd20e5941/msg/versioned/ActuatorServos.msg"
+  },
+  {
+    "commit": "74be66f2be14340838aed6732a379d124124b5f2",
+    "source": "src/modules/wing_phase/WingPhase.cpp",
+    "status": "verified_exact_commit",
+    "sha256": "0a0ca2ee9da44daa21409dee24aa2901a8f04f7250649b7c7675ebe4ed67b945",
+    "origin": "local_git_object",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/74be66f2be14340838aed6732a379d124124b5f2/src/modules/wing_phase/WingPhase.cpp"
+  },
+  {
+    "commit": "74be66f2be14340838aed6732a379d124124b5f2",
+    "source": "src/drivers/encoder/as5600/AS5600.cpp",
+    "status": "verified_exact_commit",
+    "sha256": "1910d0fe889c03b229cd84ec4f8887271cfcbbbfb6ba0797bb4ec6860cd7ac3d",
+    "origin": "local_git_object",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/74be66f2be14340838aed6732a379d124124b5f2/src/drivers/encoder/as5600/AS5600.cpp"
+  },
+  {
+    "commit": "74be66f2be14340838aed6732a379d124124b5f2",
+    "source": "msg/versioned/VehicleLocalPosition.msg",
+    "status": "verified_exact_commit",
+    "sha256": "87d7540cb4207d044d69ff9af11c51f7cd2883f4160fc62650e17d80cbbec5db",
+    "origin": "local_git_object",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/74be66f2be14340838aed6732a379d124124b5f2/msg/versioned/VehicleLocalPosition.msg"
+  },
+  {
+    "commit": "74be66f2be14340838aed6732a379d124124b5f2",
+    "source": "msg/versioned/VehicleAttitude.msg",
+    "status": "verified_exact_commit",
+    "sha256": "d23f153b574daad31f21f767bc6e2781bcd486bb9e56c605b8b6fd10814b1c74",
+    "origin": "local_git_object",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/74be66f2be14340838aed6732a379d124124b5f2/msg/versioned/VehicleAttitude.msg"
+  },
+  {
+    "commit": "74be66f2be14340838aed6732a379d124124b5f2",
+    "source": "msg/versioned/VehicleAngularVelocity.msg",
+    "status": "verified_exact_commit",
+    "sha256": "4d713992ec958004629e5c8cbb5e83df2824c6df06e4cb4b06b3e0e3127bb3bf",
+    "origin": "local_git_object",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/74be66f2be14340838aed6732a379d124124b5f2/msg/versioned/VehicleAngularVelocity.msg"
+  },
+  {
+    "commit": "74be66f2be14340838aed6732a379d124124b5f2",
+    "source": "msg/versioned/ActuatorMotors.msg",
+    "status": "verified_exact_commit",
+    "sha256": "40d89fe296ce86b005ad67798b109c843698811dea3ed12d9662c9b8f032e386",
+    "origin": "local_git_object",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/74be66f2be14340838aed6732a379d124124b5f2/msg/versioned/ActuatorMotors.msg"
+  },
+  {
+    "commit": "74be66f2be14340838aed6732a379d124124b5f2",
+    "source": "msg/versioned/ActuatorServos.msg",
+    "status": "verified_exact_commit",
+    "sha256": "6f3fe07cbcae4b472d50de20c6eec294313d64bd9113d02eb7b0d6597f18268b",
+    "origin": "local_git_object",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/74be66f2be14340838aed6732a379d124124b5f2/msg/versioned/ActuatorServos.msg"
+  },
+  {
+    "commit": "926693950a4b2fe448d4b18d859c54bf9aa8a260",
+    "source": "src/modules/wing_phase/WingPhase.cpp",
+    "status": "verified_exact_commit",
+    "sha256": "0a0ca2ee9da44daa21409dee24aa2901a8f04f7250649b7c7675ebe4ed67b945",
+    "origin": "exact_commit_https",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/926693950a4b2fe448d4b18d859c54bf9aa8a260/src/modules/wing_phase/WingPhase.cpp"
+  },
+  {
+    "commit": "926693950a4b2fe448d4b18d859c54bf9aa8a260",
+    "source": "src/drivers/encoder/as5600/AS5600.cpp",
+    "status": "verified_exact_commit",
+    "sha256": "1910d0fe889c03b229cd84ec4f8887271cfcbbbfb6ba0797bb4ec6860cd7ac3d",
+    "origin": "exact_commit_https",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/926693950a4b2fe448d4b18d859c54bf9aa8a260/src/drivers/encoder/as5600/AS5600.cpp"
+  },
+  {
+    "commit": "926693950a4b2fe448d4b18d859c54bf9aa8a260",
+    "source": "msg/versioned/VehicleLocalPosition.msg",
+    "status": "verified_exact_commit",
+    "sha256": "87d7540cb4207d044d69ff9af11c51f7cd2883f4160fc62650e17d80cbbec5db",
+    "origin": "exact_commit_https",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/926693950a4b2fe448d4b18d859c54bf9aa8a260/msg/versioned/VehicleLocalPosition.msg"
+  },
+  {
+    "commit": "926693950a4b2fe448d4b18d859c54bf9aa8a260",
+    "source": "msg/versioned/VehicleAttitude.msg",
+    "status": "verified_exact_commit",
+    "sha256": "d23f153b574daad31f21f767bc6e2781bcd486bb9e56c605b8b6fd10814b1c74",
+    "origin": "exact_commit_https",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/926693950a4b2fe448d4b18d859c54bf9aa8a260/msg/versioned/VehicleAttitude.msg"
+  },
+  {
+    "commit": "926693950a4b2fe448d4b18d859c54bf9aa8a260",
+    "source": "msg/versioned/VehicleAngularVelocity.msg",
+    "status": "verified_exact_commit",
+    "sha256": "4d713992ec958004629e5c8cbb5e83df2824c6df06e4cb4b06b3e0e3127bb3bf",
+    "origin": "exact_commit_https",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/926693950a4b2fe448d4b18d859c54bf9aa8a260/msg/versioned/VehicleAngularVelocity.msg"
+  },
+  {
+    "commit": "926693950a4b2fe448d4b18d859c54bf9aa8a260",
+    "source": "msg/versioned/ActuatorMotors.msg",
+    "status": "verified_exact_commit",
+    "sha256": "40d89fe296ce86b005ad67798b109c843698811dea3ed12d9662c9b8f032e386",
+    "origin": "exact_commit_https",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/926693950a4b2fe448d4b18d859c54bf9aa8a260/msg/versioned/ActuatorMotors.msg"
+  },
+  {
+    "commit": "926693950a4b2fe448d4b18d859c54bf9aa8a260",
+    "source": "msg/versioned/ActuatorServos.msg",
+    "status": "verified_exact_commit",
+    "sha256": "6f3fe07cbcae4b472d50de20c6eec294313d64bd9113d02eb7b0d6597f18268b",
+    "origin": "exact_commit_https",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/926693950a4b2fe448d4b18d859c54bf9aa8a260/msg/versioned/ActuatorServos.msg"
+  },
+  {
+    "commit": "a644ca7868f07004e45658d4ae9a7a8c880c6bb5",
+    "source": "src/modules/wing_phase/WingPhase.cpp",
+    "status": "verified_exact_commit",
+    "sha256": "0a0ca2ee9da44daa21409dee24aa2901a8f04f7250649b7c7675ebe4ed67b945",
+    "origin": "local_git_object",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/a644ca7868f07004e45658d4ae9a7a8c880c6bb5/src/modules/wing_phase/WingPhase.cpp"
+  },
+  {
+    "commit": "a644ca7868f07004e45658d4ae9a7a8c880c6bb5",
+    "source": "src/drivers/encoder/as5600/AS5600.cpp",
+    "status": "verified_exact_commit",
+    "sha256": "1910d0fe889c03b229cd84ec4f8887271cfcbbbfb6ba0797bb4ec6860cd7ac3d",
+    "origin": "local_git_object",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/a644ca7868f07004e45658d4ae9a7a8c880c6bb5/src/drivers/encoder/as5600/AS5600.cpp"
+  },
+  {
+    "commit": "a644ca7868f07004e45658d4ae9a7a8c880c6bb5",
+    "source": "msg/versioned/VehicleLocalPosition.msg",
+    "status": "verified_exact_commit",
+    "sha256": "87d7540cb4207d044d69ff9af11c51f7cd2883f4160fc62650e17d80cbbec5db",
+    "origin": "local_git_object",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/a644ca7868f07004e45658d4ae9a7a8c880c6bb5/msg/versioned/VehicleLocalPosition.msg"
+  },
+  {
+    "commit": "a644ca7868f07004e45658d4ae9a7a8c880c6bb5",
+    "source": "msg/versioned/VehicleAttitude.msg",
+    "status": "verified_exact_commit",
+    "sha256": "d23f153b574daad31f21f767bc6e2781bcd486bb9e56c605b8b6fd10814b1c74",
+    "origin": "local_git_object",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/a644ca7868f07004e45658d4ae9a7a8c880c6bb5/msg/versioned/VehicleAttitude.msg"
+  },
+  {
+    "commit": "a644ca7868f07004e45658d4ae9a7a8c880c6bb5",
+    "source": "msg/versioned/VehicleAngularVelocity.msg",
+    "status": "verified_exact_commit",
+    "sha256": "4d713992ec958004629e5c8cbb5e83df2824c6df06e4cb4b06b3e0e3127bb3bf",
+    "origin": "local_git_object",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/a644ca7868f07004e45658d4ae9a7a8c880c6bb5/msg/versioned/VehicleAngularVelocity.msg"
+  },
+  {
+    "commit": "a644ca7868f07004e45658d4ae9a7a8c880c6bb5",
+    "source": "msg/versioned/ActuatorMotors.msg",
+    "status": "verified_exact_commit",
+    "sha256": "40d89fe296ce86b005ad67798b109c843698811dea3ed12d9662c9b8f032e386",
+    "origin": "local_git_object",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/a644ca7868f07004e45658d4ae9a7a8c880c6bb5/msg/versioned/ActuatorMotors.msg"
+  },
+  {
+    "commit": "a644ca7868f07004e45658d4ae9a7a8c880c6bb5",
+    "source": "msg/versioned/ActuatorServos.msg",
+    "status": "verified_exact_commit",
+    "sha256": "6f3fe07cbcae4b472d50de20c6eec294313d64bd9113d02eb7b0d6597f18268b",
+    "origin": "local_git_object",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/a644ca7868f07004e45658d4ae9a7a8c880c6bb5/msg/versioned/ActuatorServos.msg"
+  },
+  {
+    "commit": "b984e3352d86f2db51dc608c5c9f8e8092543249",
+    "source": "src/modules/wing_phase/WingPhase.cpp",
+    "status": "verified_exact_commit",
+    "sha256": "0a0ca2ee9da44daa21409dee24aa2901a8f04f7250649b7c7675ebe4ed67b945",
+    "origin": "exact_commit_https",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/b984e3352d86f2db51dc608c5c9f8e8092543249/src/modules/wing_phase/WingPhase.cpp"
+  },
+  {
+    "commit": "b984e3352d86f2db51dc608c5c9f8e8092543249",
+    "source": "src/drivers/encoder/as5600/AS5600.cpp",
+    "status": "verified_exact_commit",
+    "sha256": "1910d0fe889c03b229cd84ec4f8887271cfcbbbfb6ba0797bb4ec6860cd7ac3d",
+    "origin": "exact_commit_https",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/b984e3352d86f2db51dc608c5c9f8e8092543249/src/drivers/encoder/as5600/AS5600.cpp"
+  },
+  {
+    "commit": "b984e3352d86f2db51dc608c5c9f8e8092543249",
+    "source": "msg/versioned/VehicleLocalPosition.msg",
+    "status": "verified_exact_commit",
+    "sha256": "87d7540cb4207d044d69ff9af11c51f7cd2883f4160fc62650e17d80cbbec5db",
+    "origin": "exact_commit_https",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/b984e3352d86f2db51dc608c5c9f8e8092543249/msg/versioned/VehicleLocalPosition.msg"
+  },
+  {
+    "commit": "b984e3352d86f2db51dc608c5c9f8e8092543249",
+    "source": "msg/versioned/VehicleAttitude.msg",
+    "status": "verified_exact_commit",
+    "sha256": "d23f153b574daad31f21f767bc6e2781bcd486bb9e56c605b8b6fd10814b1c74",
+    "origin": "exact_commit_https",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/b984e3352d86f2db51dc608c5c9f8e8092543249/msg/versioned/VehicleAttitude.msg"
+  },
+  {
+    "commit": "b984e3352d86f2db51dc608c5c9f8e8092543249",
+    "source": "msg/versioned/VehicleAngularVelocity.msg",
+    "status": "verified_exact_commit",
+    "sha256": "4d713992ec958004629e5c8cbb5e83df2824c6df06e4cb4b06b3e0e3127bb3bf",
+    "origin": "exact_commit_https",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/b984e3352d86f2db51dc608c5c9f8e8092543249/msg/versioned/VehicleAngularVelocity.msg"
+  },
+  {
+    "commit": "b984e3352d86f2db51dc608c5c9f8e8092543249",
+    "source": "msg/versioned/ActuatorMotors.msg",
+    "status": "verified_exact_commit",
+    "sha256": "40d89fe296ce86b005ad67798b109c843698811dea3ed12d9662c9b8f032e386",
+    "origin": "exact_commit_https",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/b984e3352d86f2db51dc608c5c9f8e8092543249/msg/versioned/ActuatorMotors.msg"
+  },
+  {
+    "commit": "b984e3352d86f2db51dc608c5c9f8e8092543249",
+    "source": "msg/versioned/ActuatorServos.msg",
+    "status": "verified_exact_commit",
+    "sha256": "6f3fe07cbcae4b472d50de20c6eec294313d64bd9113d02eb7b0d6597f18268b",
+    "origin": "exact_commit_https",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/b984e3352d86f2db51dc608c5c9f8e8092543249/msg/versioned/ActuatorServos.msg"
+  },
+  {
+    "commit": "c9af571575af33d5403fbb479256848797c801e2",
+    "source": "src/modules/wing_phase/WingPhase.cpp",
+    "status": "verified_exact_commit",
+    "sha256": "0a0ca2ee9da44daa21409dee24aa2901a8f04f7250649b7c7675ebe4ed67b945",
+    "origin": "local_git_object",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/c9af571575af33d5403fbb479256848797c801e2/src/modules/wing_phase/WingPhase.cpp"
+  },
+  {
+    "commit": "c9af571575af33d5403fbb479256848797c801e2",
+    "source": "src/drivers/encoder/as5600/AS5600.cpp",
+    "status": "verified_exact_commit",
+    "sha256": "1910d0fe889c03b229cd84ec4f8887271cfcbbbfb6ba0797bb4ec6860cd7ac3d",
+    "origin": "local_git_object",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/c9af571575af33d5403fbb479256848797c801e2/src/drivers/encoder/as5600/AS5600.cpp"
+  },
+  {
+    "commit": "c9af571575af33d5403fbb479256848797c801e2",
+    "source": "msg/versioned/VehicleLocalPosition.msg",
+    "status": "verified_exact_commit",
+    "sha256": "87d7540cb4207d044d69ff9af11c51f7cd2883f4160fc62650e17d80cbbec5db",
+    "origin": "local_git_object",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/c9af571575af33d5403fbb479256848797c801e2/msg/versioned/VehicleLocalPosition.msg"
+  },
+  {
+    "commit": "c9af571575af33d5403fbb479256848797c801e2",
+    "source": "msg/versioned/VehicleAttitude.msg",
+    "status": "verified_exact_commit",
+    "sha256": "d23f153b574daad31f21f767bc6e2781bcd486bb9e56c605b8b6fd10814b1c74",
+    "origin": "local_git_object",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/c9af571575af33d5403fbb479256848797c801e2/msg/versioned/VehicleAttitude.msg"
+  },
+  {
+    "commit": "c9af571575af33d5403fbb479256848797c801e2",
+    "source": "msg/versioned/VehicleAngularVelocity.msg",
+    "status": "verified_exact_commit",
+    "sha256": "4d713992ec958004629e5c8cbb5e83df2824c6df06e4cb4b06b3e0e3127bb3bf",
+    "origin": "local_git_object",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/c9af571575af33d5403fbb479256848797c801e2/msg/versioned/VehicleAngularVelocity.msg"
+  },
+  {
+    "commit": "c9af571575af33d5403fbb479256848797c801e2",
+    "source": "msg/versioned/ActuatorMotors.msg",
+    "status": "verified_exact_commit",
+    "sha256": "40d89fe296ce86b005ad67798b109c843698811dea3ed12d9662c9b8f032e386",
+    "origin": "local_git_object",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/c9af571575af33d5403fbb479256848797c801e2/msg/versioned/ActuatorMotors.msg"
+  },
+  {
+    "commit": "c9af571575af33d5403fbb479256848797c801e2",
+    "source": "msg/versioned/ActuatorServos.msg",
+    "status": "verified_exact_commit",
+    "sha256": "6f3fe07cbcae4b472d50de20c6eec294313d64bd9113d02eb7b0d6597f18268b",
+    "origin": "local_git_object",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/c9af571575af33d5403fbb479256848797c801e2/msg/versioned/ActuatorServos.msg"
+  },
+  {
+    "commit": "d0dd2354fdeadfbe505211a17b54d728309fedff",
+    "source": "src/modules/wing_phase/WingPhase.cpp",
+    "status": "verified_exact_commit",
+    "sha256": "0a0ca2ee9da44daa21409dee24aa2901a8f04f7250649b7c7675ebe4ed67b945",
+    "origin": "local_git_object",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/d0dd2354fdeadfbe505211a17b54d728309fedff/src/modules/wing_phase/WingPhase.cpp"
+  },
+  {
+    "commit": "d0dd2354fdeadfbe505211a17b54d728309fedff",
+    "source": "src/drivers/encoder/as5600/AS5600.cpp",
+    "status": "verified_exact_commit",
+    "sha256": "1910d0fe889c03b229cd84ec4f8887271cfcbbbfb6ba0797bb4ec6860cd7ac3d",
+    "origin": "local_git_object",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/d0dd2354fdeadfbe505211a17b54d728309fedff/src/drivers/encoder/as5600/AS5600.cpp"
+  },
+  {
+    "commit": "d0dd2354fdeadfbe505211a17b54d728309fedff",
+    "source": "msg/versioned/VehicleLocalPosition.msg",
+    "status": "verified_exact_commit",
+    "sha256": "87d7540cb4207d044d69ff9af11c51f7cd2883f4160fc62650e17d80cbbec5db",
+    "origin": "local_git_object",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/d0dd2354fdeadfbe505211a17b54d728309fedff/msg/versioned/VehicleLocalPosition.msg"
+  },
+  {
+    "commit": "d0dd2354fdeadfbe505211a17b54d728309fedff",
+    "source": "msg/versioned/VehicleAttitude.msg",
+    "status": "verified_exact_commit",
+    "sha256": "d23f153b574daad31f21f767bc6e2781bcd486bb9e56c605b8b6fd10814b1c74",
+    "origin": "local_git_object",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/d0dd2354fdeadfbe505211a17b54d728309fedff/msg/versioned/VehicleAttitude.msg"
+  },
+  {
+    "commit": "d0dd2354fdeadfbe505211a17b54d728309fedff",
+    "source": "msg/versioned/VehicleAngularVelocity.msg",
+    "status": "verified_exact_commit",
+    "sha256": "4d713992ec958004629e5c8cbb5e83df2824c6df06e4cb4b06b3e0e3127bb3bf",
+    "origin": "local_git_object",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/d0dd2354fdeadfbe505211a17b54d728309fedff/msg/versioned/VehicleAngularVelocity.msg"
+  },
+  {
+    "commit": "d0dd2354fdeadfbe505211a17b54d728309fedff",
+    "source": "msg/versioned/ActuatorMotors.msg",
+    "status": "verified_exact_commit",
+    "sha256": "40d89fe296ce86b005ad67798b109c843698811dea3ed12d9662c9b8f032e386",
+    "origin": "local_git_object",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/d0dd2354fdeadfbe505211a17b54d728309fedff/msg/versioned/ActuatorMotors.msg"
+  },
+  {
+    "commit": "d0dd2354fdeadfbe505211a17b54d728309fedff",
+    "source": "msg/versioned/ActuatorServos.msg",
+    "status": "verified_exact_commit",
+    "sha256": "6f3fe07cbcae4b472d50de20c6eec294313d64bd9113d02eb7b0d6597f18268b",
+    "origin": "local_git_object",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/d0dd2354fdeadfbe505211a17b54d728309fedff/msg/versioned/ActuatorServos.msg"
+  },
+  {
+    "commit": "e35acd7c27875be19aa04cab652e3dcfc3afef84",
+    "source": "src/modules/wing_phase/WingPhase.cpp",
+    "status": "verified_exact_commit",
+    "sha256": "0a0ca2ee9da44daa21409dee24aa2901a8f04f7250649b7c7675ebe4ed67b945",
+    "origin": "exact_commit_https",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/e35acd7c27875be19aa04cab652e3dcfc3afef84/src/modules/wing_phase/WingPhase.cpp"
+  },
+  {
+    "commit": "e35acd7c27875be19aa04cab652e3dcfc3afef84",
+    "source": "src/drivers/encoder/as5600/AS5600.cpp",
+    "status": "verified_exact_commit",
+    "sha256": "1910d0fe889c03b229cd84ec4f8887271cfcbbbfb6ba0797bb4ec6860cd7ac3d",
+    "origin": "exact_commit_https",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/e35acd7c27875be19aa04cab652e3dcfc3afef84/src/drivers/encoder/as5600/AS5600.cpp"
+  },
+  {
+    "commit": "e35acd7c27875be19aa04cab652e3dcfc3afef84",
+    "source": "msg/versioned/VehicleLocalPosition.msg",
+    "status": "verified_exact_commit",
+    "sha256": "87d7540cb4207d044d69ff9af11c51f7cd2883f4160fc62650e17d80cbbec5db",
+    "origin": "exact_commit_https",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/e35acd7c27875be19aa04cab652e3dcfc3afef84/msg/versioned/VehicleLocalPosition.msg"
+  },
+  {
+    "commit": "e35acd7c27875be19aa04cab652e3dcfc3afef84",
+    "source": "msg/versioned/VehicleAttitude.msg",
+    "status": "verified_exact_commit",
+    "sha256": "d23f153b574daad31f21f767bc6e2781bcd486bb9e56c605b8b6fd10814b1c74",
+    "origin": "exact_commit_https",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/e35acd7c27875be19aa04cab652e3dcfc3afef84/msg/versioned/VehicleAttitude.msg"
+  },
+  {
+    "commit": "e35acd7c27875be19aa04cab652e3dcfc3afef84",
+    "source": "msg/versioned/VehicleAngularVelocity.msg",
+    "status": "verified_exact_commit",
+    "sha256": "4d713992ec958004629e5c8cbb5e83df2824c6df06e4cb4b06b3e0e3127bb3bf",
+    "origin": "exact_commit_https",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/e35acd7c27875be19aa04cab652e3dcfc3afef84/msg/versioned/VehicleAngularVelocity.msg"
+  },
+  {
+    "commit": "e35acd7c27875be19aa04cab652e3dcfc3afef84",
+    "source": "msg/versioned/ActuatorMotors.msg",
+    "status": "verified_exact_commit",
+    "sha256": "40d89fe296ce86b005ad67798b109c843698811dea3ed12d9662c9b8f032e386",
+    "origin": "exact_commit_https",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/e35acd7c27875be19aa04cab652e3dcfc3afef84/msg/versioned/ActuatorMotors.msg"
+  },
+  {
+    "commit": "e35acd7c27875be19aa04cab652e3dcfc3afef84",
+    "source": "msg/versioned/ActuatorServos.msg",
+    "status": "verified_exact_commit",
+    "sha256": "6f3fe07cbcae4b472d50de20c6eec294313d64bd9113d02eb7b0d6597f18268b",
+    "origin": "exact_commit_https",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/e35acd7c27875be19aa04cab652e3dcfc3afef84/msg/versioned/ActuatorServos.msg"
+  },
+  {
+    "commit": "e624a99f2955addbf76681e636c44162a0c03055",
+    "source": "src/modules/wing_phase/WingPhase.cpp",
+    "status": "verified_exact_commit",
+    "sha256": "0a0ca2ee9da44daa21409dee24aa2901a8f04f7250649b7c7675ebe4ed67b945",
+    "origin": "local_git_object",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/e624a99f2955addbf76681e636c44162a0c03055/src/modules/wing_phase/WingPhase.cpp"
+  },
+  {
+    "commit": "e624a99f2955addbf76681e636c44162a0c03055",
+    "source": "src/drivers/encoder/as5600/AS5600.cpp",
+    "status": "verified_exact_commit",
+    "sha256": "1910d0fe889c03b229cd84ec4f8887271cfcbbbfb6ba0797bb4ec6860cd7ac3d",
+    "origin": "local_git_object",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/e624a99f2955addbf76681e636c44162a0c03055/src/drivers/encoder/as5600/AS5600.cpp"
+  },
+  {
+    "commit": "e624a99f2955addbf76681e636c44162a0c03055",
+    "source": "msg/versioned/VehicleLocalPosition.msg",
+    "status": "verified_exact_commit",
+    "sha256": "87d7540cb4207d044d69ff9af11c51f7cd2883f4160fc62650e17d80cbbec5db",
+    "origin": "local_git_object",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/e624a99f2955addbf76681e636c44162a0c03055/msg/versioned/VehicleLocalPosition.msg"
+  },
+  {
+    "commit": "e624a99f2955addbf76681e636c44162a0c03055",
+    "source": "msg/versioned/VehicleAttitude.msg",
+    "status": "verified_exact_commit",
+    "sha256": "d23f153b574daad31f21f767bc6e2781bcd486bb9e56c605b8b6fd10814b1c74",
+    "origin": "local_git_object",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/e624a99f2955addbf76681e636c44162a0c03055/msg/versioned/VehicleAttitude.msg"
+  },
+  {
+    "commit": "e624a99f2955addbf76681e636c44162a0c03055",
+    "source": "msg/versioned/VehicleAngularVelocity.msg",
+    "status": "verified_exact_commit",
+    "sha256": "4d713992ec958004629e5c8cbb5e83df2824c6df06e4cb4b06b3e0e3127bb3bf",
+    "origin": "local_git_object",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/e624a99f2955addbf76681e636c44162a0c03055/msg/versioned/VehicleAngularVelocity.msg"
+  },
+  {
+    "commit": "e624a99f2955addbf76681e636c44162a0c03055",
+    "source": "msg/versioned/ActuatorMotors.msg",
+    "status": "verified_exact_commit",
+    "sha256": "40d89fe296ce86b005ad67798b109c843698811dea3ed12d9662c9b8f032e386",
+    "origin": "local_git_object",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/e624a99f2955addbf76681e636c44162a0c03055/msg/versioned/ActuatorMotors.msg"
+  },
+  {
+    "commit": "e624a99f2955addbf76681e636c44162a0c03055",
+    "source": "msg/versioned/ActuatorServos.msg",
+    "status": "verified_exact_commit",
+    "sha256": "6f3fe07cbcae4b472d50de20c6eec294313d64bd9113d02eb7b0d6597f18268b",
+    "origin": "local_git_object",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/e624a99f2955addbf76681e636c44162a0c03055/msg/versioned/ActuatorServos.msg"
+  },
+  {
+    "commit": "e7b2f6de69dda341bc398d49ec719d5957af78e7",
+    "source": "src/modules/wing_phase/WingPhase.cpp",
+    "status": "verified_exact_commit",
+    "sha256": "0a0ca2ee9da44daa21409dee24aa2901a8f04f7250649b7c7675ebe4ed67b945",
+    "origin": "exact_commit_https",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/e7b2f6de69dda341bc398d49ec719d5957af78e7/src/modules/wing_phase/WingPhase.cpp"
+  },
+  {
+    "commit": "e7b2f6de69dda341bc398d49ec719d5957af78e7",
+    "source": "src/drivers/encoder/as5600/AS5600.cpp",
+    "status": "verified_exact_commit",
+    "sha256": "1910d0fe889c03b229cd84ec4f8887271cfcbbbfb6ba0797bb4ec6860cd7ac3d",
+    "origin": "exact_commit_https",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/e7b2f6de69dda341bc398d49ec719d5957af78e7/src/drivers/encoder/as5600/AS5600.cpp"
+  },
+  {
+    "commit": "e7b2f6de69dda341bc398d49ec719d5957af78e7",
+    "source": "msg/versioned/VehicleLocalPosition.msg",
+    "status": "verified_exact_commit",
+    "sha256": "87d7540cb4207d044d69ff9af11c51f7cd2883f4160fc62650e17d80cbbec5db",
+    "origin": "exact_commit_https",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/e7b2f6de69dda341bc398d49ec719d5957af78e7/msg/versioned/VehicleLocalPosition.msg"
+  },
+  {
+    "commit": "e7b2f6de69dda341bc398d49ec719d5957af78e7",
+    "source": "msg/versioned/VehicleAttitude.msg",
+    "status": "verified_exact_commit",
+    "sha256": "d23f153b574daad31f21f767bc6e2781bcd486bb9e56c605b8b6fd10814b1c74",
+    "origin": "exact_commit_https",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/e7b2f6de69dda341bc398d49ec719d5957af78e7/msg/versioned/VehicleAttitude.msg"
+  },
+  {
+    "commit": "e7b2f6de69dda341bc398d49ec719d5957af78e7",
+    "source": "msg/versioned/VehicleAngularVelocity.msg",
+    "status": "verified_exact_commit",
+    "sha256": "4d713992ec958004629e5c8cbb5e83df2824c6df06e4cb4b06b3e0e3127bb3bf",
+    "origin": "exact_commit_https",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/e7b2f6de69dda341bc398d49ec719d5957af78e7/msg/versioned/VehicleAngularVelocity.msg"
+  },
+  {
+    "commit": "e7b2f6de69dda341bc398d49ec719d5957af78e7",
+    "source": "msg/versioned/ActuatorMotors.msg",
+    "status": "verified_exact_commit",
+    "sha256": "40d89fe296ce86b005ad67798b109c843698811dea3ed12d9662c9b8f032e386",
+    "origin": "exact_commit_https",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/e7b2f6de69dda341bc398d49ec719d5957af78e7/msg/versioned/ActuatorMotors.msg"
+  },
+  {
+    "commit": "e7b2f6de69dda341bc398d49ec719d5957af78e7",
+    "source": "msg/versioned/ActuatorServos.msg",
+    "status": "verified_exact_commit",
+    "sha256": "6f3fe07cbcae4b472d50de20c6eec294313d64bd9113d02eb7b0d6597f18268b",
+    "origin": "exact_commit_https",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/e7b2f6de69dda341bc398d49ec719d5957af78e7/msg/versioned/ActuatorServos.msg"
+  }
+]
