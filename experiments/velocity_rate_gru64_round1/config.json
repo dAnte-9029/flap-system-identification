@@ -1,0 +1,20 @@
+{
+  "dataset_id": "velocity_rate_multistep_v1",
+  "registry": "configs/data/velocity_rate_dataset_registry.yaml",
+  "sampling_group": "main_50hz", "history_us": 500000, "horizon_us": 200000,
+  "expected_windows": {"train": 110863, "validation": 36970},
+  "expected_flights": {"train": 94, "validation": 27},
+  "seeds": [17, 29, 43], "hidden_size": 64, "event_hidden_size": 16,
+  "batch_size": 1024, "evaluation_batch_size": 2048,
+  "max_epochs": 24, "patience": 5, "minimum_improvement": 0.0001,
+  "optimizer": "AdamW", "learning_rate": 0.001, "weight_decay": 0.0001,
+  "gradient_clip_norm": 5.0,
+  "loss_weights": [1.0, 1.0, 1.0, 1.0],
+  "loss_scale_policy": "train-only RMS constant-kinematics residual across all valid future steps; floors below",
+  "loss_scale_floors": [0.01, 0.1, 0.02, 0.1],
+  "loss_aggregation": "mean of scaled squared vector norms / squared geodesic angles over valid native future steps per window, then equal windows",
+  "checkpoint_selection": "validation equal-flight mean normalized multi-step loss",
+  "phase_forecast": "hold last valid frequency if valid at origin; advance last phase by 2*pi*f*elapsed; missing origin phase or frequency masks future phase",
+  "control_forecast": "complete ordered native piecewise-constant event tape, each segment carries command and duration; GRU16 event encoder per native state interval",
+  "test_policy": "sealed; no test file opens, hashes, normalization, evaluation or selection"
+}
