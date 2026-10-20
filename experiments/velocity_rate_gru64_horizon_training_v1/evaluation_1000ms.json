@@ -1,0 +1,127 @@
+{
+  "windows": 35946,
+  "flights": 27,
+  "device": "cuda:0",
+  "checkpoints": {
+    "experiments/velocity_rate_gru64_horizon_training_v1/train_1000ms/GRU-NoControl/seed_17/best.pt": "d98157e3873ba6a281131b4fce59d8fd8e5fd7b31f9875e7f60a1582171a479d",
+    "experiments/velocity_rate_gru64_horizon_training_v1/train_1000ms/GRU-NoControl/seed_29/best.pt": "4e891464b81aad236beb5a93a0bee9c7954e077d3d59a37b077e0de892108859",
+    "experiments/velocity_rate_gru64_horizon_training_v1/train_1000ms/GRU-NoControl/seed_43/best.pt": "ebcf47b637f0f3ab25c76a38cf3651ec8fab32512437c0b8adf15ac5750f0763",
+    "experiments/velocity_rate_gru64_horizon_training_v1/train_1000ms/GRU-Control/seed_17/best.pt": "337521208087cb67d8230c6d11390e71a28989059d5b7a86e42a2fd3a2f6803e",
+    "experiments/velocity_rate_gru64_horizon_training_v1/train_1000ms/GRU-Control/seed_29/best.pt": "7f5f8487a062f9f93f5a089929830fcc3cb9061e2f287d20b356a69b749258c8",
+    "experiments/velocity_rate_gru64_horizon_training_v1/train_1000ms/GRU-Control/seed_43/best.pt": "747c6abeba1a588bbcd06e3dfb926bcb592e17028c91a212d2c62646eea3c7d7"
+  },
+  "numerical_checks": [
+    {
+      "condition": "H1000-GRU-NoControl",
+      "seed": 17,
+      "scipy_max_difference": [
+        3.6811028625294284e-07,
+        6.089500912409562e-07,
+        9.504116434300158e-06,
+        4.51355329111891e-07
+      ],
+      "quaternion_norm_max_error": 1.1920928955078125e-07
+    },
+    {
+      "condition": "H1000-GRU-NoControl",
+      "seed": 29,
+      "scipy_max_difference": [
+        4.117080134591333e-07,
+        5.00532915559404e-07,
+        9.503888847461894e-06,
+        4.756397071759011e-07
+      ],
+      "quaternion_norm_max_error": 1.1920928955078125e-07
+    },
+    {
+      "condition": "H1000-GRU-NoControl",
+      "seed": 43,
+      "scipy_max_difference": [
+        3.978226299494736e-07,
+        5.731403609487984e-07,
+        1.3608451055802107e-05,
+        2.917745840491648e-07
+      ],
+      "quaternion_norm_max_error": 1.1920928955078125e-07
+    },
+    {
+      "condition": "H1000-GRU-Control",
+      "seed": 17,
+      "scipy_max_difference": [
+        4.1872066081083403e-07,
+        5.289848674649988e-07,
+        1.0632950775857353e-05,
+        3.2629032986619677e-07
+      ],
+      "quaternion_norm_max_error": 1.1920928955078125e-07
+    },
+    {
+      "condition": "H1000-GRU-Control",
+      "seed": 29,
+      "scipy_max_difference": [
+        3.4857471487015346e-07,
+        4.1699446917675687e-07,
+        1.0414268516001357e-05,
+        3.5185180191632526e-07
+      ],
+      "quaternion_norm_max_error": 1.1920928955078125e-07
+    },
+    {
+      "condition": "H1000-GRU-Control",
+      "seed": 43,
+      "scipy_max_difference": [
+        4.0589692495984764e-07,
+        5.162520055890241e-07,
+        9.22363761901579e-06,
+        4.039766903218833e-07
+      ],
+      "quaternion_norm_max_error": 1.1920928955078125e-07
+    }
+  ],
+  "runtime": [
+    {
+      "condition": "H1000-GRU-NoControl",
+      "seed": 17,
+      "seconds": 2.9479167461395264,
+      "peak_gpu_bytes": 1263307264,
+      "finite": true
+    },
+    {
+      "condition": "H1000-GRU-NoControl",
+      "seed": 29,
+      "seconds": 2.7446014881134033,
+      "peak_gpu_bytes": 1401643008,
+      "finite": true
+    },
+    {
+      "condition": "H1000-GRU-NoControl",
+      "seed": 43,
+      "seconds": 2.784973382949829,
+      "peak_gpu_bytes": 1400687104,
+      "finite": true
+    },
+    {
+      "condition": "H1000-GRU-Control",
+      "seed": 17,
+      "seconds": 2.8147151470184326,
+      "peak_gpu_bytes": 1954858496,
+      "finite": true
+    },
+    {
+      "condition": "H1000-GRU-Control",
+      "seed": 29,
+      "seconds": 2.8196780681610107,
+      "peak_gpu_bytes": 1954858496,
+      "finite": true
+    },
+    {
+      "condition": "H1000-GRU-Control",
+      "seed": 43,
+      "seconds": 2.7686879634857178,
+      "peak_gpu_bytes": 1954858496,
+      "finite": true
+    }
+  ],
+  "future_truth_feedback": false,
+  "test_opened": false
+}

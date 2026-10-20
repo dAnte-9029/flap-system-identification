@@ -1,0 +1,10 @@
+{
+  "gpu": "NVIDIA GeForce RTX 4090",
+  "torch": "2.7.0+cu128",
+  "cuda": "12.8",
+  "load_seconds": 61.78416180610657,
+  "threads": 4,
+  "tf32": true,
+  "cudnn_deterministic": true,
+  "gpu_resident_data_bytes": 1443399636
+}

@@ -1,0 +1,9 @@
+{
+  "control_change": "L2 range of commands over history and 2s future event tape, descriptive validation terciles",
+  "thresholds": [
+    0.5057926767048911,
+    0.777170589789898
+  ],
+  "model_input": false,
+  "checkpoint_selection": false
+}

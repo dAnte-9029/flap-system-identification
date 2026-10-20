@@ -1,0 +1,6 @@
+evaluated H1000-GRU-NoControl_seed_17: 2.9s
+evaluated H1000-GRU-NoControl_seed_29: 2.7s
+evaluated H1000-GRU-NoControl_seed_43: 2.8s
+evaluated H1000-GRU-Control_seed_17: 2.8s
+evaluated H1000-GRU-Control_seed_29: 2.8s
+evaluated H1000-GRU-Control_seed_43: 2.8s

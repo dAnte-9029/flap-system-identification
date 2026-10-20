@@ -1,0 +1,15 @@
+{
+  "model": "GRU-NoControl",
+  "seed": 17,
+  "parameters": 37590,
+  "gradient_parameters": 36486,
+  "epochs": 24,
+  "updates": 2544,
+  "examples_seen": 2590080,
+  "best_epoch": 23,
+  "best_validation_flight_loss": 0.7347050309181213,
+  "seconds": 248.73421549797058,
+  "peak_allocated_bytes": 1756895744,
+  "stop_reason": "fixed_epoch_budget",
+  "checkpoint_sha256": "d98157e3873ba6a281131b4fce59d8fd8e5fd7b31f9875e7f60a1582171a479d"
+}

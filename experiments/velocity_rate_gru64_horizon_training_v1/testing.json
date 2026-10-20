@@ -1,0 +1,19 @@
+{
+  "status": "passed",
+  "command": "/home/zn/anaconda3/envs/flap-train-gpu/bin/python -m pytest -q tests/test_velocity_rate_horizon_training.py tests/test_velocity_rate_long_horizon.py tests/test_velocity_rate_learning.py -k \"not packed_samples_match_authoritative_loader\"",
+  "passed": 16,
+  "deselected": 2,
+  "seconds": 225.85,
+  "deselected_reason": "unchanged original 200ms packs previously checked; new 1s train/validation packs checked here",
+  "coverage": [
+    "registered 25/26 and 50/51 step endpoints",
+    "all-step masked loss",
+    "one-second backpropagation",
+    "100-step causal prefix invariance",
+    "NoControl command isolation",
+    "quaternion/frame/integration math",
+    "new train and validation pack vs authoritative loader, including native event timing"
+  ],
+  "test_partition_opened": false,
+  "python_compile": "passed"
+}

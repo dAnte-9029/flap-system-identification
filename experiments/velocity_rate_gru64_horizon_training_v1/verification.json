@@ -1,0 +1,14 @@
+{
+  "status": "passed",
+  "matched_windows": 35946,
+  "flights": 27,
+  "model_seed_conditions": 19,
+  "endpoint_groups": 57,
+  "aggregation_max_difference": 7.105427357601002e-15,
+  "prior_archives_verified": {
+    "experiments/velocity_rate_gru64_round1": "2d886404f4a5d9d4109cc4d6904b136a3af73d96bebcd3d999d91c0fe511e649",
+    "experiments/velocity_rate_gru64_long_horizon_v1": "a6284d105826a41836afc1cf84541a79cb859d8d6347053fed52b302c45ab0c7"
+  },
+  "test_opened": false,
+  "paired_training_protocol": true
+}

@@ -1,0 +1,50 @@
+{
+  "base_commit": "d12ff5c266f705a4a5e8272ca46a11434db10cdb",
+  "dataset_id": "velocity_rate_multistep_v1",
+  "dataset_manifest_sha256": "8afb8623bf7174e4da5b2044f644331b8b251433fed3576f6dcdab470935bcb5",
+  "seeds": [
+    17,
+    29,
+    43
+  ],
+  "train_horizons_ms": [
+    500,
+    1000
+  ],
+  "evaluation_horizons_ms": [
+    500,
+    1000,
+    2000
+  ],
+  "test_opened": false,
+  "control_ready": false,
+  "model_source_sha256": "f4a06a64e10e9e52cc77b2121a0eec77c9e08982b0899c2eac736f67116cdc67",
+  "future_feedback": false,
+  "future_control": "recorded closed-loop command replay; Control only",
+  "phase_forecast": "hold last valid frequency if valid at origin; advance last phase by 2*pi*f*elapsed; missing origin phase or frequency masks future phase",
+  "prior_archives": {
+    "experiments/velocity_rate_gru64_round1": "2d886404f4a5d9d4109cc4d6904b136a3af73d96bebcd3d999d91c0fe511e649",
+    "experiments/velocity_rate_gru64_long_horizon_v1": "a6284d105826a41836afc1cf84541a79cb859d8d6347053fed52b302c45ab0c7"
+  },
+  "historical_200ms_comparison": "reference only: original training cohort and loss scales differ",
+  "implementation_commit": "ecd8604e9a0b13b7ed29fc9b71cfd8e112a640b7",
+  "source_files": {
+    "scripts/train_velocity_rate_horizons.py": {
+      "sha256": "d3f0214f37af7794d0c9b33066cf87709a86c32a2169102f3ba8277fb56229ab",
+      "bytes": 10117
+    },
+    "scripts/evaluate_velocity_rate_horizon_training.py": {
+      "sha256": "53c31c653831d8eb3a550cf0c5df591966c82efc9b23207a84372141ebb1d974",
+      "bytes": 19051
+    },
+    "scripts/report_velocity_rate_horizon_training.py": {
+      "sha256": "6cd77015cedb82bfcd4282bc54afbf2ef278a6ad7e38d7e05d5f6ee888b94b56",
+      "bytes": 18597
+    },
+    "tests/test_velocity_rate_horizon_training.py": {
+      "sha256": "f5bb3306eab6b8f4030570f476f0a00c540077aa18deff43a137eda4d27ab56b",
+      "bytes": 4930
+    }
+  },
+  "execution_provenance": "training started atop base_commit with source hashes recorded; those exact bytes are now committed"
+}

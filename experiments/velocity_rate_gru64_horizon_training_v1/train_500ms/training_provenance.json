@@ -1,0 +1,11 @@
+{
+  "base_commit": "d12ff5c266f705a4a5e8272ca46a11434db10cdb",
+  "source_sha256": {
+    "scripts/train_velocity_rate_horizons.py": "d3f0214f37af7794d0c9b33066cf87709a86c32a2169102f3ba8277fb56229ab",
+    "scripts/train_velocity_rate_learning.py": "3f1dd26c7e33d81c376bf441874765531cf1cf3951b1223f05fcbb115d8ef1d8",
+    "scripts/prepare_velocity_rate_learning.py": "abd3fdc2704a76872a630792545a204f8aee2ef321cb56e21bb85baa142c0794",
+    "src/system_identification/models/velocity_rate_gru.py": "f4a06a64e10e9e52cc77b2121a0eec77c9e08982b0899c2eac736f67116cdc67"
+  },
+  "configuration_sha256": "0ee966b94d139e71229579838b06bbf4fcfb663a0f572cf6a90134d59004b3e1",
+  "normalization_sha256": "cd530d6f782f01d49e7e20d1ba67acf4d2de2515763717295a87557c25401cc8"
+}

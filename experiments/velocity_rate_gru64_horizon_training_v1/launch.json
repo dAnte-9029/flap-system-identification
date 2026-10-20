@@ -1,0 +1,23 @@
+{
+  "interpreter": "/home/zn/anaconda3/envs/flap-train-gpu/bin/python",
+  "parallel_processes": {
+    "train_500ms": {
+      "CUDA_VISIBLE_DEVICES": "0"
+    },
+    "train_1000ms": {
+      "CUDA_VISIBLE_DEVICES": "1"
+    }
+  },
+  "automatic_smoke_before_training": true,
+  "architectures_per_horizon": [
+    "GRU-NoControl",
+    "GRU-Control"
+  ],
+  "seeds_per_architecture": [
+    17,
+    29,
+    43
+  ],
+  "old_results_modified": false,
+  "push_authorized": false
+}
