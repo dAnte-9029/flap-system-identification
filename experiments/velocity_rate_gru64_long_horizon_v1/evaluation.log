@@ -1,0 +1,7 @@
+evaluated Kinematic Baseline seed -1: 2.7s
+evaluated GRU-NoControl seed 17: 3.4s
+evaluated GRU-NoControl seed 29: 7.2s
+evaluated GRU-NoControl seed 43: 3.4s
+evaluated GRU-Control seed 17: 3.4s
+evaluated GRU-Control seed 29: 3.4s
+evaluated GRU-Control seed 43: 3.8s

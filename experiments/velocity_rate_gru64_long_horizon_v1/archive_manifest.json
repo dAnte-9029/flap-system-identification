@@ -1,0 +1,219 @@
+{
+  "schema": "velocity_rate_long_horizon_v1",
+  "test_opened": false,
+  "retrained": false,
+  "source_files": {
+    "scripts/evaluate_velocity_rate_long_horizon.py": {
+      "sha256": "9e4ef9c846f5d12ddf09862f26931cc2c80310663b2bca1845b2a987387e0e71",
+      "bytes": 16178
+    },
+    "scripts/report_velocity_rate_long_horizon.py": {
+      "sha256": "38facf9f8362ef2bf0ea7f23f1519f25408334286afe5fbc195f968cdbf826eb",
+      "bytes": 12583
+    },
+    "tests/test_velocity_rate_long_horizon.py": {
+      "sha256": "d8c2dc64c5d9ba2c29d7843de1b4085c3aaecc4f4cd846ee8c9cd63d33f0828e",
+      "bytes": 1976
+    }
+  },
+  "files": {
+    "checkpoint_manifest.json": {
+      "sha256": "1fa8ddfaaef71238d7479f049ca8651e01eff9494e45c330ef54e38d2e34e4a0",
+      "bytes": 849
+    },
+    "common_windows.parquet": {
+      "sha256": "853cd5bc40fdd569a2538b96d12583c67ac53043e1eb7b524174fa76efada36b",
+      "bytes": 2499516
+    },
+    "config.json": {
+      "sha256": "a06594acb1d12ae1d90545ad9a3da8e1e5b8b0921c98cc636beba921b376225f",
+      "bytes": 1332
+    },
+    "data_audit.json": {
+      "sha256": "fc42227cae5d829532bf060744403b4d7ccd48cb93122ef992f6f7753a922905",
+      "bytes": 2740
+    },
+    "dynamics_vs_observation_integral.csv": {
+      "sha256": "b984557f208a00373f5a9166ac5cfb51f3669140a167aef413df0421c79f20d8",
+      "bytes": 119509
+    },
+    "evaluation.log": {
+      "sha256": "fd99880968b6721012edfc76178c074ff1077c28d751fe0dddcc5f56e4125aae",
+      "bytes": 265
+    },
+    "example_windows.csv": {
+      "sha256": "f8ff2d09fbcd2c05e56569133905b0746b0b6c6992c9d081adc78eda4bd1e510",
+      "bytes": 2610
+    },
+    "figures/control_gain_by_seed.png": {
+      "sha256": "83fbb721f16901bb90a7ba146a19f180d7830e0ae9b7849af59958e44d49a907",
+      "bytes": 237882
+    },
+    "figures/error_growth_2s.png": {
+      "sha256": "8a1419fecd154957a895b6f02a66f90cbbd651ca162f51bf0ecb8a4b1fcef272",
+      "bytes": 402842
+    },
+    "figures/flight_distributions.png": {
+      "sha256": "57043a0049d326a9b6b92e000ad88e3d7f2d04a60e509769482b7c838fed1523",
+      "bytes": 404108
+    },
+    "figures/trajectory_examples_2s.png": {
+      "sha256": "e23f2cc15ded9179b3b0395fdf0a6d25db5118757fb26ef385101894979aec0d",
+      "bytes": 803693
+    },
+    "flight_inventory.csv": {
+      "sha256": "f052eb46b92454f73d91c6c23989dd1370e2bbc09b5ed52148dc318c8a202239",
+      "bytes": 4971
+    },
+    "group_metrics.csv": {
+      "sha256": "cb9a676c16378f68a6dcb803a5f7eaab1b025db2d7ea68b69957b53f68c482ca",
+      "bytes": 17568
+    },
+    "interpretation_zh.md": {
+      "sha256": "72b4d1ebe4568aa4050259856f4ec32be19f0540cf966ac412fd0281398f5c1f",
+      "bytes": 2408
+    },
+    "metrics/GRU-Control_seed_17_endpoints.parquet": {
+      "sha256": "c517321cfdea7b08a8a2466a14abd030d4c5d3138fd23c1fc5c8f5e83d77d9eb",
+      "bytes": 8107354
+    },
+    "metrics/GRU-Control_seed_29_endpoints.parquet": {
+      "sha256": "dbb1cb642b583bfcef12cd397bc0291cc33b9cf5812206fb202489918fdd2aed",
+      "bytes": 8107211
+    },
+    "metrics/GRU-Control_seed_43_endpoints.parquet": {
+      "sha256": "f31b3a1868ca45be11f9d1fa662f04548d164794029ac902232777d13e7df985",
+      "bytes": 8104611
+    },
+    "metrics/GRU-NoControl_seed_17_endpoints.parquet": {
+      "sha256": "62657564232ce7489a449267be8592ba421e999373837441579fc212ee8e8857",
+      "bytes": 8108526
+    },
+    "metrics/GRU-NoControl_seed_29_endpoints.parquet": {
+      "sha256": "8661a0a1f0e191963ed4871d711c46b0d319d58e189dc5a54c2e9bc69c4421f9",
+      "bytes": 8105319
+    },
+    "metrics/GRU-NoControl_seed_43_endpoints.parquet": {
+      "sha256": "6816f2ab2eb7f86496728ae52df2fc453041f9a4a3f1b642c858f968753526ea",
+      "bytes": 8104877
+    },
+    "metrics/Kinematic_Baseline_seed_-1_endpoints.parquet": {
+      "sha256": "cbf04bb436e9c96ab51f3858f48fb7ecf481b6215e569b003fd67d0ba245e580",
+      "bytes": 8105778
+    },
+    "metrics/observation_integration.parquet": {
+      "sha256": "9fe29dd6bf6ca3dbdca8ebd209de977742b34cfe3750d8de16af667d91277f18",
+      "bytes": 5438860
+    },
+    "native_steps_per_flight.csv": {
+      "sha256": "2fa75251b287ac71ec88679768a5c778b30b9805a381f1ab24c7df119821f84f",
+      "bytes": 3352778
+    },
+    "numerical_verification.json": {
+      "sha256": "dcd3cf2bcd8371069c62fc4ccb933af1a7db833f2fcf5d76fa99fd6402530a71",
+      "bytes": 2193
+    },
+    "observation_per_flight.csv": {
+      "sha256": "29438b9fe6f2280f132496032888ea97348b7686b5a05cd5aa20330d88c94bfa",
+      "bytes": 16020
+    },
+    "paired_comparisons.csv": {
+      "sha256": "24f60b9b5a88dc9d986dc9cfd132a9e3663bb7f64486ecfde8227921f3c460ea",
+      "bytes": 7848
+    },
+    "per_flight.csv": {
+      "sha256": "911a921c6b350ca5a7a9bd338dc5c3aeda0330719560d88d7fc606d77ac736e1",
+      "bytes": 155374
+    },
+    "per_seed.csv": {
+      "sha256": "56d927a08883dc1ddb0615027fdee5ff8c9965e658c49b867e5bdb7505ab26c4",
+      "bytes": 3470
+    },
+    "phase_extrapolation_per_flight.csv": {
+      "sha256": "d55b072c647182a26a2653eb2a3502e933989ed301b166f8ffefacaf8c1ab604",
+      "bytes": 16172
+    },
+    "phase_extrapolation_summary.csv": {
+      "sha256": "103fd914bdb9f863c396e9bccfac613fcc4b641ace654afe7fb4ba8f6566e175",
+      "bytes": 525
+    },
+    "preparation.log": {
+      "sha256": "7b3087c5b88e410ec1c93bd2e001a469a3040bbda468c53c2e86721edceb58f5",
+      "bytes": 42
+    },
+    "report.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "report_zh.md": {
+      "sha256": "78f3bbd14ae1fa2e73e94e4aaeb324802c0c2e1c8652736cc0b0618091fc3727",
+      "bytes": 10042
+    },
+    "runtime.csv": {
+      "sha256": "577d693516a9446a4df9592ce1fa1ddbfacff22f7f92cec71a221e47ae8e75ea",
+      "bytes": 399
+    },
+    "summary.csv": {
+      "sha256": "bdc0e50eeac1fc13eeb57e2c49724b808f23fc2b2845a2cfba1fc1749d38146a",
+      "bytes": 10230
+    },
+    "tests.log": {
+      "sha256": "3f0757e9439b62915b44675c18703deb8095dfc44e346d7a86d724b0131ff452",
+      "bytes": 98
+    },
+    "trajectory_examples.npz": {
+      "sha256": "a794c089a9385924c52e25a5646e0dfc841a2cc5fdaea0a6f3c08b700546ffbf",
+      "bytes": 224819
+    },
+    "validation_windows.parquet": {
+      "sha256": "0fc425ca9f333ba02f4cf7cb7bfcbfd83aa7719b1a332275293ec0b8c28b50c0",
+      "bytes": 2515662
+    },
+    "verification.json": {
+      "sha256": "c90617e742b41f8b4b8189dc527ec56e9dd4bf9c240db5551d9744519fe03abc",
+      "bytes": 188
+    },
+    "verification.log": {
+      "sha256": "1818fec9aee2c67285b8fc8c60ee1c5da264f113471a307f64f119ba3207c387",
+      "bytes": 32
+    }
+  },
+  "local_cache_artifacts": {
+    "artifacts/velocity_rate_gru64_long_horizon_v1/GRU-Control_seed_17_native_errors.npz": {
+      "sha256": "5b4853f080efc03f09ae21ea36ace1a5775916d1892a4ec1b9318d6b9ef95d16",
+      "bytes": 56287225
+    },
+    "artifacts/velocity_rate_gru64_long_horizon_v1/GRU-Control_seed_29_native_errors.npz": {
+      "sha256": "7acad839bc8243485b6d8d43ffe9ecc60582f2ed5f04a16782d34a5cb829fcc2",
+      "bytes": 56299939
+    },
+    "artifacts/velocity_rate_gru64_long_horizon_v1/GRU-Control_seed_43_native_errors.npz": {
+      "sha256": "f0c13427a94c079627d5c5ccec6008cf70267706c0c1b2023fa021266c84985a",
+      "bytes": 56303903
+    },
+    "artifacts/velocity_rate_gru64_long_horizon_v1/GRU-NoControl_seed_17_native_errors.npz": {
+      "sha256": "75f5a0c9bc1900ad74c1b8484e8f38c365eaa84e18120ce8ce535f5fdb2d92c6",
+      "bytes": 56274406
+    },
+    "artifacts/velocity_rate_gru64_long_horizon_v1/GRU-NoControl_seed_29_native_errors.npz": {
+      "sha256": "6ed30d9ebcd156018e878e88621899c5a82b225274abebb80580b99235d372b7",
+      "bytes": 56358533
+    },
+    "artifacts/velocity_rate_gru64_long_horizon_v1/GRU-NoControl_seed_43_native_errors.npz": {
+      "sha256": "60d58ec79584ff3aab323d1ef7c134b9e887a017daaf709a431bcc975c167a2b",
+      "bytes": 56327289
+    },
+    "artifacts/velocity_rate_gru64_long_horizon_v1/Kinematic_Baseline_seed_-1_native_errors.npz": {
+      "sha256": "7e7a708d4e9eb230a5c29e0ba319effc946bbf0dbbaaf0703b02585cda9d53c8",
+      "bytes": 56286562
+    },
+    "artifacts/velocity_rate_gru64_long_horizon_v1/common_indices.npy": {
+      "sha256": "364b0915725ad8871a521f0ebce51a4af2c7c5d83bc8d8bb8e6f18e18918dde8",
+      "bytes": 287696
+    },
+    "artifacts/velocity_rate_gru64_long_horizon_v1/validation.npz": {
+      "sha256": "79724fe0f5041f904a8386df1cfae418a730731077ab71c26a1a0e9612e6f12d",
+      "bytes": 557369140
+    }
+  }
+}

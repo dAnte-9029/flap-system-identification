@@ -1,0 +1,35 @@
+{
+  "dataset_id": "velocity_rate_multistep_v1",
+  "partition": "validation",
+  "history_ms": 500,
+  "trained_horizon_ms": 200,
+  "evaluation_horizons_ms": [
+    100,
+    200,
+    500,
+    1000,
+    2000
+  ],
+  "seeds": [
+    17,
+    29,
+    43
+  ],
+  "batch_size": 2048,
+  "retrained": false,
+  "reselected_checkpoints": false,
+  "normalization_refit": false,
+  "test_opened": false,
+  "cohort": "intersection of registered origins at all five horizons; matched flights and origins for every model",
+  "endpoint": "registered end_sample at each nominal horizon; actual dt, tolerance 12ms",
+  "future_state_feedback": false,
+  "future_phase_frequency": "hold valid origin frequency; linear phase extrapolation",
+  "future_controls": "recorded event sequence for Control only; no independent intervention",
+  "source_experiment": "experiments/velocity_rate_gru64_round1",
+  "source_commit": "a3dd2c2b41fd9be58323a1737d4f84b2175b78cb",
+  "source_code_sha256": {
+    "scripts/evaluate_velocity_rate_long_horizon.py": "9e4ef9c846f5d12ddf09862f26931cc2c80310663b2bca1845b2a987387e0e71",
+    "src/system_identification/models/velocity_rate_gru.py": "f4a06a64e10e9e52cc77b2121a0eec77c9e08982b0899c2eac736f67116cdc67",
+    "scripts/prepare_velocity_rate_learning.py": "abd3fdc2704a76872a630792545a204f8aee2ef321cb56e21bb85baa142c0794"
+  }
+}

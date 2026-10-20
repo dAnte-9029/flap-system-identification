@@ -1,0 +1,8 @@
+{
+  "experiments/velocity_rate_gru64_round1/GRU-NoControl/seed_17/best.pt": "b3de2b93adf1083830a2a4e7dd793837187da092563b9879d2aaee5ea28fb933",
+  "experiments/velocity_rate_gru64_round1/GRU-NoControl/seed_29/best.pt": "7c836b971c243ac339b154deafeba1d3cf52e8c5a35eff545f041880e2fbe23a",
+  "experiments/velocity_rate_gru64_round1/GRU-NoControl/seed_43/best.pt": "1d35bb3cf0e76a69fdd218313e4263ddb57d68adc9fec065599fe9a05a6e6444",
+  "experiments/velocity_rate_gru64_round1/GRU-Control/seed_17/best.pt": "03e0c0f04c8b837f35d7772f54b8a9f51714da41057e4b6f7d27f55e130df91b",
+  "experiments/velocity_rate_gru64_round1/GRU-Control/seed_29/best.pt": "5571ead5645842f53975fa006b16422b81f1684daa6a0b612f8639bf3ba40889",
+  "experiments/velocity_rate_gru64_round1/GRU-Control/seed_43/best.pt": "0d6ff8d3eae228bc08a4b82b26c91d8ee7f16850c9d060e30e45813d0057b7df"
+}

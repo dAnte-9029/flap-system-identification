@@ -1,0 +1,86 @@
+{
+  "status": "passed",
+  "gpu": "NVIDIA GeForce RTX 4090",
+  "torch": "2.7.0+cu128",
+  "tf32": true,
+  "batch_size": 2048,
+  "checks": [
+    {
+      "model": "Kinematic Baseline",
+      "seed": -1,
+      "scipy_metric_max_difference": [
+        7.305974989435526e-07,
+        9.002677163749695e-07,
+        2.203561609803728e-05,
+        3.667987189537314e-07
+      ],
+      "quaternion_norm_max_error": 1.1920928955078125e-07
+    },
+    {
+      "model": "GRU-NoControl",
+      "seed": 17,
+      "scipy_metric_max_difference": [
+        4.818616954338495e-07,
+        5.768406277084637e-07,
+        1.1975138711761701e-05,
+        3.397226633339301e-07
+      ],
+      "quaternion_norm_max_error": 1.1920928955078125e-07
+    },
+    {
+      "model": "GRU-NoControl",
+      "seed": 29,
+      "scipy_metric_max_difference": [
+        5.888945722176686e-07,
+        5.749468012794523e-07,
+        9.785463163325403e-06,
+        5.241441947134717e-07
+      ],
+      "quaternion_norm_max_error": 1.1920928955078125e-07
+    },
+    {
+      "model": "GRU-NoControl",
+      "seed": 43,
+      "scipy_metric_max_difference": [
+        6.994842429719483e-07,
+        6.333971676042438e-07,
+        1.1897905309865564e-05,
+        4.058297697895341e-07
+      ],
+      "quaternion_norm_max_error": 1.1920928955078125e-07
+    },
+    {
+      "model": "GRU-Control",
+      "seed": 17,
+      "scipy_metric_max_difference": [
+        4.7518797252621425e-07,
+        6.097589118070346e-07,
+        1.0774382033673646e-05,
+        5.655634049972491e-07
+      ],
+      "quaternion_norm_max_error": 1.1920928955078125e-07
+    },
+    {
+      "model": "GRU-Control",
+      "seed": 29,
+      "scipy_metric_max_difference": [
+        4.776959672270209e-07,
+        6.031256329919188e-07,
+        1.1590358724333782e-05,
+        3.5902566786205625e-07
+      ],
+      "quaternion_norm_max_error": 1.1920928955078125e-07
+    },
+    {
+      "model": "GRU-Control",
+      "seed": 43,
+      "scipy_metric_max_difference": [
+        4.901732397755154e-07,
+        5.667779134910234e-07,
+        1.2184269060355746e-05,
+        3.567760238354367e-07
+      ],
+      "quaternion_norm_max_error": 1.1920928955078125e-07
+    }
+  ]
+}
