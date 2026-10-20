@@ -1,0 +1,32 @@
+{
+  "NoControl": {
+    "device": "cuda:0",
+    "steps": 11,
+    "updates": 3,
+    "loss": 3.8367228507995605,
+    "gradient_norms": [
+      4.375545501708984,
+      4.236922264099121,
+      4.2378387451171875
+    ],
+    "seconds": 0.3562138080596924,
+    "quaternion_norm_max_error": 1.1920928955078125e-07,
+    "translation_invariance": true,
+    "no_control_isolation": true
+  },
+  "Control": {
+    "device": "cuda:0",
+    "steps": 11,
+    "updates": 3,
+    "loss": 3.8365039825439453,
+    "gradient_norms": [
+      4.363540172576904,
+      4.208253383636475,
+      4.203245639801025
+    ],
+    "seconds": 0.08522820472717285,
+    "quaternion_norm_max_error": 1.1920928955078125e-07,
+    "translation_invariance": true,
+    "no_control_isolation": false
+  }
+}

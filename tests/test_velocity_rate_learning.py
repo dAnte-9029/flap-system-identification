@@ -106,3 +106,27 @@ def test_packed_samples_match_authoritative_loader(split):
             # A step boundary is inserted when no native event is exactly at the boundary.
             assert count in (len(controls),len(controls)+1)
             if len(controls): np.testing.assert_allclose(ev[-len(controls):,:4],controls,atol=1e-7)
+
+
+def test_body_rate_right_multiplication_against_scipy():
+    from scipy.spatial.transform import Rotation
+    rotation=Rotation.from_euler('xyz',[.4,-.6,.3])
+    s=torch.zeros(1,13,dtype=torch.float64)
+    q=rotation.as_quat(scalar_first=True)
+    s[:,6:10]=torch.tensor(q); s[:,10:13]=torch.tensor([[.4,-.2,.3]])
+    next_w=torch.tensor([[.8,.1,-.5]],dtype=torch.float64)
+    actual=integrate(s,s[:,3:6],next_w,torch.tensor([.023],dtype=torch.float64))
+    expected=rotation*Rotation.from_rotvec(.5*(s[0,10:13].numpy()+next_w[0].numpy())*.023)
+    np.testing.assert_allclose(actual[0,6:10],expected.as_quat(scalar_first=True),atol=1e-12)
+
+
+def test_ten_step_autonomous_feedback_and_history_padding():
+    m=VelocityRateGRU(norm(),control=False)
+    with torch.no_grad(): m.head.bias.fill_(1.)
+    x=fixture(); y=m(x)
+    expected=torch.arange(1,11,dtype=torch.float32)*.1
+    torch.testing.assert_close(y[0,:,3],expected)
+    # With initial v=0 and +0.1 m/s at every actual step, trapezoidal displacement.
+    torch.testing.assert_close(y[0,:,0],.001*torch.arange(1,11,dtype=torch.float32).square())
+    x['history'][0,26,3:6]=999
+    torch.testing.assert_close(y,m(x),atol=0,rtol=0)

@@ -1,0 +1,43 @@
+{
+  "partition": "validation",
+  "windows": 36970,
+  "flights": 27,
+  "evaluation_horizons_ms": [
+    20,
+    40,
+    60,
+    80,
+    100,
+    120,
+    140,
+    160,
+    180,
+    200
+  ],
+  "endpoint_policy": "nearest actual native timestamp; primary 100/200ms <=12ms, auxiliary curve points <=15ms; no state interpolation",
+  "actual_time_100ms_s": {
+    "count": 258790.0,
+    "mean": 0.10026299208402634,
+    "std": 0.004174393601715565,
+    "min": 0.08869799971580505,
+    "25%": 0.09856200218200684,
+    "50%": 0.09978500008583069,
+    "75%": 0.09979700297117233,
+    "max": 0.1097870022058487
+  },
+  "actual_time_200ms_s": {
+    "count": 258790.0,
+    "mean": 0.19996260106563568,
+    "std": 0.003581234021112323,
+    "min": 0.1895889937877655,
+    "25%": 0.19712699949741364,
+    "50%": 0.19957301020622253,
+    "75%": 0.19959799945354462,
+    "max": 0.20959199965000153
+  },
+  "metrics": "Euclidean vector error magnitude, SO3 geodesic angle; endpoint not waveform RMSE",
+  "curve": "same 200ms windows at every horizon; primary flight equal then seed mean",
+  "std": "sample ddof=1; across flights after seed averaging; separate across-seed SD in summary",
+  "bootstrap": "paired flights after seed averaging, 5000 replicates seed 20261020; exploratory, flight dependence within date remains",
+  "oracle": "true future v/w integrated from exactly the same available initial state; observation-chain diagnostic, not model input or lower bound"
+}

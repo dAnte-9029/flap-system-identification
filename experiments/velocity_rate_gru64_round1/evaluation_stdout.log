@@ -1,0 +1,7 @@
+evaluated Kinematic Baseline seed=-1: flight loss=4.227205, seconds=0.4
+evaluated GRU-NoControl seed=17: flight loss=0.742312, seconds=0.5
+evaluated GRU-NoControl seed=29: flight loss=0.742005, seconds=0.4
+evaluated GRU-NoControl seed=43: flight loss=0.743716, seconds=0.4
+evaluated GRU-Control seed=17: flight loss=0.714239, seconds=0.4
+evaluated GRU-Control seed=29: flight loss=0.714566, seconds=0.4
+evaluated GRU-Control seed=43: flight loss=0.708743, seconds=0.4

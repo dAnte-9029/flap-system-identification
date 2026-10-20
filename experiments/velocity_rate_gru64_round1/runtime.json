@@ -1,0 +1,12 @@
+{
+  "torch": "2.7.0+cu128",
+  "cuda": "12.8",
+  "gpu": "NVIDIA GeForce RTX 4090",
+  "load_seconds": 17.3810715675354,
+  "gpu_resident_data_bytes": 651645279,
+  "threads": 4,
+  "tf32": true,
+  "cudnn_deterministic": true,
+  "load_seconds_scope": "includes data load, train-only normalization fitting, and smoke; not isolated I/O latency",
+  "epoch_windows_per_second_scope": "training windows divided by full epoch wall time including validation"
+}

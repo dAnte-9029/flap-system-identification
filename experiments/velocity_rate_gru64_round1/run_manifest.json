@@ -1,0 +1,36 @@
+{
+  "base_commit": "10f963f8b7115e63e536fae3b3a562f768eaf277",
+  "training_code_commit": "f24f6d40ce6eb5f0f1feff747d499af8bf4bd51c",
+  "branch": "exp/velocity-rate-gru64-round1",
+  "source_sha256": {
+    "src/system_identification/models/velocity_rate_gru.py": "f4a06a64e10e9e52cc77b2121a0eec77c9e08982b0899c2eac736f67116cdc67",
+    "scripts/prepare_velocity_rate_learning.py": "abd3fdc2704a76872a630792545a204f8aee2ef321cb56e21bb85baa142c0794",
+    "scripts/train_velocity_rate_learning.py": "3f1dd26c7e33d81c376bf441874765531cf1cf3951b1223f05fcbb115d8ef1d8",
+    "scripts/evaluate_velocity_rate_learning.py": "e4e2632a6c15ad4344695432f8f594c0dec86bf9dea5926cf4cace24ce784a5c",
+    "tests/test_velocity_rate_learning.py": "d8eab177a60657eec13cb87cebe1c34d5f447d49959dbf879c16d29602d6f632",
+    "experiments/velocity_rate_gru64_round1/config.json": "1d1ee7b40649a3ab041937c6d3dee5905a7787697795365cd7d3b55f20d509bd"
+  },
+  "test_policy": "sealed; no test Parquet load, hash or evaluation",
+  "validation_status": "25 focused tests passed across two invocations, 2 existing opt-in materialized-data QA tests skipped; independent checkpoint and aggregation recomputation passed",
+  "control_ready": false,
+  "training_source_still_matches_pretraining_snapshot": true,
+  "postprocessing_source_sha256": {
+    "scripts/evaluate_velocity_rate_learning.py": "bb5cfb5b92fb90ca4eb6d3539e95497900a915758c8ea7912f01c0d9c8fc6035",
+    "scripts/report_velocity_rate_learning.py": "3bfefe80262451e9e560c9275ccd2acb88d865376127ad26adedb3cb4e50897c",
+    "scripts/verify_velocity_rate_learning.py": "2b486505a9c32f4ca155b83a92fa4ff4991b86b6d9224f99d5d1e1ebb2d9d4b1",
+    "tests/test_velocity_rate_learning.py": "6dfe81e5fb97a1a82d73140e956fb44adf07f8e1495ef6206f738a78e990d345"
+  },
+  "worktree": "/home/zn/flap-system-identification/.worktrees/velocity-rate-dataset-v1",
+  "dataset_root": "/home/zn/flap-system-identification/.worktrees/velocity-rate-dataset-v1/dataset/velocity_rate_multistep_v1",
+  "completed_seeds": [
+    17,
+    29,
+    43
+  ],
+  "formal_training_runs_completed": 6,
+  "postprocessing_notes": [
+    "Auxiliary curve points allow 15ms native-nearest tolerance; main 100/200ms endpoints retain 12ms.",
+    "Endpoint aggregation converted to float64 to remove summation-order drift.",
+    "Checkpoint numerical replay uses original evaluation batch size; TF32 shape sensitivity recorded separately."
+  ]
+}

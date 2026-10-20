@@ -1,0 +1,14 @@
+{
+  "train": {
+    "history_phase_valid_fraction": 0.9892865694700543,
+    "history_frequency_valid_fraction": 0.9892865694700543,
+    "origin_phase_invalid_windows": 1181,
+    "origin_frequency_invalid_windows": 1181
+  },
+  "validation": {
+    "history_phase_valid_fraction": 1.0,
+    "history_frequency_valid_fraction": 1.0,
+    "origin_phase_invalid_windows": 0,
+    "origin_frequency_invalid_windows": 0
+  }
+}

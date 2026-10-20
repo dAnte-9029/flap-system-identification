@@ -1,0 +1,9 @@
+{
+  "control_change_thresholds_train_only": [
+    0.2454228080574946,
+    0.35936795745302674
+  ],
+  "control_change_definition": "L2 of per-channel peak-to-peak over history and future event tape; normalized command units",
+  "high_dynamics_definition": "dataset native flag; may use future observations for diagnostic grouping only",
+  "review_definition": "dataset full-window REVIEW overlap; never a model feature"
+}

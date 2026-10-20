@@ -1,0 +1,8 @@
+model,seed,validation_flight_loss,validation_window_loss
+Kinematic Baseline,-1,4.2272053,4.2740827
+GRU-NoControl,17,0.74231184,0.7475419
+GRU-NoControl,29,0.7420053,0.74701476
+GRU-NoControl,43,0.74371636,0.7488118
+GRU-Control,17,0.714239,0.7187624
+GRU-Control,29,0.714566,0.7186951
+GRU-Control,43,0.7087433,0.71375847

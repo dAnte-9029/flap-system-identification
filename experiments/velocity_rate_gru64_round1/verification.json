@@ -1,0 +1,23 @@
+{
+  "status": "passed",
+  "test_partition_opened": false,
+  "baseline_full_validation_scipy_max_error_by_metric": [
+    3.221228174875995e-07,
+    1.9726369071548788e-07,
+    3.459908091718589e-05,
+    7.886629305176029e-07
+  ],
+  "checkpoint_replay_windows_per_model": 182,
+  "checkpoint_scipy_metric_max_difference": 4.283612158040295e-06,
+  "flight_aggregation_max_difference": 4.440892098500626e-16,
+  "window_aggregation_max_difference": 3.774758283725532e-15,
+  "checkpoint_selection_max_difference": 1.0781021120287448e-07,
+  "caches_and_checkpoints_hash_verified": true,
+  "tf32_different_batch_shape_metric_sensitivity": [
+    6.961639597712066e-05,
+    0.0009091777704390847,
+    0.006233074110594705,
+    0.0011751166577238514
+  ],
+  "whole_log_date_split_metadata_verified": true
+}

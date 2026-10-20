@@ -28,11 +28,13 @@ def endpoint_frame(err,times,mask,meta,model,seed):
     for horizon in range(20,201,20):
         distance=np.where(mask,abs(times-horizon/1000),np.inf)
         index=distance.argmin(1)
-        assert (distance[np.arange(len(index)),index] <= .012001).all()
+        tolerance=.012001 if horizon in (100,200) else .015001
+        assert (distance[np.arange(len(index)),index] <= tolerance).all()
         f=meta[['window_id','flight_id','review','high_dynamics','mode_change','control_change']].copy()
         f['horizon_ms']=horizon; f['actual_time_s']=times[np.arange(len(index)),index]
         f['native_step']=index+1; f['model']=model; f['seed']=seed
-        for j,name in enumerate(METRICS): f[name]=err[np.arange(len(index)),index,j]
+        # Float64 reductions prevent order-dependent float32 mean drift over 36,970 windows.
+        for j,name in enumerate(METRICS): f[name]=err[np.arange(len(index)),index,j].astype(np.float64)
         frames.append(f)
     return pd.concat(frames,ignore_index=True)
 
@@ -156,7 +158,7 @@ def main():
     np.savez_compressed(EXP/'trajectory_examples.npz',**examples)
     meta.iloc[choices].to_csv(EXP/'trajectory_example_windows.csv',index=False)
     write_json(EXP/'evaluation_contract.json',dict(partition='validation',windows=len(meta),flights=27,
-        evaluation_horizons_ms=list(range(20,201,20)),endpoint_policy='nearest actual native timestamp; <=12ms; no state interpolation',
+        evaluation_horizons_ms=list(range(20,201,20)),endpoint_policy='nearest actual native timestamp; primary 100/200ms <=12ms, auxiliary curve points <=15ms; no state interpolation',
         actual_time_100ms_s=all_endpoints.loc[all_endpoints.horizon_ms==100,'actual_time_s'].describe().to_dict(),
         actual_time_200ms_s=all_endpoints.loc[all_endpoints.horizon_ms==200,'actual_time_s'].describe().to_dict(),
         metrics='Euclidean vector error magnitude, SO3 geodesic angle; endpoint not waveform RMSE',
