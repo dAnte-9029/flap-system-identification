@@ -1,0 +1,50 @@
+[
+  {
+    "horizon_ms": 500,
+    "channel": "motor",
+    "pair_index": 1537039,
+    "figure": "results/figures/match_500ms_motor_1537039.png"
+  },
+  {
+    "horizon_ms": 500,
+    "channel": "rudder",
+    "pair_index": 1136852,
+    "figure": "results/figures/match_500ms_rudder_1136852.png"
+  },
+  {
+    "horizon_ms": 500,
+    "channel": "any",
+    "pair_index": 927443,
+    "figure": "results/figures/match_500ms_any_927443.png"
+  },
+  {
+    "horizon_ms": 500,
+    "channel": "motor_strengthened",
+    "pair_index": 1540481,
+    "figure": "results/figures/match_500ms_motor_strengthened_1540481.png"
+  },
+  {
+    "horizon_ms": 1000,
+    "channel": "motor",
+    "pair_index": 1501523,
+    "figure": "results/figures/match_1000ms_motor_1501523.png"
+  },
+  {
+    "horizon_ms": 1000,
+    "channel": "rudder",
+    "pair_index": 1099813,
+    "figure": "results/figures/match_1000ms_rudder_1099813.png"
+  },
+  {
+    "horizon_ms": 1000,
+    "channel": "any",
+    "pair_index": 897495,
+    "figure": "results/figures/match_1000ms_any_897495.png"
+  },
+  {
+    "horizon_ms": 1000,
+    "channel": "motor_strengthened",
+    "pair_index": 1501523,
+    "figure": "results/figures/match_1000ms_motor_strengthened_1501523.png"
+  }
+]

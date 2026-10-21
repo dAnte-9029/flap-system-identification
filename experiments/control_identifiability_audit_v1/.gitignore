@@ -1,0 +1,3 @@
+# Reproducible exhaustive-pair archives are retained locally and hashed in archive_manifest.json.
+results/pairs_*.parquet
+results/windows_*.parquet

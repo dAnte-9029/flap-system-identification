@@ -1,0 +1,6 @@
+{
+  "future_to_history_gap_ratios": [1.0, 2.0],
+  "gap_reference": "max(full_history_command_RMS_gap, initial_command_absolute_gap)",
+  "recommended_strengthened_subset_ratio": 2.0,
+  "notes": "Additional sensitivity beyond the predeclared primary pair rule; does not use future motion outcomes."
+}

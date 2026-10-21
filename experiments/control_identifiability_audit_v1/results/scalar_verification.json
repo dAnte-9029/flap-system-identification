@@ -1,0 +1,20 @@
+{
+  "results": [
+    {
+      "horizon_ms": 500,
+      "scalar_recomputed_pairs": 100,
+      "history_and_initial_sources_past_only": true,
+      "command_integral_verified": true,
+      "all_registered_artifact_hashes_rechecked": true
+    },
+    {
+      "horizon_ms": 1000,
+      "scalar_recomputed_pairs": 100,
+      "history_and_initial_sources_past_only": true,
+      "command_integral_verified": true,
+      "all_registered_artifact_hashes_rechecked": true
+    }
+  ],
+  "seed": 20261021,
+  "code_sha256": "b5f3e11d81f830142490605e437b5733e6f5db2a0c5a348bcd646913df2fe758"
+}

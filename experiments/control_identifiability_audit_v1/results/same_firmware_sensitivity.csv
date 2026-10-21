@@ -1,0 +1,11 @@
+horizon_ms,channel,raw_pairs,nonoverlap_pairs,candidate_flights,nonoverlap_flights
+500,any,749,260,110,110
+500,motor,43,24,24,24
+500,left_elevon,0,0,0,0
+500,right_elevon,0,0,0,0
+500,rudder,2,2,4,4
+1000,any,1111,269,117,116
+1000,motor,11,7,11,10
+1000,left_elevon,0,0,0,0
+1000,right_elevon,0,0,0,0
+1000,rudder,1,1,2,2

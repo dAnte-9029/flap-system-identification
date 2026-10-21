@@ -1,0 +1,1 @@
+[{'horizon_ms': 500, 'scalar_recomputed_pairs': 100, 'history_and_initial_sources_past_only': True, 'command_integral_verified': True, 'all_registered_artifact_hashes_rechecked': True}, {'horizon_ms': 1000, 'scalar_recomputed_pairs': 100, 'history_and_initial_sources_past_only': True, 'command_integral_verified': True, 'all_registered_artifact_hashes_rechecked': True}]

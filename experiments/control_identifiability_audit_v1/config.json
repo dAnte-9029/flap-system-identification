@@ -1,0 +1,74 @@
+{
+  "dataset_id": "velocity_rate_multistep_v1",
+  "registry": "configs/data/velocity_rate_dataset_registry.yaml",
+  "base_commit": "8964b44933c7364c066d3cb09440a6d2a7f558f1",
+  "partitions": [
+    "train",
+    "validation"
+  ],
+  "history_us": 500000,
+  "horizons_us": [
+    500000,
+    1000000
+  ],
+  "history_grid_points": 26,
+  "event_threshold": [
+    0.02,
+    0.05,
+    0.05,
+    0.02
+  ],
+  "event_refractory_us": 100000,
+  "event_sensitivity": [
+    0.5,
+    1.0,
+    2.0
+  ],
+  "future_contrast": [
+    0.05,
+    0.1,
+    0.1,
+    0.05
+  ],
+  "other_channel_max": [
+    0.02,
+    0.04,
+    0.04,
+    0.02
+  ],
+  "contrast_sensitivity": [
+    0.5,
+    1.0,
+    2.0
+  ],
+  "minimum_contrast_fraction": 0.2,
+  "minimum_contrast_duration_s": 0.1,
+  "calipers": {
+    "strict": {
+      "v": 0.5,
+      "R_deg": 10,
+      "w": 0.5,
+      "f": 0.3,
+      "u": 0.03
+    },
+    "primary": {
+      "v": 0.75,
+      "R_deg": 15,
+      "w": 0.75,
+      "f": 0.5,
+      "u": 0.05
+    },
+    "relaxed": {
+      "v": 1.5,
+      "R_deg": 30,
+      "w": 1.5,
+      "f": 1.0,
+      "u": 0.1
+    }
+  },
+  "pairing": "all cross-log pairs, same hardware UUID, sampling group and stable historical nav_state; exact radius search, no neighbor cap",
+  "max_ratio_difference": 0.001,
+  "source_spotcheck_per_group_split": 1,
+  "seed": 20261021,
+  "initial_state_and_control_calipers": "same physical thresholds as full-history RMS"
+}

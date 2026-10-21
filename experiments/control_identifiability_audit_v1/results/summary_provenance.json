@@ -1,0 +1,14 @@
+{
+  "code_sha256": "462c4742113d6ea18de437c5a214768cb7338487feaa05295b3bcf87a0b93853",
+  "audit_code_sha256": "4fe346a09e426e89d167e3b13f1a6382cde5ebb146648c96858dec56384aa90f",
+  "diagnostic_config_sha256": "0ef5e9631c213b31b5c14f646e460c279859fff07bc87c9174433fe1bbb0f2ce",
+  "same_hardware_required": true,
+  "hardware_counts": {
+    "000600000000353438323233510d00310036": 156,
+    "000600000000393039303533510b00430031": 4,
+    "unknown": 1
+  },
+  "firmware_count": 18,
+  "future_state_targets_read": false,
+  "future_outcomes_used_for_selection": false
+}

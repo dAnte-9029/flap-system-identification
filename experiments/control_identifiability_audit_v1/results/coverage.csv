@@ -1,0 +1,5 @@
+split,sampling_group,flights,command_rows,duration_s
+train,main_50hz,94,663593,13255.279116
+validation,main_50hz,27,218955,4374.801818
+train,sparse_10hz,28,40262,4022.672898
+validation,sparse_10hz,12,18393,1836.5481889999999

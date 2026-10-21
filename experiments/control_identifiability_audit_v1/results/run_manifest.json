@@ -1,0 +1,163 @@
+{
+  "manifest_sha256": "8afb8623bf7174e4da5b2044f644331b8b251433fed3576f6dcdab470935bcb5",
+  "checked_artifact_sha256": {
+    "flights.csv": "b9abc9f02fb84c73576dbe96fe2fe19353d81f6eebee08d83b78ec960ae5d26b",
+    "flight_provenance.json": "d10b8c336f2b8491d10cea7bef51744b5042234fc2e51b5abb1c07b782bd8f6c",
+    "split_manifest.json": "aeb5d53a4dc1f77343b06ff281b8121dd5e3414e9e1169179e7b70ecfbf86f8c",
+    "build_config.yaml": "b7223a017ef3c57d20325a437b0fe6b661daafb3ec288a5c1ab06bdcf90cefbd",
+    "samples_train.parquet": "47a0d8d396d795fefa17ae0143484b7d63ef809f6bb3dfb8409ea75d5166f488",
+    "windows_train.parquet": "3ecef154a0268e9524dff16e358e453a4c92802414d0d8c61e718ad8ed79fbd0",
+    "native_actuator_motors_train.parquet": "480308697302f23de4733d17f0689bc6e0bc4db5920ca4af285325a55425b9e2",
+    "native_actuator_servos_train.parquet": "947157099b1c8471cfab493d5df66fc47790bf42296b608eeadcce750aee98aa",
+    "samples_validation.parquet": "89f42ca256c3d04899d6824c0f9112f83aecfc7b82e6247347f14f3c97c33dae",
+    "windows_validation.parquet": "11007bc803618375024d571425fbcfa89f0adf722e61d2b00c6b659fd77d4f8c",
+    "native_actuator_motors_validation.parquet": "56cc4148790799e06cebe1aaf9f566e057e47bf19d844a8f824a02c3f1a2e5f6",
+    "native_actuator_servos_validation.parquet": "653df9cbcfb9dae12595682e5d8ec928eaa924b62b0ae889a9eb8c5bc1789c5d",
+    "/home/zn/QgcLogs/analysis_out/flight_segments_20260906_20261013_usable.csv": "9e5647105658f726a1e065457f6e64139af6ce98817f6682331350323eb091e6",
+    "/home/zn/QgcLogs/analysis_out/ekf_window_exclusions_20260906_20261013/excluded_intervals.csv": "7d69cc063495313b993dc72292392e3348c460ea75caaf2bd17a09bc09aa1d6f",
+    "/home/zn/QgcLogs/analysis_out/ekf_window_exclusions_20260906_20261013/review_intervals.csv": "9f63affa104fae9683d248f7c6ca2431a00a7b7b935335ebf7b6426d87fcc52d"
+  },
+  "test_artifacts_opened": false,
+  "partitions": [
+    "train",
+    "validation"
+  ],
+  "phase_contract": {
+    "counts_per_motor_revolution": 4096,
+    "ratio_source": "per_log_FLAP_RATIO",
+    "physical_ratio_independently_verified": false,
+    "absolute_zero_shared_across_logs": false,
+    "history_source": "encoder_count_log_origin_relative",
+    "wing_phase_history_allowed": false
+  },
+  "split_manifest_sha256": "aeb5d53a4dc1f77343b06ff281b8121dd5e3414e9e1169179e7b70ecfbf86f8c",
+  "sealed_flights": 33,
+  "coverage": {
+    "coverage": [
+      {
+        "split": "train",
+        "sampling_group": "main_50hz",
+        "flights": 94,
+        "command_rows": 663593,
+        "duration_s": 13255.279116
+      },
+      {
+        "split": "validation",
+        "sampling_group": "main_50hz",
+        "flights": 27,
+        "command_rows": 218955,
+        "duration_s": 4374.801818
+      },
+      {
+        "split": "train",
+        "sampling_group": "sparse_10hz",
+        "flights": 28,
+        "command_rows": 40262,
+        "duration_s": 4022.672898
+      },
+      {
+        "split": "validation",
+        "sampling_group": "sparse_10hz",
+        "flights": 12,
+        "command_rows": 18393,
+        "duration_s": 1836.5481889999999
+      }
+    ],
+    "total_effective_seconds": 23489.302020999996,
+    "native_event_rows": 941203,
+    "raw_samples": 947397,
+    "valid_samples": 940700
+  },
+  "source_spotchecks": [
+    {
+      "flight_id": "01a4a8c5def815f65ead5b70f05854cb388e6874bbc49344ecf0bccdfb5ace2b:1",
+      "split": "train",
+      "group": "main_50hz",
+      "log_path": "9.24数据/log_10_2026-9-24-14-17-12.ulg",
+      "sha256": "01a4a8c5def815f65ead5b70f05854cb388e6874bbc49344ecf0bccdfb5ace2b",
+      "native_command_values_and_timestamps_exact": true,
+      "mapping": {
+        "CA_SV_CS0_TYPE": 5,
+        "CA_SV_CS1_TYPE": 6,
+        "CA_SV_CS2_TYPE": 4,
+        "PWM_MAIN_FUNC1": 201,
+        "PWM_MAIN_FUNC2": 202,
+        "PWM_MAIN_FUNC3": 101,
+        "PWM_MAIN_FUNC5": 203
+      }
+    },
+    {
+      "flight_id": "00d803ef294b0e2907520c488d89345a9ef54f2936940828ab3e1df104d715b2:1",
+      "split": "train",
+      "group": "sparse_10hz",
+      "log_path": "10.10数据/log_1_2026-10-10-17-29-28.ulg",
+      "sha256": "00d803ef294b0e2907520c488d89345a9ef54f2936940828ab3e1df104d715b2",
+      "native_command_values_and_timestamps_exact": true,
+      "mapping": {
+        "CA_SV_CS0_TYPE": 5,
+        "CA_SV_CS1_TYPE": 6,
+        "CA_SV_CS2_TYPE": 4,
+        "PWM_MAIN_FUNC1": 201,
+        "PWM_MAIN_FUNC2": 202,
+        "PWM_MAIN_FUNC3": 101,
+        "PWM_MAIN_FUNC5": 203
+      }
+    },
+    {
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "split": "validation",
+      "group": "main_50hz",
+      "log_path": "2026.9.7/log_21_2026-9-7-05-54-56.ulg",
+      "sha256": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088",
+      "native_command_values_and_timestamps_exact": true,
+      "mapping": {
+        "CA_SV_CS0_TYPE": 5,
+        "CA_SV_CS1_TYPE": 6,
+        "CA_SV_CS2_TYPE": 4,
+        "PWM_MAIN_FUNC1": 201,
+        "PWM_MAIN_FUNC2": 202,
+        "PWM_MAIN_FUNC3": 101,
+        "PWM_MAIN_FUNC5": 203
+      }
+    },
+    {
+      "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+      "split": "validation",
+      "group": "sparse_10hz",
+      "log_path": "10.11数据-1/log_3_2026-10-11-08-20-42.ulg",
+      "sha256": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2",
+      "native_command_values_and_timestamps_exact": true,
+      "mapping": {
+        "CA_SV_CS0_TYPE": 5,
+        "CA_SV_CS1_TYPE": 6,
+        "CA_SV_CS2_TYPE": 4,
+        "PWM_MAIN_FUNC1": 201,
+        "PWM_MAIN_FUNC2": 202,
+        "PWM_MAIN_FUNC3": 101,
+        "PWM_MAIN_FUNC5": 203
+      }
+    }
+  ],
+  "search": [
+    {
+      "horizon_ms": 500,
+      "radius_candidates": 9956874,
+      "loose_history_pairs": 1576896,
+      "search": "exhaustive radius, no KNN cap"
+    },
+    {
+      "horizon_ms": 1000,
+      "radius_candidates": 9678522,
+      "loose_history_pairs": 1535597,
+      "search": "exhaustive radius, no KNN cap"
+    }
+  ],
+  "base_commit": "8964b44933c7364c066d3cb09440a6d2a7f558f1",
+  "head_at_execution": "8964b44933c7364c066d3cb09440a6d2a7f558f1",
+  "python": "/home/zn/anaconda3/envs/flap-train-gpu/bin/python",
+  "config_sha256": "9f76d0da7a5540591f76a12d04ac044fa0b3176559d30506991ffa622507ea18",
+  "code_sha256": "4fe346a09e426e89d167e3b13f1a6382cde5ebb146648c96858dec56384aa90f",
+  "elapsed_seconds": 166.11620497703552,
+  "targets_read": false,
+  "neural_models_loaded": false
+}

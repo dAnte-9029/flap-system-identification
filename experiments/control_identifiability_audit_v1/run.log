@@ -1,0 +1,43 @@
+hashes verified
+{'coverage': [{'split': 'train', 'sampling_group': 'main_50hz', 'flights': 94, 'command_rows': 663593, 'duration_s': 13255.279116}, {'split': 'validation', 'sampling_group': 'main_50hz', 'flights': 27, 'command_rows': 218955, 'duration_s': 4374.801818}, {'split': 'train', 'sampling_group': 'sparse_10hz', 'flights': 28, 'command_rows': 40262, 'duration_s': 4022.672898}, {'split': 'validation', 'sampling_group': 'sparse_10hz', 'flights': 12, 'command_rows': 18393, 'duration_s': 1836.5481889999999}], 'total_effective_seconds': 23489.302020999996, 'native_event_rows': 941203, 'raw_samples': 947397, 'valid_samples': 940700}
+eligible 500000 177205
+radius 500000 main_50hz 3.0 89086
+radius 500000 main_50hz 4.0 151
+radius 500000 main_50hz 15.0 55376
+radius 500000 sparse_10hz 3.0 20077
+radius 500000 sparse_10hz 15.0 12515
+full-history pairs 500000 1576896 radius candidates 9956874
+control contrasts 500000 0
+control contrasts 500000 409600
+control contrasts 500000 819200
+control contrasts 500000 1228800
+summarize 500000 strict 0.5
+summarize 500000 strict 1.0
+summarize 500000 strict 2.0
+summarize 500000 primary 0.5
+summarize 500000 primary 1.0
+summarize 500000 primary 2.0
+summarize 500000 relaxed 0.5
+summarize 500000 relaxed 1.0
+summarize 500000 relaxed 2.0
+eligible 1000000 174354
+radius 1000000 main_50hz 3.0 87614
+radius 1000000 main_50hz 4.0 150
+radius 1000000 main_50hz 15.0 54116
+radius 1000000 sparse_10hz 3.0 20077
+radius 1000000 sparse_10hz 15.0 12397
+full-history pairs 1000000 1535597 radius candidates 9678522
+control contrasts 1000000 0
+control contrasts 1000000 409600
+control contrasts 1000000 819200
+control contrasts 1000000 1228800
+summarize 1000000 strict 0.5
+summarize 1000000 strict 1.0
+summarize 1000000 strict 2.0
+summarize 1000000 primary 0.5
+summarize 1000000 primary 1.0
+summarize 1000000 primary 2.0
+summarize 1000000 relaxed 0.5
+summarize 1000000 relaxed 1.0
+summarize 1000000 relaxed 2.0
+DONE 166.1163969039917
