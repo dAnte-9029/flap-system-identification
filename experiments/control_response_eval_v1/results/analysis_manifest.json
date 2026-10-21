@@ -1,0 +1,7 @@
+{
+  "code_sha256": "2271ecb4f49e1c1e4d6ca5f99ccb22803cfe2d4f1c0995a6ec4242cb7d8bcb9e",
+  "aggregation": "equal flight: each flight averages incident pairs; then equal flights; seeds average squared errors, not trajectories",
+  "direction": "positive dot product (>0 cosine) only above train small-control amplitude p90/floor; zero predictions incorrect",
+  "uncertainty": "connected components of the shared-flight pair graph; fewer than five components => no interval",
+  "noise_reference": "observational small-command-difference pairs, not pure sensor noise or a causal lower bound"
+}

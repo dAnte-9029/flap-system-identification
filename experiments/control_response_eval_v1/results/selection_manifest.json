@@ -1,0 +1,15 @@
+{
+  "audit_files_sha256": {
+    "results/pairs_500ms.parquet": "53f0f8680765f27ca92e22d3fd76177cd7f037bcb307a14341a16bfa73700823",
+    "results/windows_500ms.parquet": "6a4135de33d59b7b2ea1b83b60d6070ef8066d072069d9adb25cb2156e457424",
+    "config.json": "9f76d0da7a5540591f76a12d04ac044fa0b3176559d30506991ffa622507ea18",
+    "audit.py": "4fe346a09e426e89d167e3b13f1a6382cde5ebb146648c96858dec56384aa90f",
+    "results/response_evaluation_support.csv": "46267a7b020a136f46e8d0fab912d789929fcb37b8b1f55db0ebcd6dbcaac39c",
+    "results/pairs_1000ms.parquet": "48533ec72fbb934703077da8a0f55f53fa5f6a7ebc7bec79edd796bf774d5e0f",
+    "results/windows_1000ms.parquet": "697e514a3489ee713f0b9a2a335d91f74291939e98946a432e51009e4463f8fe"
+  },
+  "cohort_sha256": "a3cad9915d2a9efb38773bea0755355ba828c2c8f21d1108fa6501a9c361c944",
+  "selection_inputs": "archived historical match errors and command differences only",
+  "future_outcomes_used": false,
+  "rules": "original audit calipers and disjoint_pairs reused; no threshold relaxation"
+}

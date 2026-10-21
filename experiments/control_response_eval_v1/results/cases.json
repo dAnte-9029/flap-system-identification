@@ -1,0 +1,50 @@
+[
+  {
+    "pair_uid": "500:1116059",
+    "horizon_ms": 500,
+    "label": "largest_improvement",
+    "flight_a": "c1b477a8bc2758431548cbfe085aa083f8d52725c18ca0daa588fe59d7d8dfc3:1",
+    "flight_b": "c728467cbea2bad08f7f060c6498120efe8cd4f54a3b5cf156d82939cf174480:1",
+    "selection": "post-hoc rank of frozen-cohort normalized MSE gain; not used for cohort, metrics or model selection",
+    "gain_score": 0.5002607038925988,
+    "experiment_A": "results/figures/A_500ms_largest_improvement.png",
+    "experiment_B": "results/figures/B_500ms_largest_improvement.png",
+    "commands_and_paths": "results/figures/controls_paths_500ms_largest_improvement.png"
+  },
+  {
+    "pair_uid": "500:1105863",
+    "horizon_ms": 500,
+    "label": "worst_relative_case",
+    "flight_a": "8c24613d6cd518a0391183fe8c8f51198d2d1af8b05962081aa36180eb12f5fb:1",
+    "flight_b": "c1b477a8bc2758431548cbfe085aa083f8d52725c18ca0daa588fe59d7d8dfc3:1",
+    "selection": "post-hoc rank of frozen-cohort normalized MSE gain; not used for cohort, metrics or model selection",
+    "gain_score": -0.3014323794106908,
+    "experiment_A": "results/figures/A_500ms_worst_relative_case.png",
+    "experiment_B": "results/figures/B_500ms_worst_relative_case.png",
+    "commands_and_paths": "results/figures/controls_paths_500ms_worst_relative_case.png"
+  },
+  {
+    "pair_uid": "1000:1072687",
+    "horizon_ms": 1000,
+    "label": "largest_improvement",
+    "flight_a": "8c24613d6cd518a0391183fe8c8f51198d2d1af8b05962081aa36180eb12f5fb:1",
+    "flight_b": "5bc50ebb95abd5fb7653cf7e9dd046323e866b146da223125bb1bb8f3ef11f9d:1",
+    "selection": "post-hoc rank of frozen-cohort normalized MSE gain; not used for cohort, metrics or model selection",
+    "gain_score": 1.023640303779323,
+    "experiment_A": "results/figures/A_1000ms_largest_improvement.png",
+    "experiment_B": "results/figures/B_1000ms_largest_improvement.png",
+    "commands_and_paths": "results/figures/controls_paths_1000ms_largest_improvement.png"
+  },
+  {
+    "pair_uid": "1000:1043073",
+    "horizon_ms": 1000,
+    "label": "worst_relative_case",
+    "flight_a": "9258b097970593d85c54daa5d13905f8b7b1c9bcab8d800ddd78e14e6be8f0c5:1",
+    "flight_b": "c728467cbea2bad08f7f060c6498120efe8cd4f54a3b5cf156d82939cf174480:1",
+    "selection": "post-hoc rank of frozen-cohort normalized MSE gain; not used for cohort, metrics or model selection",
+    "gain_score": -0.08905757437135498,
+    "experiment_A": "results/figures/A_1000ms_worst_relative_case.png",
+    "experiment_B": "results/figures/B_1000ms_worst_relative_case.png",
+    "commands_and_paths": "results/figures/controls_paths_1000ms_worst_relative_case.png"
+  }
+]

@@ -1,0 +1,10 @@
+{
+  "raw_target_windows": 889,
+  "response_scalar_values": 78960,
+  "max_vector_difference": 0.0,
+  "max_quaternion_difference_deg": 2.7533531010703882e-14,
+  "max_flight_aggregate_difference": 1.7763568394002505e-15,
+  "equivalent_control_intervals": 32909,
+  "checkpoint_and_dataset_hashes_rechecked": true,
+  "code_sha256": "87f7a4136c205821b53b213bc8fcaaaf3792df9d4144fa53c756b23d61afb0a3"
+}

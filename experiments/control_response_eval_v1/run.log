@@ -1,0 +1,29 @@
+horizon_ms  cohort         split
+500         signal         train         173
+                           validation     21
+            small_control  train          23
+                           validation      1
+            strengthened   train         148
+                           validation     18
+            strict         train           4
+1000        signal         train         177
+                           validation     24
+            small_control  train           4
+                           validation      1
+            strengthened   train         160
+                           validation     21
+            strict         train           4
+dtype: int64
+evaluated 500 GRU-NoControl_17 0.35
+evaluated 500 GRU-NoControl_29 0.23
+evaluated 500 GRU-NoControl_43 0.19
+evaluated 500 GRU-Control_17 0.25
+evaluated 500 GRU-Control_29 0.18
+evaluated 500 GRU-Control_43 0.21
+evaluated 1000 GRU-NoControl_17 0.31
+evaluated 1000 GRU-NoControl_29 0.32
+evaluated 1000 GRU-NoControl_43 0.31
+evaluated 1000 GRU-Control_17 0.34
+evaluated 1000 GRU-Control_29 0.31
+evaluated 1000 GRU-Control_43 0.3
+COMPLETE 20.921911001205444

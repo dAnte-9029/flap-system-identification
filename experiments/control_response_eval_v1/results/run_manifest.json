@@ -1,0 +1,231 @@
+{
+  "config": {
+    "audit_source": "/home/zn/flap-system-identification/.worktrees/control-identifiability-audit-v1/experiments/control_identifiability_audit_v1",
+    "audit_commit": "1745345d06749c6b127e43660a9bf1947d058bea",
+    "model_commit": "8964b44933c7364c066d3cb09440a6d2a7f558f1",
+    "model_root": "experiments/velocity_rate_gru64_horizon_training_v1/train_1000ms",
+    "seeds": [
+      17,
+      29,
+      43
+    ],
+    "sampling_group": "main_50hz",
+    "partitions": [
+      "train",
+      "validation"
+    ],
+    "horizons_ms": [
+      500,
+      1000
+    ],
+    "time_points_ms": [
+      100,
+      200,
+      300,
+      400,
+      500,
+      600,
+      700,
+      800,
+      900,
+      1000
+    ],
+    "cohorts": [
+      "signal",
+      "strengthened",
+      "strict",
+      "small_control"
+    ],
+    "small_control_rms_limits": [
+      0.02,
+      0.04,
+      0.04,
+      0.02
+    ],
+    "direction_reference": "train small_control response amplitude p90 at each horizon/time/metric",
+    "direction_floors": {
+      "velocity": 0.1,
+      "rate": 0.1,
+      "position": 0.02,
+      "attitude": 1.0
+    },
+    "direction_sensitivity_multipliers": [
+      0.5,
+      1.0,
+      2.0
+    ],
+    "bootstrap_replicates": 5000,
+    "minimum_components_for_interval": 5,
+    "random_seed": 20261021,
+    "device": "cuda:0",
+    "batch_size": 256,
+    "swap_timing": "shift donor publication times by recipient_decision - donor_decision; keep recipient controls before decision; donor last command held after donor H only if required by native endpoint tolerance",
+    "model_dt": "unchanged native measurement differences, including native endpoint tolerance",
+    "test_policy": "sealed; never read test artifacts or test flight logs"
+  },
+  "data": {
+    "manifest_sha256": "8afb8623bf7174e4da5b2044f644331b8b251433fed3576f6dcdab470935bcb5",
+    "checked_artifact_sha256": {
+      "flights.csv": "b9abc9f02fb84c73576dbe96fe2fe19353d81f6eebee08d83b78ec960ae5d26b",
+      "flight_provenance.json": "d10b8c336f2b8491d10cea7bef51744b5042234fc2e51b5abb1c07b782bd8f6c",
+      "split_manifest.json": "aeb5d53a4dc1f77343b06ff281b8121dd5e3414e9e1169179e7b70ecfbf86f8c",
+      "build_config.yaml": "b7223a017ef3c57d20325a437b0fe6b661daafb3ec288a5c1ab06bdcf90cefbd",
+      "samples_train.parquet": "47a0d8d396d795fefa17ae0143484b7d63ef809f6bb3dfb8409ea75d5166f488",
+      "windows_train.parquet": "3ecef154a0268e9524dff16e358e453a4c92802414d0d8c61e718ad8ed79fbd0",
+      "native_actuator_motors_train.parquet": "480308697302f23de4733d17f0689bc6e0bc4db5920ca4af285325a55425b9e2",
+      "native_actuator_servos_train.parquet": "947157099b1c8471cfab493d5df66fc47790bf42296b608eeadcce750aee98aa",
+      "samples_validation.parquet": "89f42ca256c3d04899d6824c0f9112f83aecfc7b82e6247347f14f3c97c33dae",
+      "windows_validation.parquet": "11007bc803618375024d571425fbcfa89f0adf722e61d2b00c6b659fd77d4f8c",
+      "native_actuator_motors_validation.parquet": "56cc4148790799e06cebe1aaf9f566e057e47bf19d844a8f824a02c3f1a2e5f6",
+      "native_actuator_servos_validation.parquet": "653df9cbcfb9dae12595682e5d8ec928eaa924b62b0ae889a9eb8c5bc1789c5d",
+      "/home/zn/QgcLogs/analysis_out/flight_segments_20260906_20261013_usable.csv": "9e5647105658f726a1e065457f6e64139af6ce98817f6682331350323eb091e6",
+      "/home/zn/QgcLogs/analysis_out/ekf_window_exclusions_20260906_20261013/excluded_intervals.csv": "7d69cc063495313b993dc72292392e3348c460ea75caaf2bd17a09bc09aa1d6f",
+      "/home/zn/QgcLogs/analysis_out/ekf_window_exclusions_20260906_20261013/review_intervals.csv": "9f63affa104fae9683d248f7c6ca2431a00a7b7b935335ebf7b6426d87fcc52d"
+    },
+    "test_artifacts_opened": false,
+    "partitions": [
+      "train",
+      "validation"
+    ],
+    "phase_contract": {
+      "counts_per_motor_revolution": 4096,
+      "ratio_source": "per_log_FLAP_RATIO",
+      "physical_ratio_independently_verified": false,
+      "absolute_zero_shared_across_logs": false,
+      "history_source": "encoder_count_log_origin_relative",
+      "wing_phase_history_allowed": false
+    },
+    "split_manifest_sha256": "aeb5d53a4dc1f77343b06ff281b8121dd5e3414e9e1169179e7b70ecfbf86f8c",
+    "sealed_flights": 33
+  },
+  "checkpoints": {
+    "experiments/velocity_rate_gru64_horizon_training_v1/train_1000ms/GRU-NoControl/seed_17/best.pt": "d98157e3873ba6a281131b4fce59d8fd8e5fd7b31f9875e7f60a1582171a479d",
+    "experiments/velocity_rate_gru64_horizon_training_v1/train_1000ms/GRU-NoControl/seed_29/best.pt": "4e891464b81aad236beb5a93a0bee9c7954e077d3d59a37b077e0de892108859",
+    "experiments/velocity_rate_gru64_horizon_training_v1/train_1000ms/GRU-NoControl/seed_43/best.pt": "ebcf47b637f0f3ab25c76a38cf3651ec8fab32512437c0b8adf15ac5750f0763",
+    "experiments/velocity_rate_gru64_horizon_training_v1/train_1000ms/GRU-Control/seed_17/best.pt": "337521208087cb67d8230c6d11390e71a28989059d5b7a86e42a2fd3a2f6803e",
+    "experiments/velocity_rate_gru64_horizon_training_v1/train_1000ms/GRU-Control/seed_29/best.pt": "7f5f8487a062f9f93f5a089929830fcc3cb9061e2f287d20b356a69b749258c8",
+    "experiments/velocity_rate_gru64_horizon_training_v1/train_1000ms/GRU-Control/seed_43/best.pt": "747c6abeba1a588bbcd06e3dfb926bcb592e17028c91a212d2c62646eea3c7d7"
+  },
+  "numerical_checks": [
+    {
+      "horizon_ms": 500,
+      "model": "GRU-NoControl",
+      "seed": 17,
+      "finite": true,
+      "quaternion_norm_max_error": 1.1920928955078125e-07,
+      "no_target_access": true,
+      "no_control_swap_max": 9.5367431640625e-07
+    },
+    {
+      "horizon_ms": 500,
+      "model": "GRU-NoControl",
+      "seed": 29,
+      "finite": true,
+      "quaternion_norm_max_error": 1.1920928955078125e-07,
+      "no_target_access": true,
+      "no_control_swap_max": 9.5367431640625e-07
+    },
+    {
+      "horizon_ms": 500,
+      "model": "GRU-NoControl",
+      "seed": 43,
+      "finite": true,
+      "quaternion_norm_max_error": 1.1920928955078125e-07,
+      "no_target_access": true,
+      "no_control_swap_max": 1.430511474609375e-06
+    },
+    {
+      "horizon_ms": 500,
+      "model": "GRU-Control",
+      "seed": 17,
+      "finite": true,
+      "quaternion_norm_max_error": 1.1920928955078125e-07,
+      "no_target_access": true,
+      "no_control_swap_max": null
+    },
+    {
+      "horizon_ms": 500,
+      "model": "GRU-Control",
+      "seed": 29,
+      "finite": true,
+      "quaternion_norm_max_error": 1.1920928955078125e-07,
+      "no_target_access": true,
+      "no_control_swap_max": null
+    },
+    {
+      "horizon_ms": 500,
+      "model": "GRU-Control",
+      "seed": 43,
+      "finite": true,
+      "quaternion_norm_max_error": 1.1920928955078125e-07,
+      "no_target_access": true,
+      "no_control_swap_max": null
+    },
+    {
+      "horizon_ms": 1000,
+      "model": "GRU-NoControl",
+      "seed": 17,
+      "finite": true,
+      "quaternion_norm_max_error": 1.1920928955078125e-07,
+      "no_target_access": true,
+      "no_control_swap_max": 1.1920928955078125e-06
+    },
+    {
+      "horizon_ms": 1000,
+      "model": "GRU-NoControl",
+      "seed": 29,
+      "finite": true,
+      "quaternion_norm_max_error": 1.1920928955078125e-07,
+      "no_target_access": true,
+      "no_control_swap_max": 1.430511474609375e-06
+    },
+    {
+      "horizon_ms": 1000,
+      "model": "GRU-NoControl",
+      "seed": 43,
+      "finite": true,
+      "quaternion_norm_max_error": 1.1920928955078125e-07,
+      "no_target_access": true,
+      "no_control_swap_max": 2.384185791015625e-06
+    },
+    {
+      "horizon_ms": 1000,
+      "model": "GRU-Control",
+      "seed": 17,
+      "finite": true,
+      "quaternion_norm_max_error": 1.1920928955078125e-07,
+      "no_target_access": true,
+      "no_control_swap_max": null
+    },
+    {
+      "horizon_ms": 1000,
+      "model": "GRU-Control",
+      "seed": 29,
+      "finite": true,
+      "quaternion_norm_max_error": 1.1920928955078125e-07,
+      "no_target_access": true,
+      "no_control_swap_max": null
+    },
+    {
+      "horizon_ms": 1000,
+      "model": "GRU-Control",
+      "seed": 43,
+      "finite": true,
+      "quaternion_norm_max_error": 1.1920928955078125e-07,
+      "no_target_access": true,
+      "no_control_swap_max": null
+    }
+  ],
+  "device": "NVIDIA GeForce RTX 4090",
+  "torch_version": "2.7.0+cu128",
+  "python": "/home/zn/anaconda3/envs/flap-train-gpu/bin/python",
+  "code_sha256": "d80afeb0e04ed62500b7b38235e245ef9f7697300c2d7a01935036416a4ef3d3",
+  "model_code_sha256": "f4a06a64e10e9e52cc77b2121a0eec77c9e08982b0899c2eac736f67116cdc67",
+  "config_sha256": "1c35d5beba032ba4156d1c4ae28ee22f313fd8af6885b54c125d983d91e47540",
+  "selection_sha256": "a3cad9915d2a9efb38773bea0755355ba828c2c8f21d1108fa6501a9c361c944",
+  "elapsed_seconds": 20.921720027923584,
+  "test_opened": false,
+  "retrained": false,
+  "phase_policy": "unchanged last historical valid frequency hold and phase extrapolation",
+  "target_initial_policy": "increments subtract own native aligned target initial; predictions subtract own causal input initial"
+}
