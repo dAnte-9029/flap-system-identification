@@ -6,9 +6,11 @@ from system_identification.models.velocity_rate_gru import VelocityRateGRU
 
 def inputs():
     h=torch.zeros(2,27,20,dtype=torch.float64);h[...,6]=1;h[...,18]=1;h[...,19]=4
+    events=torch.randn(2,100,3,5,dtype=torch.float64)
+    events[...,4]=torch.tensor([.005,.007,.008],dtype=torch.float64)
     return dict(history=h,history_mask=torch.ones_like(h,dtype=torch.bool),history_dt=torch.full((2,27),.02,dtype=torch.float64),
         history_length=torch.tensor([27,26]),initial=h[:,-1,:13].clone(),dt=torch.full((2,100),.02,dtype=torch.float64),
-        events=torch.randn(2,100,3,5,dtype=torch.float64),event_length=torch.full((2,100),3,dtype=torch.long))
+        events=events,event_length=torch.full((2,100),3,dtype=torch.long))
 
 
 @pytest.mark.parametrize('control',[False,True])
@@ -23,7 +25,7 @@ def test_hundred_step_prefix_never_uses_later_commands_or_future_truth(control):
         for k in ['dt','events','event_length']:short[k]=short[k][:,:25]
         torch.testing.assert_close(y[:,:25],model(short),rtol=1e-10,atol=1e-10)
         altered={k:v.clone() for k,v in x.items()}
-        altered['events'][:,25:]*=100
+        altered['events'][:,25:,:,:4]*=100
         altered['target']=torch.full((2,100,13),float('nan'))
         altered['target_phase_frequency']=torch.full((2,100,2),float('nan'))
         torch.testing.assert_close(y[:,:25],model(altered)[:,:25],rtol=0,atol=0)

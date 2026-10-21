@@ -17,11 +17,25 @@ def norm():
     return dict(mean=[0]*11,scale=[1]*11,output_scale=[.1]*6)
 
 
+def assert_events_match_tape(events, tape, step, start_us, end_us):
+    """Compare whole ZOH functions, independent of redundant row counts."""
+    inside=(tape['event_step_index']==step)&(tape['event_timestamp_us']>start_us)
+    native_starts=np.r_[start_us,tape['event_timestamp_us'][inside]]
+    native_values=np.vstack((tape['step_control'][step],tape['event_control'][inside]))
+    durations=np.rint(events[:,4].astype(float)*1e6).astype(np.int64)
+    assert durations.sum()==end_us-start_us
+    packed_starts=start_us+np.r_[0,np.cumsum(durations)[:-1]]
+    union=np.unique(np.r_[native_starts,packed_starts])
+    np.testing.assert_allclose(events[np.searchsorted(packed_starts,union,side='right')-1,:4],
+                              native_values[np.searchsorted(native_starts,union,side='right')-1],atol=1e-7,rtol=1e-6)
+
+
 def fixture():
     h=torch.zeros(3,27,20); h[...,6]=1; h[...,18]=1; h[...,19]=5
+    events=torch.zeros(3,10,2,5);events[:,:,0,4]=.02
     return dict(history=h,history_mask=torch.ones_like(h,dtype=torch.bool),history_dt=torch.full((3,27),.02),
                 history_length=torch.tensor([26,27,26]),initial=h[:,-1,:13].clone(),dt=torch.full((3,10),.02),
-                events=torch.zeros(3,10,2,5),event_length=torch.ones(3,10,dtype=torch.long))
+                events=events,event_length=torch.ones(3,10,dtype=torch.long))
 
 
 def test_kinematic_frames_trapezoid_and_quaternion_sign():
@@ -95,17 +109,14 @@ def test_packed_samples_match_authoritative_loader(split):
         np.testing.assert_allclose(a['dt'][i,:k],inp['future_dt_s'],rtol=1e-6)
         expected=sample['targets']['state'].copy(); expected[:,:3]-=inp['initial_state'][:3]
         np.testing.assert_allclose(a['target'][i,:k],expected,rtol=1e-5,atol=3e-5)
-        tape=inp['future_control']; grid=np.r_[0,np.cumsum(inp['future_dt_s'])]+sample['metadata']['initial_measurement_us']*1e-6
+        tape=inp['future_control']
+        grid=sample['metadata']['initial_measurement_us']+np.r_[0,np.cumsum(np.rint(inp['future_dt_s']*1e6).astype(np.int64))]
         for j in range(k):
             count=a['event_length'][i,j]
             ev=a['events'][i,j,:count]
             np.testing.assert_allclose(ev[:,4].sum(),a['dt'][i,j],atol=1e-8)
             np.testing.assert_allclose(ev[0,:4],tape['step_control'][j],atol=1e-7)
-            inside=tape['event_step_index']==j
-            controls=tape['event_control'][inside]
-            # A step boundary is inserted when no native event is exactly at the boundary.
-            assert count in (len(controls),len(controls)+1)
-            if len(controls): np.testing.assert_allclose(ev[-len(controls):,:4],controls,atol=1e-7)
+            assert_events_match_tape(ev,tape,j,grid[j],grid[j+1])
 
 
 def test_body_rate_right_multiplication_against_scipy():

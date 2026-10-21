@@ -13,6 +13,7 @@ ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/'src'))
 sys.path.insert(0,str(ROOT/'scripts'))
 from system_identification.models.velocity_rate_gru import VelocityRateGRU, baseline, errors
+from system_identification.models.control_events import CANONICAL_CONTROL_EVENTS
 from system_identification.data.velocity_rate_dataset import write_json, file_hash
 from prepare_velocity_rate_learning import EXP, CACHE
 
@@ -72,6 +73,9 @@ def set_seed(seed):
 
 
 def train(config,normalization,train_data,val_data,device,model_name,seed):
+    if config.get('control_event_policy', CANONICAL_CONTROL_EVENTS) != CANONICAL_CONTROL_EVENTS:
+        raise ValueError('New training requires canonical control events')
+    config = dict(config, control_event_policy=CANONICAL_CONTROL_EVENTS)
     set_seed(seed)
     model=VelocityRateGRU(normalization,control=model_name=='GRU-Control',hidden=config['hidden_size'],event_hidden=config['event_hidden_size']).to(device)
     folder=EXP/f'{model_name}/seed_{seed}'; folder.mkdir(parents=True,exist_ok=False)

@@ -9,6 +9,7 @@ import torch
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/'src')); sys.path.insert(0,str(ROOT/'scripts'))
 from system_identification.models.velocity_rate_gru import VelocityRateGRU,baseline,errors,integrate
+from system_identification.models.control_events import CANONICAL_CONTROL_EVENTS
 from system_identification.data.velocity_rate_dataset import write_json,file_hash
 from train_velocity_rate_learning import load,batch,window_loss
 from prepare_velocity_rate_learning import EXP,CACHE
@@ -157,7 +158,7 @@ def main():
     pd.concat(diagnostics,ignore_index=True).to_csv(EXP/'dynamics_vs_oracle_per_flight.csv',index=False)
     np.savez_compressed(EXP/'trajectory_examples.npz',**examples)
     meta.iloc[choices].to_csv(EXP/'trajectory_example_windows.csv',index=False)
-    write_json(EXP/'evaluation_contract.json',dict(partition='validation',windows=len(meta),flights=27,
+    write_json(EXP/'evaluation_contract.json',dict(control_event_policy=CANONICAL_CONTROL_EVENTS,partition='validation',windows=len(meta),flights=27,
         evaluation_horizons_ms=list(range(20,201,20)),endpoint_policy='nearest actual native timestamp; primary 100/200ms <=12ms, auxiliary curve points <=15ms; no state interpolation',
         actual_time_100ms_s=all_endpoints.loc[all_endpoints.horizon_ms==100,'actual_time_s'].describe().to_dict(),
         actual_time_200ms_s=all_endpoints.loc[all_endpoints.horizon_ms==200,'actual_time_s'].describe().to_dict(),

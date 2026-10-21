@@ -16,6 +16,7 @@ import evaluate_velocity_rate_long_horizon as frozen
 from train_velocity_rate_horizons import OUT, CACHE, OLD, LONG, verify_archives, setup
 from train_velocity_rate_learning import batch
 from system_identification.models.velocity_rate_gru import VelocityRateGRU, errors
+from system_identification.models.control_events import CANONICAL_CONTROL_EVENTS
 from system_identification.data.velocity_rate_dataset import write_json, file_hash
 from verify_velocity_rate_learning import independent_errors
 
@@ -119,6 +120,7 @@ def evaluate(horizon):
     pd.concat(diagnostics).to_csv(OUT / f"dynamics_integral_{horizon}ms.csv", index=False)
     np.savez_compressed(OUT / f"trajectory_examples_{horizon}ms.npz", **examples)
     write_json(OUT / f"evaluation_{horizon}ms.json", dict(
+        control_event_policy=CANONICAL_CONTROL_EVENTS,
         windows=n, flights=meta.flight_id.nunique(), device=str(device),
         checkpoints=checkpoints, numerical_checks=checks, runtime=runtimes,
         future_truth_feedback=False, test_opened=False))

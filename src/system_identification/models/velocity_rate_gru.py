@@ -2,6 +2,8 @@
 import torch
 from torch import nn
 import torch.nn.functional as F
+from .control_events import (CANONICAL_CONTROL_EVENTS, LEGACY_CONTROL_EVENTS,
+                             canonicalize_control_events)
 
 
 def unit(q):
@@ -54,8 +56,14 @@ def errors(prediction, target):
 
 
 class VelocityRateGRU(nn.Module):
-    def __init__(self, normalization, control=False, hidden=64, event_hidden=16):
+    def __init__(self, normalization, control=False, hidden=64, event_hidden=16,
+                 *, control_event_policy=CANONICAL_CONTROL_EVENTS):
         super().__init__()
+        if control_event_policy not in (CANONICAL_CONTROL_EVENTS, LEGACY_CONTROL_EVENTS):
+            raise ValueError(f"Unknown control event policy: {control_event_policy}")
+        # Same parameter tensors/checkpoint layout. Legacy is an explicit opt-in
+        # for historical reproduction only, never inferred from old checkpoints.
+        self.control_event_policy = control_event_policy
         self.control = control
         self.register_buffer('mean', torch.tensor(normalization['mean'], dtype=torch.float32))
         self.register_buffer('scale', torch.tensor(normalization['scale'], dtype=torch.float32))
@@ -92,10 +100,13 @@ class VelocityRateGRU(nn.Module):
         dt = inputs['dt']
         if self.control:
             events = inputs['events']
+            lengths = inputs['event_length']
+            if self.control_event_policy == CANONICAL_CONTROL_EVENTS:
+                events, lengths = canonicalize_control_events(events, lengths, dt)
             b, k, e, _ = events.shape
             ec = (events[..., :4]-self.mean[7:11])/self.scale[7:11]
             es, _ = self.event_gru(torch.cat((ec, events[..., 4:5]/.02), -1).reshape(b*k, e, 5))
-            lengths = inputs['event_length'].reshape(-1)
+            lengths = lengths.reshape(-1)
             encoded = es[torch.arange(b*k, device=h.device), lengths-1].reshape(b, k, -1)
         else:
             encoded = h.new_zeros((len(h), dt.shape[1], self.event_gru.hidden_size))

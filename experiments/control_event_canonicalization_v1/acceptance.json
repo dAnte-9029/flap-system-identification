@@ -1,0 +1,7 @@
+{
+  "invariance": "bitwise identical canonical events/lengths and predicted states for equivalent representations in the same batch/device",
+  "max_rmse_increase_percent": {"all": 0.1, "affected": 1.0},
+  "scope": "each seed and pooled seeds, all four metrics at 500ms and 1000ms, equal-flight RMSE",
+  "interpretation": "engineering regression tolerances declared before this run, informed by the previous merge study; not a new statistical test or unseen validation set",
+  "required": ["full validation 36332 windows / 27 flights / 3 frozen seeds", "split2, split4, random7 refinement", "all eight previous diagnostic histories", "retain real control jumps", "independent metric recalculation", "finite training gradients without optimizer updates", "sealed test untouched"]
+}

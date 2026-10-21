@@ -1,0 +1,226 @@
+{
+  "base_commit": "653b60d",
+  "branch": "fix/control-event-canonicalization-v1",
+  "files": [
+    {
+      "path": "docs/control_event_encoding.md",
+      "bytes": 4130,
+      "sha256": "b435b8e83bf754547188ffccb90157d3e01e7dac70367297d8fe26970a5fd690"
+    },
+    {
+      "path": "experiments/control_event_canonicalization_v1/.gitignore",
+      "bytes": 28,
+      "sha256": "a51104264729e7b362ea8c739de0ada29ba6e4f6047580ec3a3fd330ad20fd47"
+    },
+    {
+      "path": "experiments/control_event_canonicalization_v1/README.md",
+      "bytes": 2533,
+      "sha256": "3a2ef23ce212a72cfcc56bf11b5525bc64cf976c5a5583d0132232441ce1e94f"
+    },
+    {
+      "path": "experiments/control_event_canonicalization_v1/acceptance.json",
+      "bytes": 780,
+      "sha256": "a88a52b192485422329f6724e56650247f4c31d6dc4cb7ab49f0a62352e47176"
+    },
+    {
+      "path": "experiments/control_event_canonicalization_v1/archive.py",
+      "bytes": 1149,
+      "sha256": "309684fe76cb0bb09e8aefcdae8920754b2e495339afd3fcfa30ca1b802b9de9"
+    },
+    {
+      "path": "experiments/control_event_canonicalization_v1/integrated.log",
+      "bytes": 448,
+      "sha256": "b9f1bdb9ee13438838cd45b053bb0d5082a21a6cbd839592a0dfd0f0903e3056"
+    },
+    {
+      "path": "experiments/control_event_canonicalization_v1/legacy_velocity_rate_gru.py",
+      "bytes": 5448,
+      "sha256": "f4a06a64e10e9e52cc77b2121a0eec77c9e08982b0899c2eac736f67116cdc67"
+    },
+    {
+      "path": "experiments/control_event_canonicalization_v1/preflight.log",
+      "bytes": 435,
+      "sha256": "75b37b5ff0acddad03d40ff51a1025c011cffc0d3004b1b1e63b33a398881ea6"
+    },
+    {
+      "path": "experiments/control_event_canonicalization_v1/report.py",
+      "bytes": 11170,
+      "sha256": "8a4593c25889e803f941b96640e7bf9a17c29b0ebd06d92330ba47a092ee59bb"
+    },
+    {
+      "path": "experiments/control_event_canonicalization_v1/report_zh.md",
+      "bytes": 9337,
+      "sha256": "4d3f0db103ba12e98df90d78239655f517fc6710733e835bbd0a40c0758b5f88"
+    },
+    {
+      "path": "experiments/control_event_canonicalization_v1/results/control_sensitivity_preserved.png",
+      "bytes": 66873,
+      "sha256": "02ed6668e1cc3421b964aef0c94b56b1772d3283ad108d8854ff8f9dcc0b049b"
+    },
+    {
+      "path": "experiments/control_event_canonicalization_v1/results/flight_rmse_change.png",
+      "bytes": 45615,
+      "sha256": "43d231a353794520e3001b61c0a3b25d6357a922ebceb0bfef7c1a58a342b9dc"
+    },
+    {
+      "path": "experiments/control_event_canonicalization_v1/results/integrated/endpoint_errors.parquet",
+      "bytes": 17087575,
+      "sha256": "72fa1f237a0b7436b286025df007f99b06058a371ae0681f8076d8af5d578110"
+    },
+    {
+      "path": "experiments/control_event_canonicalization_v1/results/integrated/manifest.json",
+      "bytes": 5779,
+      "sha256": "b4c259400f1d9e485f3cfa3c4d3cb983c61e9bd2c78f6b2f5c1839ea3668df87"
+    },
+    {
+      "path": "experiments/control_event_canonicalization_v1/results/integrated/paired_comparisons.csv",
+      "bytes": 6039,
+      "sha256": "0f5dbad3a55804a9ab2e08a9538a56855a17c1bf08a7947008fd05b4213e7804"
+    },
+    {
+      "path": "experiments/control_event_canonicalization_v1/results/integrated/per_flight.csv",
+      "bytes": 393430,
+      "sha256": "0391aaa9e2caaef6b563c6aba6a8530bb0df21342455673e2b0fcab834caab39"
+    },
+    {
+      "path": "experiments/control_event_canonicalization_v1/results/integrated/predictions.npz",
+      "bytes": 24859060,
+      "sha256": "d87296a918af9dbc614a79afad21f277411f1069f048a0e30e7bd4874b2694bc"
+    },
+    {
+      "path": "experiments/control_event_canonicalization_v1/results/integrated/prior_cases.csv",
+      "bytes": 63260,
+      "sha256": "3e49700bf857bd46b9b3e9ae003ce3c9f583a7b424f2600033b5cc151755223b"
+    },
+    {
+      "path": "experiments/control_event_canonicalization_v1/results/integrated/summary.csv",
+      "bytes": 10366,
+      "sha256": "73f4769d5df62795f95a94576d70238a50a09554971c7f31c9ddc48ee4741c14"
+    },
+    {
+      "path": "experiments/control_event_canonicalization_v1/results/integrated/windows.parquet",
+      "bytes": 2529686,
+      "sha256": "cb68e876b71c5412f4fedd8f0badf927bcba3711363a24962cc8de55e4ecaac1"
+    },
+    {
+      "path": "experiments/control_event_canonicalization_v1/results/preflight/endpoint_errors.parquet",
+      "bytes": 17087575,
+      "sha256": "72fa1f237a0b7436b286025df007f99b06058a371ae0681f8076d8af5d578110"
+    },
+    {
+      "path": "experiments/control_event_canonicalization_v1/results/preflight/manifest.json",
+      "bytes": 5780,
+      "sha256": "5123cd20609d4150e66687693500ec400dfe736241eb2162ca9faf438fe12fa0"
+    },
+    {
+      "path": "experiments/control_event_canonicalization_v1/results/preflight/paired_comparisons.csv",
+      "bytes": 6039,
+      "sha256": "0f5dbad3a55804a9ab2e08a9538a56855a17c1bf08a7947008fd05b4213e7804"
+    },
+    {
+      "path": "experiments/control_event_canonicalization_v1/results/preflight/per_flight.csv",
+      "bytes": 393430,
+      "sha256": "0391aaa9e2caaef6b563c6aba6a8530bb0df21342455673e2b0fcab834caab39"
+    },
+    {
+      "path": "experiments/control_event_canonicalization_v1/results/preflight/predictions.npz",
+      "bytes": 24859060,
+      "sha256": "d87296a918af9dbc614a79afad21f277411f1069f048a0e30e7bd4874b2694bc"
+    },
+    {
+      "path": "experiments/control_event_canonicalization_v1/results/preflight/prior_cases.csv",
+      "bytes": 63260,
+      "sha256": "3e49700bf857bd46b9b3e9ae003ce3c9f583a7b424f2600033b5cc151755223b"
+    },
+    {
+      "path": "experiments/control_event_canonicalization_v1/results/preflight/summary.csv",
+      "bytes": 10366,
+      "sha256": "73f4769d5df62795f95a94576d70238a50a09554971c7f31c9ddc48ee4741c14"
+    },
+    {
+      "path": "experiments/control_event_canonicalization_v1/results/preflight/windows.parquet",
+      "bytes": 2529686,
+      "sha256": "cb68e876b71c5412f4fedd8f0badf927bcba3711363a24962cc8de55e4ecaac1"
+    },
+    {
+      "path": "experiments/control_event_canonicalization_v1/results/verification.json",
+      "bytes": 3140,
+      "sha256": "b19806b72b51baadeeab7ffde6008c4696582c360365dedccf3f3cc4a1470586"
+    },
+    {
+      "path": "experiments/control_event_canonicalization_v1/run.py",
+      "bytes": 12657,
+      "sha256": "be7483df075c369c7129dc23b9e72687113fd84b4beac973e8200b5d7aa0a9cb"
+    },
+    {
+      "path": "experiments/control_event_canonicalization_v1/tests.log",
+      "bytes": 110,
+      "sha256": "c887920b7a47878377fefe75d6f644e0c1abd252734801b2fc956f59c6432e37"
+    },
+    {
+      "path": "experiments/control_event_canonicalization_v1/verification.log",
+      "bytes": 3140,
+      "sha256": "b19806b72b51baadeeab7ffde6008c4696582c360365dedccf3f3cc4a1470586"
+    },
+    {
+      "path": "experiments/control_event_canonicalization_v1/verify.py",
+      "bytes": 10077,
+      "sha256": "e9d7157a667206ea2df4e9972fd2ae9cbe67d30cd32a1b05247ef357877091aa"
+    },
+    {
+      "path": "scripts/evaluate_velocity_rate_horizon_training.py",
+      "bytes": 19187,
+      "sha256": "9d458303be8c501fcddc31d2e0fbbbc4b5dba3985a3e722fa320fb4b85d747e1"
+    },
+    {
+      "path": "scripts/evaluate_velocity_rate_learning.py",
+      "bytes": 11875,
+      "sha256": "52810be819d4951ad11d3775ce74acf1b4a35e21e600599ffa647ad296cb1bd3"
+    },
+    {
+      "path": "scripts/evaluate_velocity_rate_long_horizon.py",
+      "bytes": 16305,
+      "sha256": "11ae3e3688e311053405af436a82ee4c694c0fcb14dfce670e114d6de756bf69"
+    },
+    {
+      "path": "scripts/prepare_velocity_rate_learning.py",
+      "bytes": 9115,
+      "sha256": "7609ef0a56ef1c7d2d3322f3cbafa2e5f37bce6730f6d9e0339d67cb268c8fe6"
+    },
+    {
+      "path": "scripts/train_velocity_rate_learning.py",
+      "bytes": 10276,
+      "sha256": "ad335494600d6ca8b7cd31cdfcb5c80404c5b8cc96b590e1b0723f8b79c861a5"
+    },
+    {
+      "path": "src/system_identification/models/control_events.py",
+      "bytes": 4815,
+      "sha256": "e7496b1c7e88478b2440435d99495446956293c41321a2a9e128f5325533c762"
+    },
+    {
+      "path": "src/system_identification/models/velocity_rate_gru.py",
+      "bytes": 6229,
+      "sha256": "76c6d29f7dfd60fec4e4094b474e3e876f3eb3d580c839141534685dced4302b"
+    },
+    {
+      "path": "tests/test_control_event_canonicalization.py",
+      "bytes": 7933,
+      "sha256": "c39c0074d4d07f84f8bfe1de8b91aa0a65698920240d2525c3c34c0f9526ccb1"
+    },
+    {
+      "path": "tests/test_velocity_rate_horizon_training.py",
+      "bytes": 4932,
+      "sha256": "4e22941e4ef52ed1360f4f1accda961f55c9cc4d82160a669dd91e5e6f3e4534"
+    },
+    {
+      "path": "tests/test_velocity_rate_learning.py",
+      "bytes": 7646,
+      "sha256": "0c13bf0838815b0c4bd3848c031dc5457d650be8f45e35d5387e0f4316504721"
+    },
+    {
+      "path": "tests/test_velocity_rate_long_horizon.py",
+      "bytes": 2068,
+      "sha256": "fb0eb8feaf048d9bf7e201787a32b42bb70611567cf723e2b4189ba1987a05d3"
+    }
+  ]
+}

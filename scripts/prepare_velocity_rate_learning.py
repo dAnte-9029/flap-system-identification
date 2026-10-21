@@ -9,6 +9,8 @@ import yaml
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT/'src'))
 from system_identification.data.velocity_rate_dataset import STATE, CONTROL, PHASE, TARGET, file_hash, write_json
+from system_identification.models.control_events import (
+    CANONICAL_CONTROL_EVENTS, LEGACY_CONTROL_EVENTS, canonicalize_control_events_numpy)
 
 EXP = ROOT/'experiments/velocity_rate_gru64_round1'
 CACHE = ROOT/'artifacts/velocity_rate_gru64_round1'
@@ -38,8 +40,11 @@ def resolve(config):
                       phase_contract=manifest['config']['phase'], split_policy=split['policy'])
 
 
-def interval_events(motor, servo, starts, ends, maximum_age=160000):
-    """Exact half-open [start,end) ZOH segments, including control active at start."""
+def interval_events(motor, servo, starts, ends, maximum_age=160000,
+                    *, event_policy=CANONICAL_CONTROL_EVENTS):
+    """Half-open [start,end) ZOH, canonicalized without losing real jumps."""
+    if event_policy not in (CANONICAL_CONTROL_EVENTS, LEGACY_CONTROL_EVENTS):
+        raise ValueError(f"Unknown control event policy: {event_policy}")
     ts = np.unique(np.r_[motor.timestamp_us, servo.timestamp_us]).astype(np.int64)
     left = np.searchsorted(ts, starts, side='right')
     right = np.searchsorted(ts, ends, side='left')
@@ -66,6 +71,8 @@ def interval_events(motor, servo, starts, ends, maximum_age=160000):
     events[j >= length[:, None]] = 0
     assert (duration >= 0).all()
     np.testing.assert_allclose(duration.sum(1), (ends-starts)*1e-6, atol=1e-10)
+    if event_policy == CANONICAL_CONTROL_EVENTS:
+        events, length = canonicalize_control_events_numpy(events, length, (ends-starts)*1e-6)
     return events, length
 
 
@@ -138,7 +145,8 @@ def pack(root, split, config):
         assert np.isfinite(data[name]).all()
     w.to_parquet(EXP/f'{split}_windows.parquet', index=False)
     np.savez(CACHE/f'{split}.npz',**data)
-    return dict(windows=n,flights=w.flight_id.nunique(),history_counts=w.history_count.value_counts().to_dict(),
+    return dict(control_event_policy=CANONICAL_CONTROL_EVENTS,
+                windows=n,flights=w.flight_id.nunique(),history_counts=w.history_count.value_counts().to_dict(),
                 future_counts=w.future_count.value_counts().to_dict(),maximum_events_per_step=max_events,
                 dt_quantiles=np.quantile(data['dt'][data['future_mask']],[0,.01,.5,.99,1]).tolist(),
                 cache_bytes=sum(v.nbytes for v in data.values()),

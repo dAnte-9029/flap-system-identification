@@ -10,6 +10,7 @@ from train_velocity_rate_horizons import crop_horizon
 from train_velocity_rate_horizons import CACHE, OUT, ROOT
 from train_velocity_rate_learning import window_loss
 from test_velocity_rate_long_horizon import inputs
+from test_velocity_rate_learning import assert_events_match_tape
 from system_identification.models.velocity_rate_gru import VelocityRateGRU
 from system_identification.data.velocity_rate_dataset import VelocityRateDataset
 
@@ -80,15 +81,13 @@ def test_new_pack_against_authoritative_loader_and_registered_endpoints(split):
         expected[:, :3] -= inp["initial_state"][:3]
         np.testing.assert_allclose(data["target"][i, :k], expected, rtol=1e-5, atol=3e-5)
         tape = inp["future_control"]
+        grid=sample['metadata']['initial_measurement_us']+np.r_[0,np.cumsum(np.rint(inp['future_dt_s']*1e6).astype(np.int64))]
         for j in range(k):
             count = data["event_length"][i, j]
             events = data["events"][i, j, :count]
             np.testing.assert_allclose(events[:, 4].sum(), data["dt"][i, j], atol=1e-8)
             np.testing.assert_allclose(events[0, :4], tape["step_control"][j], atol=1e-7)
-            controls = tape["event_control"][tape["event_step_index"] == j]
-            assert count in (len(controls), len(controls)+1)
-            if len(controls):
-                np.testing.assert_allclose(events[-len(controls):, :4], controls, atol=1e-7)
+            assert_events_match_tape(events,tape,j,grid[j],grid[j+1])
     for horizon in (500, 1000):
         cropped = crop_horizon(data, meta[f"count_{horizon}ms"].to_numpy())
         assert np.max(abs(cropped["dt"].sum(1)-horizon/1000)) < .012001

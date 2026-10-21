@@ -13,6 +13,7 @@ ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/'src')); sys.path.insert(0,str(ROOT/'scripts'))
 import prepare_velocity_rate_learning as preparation
 from system_identification.models.velocity_rate_gru import VelocityRateGRU,baseline,errors
+from system_identification.models.control_events import CANONICAL_CONTROL_EVENTS
 from system_identification.data.velocity_rate_dataset import file_hash,write_json,VelocityRateDataset
 from train_velocity_rate_learning import INPUT_KEYS,batch
 from evaluate_velocity_rate_learning import oracle,METRICS
@@ -195,7 +196,7 @@ def evaluate():
     np.savez_compressed(OUT/'trajectory_examples.npz',**examples)
     pd.DataFrame(runtime).to_csv(OUT/'runtime.csv',index=False)
     write_json(OUT/'checkpoint_manifest.json',checkpoints)
-    write_json(OUT/'numerical_verification.json',dict(status='passed',gpu=torch.cuda.get_device_name(),torch=torch.__version__,tf32=True,batch_size=2048,checks=checks))
+    write_json(OUT/'numerical_verification.json',dict(control_event_policy=CANONICAL_CONTROL_EVENTS,status='passed',gpu=torch.cuda.get_device_name(),torch=torch.__version__,tf32=True,batch_size=2048,checks=checks))
 
 
 def verify():
