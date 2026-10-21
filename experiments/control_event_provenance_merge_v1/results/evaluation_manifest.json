@@ -1,0 +1,33 @@
+{
+  "windows": 36332,
+  "flights": 27,
+  "changed_windows": 708,
+  "changed_steps": 728,
+  "cache_sha256": "5b8bb1b1a04e5cea32562b3342beca34ef0bee763b4c912e82d2792fcfa893e1",
+  "checkpoints": {
+    "experiments/velocity_rate_gru64_horizon_training_v1/train_1000ms/GRU-Control/seed_17/best.pt": "337521208087cb67d8230c6d11390e71a28989059d5b7a86e42a2fd3a2f6803e",
+    "experiments/velocity_rate_gru64_horizon_training_v1/train_1000ms/GRU-Control/seed_29/best.pt": "7f5f8487a062f9f93f5a089929830fcc3cb9061e2f287d20b356a69b749258c8",
+    "experiments/velocity_rate_gru64_horizon_training_v1/train_1000ms/GRU-Control/seed_43/best.pt": "747c6abeba1a588bbcd06e3dfb926bcb592e17028c91a212d2c62646eea3c7d7"
+  },
+  "checks": [
+    {
+      "seed": 17,
+      "unchanged_prediction_max_difference": 0.0
+    },
+    {
+      "seed": 29,
+      "unchanged_prediction_max_difference": 0.0
+    },
+    {
+      "seed": 43,
+      "unchanged_prediction_max_difference": 0.0
+    }
+  ],
+  "device": "NVIDIA GeForce RTX 4090",
+  "seconds": 14.404043197631836,
+  "model_code_sha256": "f4a06a64e10e9e52cc77b2121a0eec77c9e08982b0899c2eac736f67116cdc67",
+  "code_sha256": "b3f4cc90140af75f4e0482176f290b25d2000c0b2b1cf170438226a592daea05",
+  "test_opened": false,
+  "retrained": false,
+  "rule": "exact equality of all four float32 command values within each native state interval; merge durations on integer microsecond grid; preserve shape, all genuine discontinuities and native dt"
+}

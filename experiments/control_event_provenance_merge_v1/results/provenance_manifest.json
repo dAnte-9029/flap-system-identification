@@ -1,0 +1,48 @@
+{
+  "dataset_id": "velocity_rate_multistep_v1",
+  "registry": {
+    "lifecycle_status": "prepared_native_observations_with_explicit_quality_masks",
+    "repository_relative_root": "dataset/velocity_rate_multistep_v1",
+    "manifest_path": "dataset/velocity_rate_multistep_v1/dataset_manifest.json",
+    "manifest_sha256": "8afb8623bf7174e4da5b2044f644331b8b251433fed3576f6dcdab470935bcb5",
+    "config_path": "configs/data/velocity_rate_multistep_v1.yaml",
+    "storage": "local_parquet_reproducible_metadata_committed",
+    "partitions": [
+      "train",
+      "validation",
+      "test"
+    ],
+    "default_partitions": [
+      "train",
+      "validation"
+    ],
+    "test_loader_requires_explicit_allow_test": true,
+    "historical_test_dates_preserved": [
+      "2026-09-08",
+      "2026-09-19"
+    ],
+    "observed_state_target": [
+      "position_ned",
+      "velocity_ned",
+      "quaternion_frd_to_ned",
+      "angular_velocity_frd"
+    ],
+    "acceleration_labels": false,
+    "physical_truth": false,
+    "counterfactual_control_validation": false,
+    "firmware_unknown_logs": 1
+  },
+  "manifest_sha256": "8afb8623bf7174e4da5b2044f644331b8b251433fed3576f6dcdab470935bcb5",
+  "checked_artifacts": {
+    "native_actuator_motors_train.parquet": "480308697302f23de4733d17f0689bc6e0bc4db5920ca4af285325a55425b9e2",
+    "native_actuator_servos_train.parquet": "947157099b1c8471cfab493d5df66fc47790bf42296b608eeadcce750aee98aa",
+    "native_actuator_motors_validation.parquet": "56cc4148790799e06cebe1aaf9f566e057e47bf19d844a8f824a02c3f1a2e5f6",
+    "native_actuator_servos_validation.parquet": "653df9cbcfb9dae12595682e5d8ec928eaa924b62b0ae889a9eb8c5bc1789c5d"
+  },
+  "authorized_flights": 161,
+  "sealed_test_not_read": true,
+  "raw_log_files_read": false,
+  "source_code_sha256": "d7fd640ac9fb953118521374e5e3947ac2ebe7170958e5a3c1c0ed9e4fc69348",
+  "packing_source_sha256": "abd3fdc2704a76872a630792545a204f8aee2ef321cb56e21bb85baa142c0794",
+  "extractor_sha256": "ad82b1695f6f4c425885f08c42d25b7c939801d44020db7149aba87486981e4d"
+}

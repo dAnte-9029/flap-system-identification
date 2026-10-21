@@ -1,0 +1,37 @@
+[
+  {
+    "split": "train",
+    "windows": 107920,
+    "flights": 94,
+    "valid_step_occurrences": 5396006,
+    "tokens": 10797267,
+    "start_boundary_tokens": 5396006,
+    "redundant_tokens": 1420,
+    "changed_step_occurrences": 1420,
+    "changed_windows": 1397,
+    "event_count_distribution": {
+      "1": 16256,
+      "2": 5358272,
+      "3": 21445,
+      "4": 33
+    },
+    "cache_sha256": "5702d548d4bc8486ee2dca95ced79b1f58d0c78776a3866a161cee99931ae451"
+  },
+  {
+    "split": "validation",
+    "windows": 36332,
+    "flights": 27,
+    "valid_step_occurrences": 1816602,
+    "tokens": 3634799,
+    "start_boundary_tokens": 1816602,
+    "redundant_tokens": 728,
+    "changed_step_occurrences": 728,
+    "changed_windows": 708,
+    "event_count_distribution": {
+      "1": 1588,
+      "2": 1811831,
+      "3": 3183
+    },
+    "cache_sha256": "5b8bb1b1a04e5cea32562b3342beca34ef0bee763b4c912e82d2792fcfa893e1"
+  }
+]

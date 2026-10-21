@@ -1,0 +1,246 @@
+{
+  "base_commit": "1ea494d1e497660b5a0c4053131613258a17862b",
+  "branch": "exp/control-event-provenance-merge-v1",
+  "files": [
+    {
+      "path": ".gitignore",
+      "bytes": 28,
+      "sha256": "a51104264729e7b362ea8c739de0ada29ba6e4f6047580ec3a3fd330ad20fd47"
+    },
+    {
+      "path": "README.md",
+      "bytes": 2699,
+      "sha256": "8ba229f9d6cd36cae148db80447be2ad9aec0b352c835e5548e286b3cac1df16"
+    },
+    {
+      "path": "archive.py",
+      "bytes": 754,
+      "sha256": "0197f10d2aec6de26e6daec473957154c19cea2ac5156441ee562b2f8f134560"
+    },
+    {
+      "path": "audit.log",
+      "bytes": 72,
+      "sha256": "1d086b24526e8722ad26f3e75a55ef9e668dace8df8506f6edc259880b2af36c"
+    },
+    {
+      "path": "audit_source.py",
+      "bytes": 8898,
+      "sha256": "d7fd640ac9fb953118521374e5e3947ac2ebe7170958e5a3c1c0ed9e4fc69348"
+    },
+    {
+      "path": "common.py",
+      "bytes": 990,
+      "sha256": "5b1ff0d7018063aeb88310d4189e3499117593f4b974e211e90e5b903a2de7e8"
+    },
+    {
+      "path": "evaluate_merge.py",
+      "bytes": 6081,
+      "sha256": "b3f4cc90140af75f4e0482176f290b25d2000c0b2b1cf170438226a592daea05"
+    },
+    {
+      "path": "evaluation.log",
+      "bytes": 142,
+      "sha256": "7f18a584fa91f238161eb123f0e9c2587a71627b58a6edab1d312bb38ebeb040"
+    },
+    {
+      "path": "report.py",
+      "bytes": 14287,
+      "sha256": "2f6e458c9138202484fec9214a5be7816e28094b414cceece98c8db48271ce00"
+    },
+    {
+      "path": "report_zh.md",
+      "bytes": 14858,
+      "sha256": "e6c3b53fefe258e8f1e8e84a28c7a0aa70a6e8e4ef3b5010d8922d45e3b977d3"
+    },
+    {
+      "path": "results/cache_statistics.json",
+      "bytes": 924,
+      "sha256": "7b39d37c846c24eb36583942009ec98818d4cd071e059edc99f3349fb010a92a"
+    },
+    {
+      "path": "results/endpoint_errors.parquet",
+      "bytes": 16793930,
+      "sha256": "f6d0e1a1de9c4257da6cc77b5e3c6a8ef51be475e484f2756fb4b537d0dd559f"
+    },
+    {
+      "path": "results/evaluation_manifest.json",
+      "bytes": 1456,
+      "sha256": "c4f3356ea9031501ed1a50144ef1dbe947c3cb5b90609ab5eb17fa51a39585c5"
+    },
+    {
+      "path": "results/firmware_flights.csv",
+      "bytes": 21049,
+      "sha256": "f2206ab6bb7a689a1ed7701a9a924edfa3768185564ea91846f6f7681fbc4e8e"
+    },
+    {
+      "path": "results/firmware_logging.csv",
+      "bytes": 1543,
+      "sha256": "0bb45a4a429a1b28c1f2b80af0797589d439a36ecafeac7f8c4cf8dbcf4a3adb"
+    },
+    {
+      "path": "results/merge_changes.npz",
+      "bytes": 10219,
+      "sha256": "5dd51c583409ec1894f42c393cb115466d811264531b4f61acf21a8529380e3d"
+    },
+    {
+      "path": "results/merge_effect_per_flight.png",
+      "bytes": 55134,
+      "sha256": "727bf5ac8ef3d95c95a047f822a28ce02a3272d747abd57cb6cd8c7f0771ea49"
+    },
+    {
+      "path": "results/paired_comparisons.csv",
+      "bytes": 7472,
+      "sha256": "dc2cb3baa5cb1aac4312c739a7fd2343d3f36ce9ddee2b42b5f99fc5de42a3aa"
+    },
+    {
+      "path": "results/per_flight.csv",
+      "bytes": 450507,
+      "sha256": "ec85275af726f09e45d9a1b77bb64c7f69f9145ef7afe96de4f2120206012d62"
+    },
+    {
+      "path": "results/predictions.npz",
+      "bytes": 35302129,
+      "sha256": "38a39625f6ecf286abaac1d77278d063c9113760f20dc754de9b0e0e90fff827"
+    },
+    {
+      "path": "results/provenance_manifest.json",
+      "bytes": 2041,
+      "sha256": "e52c4c28eae7f2afcafafa7ddf429f43b7536ccdf68ba27580eb088a6de8a4b7"
+    },
+    {
+      "path": "results/raw_control_per_flight.csv",
+      "bytes": 35660,
+      "sha256": "12321d329d731221b807f1bdb3d94a9e78d89b70be26565ab0f9a0b82928d249"
+    },
+    {
+      "path": "results/redundant_unique_intervals.json",
+      "bytes": 207749,
+      "sha256": "116831c746a174efd786639525e0acb7872dfc51a7aa1286b27095e67f665e5b"
+    },
+    {
+      "path": "results/source_manifest.json",
+      "bytes": 77632,
+      "sha256": "4ba73d7e0e1fa59bac23a180aeb1d8160f1ec66d420e6bc81a03ce8930f48947"
+    },
+    {
+      "path": "results/source_objects/0012bef5b00c04c4bb71c8a211f11225e5bbc837f49dadfaee0ffb878439fe17_logged_topics.cpp",
+      "bytes": 22402,
+      "sha256": "0012bef5b00c04c4bb71c8a211f11225e5bbc837f49dadfaee0ffb878439fe17"
+    },
+    {
+      "path": "results/source_objects/01d88e9fb3ce8af55773126ede9f987461e7bd52fc4366b5b7c58550392e19e5_logged_topics.cpp",
+      "bytes": 20000,
+      "sha256": "01d88e9fb3ce8af55773126ede9f987461e7bd52fc4366b5b7c58550392e19e5"
+    },
+    {
+      "path": "results/source_objects/0b6b324bb35127627b69037e37d1435dc337214eae1ad6f7eb4051ece59dfca6_logged_topics.cpp",
+      "bytes": 22628,
+      "sha256": "0b6b324bb35127627b69037e37d1435dc337214eae1ad6f7eb4051ece59dfca6"
+    },
+    {
+      "path": "results/source_objects/0b91be0a45bab218d73b59a454716c664701c313548bbb164032485eb55cff89_logged_topics.cpp",
+      "bytes": 22448,
+      "sha256": "0b91be0a45bab218d73b59a454716c664701c313548bbb164032485eb55cff89"
+    },
+    {
+      "path": "results/source_objects/1274dc81b433d877705c17a984f3e3458c3b859d8c9b78d65daa04f2c7ba6a82_logged_topics.h",
+      "bytes": 6549,
+      "sha256": "1274dc81b433d877705c17a984f3e3458c3b859d8c9b78d65daa04f2c7ba6a82"
+    },
+    {
+      "path": "results/source_objects/1745b60152a8fde9eabfc27000221d27e110391c0b04ddaa67129b1958b01749_logged_topics.cpp",
+      "bytes": 22329,
+      "sha256": "1745b60152a8fde9eabfc27000221d27e110391c0b04ddaa67129b1958b01749"
+    },
+    {
+      "path": "results/source_objects/1dcf8a20f82355b51f2ef59d44b8554c06a2b925208952442f89c2cd0d20e1b8_logged_topics.cpp",
+      "bytes": 22538,
+      "sha256": "1dcf8a20f82355b51f2ef59d44b8554c06a2b925208952442f89c2cd0d20e1b8"
+    },
+    {
+      "path": "results/source_objects/40d89fe296ce86b005ad67798b109c843698811dea3ed12d9662c9b8f032e386_ActuatorMotors.msg",
+      "bytes": 736,
+      "sha256": "40d89fe296ce86b005ad67798b109c843698811dea3ed12d9662c9b8f032e386"
+    },
+    {
+      "path": "results/source_objects/47ffbae2a01e0c4f1fcc99714fe589641f3c370ddb4681d8ef54f54f2f48e829_FunctionMotors.hpp",
+      "bytes": 4477,
+      "sha256": "47ffbae2a01e0c4f1fcc99714fe589641f3c370ddb4681d8ef54f54f2f48e829"
+    },
+    {
+      "path": "results/source_objects/529734da584f5441d4fef16d357e4bf234ee5c9629099cac1920adbe9e9ef89c_SubscriptionInterval.hpp",
+      "bytes": 4612,
+      "sha256": "529734da584f5441d4fef16d357e4bf234ee5c9629099cac1920adbe9e9ef89c"
+    },
+    {
+      "path": "results/source_objects/6f3fe07cbcae4b472d50de20c6eec294313d64bd9113d02eb7b0d6597f18268b_ActuatorServos.msg",
+      "bytes": 569,
+      "sha256": "6f3fe07cbcae4b472d50de20c6eec294313d64bd9113d02eb7b0d6597f18268b"
+    },
+    {
+      "path": "results/source_objects/7f05eb524e722cf93d75e5c1daa214790871b7d649ebe0b4289e86c568e77841_logger.cpp",
+      "bytes": 70936,
+      "sha256": "7f05eb524e722cf93d75e5c1daa214790871b7d649ebe0b4289e86c568e77841"
+    },
+    {
+      "path": "results/source_objects/88fbbd97a80fe6d62144149d8ee9308df6088bfe4a7c1b872b34a50425306fbc_logged_topics.cpp",
+      "bytes": 19958,
+      "sha256": "88fbbd97a80fe6d62144149d8ee9308df6088bfe4a7c1b872b34a50425306fbc"
+    },
+    {
+      "path": "results/source_objects/b5010b505528f6c55c9bbe1633d4e3e1d7a070b5704dab3048141e17ca35e6c4_FunctionServos.hpp",
+      "bytes": 2801,
+      "sha256": "b5010b505528f6c55c9bbe1633d4e3e1d7a070b5704dab3048141e17ca35e6c4"
+    },
+    {
+      "path": "results/source_objects/bda46f11a91e4da3c6e31e336106b02b7f2b41e64312a2980c9f3d6a14887f08_logged_topics.cpp",
+      "bytes": 22364,
+      "sha256": "bda46f11a91e4da3c6e31e336106b02b7f2b41e64312a2980c9f3d6a14887f08"
+    },
+    {
+      "path": "results/source_objects/de9f231d5b94f648ea07f44618493e2429ee3084bdfa2902bccbfa313e83690f_ControlAllocator.cpp",
+      "bytes": 31487,
+      "sha256": "de9f231d5b94f648ea07f44618493e2429ee3084bdfa2902bccbfa313e83690f"
+    },
+    {
+      "path": "results/source_objects/fff2e812617d4d40e3d403471ad19aec2b71dc2aa9bb0c427c1a0c3f6117f3b3_logged_topics.h",
+      "bytes": 6478,
+      "sha256": "fff2e812617d4d40e3d403471ad19aec2b71dc2aa9bb0c427c1a0c3f6117f3b3"
+    },
+    {
+      "path": "results/summary.csv",
+      "bytes": 15049,
+      "sha256": "6a54e10cfc3db42e6fcc54b88b28331e645e12e74624f72a68056c03654ee453"
+    },
+    {
+      "path": "results/training_intervals_per_flight.csv",
+      "bytes": 18953,
+      "sha256": "8fdf3c04f297d6ec1024aac95e3e237797bc76b663d81472ab121a00c4bce5c3"
+    },
+    {
+      "path": "results/validation_windows.parquet",
+      "bytes": 2529686,
+      "sha256": "cb68e876b71c5412f4fedd8f0badf927bcba3711363a24962cc8de55e4ecaac1"
+    },
+    {
+      "path": "summarize.py",
+      "bytes": 2246,
+      "sha256": "9510d5041136dd65bb6587c5935bdea37242c1332cc1ebb5ca2d6a45b2b9b73d"
+    },
+    {
+      "path": "summary.log",
+      "bytes": 39,
+      "sha256": "d39399220e302951d275b5e14ada03c59ba6d8053f19ebbdca1feed24048de77"
+    },
+    {
+      "path": "test_merge.py",
+      "bytes": 4363,
+      "sha256": "87389d4e163883fb40e9641ee5c94f18af4ba0d137f1c4f567ac4e88b7b01d77"
+    },
+    {
+      "path": "tests.log",
+      "bytes": 98,
+      "sha256": "90e5aa8b3da26d6f0b6e0490679989c66ef217b1a5ce1db6fa05d3e0ac12292d"
+    }
+  ]
+}
