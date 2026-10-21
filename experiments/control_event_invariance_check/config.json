@@ -1,0 +1,11 @@
+{
+  "base_commit": "8455e9f785f559ea455e18d1760058bfc0ff20f9",
+  "source": "experiments/control_response_eval_v1",
+  "seeds": [17, 29, 43],
+  "horizons_ms": [500, 1000],
+  "selection": "four 1s validation signal pairs: two archived illustrated cases, largest previous refinement velocity among remaining, median historical score among remaining; both recipient histories",
+  "grid_us": 5000,
+  "device": "cuda:0",
+  "state_difference_thresholds": {"position": 0.00001, "velocity": 0.00001, "attitude_deg": 0.0001, "rate": 0.00001},
+  "assumption": "same piecewise constant command function is physically equivalent; repeated publications have no actuator reset/retrigger semantics; physical firmware/actuator behavior not independently certified"
+}

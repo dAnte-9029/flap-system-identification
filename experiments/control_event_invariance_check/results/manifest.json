@@ -1,0 +1,84 @@
+{
+  "config": {
+    "base_commit": "8455e9f785f559ea455e18d1760058bfc0ff20f9",
+    "source": "experiments/control_response_eval_v1",
+    "seeds": [
+      17,
+      29,
+      43
+    ],
+    "horizons_ms": [
+      500,
+      1000
+    ],
+    "selection": "four 1s validation signal pairs: two archived illustrated cases, largest previous refinement velocity among remaining, median historical score among remaining; both recipient histories",
+    "grid_us": 5000,
+    "device": "cuda:0",
+    "state_difference_thresholds": {
+      "position": 1e-05,
+      "velocity": 1e-05,
+      "attitude_deg": 0.0001,
+      "rate": 1e-05
+    },
+    "assumption": "same piecewise constant command function is physically equivalent; repeated publications have no actuator reset/retrigger semantics; physical firmware/actuator behavior not independently certified"
+  },
+  "source_hashes": {
+    "results/predictions_1000ms.npz": "09b1c7fee6ce79b5b62ce7648c8ec981430e2c9064cadd40f905d5e1f8405df2",
+    "results/cohorts.parquet": "a3cad9915d2a9efb38773bea0755355ba828c2c8f21d1108fa6501a9c361c944",
+    "results/windows_1000ms.parquet": "0f35941a075e4be9fb76ab7aab8e563ac2eb87642cfe4ddfc705c17c18cf5817",
+    "results/cases.json": "2aee4e7bcdac4322895902217a928755712d1962562afa3902bd121b0bf8e029",
+    "results/swap_metrics.parquet": "387e4315ef656fa2a06201e60fa640580434495410668e0121b72c44d31dbc52",
+    "results/run_manifest.json": "ef1a585067cf9937031dd2db5caac48795583462ae55db053f84f5e2e8a79162",
+    "evaluate.py": "d80afeb0e04ed62500b7b38235e245ef9f7697300c2d7a01935036416a4ef3d3"
+  },
+  "dataset": {
+    "manifest_sha256": "8afb8623bf7174e4da5b2044f644331b8b251433fed3576f6dcdab470935bcb5",
+    "checked_artifact_sha256": {
+      "flights.csv": "b9abc9f02fb84c73576dbe96fe2fe19353d81f6eebee08d83b78ec960ae5d26b",
+      "flight_provenance.json": "d10b8c336f2b8491d10cea7bef51744b5042234fc2e51b5abb1c07b782bd8f6c",
+      "split_manifest.json": "aeb5d53a4dc1f77343b06ff281b8121dd5e3414e9e1169179e7b70ecfbf86f8c",
+      "build_config.yaml": "b7223a017ef3c57d20325a437b0fe6b661daafb3ec288a5c1ab06bdcf90cefbd",
+      "samples_train.parquet": "47a0d8d396d795fefa17ae0143484b7d63ef809f6bb3dfb8409ea75d5166f488",
+      "windows_train.parquet": "3ecef154a0268e9524dff16e358e453a4c92802414d0d8c61e718ad8ed79fbd0",
+      "native_actuator_motors_train.parquet": "480308697302f23de4733d17f0689bc6e0bc4db5920ca4af285325a55425b9e2",
+      "native_actuator_servos_train.parquet": "947157099b1c8471cfab493d5df66fc47790bf42296b608eeadcce750aee98aa",
+      "samples_validation.parquet": "89f42ca256c3d04899d6824c0f9112f83aecfc7b82e6247347f14f3c97c33dae",
+      "windows_validation.parquet": "11007bc803618375024d571425fbcfa89f0adf722e61d2b00c6b659fd77d4f8c",
+      "native_actuator_motors_validation.parquet": "56cc4148790799e06cebe1aaf9f566e057e47bf19d844a8f824a02c3f1a2e5f6",
+      "native_actuator_servos_validation.parquet": "653df9cbcfb9dae12595682e5d8ec928eaa924b62b0ae889a9eb8c5bc1789c5d",
+      "/home/zn/QgcLogs/analysis_out/flight_segments_20260906_20261013_usable.csv": "9e5647105658f726a1e065457f6e64139af6ce98817f6682331350323eb091e6",
+      "/home/zn/QgcLogs/analysis_out/ekf_window_exclusions_20260906_20261013/excluded_intervals.csv": "7d69cc063495313b993dc72292392e3348c460ea75caaf2bd17a09bc09aa1d6f",
+      "/home/zn/QgcLogs/analysis_out/ekf_window_exclusions_20260906_20261013/review_intervals.csv": "9f63affa104fae9683d248f7c6ca2431a00a7b7b935335ebf7b6426d87fcc52d"
+    },
+    "test_artifacts_opened": false,
+    "partitions": [
+      "train",
+      "validation"
+    ],
+    "phase_contract": {
+      "counts_per_motor_revolution": 4096,
+      "ratio_source": "per_log_FLAP_RATIO",
+      "physical_ratio_independently_verified": false,
+      "absolute_zero_shared_across_logs": false,
+      "history_source": "encoder_count_log_origin_relative",
+      "wing_phase_history_allowed": false
+    },
+    "split_manifest_sha256": "aeb5d53a4dc1f77343b06ff281b8121dd5e3414e9e1169179e7b70ecfbf86f8c",
+    "sealed_flights": 33
+  },
+  "checkpoints": {
+    "experiments/velocity_rate_gru64_horizon_training_v1/train_1000ms/GRU-Control/seed_17/best.pt": "337521208087cb67d8230c6d11390e71a28989059d5b7a86e42a2fd3a2f6803e",
+    "experiments/velocity_rate_gru64_horizon_training_v1/train_1000ms/GRU-Control/seed_29/best.pt": "7f5f8487a062f9f93f5a089929830fcc3cb9061e2f287d20b356a69b749258c8",
+    "experiments/velocity_rate_gru64_horizon_training_v1/train_1000ms/GRU-Control/seed_43/best.pt": "747c6abeba1a588bbcd06e3dfb926bcb592e17028c91a212d2c62646eea3c7d7"
+  },
+  "model_code_sha256": "f4a06a64e10e9e52cc77b2121a0eec77c9e08982b0899c2eac736f67116cdc67",
+  "diagnostic_code_sha256": "0ce96ceb5a243fb5b0cf4f38fa124084e4af02a62d59e0d4183cfdf158e8a6c7",
+  "device": "NVIDIA GeForce RTX 4090",
+  "torch": "2.7.0+cu128",
+  "python": "/home/zn/anaconda3/envs/flap-train-gpu/bin/python",
+  "elapsed_seconds": 49.396263122558594,
+  "test_loaded": false,
+  "retrained": false,
+  "data_scope": "only 8 selected main_50hz validation histories used for inference; source archived NPZ also contains unused training rows; no target arrays accessed",
+  "exact_equivalence": "integer microsecond union partition; [0,T) half-open semantics; all command values exact; float32 durations unchanged physical microseconds"
+}

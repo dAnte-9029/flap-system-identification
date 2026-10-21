@@ -1,0 +1,117 @@
+{
+  "base_commit": "8455e9f785f559ea455e18d1760058bfc0ff20f9",
+  "branch": "exp/control-event-invariance-check",
+  "code_version": "Git commit containing this archive; individual source hashes below",
+  "artifacts": [
+    {
+      "path": ".gitignore",
+      "sha256": "a51104264729e7b362ea8c739de0ada29ba6e4f6047580ec3a3fd330ad20fd47",
+      "bytes": 28
+    },
+    {
+      "path": "README.md",
+      "sha256": "7aade8adfabfa100da4b7b3f6df906321c43ae1cbfaa38c4bc6cdbe49a66f63a",
+      "bytes": 3724
+    },
+    {
+      "path": "archive.py",
+      "sha256": "e527fb8ef0ce0758aa53a9abf39001a8e798ba20dcdb8ac93c749802c5b76ea2",
+      "bytes": 1139
+    },
+    {
+      "path": "check.py",
+      "sha256": "0ce96ceb5a243fb5b0cf4f38fa124084e4af02a62d59e0d4183cfdf158e8a6c7",
+      "bytes": 15415
+    },
+    {
+      "path": "config.json",
+      "sha256": "3abbfa43aa230143d060140a39de1d27f0eb9c5f90bb37e4c05a5496bd42782b",
+      "bytes": 749
+    },
+    {
+      "path": "report.py",
+      "sha256": "a17f8b1186806125b6b9b058e22f3ec09370af862e1c709eb8ef0f86e7b733dd",
+      "bytes": 11672
+    },
+    {
+      "path": "report_zh.md",
+      "sha256": "74faa916ca1aa4cbf68fbfcca3e83666cf5598fbf6cc9430b0c6b42f9dd25ec1",
+      "bytes": 12931
+    },
+    {
+      "path": "results/differences_500ms.png",
+      "sha256": "2882570b6dcc26e91a788e3c7f8bc790a52690e93aababbc67419c058d12d3f9",
+      "bytes": 75966
+    },
+    {
+      "path": "results/equivalence.csv",
+      "sha256": "447a80a5af709b7e9e20e064785162cd0f4ac24ac530c7cd2971ea5ebd739e02",
+      "bytes": 3909
+    },
+    {
+      "path": "results/layer_trace.png",
+      "sha256": "5cf8cbb33e15d6a6c44300ed754fa965695b47fcd795c8c2b132dc9dd7fbd4c0",
+      "bytes": 153394
+    },
+    {
+      "path": "results/layers.csv",
+      "sha256": "a17490ebe0e72c2bfcd9b0f303cc017c788c6eda770673d62a75457eb0c822ce",
+      "bytes": 74481
+    },
+    {
+      "path": "results/manifest.json",
+      "sha256": "799b22918b3db2690b67fd8ae302184a0666b8b655c4e3804baf77ee13925468",
+      "bytes": 5274
+    },
+    {
+      "path": "results/metrics.csv",
+      "sha256": "dcfbdef2baa28eb9e6e81d5251d91f4a19e72989b7901ee37dd7d0e2f5700238",
+      "bytes": 376986
+    },
+    {
+      "path": "results/selected_pairs.csv",
+      "sha256": "e134db23db8202713e45813905c5d1cb96b6ec5eed3026eec681f2b1c2698414",
+      "bytes": 5273
+    },
+    {
+      "path": "results/summary.csv",
+      "sha256": "f97ffddec616e5539e76ee43431d667bdcd0a2e59c9289d4adcf1077133a2a7b",
+      "bytes": 60691
+    },
+    {
+      "path": "results/traces.npz",
+      "sha256": "f2c18d0c75796d682417f3b6d0984627f680ae735280ace5e0e5ecff5525f61b",
+      "bytes": 10461372
+    },
+    {
+      "path": "results/windows.csv",
+      "sha256": "51659542721a3d257dfa5fdae7a6a2e667bfd5f3b01a20ea3acc8ef482adc8c2",
+      "bytes": 1690
+    },
+    {
+      "path": "run.log",
+      "sha256": "ab1d5a2580870e928202118f29429239250317c74ca80e551e6037fcdd794c6a",
+      "bytes": 579
+    },
+    {
+      "path": "summarize.py",
+      "sha256": "10f3193e00a2dc67c0fc202fd224d2793b97fef98b29adaaf1fe17f2056012ef",
+      "bytes": 3489
+    },
+    {
+      "path": "summary.log",
+      "sha256": "ed16b370f614bf0bd041876347414eb137b2ce67278302e180119b73139f1cea",
+      "bytes": 32
+    },
+    {
+      "path": "test_check.py",
+      "sha256": "bac68db8291df319aa143ab941469a392c070d2c7cdd50d0a9472c1ceead1060",
+      "bytes": 4951
+    },
+    {
+      "path": "tests.log",
+      "sha256": "a9fcdcf091e2d769ac9a587b582da5ec4c9b9f3502f5552f549af15034f7e253",
+      "bytes": 98
+    }
+  ]
+}
