@@ -1,0 +1,39 @@
+................F....                                                    [100%]
+=================================== FAILURES ===================================
+___________________ test_artifact_statistics_and_boundaries ____________________
+
+    def test_artifact_statistics_and_boundaries():
+        out=HERE/'results'
+        if not (out/'run_manifest.json').exists():pytest.skip('complete run needed')
+>       cfg=json.loads((HERE/'config.json').read_text());root,flights,prov,m=resolve(cfg)
+                                                                             ^^^^^^^^^^^^
+
+experiments/control_identifiability_audit_v1/test_audit.py:51:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+experiments/control_identifiability_audit_v1/audit.py:66: in resolve
+    h=sha(root/name);assert h==m['artifact_sha256'][name], name;checked[name]=h
+      ^^^^^^^^^^^^^^
+experiments/control_identifiability_audit_v1/audit.py:33: in sha
+    with Path(path).open('rb') as f:
+         ^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = PosixPath('/home/zn/flap-system-identification/.worktrees/local-control-response-scope-v1/dataset/velocity_rate_multistep_v1/samples_train.parquet')
+mode = 'rb', buffering = -1, encoding = None, errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/home/zn/flap-system-identification/.worktrees/local-control-response-scope-v1/dataset/velocity_rate_multistep_v1/samples_train.parquet'
+
+/home/zn/anaconda3/envs/flap-train-gpu/lib/python3.11/pathlib.py:1044: FileNotFoundError
+=========================== short test summary info ============================
+FAILED experiments/control_identifiability_audit_v1/test_audit.py::test_artifact_statistics_and_boundaries
+1 failed, 20 passed in 1.93s

@@ -1,0 +1,3 @@
+__pycache__/
+results/*/all_eligible_metadata.csv.gz
+sources/stage*_report.txt

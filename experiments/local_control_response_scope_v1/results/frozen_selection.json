@@ -1,0 +1,72 @@
+{
+  "config_sha256": "4c277bae3f745ed53e1628ecc1aab1b4f8f4d05775beb03fbe8fd2e192a330fb",
+  "analysis_sha256": "0129b88a4cf8d88775f3af93fbe2b732c1f871dd4c7d9d5e2fb5cce3cd1eb1a8",
+  "created_unix": 1792740130.9898262,
+  "selection_data": "train only",
+  "ranking": [
+    {
+      "regime": "AUTO_stable",
+      "coordinate": "differential",
+      "nonoverlap_pairs": 48,
+      "flight_disjoint_pairs": 17,
+      "flights": 46
+    },
+    {
+      "regime": "AUTO_stable",
+      "coordinate": "motor",
+      "nonoverlap_pairs": 27,
+      "flight_disjoint_pairs": 11,
+      "flights": 27
+    },
+    {
+      "regime": "STAB_forward",
+      "coordinate": "differential",
+      "nonoverlap_pairs": 8,
+      "flight_disjoint_pairs": 5,
+      "flights": 11
+    },
+    {
+      "regime": "STAB_forward",
+      "coordinate": "motor",
+      "nonoverlap_pairs": 2,
+      "flight_disjoint_pairs": 2,
+      "flights": 4
+    },
+    {
+      "regime": "AUTO_stable",
+      "coordinate": "common",
+      "nonoverlap_pairs": 0,
+      "flight_disjoint_pairs": 0,
+      "flights": 0
+    },
+    {
+      "regime": "AUTO_stable",
+      "coordinate": "rudder",
+      "nonoverlap_pairs": 0,
+      "flight_disjoint_pairs": 0,
+      "flights": 0
+    },
+    {
+      "regime": "STAB_stable",
+      "coordinate": "common",
+      "nonoverlap_pairs": 0,
+      "flight_disjoint_pairs": 0,
+      "flights": 0
+    },
+    {
+      "regime": "STAB_stable",
+      "coordinate": "rudder",
+      "nonoverlap_pairs": 0,
+      "flight_disjoint_pairs": 0,
+      "flights": 0
+    }
+  ],
+  "recommendation": {
+    "regime": "AUTO_stable",
+    "coordinate": "differential"
+  },
+  "backup": {
+    "regime": "AUTO_stable",
+    "coordinate": "motor"
+  }
+}

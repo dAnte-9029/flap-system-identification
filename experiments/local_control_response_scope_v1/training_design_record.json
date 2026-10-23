@@ -1,0 +1,212 @@
+{
+  "stage": "training exploration only before validation",
+  "initial_frozen_selection": {
+    "config_sha256": "aca8db60073a08fc6534f4e3cf57f4162b938e8000ed57610ae41af5cddb35fa",
+    "analysis_sha256": "d2d3132186fab460d3f76edb3bf8240269ea551495e54025c4cfc16882ce1cab",
+    "created_unix": 1792739964.6457884,
+    "selection_data": "train only",
+    "ranking": [
+      {
+        "regime": "AUTO_forward",
+        "coordinate": "differential",
+        "nonoverlap_pairs": 48,
+        "flight_disjoint_pairs": 17,
+        "flights": 46
+      },
+      {
+        "regime": "AUTO_stable",
+        "coordinate": "differential",
+        "nonoverlap_pairs": 48,
+        "flight_disjoint_pairs": 17,
+        "flights": 46
+      },
+      {
+        "regime": "AUTO_forward",
+        "coordinate": "motor",
+        "nonoverlap_pairs": 28,
+        "flight_disjoint_pairs": 11,
+        "flights": 28
+      },
+      {
+        "regime": "AUTO_stable",
+        "coordinate": "motor",
+        "nonoverlap_pairs": 27,
+        "flight_disjoint_pairs": 11,
+        "flights": 27
+      },
+      {
+        "regime": "STAB_forward",
+        "coordinate": "differential",
+        "nonoverlap_pairs": 8,
+        "flight_disjoint_pairs": 5,
+        "flights": 11
+      },
+      {
+        "regime": "STAB_stable",
+        "coordinate": "differential",
+        "nonoverlap_pairs": 4,
+        "flight_disjoint_pairs": 3,
+        "flights": 6
+      },
+      {
+        "regime": "STAB_forward",
+        "coordinate": "motor",
+        "nonoverlap_pairs": 2,
+        "flight_disjoint_pairs": 2,
+        "flights": 4
+      },
+      {
+        "regime": "STAB_stable",
+        "coordinate": "motor",
+        "nonoverlap_pairs": 1,
+        "flight_disjoint_pairs": 1,
+        "flights": 2
+      },
+      {
+        "regime": "AUTO_forward",
+        "coordinate": "common",
+        "nonoverlap_pairs": 0,
+        "flight_disjoint_pairs": 0,
+        "flights": 0
+      },
+      {
+        "regime": "AUTO_forward",
+        "coordinate": "rudder",
+        "nonoverlap_pairs": 0,
+        "flight_disjoint_pairs": 0,
+        "flights": 0
+      },
+      {
+        "regime": "AUTO_stable",
+        "coordinate": "common",
+        "nonoverlap_pairs": 0,
+        "flight_disjoint_pairs": 0,
+        "flights": 0
+      },
+      {
+        "regime": "AUTO_stable",
+        "coordinate": "rudder",
+        "nonoverlap_pairs": 0,
+        "flight_disjoint_pairs": 0,
+        "flights": 0
+      },
+      {
+        "regime": "STAB_forward",
+        "coordinate": "common",
+        "nonoverlap_pairs": 0,
+        "flight_disjoint_pairs": 0,
+        "flights": 0
+      },
+      {
+        "regime": "STAB_forward",
+        "coordinate": "rudder",
+        "nonoverlap_pairs": 0,
+        "flight_disjoint_pairs": 0,
+        "flights": 0
+      },
+      {
+        "regime": "STAB_stable",
+        "coordinate": "common",
+        "nonoverlap_pairs": 0,
+        "flight_disjoint_pairs": 0,
+        "flights": 0
+      },
+      {
+        "regime": "STAB_stable",
+        "coordinate": "rudder",
+        "nonoverlap_pairs": 0,
+        "flight_disjoint_pairs": 0,
+        "flights": 0
+      }
+    ],
+    "recommendation": {
+      "regime": "AUTO_forward",
+      "coordinate": "differential"
+    },
+    "backup": {
+      "regime": "AUTO_stable",
+      "coordinate": "differential"
+    }
+  },
+  "final_selection": {
+    "config_sha256": "4c277bae3f745ed53e1628ecc1aab1b4f8f4d05775beb03fbe8fd2e192a330fb",
+    "analysis_sha256": "0129b88a4cf8d88775f3af93fbe2b732c1f871dd4c7d9d5e2fb5cce3cd1eb1a8",
+    "created_unix": 1792740130.9898262,
+    "selection_data": "train only",
+    "ranking": [
+      {
+        "regime": "AUTO_stable",
+        "coordinate": "differential",
+        "nonoverlap_pairs": 48,
+        "flight_disjoint_pairs": 17,
+        "flights": 46
+      },
+      {
+        "regime": "AUTO_stable",
+        "coordinate": "motor",
+        "nonoverlap_pairs": 27,
+        "flight_disjoint_pairs": 11,
+        "flights": 27
+      },
+      {
+        "regime": "STAB_forward",
+        "coordinate": "differential",
+        "nonoverlap_pairs": 8,
+        "flight_disjoint_pairs": 5,
+        "flights": 11
+      },
+      {
+        "regime": "STAB_forward",
+        "coordinate": "motor",
+        "nonoverlap_pairs": 2,
+        "flight_disjoint_pairs": 2,
+        "flights": 4
+      },
+      {
+        "regime": "AUTO_stable",
+        "coordinate": "common",
+        "nonoverlap_pairs": 0,
+        "flight_disjoint_pairs": 0,
+        "flights": 0
+      },
+      {
+        "regime": "AUTO_stable",
+        "coordinate": "rudder",
+        "nonoverlap_pairs": 0,
+        "flight_disjoint_pairs": 0,
+        "flights": 0
+      },
+      {
+        "regime": "STAB_stable",
+        "coordinate": "common",
+        "nonoverlap_pairs": 0,
+        "flight_disjoint_pairs": 0,
+        "flights": 0
+      },
+      {
+        "regime": "STAB_stable",
+        "coordinate": "rudder",
+        "nonoverlap_pairs": 0,
+        "flight_disjoint_pairs": 0,
+        "flights": 0
+      }
+    ],
+    "recommendation": {
+      "regime": "AUTO_stable",
+      "coordinate": "differential"
+    },
+    "backup": {
+      "regime": "AUTO_stable",
+      "coordinate": "motor"
+    }
+  },
+  "change": "Original pure-count ranking tied AUTO_forward and AUTO_stable at 48 pairs and chose alphabetical forward. Training-only refinement prefers stable if it retains >=80% of broad support; backup must use another coordinate.",
+  "verification": {
+    "pair_support.csv": "identical dataframes",
+    "coverage.csv": "identical dataframes",
+    "selected_pairs.csv": "identical dataframes"
+  },
+  "thresholds_and_candidate_memberships_changed": false,
+  "validation_used": false,
+  "initial_outputs": "Local scratch /tmp/local-control-scope-training-design-20261023; compact decision evidence retained here"
+}

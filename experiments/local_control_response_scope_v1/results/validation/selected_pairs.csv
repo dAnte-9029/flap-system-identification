@@ -1,0 +1,12 @@
+regime,coordinate,pair_id,flight_disjoint
+AUTO_stable,motor,17,True
+AUTO_stable,motor,20,False
+AUTO_stable,motor,48,True
+AUTO_stable,differential,44,True
+AUTO_stable,background_pair,36,True
+AUTO_forward,motor,17,True
+AUTO_forward,motor,20,False
+AUTO_forward,motor,48,True
+AUTO_forward,differential,44,True
+AUTO_forward,differential,43,False
+AUTO_forward,background_pair,36,True

@@ -1,0 +1,31 @@
+{
+  "passed": true,
+  "partitions": [
+    "train",
+    "validation"
+  ],
+  "counts": {
+    "train": {
+      "candidates": 97752,
+      "history_pairs": 1283,
+      "selected_memberships": 229,
+      "numerical_pairs": 24,
+      "flights": 93,
+      "dates": 15
+    },
+    "validation": {
+      "candidates": 34073,
+      "history_pairs": 56,
+      "selected_memberships": 11,
+      "numerical_pairs": 24,
+      "flights": 27,
+      "dates": 3
+    }
+  },
+  "numerical_checks": 576,
+  "maximum_scalar_difference": 1.0061396160665481e-16,
+  "test_opened": false,
+  "model_loaded": false,
+  "flight_date_boot_disjoint": true,
+  "verification_code_sha256": "fa29177276a109d1eb7a1fc02df2a1cf53ff8d70f876f116ff27b0189f9bada0"
+}

@@ -1,0 +1,406 @@
+{
+  "base_sha": "91f772448b78fd8690df83b9f98177d1b897218e",
+  "branch": "exp/local-control-response-scope-v1",
+  "publication": "See containing Git commit and remote verification; manifest cannot contain its own commit SHA",
+  "environment": {
+    "python": "3.11.14",
+    "numpy": "1.26.0",
+    "pandas": "2.3.3",
+    "scipy": "1.15.3",
+    "pyarrow": "23.0.1"
+  },
+  "test_opened": false,
+  "model_loaded": false,
+  "files": [
+    {
+      "path": ".gitignore",
+      "bytes": 78,
+      "sha256": "ff9be324010db609b48792680366826c539eb06be4558f4ed4c2c31dcca6e463",
+      "storage": "git"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3988,
+      "sha256": "4822524243c194177b39c64190ee3076ac11ccdb4e8618874f1ec729d77c92ad",
+      "storage": "git"
+    },
+    {
+      "path": "analyze.py",
+      "bytes": 23060,
+      "sha256": "0129b88a4cf8d88775f3af93fbe2b732c1f871dd4c7d9d5e2fb5cce3cd1eb1a8",
+      "storage": "git"
+    },
+    {
+      "path": "archive.py",
+      "bytes": 1625,
+      "sha256": "ba6d085288fd8f5423cc251508455876a243efedef53b7269259a463735fbb7d",
+      "storage": "git"
+    },
+    {
+      "path": "config.json",
+      "bytes": 2034,
+      "sha256": "4c277bae3f745ed53e1628ecc1aab1b4f8f4d05775beb03fbe8fd2e192a330fb",
+      "storage": "git"
+    },
+    {
+      "path": "describe.py",
+      "bytes": 14061,
+      "sha256": "0644bc90fc965ccc71ca60ab582756a48460541462fd6d30eace73f5e2e3eee9",
+      "storage": "git"
+    },
+    {
+      "path": "description.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "storage": "git"
+    },
+    {
+      "path": "report_zh.md",
+      "bytes": 17719,
+      "sha256": "a702a52b387c519b5db65b4945f8c41f2003971c9e65753541e84b3fd60cf1eb",
+      "storage": "git"
+    },
+    {
+      "path": "results/description/asset_receipt.json",
+      "bytes": 2168,
+      "sha256": "d4c5a6a6162a7fd2b660983efd44ae9d823e6c424209af4bfe7b1ae53d1a8565",
+      "storage": "git"
+    },
+    {
+      "path": "results/description/background_comparability.csv",
+      "bytes": 612,
+      "sha256": "ac9aa98c09938eb5cdc894d42f254cc12913250c46b06eaaccdfb7c0a7a847ed",
+      "storage": "git"
+    },
+    {
+      "path": "results/description/background_index.csv",
+      "bytes": 2781,
+      "sha256": "ff7565c81032d88681f75ecf07c1686cbe2f2ab7accfccd5360d72067afcf27e",
+      "storage": "git"
+    },
+    {
+      "path": "results/description/control_state_relationship.csv",
+      "bytes": 16431,
+      "sha256": "3f574fc4140dfa4461a83ffbb7ffffeb7cb2c868bc065510897a9d47dde11bcf",
+      "storage": "git"
+    },
+    {
+      "path": "results/description/direction_per_flight.csv",
+      "bytes": 218265,
+      "sha256": "55a231b9b841a9797309a2886f34c3195191ec118f00271ecfacee9c60123783",
+      "storage": "git"
+    },
+    {
+      "path": "results/description/example_tapes.csv",
+      "bytes": 21935,
+      "sha256": "5dc149d7946bfd3c24f581c47433b9e004adda256a0b91a4a07cd8a5c76be829",
+      "storage": "git"
+    },
+    {
+      "path": "results/description/figures/control_change_distributions.png",
+      "bytes": 88506,
+      "sha256": "8eb6b5f4c1e7880e5c3511dbf05f696e6553beda7fa269daae4804de3dc2c87d",
+      "storage": "git"
+    },
+    {
+      "path": "results/description/figures/example_command_shapes.png",
+      "bytes": 94640,
+      "sha256": "f8b37d17225b008fbbb272c825211bbd87f6949f279d0dbf80f638f24531fad8",
+      "storage": "git"
+    },
+    {
+      "path": "results/description/figures/joint_left_right.png",
+      "bytes": 91276,
+      "sha256": "4fa086f4bd2985aab1a7c816e18a3db339bf3c6081cee646a53031625b2e9ff1",
+      "storage": "git"
+    },
+    {
+      "path": "results/description/figures/pair_support.png",
+      "bytes": 55172,
+      "sha256": "ad33becefdfd6caa00840ad17074a1b9ae293bc092c2a45c975dd0bf360423e4",
+      "storage": "git"
+    },
+    {
+      "path": "results/description/figures/regime_coverage.png",
+      "bytes": 50880,
+      "sha256": "067aa473f44936af63057f82a343167a3febc2572e08b16ae3adf7b5bdeb0f0f",
+      "storage": "git"
+    },
+    {
+      "path": "results/description/history_distributions.csv",
+      "bytes": 16078,
+      "sha256": "aaf61a7aba5153034164308fcee405f01fcd12d6a635bdfea83e4603fe7d04d6",
+      "storage": "git"
+    },
+    {
+      "path": "results/description/joint_delta_correlations.csv",
+      "bytes": 3319,
+      "sha256": "f5cdcc555d4bced2a624c5e2fc7908cdec2bcbb6e436cdcd12b991f9b248ef9e",
+      "storage": "git"
+    },
+    {
+      "path": "results/description/nonoverlap_shapes.csv.gz",
+      "bytes": 2906458,
+      "sha256": "eef4ea165e500016d972af71f44537962a0bd11722d63320f2da7cdb44241074",
+      "storage": "git"
+    },
+    {
+      "path": "results/description/selected_pair_index.csv",
+      "bytes": 132806,
+      "sha256": "aee8c368ecdb3fcafa4e51be9e205e5e3bd8f73ce2eab15c153925cff80a6569",
+      "storage": "git"
+    },
+    {
+      "path": "results/frozen_selection.json",
+      "bytes": 1700,
+      "sha256": "af064225ffc878ddd27f2fb39f7ec091cbf01e7aad9914aaddee748f5120e525",
+      "storage": "git"
+    },
+    {
+      "path": "results/train/all_eligible_metadata.csv.gz",
+      "bytes": 21054270,
+      "sha256": "78de7168bc0c4b8d690569a1ef5683e85b4cac22d4d4c699b45ec7b54c252200",
+      "storage": "local_reproducible"
+    },
+    {
+      "path": "results/train/all_history_pairs.csv.gz",
+      "bytes": 419238,
+      "sha256": "16b7133cc64355fdff2de4c23958b081d156fd0a911f9883b749e6c0ff8675bf",
+      "storage": "git"
+    },
+    {
+      "path": "results/train/candidate_index.csv.gz",
+      "bytes": 19421150,
+      "sha256": "a3479d876935788f572389b6dabead9b4ec80132a24d5b41f262143e8eae309d",
+      "storage": "git"
+    },
+    {
+      "path": "results/train/command_distributions.csv",
+      "bytes": 9737,
+      "sha256": "980bdaec8dce6b3d69228229f4f4e24ae945273f17cbe0fd08a34d322cf4ae3c",
+      "storage": "git"
+    },
+    {
+      "path": "results/train/command_events.csv.gz",
+      "bytes": 20329194,
+      "sha256": "5e4f3977c4db6a9d2436089055ab9087b95f6c7b4a34370abc010b99c050cdba",
+      "storage": "git"
+    },
+    {
+      "path": "results/train/controller_headers.json",
+      "bytes": 1060520,
+      "sha256": "e1b7eed9a468eba2640c8d48ed38bcd6fd0d435a1fcab9b2497b415a7bd1c1a5",
+      "storage": "git"
+    },
+    {
+      "path": "results/train/coverage.csv",
+      "bytes": 1332,
+      "sha256": "7e2b0822e3e08b04168c55c25aa3b2e36747ba2b5028f581ee46d1ed24dace27",
+      "storage": "git"
+    },
+    {
+      "path": "results/train/coverage_per_flight.csv",
+      "bytes": 80350,
+      "sha256": "a26f5100013884cf30ce6dcf2d26984ee59ab3430529ffbb66b74a68058cdd1a",
+      "storage": "git"
+    },
+    {
+      "path": "results/train/eligibility.csv",
+      "bytes": 9686,
+      "sha256": "c2f2c53efa2f4fb6c4114bd263e61f6524f94db43e32892ce220924397553172",
+      "storage": "git"
+    },
+    {
+      "path": "results/train/execution.json",
+      "bytes": 681,
+      "sha256": "e969421e09a41a456e5a8fc7d25715906def50639c75bf99e9463210cfd334fd",
+      "storage": "git"
+    },
+    {
+      "path": "results/train/pair_support.csv",
+      "bytes": 2216,
+      "sha256": "a39e48e21fae250cc73e50660b530dd7b47d684ec0329ed268ef0cab63310df4",
+      "storage": "git"
+    },
+    {
+      "path": "results/train/selected_pairs.csv",
+      "bytes": 7902,
+      "sha256": "22090a031c0609effa603e5a8c2b05a02f0ac0abe61c66035410c85220c19d67",
+      "storage": "git"
+    },
+    {
+      "path": "results/train/source_receipt.json",
+      "bytes": 2705,
+      "sha256": "ced34bca5372f44d914253536015880e7bd6142922d482af939ad1cf2a39df98",
+      "storage": "git"
+    },
+    {
+      "path": "results/validation/all_eligible_metadata.csv.gz",
+      "bytes": 7091674,
+      "sha256": "2b41b0f8f615efacd3668528074ce971bd1d9b34f735685a0080debfaff72769",
+      "storage": "local_reproducible"
+    },
+    {
+      "path": "results/validation/all_history_pairs.csv.gz",
+      "bytes": 19906,
+      "sha256": "f02375a2775b63187fcbdb24e16af740d87b687a0f6056e0f05ecf44ca73fa60",
+      "storage": "git"
+    },
+    {
+      "path": "results/validation/candidate_index.csv.gz",
+      "bytes": 6722452,
+      "sha256": "e91cc7b4adacdea69aa23a4d9cae6e7becc910671dbc1bc8830314790d9dd6e3",
+      "storage": "git"
+    },
+    {
+      "path": "results/validation/command_distributions.csv",
+      "bytes": 9801,
+      "sha256": "e5c691733d3ee5baa9d887f65a1a181b3413c1c5d9d9305eee1e0783a7f1a1ef",
+      "storage": "git"
+    },
+    {
+      "path": "results/validation/command_events.csv.gz",
+      "bytes": 6933667,
+      "sha256": "c2343f2b92dc2499b2c47bb2c03a32997644f86653213dce442d5282517ad35f",
+      "storage": "git"
+    },
+    {
+      "path": "results/validation/controller_headers.json",
+      "bytes": 304111,
+      "sha256": "3300dc35b00affbee1f2afe766b5824860ab13b3385f116ce038041f827bf01e",
+      "storage": "git"
+    },
+    {
+      "path": "results/validation/coverage.csv",
+      "bytes": 1283,
+      "sha256": "44ee51a22905a50bf270d2700019fc25077834bc82d3f3302ecf6af6d0fd106c",
+      "storage": "git"
+    },
+    {
+      "path": "results/validation/coverage_per_flight.csv",
+      "bytes": 21261,
+      "sha256": "24a093d330e41d6b8c4a361909d58546604a9b485c2cd3293a867105100a7761",
+      "storage": "git"
+    },
+    {
+      "path": "results/validation/eligibility.csv",
+      "bytes": 3002,
+      "sha256": "d4f3c8ed8c7e10d1c186ed3256c2853ef96a94ae76145c9e971553ada54ccfd8",
+      "storage": "git"
+    },
+    {
+      "path": "results/validation/execution.json",
+      "bytes": 683,
+      "sha256": "0a5548bdae330bc89562dbb8a11a11bc8d2ebf15ff3fe06e82f7d1f9590dc33f",
+      "storage": "git"
+    },
+    {
+      "path": "results/validation/pair_support.csv",
+      "bytes": 1841,
+      "sha256": "085a9a5aae93c6ea5ae0fbd8d58d68c3c2a450fd54629ac5159c4bbe991b367a",
+      "storage": "git"
+    },
+    {
+      "path": "results/validation/selected_pairs.csv",
+      "bytes": 378,
+      "sha256": "40647ccca4087a82b048a6f64ba6f5f00ee15131cd35becef04fa1306941f035",
+      "storage": "git"
+    },
+    {
+      "path": "results/validation/source_receipt.json",
+      "bytes": 2729,
+      "sha256": "31a57d4aff053710e13d9a135bd3ef64e1168e2a46bdc0bed327d1d2cd2b84f0",
+      "storage": "git"
+    },
+    {
+      "path": "results/verification.json",
+      "bytes": 721,
+      "sha256": "e2d505956530bf892feff5f44b0045b097b6658b20ebf9b0eb161182f6b9d237",
+      "storage": "git"
+    },
+    {
+      "path": "sources/stage3_report.txt",
+      "bytes": 33759,
+      "sha256": "3b99c91e31e97f4251468926a6351a999e260db83f0b1f0f391d8422edde942f",
+      "storage": "local_reproducible"
+    },
+    {
+      "path": "sources/stage3_source.json",
+      "bytes": 333,
+      "sha256": "363c191bb2a5e88a0cfc4c50dc5fe715a523a1dc86d69d5749b0a08b7e3ee280",
+      "storage": "git"
+    },
+    {
+      "path": "sources/stage4_report.txt",
+      "bytes": 24754,
+      "sha256": "31ad40fd94c7b1feca7762b2ad345ac321772e7665675523526c4f8758bd20ef",
+      "storage": "local_reproducible"
+    },
+    {
+      "path": "sources/stage4_source.json",
+      "bytes": 348,
+      "sha256": "ee63eb016fb526ae34be107482609f221ee3a929d75aeb0a264f0de1d03a48d8",
+      "storage": "git"
+    },
+    {
+      "path": "sources/stage5_report.txt",
+      "bytes": 20808,
+      "sha256": "feede3ab52e791fa4f255a625c5138a3d0f2818cc1cbcfe8b269e35cd94f43a0",
+      "storage": "local_reproducible"
+    },
+    {
+      "path": "sources/stage5_source.json",
+      "bytes": 345,
+      "sha256": "73371f21e36ffd6fe5c1b172a50fb12d45007c2e0e475994d6b56dc3f85e570b",
+      "storage": "git"
+    },
+    {
+      "path": "test_scope.py",
+      "bytes": 3424,
+      "sha256": "f20cb826aac9706fcddf87fcbedf1e0d4ecbfed8cc5d55b26b2a70e8ad2fa7bd",
+      "storage": "git"
+    },
+    {
+      "path": "tests.log",
+      "bytes": 113,
+      "sha256": "f9c09c9db9c539a23cf8c23dce45aff5d1390ccc5902e4c219b199cb31ef897f",
+      "storage": "git"
+    },
+    {
+      "path": "tests_initial.log",
+      "bytes": 2318,
+      "sha256": "a2cc016ebd824e1c90092003b9b7685774dc8c2960e76cb8ef9e3d829f337fd0",
+      "storage": "git"
+    },
+    {
+      "path": "train.log",
+      "bytes": 8728,
+      "sha256": "cfec42e64fc586b81b9e3889f035fdf62697423c228ed56e0f5a0b2a3f13a530",
+      "storage": "git"
+    },
+    {
+      "path": "training_design_record.json",
+      "bytes": 5803,
+      "sha256": "247d696a1d73aac2acff3fd1cbd2a51d8084a2a1d7daeb3f1a7d5b7e9769a860",
+      "storage": "git"
+    },
+    {
+      "path": "validation.log",
+      "bytes": 8725,
+      "sha256": "40acb445ba9dd72f53840583bead47ec864456029f55f7ac7cdee4746c2dfcd5",
+      "storage": "git"
+    },
+    {
+      "path": "verification.log",
+      "bytes": 721,
+      "sha256": "e2d505956530bf892feff5f44b0045b097b6658b20ebf9b0eb161182f6b9d237",
+      "storage": "git"
+    },
+    {
+      "path": "verify.py",
+      "bytes": 8269,
+      "sha256": "fa29177276a109d1eb7a1fc02df2a1cf53ff8d70f876f116ff27b0189f9bada0",
+      "storage": "git"
+    }
+  ]
+}

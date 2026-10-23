@@ -1,0 +1,32 @@
+{
+  "dataset_id": "velocity_rate_multistep_v1",
+  "base_sha": "91f772448b78fd8690df83b9f98177d1b897218e",
+  "registry": "configs/data/velocity_rate_dataset_registry.yaml",
+  "sampling_group": "main_50hz",
+  "history_us": 500000,
+  "horizon_us": 500000,
+  "history_grid_points": 26,
+  "calipers": {
+    "primary": {"v": 0.75, "R_deg": 15, "w": 0.75, "f": 0.5, "u": 0.05},
+    "strict": {"v": 0.5, "R_deg": 10, "w": 0.5, "f": 0.3, "u": 0.03},
+    "relaxed": {"v": 0.75, "R_deg": 15, "w": 0.75, "f": 0.5, "u": 0.05}
+  },
+  "regimes": {
+    "STAB_stable": {"mode": 15, "roll_max_deg": 25, "pitch_max_deg": 25, "rate_rms_max": 1.2, "vertical_max": 2},
+    "AUTO_stable": {"mode": 3, "roll_max_deg": 25, "pitch_max_deg": 25, "rate_rms_max": 1.2, "vertical_max": 2},
+    "STAB_forward": {"mode": 15, "roll_max_deg": 45, "pitch_max_deg": 35, "rate_rms_max": 2, "vertical_max": 3},
+    "AUTO_forward": {"mode": 3, "roll_max_deg": 45, "pitch_max_deg": 35, "rate_rms_max": 2, "vertical_max": 3}
+  },
+  "common_history_bounds": {"ground_speed_min": 4, "ground_speed_max": 12, "body_forward_min": 3, "frequency_min": 2.5, "frequency_max": 5.5, "near_limit_fraction_max": 0.05},
+  "coordinates": ["motor", "common", "differential", "rudder"],
+  "change_thresholds": [0.05, 0.10, 0.10, 0.05],
+  "background_rms_limits": [0.02, 0.04, 0.04, 0.02],
+  "direction_energy_fraction_min": 0.65,
+  "signed_mean_over_rms_min": 0.6,
+  "minimum_contiguous_change_us": 100000,
+  "future_to_history_ratio_min": 2,
+  "match_same_hardware": true,
+  "match_max_ratio_difference": 0.001,
+  "recommendation_rule": "For each mode/direction retain the stable regime if it preserves at least 80% of broader nonoverlap pairs; rank by nonoverlap pairs, flight-disjoint pairs, flights. Backup must use a different direction. Training-only choice; report zero background/strict support without relaxation.",
+  "scope": "Recorded command direction and observational comparability only; no target columns, GRU inference, training, test trajectories or counterfactual truth."
+}

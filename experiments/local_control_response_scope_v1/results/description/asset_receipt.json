@@ -1,0 +1,38 @@
+{
+  "checkpoints": [
+    {
+      "path": "/home/zn/flap-system-identification/.worktrees/local-control-response-scope-v1/experiments/velocity_rate_gru64_horizon_training_v1/train_1000ms/GRU-Control/seed_17/best.pt",
+      "registered_sha256": "337521208087cb67d8230c6d11390e71a28989059d5b7a86e42a2fd3a2f6803e",
+      "actual_sha256": "337521208087cb67d8230c6d11390e71a28989059d5b7a86e42a2fd3a2f6803e",
+      "loaded": false
+    },
+    {
+      "path": "/home/zn/flap-system-identification/.worktrees/local-control-response-scope-v1/experiments/velocity_rate_gru64_horizon_training_v1/train_1000ms/GRU-Control/seed_29/best.pt",
+      "registered_sha256": "7f5f8487a062f9f93f5a089929830fcc3cb9061e2f287d20b356a69b749258c8",
+      "actual_sha256": "7f5f8487a062f9f93f5a089929830fcc3cb9061e2f287d20b356a69b749258c8",
+      "loaded": false
+    },
+    {
+      "path": "/home/zn/flap-system-identification/.worktrees/local-control-response-scope-v1/experiments/velocity_rate_gru64_horizon_training_v1/train_1000ms/GRU-Control/seed_43/best.pt",
+      "registered_sha256": "747c6abeba1a588bbcd06e3dfb926bcb592e17028c91a212d2c62646eea3c7d7",
+      "actual_sha256": "747c6abeba1a588bbcd06e3dfb926bcb592e17028c91a212d2c62646eea3c7d7",
+      "loaded": false
+    }
+  ],
+  "reference_manifest_sha256": "b4c259400f1d9e485f3cfa3c4d3cb983c61e9bd2c78f6b2f5c1839ea3668df87",
+  "source_reports": {
+    "stage4_source.json": "ee63eb016fb526ae34be107482609f221ee3a929d75aeb0a264f0de1d03a48d8",
+    "stage4_report.txt": "31ad40fd94c7b1feca7762b2ad345ac321772e7665675523526c4f8758bd20ef",
+    "stage3_report.txt": "3b99c91e31e97f4251468926a6351a999e260db83f0b1f0f391d8422edde942f",
+    "stage5_report.txt": "feede3ab52e791fa4f255a625c5138a3d0f2818cc1cbcfe8b269e35cd94f43a0",
+    "stage5_source.json": "73371f21e36ffd6fe5c1b172a50fb12d45007c2e0e475994d6b56dc3f85e570b",
+    "stage3_source.json": "363c191bb2a5e88a0cfc4c50dc5fe715a523a1dc86d69d5749b0a08b7e3ee280"
+  },
+  "core_parquet_recovery": "local registered files; no ZIP reconstruction needed",
+  "drive_stage5_zip": {
+    "id": "17MR-fYfkIxgq8g_osfIEl9xuA9Zom6cM",
+    "bytes": 81190672,
+    "listed": true,
+    "downloaded": false
+  }
+}

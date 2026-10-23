@@ -1,0 +1,18 @@
+{
+  "argv": [
+    "experiments/local_control_response_scope_v1/analyze.py",
+    "--split",
+    "train",
+    "--data-root",
+    "/home/zn/flap-system-identification/dataset/velocity_rate_multistep_v1"
+  ],
+  "seconds": 71.90600681304932,
+  "python": "/home/zn/anaconda3/envs/flap-train-gpu/bin/python",
+  "config_sha256": "4c277bae3f745ed53e1628ecc1aab1b4f8f4d05775beb03fbe8fd2e192a330fb",
+  "analysis_sha256": "0129b88a4cf8d88775f3af93fbe2b732c1f871dd4c7d9d5e2fb5cce3cd1eb1a8",
+  "old_audit_sha256": "4fe346a09e426e89d167e3b13f1a6382cde5ebb146648c96858dec56384aa90f",
+  "search_radius_candidates": 123075,
+  "history_pairs": 1283,
+  "model_loaded": false,
+  "test_opened": false
+}
