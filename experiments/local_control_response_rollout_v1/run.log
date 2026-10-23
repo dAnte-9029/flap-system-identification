@@ -1,0 +1,3 @@
+fixed cohorts {('train', 'both_future_quiet'): 30, ('train', 'differential_vs_quiet'): 16, ('train', 'flight_disjoint'): 17, ('train', 'main'): 48, ('train', 'same_controller'): 11, ('train', 'same_firmware'): 38, ('train', 'same_firmware_controller'): 11, ('train', 'small_pair'): 29, ('train', 'small_pair_and_both_quiet'): 5, ('train', 'strict'): 2, ('validation', 'both_future_quiet'): 1, ('validation', 'flight_disjoint'): 1, ('validation', 'main'): 1, ('validation', 'same_firmware'): 1, ('validation', 'small_pair'): 1}
+preflight passed
+done 225 windows 113 pairs 8.611944437026978

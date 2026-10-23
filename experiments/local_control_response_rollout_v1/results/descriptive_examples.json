@@ -1,0 +1,7 @@
+{
+  "rule": "Post-analysis illustration only: median signed Control-minus-Hold curve RMSE within improved / worsened fixed main pairs. No cohort or metric changes.",
+  "pairs": {
+    "median_improvement_vs_hold": "train:105",
+    "median_deterioration_vs_hold": "train:183"
+  }
+}

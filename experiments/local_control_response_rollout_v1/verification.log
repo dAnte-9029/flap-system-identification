@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "response_scalar_checks": 1136352,
+  "response_max_abs_difference": 5.424480309379476e-15,
+  "summary_rows": 18144,
+  "aggregate_max_abs_difference": 8.881784197001252e-16,
+  "main_train_pairs": 48,
+  "main_validation_pairs": 1,
+  "verifier_sha256": "929db537e59acdcf192d6673cd97dc7fb44bea38330a7d603420ce4cc4798b57",
+  "test_opened": false
+}

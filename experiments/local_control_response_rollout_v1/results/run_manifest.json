@@ -1,0 +1,71 @@
+{
+  "models": [
+    {
+      "model": "GRU-NoControl",
+      "seed": 17,
+      "normalization_sha256": "03c15586b205d02232b75cf82292de2e66a3ffbc41c5c9391f2aaa22235e3189",
+      "checkpoint_sha256": "d98157e3873ba6a281131b4fce59d8fd8e5fd7b31f9875e7f60a1582171a479d",
+      "eval_mode": true
+    },
+    {
+      "model": "GRU-NoControl",
+      "seed": 29,
+      "normalization_sha256": "03c15586b205d02232b75cf82292de2e66a3ffbc41c5c9391f2aaa22235e3189",
+      "checkpoint_sha256": "4e891464b81aad236beb5a93a0bee9c7954e077d3d59a37b077e0de892108859",
+      "eval_mode": true
+    },
+    {
+      "model": "GRU-NoControl",
+      "seed": 43,
+      "normalization_sha256": "03c15586b205d02232b75cf82292de2e66a3ffbc41c5c9391f2aaa22235e3189",
+      "checkpoint_sha256": "ebcf47b637f0f3ab25c76a38cf3651ec8fab32512437c0b8adf15ac5750f0763",
+      "eval_mode": true
+    },
+    {
+      "model": "GRU-Control",
+      "seed": 17,
+      "normalization_sha256": "03c15586b205d02232b75cf82292de2e66a3ffbc41c5c9391f2aaa22235e3189",
+      "checkpoint_sha256": "337521208087cb67d8230c6d11390e71a28989059d5b7a86e42a2fd3a2f6803e",
+      "eval_mode": true
+    },
+    {
+      "model": "GRU-Control",
+      "seed": 29,
+      "normalization_sha256": "03c15586b205d02232b75cf82292de2e66a3ffbc41c5c9391f2aaa22235e3189",
+      "checkpoint_sha256": "7f5f8487a062f9f93f5a089929830fcc3cb9061e2f287d20b356a69b749258c8",
+      "eval_mode": true
+    },
+    {
+      "model": "GRU-Control",
+      "seed": 43,
+      "normalization_sha256": "03c15586b205d02232b75cf82292de2e66a3ffbc41c5c9391f2aaa22235e3189",
+      "checkpoint_sha256": "747c6abeba1a588bbcd06e3dfb926bcb592e17028c91a212d2c62646eea3c7d7",
+      "eval_mode": true
+    }
+  ],
+  "windows": 225,
+  "unique_pairs": 113,
+  "seconds": 8.60890817642212,
+  "device": "cuda:0",
+  "gpu": "NVIDIA GeForce RTX 4090",
+  "torch": "2.7.0+cu128",
+  "python": "3.11.14 (main, Oct 21 2025, 18:31:21) [GCC 11.2.0]",
+  "test_opened": false,
+  "trained": false,
+  "swapped": false,
+  "input_keys": [
+    "history",
+    "history_mask",
+    "history_dt",
+    "history_length",
+    "initial",
+    "dt",
+    "events",
+    "event_length"
+  ],
+  "future_motion_in_forward": false,
+  "policy": "exact_zoh_merge_us_v1",
+  "offline_future_dt": true,
+  "selection_sha256": "5c975f264733d5c126c38d8607a185652ece04cc915f0d6906eec1dbfa86fa67",
+  "rollout_sha256": "12856de46a1ca3b75564127f7d6f7577faf76a165fbfaca7ad14c2fd3ad078c3"
+}

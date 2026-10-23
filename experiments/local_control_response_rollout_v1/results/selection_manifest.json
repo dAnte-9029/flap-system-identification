@@ -1,0 +1,24 @@
+{
+  "source_sha256": {
+    "/home/zn/flap-system-identification/.worktrees/local-control-response-rollout-v1/experiments/local_control_response_scope_v1/config.json": "4c277bae3f745ed53e1628ecc1aab1b4f8f4d05775beb03fbe8fd2e192a330fb",
+    "/home/zn/flap-system-identification/.worktrees/local-control-response-rollout-v1/experiments/local_control_response_scope_v1/results/frozen_selection.json": "af064225ffc878ddd27f2fb39f7ec091cbf01e7aad9914aaddee748f5120e525",
+    "/home/zn/flap-system-identification/.worktrees/local-control-response-rollout-v1/experiments/local_control_response_scope_v1/results/description/selected_pair_index.csv": "aee8c368ecdb3fcafa4e51be9e205e5e3bd8f73ce2eab15c153925cff80a6569",
+    "/home/zn/flap-system-identification/.worktrees/local-control-response-rollout-v1/experiments/local_control_response_scope_v1/results/description/background_index.csv": "ff7565c81032d88681f75ecf07c1686cbe2f2ab7accfccd5360d72067afcf27e",
+    "/home/zn/flap-system-identification/.worktrees/local-control-response-rollout-v1/experiments/local_control_response_scope_v1/results/description/asset_receipt.json": "d4c5a6a6162a7fd2b660983efd44ae9d823e6c424209af4bfe7b1ae53d1a8565",
+    "/home/zn/flap-system-identification/.worktrees/local-control-response-rollout-v1/experiments/local_control_response_scope_v1/results/train/candidate_index.csv.gz": "a3479d876935788f572389b6dabead9b4ec80132a24d5b41f262143e8eae309d",
+    "/home/zn/flap-system-identification/.worktrees/local-control-response-rollout-v1/experiments/local_control_response_scope_v1/results/train/all_history_pairs.csv.gz": "16b7133cc64355fdff2de4c23958b081d156fd0a911f9883b749e6c0ff8675bf",
+    "/home/zn/flap-system-identification/.worktrees/local-control-response-rollout-v1/experiments/local_control_response_scope_v1/results/train/selected_pairs.csv": "22090a031c0609effa603e5a8c2b05a02f0ac0abe61c66035410c85220c19d67",
+    "/home/zn/flap-system-identification/.worktrees/local-control-response-rollout-v1/experiments/local_control_response_scope_v1/results/train/command_events.csv.gz": "5e4f3977c4db6a9d2436089055ab9087b95f6c7b4a34370abc010b99c050cdba",
+    "/home/zn/flap-system-identification/.worktrees/local-control-response-rollout-v1/experiments/local_control_response_scope_v1/results/train/source_receipt.json": "ced34bca5372f44d914253536015880e7bd6142922d482af939ad1cf2a39df98",
+    "/home/zn/flap-system-identification/.worktrees/local-control-response-rollout-v1/experiments/local_control_response_scope_v1/results/validation/candidate_index.csv.gz": "e91cc7b4adacdea69aa23a4d9cae6e7becc910671dbc1bc8830314790d9dd6e3",
+    "/home/zn/flap-system-identification/.worktrees/local-control-response-rollout-v1/experiments/local_control_response_scope_v1/results/validation/all_history_pairs.csv.gz": "f02375a2775b63187fcbdb24e16af740d87b687a0f6056e0f05ecf44ca73fa60",
+    "/home/zn/flap-system-identification/.worktrees/local-control-response-rollout-v1/experiments/local_control_response_scope_v1/results/validation/selected_pairs.csv": "40647ccca4087a82b048a6f64ba6f5f00ee15131cd35becef04fa1306941f035",
+    "/home/zn/flap-system-identification/.worktrees/local-control-response-rollout-v1/experiments/local_control_response_scope_v1/results/validation/command_events.csv.gz": "c2343f2b92dc2499b2c47bb2c03a32997644f86653213dce442d5282517ad35f",
+    "/home/zn/flap-system-identification/.worktrees/local-control-response-rollout-v1/experiments/local_control_response_scope_v1/results/validation/source_receipt.json": "31a57d4aff053710e13d9a135bd3ef64e1168e2a46bdc0bed327d1d2cd2b84f0"
+  },
+  "future_outcomes_used": false,
+  "windows_sha256": "8d5086ae7f18e4e0aa50e11328eedf2e4c7e9e3d472102368554043538531100",
+  "pairs_sha256": "1a63e9ffe412bb4953d51fa6d257e2f2fc5af571d63c4c340094f1369b8fd767",
+  "cohorts_sha256": "45ffddf13251f31153f8cef740d993434df6d0efa9dde485203d7a3fc827ade0",
+  "scope": "exact saved memberships and main-cohort flag intersections; no new pairing or repacking of subcohorts"
+}

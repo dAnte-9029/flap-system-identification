@@ -1,0 +1,6 @@
+{
+  "lowest_curve_error": "train:412",
+  "worst_vs_hold": "train:336",
+  "largest_endpoint_bias": "train:124",
+  "validation_case": "validation:44"
+}

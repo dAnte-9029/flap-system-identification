@@ -1,0 +1,41 @@
+{
+  "recorded_utc": "2026-10-23T08:58:53.080832+00:00",
+  "worktree": "/home/zn/flap-system-identification/.worktrees/local-control-response-rollout-v1",
+  "base_branch": "exp/local-control-response-scope-v1",
+  "verified_local_and_remote_base_sha": "4fecb63ad65b1314227d168ea5457676b46752d7",
+  "branch": "exp/local-control-response-rollout-v1",
+  "remote_new_branch_before_publication": "absent",
+  "original_workspace": "/home/zn/flap-system-identification",
+  "original_workspace_dirty": true,
+  "original_workspace_delivery_status_entries": 2555,
+  "original_workspace_delivery_status_sha256": "f0ec0e40eb00182fb996191240ffc33a10f0765f1990ec7373ccb377da692cf9",
+  "original_workspace_modified_by_this_task": false,
+  "environment": "flap-train-gpu",
+  "authorized_partitions": [
+    "train",
+    "validation"
+  ],
+  "training": false,
+  "test_trajectories_opened": false,
+  "dataset_or_checkpoint_reselected": false,
+  "optional_swapped_experiment": false,
+  "commands": [
+    "python run.py --data-root /home/zn/flap-system-identification/dataset/velocity_rate_multistep_v1 (run.log)",
+    "python analyze.py (analysis.log)",
+    "python verify.py (verification.log)",
+    "python verify_curves.py (curve_verification.log)",
+    "python check_inputs.py (input_check.log)",
+    "python figures.py (figures.log)",
+    "python -m pytest -q experiments/local_control_response_rollout_v1/test_metrics.py (tests.log)",
+    "python -m compileall -q experiments/local_control_response_rollout_v1",
+    "git diff --check",
+    "python archive.py; python archive.py --verify"
+  ],
+  "notes": [
+    "All project Python commands use /home/zn/anaconda3/envs/flap-train-gpu/bin/python.",
+    "Initial preflight attempt exposed a manifest-path prefix mismatch before inference; fixed locally before the successful archived run. Scratch remains outside this experiment.",
+    "analysis.log contains expected empty-median warnings for zero-prediction Hold peak-lag/correlation statistics; those metrics remain NaN, not fabricated zeros.",
+    "Drive Stage3 ZIP metadata/fetch tools unavailable; local prior reference arrays used and boundary documented.",
+    "Shared whole-flight/date partitions preserved; only new experiment directory will be committed."
+  ]
+}

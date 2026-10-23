@@ -1,0 +1,16 @@
+{
+  "pair_wins_vs_hold": 25,
+  "pair_wins_vs_nocontrol": 24,
+  "leave_one_flight_out_control_rmse_range": [
+    0.4606733284682459,
+    0.6652380113619086
+  ],
+  "leave_one_flight_out_control_minus_hold_range": [
+    -0.07548423177039976,
+    -0.04045929481035582
+  ],
+  "leave_one_flight_out_control_minus_nocontrol_range": [
+    -0.023710051799438414,
+    0.007942523149570224
+  ]
+}

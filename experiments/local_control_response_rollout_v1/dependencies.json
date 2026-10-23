@@ -1,0 +1,15 @@
+{
+  "python": "3.11.14 (main, Oct 21 2025, 18:31:21) [GCC 11.2.0]",
+  "environment": "/home/zn/anaconda3/envs/flap-train-gpu",
+  "packages": {
+    "numpy": "1.26.0",
+    "pandas": "2.3.3",
+    "torch": "2.7.0+cu128",
+    "matplotlib": "3.10.3",
+    "scipy": "1.15.3",
+    "yaml": "6.0.2",
+    "pyarrow": "23.0.1",
+    "pytest": "9.0.2"
+  },
+  "installed_or_changed": false
+}

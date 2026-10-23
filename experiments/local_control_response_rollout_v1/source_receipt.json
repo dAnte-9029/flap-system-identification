@@ -1,0 +1,16 @@
+{
+  "base_sha": "4fecb63ad65b1314227d168ea5457676b46752d7",
+  "additional_source_sha256": {
+    "configs/data/velocity_rate_dataset_registry.yaml": "09f2ca42abd4ed509edf667e080c582883935498d800994627b114f08feb6321",
+    "src/system_identification/data/velocity_rate_dataset.py": "ad82b1695f6f4c425885f08c42d25b7c939801d44020db7149aba87486981e4d",
+    "experiments/control_identifiability_audit_v1/audit.py": "4fe346a09e426e89d167e3b13f1a6382cde5ebb146648c96858dec56384aa90f",
+    "experiments/control_event_canonicalization_v1/run.py": "be7483df075c369c7129dc23b9e72687113fd84b4beac973e8200b5d7aa0a9cb",
+    "experiments/control_response_eval_v1/results/run_manifest.json": "ef1a585067cf9937031dd2db5caac48795583462ae55db053f84f5e2e8a79162",
+    "experiments/control_response_eval_v1/results/archive_manifest.json": "d8df7d995dcae95d77e887450eec7dbe11ed6a64838a9b69be0a8615974e2a79",
+    "experiments/control_event_canonicalization_v1/archive_manifest.json": "6f926484f4a95bf2473723f67b776ee64bf7338ff7bc082bb8801a5a7e473a9f",
+    "experiments/local_control_response_scope_v1/archive_manifest.json": "1aa2b45d2fe2b95143581d9e718731a33ad8b88c2a796256af21f73abf2f829f",
+    "experiments/local_control_response_scope_v1/report_zh.md": "a702a52b387c519b5db65b4945f8c41f2003971c9e65753541e84b3fd60cf1eb",
+    "experiments/local_control_response_scope_v1/README.md": "4822524243c194177b39c64190ee3076ac11ccdb4e8618874f1ec729d77c92ad"
+  },
+  "original_source_changes": false
+}

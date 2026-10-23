@@ -1,0 +1,157 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "check": "archived raw eight-input packing",
+      "windows": 8,
+      "passed": true
+    },
+    {
+      "check": "historical raw-interface prediction",
+      "model": "GRU-NoControl",
+      "seed": 17,
+      "max_abs_error": 5.066394805908203e-07,
+      "passed": true
+    },
+    {
+      "check": "historical raw-interface prediction",
+      "model": "GRU-NoControl",
+      "seed": 29,
+      "max_abs_error": 5.811452865600586e-07,
+      "passed": true
+    },
+    {
+      "check": "historical raw-interface prediction",
+      "model": "GRU-NoControl",
+      "seed": 43,
+      "max_abs_error": 4.76837158203125e-07,
+      "passed": true
+    },
+    {
+      "check": "historical raw-interface prediction",
+      "model": "GRU-Control",
+      "seed": 17,
+      "max_abs_error": 4.76837158203125e-07,
+      "passed": true
+    },
+    {
+      "check": "historical raw-interface prediction",
+      "model": "GRU-Control",
+      "seed": 29,
+      "max_abs_error": 7.152557373046875e-07,
+      "passed": true
+    },
+    {
+      "check": "historical raw-interface prediction",
+      "model": "GRU-Control",
+      "seed": 43,
+      "max_abs_error": 9.5367431640625e-07,
+      "passed": true
+    },
+    {
+      "check": "canonical integrated reference",
+      "seed": 17,
+      "horizon_ms": 500,
+      "max_abs_error": 7.152557373046875e-07,
+      "passed": true
+    },
+    {
+      "check": "canonical integrated reference",
+      "seed": 17,
+      "horizon_ms": 1000,
+      "max_abs_error": 9.5367431640625e-07,
+      "passed": true
+    },
+    {
+      "check": "redundant subdivision exact prediction equality",
+      "seed": 17,
+      "parts": 2,
+      "passed": true
+    },
+    {
+      "check": "redundant subdivision exact prediction equality",
+      "seed": 17,
+      "parts": 4,
+      "passed": true
+    },
+    {
+      "check": "no target input and future-prefix consistency",
+      "seed": 17,
+      "prefix_max_abs_error": 0.0,
+      "passed": true
+    },
+    {
+      "check": "canonical integrated reference",
+      "seed": 29,
+      "horizon_ms": 500,
+      "max_abs_error": 4.76837158203125e-07,
+      "passed": true
+    },
+    {
+      "check": "canonical integrated reference",
+      "seed": 29,
+      "horizon_ms": 1000,
+      "max_abs_error": 9.5367431640625e-07,
+      "passed": true
+    },
+    {
+      "check": "redundant subdivision exact prediction equality",
+      "seed": 29,
+      "parts": 2,
+      "passed": true
+    },
+    {
+      "check": "redundant subdivision exact prediction equality",
+      "seed": 29,
+      "parts": 4,
+      "passed": true
+    },
+    {
+      "check": "no target input and future-prefix consistency",
+      "seed": 29,
+      "prefix_max_abs_error": 0.0,
+      "passed": true
+    },
+    {
+      "check": "canonical integrated reference",
+      "seed": 43,
+      "horizon_ms": 500,
+      "max_abs_error": 9.5367431640625e-07,
+      "passed": true
+    },
+    {
+      "check": "canonical integrated reference",
+      "seed": 43,
+      "horizon_ms": 1000,
+      "max_abs_error": 1.9073486328125e-06,
+      "passed": true
+    },
+    {
+      "check": "redundant subdivision exact prediction equality",
+      "seed": 43,
+      "parts": 2,
+      "passed": true
+    },
+    {
+      "check": "redundant subdivision exact prediction equality",
+      "seed": 43,
+      "parts": 4,
+      "passed": true
+    },
+    {
+      "check": "no target input and future-prefix consistency",
+      "seed": 43,
+      "prefix_max_abs_error": 0.0,
+      "passed": true
+    }
+  ],
+  "reference_hashes": {
+    "/home/zn/flap-system-identification/.worktrees/local-control-response-rollout-v1/experiments/control_response_eval_v1/results/predictions_500ms.npz": "55dae315dedef7ebe37452256bcd32f9d7f740e7743570f8e63e57f87b29baed",
+    "/home/zn/flap-system-identification/.worktrees/local-control-response-rollout-v1/experiments/control_response_eval_v1/results/windows_500ms.parquet": "a4de0ecd7a5741e163204b374fd896cf6234882a9a8110c8a2a92918de80f78b",
+    "/home/zn/flap-system-identification/.worktrees/local-control-response-rollout-v1/experiments/control_event_canonicalization_v1/results/integrated/windows.parquet": "cb68e876b71c5412f4fedd8f0badf927bcba3711363a24962cc8de55e4ecaac1",
+    "/home/zn/flap-system-identification/.worktrees/local-control-response-rollout-v1/experiments/control_event_canonicalization_v1/results/integrated/predictions.npz": "d87296a918af9dbc614a79afad21f277411f1069f048a0e30e7bd4874b2694bc"
+  },
+  "drive_stage3": "2026-10-23 Google Drive get_file_metadata and fetch returned tool not available; remote Stage3 CPU replay not retrieved",
+  "reference_boundary": "Local archived raw response inputs/predictions plus canonicalization full-validation integrated GPU reference; not a claim of bitwise reproduction of the inaccessible Drive Stage3 CPU run",
+  "tolerance": 2e-05
+}

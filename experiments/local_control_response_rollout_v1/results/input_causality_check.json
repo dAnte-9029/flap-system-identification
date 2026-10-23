@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "poisoned_windows": 8,
+  "eight_inputs_unchanged": true,
+  "future_truth_changed": true,
+  "checkpoint_hashes_still_match": 6,
+  "train_main_origin_p_gap_rms": 0.18810258072561195,
+  "train_main_origin_p_gap_abs_median": 0.0,
+  "train_main_origin_p_gap_abs_max": 1.3641471097944304,
+  "test_opened": false,
+  "source_sha256": "a2807c1ae8da69a8a2c22b1a204f88ccd2f44712b05eae3da8a3e4562bdb4be9"
+}

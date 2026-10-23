@@ -1,0 +1,16 @@
+split,cohort,pairs,flights,components,max_pairs_per_flight,unique_windows,max_pairs_per_component
+train,both_future_quiet,30,30,11,5,60,7
+train,differential_vs_quiet,16,24,10,3,32,4
+train,flight_disjoint,17,34,17,1,34,1
+train,main,48,46,11,8,96,25
+train,same_controller,11,16,8,3,22,3
+train,same_firmware,38,39,13,7,76,11
+train,same_firmware_controller,11,16,8,3,22,3
+train,small_pair,29,26,9,7,58,9
+train,small_pair_and_both_quiet,5,7,3,2,10,2
+train,strict,2,4,2,1,4,1
+validation,both_future_quiet,1,2,1,1,2,1
+validation,flight_disjoint,1,2,1,1,2,1
+validation,main,1,2,1,1,2,1
+validation,same_firmware,1,2,1,1,2,1
+validation,small_pair,1,2,1,1,2,1

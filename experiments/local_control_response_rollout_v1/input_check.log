@@ -1,0 +1,10 @@
+{'passed': True, 'poisoned_windows': 8, 'eight_inputs_unchanged': True, 'future_truth_changed': True, 'checkpoint_hashes_still_match': 6, 'train_main_origin_p_gap_rms': 0.18810258072561195, 'train_main_origin_p_gap_abs_median': 0.0, 'train_main_origin_p_gap_abs_max': 1.3641471097944304, 'test_opened': False, 'source_sha256': 'a2807c1ae8da69a8a2c22b1a204f88ccd2f44712b05eae3da8a3e4562bdb4be9'}
+       causal_rate_measurement_lag_us  target_rate_offset_us  causal_rate_publication_offset_us
+count                     5853.000000            5853.000000                        5853.000000
+mean                      3835.090381             -80.281565                       -3726.908936
+std                       3192.979969            3021.750138                        3192.784498
+min                      -4990.000000           -4993.000000                      -12385.000000
+25%                          0.000000           -2495.000000                       -7213.000000
+50%                       4928.000000               0.000000                       -4746.000000
+75%                       7392.000000            2495.000000                          79.000000
+max                      12472.000000            4994.000000                        5071.000000

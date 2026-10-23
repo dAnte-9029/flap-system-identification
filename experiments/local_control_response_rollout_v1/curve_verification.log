@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "curve_rows": 904,
+  "curve_summary_rows": 540,
+  "curve_max_abs_difference": 6.661338147750939e-16,
+  "curve_aggregate_max_abs_difference": 3.3306690738754696e-16,
+  "main_support_intervals_nonoverlapping": true,
+  "flight_disjoint_flags_verified": true,
+  "train_validation_flights_disjoint": true,
+  "source_sha256": "82d73d3856e5f2d03e5d2f468d8046c92771510dd5e84c60457dd43b29aa488a"
+}
