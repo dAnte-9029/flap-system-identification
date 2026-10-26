@@ -1,0 +1,3 @@
+split,top5_raw_change_energy_fraction,top5_duration_fraction,dates,firmware,configurations
+train,0.10476659633181448,0.07448035228872536,15,13,29
+validation,0.34846000291548046,0.27286687437440627,3,4,10

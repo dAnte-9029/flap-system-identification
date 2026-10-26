@@ -1,0 +1,17 @@
+........F...                                                             [100%]
+=================================== FAILURES ===================================
+__________________________ test_information_svd_gram ___________________________
+
+    def test_information_svd_gram():
+     rng=np.random.default_rng(17);x=rng.normal(size=(100,4));x[:,3]=x[:,0]+x[:,1];x-=x.mean(0)
+     s=np.linalg.svd(x/10,compute_uv=False);e=np.sqrt(np.maximum(np.linalg.eigvalsh(x.T@x/100),0))[::-1]
+>    assert np.allclose(s,e,atol=2e-8);assert (s>s[0]*.01).sum()==3
+     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E    assert False
+E     +  where False = <function allclose at 0x7faa5444a370>(array([1.75217131e+00, 1.13445787e+00, 9.19064284e-01, 1.55757859e-16]), array([1.75217131e+00, 1.13445787e+00, 9.19064284e-01, 2.98895064e-08]), atol=2e-08)
+E     +    where <function allclose at 0x7faa5444a370> = np.allclose
+
+experiments/closed_loop_control_informativity_v1/test_diagnostics.py:47: AssertionError
+=========================== short test summary info ============================
+FAILED experiments/closed_loop_control_informativity_v1/test_diagnostics.py::test_information_svd_gram
+1 failed, 11 passed in 1.20s

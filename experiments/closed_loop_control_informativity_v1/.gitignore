@@ -1,0 +1,7 @@
+__pycache__/
+.pytest_cache/
+sources/*.local.txt
+sources/Dinkla_published.pdf
+sources/Dinkla_published.txt
+results/causal_features.parquet
+results/diagnostic_arrays.npz

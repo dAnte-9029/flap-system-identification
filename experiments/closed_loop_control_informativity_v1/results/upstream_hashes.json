@@ -1,0 +1,21 @@
+{
+  "experiments/local_control_response_scope_v1/config.json": "4c277bae3f745ed53e1628ecc1aab1b4f8f4d05775beb03fbe8fd2e192a330fb",
+  "experiments/local_control_response_scope_v1/results/frozen_selection.json": "af064225ffc878ddd27f2fb39f7ec091cbf01e7aad9914aaddee748f5120e525",
+  "experiments/local_control_response_scope_v1/results/train/candidate_index.csv.gz": "a3479d876935788f572389b6dabead9b4ec80132a24d5b41f262143e8eae309d",
+  "experiments/local_control_response_scope_v1/results/train/command_events.csv.gz": "5e4f3977c4db6a9d2436089055ab9087b95f6c7b4a34370abc010b99c050cdba",
+  "experiments/local_control_response_scope_v1/results/train/controller_headers.json": "e1b7eed9a468eba2640c8d48ed38bcd6fd0d435a1fcab9b2497b415a7bd1c1a5",
+  "experiments/local_control_response_scope_v1/results/validation/candidate_index.csv.gz": "e91cc7b4adacdea69aa23a4d9cae6e7becc910671dbc1bc8830314790d9dd6e3",
+  "experiments/local_control_response_scope_v1/results/validation/command_events.csv.gz": "c2343f2b92dc2499b2c47bb2c03a32997644f86653213dce442d5282517ad35f",
+  "experiments/local_control_response_scope_v1/results/validation/controller_headers.json": "3300dc35b00affbee1f2afe766b5824860ab13b3385f116ce038041f827bf01e",
+  "experiments/local_control_response_rollout_v1/results/pairs.csv": "1a63e9ffe412bb4953d51fa6d257e2f2fc5af571d63c4c340094f1369b8fd767",
+  "experiments/local_control_response_rollout_v1/results/input_causality_check.json": "e95eba4a361224c83e9e8c41e01a69bbff6c958d682c4247aaaaaffa279d3d47",
+  "experiments/local_control_response_rollout_v1/results/rate_clock_audit.csv": "849db351bc52726b1d1f5a9465c47fa23155dd96b71eb6bc4217d37a4fa7369a",
+  "experiments/structured_control_effectiveness_group_holdout_v1/results/factual_points.csv.gz": "0685e0ba19e4f2c8a146ff58b34a8df9ed8b2a3a32175a44e67aaaa681ee8f79",
+  "experiments/structured_control_effectiveness_group_holdout_v1/results/cohorts.csv": "45ffddf13251f31153f8cef740d993434df6d0efa9dde485203d7a3fc827ade0",
+  "experiments/structured_control_effectiveness_group_holdout_v1/results/component_assignments.csv": "08fcc9390fa5316b96eee97864c5d2788da28b3a7abdb85d02cf6a755a065f0f",
+  "experiments/structured_control_effectiveness_group_holdout_v1/report_zh.md": "b2f567f9b706ade73c5f2e915803437e8c7bd1638ea6afe42b0a495a0e0740f5",
+  "experiments/local_control_response_time_contract_ablation_v1/time_contract_zh.md": "bd438b0b8c64ad91fd6e11224e09c8d83fe2f6181f3177f99b10cf97fa6b05ed",
+  "experiments/local_control_response_time_contract_ablation_v1/sources/stage4_report.txt": "31ad40fd94c7b1feca7762b2ad345ac321772e7665675523526c4f8758bd20ef",
+  "experiments/local_control_response_time_contract_ablation_v1/results/firmware_sources.csv": "58a529f34b5f1f594109a605aa274c2582f06952914b2cf6d7380100e768c29d",
+  "experiments/local_control_response_timing_slowfast_v1/results/points.csv.gz": "938173254e76893e6e25f90c4de5039d390a27ece6f8fd0789206e7488e49b2a"
+}

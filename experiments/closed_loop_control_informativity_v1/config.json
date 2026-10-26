@@ -1,0 +1,16 @@
+{
+ "base_sha":"321822d83f7a1f381ecc50ba0a4c23e5aa9fa4cf",
+ "dataset_id":"velocity_rate_multistep_v1", "sampling_group":"main_50hz",
+ "data_root":"/home/zn/flap-system-identification/dataset/velocity_rate_multistep_v1",
+ "raw_root":"/home/zn/QgcLogs", "partitions":["train","validation"],
+ "regime":"AUTO_stable", "history_lags_ms":[0,100,200,300,400,500],
+ "horizons_ms":[100,300,500], "crossfit_folds":5,
+ "ridge_lambda":0.01, "ridge_sensitivity":[0.001,0.1],
+ "reference_fresh_us":100000,"fresh_sensitivity_us":[25000,50000,100000,200000],
+ "direction_threshold":0.02,"motion_threshold_rad_s":0.1,
+ "lag_orders":[1,3,6],"effective_rank_relative_singular_threshold":0.01,
+ "fit_weighting":"equal flight, nonoverlap complete-support windows only",
+ "fold_assignment":"sorted unique original log SHA round robin; no outcome balancing",
+ "target":"exact ZOH future mean command minus command at decision; four reversible coordinates",
+ "notes":"Predeclared before fitting. No dynamics fitting, no IV fitting, no test. Mission held without TTL; derived references older than 100ms masked. Residual is not exogenous."
+}

@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "checked_raw_flights": 121,
+  "test_opened": false,
+  "summary_rows": 432,
+  "ridge_augmented_lstsq_max_error": 1.0706713293728853e-14,
+  "summary_rms_max_error": 1.1102230246251565e-16,
+  "direction_max_error": 6.8833827526759706e-15,
+  "gram_svd_max_error": 1.5543122344752192e-15,
+  "zoh_integrals": 1200,
+  "zoh_max_error": 0,
+  "history_command_max_error": 0,
+  "negative_control_corr_max_error": 1.1102230246251565e-16,
+  "full_frozen_pairs": 113,
+  "main_train_pairs": 48,
+  "method": "independent augmented SVD solve; independent per-flight reductions; direct native interval quadrature; no dynamics training"
+}

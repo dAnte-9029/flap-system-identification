@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/home/zn/flap-system-identification/.worktrees/closed-loop-control-informativity-v1/experiments/closed_loop_control_informativity_v1/verify.py", line 72, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/home/zn/flap-system-identification/.worktrees/closed-loop-control-informativity-v1/experiments/closed_loop_control_informativity_v1/verify.py", line 61, in main
+    assert zoh_err<1e-12 and feature_err<1e-12
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError

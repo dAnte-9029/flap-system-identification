@@ -1,0 +1,9 @@
+{
+  "python": "/home/zn/anaconda3/envs/flap-train-gpu/bin/python",
+  "python_version": "3.11.14 (main, Oct 21 2025, 18:31:21) [GCC 11.2.0]",
+  "numpy": "1.26.0",
+  "pandas": "2.3.3",
+  "platform": "Linux-5.15.0-186-generic-x86_64-with-glibc2.35",
+  "base_sha": "321822d83f7a1f381ecc50ba0a4c23e5aa9fa4cf",
+  "gpu_used": false
+}

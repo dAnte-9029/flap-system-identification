@@ -1,0 +1,5 @@
+{
+  "url": "https://pure.tudelft.nl/ws/portalfiles/portal/257289673/1-s2.0-S0005109825004510-main.pdf",
+  "status": "unavailable",
+  "reason": "HTTPSConnectionPool(host='pure.tudelft.nl', port=443): Read timed out. (read timeout=30)"
+}

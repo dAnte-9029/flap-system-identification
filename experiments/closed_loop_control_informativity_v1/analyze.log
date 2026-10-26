@@ -1,0 +1,17 @@
+fit U_200
+fit U_500
+fit SU_200
+fit SU_500
+fit SU_mission500
+fit SU_reference500
+fit SU_internal500
+fit SU_reference500_lambda0.001
+fit SU_reference500_lambda0.1
+Traceback (most recent call last):
+  File "/home/zn/flap-system-identification/.worktrees/closed-loop-control-informativity-v1/experiments/closed_loop_control_informativity_v1/analyze.py", line 200, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/home/zn/flap-system-identification/.worktrees/closed-loop-control-informativity-v1/experiments/closed_loop_control_informativity_v1/analyze.py", line 94, in main
+    X=xx[matrix_rows,:4].reshape(len(rowids),-1);mu=ww@X;X=X-mu;scale=np.sqrt(ww@(X*X));scale[scale<1e-10]=1
+      ~~^^^^^^^^^^^^^^^^
+IndexError: arrays used as indices must be of integer (or boolean) type
