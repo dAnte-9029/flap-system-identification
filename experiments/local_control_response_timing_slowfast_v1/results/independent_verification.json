@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "response_scalar_checks": 2068269,
+  "response_max_abs_difference": 9.769962616701378e-15,
+  "summary_rows": 66600,
+  "aggregate_max_abs_difference": 1.3500311979441904e-12,
+  "model_inference": false,
+  "test_read": false,
+  "verifier_sha256": "144be45e8222ad5bec16c43c3464b2ac0cac0a2acc3290ca712019a64270b7e5"
+}

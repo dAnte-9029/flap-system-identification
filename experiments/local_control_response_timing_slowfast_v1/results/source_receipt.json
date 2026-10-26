@@ -1,0 +1,44 @@
+{
+  "dataset_root": "/home/zn/flap-system-identification/dataset/velocity_rate_multistep_v1",
+  "manifest_sha256": "8afb8623bf7174e4da5b2044f644331b8b251433fed3576f6dcdab470935bcb5",
+  "artifact_sha256": {
+    "samples_train.parquet": "47a0d8d396d795fefa17ae0143484b7d63ef809f6bb3dfb8409ea75d5166f488",
+    "native_vehicle_angular_velocity_train.parquet": "8fdcd976a0ae4ea4f6a96f84131073709a828c5f5d7afc54e9c572dd724e21f3",
+    "native_encoder_count_train.parquet": "57f4ca3d337f96368946825fbe5c5c2245943054d0b1f05980189140282ad3c4",
+    "native_flap_frequency_train.parquet": "8cf2c41a620b9c7b275805ed853ae32b7a5e10521087ae04c8dc48941ba78276",
+    "samples_validation.parquet": "89f42ca256c3d04899d6824c0f9112f83aecfc7b82e6247347f14f3c97c33dae",
+    "native_vehicle_angular_velocity_validation.parquet": "a7430ba65c41937e5d62b3d73ac4f69bba631c10c5bfcb5f84399f2f5102c82d",
+    "native_encoder_count_validation.parquet": "1e91333a0546870905f5f3721dc3abc3cd1a1de00c1413126498278e12c8dd31",
+    "native_flap_frequency_validation.parquet": "3410861fafd1f1ea9fca9901dc159652490d7d5ab15f4d906ff7bb090b29a757"
+  },
+  "code_sha256": {
+    "src/system_identification/data/velocity_rate_dataset.py": "ad82b1695f6f4c425885f08c42d25b7c939801d44020db7149aba87486981e4d",
+    "src/system_identification/models/velocity_rate_gru.py": "76c6d29f7dfd60fec4e4094b474e3e876f3eb3d580c839141534685dced4302b",
+    "experiments/local_control_response_scope_v1/config.json": "4c277bae3f745ed53e1628ecc1aab1b4f8f4d05775beb03fbe8fd2e192a330fb",
+    "experiments/local_control_response_rollout_v1/archive_manifest.json": "eb3c5629ef2b8314c8af461acfa123bb4c8b45569d0142da13d5f89abac008d8"
+  },
+  "test_read": false,
+  "partitions": [
+    "train",
+    "validation"
+  ],
+  "native_parquet_extraction_reason": "Saved arrays do not contain complete native rate/encoder timestamps; native caches enable fixed physical-time interpolation without GPU or raw logs",
+  "input_keys_hashes": {
+    "history": "9b7e74b5f58db3aa29516d0d57dd7555e856c444d7b461ed399d43d5d51f6f9c",
+    "history_mask": "f202ce11e7eb67aefc8e4db239fe41fbd3532acad5394a362a97e70b7fc4f203",
+    "history_dt": "085981a388c6f81740307c19e575648e476b4f2905c5243c69c8480869573f75",
+    "history_length": "fe6d6d54164da7c5880479e61ae0e7e281c520a39740139f10ddc577aef5c35c",
+    "initial": "f210420b6ca5cd7ca75cd5a453fa5b3551c20ecb03f548ebfd52c1168fd7d4ed",
+    "dt": "69955ac9272014742910a2725e36c7b7d483fecd6469b2e4319a493207781787",
+    "events": "4e41c5fee775d66380e43a6c6d476d4f3a6b8188101aa2a874baba1f86332b2d",
+    "event_length": "af40b27d9e92b1a72e71fe5afc0f6a876809b386513851cdff022bbc3fcefad5"
+  },
+  "outputs_sha256": {
+    "native_diagnostic_inputs.npz": "2de1fd556037d3e80390293f4275687178e92339fe7e0fd1a8c4baf38d850ff6",
+    "origin_clock_audit.csv": "e86dff602305ae9dee12e7445f0a7df747180cc0789403a0a06988b85a44516c",
+    "future_clock_audit.csv": "0c4aa206eddb12518b11f7f7955328e2d07012d36d47ca4fe70a80bde63808a2",
+    "phase_forecast_audit.csv": "70a5c0850fa56a1de3ccee7c684814b8874b0383a6e18f66f92f5770f935375b",
+    "frequency_audit.csv": "16fc856c59fc31de17e41883fa2c656cd1142dcff76ca48fc793c5a1de29d272",
+    "native_rate_extract.csv.gz": "860c600b4aa5510c84fb60dbb2bf4d6476f15b819c7c09d12f9153953b4ceed1"
+  }
+}

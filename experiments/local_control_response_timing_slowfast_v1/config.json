@@ -1,0 +1,89 @@
+{
+  "base_sha": "c6580f7a9369db2de721cfd3e31b339c95d317f2",
+  "dataset": "velocity_rate_multistep_v1",
+  "sampling_group": "main_50hz",
+  "models": [
+    [
+      "GRU-Control",
+      17
+    ],
+    [
+      "GRU-Control",
+      29
+    ],
+    [
+      "GRU-Control",
+      43
+    ],
+    [
+      "GRU-NoControl",
+      17
+    ],
+    [
+      "GRU-NoControl",
+      29
+    ],
+    [
+      "GRU-NoControl",
+      43
+    ],
+    [
+      "Hold",
+      0
+    ]
+  ],
+  "variables": [
+    "p",
+    "q",
+    "r"
+  ],
+  "nominal_horizon_s": 0.5,
+  "main_width_s": 0.27,
+  "sensitivity_width_s": 0.34,
+  "filter": "centered box mean, exact piecewise-linear integral, future-only full support; no padding, no extrapolation",
+  "width_rule": "nearest 10 ms to 1/median history frequency of 96 frozen train-main windows; sensitivity nearest 10 ms to 1/min frequency. No prediction metrics used.",
+  "train_frequency_quantiles": [
+    2.979229367696322,
+    3.403092187184554,
+    3.744731407899123,
+    4.036198730652149,
+    4.222417006125817
+  ],
+  "grid_s": 0.02,
+  "report_times_s": [
+    0.1,
+    0.2,
+    0.3,
+    0.4,
+    0.5
+  ],
+  "max_rate_gap_s": 0.02,
+  "max_model_gap_s": 0.04,
+  "direction_floors": [
+    0.05,
+    0.1,
+    0.2
+  ],
+  "main_direction_floor": 0.1,
+  "methods": {
+    "A": "original nominal position-clock targets minus original instantaneous truth_initial; predictions minus initial",
+    "B": "native measured-rate interpolation at nominal model physical times, minus native interpolated value at t0; model unchanged",
+    "C": "box mean of A response, preserving original instantaneous anchor; can be nonzero at first valid center",
+    "D": "box mean of B response, preserving physical instantaneous anchor",
+    "C_cycle": "C minus C at first full-window center W/2; later cycle-average change, not response from original t0",
+    "D_cycle": "D minus D at first full-window center W/2; later cycle-average change, not response from original t0"
+  },
+  "alignment": "No time shift fitted. Model output time remains its native dt/position-clock contract; stale initial is not repaired. Native truth at the same nominal physical time is an offline reference.",
+  "test_read": false,
+  "model_inference": false,
+  "training": false,
+  "control_swap": false,
+  "fixed_examples": [
+    "train:124",
+    "train:336",
+    "train:412",
+    "validation:44",
+    "train:105",
+    "train:183"
+  ]
+}

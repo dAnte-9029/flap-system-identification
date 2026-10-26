@@ -1,0 +1,46 @@
+{
+  "recorded_utc": "2026-10-26T03:24:04.783263+00:00",
+  "base_sha": "c6580f7a9369db2de721cfd3e31b339c95d317f2",
+  "base_local_and_remote_verified": true,
+  "remote_default_HEAD_at_start": "dd4b44b55deda8d6d9585873714fbe61edcb9f2a",
+  "branch": "exp/local-control-response-timing-slowfast-v1",
+  "worktree": "/home/zn/flap-system-identification/.worktrees/local-control-response-timing-slowfast-v1",
+  "original_workspace_dirty_entries_at_start": 2555,
+  "original_workspace_touched": false,
+  "allowed_partitions": [
+    "train",
+    "validation"
+  ],
+  "model_inference_count": 0,
+  "training": false,
+  "test_read": false,
+  "checkpoint_loaded": false,
+  "swapped_controls": false,
+  "cohort_reselected": false,
+  "baseline_reproduced_before_new_diagnostics": true,
+  "parameters_selected_from_train_history_frequency_only": true,
+  "commands_in_order": [
+    "baseline.py",
+    "prepare.py",
+    "analyze.py",
+    "diagnostics.py",
+    "verify.py",
+    "verify_extra.py",
+    "fast_summary.py",
+    "figures.py",
+    "python -m pytest -q test_diagnostics.py",
+    "python -m compileall -q experiments/local_control_response_timing_slowfast_v1",
+    "baseline.py with LOCAL_DIAG_OUTPUT in a fresh /tmp directory",
+    "archive.py; archive.py --verify",
+    "git diff --check"
+  ],
+  "checks_and_corrections": [
+    "Independent integration found a floating-point endpoint inside the 1e-10 s boundary tolerance that was incorrectly marked missing; fixed, added regression test, and recomputed analysis/diagnostics/verification.",
+    "Added explicit long-gap rejection to centered averaging; all actual native gaps are below 20 ms and model gaps below 40 ms.",
+    "Encoder/frequency timestamp_sample=-1 is explicitly unknown; source timestamps are used for source age, not fabricated measurement age.",
+    "Complete native future endpoint interpolation lacks support for 38/225 windows; retain missing flags and compare at common 300ms or deterministic native joint endpoint.",
+    "No optimized time shifts, oracle peak alignment, future phase feedback or outcomes-based filtering.",
+    "Cycle-rebased responses are supplementary, with a different origin and estimand.",
+    "Archive output does not include temporary reproduction directories or Python caches."
+  ]
+}

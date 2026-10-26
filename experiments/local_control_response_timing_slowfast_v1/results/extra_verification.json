@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "matched_endpoint_rows": 4746,
+  "maximum_abs_difference": 4.773959005888173e-15,
+  "old_files_unchanged": 63,
+  "eight_model_inputs_unchanged": true,
+  "phase_formula_checked": true,
+  "all_initial_rates_published_by_decision": true,
+  "native_gap_below_limit": true,
+  "model_inference": false,
+  "test_read": false
+}
