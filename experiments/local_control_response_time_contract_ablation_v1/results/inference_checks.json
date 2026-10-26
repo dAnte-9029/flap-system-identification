@@ -1,0 +1,130 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "model": "GRU-NoControl",
+      "seed": 17,
+      "V0_max_error": 0.0,
+      "normalization_sha256": "03c15586b205d02232b75cf82292de2e66a3ffbc41c5c9391f2aaa22235e3189"
+    },
+    {
+      "model": "GRU-NoControl",
+      "seed": 29,
+      "V0_max_error": 0.0,
+      "normalization_sha256": "03c15586b205d02232b75cf82292de2e66a3ffbc41c5c9391f2aaa22235e3189"
+    },
+    {
+      "model": "GRU-NoControl",
+      "seed": 43,
+      "V0_max_error": 0.0,
+      "normalization_sha256": "03c15586b205d02232b75cf82292de2e66a3ffbc41c5c9391f2aaa22235e3189"
+    },
+    {
+      "model": "GRU-Control",
+      "seed": 17,
+      "V0_max_error": 0.0,
+      "normalization_sha256": "03c15586b205d02232b75cf82292de2e66a3ffbc41c5c9391f2aaa22235e3189"
+    },
+    {
+      "model": "GRU-Control",
+      "seed": 29,
+      "V0_max_error": 0.0,
+      "normalization_sha256": "03c15586b205d02232b75cf82292de2e66a3ffbc41c5c9391f2aaa22235e3189"
+    },
+    {
+      "model": "GRU-Control",
+      "seed": 43,
+      "V0_max_error": 0.0,
+      "normalization_sha256": "03c15586b205d02232b75cf82292de2e66a3ffbc41c5c9391f2aaa22235e3189"
+    },
+    {
+      "model": "GRU-NoControl",
+      "seed": 17,
+      "variant": "V1_source_assumption",
+      "NoControl_future_insensitive": true,
+      "redundant_events_invariant": true,
+      "extra_future_truth_phase_excluded": true
+    },
+    {
+      "model": "GRU-NoControl",
+      "seed": 29,
+      "variant": "V1_source_assumption",
+      "NoControl_future_insensitive": true,
+      "redundant_events_invariant": true,
+      "extra_future_truth_phase_excluded": true
+    },
+    {
+      "model": "GRU-NoControl",
+      "seed": 43,
+      "variant": "V1_source_assumption",
+      "NoControl_future_insensitive": true,
+      "redundant_events_invariant": true,
+      "extra_future_truth_phase_excluded": true
+    },
+    {
+      "model": "GRU-Control",
+      "seed": 17,
+      "variant": "V1_source_assumption",
+      "NoControl_future_insensitive": false,
+      "redundant_events_invariant": true,
+      "extra_future_truth_phase_excluded": true
+    },
+    {
+      "model": "GRU-Control",
+      "seed": 29,
+      "variant": "V1_source_assumption",
+      "NoControl_future_insensitive": false,
+      "redundant_events_invariant": true,
+      "extra_future_truth_phase_excluded": true
+    },
+    {
+      "model": "GRU-Control",
+      "seed": 43,
+      "variant": "V1_source_assumption",
+      "NoControl_future_insensitive": false,
+      "redundant_events_invariant": true,
+      "extra_future_truth_phase_excluded": true
+    }
+  ],
+  "checkpoints": [
+    {
+      "path": "experiments/velocity_rate_gru64_horizon_training_v1/train_1000ms/GRU-NoControl/seed_17/best.pt",
+      "sha256": "d98157e3873ba6a281131b4fce59d8fd8e5fd7b31f9875e7f60a1582171a479d"
+    },
+    {
+      "path": "experiments/velocity_rate_gru64_horizon_training_v1/train_1000ms/GRU-NoControl/seed_29/best.pt",
+      "sha256": "4e891464b81aad236beb5a93a0bee9c7954e077d3d59a37b077e0de892108859"
+    },
+    {
+      "path": "experiments/velocity_rate_gru64_horizon_training_v1/train_1000ms/GRU-NoControl/seed_43/best.pt",
+      "sha256": "ebcf47b637f0f3ab25c76a38cf3651ec8fab32512437c0b8adf15ac5750f0763"
+    },
+    {
+      "path": "experiments/velocity_rate_gru64_horizon_training_v1/train_1000ms/GRU-Control/seed_17/best.pt",
+      "sha256": "337521208087cb67d8230c6d11390e71a28989059d5b7a86e42a2fd3a2f6803e"
+    },
+    {
+      "path": "experiments/velocity_rate_gru64_horizon_training_v1/train_1000ms/GRU-Control/seed_29/best.pt",
+      "sha256": "7f5f8487a062f9f93f5a089929830fcc3cb9061e2f287d20b356a69b749258c8"
+    },
+    {
+      "path": "experiments/velocity_rate_gru64_horizon_training_v1/train_1000ms/GRU-Control/seed_43/best.pt",
+      "sha256": "747c6abeba1a588bbcd06e3dfb926bcb592e17028c91a212d2c62646eea3c7d7"
+    }
+  ],
+  "only_input_columns_changed": [
+    17,
+    18
+  ],
+  "initial_unchanged": true,
+  "events_unchanged": true,
+  "dt_unchanged": true,
+  "norm_unchanged": true,
+  "model_unmodified": true,
+  "seconds": 1.9765443801879883,
+  "gpu": "NVIDIA GeForce RTX 4090",
+  "torch": "2.7.0+cu128",
+  "test_read": false,
+  "trained": false,
+  "variant_predictions_sha256": "fa309d8f4a8d18fde275c39e78b42c47c57687a56d5d021d4fb8c4efceb36d2f"
+}

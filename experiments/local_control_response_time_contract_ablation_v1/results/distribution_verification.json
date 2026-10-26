@@ -1,0 +1,5 @@
+{
+  "passed": true,
+  "windows": 225,
+  "adaptive_neighbor_search_equals_independent_per_flight_tree": true
+}

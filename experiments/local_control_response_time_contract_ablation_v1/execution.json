@@ -1,0 +1,69 @@
+{
+  "base_sha": "ae8598a94555c908500856cc415cf2119c396078",
+  "branch": "exp/local-control-response-time-contract-ablation-v1",
+  "worktree": "/home/zn/flap-system-identification/.worktrees/local-control-response-time-contract-ablation-v1",
+  "environment_interpreter": "/home/zn/anaconda3/envs/flap-train-gpu/bin/python",
+  "python": "3.11.14 (main, Oct 21 2025, 18:31:21) [GCC 11.2.0]",
+  "platform": "Linux-5.15.0-186-generic-x86_64-with-glibc2.35",
+  "gpu": "NVIDIA GeForce RTX 4090",
+  "versions": {
+    "numpy": "1.26.0",
+    "pandas": "2.3.3",
+    "torch": "2.7.0+cu128",
+    "scipy": "1.15.3",
+    "pyarrow": "23.0.1",
+    "matplotlib": "3.10.3",
+    "pytest": "9.0.2"
+  },
+  "commands": [
+    "/home/zn/anaconda3/envs/flap-train-gpu/bin/python experiments/local_control_response_time_contract_ablation_v1/audit.py",
+    "/home/zn/anaconda3/envs/flap-train-gpu/bin/python experiments/local_control_response_time_contract_ablation_v1/prepare.py",
+    "/home/zn/anaconda3/envs/flap-train-gpu/bin/python experiments/local_control_response_time_contract_ablation_v1/training_distribution.py",
+    "/home/zn/anaconda3/envs/flap-train-gpu/bin/python experiments/local_control_response_time_contract_ablation_v1/run.py",
+    "/home/zn/anaconda3/envs/flap-train-gpu/bin/python experiments/local_control_response_time_contract_ablation_v1/analyze.py",
+    "/home/zn/anaconda3/envs/flap-train-gpu/bin/python experiments/local_control_response_time_contract_ablation_v1/verify.py",
+    "/home/zn/anaconda3/envs/flap-train-gpu/bin/python experiments/local_control_response_time_contract_ablation_v1/plot.py",
+    "/home/zn/anaconda3/envs/flap-train-gpu/bin/python experiments/local_control_response_time_contract_ablation_v1/describe.py",
+    "/home/zn/anaconda3/envs/flap-train-gpu/bin/python -m pytest -q experiments/local_control_response_time_contract_ablation_v1/test_contract.py"
+  ],
+  "logs": {
+    "audit": "audit.log",
+    "prepare": "prepare.log",
+    "training_distribution": "distribution.log",
+    "run": "run.log",
+    "analyze": "analysis.log",
+    "verify": "verification.log",
+    "plot": "plot.log",
+    "describe": "description.log"
+  },
+  "variants_run": [
+    "V0",
+    "V1_source_assumption"
+  ],
+  "not_admitted": [
+    "V1_verified_physical_alignment",
+    "V2_state_and_phase"
+  ],
+  "frozen_prior_files_rechecked": 185,
+  "checkpoint_files_rechecked": 6,
+  "index_copies_byte_identical": true,
+  "upstream_unchanged": true,
+  "test_read": false,
+  "weights_updated": false,
+  "dependency_changes": false,
+  "training": false,
+  "parameter_search": false,
+  "validation_used_to_select_parameters": false,
+  "plots_visually_reviewed": [
+    "fig1_direction_amplitude_gain.png",
+    "case_train_336.png"
+  ],
+  "development_notes": [
+    "Exact nearest-other-flight KD-tree query independently checked against per-flight trees.",
+    "Independent graph weights and piecewise-linear integral implement separate numeric checks.",
+    "Plot bounding boxes corrected after visual review; prediction arrays unchanged.",
+    "Fresh-output source audit uses committed exact-commit snapshots when Git/cache is unavailable.",
+    "run.py refuses to overwrite saved V1 predictions; use a fresh LOCAL_ABLATION_OUTPUT."
+  ],
+  "publication": "Containing Git commit and verified remote ref determine publication; no assumed push."
+}

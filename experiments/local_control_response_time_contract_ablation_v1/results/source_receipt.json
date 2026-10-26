@@ -1,0 +1,27 @@
+{
+  "base_sha": "ae8598a94555c908500856cc415cf2119c396078",
+  "firmware_commits": [
+    "0369024bbc9caaec19a12a6f5ce2eb68fab55c93",
+    "0e3c15559cf9ae2264502b99849dc2e2240141e5",
+    "19a108f17666942d199fb3856be5e85bc9aa6f83",
+    "3f42d7052c958c7f65e2f26a763d909bb84fa7f6",
+    "74be66f2be14340838aed6732a379d124124b5f2",
+    "926693950a4b2fe448d4b18d859c54bf9aa8a260",
+    "a644ca7868f07004e45658d4ae9a7a8c880c6bb5",
+    "b984e3352d86f2db51dc608c5c9f8e8092543249",
+    "d0dd2354fdeadfbe505211a17b54d728309fedff",
+    "e35acd7c27875be19aa04cab652e3dcfc3afef84",
+    "e7b2f6de69dda341bc398d49ec719d5957af78e7"
+  ],
+  "PX4_read_only": true,
+  "stage4_source_path": "/home/zn/flap-system-identification/.worktrees/local-control-response-scope-v1/experiments/local_control_response_scope_v1/sources/stage4_report.txt",
+  "stage4_sha256": "31ad40fd94c7b1feca7762b2ad345ac321772e7665675523526c4f8758bd20ef",
+  "python_sources_sha256": {
+    "src/system_identification/data/velocity_rate_dataset.py": "ad82b1695f6f4c425885f08c42d25b7c939801d44020db7149aba87486981e4d",
+    "src/system_identification/data/trajectory_dataset.py": "97ee703af0eb3cce78b9091e3a729ced9f902eccd1a7d526506af13578fbe644",
+    "src/system_identification/models/velocity_rate_gru.py": "76c6d29f7dfd60fec4e4094b474e3e876f3eb3d580c839141534685dced4302b",
+    "src/system_identification/models/control_events.py": "e7496b1c7e88478b2440435d99495446956293c41321a2a9e128f5325533c762",
+    "experiments/control_response_eval_v1/evaluate.py": "d80afeb0e04ed62500b7b38235e245ef9f7697300c2d7a01935036416a4ef3d3"
+  },
+  "test_read": false
+}

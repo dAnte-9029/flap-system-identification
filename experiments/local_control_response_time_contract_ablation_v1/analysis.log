@@ -1,0 +1,49 @@
+             variant         model   seed method  direction_accuracy  scale_ratio  signed_gain     rmse
+                  V0 GRU-NoControl pooled      A            0.812364     0.418966     0.175549 0.607308
+                  V0 GRU-NoControl     17      A            0.819306     0.422837     0.182922 0.603062
+                  V0 GRU-NoControl     29      A            0.798482     0.416256     0.164834 0.614326
+                  V0 GRU-NoControl     43      A            0.819306     0.417776     0.178889 0.604474
+                  V0 GRU-NoControl pooled      B            0.827910     0.478595     0.215114 0.523320
+                  V0 GRU-NoControl     17      B            0.834585     0.483017     0.221938 0.520233
+                  V0 GRU-NoControl     29      B            0.814560     0.475499     0.205723 0.528479
+                  V0 GRU-NoControl     43      B            0.834585     0.477236     0.217680 0.521209
+                  V0 GRU-NoControl pooled      D            0.845714     0.673712     0.366060 0.355937
+                  V0 GRU-NoControl     17      D            0.845714     0.677303     0.372287 0.354058
+                  V0 GRU-NoControl     29      D            0.845714     0.680347     0.366995 0.357687
+                  V0 GRU-NoControl     43      D            0.845714     0.663365     0.358897 0.356058
+                  V0   GRU-Control pooled      A            0.795445     0.417529     0.165349 0.614338
+                  V0   GRU-Control     17      A            0.795445     0.415623     0.159117 0.618285
+                  V0   GRU-Control     29      A            0.795445     0.419129     0.163329 0.616293
+                  V0   GRU-Control     43      A            0.795445     0.417829     0.173600 0.608392
+                  V0   GRU-Control pooled      B            0.811640     0.476954     0.223550 0.517245
+                  V0   GRU-Control     17      B            0.811640     0.474776     0.220298 0.518711
+                  V0   GRU-Control     29      B            0.811640     0.478781     0.220953 0.519540
+                  V0   GRU-Control     43      B            0.811640     0.477295     0.229400 0.513462
+                  V0   GRU-Control pooled      D            0.824935     0.655878     0.359037 0.353546
+                  V0   GRU-Control     17      D            0.824935     0.644152     0.355139 0.351692
+                  V0   GRU-Control     29      D            0.824935     0.664345     0.359311 0.356175
+                  V0   GRU-Control     43      D            0.824935     0.658971     0.362661 0.352755
+V1_source_assumption GRU-NoControl pooled      A            0.812364     0.420537     0.174486 0.608575
+V1_source_assumption GRU-NoControl     17      A            0.819306     0.422443     0.181438 0.604038
+V1_source_assumption GRU-NoControl     29      A            0.798482     0.421207     0.163853 0.616546
+V1_source_assumption GRU-NoControl     43      A            0.819306     0.417947     0.178167 0.605061
+V1_source_assumption GRU-NoControl pooled      B            0.827910     0.480389     0.213571 0.524892
+V1_source_assumption GRU-NoControl     17      B            0.834585     0.482566     0.219345 0.521797
+V1_source_assumption GRU-NoControl     29      B            0.814560     0.481155     0.204129 0.531261
+V1_source_assumption GRU-NoControl     43      B            0.834585     0.477430     0.217240 0.521560
+V1_source_assumption GRU-NoControl pooled      D            0.845714     0.676719     0.367417 0.356269
+V1_source_assumption GRU-NoControl     17      D            0.845714     0.678829     0.372708 0.354361
+V1_source_assumption GRU-NoControl     29      D            0.845714     0.686530     0.369908 0.358331
+V1_source_assumption GRU-NoControl     43      D            0.845714     0.664615     0.359634 0.356104
+V1_source_assumption   GRU-Control pooled      A            0.795445     0.419434     0.165584 0.614747
+V1_source_assumption   GRU-Control     17      A            0.795445     0.417203     0.159162 0.618728
+V1_source_assumption   GRU-Control     29      A            0.795445     0.420536     0.163442 0.616640
+V1_source_assumption   GRU-Control     43      A            0.795445     0.420556     0.174148 0.608830
+V1_source_assumption   GRU-Control pooled      B            0.811640     0.479130     0.224200 0.517503
+V1_source_assumption   GRU-Control     17      B            0.811640     0.476580     0.221182 0.518694
+V1_source_assumption   GRU-Control     29      B            0.811640     0.480388     0.221308 0.519814
+V1_source_assumption   GRU-Control     43      B            0.811640     0.480411     0.230111 0.513983
+V1_source_assumption   GRU-Control pooled      D            0.824935     0.655988     0.359114 0.353543
+V1_source_assumption   GRU-Control     17      D            0.824935     0.643861     0.355102 0.351616
+V1_source_assumption   GRU-Control     29      D            0.824935     0.666275     0.360698 0.356124
+V1_source_assumption   GRU-Control     43      D            0.824935     0.657634     0.361542 0.352874

@@ -1,0 +1,29 @@
+split cohort         model variable method weighting  pairs  seed_rows  prediction_change_rms  prediction_change_max  mae_change  amplitude_mae_change  direction_gained  direction_lost  amplitude_improved_rows
+train   main   GRU-Control        p      A    flight     48        144               0.006877               0.019012    0.000358              0.001048                 0               0                       66
+train   main   GRU-Control        p      B    flight     48        144               0.006877               0.019012    0.001189              0.002026                 0               0                       53
+train   main   GRU-Control        p      D    flight     48        144               0.003341               0.009575   -0.000411             -0.000527                 0               0                       78
+train   main GRU-NoControl        p      A    flight     48        144               0.012640               0.049719    0.001852              0.000812                 0               0                       82
+train   main GRU-NoControl        p      B    flight     48        144               0.012640               0.049719    0.001950              0.001052                 0               0                       77
+train   main GRU-NoControl        p      D    flight     48        144               0.007044               0.029929    0.000515              0.000646                 0               0                       75
+{
+  "CA": {
+    "change_rms": 0.002041260824462992,
+    "maximum": 0.0076807602905885
+  },
+  "CB": {
+    "change_rms": 0.0017801364713049914,
+    "maximum": 0.0049216032414184
+  },
+  "C": {
+    "change_rms": 0.0014930338971432093,
+    "maximum": 0.0044568199304276
+  },
+  "H": {
+    "change_rms": 0.006752085221695023,
+    "maximum": 0.0200018556386607
+  },
+  "F": {
+    "change_rms": 0.0068768031854352565,
+    "maximum": 0.019011809034429
+  }
+}

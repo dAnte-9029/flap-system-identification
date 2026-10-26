@@ -1,0 +1,8 @@
+{
+  "passed": true,
+  "swap_points": 24408,
+  "max_internal_error": 3.497202527569243e-15,
+  "factual_300_rows": 6102,
+  "max_factual_300_error": 4.270197045616597e-07,
+  "truth_identical_across_versions": true
+}

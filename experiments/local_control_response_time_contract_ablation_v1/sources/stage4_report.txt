@@ -1,0 +1,370 @@
+训练日志闭环控制链核验
+与开发数据恢复
+第四阶段执行报告｜已完成的离线诊断、证据边界与精确资料缺口
+固定提交 · 8 条训练日志 · 无模型训练或新实飞
+本轮已把“闭环机制资料可取得”推进到实际窗口内核验：下载并校验 8 条允许的训练 ULog，读取对应精确固件源码，执行预先锁定的时序、模式和内部计算一致性检查。另完成完整开发 Parquet 与原匹配全候选产物的恢复检索。
+核心结果  在合计 1177.538603 s（约 19.63 分钟）的固定训练窗口中，57,245/58,873 个 torque 记录满足严格跨消息匹配，指定的 10 类代数检查均无超出预设容差的违例。每条窗口均经历 STAB→AUTO_MISSION→STAB；不能将整段数据视作同一个固定线性反馈律。
+新增证据确认了所审窗口内控制命令的来源、阶段和若干软件计算关系。它未验证学习模型在换用其他控制序列后对真实运动的预测；也未生成离线策略价值或 MPC 闭环性能保证。
+本轮没有模型训练、重新推理、仓库修改、控制器实现或封存测试轨迹访问。阶段三的规范化响应重放结果保持原有证据地位；本轮没有将机制恒等式当作新的运动误差指标。
+Google Drive 文献与报告总目录
+一 执行范围与版本身份
+8 个日志 SHA 在既有 provenance 中均只对应 train 记录。该子集因完整参数可恢复而进入机制核查，不是从全体开发数据随机抽取的代表样本；结果不能外推到其余 153 条开发记录。[D1、S1]
+固件源码审查包括角速度/姿态控制、模式管理、横纵向控制、SLOW 积分转移、gain compression、控制分配、输出路径及日志配置。75 个文件的 Git blob SHA 均与固定树一致；另与此前保存的 7 个源码快照 SHA256 全部一致。日志版本和字段一致仍不是实飞二进制、编译选项或全部未提交改动的认证。该仓库自身的 isolation audit 记载了提交前 dirty build，其 binary hash 不能代替实飞 binary hash。[S1]
+各航次实际覆盖
+表中模式比例采用预设 50 Hz 网格上的“最近过去记录保持”，不是精确连续持续时间，也不是独立样本比例。各日志原生记录中均观察到两次 nav_state 变化。A/B/C 分别为 3/2/3 条配置记录，不能作为随机化干预。
+二 模式、参考与控制命令的实际来源
+58,877 个网格点中，AUTO_MISSION（3）占 33,677 点、57.199%；STAB（15）占 25,200 点、42.801%。按同一保持规则，姿态环、角速度环和 allocation enabled 均为 1；armed 为真、landed/failsafe/VTOL/transition 均为假。模式/控制标志最大发布年龄约 0.5 s，landed 约 1 s；保持值并非每格新测量。[D1]
+图 1  固定训练窗口中的模式时间线。每行从各自保留窗口起点计时；A/B/C 是配置组。轨迹与阈值未据该图重新选择。
+STAB 的 flags 使外环进入 OTHER，不执行 AUTO 外环参考发布；手动姿态分支和角速度内环仍工作。于是外环参考在整个窗口看起来只有约 51.7%–61.3% 的 50 ms 新鲜消息覆盖，但限定到 AUTO 网格后达到 99.974%–100%。该解释有固定源码分支与模式分层统计共同支持；没有删除切换边界或重选窗口。[S2、D1]
+同一版本的字段名称订正
+主诊断保留了旧名称 npfg_status 和 airspeed_validated.selected_airspeed_index 的缺失记录。精确消息定义随后确认本版本名称为 fixed_wing_lateral_guidance_status 和 airspeed_validated.airspeed_source。补充审查明确标为“主结果之后的 schema 订正”，原冻结结果、窗口和阈值均未改写。[D2、S3]
+正确 airspeed_source 在全部保持网格中为 1，对应 sensor 1。guidance status 在 AUTO 与 STAB 下的 50 ms 消息覆盖都为 100%；但 mode manager 在相应 local_pos/固定翼分支下可持续给既有 guidance 内部状态加新发布时间，发布并不受 AUTO 外环 active 条件限制。因此，新鲜消息不能证明 NPFG 本周期重新更新，更不能证明内部状态就是外生参考。[D2、S2]
+三 时序、采样和可观察性
+基础协议在读取新增窗口时序前锁定；外环主题补充 amendment 01 同样在首次解析前保存。网格间隔 20,000 μs；仅使用过去已发布消息，不用未来插值。所有动态消息并列报告 25、50、100、200 ms 年龄阈值，不选结果最好的阈值。标志另报告保持值与年龄，不能将低发布频率直接解释为控制循环频率。[D1]
+各格为 8 航次的范围，表示消息发布时间新鲜度，未合并为“传感器真实有效率”。finite 字段检查另存；尤其 motor 的 NaN 在本固件中可映射 disarmed，不能不查分支就当丢包。模式、landed、任务航点等可能按变化或低频发布，任务航点保持很久不等于缺少参考。[D1、S3]
+SDLOG_PROFILE=4097 对应 default 与 flapping profile。源码中部分参考、控制项和命令记录间隔为 20 ms，angular_velocity/output 为 10 ms；adaptive 50 ms、gain compression 100 ms、allocator/manual 200 ms。实际统计与这些量级相符；若存在 logger_topics.txt 可替代配置，因此报告仍以原始记录为准。[S4]
+所有已审原生主题的时间戳未发现逆序或重复步。58,873 条 torque 与 terms 有 58,544 个唯一正采样戳可配对，进一步要求 status 有序发布后剩 57,245 个。匹配周期中 status 到 torque 的发布差为 0.003–0.039 ms；这是软件发布顺序差，不是舵机机械延迟、驱动总延迟或真实气动响应延迟。[D1]
+四 源码定义的内部计算检查
+terms 与 torque 必须具有相同且唯一的正 timestamp_sample；status 本身没有该采样戳，以 terms.timestamp ≤ status.timestamp ≤ torque.timestamp 且后两者间隔 ≤2 ms 配对。2 ms 是预先固定的审查条件，不是源码定时保证。未匹配的 1,628 条不纳入对应跨消息结论，也未按偏移搜索重新配对。[D1]
+所有等式统一用 |lhs−rhs| ≤ 10⁻⁵ + 10⁻⁵|rhs| 判断浮点一致性。该容差不具有物理单位的控制准确性含义。主检查只解释原已规定的内部关系。
+每类关系在 8 个航次分别记录，共 80 个汇总行；总标量核对数为 534,258，均有限，全部满足固定容差。这些关系共享内部变量并存在时序依赖，不能把行数或标量数当作独立实验次数。独立复核者直接从保存的窗口 NPZ 重建匹配和公式，未运行原脚本，80 行数量、最大残差和违例数均一致。[D3]
+计算阶段必须对齐
+SLOW 的积分转移发生在本周期 PID/FF 输出计算之前；rate_ctrl_terms.i_term 记录转移后、自然积分更新前的 I，而 rate_ctrl_status.rollspeed_integ 是自然更新后的 I。用于本周期输出的 gain compression 是更新前的值；另一 gain_compression 消息可含更新后的值。将这些字段不分阶段直接相减，会制造伪误差。[S1]
+roll 重构要求非 VTOL/非 tailsitter、rates enabled、静态与动态 roll trim 为零且各轴控制输出有限。8 窗口记录满足相应参数/标志，terms 三轴 output 无非有限记录、reset_this_cycle 均为 0。源码在 |transferred| ≤ FLT_EPSILON 时忽略该项；事后分支核对发现 1,981 条非零微小值，最大被忽略的 |g×transferred| 为 8.86×10⁻⁸，低于既定容差。没有据此改动主公式、容差或结果。[D1、S1]
+局部覆盖限制  adaptive 与 status 的严格同发布时间匹配合计 9,279 个，但 log_9 只有 5 个，其余航次为 988–1,655 个。零残差只能约束已匹配值，不能据此说全段 adaptive 动态已验证。
+五 控制配置与物理作用之间的边界
+在已知矩阵、无附加项/故障且未 clip 的理想软件分配条件下，可写 u_left≈0.5τ_pitch−τ_roll/1.1，u_right≈0.5τ_pitch+τ_roll/1.1，u_rudder≈τ_yaw，motor≈thrust_x。此式来自源码和配置，本轮没有将它拟合为实飞物理效能矩阵。PWM MAIN 的命令映射与通道反向也不提供舵面位置反馈。[S5]
+原生分配器状态与限幅标志均已保留，不能把“命令可重构”扩展成“真实作用力可重构”。整个机制审查的比较对象都是同一软件链中的量，而不是更换控制后的独立运动后继。
+六 文献条件现在能推进到哪一步
+本轮延续已完成的全文筛选，不重复列出全部 28 项文献。以下是此次实证核查改变的准入判断，原文定位保存在 diagnostic_protocol_suggestions.json。[L26、L15、L2、L18]
+Colin 等的定理研究含真系统的指定 LTI 预测误差模型，稳定对象、对角且稳定/逆稳定 monic 噪声滤波、稳定闭环的有理 K，以及所用结果要求的外部激励独立性。其结构矩阵满行秩一般仅是充分条件。本轮没有拿原始输入协方差、GRU 雅可比或模式变化来替代该矩阵，也没有因未获证书就宣称一切控制作用都不可辨识。[L26，PDF pp.2–4、6–7]
+Forssell–Ljung 区分直接法的噪声结构与间接法的控制器知识要求；外部参考的名字、变化和时间领先均不足以证明它与创新独立。知道固件可缩小机制不确定性，但仍需将噪声、反馈生成和候选对象结构与具体定理一一对应。[L15，Paper A，PDF pp.103–108、137]
+SUMO 迁移应限定为可检验的诊断
+SUMO 实际使用第 k 近邻的欧氏距离，经 log(1+d_k) 变换；库向量为真实转移 (s,a,s′)，主要查询包含模型预测后继。它不是 k 个距离的均值。原论文用独立 MuJoCo 环境重放合成 (s,a)，得到真实后继后评价评分与误差的相关性；当前实飞日志没有这种未执行动作的 oracle。[L18，PDF pp.3–4、6–7]
+以后若恢复完整库，可先审查评分与实际已执行动作下的预测误差是否相关。跨航次排除、仅训练数据定标和固定历史/控制表示是本项目需另行冻结的设计，不是原论文直接提供的定理。即使事实误差相关性成立，也不证明 kNN 分数是所有候选动作的真实误差上界。附录性能论证使用 admissible estimator 等附加条件，不能由拼接后距离不减自动得到。[L18，PDF p.11]
+上述参考材料及 30 份已获取全文仍在原 Google Drive 文献目录，本轮没有制造新的“待手工下载全文”缺口；当前最直接的外部依赖已转为注册开发数据。
+七 完整开发产物恢复结果
+恢复检索覆盖固定公开树、相关分支/commit 的树或精确路径、公开 Releases/Actions，以及已连接 Drive 中实际列举的研究文件夹和阶段三 ZIP 中央目录。未找到通过登记 SHA256 验证的目标：0/12。部分树 API 限流时改查固定 commit 的精确路径，不把限流当作不存在。Drive 关键词曾漏掉已知 ZIP，因此结论限于实际检查入口，不宣称所有位置都不存在。[R1]
+原 audit README 要求从作者原工作区链接数据；4 个大型 audit 文件在原 archive manifest 中标为 local_reproducible_archive。因此不能从公开仓库缺文件推断原始日志丢失，也不能用阶段三的已选 NPZ 替代完整训练数据库。
+最小依赖：8 个已注册的开发 Parquet
+以下路径均相对于原 flap-system-identification 工作区，目录为 dataset/velocity_rate_multistep_v1/。8 个 SHA256 已与 dataset manifest、原 audit run manifest、原 response run manifest 三处交叉核对。登记中没有文件字节数，未估计补齐。
+恢复后仍应按 main_50hz 与已核用途筛选：当前 GRU 使用 94 条主训练记录，不能把 sparse_10hz 自动纳入同一个参考分布。验证数据有既往选择/评价使用史，因此该分支仍是开发数据再分析，不是新增独立测试。
+条件追加：4 个原全候选 audit 文件
+仅在精确重做原候选匹配与选择时才需要以下四项，目录为 experiments/control_identifiability_audit_v1/results/；它们不能替代前述完整训练参考库。
+四项总计 682,494,294 bytes；完整路径、64 位 SHA256、原注册行号和已检查入口随 development_artifact_allowlist.json / artifact_recovery.json 保存。
+已准备的只读导出工具
+工具包包含 export_development_artifacts.py、中文说明、安全验证和白名单。默认只核验并复制上述 8 文件；只有显式 --include-full-audit 才增加四个全候选文件，可另指定 --audit-repo 指向原工作区。工具只读源字节计算哈希，不解析 Parquet、不搜索其他文件、不打开封存 test，不改源仓库；已有冲突输出不会覆盖。
+示例命令（将路径换为原工作区与仓库外目标目录）：
+python3 export_development_artifacts.py /path/to/flap-system-identification /path/to/development_export_91f7724
+8 项小型临时文件安全验证全部通过。真实数据成功导出后会生成 manifest；本轮没有接入原作者工作区，因此不声称已经执行了真实文件导出。若哈希不一致，应保留为新来源版本核对，不应改白名单让其冒充登记版本。[R2]
+八 后续准入条件与执行交接
+最直接的下一步是把默认 8 文件从原工作区导出并提供；不需要补飞，也无需提前开启封存测试集。若文件仍不可取得，本轮可可靠完成的结论就止于已审训练窗口的控制链机制与内部一致性，不能把缺少的全分布评分或反事实验证写成已完成。
+归档内容与复核入口
+诊断包不重复包含 261 MB 原始 ULog；fetch_training_logs.py 只获取既定 8 条 train 日志并验证哈希。已保存窗口数组足以复核汇总与同周期匹配；完整解析重放所需初始参数/来源元数据与路径准备脚本一并保留。公开文献原文仍在原目录。
+来源与引用定位
+[D1] 本轮主诊断  mechanism_protocol_locked.json、amendment_01、mechanism_results/*.csv、log_manifest/run_manifest、report_tables。数值均来自固定训练窗口。
+[D2] 名称订正补充  schema_supplement/amendment_02.json、guidance_availability.csv、airspeed_source_by_mode.csv。明确标记在主结果之后执行。
+[D3] 独立复核  mechanism_evidence_independent_review.json 及 schema 追加说明；从已输出 NPZ 独立重建匹配和 80 条汇总。
+[S1] 角速度控制与更新阶段  FixedwingRateControl.cpp L378–502、545–634；rate_control.cpp L171–198、307–318。
+官方页面 / 固定源码
+[S2] 模式、参考与诊断发布  ModeUtil/control_mode.cpp L56–63；FixedWingModeManager.cpp L504–520、2253–2276、2519–2539、2720–2734。
+官方页面 / 固定源码
+[S3] 版本字段和命令语义  AirspeedValidated.msg；FixedWingLateralGuidanceStatus.msg；ActuatorMotors.msg；ActuatorOutputs.msg。
+官方页面 / 固定源码
+[S4] 记录频率  logged_topics.cpp L384–436、596–605、610–664；实际 native 统计见 D1。
+官方页面 / 固定源码
+[S5] 分配与驱动  ControlAllocator.cpp；ControlAllocationPseudoInverse.cpp；mixer_module；配置参数来源见 firmware_mechanism_audit.json。
+官方页面 / 固定源码
+[R1] 文件登记与恢复  固定 dataset_manifest、audit README、archive_manifest；artifact_recovery.json 记录检查边界。
+官方页面 / 固定源码
+[R2] 导出工具验证  tools/export_safety_validation.json；8 项合成文件检查，不代表真实数据导出已经运行。
+[L26] Colin 等（2020）  Closed-loop identification of MIMO systems in the Prediction Error framework: Data informativity analysis. Automatica 121:109171. DOI 10.1016/j.automatica.2020.109171；正式全文 PDF pp.2–4、6–7。
+官方页面 / 固定源码
+[L15] Forssell 与 Ljung（1999）  Closed-loop identification revisited. Automatica 35(7):1215–1241. DOI 10.1016/S0005-1098(99)00022-9；公开博士论文 Paper A，PDF pp.103–108、137。
+官方页面 / 固定源码
+[L2] Gevers 等（2003）  Model validation for control and controller validation in a prediction error identification framework—Part I: theory. Automatica 39(3):403–415. DOI 10.1016/S0005-1098(02)00234-0；正式全文 PDF pp.4–7。
+官方页面 / 固定源码
+[L18] Qiao 等（2025）  SUMO: Search-Based Uncertainty Estimation for Model-Based Offline Reinforcement Learning. AAAI 39(19):20033–20041. DOI 10.1609/aaai.v39i19.34206；含附录作者稿 PDF pp.3–4、6–7、11。
+官方页面 / 固定源码
+工作项
+执行结果
+对下一阶段的作用
+精确固件与字段语义
+75 个源码文件校验通过；18 个主题 × 8 条既有字段清单一致。
+可区分外部任务、反馈派生参考、内部控制量和执行器命令。
+8 条训练窗口诊断
+57,245 个跨消息周期匹配；80 个航次×公式汇总行，0 容差违例。
+可用作控制链可观察性与软件一致性证据。
+完整开发数据恢复
+目标 12 文件，当前恢复 0；已获得精确路径与 SHA256。
+完整训练分布支持评分仍待资料，不以选中片段替代。
+资料交接
+报告、原始汇总、窗口数组、源码与只读导出工具归档。
+可复查已执行结果，并从原工作区补齐最小依赖。
+对象
+固定版本或范围
+QgcLogs
+main；54e6ff8550e30aa1a10e6ac10d1aa12fceb15b9a
+动力学项目
+fix/control-event-canonicalization-v1；91f772448b78fd8690df83b9f98177d1b897218e
+对应固件源码
+jiashunjiang2022/PX4-Autopilot；e35acd7c27875be19aa04cab652e3dcfc3afef84
+原始日志
+8 个 main_50hz / train 文件；总计 261,352,350 bytes。LFS pointer、对象 SHA256、字节数和 ULog 文件头逐一核对。
+分析窗口
+沿用已保存 provenance 的 [start_us,end_us)，没有按本次结果调整。每主题最多保留窗前一条，用于初始化 backward-asof。
+初始参数
+每条 1,232 或 1,233 项，与既有 discovery 完整逐项相同；8 条原日志的 changed_parameters 均为空。
+日志
+配置
+窗口 / s
+AUTO 网格占比
+匹配 / torque
+匹配率
+log_10
+A
+142.600
+56.844%
+6,934 / 7,129
+97.265%
+log_11
+C
+143.900
+55.650%
+6,969 / 7,195
+96.859%
+log_13
+A
+168.439
+51.639%
+8,212 / 8,422
+97.507%
+log_5
+B
+140.100
+57.459%
+6,803 / 7,005
+97.116%
+log_6
+C
+136.300
+56.596%
+6,624 / 6,813
+97.226%
+log_7
+A
+156.900
+60.051%
+7,593 / 7,845
+96.788%
+log_8
+C
+145.800
+58.683%
+7,105 / 7,289
+97.476%
+log_9
+B
+143.500
+61.324%
+7,005 / 7,175
+97.631%
+通路 / 字段
+精确源码含义
+可用解释
+任务及人工输入
+position_setpoint_triplet 来自任务/导航通路；STAB 从 manual_control_setpoint 产生姿态参考。
+可定位参考来源，但操作者、航路更新与扰动的独立性尚未建立。
+横纵向参考
+任务/状态经 mode manager 生成 fixed_wing_lateral/longitudinal_setpoint，横纵向控制含反馈、风估计与 TECS。
+下游参考已含反馈；不能直接当作辨识定理中的外部激励 r。
+local position setpoint
+x/y 是 path 上最近点；z 来自高度参考；vx/vy/vz 由源码刻意设为 NaN。
+不是一组独立给定的速度参考。合法 NaN 不应填零或判作损坏。
+姿态→角速度→力矩命令
+内环含 PID/FF、积分器、空速缩放、gain compression、限幅及条件分支。
+已知静态 PID 参数不足以构造固定 LTI K。
+分配与执行器输出
+CA_METHOD=2 对该固定翼采用伪逆并 clip；motor/servo 与 actuator_outputs 是软件命令。
+这些命令本身不是实际舵角、转速或气动力测量，不能充当物理响应真值。
+消息
+记录 Hz
+≤25 ms %
+≤50 ms %
+≤100 ms %
+≤200 ms %
+角速度参考
+49.99–50.00
+99.49–100.00
+100.00–100.00
+100.00–100.00
+100.00–100.00
+角速度控制状态
+49.99–50.00
+99.99–100.00
+100.00–100.00
+100.00–100.00
+100.00–100.00
+力矩命令
+49.99–50.00
+99.97–100.00
+100.00–100.00
+100.00–100.00
+100.00–100.00
+舵面命令
+49.99–50.00
+99.97–100.00
+100.00–100.00
+100.00–100.00
+100.00–100.00
+输出命令
+99.97–100.00
+99.99–100.00
+100.00–100.00
+100.00–100.00
+100.00–100.00
+增益压缩状态
+9.77–9.90
+24.30–24.70
+48.76–49.45
+97.69–98.98
+100.00–100.00
+慢通道诊断
+20.00–20.00
+40.61–59.53
+96.91–100.00
+100.00–100.00
+100.00–100.00
+分配器状态
+5.00–5.00
+10.06–15.97
+21.09–29.97
+49.98–50.02
+97.93–100.00
+人工输入
+5.00–5.00
+11.43–13.59
+24.31–26.94
+49.92–50.01
+95.65–97.76
+内部关系
+有效标量数
+最大绝对残差
+违例
+roll：P + I + D + FF = output
+58,873
+8.848e-08
+0
+pitch：P + I + D + FF = output
+58,873
+1.043e-07
+0
+yaw：P + I + D + FF = output
+58,873
+4.470e-08
+0
+total_equivalent = I + transferred
+58,875
+7.451e-09
+0
+slow_torque = g × transferred
+58,875
+3.725e-09
+0
+slow_tail = slow_torque / 1.1
+58,875
+6.096e-09
+0
+roll torque ≈ clip[g(output + transferred)]
+57,245
+1.134e-07
+0
+status.roll_total = 发布 roll torque
+57,245
+0.000e+00
+0
+I_after = I_before + accepted_delta
+57,245
+7.276e-12
+0
+同发布戳 adaptive/status 的 transferred
+9,279
+0.000e+00
+0
+源码发现
+能够说明
+不能推出
+A：EN=0；B：EN=1/CMP=1；C：EN=1/CMP=0。
+A 关闭 SLOW；B 为 paired LPF comparator，绕过特定持续性/反向门控；C 为原 SLOW 路径。
+三组随机分配、环境一致，或三组给出同状态控制反事实。
+I 与转移状态 S 使用 accepted-delta 配对。
+某些转移阶段 ΔI+ΔS=0 是控制实现的设计关系。
+该关系等价于新的独立控制激励，或证明真实运动对输入的导数。
+flap_slow_roll_baseline 在本周期转移后计算。
+它是不再额外加 S 的软件中间量。
+它是关闭 SLOW 时真实会产生的控制或运动反事实。
+effective_slow_tail = effective_slow_torque/1.1。
+这是软件控制分配坐标的换算。
+它是测得的真实舵角，或可据此得到气动增益。
+问题与理论依据
+本轮新增证据
+仍未满足的条件
+闭环信息性：Colin 等 2020；Forssell–Ljung 1999
+精确控制实现、参数、模式、参考来源和部分内部更新可追溯。
+当前为多模式、增益变化、限幅且含内部状态的控制器；尚未定义适当局部 LTI K、模型阶次/时延/噪声结构或参考外生性。
+控制导向模型集合：Gevers 等 2003
+可避免把命令/状态阶段误差误记为动力学误差，清楚界定反馈链。
+没有覆盖真实系统且具有统计依据的模型集合；三种子不是这样的集合。
+数据支持评分：SUMO 2025
+评分定义和原论文 oracle 实验已核对；目标文件精确缺口已确定。
+完整训练参考库未恢复；当前不计算伪“全分布”评分，也不调用其策略性能界。
+离线控制决策 / OPE / MPC
+当前证据对象与反馈来源更清楚。
+尚未固定目标策略/代价及满足覆盖、状态充分性等要求；本轮不能给真实控制排序或 MPC 性能结论。
+数据内容
+train 文件
+validation 文件
+完整样本
+samples_train.parquet
+samples_validation.parquet
+窗口索引
+windows_train.parquet
+windows_validation.parquet
+电机原生流
+native_actuator_motors_train.parquet
+native_actuator_motors_validation.parquet
+舵机原生流
+native_actuator_servos_train.parquet
+native_actuator_servos_validation.parquet
+文件
+登记字节数
+pairs_1000ms.parquet
+324,650,800
+pairs_500ms.parquet
+309,850,880
+windows_1000ms.parquet
+23,843,999
+windows_500ms.parquet
+24,148,615
+候选路线
+本轮已完成
+继续所需条件
+机制约束下的局部辨识条件审查
+精确源码、实际模式与更新顺序、内部一致性已核查。
+明确要研究的对象/控制坐标/局部模型类与噪声假设，再判断是否有适用信息性证书；不直接把固件当作固定 LTI K。
+完整数据支持评分—事实误差关系
+原文评分与验证对象、资料白名单和失败规则已整理。
+取得并验证 8 个完整开发 Parquet；随后冻结查询表示、k、尺度、航次隔离及评价指标，才运行完整库分析。
+控制相关相容集合与候选决策证据
+已有命令链证据对象明确，已排除把模型自评当独立真值。
+必须另证模型集合覆盖/误差限制及目标策略或控制器条件；本轮不进入 MPC 实现或性能保证。
+归档项
+主要内容
+本执行报告
+结果、解释、限制、来源与资料获取步骤。
+第四阶段控制链诊断与数据恢复包.zip
+固定协议、原始汇总 CSV、8 个窗口 NPZ、schema 补充、75 个固件文件及哈希、独立复核、恢复清单、复现脚本与导出工具。
+开发数据只读导出工具.zip
+便于单独交给原工作区使用；含默认 8 文件 allowlist、可选 4 文件和校验说明。
+第四阶段执行证据索引.json
+文件级哈希、执行边界、主要数量与文献/源码入口。

@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "phase_rotation_max_error": 2.039005910503544e-07,
+  "factual_primary_rows": 16272,
+  "max_factual_error": 1.6792123247455493e-15,
+  "max_internal_error": 2.4424906541753444e-15,
+  "closure_max": 6.661338147750939e-16,
+  "summary_primary_rows": 8640,
+  "summary_max_error": 3.907985046680551e-14,
+  "internal_summary_rows": 4320,
+  "internal_summary_max_error": 1.6653345369377348e-16,
+  "NoControl_invariant": true,
+  "only_phase_sin_cos_changed": true,
+  "no_future_inputs": true,
+  "train_validation_disjoint": true,
+  "test_read": false
+}

@@ -1,0 +1,23 @@
+{
+  "sha256": {
+    "samples_train.parquet": "47a0d8d396d795fefa17ae0143484b7d63ef809f6bb3dfb8409ea75d5166f488",
+    "windows_train.parquet": "3ecef154a0268e9524dff16e358e453a4c92802414d0d8c61e718ad8ed79fbd0"
+  },
+  "reference_windows": 107920,
+  "reference_history_rows": 647202,
+  "reference_flights": 94,
+  "scale": [
+    5.82119750839982,
+    4.5758284351659215,
+    0.878842736159034,
+    0.5232849825309728,
+    0.5163025066659055,
+    0.3003797386057506,
+    0.5072419320234889,
+    1.0,
+    1.0
+  ],
+  "training_history_union_only": true,
+  "test_read": false,
+  "validation_used_for_reference": false
+}

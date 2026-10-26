@@ -1,0 +1,19 @@
+{
+  "V0": "admitted unchanged",
+  "V1_physical": "not admitted: physical encoder measurement time not separately logged",
+  "V1_source_assumption": "admitted conditional diagnostic; source is software post-I2C read anchor, physical delay not known",
+  "V2": "not admitted: no causal bracket for every state; extrapolation would add an unvalidated high-frequency state model",
+  "history_rows": 6011,
+  "history_causal_brackets": 1899,
+  "origins": 225,
+  "origin_causal_brackets": 65,
+  "phase_delta_training_quantiles": [
+    0.18408757297508727,
+    0.2863868820838471,
+    0.3380374432091281,
+    0.39860803358083646,
+    0.526033168475262
+  ],
+  "parameters_chosen_without_prediction_outcomes": true,
+  "validation_tuning": false
+}

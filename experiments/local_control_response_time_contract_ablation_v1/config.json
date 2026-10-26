@@ -1,0 +1,19 @@
+{
+ "base_sha":"ae8598a94555c908500856cc415cf2119c396078",
+ "dataset":"velocity_rate_multistep_v1","sampling_group":"main_50hz",
+ "variants":["V0","V1_source_assumption"],
+ "phase_rule":"For every valid historical row, phi_new=atan2(saved_sin,saved_cos)+2*pi*saved_frequency*(state_measurement_us-encoder_source_timestamp_us)*1e-6. Only sin/cos change. Last corrected phase initializes the unchanged future extrapolator.",
+ "phase_admission":"Conditional software-source-time assumption; NOT verified physical measurement alignment. Frequency is the already-available low-pass estimate; no future phase or frequency is used.",
+ "V1_physical_alignment":"not_admitted: internal AS5600 sampling/filter latency and exact I2C timing unavailable",
+ "V2":"not_admitted unless audit proves causal bracketing for all frozen histories without extrapolation; no extrapolation model will be fitted",
+ "seeds":[17,29,43],"models":["GRU-Control","GRU-NoControl"],"device":"cuda:0",
+ "history_us":500000,"nominal_future_us":500000,"main_time_ms":300,"report_times_ms":[100,200,300,400,500],
+ "curve_grid_ms":20,"direction_floor":0.1,"direction_sensitivity":[0.05,0.2],
+ "gain_denominator_floor":0.02,"factual_atol":0.00002,"main_width_s":0.27,
+ "max_model_gap_s":0.04,"max_rate_gap_s":0.02,
+ "methods":["A","B","D"],"control_event_policy":"exact_zoh_merge_us_v1",
+ "distribution_features":["vx","vy","vz","p","q","r","frequency","phase_sin","phase_cos"],
+ "distribution_reference":"Train main_50hz valid_history_state & valid_encoder & valid_frequency; original per-flight data; exact KD nearest distances excluding receiver flight; standardized by training-only scale, phase sin/cos scale=1. Coarse joint support only.",
+ "examples":["train:124","train:336","train:412","validation:44"],
+ "test_read":false,"training":false,"offset_search":false
+}
