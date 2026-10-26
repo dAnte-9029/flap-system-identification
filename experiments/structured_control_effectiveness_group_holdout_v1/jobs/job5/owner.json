@@ -1,0 +1,8 @@
+{
+  "pid": 2272438,
+  "device": "cuda:0",
+  "fold": 1,
+  "seed": 43,
+  "started": 1793011487.9202552,
+  "resume": false
+}

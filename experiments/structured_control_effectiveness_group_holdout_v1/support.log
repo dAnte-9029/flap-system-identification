@@ -1,0 +1,6 @@
+     control_outside_fold_marginal       initial_outside_fold_marginal       physical_range_violation
+                               sum count                           sum count                      sum count
+fold
+0                                0   192                             0   192                        0   192
+1                                0   124                             0   124                        0   124
+2                                0   116                             0   116                        0   116

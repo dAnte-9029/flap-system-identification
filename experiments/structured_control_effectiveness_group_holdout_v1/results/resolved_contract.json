@@ -1,0 +1,16 @@
+{
+  "epochs": 24,
+  "early_stopping": false,
+  "normalization": "fold-local train indices only; source receipt and normalization_receipt.json are authoritative",
+  "unused_inherited_config_fields": [
+    "patience",
+    "input_output_normalization",
+    "evaluation_horizons_ms"
+  ],
+  "training_horizon_ms": 1000,
+  "local_response_horizon_ms": 500,
+  "M0_events": "original GRU16",
+  "M1_M2_events": "frozen two exact ZOH moments",
+  "config_sha256": "fdb94291ae0a24d4cb93b2ff795944c962969944a4294e6b209d4c3ee2d2a51d",
+  "note": "The listed fields are unused descriptive remnants from the historical configuration. No runtime settings or files changed during training."
+}

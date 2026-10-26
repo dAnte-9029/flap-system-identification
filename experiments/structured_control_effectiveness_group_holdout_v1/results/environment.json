@@ -1,0 +1,34 @@
+{
+  "recorded_utc": "2026-10-26T10:31:19.809948+00:00",
+  "python": "/home/zn/anaconda3/envs/flap-train-gpu/bin/python",
+  "python_version": "3.11.14",
+  "platform": "Linux-5.15.0-186-generic-x86_64-with-glibc2.35",
+  "torch": "2.7.0+cu128",
+  "cuda": "12.8",
+  "cudnn": 90701,
+  "numpy": "1.26.0",
+  "pandas": "2.3.3",
+  "base_sha": "f1324dfaaa807297d83b1d246cf21e362d5140bf",
+  "branch": "exp/structured-control-effectiveness-group-holdout-v1",
+  "worktree": "/home/zn/flap-system-identification/.worktrees/structured-control-effectiveness-group-holdout-v1",
+  "gpu_names": [
+    "NVIDIA GeForce RTX 4090",
+    "NVIDIA GeForce RTX 4090"
+  ],
+  "instruction_sha256": {
+    "AGENTS.md": "9c62ad3605a64069389218aff74bcfcf16d9eb5a24819be2a7c77274544e89f8",
+    "src/system_identification/artifacts/AGENTS.md": "ae91fdae145431850f5832de4fff80f888eeee9470dcf7f462dd25ac53a0a18c",
+    "src/system_identification/conventions/AGENTS.md": "322c9503161bd1e7f2fd0327e72019ca3d4f7b405e0f3c000b52c3d8840da3e6",
+    "src/system_identification/data/AGENTS.md": "2278d262741483831af083c6f3a9428a268112be440a4ecced8b67d0c12e4984",
+    "src/system_identification/evaluation/AGENTS.md": "3521948b919a8e39f781b2627afc655a96cf51b2c90e49c16c01526499c531e0",
+    "src/system_identification/labels/AGENTS.md": "896adc5452dd4ce53236dd5b09bdcaca2bcf6f3ee56a291c65b987dd7c519df4",
+    "src/system_identification/models/AGENTS.md": "a01131c1d8c495854f0c06105a24ef8a29976403d1e152bb0057a554d3e2912c",
+    "src/system_identification/physics/AGENTS.md": "9119072857d6ac3969da3fd6c55e49863ed2bddd579557a87875c5036646e5f2",
+    "src/system_identification/training/AGENTS.md": "cff02ea306100338d03fb6f9a9f26bdfd6ed1b60f5005b1aa91f6f5f171d578a"
+  },
+  "dependencies_modified": false,
+  "training_tf32": true,
+  "evaluation_tf32": false,
+  "torch_threads": 4,
+  "other_gpu_processes_preserved": true
+}

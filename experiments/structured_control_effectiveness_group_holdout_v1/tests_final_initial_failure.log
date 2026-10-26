@@ -1,0 +1,18 @@
+..........F...                                                           [100%]
+=================================== FAILURES ===================================
+______________________ test_exact_membership_and_support _______________________
+
+    def test_exact_membership_and_support():
+        d=pd.read_csv(OUT/'factual_points.csv.gz');a=pd.read_csv(OUT/'holdout_pair_assignments.csv');p=d[(d.pair_uid.isin(a.pair_uid))&(d.time_label=='300')&(d.variable=='p')]
+        assert p.groupby(['model','seed','method']).pair_uid.nunique().eq(48).all() and p.supported.all()
+        assert not p.duplicated(['pair_uid','model','seed','method']).any()
+        support=pd.read_csv(OUT/'evaluated_pair_support.csv');assert support[support.role=='heldout'].both_flights_unseen.all()
+>       unavailable=pd.read_csv(OUT/'unevaluable_background_pairs.csv');assert len(unavailable)==7 and set(unavailable.pair_uid).isdisjoint(a.pair_uid)
+                                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       assert (5 == 7)
+E        +  where 5 = len(   pair_id      i      j  ...    a    b                                       reason\n0       13  10575  12882  ...    ...eld_support\n4     1171  94138  97400  ...  213  218  cross_fold_background_no_joint_held_support\n\n[5 rows x 77 columns])
+
+experiments/structured_control_effectiveness_group_holdout_v1/test_results.py:25: AssertionError
+=========================== short test summary info ============================
+FAILED experiments/structured_control_effectiveness_group_holdout_v1/test_results.py::test_exact_membership_and_support
+1 failed, 13 passed in 2.21s

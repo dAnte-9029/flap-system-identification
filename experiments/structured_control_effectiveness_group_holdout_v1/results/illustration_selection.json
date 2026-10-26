@@ -1,0 +1,16 @@
+{
+  "fixed": [
+    "train:124",
+    "train:336",
+    "train:412",
+    "validation:44"
+  ],
+  "posthoc_direction_change_cases": [
+    "train:99",
+    "train:203"
+  ],
+  "direction_case_reason": "99 gains D direction in all seeds for both new models; 203 loses it in two seeds for both. No cases removed from scoring.",
+  "posthoc_best_absolute_error_change": "train:746",
+  "posthoc_worst_absolute_error_change": "train:336",
+  "rule": "D p 300ms mean paired absolute-error change over both new models and all seeds; illustrations only, no filtering or model selection"
+}

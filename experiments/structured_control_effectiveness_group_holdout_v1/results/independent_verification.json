@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "factual_primary_rows": 11664,
+  "factual_max_error": 4.2327252813834093e-16,
+  "internal_max_error": 2.8622937353617317e-15,
+  "closure_max_error": 4.440892098500626e-16,
+  "summary_rows": 6048,
+  "summary_max_error": 1.5543122344752192e-15,
+  "internal_summary_rows": 3024,
+  "internal_summary_max_error": 1.6653345369377348e-16,
+  "trajectory_checked_windows": 1728,
+  "trajectory_scipy_max_error": 1.5761986249529514e-07,
+  "truth_support_identical": true,
+  "main_pairs_once_per_model_seed": 48,
+  "components": 11,
+  "test_read": false
+}

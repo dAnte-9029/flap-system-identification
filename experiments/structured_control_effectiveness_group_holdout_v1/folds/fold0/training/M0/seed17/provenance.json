@@ -1,0 +1,18 @@
+{
+  "fold": 0,
+  "seed": 17,
+  "model": "M0",
+  "config_sha256": "fdb94291ae0a24d4cb93b2ff795944c962969944a4294e6b209d4c3ee2d2a51d",
+  "normalization_sha256": "adc6c500e80f9b7b9a17a3e3dff5b01ab7ee44dcf3000671a1158834bd635f45",
+  "train_indices_sha256": "86828a2e04624b7662df237685be98e17320e32d719b0789150c69417665248d",
+  "model_source_sha256": "452b4a1331b2e0b9c673c13c904dd581f3d3edb153b0c58343fda3b349999258",
+  "trainer_sha256": "9d90fb58b1d022a890dfe4ac5f583845a81accbf2376c429668de11337ee36ef",
+  "common_sha256": "747a066c4a66aaee3b9c7322cb1aa560dde0d6a6a1f73f9c95aae617cc40d38a",
+  "device": "cuda:0",
+  "gpu": "NVIDIA GeForce RTX 4090",
+  "torch": "2.7.0+cu128",
+  "cuda": "12.8",
+  "train_windows": 87239,
+  "validation_windows": 36332,
+  "test_read": false
+}

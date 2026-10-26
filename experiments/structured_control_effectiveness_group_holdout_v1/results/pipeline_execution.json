@@ -1,0 +1,61 @@
+{
+  "steps": [
+    {
+      "command": [
+        "/home/zn/anaconda3/envs/flap-train-gpu/bin/python",
+        "/home/zn/flap-system-identification/.worktrees/structured-control-effectiveness-group-holdout-v1/experiments/structured_control_effectiveness_group_holdout_v1/evaluate.py",
+        "--device",
+        "cuda:1"
+      ],
+      "log": "evaluation.log",
+      "started_utc": "2026-10-26T11:18:04.676327+00:00",
+      "seconds": 62.95740866661072,
+      "returncode": 0
+    },
+    {
+      "command": [
+        "/home/zn/anaconda3/envs/flap-train-gpu/bin/python",
+        "/home/zn/flap-system-identification/.worktrees/structured-control-effectiveness-group-holdout-v1/experiments/structured_control_effectiveness_group_holdout_v1/analyze.py"
+      ],
+      "log": "analysis.log",
+      "started_utc": "2026-10-26T11:19:07.633902+00:00",
+      "seconds": 131.79319739341736,
+      "returncode": 0
+    },
+    {
+      "command": [
+        "/home/zn/anaconda3/envs/flap-train-gpu/bin/python",
+        "/home/zn/flap-system-identification/.worktrees/structured-control-effectiveness-group-holdout-v1/experiments/structured_control_effectiveness_group_holdout_v1/verify.py"
+      ],
+      "log": "verification.log",
+      "started_utc": "2026-10-26T11:21:19.427296+00:00",
+      "seconds": 66.90523886680603,
+      "returncode": 0
+    },
+    {
+      "command": [
+        "/home/zn/anaconda3/envs/flap-train-gpu/bin/python",
+        "/home/zn/flap-system-identification/.worktrees/structured-control-effectiveness-group-holdout-v1/experiments/structured_control_effectiveness_group_holdout_v1/plot.py"
+      ],
+      "log": "plot.log",
+      "started_utc": "2026-10-26T11:22:26.332727+00:00",
+      "seconds": 8.807445526123047,
+      "returncode": 0
+    },
+    {
+      "command": [
+        "/home/zn/anaconda3/envs/flap-train-gpu/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "/home/zn/flap-system-identification/.worktrees/structured-control-effectiveness-group-holdout-v1/experiments/structured_control_effectiveness_group_holdout_v1/test_contract.py",
+        "/home/zn/flap-system-identification/.worktrees/structured-control-effectiveness-group-holdout-v1/experiments/structured_control_effectiveness_group_holdout_v1/test_results.py"
+      ],
+      "log": "tests_final.log",
+      "started_utc": "2026-10-26T11:22:35.140360+00:00",
+      "seconds": 2.77195143699646,
+      "returncode": 1
+    }
+  ],
+  "passed": false
+}

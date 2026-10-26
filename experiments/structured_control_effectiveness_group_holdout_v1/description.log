@@ -1,0 +1,9 @@
+Main p B/D, pooled seed scores, flight equal:
+model   seed method  pairs  active_pairs  near_zero_fraction  direction_accuracy  scale_ratio  signed_gain     rmse      mae
+   M0 pooled      B     48            40            0.131522            0.819288     0.468513     0.212857 0.521669 0.411687
+   M0 pooled      D     48            36            0.302536            0.824935     0.662664     0.368676 0.350972 0.278714
+   M1 pooled      B     48            40            0.131522            0.749548     0.580421     0.234944 0.545194 0.384042
+   M1 pooled      D     48            36            0.302536            0.827965     0.648471     0.343338 0.358901 0.259622
+   M2 pooled      B     48            40            0.131522            0.739536     0.590820     0.249199 0.540036 0.386373
+   M2 pooled      D     48            36            0.302536            0.832727     0.659660     0.347669 0.360359 0.258070
+Component consistency: [{"model": "M1", "method": "B", "components_with_active_pairs": 10, "pooled_improved_components": 2, "pooled_worse_components": 4, "all_three_seeds_improve_components": 0, "all_three_seeds_worsen_components": 1}, {"model": "M1", "method": "D", "components_with_active_pairs": 8, "pooled_improved_components": 0, "pooled_worse_components": 0, "all_three_seeds_improve_components": 0, "all_three_seeds_worsen_components": 0}, {"model": "M2", "method": "B", "components_with_active_pairs": 10, "pooled_improved_components": 2, "pooled_worse_components": 3, "all_three_seeds_improve_components": 0, "all_three_seeds_worsen_components": 3}, {"model": "M2", "method": "D", "components_with_active_pairs": 8, "pooled_improved_components": 1, "pooled_worse_components": 0, "all_three_seeds_improve_components": 0, "all_three_seeds_worsen_components": 0}]

@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "completed": 27,
+  "expected": 27,
+  "epochs_each": 24,
+  "epoch_records": 648,
+  "optimizer_updates": 57456,
+  "total_epoch_gpu_seconds": 6688.3972244262695,
+  "normalization_fold_local": true,
+  "selection_uses_original_validation_only": true,
+  "resumed_runs": 0,
+  "test_read": false
+}

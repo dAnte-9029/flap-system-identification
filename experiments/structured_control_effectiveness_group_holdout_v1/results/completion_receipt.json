@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "training_runs": 27,
+  "epochs_each": 24,
+  "final_tests_passed": 14,
+  "independent_verification_sha256": "a24f4e17878d707a6f1f3cde579cee8d5364a41e5ab9f007a5dcac71b9318557",
+  "final_tests_sha256": "7f72645db1c549d6a454c346f8f763d0d78521f792a0a470ee53cee7d3e43b01",
+  "initial_pipeline_failure_preserved": "pipeline_execution.json and tests_final_initial_failure.log",
+  "resolution": "Corrected an erroneous expected excluded-training-background count from 7 to 5; the other 2 are non-primary validation background pairs. Membership was checked against immutable fold/pair indices. No training, predictions, folds or primary statistics changed.",
+  "excluded_train_background_pairs": 5,
+  "excluded_nonprimary_validation_pairs": 2,
+  "additional_training_after_fixed_budget": 0,
+  "final_result_sha256": {
+    "factual_points.csv.gz": "0685e0ba19e4f2c8a146ff58b34a8df9ed8b2a3a32175a44e67aaaa681ee8f79",
+    "factual_summary.csv": "ae98fe997019bb62dba3d079fec93e05c555ded57e3d488332900961afe61c0a",
+    "internal_points.csv.gz": "14a26f9570d7e39d2551bb6ec5a0f9a0c765b61033e40133eb0f78dba88ef5a9",
+    "internal_summary.csv": "f2de81667a1f28037280baf575767b2bca295d4475a6c7999df37fbd3eee3a6d",
+    "paired_summary.csv": "7dd8404e9f67c3d7586f058fe7e18dc908e1858242c1c8e11051630f9417e433",
+    "heldout_trajectory.csv.gz": "3836ee184093a948c57ac0c54d970147878a55fa829d12c6c966f998bb27a877"
+  },
+  "test_artifact_read": false
+}

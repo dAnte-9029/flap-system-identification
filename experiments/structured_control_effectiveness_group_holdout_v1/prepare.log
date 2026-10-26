@@ -1,0 +1,3 @@
+Fold 0 normalization independently verified {'mean': 8.718694743947708e-08, 'scale': 4.607389636479553e-08, 'output_scale': 2.066440718540008e-08, 'loss_scales': 4.422971655593244e-08}
+Fold 1 normalization independently verified {'mean': 1.269688243432654e-07, 'scale': 2.801443939048909e-07, 'output_scale': 5.762398169739669e-09, 'loss_scales': 9.574899428876904e-08}
+Fold 2 normalization independently verified {'mean': 1.157393358930392e-07, 'scale': 3.9485523917193177e-07, 'output_scale': 2.0835591307832857e-08, 'loss_scales': 4.036168077536928e-08}
