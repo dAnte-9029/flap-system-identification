@@ -1,0 +1,125 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "check": "full factual archive replay",
+      "model": "GRU-NoControl",
+      "seed": 17,
+      "max_abs_error": 0.0
+    },
+    {
+      "check": "full factual archive replay",
+      "model": "GRU-NoControl",
+      "seed": 29,
+      "max_abs_error": 0.0
+    },
+    {
+      "check": "full factual archive replay",
+      "model": "GRU-NoControl",
+      "seed": 43,
+      "max_abs_error": 0.0
+    },
+    {
+      "check": "full factual archive replay",
+      "model": "GRU-Control",
+      "seed": 17,
+      "max_abs_error": 0.0
+    },
+    {
+      "check": "full factual archive replay",
+      "model": "GRU-Control",
+      "seed": 29,
+      "max_abs_error": 0.0
+    },
+    {
+      "check": "full factual archive replay",
+      "model": "GRU-Control",
+      "seed": 43,
+      "max_abs_error": 0.0
+    },
+    {
+      "check": "four-cell invariants",
+      "model": "GRU-NoControl",
+      "seed": 17,
+      "factual_prefix_max_abs_error": 8.344650268554688e-07,
+      "history_hidden_identical": true,
+      "phase_and_dt_identical": true,
+      "redundant_events_identical": true,
+      "future_labels_excluded": true,
+      "nocontrol_identical": true,
+      "normalization_sha256": "03c15586b205d02232b75cf82292de2e66a3ffbc41c5c9391f2aaa22235e3189"
+    },
+    {
+      "check": "four-cell invariants",
+      "model": "GRU-NoControl",
+      "seed": 29,
+      "factual_prefix_max_abs_error": 9.5367431640625e-07,
+      "history_hidden_identical": true,
+      "phase_and_dt_identical": true,
+      "redundant_events_identical": true,
+      "future_labels_excluded": true,
+      "nocontrol_identical": true,
+      "normalization_sha256": "03c15586b205d02232b75cf82292de2e66a3ffbc41c5c9391f2aaa22235e3189"
+    },
+    {
+      "check": "four-cell invariants",
+      "model": "GRU-NoControl",
+      "seed": 43,
+      "factual_prefix_max_abs_error": 9.5367431640625e-07,
+      "history_hidden_identical": true,
+      "phase_and_dt_identical": true,
+      "redundant_events_identical": true,
+      "future_labels_excluded": true,
+      "nocontrol_identical": true,
+      "normalization_sha256": "03c15586b205d02232b75cf82292de2e66a3ffbc41c5c9391f2aaa22235e3189"
+    },
+    {
+      "check": "four-cell invariants",
+      "model": "GRU-Control",
+      "seed": 17,
+      "factual_prefix_max_abs_error": 9.5367431640625e-07,
+      "history_hidden_identical": true,
+      "phase_and_dt_identical": true,
+      "redundant_events_identical": true,
+      "future_labels_excluded": true,
+      "nocontrol_identical": false,
+      "normalization_sha256": "03c15586b205d02232b75cf82292de2e66a3ffbc41c5c9391f2aaa22235e3189"
+    },
+    {
+      "check": "four-cell invariants",
+      "model": "GRU-Control",
+      "seed": 29,
+      "factual_prefix_max_abs_error": 9.5367431640625e-07,
+      "history_hidden_identical": true,
+      "phase_and_dt_identical": true,
+      "redundant_events_identical": true,
+      "future_labels_excluded": true,
+      "nocontrol_identical": false,
+      "normalization_sha256": "03c15586b205d02232b75cf82292de2e66a3ffbc41c5c9391f2aaa22235e3189"
+    },
+    {
+      "check": "four-cell invariants",
+      "model": "GRU-Control",
+      "seed": 43,
+      "factual_prefix_max_abs_error": 1.430511474609375e-06,
+      "history_hidden_identical": true,
+      "phase_and_dt_identical": true,
+      "redundant_events_identical": true,
+      "future_labels_excluded": true,
+      "nocontrol_identical": false,
+      "normalization_sha256": "03c15586b205d02232b75cf82292de2e66a3ffbc41c5c9391f2aaa22235e3189"
+    }
+  ],
+  "test_read": false,
+  "trained": false,
+  "weight_updates": false,
+  "seconds": 3.5770814418792725,
+  "gpu": "NVIDIA GeForce RTX 4090",
+  "torch": "2.7.0+cu128",
+  "case_count": 452,
+  "unique_windows": 225,
+  "pair_count": 113,
+  "truncated_windows": 62,
+  "predictions_sha256": "d259716c9a320410faf2c53dad392183caac23073c45b0ff3d72ebba5e88d3fc",
+  "inputs_sha256": "ab18df3e5d39ec3920dcd7ede08015d973dd6764cabb5997c16a7d00cd2664a4"
+}

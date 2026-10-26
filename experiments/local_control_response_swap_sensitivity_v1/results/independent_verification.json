@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "point_rows_verified": 20340,
+  "max_interpolation_algebra_error": 3.649858193455202e-15,
+  "closure_max": 4.440892098500626e-16,
+  "summary_rows_verified": 10800,
+  "max_summary_error": 1.865174681370263e-14,
+  "raw_ZOH_union_intervals_checked": 28439,
+  "max_command_error": 0.0,
+  "max_differential_mean_error": 1.6306400674181987e-16,
+  "donor_relative_time_min_us": 857.0,
+  "donor_relative_time_max_us": 497923.5,
+  "NoControl_exact": true,
+  "non_event_inputs_identical": true,
+  "no_extrapolation": true,
+  "all_main300_supported": true,
+  "train_validation_disjoint": true,
+  "test_read": false
+}

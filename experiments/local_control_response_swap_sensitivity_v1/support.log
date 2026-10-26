@@ -1,0 +1,10 @@
+                 conditional_unknown conditional_warning  control_outside_train_marginal  history_outside_train_marginal
+split      cell
+train      AA                      0                   4                               0                               0
+           AB                      0                   4                               0                               0
+           BA                      0                   4                               0                               0
+           BB                      0                   2                               0                               0
+validation AA                      0                   1                               0                               0
+           AB                      0                   1                               0                               0
+           BA                      1                   0                               0                               0
+           BB                      1                   0                               0                               0
