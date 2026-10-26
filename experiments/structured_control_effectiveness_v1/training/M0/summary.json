@@ -1,0 +1,15 @@
+{
+  "model": "M0",
+  "seed": 17,
+  "epochs": 6,
+  "updates": 636,
+  "examples_seen": 647520,
+  "parameters": 37590,
+  "best_epoch": 6,
+  "best_validation_flight_loss": 0.8144662976264954,
+  "seconds": 69.66708064079285,
+  "peak_allocated_bytes": 1942141440,
+  "best_sha256": "03dafa78f87d1a98640792232ec1958996ec762ae1151f53361b498959a98795",
+  "last_sha256": "e64be14a885df66252a98d23e60e43642b88f45d49f01c34f210c131a5c383c7",
+  "stop_reason": "fixed_epoch_budget"
+}

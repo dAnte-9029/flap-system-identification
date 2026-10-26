@@ -1,0 +1,28 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "model": "M0",
+      "checkpoint_sha256": "03dafa78f87d1a98640792232ec1958996ec762ae1151f53361b498959a98795",
+      "epoch": 6,
+      "batch_single_max_error": 4.76837158203125e-07,
+      "future_truth_excluded": true
+    },
+    {
+      "model": "M1",
+      "checkpoint_sha256": "a5837c066631f6ecfb986b7761b26550866191a82cb3caa7e045a4f02bb98c61",
+      "epoch": 6,
+      "batch_single_max_error": 4.76837158203125e-07,
+      "future_truth_excluded": true
+    },
+    {
+      "model": "M2",
+      "checkpoint_sha256": "2581140e07c2b690caa2e5d70adf4a170eadbee001b2a0d734fd32e67575a68a",
+      "epoch": 6,
+      "batch_single_max_error": 2.384185791015625e-07,
+      "future_truth_excluded": true
+    }
+  ],
+  "inputs_sha256": "ab18df3e5d39ec3920dcd7ede08015d973dd6764cabb5997c16a7d00cd2664a4",
+  "test_read": false
+}

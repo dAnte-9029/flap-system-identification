@@ -1,0 +1,4 @@
+model,position_m_path_rms,position_m_endpoint_norm,velocity_mps_path_rms,velocity_mps_endpoint_norm,attitude_rad_path_rms,attitude_rad_endpoint_norm,rate_radps_path_rms,rate_radps_endpoint_norm
+M0,0.19457585,0.37423092,0.5068568,0.72540444,0.09001436,0.13021658,0.68287194,0.6294369
+M1,0.18275985,0.3472489,0.47569048,0.66232157,0.083340295,0.12043703,0.6678775,0.6104402
+M2,0.1838712,0.34890464,0.48687503,0.67218244,0.08354097,0.12109541,0.668191,0.61191356

@@ -1,0 +1,10 @@
+{
+  "training_seconds": 211.66813611984253,
+  "next_stage_hours_lower": 1.7692359872809276,
+  "next_stage_hours_upper": 2.116681361198425,
+  "actual_training_runs": 3,
+  "actual_epochs": 18,
+  "actual_optimizer_updates": 1908,
+  "smoke_updates": 9,
+  "next_stage_executed": false
+}

@@ -1,0 +1,15 @@
+{
+  "model": "M2",
+  "seed": 17,
+  "epochs": 6,
+  "updates": 636,
+  "examples_seen": 647520,
+  "parameters": 42774,
+  "best_epoch": 6,
+  "best_validation_flight_loss": 0.7688009738922119,
+  "seconds": 72.05723452568054,
+  "peak_allocated_bytes": 1756838400,
+  "best_sha256": "2581140e07c2b690caa2e5d70adf4a170eadbee001b2a0d734fd32e67575a68a",
+  "last_sha256": "2ff023b5f34829d62856bbfae1594cbd25c7d117878e65134326aacfdf5e1ec6",
+  "stop_reason": "fixed_epoch_budget"
+}

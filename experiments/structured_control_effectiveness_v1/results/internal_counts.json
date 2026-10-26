@@ -1,0 +1,23 @@
+[
+  {
+    "model": "M0",
+    "C_near_pairs": 34,
+    "C_opposite_CA_CB_numerical": 2,
+    "CA_CB_both_active": 10,
+    "CA_CB_opposite_both_active": 0
+  },
+  {
+    "model": "M1",
+    "C_near_pairs": 27,
+    "C_opposite_CA_CB_numerical": 9,
+    "CA_CB_both_active": 19,
+    "CA_CB_opposite_both_active": 0
+  },
+  {
+    "model": "M2",
+    "C_near_pairs": 27,
+    "C_opposite_CA_CB_numerical": 5,
+    "CA_CB_both_active": 17,
+    "CA_CB_opposite_both_active": 0
+  }
+]

@@ -1,0 +1,96 @@
+{
+  "dataset_id": "velocity_rate_multistep_v1",
+  "registry": "configs/data/velocity_rate_dataset_registry.yaml",
+  "sampling_group": "main_50hz",
+  "history_us": 500000,
+  "horizon_us": 1000000,
+  "expected_windows": {
+    "train": 107920,
+    "validation": 36332
+  },
+  "expected_flights": {
+    "train": 94,
+    "validation": 27
+  },
+  "seeds": [
+    17
+  ],
+  "hidden_size": 64,
+  "event_hidden_size": 16,
+  "batch_size": 1024,
+  "evaluation_batch_size": 2048,
+  "max_epochs": 6,
+  "patience": 5,
+  "minimum_improvement": 0.0001,
+  "optimizer": "AdamW",
+  "learning_rate": 0.001,
+  "weight_decay": 0.0001,
+  "gradient_clip_norm": 5.0,
+  "loss_weights": [
+    1.0,
+    1.0,
+    1.0,
+    1.0
+  ],
+  "loss_scale_policy": "shared train-only RMS baseline residual over all native steps through 1s",
+  "loss_scale_floors": [
+    0.01,
+    0.1,
+    0.02,
+    0.1
+  ],
+  "loss_aggregation": "mean of scaled squared vector norms / squared geodesic angles over valid native future steps per window, then equal windows",
+  "checkpoint_selection": "validation equal-flight loss through 1000ms only",
+  "phase_forecast": "hold last valid frequency if valid at origin; advance last phase by 2*pi*f*elapsed; missing origin phase or frequency masks future phase",
+  "control_forecast": "complete ordered native piecewise-constant event tape, each segment carries command and duration; GRU16 event encoder per native state interval",
+  "test_policy": "sealed; no test file opens, hashes, normalization, evaluation or selection",
+  "input_output_normalization": "frozen from original train-only 200ms experiment",
+  "paired_cohort": "identical registered 1s origins, also present in 500ms windows",
+  "evaluation_horizons_ms": [
+    500,
+    1000,
+    2000
+  ],
+  "models": [
+    "M0",
+    "M1",
+    "M2"
+  ],
+  "early_stopping": false,
+  "cosine_T_max": 6,
+  "device": "cuda:1",
+  "control_event_policy": "exact_zoh_merge_us_v1",
+  "input_contract": "V0",
+  "control_reference": "last causal history command, held for whole rollout",
+  "control_coordinates": [
+    "motor",
+    "common",
+    "differential",
+    "rudder"
+  ],
+  "control_moments": [
+    "integral du / 0.02",
+    "integral (2*t/dt-1)*du / 0.02"
+  ],
+  "M2_harmonics": 1,
+  "control_head_initial_std": 0.001,
+  "report_times_ms": [
+    100,
+    200,
+    300,
+    400,
+    500
+  ],
+  "direction_threshold": 0.1,
+  "direction_sensitivity": [
+    0.05,
+    0.2
+  ],
+  "slow_width_s": 0.27,
+  "examples": [
+    "train:124",
+    "train:336",
+    "train:412",
+    "validation:44"
+  ]
+}

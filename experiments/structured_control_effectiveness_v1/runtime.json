@@ -1,0 +1,17 @@
+{
+  "python": "/home/zn/anaconda3/envs/flap-train-gpu/bin/python",
+  "torch": "2.7.0+cu128",
+  "cuda": "12.8",
+  "device": "cuda:1",
+  "gpu": "NVIDIA GeForce RTX 4090",
+  "load_seconds": 1.1882574558258057,
+  "tf32": true,
+  "cudnn_deterministic": true,
+  "test_read": false,
+  "training_source_sha256": {
+    "model.py": "452b4a1331b2e0b9c673c13c904dd581f3d3edb153b0c58343fda3b349999258",
+    "train.py": "cc178391511fcc3d52b1d9b0355167c820b3b1f8302d10d556a33e8141d3ebf3",
+    "common.py": "696607cbeed5737c69d46da578dc96c45f527acbac2caa7a6e791f39ec2b74e9"
+  },
+  "data_bytes": 1443399636
+}

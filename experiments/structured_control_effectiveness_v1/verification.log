@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "factual_primary_rows": 4068,
+  "factual_max_error": 2.7755575615628914e-16,
+  "internal_max_error": 2.6918571538470104e-15,
+  "closure_max_error": 3.885780586188048e-16,
+  "summary_rows": 1620,
+  "summary_max_error": 5.995204332975845e-15,
+  "internal_summary_rows": 810,
+  "internal_summary_max_error": 1.1102230246251565e-16,
+  "trajectory_scipy_windows_per_model": 128,
+  "trajectory_max_error": 2.6417105081222303e-07,
+  "truth_and_support_identical": true,
+  "batch_orders_identical": true,
+  "updates_per_model": 636,
+  "fold_pair_coverage": 48,
+  "fold_training_executed": false,
+  "test_read": false
+}
