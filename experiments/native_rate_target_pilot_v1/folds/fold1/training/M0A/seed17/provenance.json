@@ -1,0 +1,19 @@
+{
+  "fold": 1,
+  "model": "M0A",
+  "seed": 17,
+  "initial_model_sha256": "b34583337ecc3aafdf369f348c7908aafcd393ab526b6ae001146ed41feefefd",
+  "normalization_sha256": "6c5eca54bbf62555e8ac77b4c831e4d9be5456fff3dfbf370f9bc391fca724eb",
+  "train_indices_sha256": "490985d1e6b4dbb38c76a72949c7a4dab7597de7f9055198c6f6a948bc41966b",
+  "config_sha256": "0d1e3e7e37707da201543fe6b7f4607f3c46b58de57a581cee72f577d7c302b6",
+  "trainer_sha256": "656005e9ed136df71400bffa6e206182d1285a2391c91b64b00d26d29769787f",
+  "model_sha256": "76c6d29f7dfd60fec4e4094b474e3e876f3eb3d580c839141534685dced4302b",
+  "target_pack_sha256": "72391e58577fbec3e476714d33a75437dd257dd8fb967c0b2bd14e2e8e8e8461",
+  "gpu": "NVIDIA GeForce RTX 4090",
+  "device": "cuda:1",
+  "torch": "2.7.0+cu128",
+  "cuda": "12.8",
+  "parameters": 37590,
+  "test_read": false,
+  "checkpoint_selection": "fixed epoch 6"
+}

@@ -1,0 +1,39 @@
+{
+  "base_sha": "ac5301011dd288e29643bf85f199ce86f146b58d",
+  "config_sha256": "0d1e3e7e37707da201543fe6b7f4607f3c46b58de57a581cee72f577d7c302b6",
+  "files": {
+    "/home/zn/flap-system-identification/.worktrees/native-rate-target-pilot-v1/experiments/control_conditioned_training_pilot_v1/results/holdout_protocol.json": "1ab616c14ac25e28fe0112c868af46bdb3483c0b5790a966928fdd425b5a3cc2",
+    "/home/zn/flap-system-identification/.worktrees/native-rate-target-pilot-v1/experiments/control_conditioned_training_pilot_v1/results/holdout_window_indices.npz": "f802647f15e2f97bfbd6aa8dfabbdb85e571e05bff56b08bfa3abfe175449cef",
+    "/home/zn/flap-system-identification/.worktrees/native-rate-target-pilot-v1/experiments/control_conditioned_training_pilot_v1/results/holdout_pair_assignments.csv": "a73425c7534240470f2e62fa676d8799d3aef3003d04acf242ee02fc28fd406a",
+    "/home/zn/flap-system-identification/.worktrees/native-rate-target-pilot-v1/experiments/control_conditioned_training_pilot_v1/results/pairs.csv": "1a63e9ffe412bb4953d51fa6d257e2f2fc5af571d63c4c340094f1369b8fd767",
+    "/home/zn/flap-system-identification/.worktrees/native-rate-target-pilot-v1/experiments/control_conditioned_training_pilot_v1/results/cases.csv": "e3be1abf43b8a3d653bb1a8af17092a131c1a0896add49b29a0fd587d6fb445f",
+    "/home/zn/flap-system-identification/.worktrees/native-rate-target-pilot-v1/experiments/control_conditioned_training_pilot_v1/results/cohorts.csv": "45ffddf13251f31153f8cef740d993434df6d0efa9dde485203d7a3fc827ade0",
+    "/home/zn/flap-system-identification/.worktrees/native-rate-target-pilot-v1/experiments/control_conditioned_training_pilot_v1/folds/fold0/normalization.json": "adc6c500e80f9b7b9a17a3e3dff5b01ab7ee44dcf3000671a1158834bd635f45",
+    "/home/zn/flap-system-identification/.worktrees/native-rate-target-pilot-v1/experiments/control_conditioned_training_pilot_v1/folds/fold0/normalization_receipt.json": "c82813e76e0aba6d44d6cbd7927fcbf86792fcdad26d24d8da5a511888b103a4",
+    "/home/zn/flap-system-identification/.worktrees/native-rate-target-pilot-v1/experiments/control_conditioned_training_pilot_v1/folds/fold1/normalization.json": "6c5eca54bbf62555e8ac77b4c831e4d9be5456fff3dfbf370f9bc391fca724eb",
+    "/home/zn/flap-system-identification/.worktrees/native-rate-target-pilot-v1/experiments/control_conditioned_training_pilot_v1/folds/fold1/normalization_receipt.json": "7bd33f35341cd98621db58358802d7543313408f5d4ba002037fcde5d1851420",
+    "/home/zn/flap-system-identification/.worktrees/native-rate-target-pilot-v1/experiments/control_conditioned_training_pilot_v1/folds/fold2/normalization.json": "0352482c3b12314631ce0931492b1019f6aae47c53fa3e97d011c15418599f6e",
+    "/home/zn/flap-system-identification/.worktrees/native-rate-target-pilot-v1/experiments/control_conditioned_training_pilot_v1/folds/fold2/normalization_receipt.json": "cca532555274ce834df424349d5640157112e1b303932c4121739b2bcb895c8b",
+    "/home/zn/flap-system-identification/.worktrees/native-rate-target-pilot-v1/experiments/native_rate_target_pilot_v1/results/train_targets.npz": "72391e58577fbec3e476714d33a75437dd257dd8fb967c0b2bd14e2e8e8e8461",
+    "/home/zn/flap-system-identification/.worktrees/native-rate-target-pilot-v1/experiments/native_rate_target_pilot_v1/results/validation_targets.npz": "e03d44aa6673d339abb9a71e3888a00d683ce7e99d4ea093114aaead8b404901"
+  },
+  "prior_receipt_sha256": "fe3ff251e28f86ede3136f30f10a3c49e8e29c54b114139cc9c3b12e79dde3f5",
+  "previous_data_hashes_reused": {
+    "/home/zn/flap-system-identification/dataset/velocity_rate_multistep_v1/dataset_manifest.json": "8afb8623bf7174e4da5b2044f644331b8b251433fed3576f6dcdab470935bcb5",
+    "/home/zn/flap-system-identification/.worktrees/causal-state-target-contract-v1/src/system_identification/models/velocity_rate_gru.py": "76c6d29f7dfd60fec4e4094b474e3e876f3eb3d580c839141534685dced4302b",
+    "/home/zn/flap-system-identification/dataset/velocity_rate_multistep_v1/samples_train.parquet": "47a0d8d396d795fefa17ae0143484b7d63ef809f6bb3dfb8409ea75d5166f488",
+    "/home/zn/flap-system-identification/dataset/velocity_rate_multistep_v1/native_vehicle_angular_velocity_train.parquet": "8fdcd976a0ae4ea4f6a96f84131073709a828c5f5d7afc54e9c572dd724e21f3",
+    "/home/zn/flap-system-identification/.worktrees/velocity-rate-dataset-v1/artifacts/velocity_rate_gru64_horizon_training_v1/train.npz": "5702d548d4bc8486ee2dca95ced79b1f58d0c78776a3866a161cee99931ae451",
+    "/home/zn/flap-system-identification/.worktrees/causal-state-target-contract-v1/experiments/velocity_rate_gru64_horizon_training_v1/train_windows.parquet": "2b51e72201ff6f99c1be03e43951a6e75dc8a419a2716c996cd67a7377225862",
+    "/home/zn/flap-system-identification/dataset/velocity_rate_multistep_v1/samples_validation.parquet": "89f42ca256c3d04899d6824c0f9112f83aecfc7b82e6247347f14f3c97c33dae",
+    "/home/zn/flap-system-identification/dataset/velocity_rate_multistep_v1/native_vehicle_angular_velocity_validation.parquet": "a7430ba65c41937e5d62b3d73ac4f69bba631c10c5bfcb5f84399f2f5102c82d",
+    "/home/zn/flap-system-identification/.worktrees/velocity-rate-dataset-v1/artifacts/velocity_rate_gru64_horizon_training_v1/validation.npz": "5b8bb1b1a04e5cea32562b3342beca34ef0bee763b4c912e82d2792fcfa893e1",
+    "/home/zn/flap-system-identification/.worktrees/causal-state-target-contract-v1/experiments/velocity_rate_gru64_horizon_training_v1/validation_windows.parquet": "74194f10b1e7abbf3b8228e93384cf8948e0103b310a7c3e15f19451f3d8b222"
+  },
+  "normalization_reused": true,
+  "partitions": [
+    "train",
+    "validation"
+  ],
+  "test_read": false
+}

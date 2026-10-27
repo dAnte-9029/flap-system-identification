@@ -1,0 +1,36 @@
+{
+  "passed": true,
+  "runs": 6,
+  "epochs": 36,
+  "updates": 3192,
+  "checks": [
+    {
+      "fold": 0,
+      "identical_initial_parameters": true,
+      "identical_normalization": true,
+      "identical_registered_batch_order": true,
+      "original_batch_order_reproduced": true,
+      "identical_updates": true,
+      "epoch": 6
+    },
+    {
+      "fold": 1,
+      "identical_initial_parameters": true,
+      "identical_normalization": true,
+      "identical_registered_batch_order": true,
+      "original_batch_order_reproduced": true,
+      "identical_updates": true,
+      "epoch": 6
+    },
+    {
+      "fold": 2,
+      "identical_initial_parameters": true,
+      "identical_normalization": true,
+      "identical_registered_batch_order": true,
+      "original_batch_order_reproduced": true,
+      "identical_updates": true,
+      "epoch": 6
+    }
+  ],
+  "test_read": false
+}

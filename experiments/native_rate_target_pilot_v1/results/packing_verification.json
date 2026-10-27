@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "split": "train",
+      "windows": 1024,
+      "nodes": 3072,
+      "exact_archived_B_float32": true
+    },
+    {
+      "split": "validation",
+      "windows": 1024,
+      "nodes": 3072,
+      "exact_archived_B_float32": true
+    }
+  ],
+  "source": "previous archived B by exact flight/sample identity; no nearest time join"
+}

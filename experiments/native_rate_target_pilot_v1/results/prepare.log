@@ -1,0 +1,6 @@
+     split     scope  windows  flights  original_steps  supervised_steps  mean_supervision_s  min_supervision_s  complete_windows  zero_support
+     train       all   107920       94         5396006           5368619            0.995025           0.967934             80533             0
+     train fold0_fit    87239       76         4361954           4339211            0.994865           0.967934             64496             0
+     train fold1_fit    95627       83         4781356           4756907            0.994981           0.967934             71178             0
+     train fold2_fit    87750       77         4387505           4365518            0.995098           0.967934             65763             0
+validation       all    36332       27         1816602           1806279            0.994324           0.975675             26009             0

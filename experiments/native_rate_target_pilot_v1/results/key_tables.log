@@ -1,0 +1,80 @@
+
+Trajectory: common prefix, flight equal
+model  horizon_ms reference  position_m_rms  velocity_mps_rms  attitude_rad_rms    p_rms    q_rms    r_rms
+  M0A         500         A        0.114499          0.420749          0.067821 0.417458 0.446474 0.169224
+  M0A         500         B        0.114499          0.420749          0.067821 0.400053 0.438969 0.168424
+  M0A        1000         A        0.250392          0.565979          0.101649 0.419595 0.451160 0.189415
+  M0A        1000         B        0.250392          0.565979          0.101649 0.402297 0.443712 0.188686
+  M0B         500         A        0.114507          0.421136          0.067845 0.417515 0.446791 0.169264
+  M0B         500         B        0.114507          0.421136          0.067845 0.400108 0.439285 0.168465
+  M0B        1000         A        0.250383          0.566265          0.101685 0.419647 0.451496 0.189452
+  M0B        1000         B        0.250383          0.566265          0.101685 0.402348 0.444048 0.188724
+
+Response: main p, flight equal
+model method  active_pairs  direction_accuracy  scale_ratio  signed_gain  positive_amplitude_bias  negative_amplitude_bias
+  M0A      A            39            0.780260     0.334297     0.138947                -0.421522                -0.483364
+  M0A      B            40            0.797038     0.381875     0.163572                -0.373139                -0.373270
+  M0A      D            36            0.787532     0.684398     0.401496                -0.160567                -0.151926
+  M0B      A            39            0.780260     0.334263     0.138872                -0.422254                -0.483463
+  M0B      B            40            0.797038     0.381837     0.163404                -0.373868                -0.373306
+  M0B      D            36            0.787532     0.684076     0.401339                -0.160808                -0.152028
+
+Transitions
+method  gained_pair_seed_rows  lost_pair_seed_rows  mean_amplitude_error_change
+     A                      0                    0                     0.000134
+     B                      0                    0                     0.000173
+     D                      0                    0                    -0.000004
+
+Components
+scope method  active_pairs  gained_pair_seed_rows  lost_pair_seed_rows  mean_amplitude_error_change
+  C00      B             2                      0                    0                     0.000291
+  C00      D             1                      0                    0                     0.000617
+  C01      B             2                      0                    0                     0.001006
+  C01      D             1                      0                    0                    -0.000322
+  C02      B             7                      0                    0                     0.000458
+  C02      D             9                      0                    0                    -0.000101
+  C03      B            20                      0                    0                    -0.000200
+  C03      D            19                      0                    0                    -0.000044
+  C04      B             2                      0                    0                     0.000937
+  C04      D             2                      0                    0                     0.000270
+  C05      B             2                      0                    0                     0.001189
+  C05      D             1                      0                    0                    -0.000223
+  C06      B             1                      0                    0                     0.000959
+  C06      D             1                      0                    0                     0.000533
+  C07      B             1                      0                    0                    -0.000158
+  C07      D             0                      0                    0                    -0.000278
+  C08      B             2                      0                    0                     0.000626
+  C08      D             2                      0                    0                     0.000204
+  C09      B             1                      0                    0                     0.000196
+  C09      D             0                      0                    0                     0.000156
+  C10      B             0                      0                    0                     0.000060
+  C10      D             0                      0                    0                     0.000323
+
+Cases
+ pair_uid method      real    pred_A      pred  gained  lost
+ train:99      B -0.297418  0.019808  0.020160   False False
+ train:99      D -0.280168  0.092198  0.092260   False False
+train:124      B -1.013093 -0.210229 -0.210585   False False
+train:124      D -1.322771 -0.228579 -0.228923   False False
+train:203      B  1.104968  0.341422  0.341576   False False
+train:203      D  0.530993  0.228124  0.228624   False False
+train:412      B -0.716000 -0.219100 -0.219228   False False
+train:412      D -0.237927 -0.173485 -0.173651   False False
+train:336      B -0.386368 -0.100773 -0.099050   False False
+train:336      D -0.174732  0.243570  0.243296   False False
+
+Internal
+      scope cohort model variable time_label  seed weighting  frozen_cohort_pairs  effective_flights  effective_components  n  pairs  both_active_n  both_active_pairs  both_active_fraction  both_near_fraction  abstention_fraction  same_direction  opposite_fraction  magnitude_ratio_B_over_A   CA_rms  CA_mean_abs   CA_mean   CB_rms  CB_mean_abs  CB_mean    C_rms  C_mean_abs    C_mean    H_rms  H_mean_abs    H_mean    F_rms  F_mean_abs    F_mean  interaction_rms  interaction_mean_abs  interaction_mean  C_over_H  control_scale_fraction  CH_cross  CH_opposite_fraction  cancellation  closure_max  CA_gain_valid_n  CA_gain_valid_pairs  CA_signed_gain  CA_gain_mean  CA_negative_gain_fraction  CB_gain_valid_n  CB_gain_valid_pairs  CB_signed_gain  CB_gain_mean  CB_negative_gain_fraction  C_gain_valid_n  C_gain_valid_pairs  C_signed_gain  C_gain_mean  C_negative_gain_fraction  factual_rmse  observed_rms  observed_direction_F  C_observed_sign_association
+all_heldout   main   M0A        p        300    17    flight                   48                 46                    11 48     48             10                 10              0.228804            0.717391             0.771196             1.0                0.0                  0.971851 0.108871     0.085230 -0.006722 0.103745     0.080529 0.004004 0.105593    0.082436 -0.001359 0.214585    0.180894 -0.036220 0.223595    0.189463 -0.037579         0.025151              0.020266         -0.010726  0.492077                0.329793 -0.003601              0.490217      0.248492 1.110223e-16               46                   46        0.816922      1.014317                   0.062476               46                   46        0.767854      0.990096                   0.076762              46                  46       0.792379     1.002232                  0.096762      0.610769      0.668853               0.78026                     0.505448
+all_heldout   main   M0B        p        300    17    flight                   48                 46                    11 48     48             10                 10              0.228804            0.702899             0.771196             1.0                0.0                  0.971644 0.108996     0.085385 -0.006732 0.103881     0.080681 0.004007 0.105724    0.082607 -0.001362 0.214514    0.180848 -0.036424 0.223573    0.189244 -0.037786         0.025159              0.020292         -0.010738  0.492852                0.330141 -0.003604              0.490217      0.250483 1.179612e-16               46                   46        0.817890      1.017018                   0.062476               46                   46        0.768958      0.993029                   0.076762              46                  46       0.793415     1.005048                  0.096762      0.610816      0.668853               0.78026                     0.505448
+
+Axes
+model method variable  active_pairs  direction_accuracy  scale_ratio  signed_gain
+  M0A      B        q            44            0.788752     0.643179     0.491866
+  M0A      D        q            36            0.977462     0.948191     0.828783
+  M0A      B        r            37            0.876333     0.675068     0.467915
+  M0A      D        r            37            0.842330     0.676921     0.460757
+  M0B      B        q            44            0.788752     0.643853     0.492706
+  M0B      D        q            36            0.977462     0.948234     0.828834
+  M0B      B        r            37            0.876333     0.674911     0.467638
+  M0B      D        r            37            0.842330     0.676781     0.460562

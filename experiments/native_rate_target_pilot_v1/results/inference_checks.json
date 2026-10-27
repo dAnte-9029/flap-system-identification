@@ -1,0 +1,68 @@
+{
+  "passed": true,
+  "models_checked": 6,
+  "checks": [
+    {
+      "fold": 0,
+      "model": "M0A",
+      "seed": 17,
+      "epoch": 6,
+      "checkpoint_sha256": "92da9284c401c0d5f968d0a381df1cd65de5caa4bc3749ef4ecfe593776dd4f3",
+      "batch_single_max_error": 1.4901161193847656e-07,
+      "future_truth_excluded": true,
+      "redundant_zoh_invariant": true
+    },
+    {
+      "fold": 0,
+      "model": "M0B",
+      "seed": 17,
+      "epoch": 6,
+      "checkpoint_sha256": "4298573d8bb9940aa2c3ea2343d606d8b25b4d378b28eb6e6289ed5bf9b4f617",
+      "batch_single_max_error": 4.76837158203125e-07,
+      "future_truth_excluded": true,
+      "redundant_zoh_invariant": true
+    },
+    {
+      "fold": 1,
+      "model": "M0A",
+      "seed": 17,
+      "epoch": 6,
+      "checkpoint_sha256": "3a4e8ea34e22c05f69712c567b0c999744febf3d6694505a861efcab73938ddf",
+      "batch_single_max_error": 5.960464477539062e-07,
+      "future_truth_excluded": true,
+      "redundant_zoh_invariant": true
+    },
+    {
+      "fold": 1,
+      "model": "M0B",
+      "seed": 17,
+      "epoch": 6,
+      "checkpoint_sha256": "bd66426b77ddd3a644d504a25e7a5769437216d9b5381f085ae2fffbe54a0480",
+      "batch_single_max_error": 4.76837158203125e-07,
+      "future_truth_excluded": true,
+      "redundant_zoh_invariant": true
+    },
+    {
+      "fold": 2,
+      "model": "M0A",
+      "seed": 17,
+      "epoch": 6,
+      "checkpoint_sha256": "31aa0632e47dd20371f5213d0625d17b5561cf202282d27c88f877d20acfe5d3",
+      "batch_single_max_error": 4.76837158203125e-07,
+      "future_truth_excluded": true,
+      "redundant_zoh_invariant": true
+    },
+    {
+      "fold": 2,
+      "model": "M0B",
+      "seed": 17,
+      "epoch": 6,
+      "checkpoint_sha256": "f3d375dc98c22577f72913c77de98e3c0b06650003db860db1cec56798e34b45",
+      "batch_single_max_error": 4.76837158203125e-07,
+      "future_truth_excluded": true,
+      "redundant_zoh_invariant": true
+    }
+  ],
+  "test_read": false,
+  "original_inputs_sha256": "ab18df3e5d39ec3920dcd7ede08015d973dd6764cabb5997c16a7d00cd2664a4"
+}

@@ -1,0 +1,3 @@
+{
+  "query": "index, name, memory.used [MiB], memory.free [MiB], utilization.gpu [%]\n0, NVIDIA GeForce RTX 4090, 32802 MiB, 15705 MiB, 91 %\n1, NVIDIA GeForce RTX 4090, 1638 MiB, 46871 MiB, 78 %\n"
+}
