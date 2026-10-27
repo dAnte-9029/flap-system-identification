@@ -1,0 +1,13 @@
+{
+  "dataset_id": "velocity_rate_multistep_v1",
+  "manifest_path": "/home/zn/flap-system-identification/dataset/velocity_rate_multistep_v1/dataset_manifest.json",
+  "manifest_sha256": "8afb8623bf7174e4da5b2044f644331b8b251433fed3576f6dcdab470935bcb5",
+  "registry_path": "configs/data/velocity_rate_dataset_registry.yaml",
+  "registry_sha256": "09f2ca42abd4ed509edf667e080c582883935498d800994627b114f08feb6321",
+  "partitions_read": [
+    "train",
+    "validation"
+  ],
+  "test_artifact_read_or_hashed": false,
+  "passed": true
+}

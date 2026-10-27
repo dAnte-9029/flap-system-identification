@@ -1,0 +1,9 @@
+{
+  "fold": 1,
+  "windows": 95627,
+  "weights_sha256": "d0fd8b9e4c5737a42ff7e3cb0fc40401025b5e5fd20a82f97d01f894cdbe8c17",
+  "registered_index_sha256": "490985d1e6b4dbb38c76a72949c7a4dab7597de7f9055198c6f6a948bc41966b",
+  "exact_weight_dtype": "float64",
+  "identity_exact": true,
+  "flight_log_boot_disjoint": true
+}

@@ -1,0 +1,31 @@
+{
+  "training_epochs": 6,
+  "early_stopping": false,
+  "training_horizon_ms": 1000,
+  "local_response_horizon_ms": 500,
+  "evaluation_times_ms": [
+    100,
+    200,
+    300,
+    400,
+    "supported common endpoint"
+  ],
+  "exact_500_ms": "missing where unsupported",
+  "models": [
+    "M0",
+    "M1"
+  ],
+  "schemes": [
+    "W0",
+    "W1"
+  ],
+  "unused_inherited_config_fields": [
+    "patience",
+    "evaluation_horizons_ms",
+    "M2_harmonics"
+  ],
+  "M0_events": "original GRU16 exact canonical ZOH",
+  "M1_events": "unchanged two exact ZOH time moments",
+  "config_sha256": "830e7b9dcfda070879120928a88c4a6ed63842e0da28d67b76f96f83f22f73cb",
+  "runtime_or_training_config_changed": false
+}

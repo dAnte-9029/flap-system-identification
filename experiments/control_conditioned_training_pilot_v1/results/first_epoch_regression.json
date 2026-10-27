@@ -1,0 +1,59 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "fold": 0,
+      "model": "M0",
+      "first_epoch_differences": {
+        "train_window_loss": 0.0,
+        "validation_flight_loss": 0.0
+      },
+      "scope": "Only epoch 1 shares LR with prior 24-epoch run; later epochs use frozen T_max=6"
+    },
+    {
+      "fold": 0,
+      "model": "M1",
+      "first_epoch_differences": {
+        "train_window_loss": 0.0,
+        "validation_flight_loss": 0.0
+      },
+      "scope": "Only epoch 1 shares LR with prior 24-epoch run; later epochs use frozen T_max=6"
+    },
+    {
+      "fold": 1,
+      "model": "M0",
+      "first_epoch_differences": {
+        "train_window_loss": 0.0,
+        "validation_flight_loss": 0.0
+      },
+      "scope": "Only epoch 1 shares LR with prior 24-epoch run; later epochs use frozen T_max=6"
+    },
+    {
+      "fold": 1,
+      "model": "M1",
+      "first_epoch_differences": {
+        "train_window_loss": 0.0,
+        "validation_flight_loss": 0.0
+      },
+      "scope": "Only epoch 1 shares LR with prior 24-epoch run; later epochs use frozen T_max=6"
+    },
+    {
+      "fold": 2,
+      "model": "M0",
+      "first_epoch_differences": {
+        "train_window_loss": 0.0,
+        "validation_flight_loss": 0.0
+      },
+      "scope": "Only epoch 1 shares LR with prior 24-epoch run; later epochs use frozen T_max=6"
+    },
+    {
+      "fold": 2,
+      "model": "M1",
+      "first_epoch_differences": {
+        "train_window_loss": 0.0,
+        "validation_flight_loss": 0.0
+      },
+      "scope": "Only epoch 1 shares LR with prior 24-epoch run; later epochs use frozen T_max=6"
+    }
+  ]
+}

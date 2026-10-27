@@ -1,0 +1,7 @@
+{
+  "passed": true,
+  "tests": 9,
+  "test_log_sha256": "bb266e50a52a40cc72e03eab7edfe7386abfb534c52810d8a9e2c9be8dae998a",
+  "batch_identity_checks": 27,
+  "test_read": false
+}

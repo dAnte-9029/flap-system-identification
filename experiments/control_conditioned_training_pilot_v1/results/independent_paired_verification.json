@@ -1,0 +1,8 @@
+{
+  "passed": true,
+  "paired_summary_rows": 1152,
+  "maximum_difference": 2.983724378680108e-16,
+  "sign_stratum_rows": 24,
+  "same_structure_pairs": true,
+  "test_read": false
+}

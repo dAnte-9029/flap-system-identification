@@ -1,0 +1,28 @@
+Flight-equal p at 300 ms:
+model method  active_pairs  direction_accuracy  scale_ratio  signed_gain      mae
+ M0W0      A            39            0.780260     0.333341     0.138544 0.493102
+ M0W0      B            40            0.797038     0.380783     0.162676 0.437190
+ M0W0      D            36            0.787532     0.682903     0.400654 0.272570
+ M0W1      A            39            0.769414     0.330607     0.137731 0.494160
+ M0W1      B            40            0.786608     0.377659     0.164168 0.435587
+ M0W1      D            36            0.774545     0.685521     0.400785 0.273598
+ M1W0      A            39            0.732321     0.399103     0.164391 0.443889
+ M1W0      B            40            0.750939     0.455904     0.218884 0.383493
+ M1W0      D            36            0.763896     0.691639     0.370660 0.253847
+ M1W1      A            39            0.732321     0.397541     0.170194 0.441953
+ M1W1      B            40            0.750939     0.454120     0.224931 0.380692
+ M1W1      D            36            0.778182     0.692477     0.372808 0.254152
+Same-architecture p direction transitions:
+model method  gained_pair_seed_rows  lost_pair_seed_rows  direction_difference  mean_amplitude_error_change
+ M0W1      A                      0                    1             -0.025641                     0.003204
+ M0W1      B                      0                    1             -0.025000                     0.001257
+ M0W1      D                      0                    1             -0.027778                     0.000043
+ M1W1      A                      0                    0              0.000000                     0.000098
+ M1W1      B                      0                    0              0.000000                    -0.000195
+ M1W1      D                      1                    0              0.027778                     0.000756
+Physical-unit held-flight trajectory summary:
+model  seed  position_m_path_rms  position_m_endpoint_norm  velocity_mps_path_rms  velocity_mps_endpoint_norm  attitude_rad_path_rms  attitude_rad_endpoint_norm  rate_radps_path_rms  rate_radps_endpoint_norm  vx_path_rms  vy_path_rms  vz_path_rms  p_path_rms  q_path_rms  r_path_rms
+ M0W0    17             0.194494                  0.376139               0.545515                    0.768729               0.092990                    0.132181             0.633218                  0.602968     0.240224     0.233807     0.396705    0.398586    0.447124    0.174880
+ M0W1    17             0.194715                  0.375817               0.541210                    0.765455               0.092920                    0.132156             0.631366                  0.600554     0.240863     0.232777     0.391286    0.399249    0.443871    0.174844
+ M1W0    17             0.184281                  0.349495               0.511866                    0.699467               0.086617                    0.123262             0.613726                  0.577835     0.214768     0.212312     0.383597    0.380704    0.439304    0.166481
+ M1W1    17             0.184343                  0.349364               0.510200                    0.697700               0.086699                    0.123312             0.614658                  0.578621     0.214008     0.211654     0.382339    0.381306    0.439975    0.166687

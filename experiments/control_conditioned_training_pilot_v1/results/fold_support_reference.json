@@ -1,0 +1,155 @@
+{
+  "reference": "fit-fold training windows only; marginal coordinate extrema, not joint conditional support",
+  "folds": [
+    {
+      "fold": 0,
+      "train_windows": 87239,
+      "train_flights": 76,
+      "valid_zoh_segments": 8728038,
+      "control_coordinates": [
+        "motor",
+        "common",
+        "differential",
+        "rudder"
+      ],
+      "control_min": [
+        0.021042076870799065,
+        -0.46329793334007263,
+        -0.9090909361839294,
+        -1.0
+      ],
+      "control_max": [
+        0.9999999403953552,
+        0.5000001192092896,
+        0.9090909361839294,
+        0.6294316649436951
+      ],
+      "initial_state_columns": [
+        "vx",
+        "vy",
+        "vz",
+        "p",
+        "q",
+        "r"
+      ],
+      "initial_min": [
+        -13.681635856628418,
+        -12.412359237670898,
+        -5.710093975067139,
+        -12.349469184875488,
+        -2.7149765491485596,
+        -2.0233936309814453
+      ],
+      "initial_max": [
+        11.301443099975586,
+        11.198812484741211,
+        9.848917007446289,
+        12.541230201721191,
+        3.283590078353882,
+        1.5409599542617798
+      ],
+      "train_indices_sha256": "86828a2e04624b7662df237685be98e17320e32d719b0789150c69417665248d"
+    },
+    {
+      "fold": 1,
+      "train_windows": 95627,
+      "train_flights": 83,
+      "valid_zoh_segments": 9567366,
+      "control_coordinates": [
+        "motor",
+        "common",
+        "differential",
+        "rudder"
+      ],
+      "control_min": [
+        0.021042076870799065,
+        -0.46329793334007263,
+        -0.9090909361839294,
+        -1.0
+      ],
+      "control_max": [
+        0.9999999403953552,
+        0.5000001192092896,
+        0.9090909361839294,
+        0.5854197144508362
+      ],
+      "initial_state_columns": [
+        "vx",
+        "vy",
+        "vz",
+        "p",
+        "q",
+        "r"
+      ],
+      "initial_min": [
+        -13.681635856628418,
+        -12.412359237670898,
+        -5.710093975067139,
+        -12.349469184875488,
+        -2.7149765491485596,
+        -2.0233936309814453
+      ],
+      "initial_max": [
+        11.301443099975586,
+        11.198812484741211,
+        9.848917007446289,
+        12.541230201721191,
+        3.283590078353882,
+        1.5409599542617798
+      ],
+      "train_indices_sha256": "490985d1e6b4dbb38c76a72949c7a4dab7597de7f9055198c6f6a948bc41966b"
+    },
+    {
+      "fold": 2,
+      "train_windows": 87750,
+      "train_flights": 77,
+      "valid_zoh_segments": 8779265,
+      "control_coordinates": [
+        "motor",
+        "common",
+        "differential",
+        "rudder"
+      ],
+      "control_min": [
+        0.021042076870799065,
+        -0.46329793334007263,
+        -0.9090909361839294,
+        -1.0
+      ],
+      "control_max": [
+        0.9999999403953552,
+        0.5000001192092896,
+        0.9090909361839294,
+        0.6294316649436951
+      ],
+      "initial_state_columns": [
+        "vx",
+        "vy",
+        "vz",
+        "p",
+        "q",
+        "r"
+      ],
+      "initial_min": [
+        -13.681635856628418,
+        -12.412359237670898,
+        -4.341650485992432,
+        -12.349469184875488,
+        -2.7149765491485596,
+        -2.0233936309814453
+      ],
+      "initial_max": [
+        11.301443099975586,
+        11.031379699707031,
+        9.848917007446289,
+        12.541230201721191,
+        2.29148006439209,
+        1.5409599542617798
+      ],
+      "train_indices_sha256": "90e28ad24adcdb5c891b3d77ace887152832553affca1f20db2af0247452f8c7"
+    }
+  ],
+  "original_swap_support": "swap_support.csv is copied historical full-training audit, not a fold-local reference",
+  "excluded_by_support": 0,
+  "test_read": false
+}

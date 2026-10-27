@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "files": {
+    "/home/zn/flap-system-identification/.worktrees/control-conditioned-training-pilot-v1/experiments/structured_control_effectiveness_group_holdout_v1/results/fold_control_support.csv": "8d02f932dbce685023dae41186cae86d159cd8f4be0ce83127fcfbf4d8543550",
+    "/home/zn/flap-system-identification/.worktrees/control-conditioned-training-pilot-v1/experiments/structured_control_effectiveness_group_holdout_v1/results/fold_support_reference.json": "5e87990ab6aa94c93e7b95ebfc07ddd14ee125b1b3f6d4d0ca9dbe1956665cb4",
+    "/home/zn/flap-system-identification/.worktrees/control-conditioned-training-pilot-v1/experiments/structured_control_effectiveness_group_holdout_v1/results/excluded_validation_background.csv": "8803e55d5ec7252511fffc716df388561562bad83930f0568a4b47285dbb8194"
+  },
+  "inputs_sha256": "ab18df3e5d39ec3920dcd7ede08015d973dd6764cabb5997c16a7d00cd2664a4",
+  "same_fit_members": true,
+  "receiver_noncontrol_inputs_exact": true,
+  "reference": "unchanged fold-fit marginal extrema, not joint/counterfactual support",
+  "test_read": false
+}

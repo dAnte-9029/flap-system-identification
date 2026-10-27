@@ -1,0 +1,4 @@
+{
+  "query": "index, uuid, name, memory.total [MiB], memory.used [MiB], utilization.gpu [%]\n0, GPU-3c1b267e-85c0-d179-2a14-4ae44cc6a267, NVIDIA GeForce RTX 4090, 49140 MiB, 32084 MiB, 80 %\n1, GPU-8779821a-e3ac-305e-698b-553198b51b1f, NVIDIA GeForce RTX 4090, 49140 MiB, 555 MiB, 0 %\n",
+  "processes": "pid, gpu_uuid, used_gpu_memory [MiB]\n1860684, GPU-3c1b267e-85c0-d179-2a14-4ae44cc6a267, 31966 MiB\n2418830, GPU-8779821a-e3ac-305e-698b-553198b51b1f, 524 MiB\n"
+}

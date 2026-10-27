@@ -1,0 +1,248 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "fold": 0,
+      "epoch": 1,
+      "start": 0,
+      "rows": 1024,
+      "registered_index_sha256": "d6216f86085357fcbb8c833a3111232ad49a109cc790ae4b60d9dd71b4b68e70",
+      "weights_sha256": "259ec8ed1700b3c0e47ec2698b3ff844381ebf2ed428db82f3799faf77846a6e",
+      "passed": true
+    },
+    {
+      "fold": 0,
+      "epoch": 1,
+      "start": 43619,
+      "rows": 1024,
+      "registered_index_sha256": "b8461eb97fdf3fc49c7c059c114ce927f5de418fb9e8b1ac4006a08b13784ea1",
+      "weights_sha256": "5ee7e3933429f1076174d4c1df5240408e6f6084ed0beff993097f00c9c04f36",
+      "passed": true
+    },
+    {
+      "fold": 0,
+      "epoch": 1,
+      "start": 86215,
+      "rows": 1024,
+      "registered_index_sha256": "d0ea2c421a9f9888845cfb38009fd99aacd37b455028213b8d43cffe2707a9b5",
+      "weights_sha256": "fc9df2f24db4e2b7808e14812bd574eb6f1e2e6da04eb62f7d98b2f8cb05e1aa",
+      "passed": true
+    },
+    {
+      "fold": 0,
+      "epoch": 3,
+      "start": 0,
+      "rows": 1024,
+      "registered_index_sha256": "2871d1654c2f2e8f38dd51d9533eb28080f93b43782bc6f7e049eeb46eb0a96e",
+      "weights_sha256": "89d471b481a80324d5a340d1e4ad1f1fa602e89014d2d89a633c48050b07707d",
+      "passed": true
+    },
+    {
+      "fold": 0,
+      "epoch": 3,
+      "start": 43619,
+      "rows": 1024,
+      "registered_index_sha256": "a8188020a960a07d8f23c1cffcacac1c019ec196980a341b322499386f381777",
+      "weights_sha256": "5d2051fe7614f4f5cfb41d1aaeb17e2bc006218ea380eda5550c2e60b48d0a62",
+      "passed": true
+    },
+    {
+      "fold": 0,
+      "epoch": 3,
+      "start": 86215,
+      "rows": 1024,
+      "registered_index_sha256": "a4c6d0413f063beb09b3085be2d24e30c8dfedc6bd3c5885a913cb4971990a25",
+      "weights_sha256": "081fb089f55b8499a13f1f160a19a86bfef2bf843d10b4dac65798c30eab5fd1",
+      "passed": true
+    },
+    {
+      "fold": 0,
+      "epoch": 6,
+      "start": 0,
+      "rows": 1024,
+      "registered_index_sha256": "b15baba51da69cfc45214b9fa5047af397506e261d2caecb455c3f2d7d16519c",
+      "weights_sha256": "0b31e6755215ae33a7cfcc68e590021c7b984cfcccaef63b5279375248496e67",
+      "passed": true
+    },
+    {
+      "fold": 0,
+      "epoch": 6,
+      "start": 43619,
+      "rows": 1024,
+      "registered_index_sha256": "1d9424981f7c0d95aba984ca13fe5989aca231e00dc7c68271442039680d3779",
+      "weights_sha256": "7506e55760ea547a3e5de6a50eea8453af17461d8b5375d3adc984b5fbf0dd8d",
+      "passed": true
+    },
+    {
+      "fold": 0,
+      "epoch": 6,
+      "start": 86215,
+      "rows": 1024,
+      "registered_index_sha256": "50d6633501ff03689ebdeed837c2c2edb1cadac12ffeacfec5896936da656113",
+      "weights_sha256": "6ed0596ea56bf996258fbd562b9928d2475e907e4e1fccfd4784a3119b6f96d8",
+      "passed": true
+    },
+    {
+      "fold": 1,
+      "epoch": 1,
+      "start": 0,
+      "rows": 1024,
+      "registered_index_sha256": "0265eaaf94b1ff008788f264b26d16fc4d196b85fd8bb0af7a0d136914f405f9",
+      "weights_sha256": "cb7e4313d2dfc554bd9f20581ded425cf1cb1dcc2768f0f771af3f71aeb96c47",
+      "passed": true
+    },
+    {
+      "fold": 1,
+      "epoch": 1,
+      "start": 47813,
+      "rows": 1024,
+      "registered_index_sha256": "8c47fd108679d21aac40976ddda4f16caa6a9de85829526375dbfb5058a6fec2",
+      "weights_sha256": "56ab3ffaa779d03a6694859332ba8c0c7ae1af7724c396ce65c8c4bd9d42a34c",
+      "passed": true
+    },
+    {
+      "fold": 1,
+      "epoch": 1,
+      "start": 94603,
+      "rows": 1024,
+      "registered_index_sha256": "8c8657494f7cebdc45d64dfe8a5d1f07a331b51c04e0db8efe5e65c521736185",
+      "weights_sha256": "8327596527c2988ce16f8f9919e641ca1cf97df366c6d995201b48306320e7ad",
+      "passed": true
+    },
+    {
+      "fold": 1,
+      "epoch": 3,
+      "start": 0,
+      "rows": 1024,
+      "registered_index_sha256": "6a614a45eb453512f261c0ee7b67b76980f9612d4957d2cc7cfef97dbad2a27b",
+      "weights_sha256": "dcfd4787e2c2684c81482e4b6db8b8afc530c2b6ea90c87d88fac00a88563e60",
+      "passed": true
+    },
+    {
+      "fold": 1,
+      "epoch": 3,
+      "start": 47813,
+      "rows": 1024,
+      "registered_index_sha256": "2cd70da3a62144b110ce1976e454066381c086cb1dc6cd0babb8438d206ec989",
+      "weights_sha256": "de244b0c53972c3057cb263ee9065a857eaae72e25f56a68a926b79629088f54",
+      "passed": true
+    },
+    {
+      "fold": 1,
+      "epoch": 3,
+      "start": 94603,
+      "rows": 1024,
+      "registered_index_sha256": "1514310dc61a62b947c4b4229d3b71fdf0d7795473a58ed1bbf131e8d4aa5259",
+      "weights_sha256": "1b902cf7a69823eb3dfa64c643518ef5d368670cedabb84d1b8badc518ea0b3b",
+      "passed": true
+    },
+    {
+      "fold": 1,
+      "epoch": 6,
+      "start": 0,
+      "rows": 1024,
+      "registered_index_sha256": "afa10f26981048f901c947f76e2b9da65d4b4d32371a7386b075c8c348861ea9",
+      "weights_sha256": "4a6c5a42ba34a6b6a4134961914e0e5c58e509f9f38a62641d264d2615f68642",
+      "passed": true
+    },
+    {
+      "fold": 1,
+      "epoch": 6,
+      "start": 47813,
+      "rows": 1024,
+      "registered_index_sha256": "b7dd40c2022e0f473664f8efb3f0a8ddcb8eb1d4808fc5490ff476e3082f9fb7",
+      "weights_sha256": "20d1ad0824046329d17ec923ecf5205f9b213c41504406cb5f779b6d05d10e3f",
+      "passed": true
+    },
+    {
+      "fold": 1,
+      "epoch": 6,
+      "start": 94603,
+      "rows": 1024,
+      "registered_index_sha256": "739b033b049a4edb7e9a484181635013af34b0dd778ef193ce2c29061cedb769",
+      "weights_sha256": "7ae597126d5d600af78f0795f95a20ae58a66ba6ee7fc1e0d9fcbab3ff7a8b1e",
+      "passed": true
+    },
+    {
+      "fold": 2,
+      "epoch": 1,
+      "start": 0,
+      "rows": 1024,
+      "registered_index_sha256": "490238f30f8c28079507279f2d28b34f110843c4f40fbcbd39154ec6eaaa6538",
+      "weights_sha256": "fcb858f1a519e02127bed292a8280c6cf02842d39cbfb523ad9014ab9acb023e",
+      "passed": true
+    },
+    {
+      "fold": 2,
+      "epoch": 1,
+      "start": 43875,
+      "rows": 1024,
+      "registered_index_sha256": "97d6df9d9ff89177c488d82023d56e62dd155d467d862c9fa4dae1934fc67dce",
+      "weights_sha256": "ac165cc8c21bfe1e96c163ae97a808b3943cafdce55ae789c0c988cf8a3edad3",
+      "passed": true
+    },
+    {
+      "fold": 2,
+      "epoch": 1,
+      "start": 86726,
+      "rows": 1024,
+      "registered_index_sha256": "bdf6884179ff8889258a8f92a652c692db92367b55ba0d4b4593ac640fba80d5",
+      "weights_sha256": "0daf739317b074e99c28e18cce3197d60b62e719eebc416164bf8c67975d8d8a",
+      "passed": true
+    },
+    {
+      "fold": 2,
+      "epoch": 3,
+      "start": 0,
+      "rows": 1024,
+      "registered_index_sha256": "9f00d93eddce20da9ce3bd76bf3f28cd7e149ec3d737094f41ceb59fe7386ef3",
+      "weights_sha256": "b489ca8d0a5df04a23128f3e73b8bcd75b234d4bc8a9e4d5a129af9768c0eb88",
+      "passed": true
+    },
+    {
+      "fold": 2,
+      "epoch": 3,
+      "start": 43875,
+      "rows": 1024,
+      "registered_index_sha256": "39fa7ac2f71516d4c395cc334fa36de4f16effb09dc067a5efbb7ad131f4d8d5",
+      "weights_sha256": "2300b4b691afef880ae4e930804144ea9e3e8b120f20346ef094f2a696f63b9b",
+      "passed": true
+    },
+    {
+      "fold": 2,
+      "epoch": 3,
+      "start": 86726,
+      "rows": 1024,
+      "registered_index_sha256": "353778df47022c25adc57b0fd020d3a02cd5f110d5603d0ecfccac72fc0a0999",
+      "weights_sha256": "5ab2c16b39efc402c489140681198286662e8e21ffcab407ab25c391a03fb716",
+      "passed": true
+    },
+    {
+      "fold": 2,
+      "epoch": 6,
+      "start": 0,
+      "rows": 1024,
+      "registered_index_sha256": "1d9d20878ed373261a632721b91a5ab20479680c165e6d1cc6273d55598a3a16",
+      "weights_sha256": "9e75a7580241ce9d01c5475575de6df9ca9aa07bbf58e60b0519f06d7193ad5c",
+      "passed": true
+    },
+    {
+      "fold": 2,
+      "epoch": 6,
+      "start": 43875,
+      "rows": 1024,
+      "registered_index_sha256": "5d1a505b09b68848ba61cbc9672cb019cdca32d8534097f6e50beb5836cad807",
+      "weights_sha256": "06411291a980b325d65a99cd6bc4caf9bddd48966085a9a2754de98390146987",
+      "passed": true
+    },
+    {
+      "fold": 2,
+      "epoch": 6,
+      "start": 86726,
+      "rows": 1024,
+      "registered_index_sha256": "04a2ca82295e74d7fb867b168a0145ecbf03e2581f0035f2aec96e57fd6483d7",
+      "weights_sha256": "dbd4bb427f07b797b2f62061b2f7e844e27a355b28d5960d90399eb65607e705",
+      "passed": true
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "scheme": "W1",
+  "initial_model_sha256": "bc6d56698899301315f1b9d1ffd2a9c2654bc64d5607fe39823da9ee41d8e431",
+  "weight_file_sha256": "8de3ed0652e3c09800da41be962432753529e76ce031b1063717a1128b194d7e",
+  "weight_loss_source_sha256": "d679894500b35d8b9b2e03a23ecb9cfd3844b358d52f54e11a147a1d8085037c",
+  "fold": 2,
+  "seed": 17,
+  "model": "M1W1",
+  "config_sha256": "830e7b9dcfda070879120928a88c4a6ed63842e0da28d67b76f96f83f22f73cb",
+  "normalization_sha256": "0352482c3b12314631ce0931492b1019f6aae47c53fa3e97d011c15418599f6e",
+  "train_indices_sha256": "90e28ad24adcdb5c891b3d77ace887152832553affca1f20db2af0247452f8c7",
+  "model_source_sha256": "452b4a1331b2e0b9c673c13c904dd581f3d3edb153b0c58343fda3b349999258",
+  "trainer_sha256": "efab447c1eb39e8f6d12833e9e5efe1c3281fc9c69b1e24aa2bd4a45394a3660",
+  "common_sha256": "a8999a17136670c877fa959b3acb05633369a7b365e6b235233a2935103731fb",
+  "device": "cuda:1",
+  "gpu": "NVIDIA GeForce RTX 4090",
+  "torch": "2.7.0+cu128",
+  "cuda": "12.8",
+  "train_windows": 87750,
+  "validation_windows": 36332,
+  "test_read": false
+}
