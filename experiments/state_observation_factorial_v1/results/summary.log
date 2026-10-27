@@ -1,0 +1,9 @@
+     split         subset  T00_path_rms_deg  T01_path_rms_deg  T10_path_rms_deg  T11_path_rms_deg  path_label_at_C0_deg2  path_initial_at_A_deg2  path_interaction_deg2
+     train  common_prefix          1.187159          0.938690          1.181432          0.931324              -0.528208               -0.013564              -0.000210
+     train complete_H1000          1.171790          0.954828          1.166851          0.948598              -0.461395               -0.011550              -0.000308
+validation  common_prefix          1.398986          1.066280          1.394255          1.059467              -0.820209               -0.013215              -0.001266
+validation complete_H1000          1.393198          1.099361          1.388894          1.093278              -0.732406               -0.011972              -0.001364
+            path_label_at_C0_deg2  path_label_at_C1_deg2  path_initial_at_A_deg2  path_initial_at_B_deg2
+split
+train                          94                     94                      91                      91
+validation                     27                     27                      26                      26

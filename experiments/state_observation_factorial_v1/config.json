@@ -1,0 +1,30 @@
+{
+  "base_sha": "d111ff23bee90464f5946f7143eb94528da0d922",
+  "dataset": "velocity_rate_multistep_v1/main_50hz",
+  "splits": [
+    "train",
+    "validation"
+  ],
+  "combinations": {
+    "T00": [
+      "C0",
+      "A"
+    ],
+    "T01": [
+      "C0",
+      "B"
+    ],
+    "T10": [
+      "C1",
+      "A"
+    ],
+    "T11": [
+      "C1",
+      "B"
+    ]
+  },
+  "support": "unchanged previous common continuous prefix; separate complete_H1000",
+  "training_runs": 0,
+  "primary_aggregation": "per-window path MSE then equal-window mean; equal-flight supplementary",
+  "C1": "frozen previous estimate; no re-estimation"
+}

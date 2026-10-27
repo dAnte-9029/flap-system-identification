@@ -1,0 +1,26 @@
+{
+  "python": "3.11.14",
+  "files": {
+    "run.py": "db526fc525162b8a9eda09c78478c2a31964d3cc80999564fa80c9a625cca592",
+    "README.md": "bd15aae2c5c8dee012fde55e8f7d531a17cabb99ecf5122dd0b8090ab01cfe76",
+    "config.json": "9ad97610f3207c87b06cf3ff562cd368320344b8420f0d77b6316e1129c6ee3b",
+    "report_zh.md": "4da383620ca9fc4d0d80cb75d1528fc9c1f592e37dda38be6a174869165dadfb",
+    "common.py": "20f2db70d14e876f0d1387edbde911d7cfd7995637f5f72dd20e646b899c312d",
+    "summarize.py": "7a1fc93b09e55fc8f8623d07264327550a36e26a714c23e48a1694cc9f34b300",
+    "present.py": "edd5de571da8c9e5aa7e9e82109db14a29a3792fd8bcf0c96ef9979fb6991183",
+    "test_factorial.py": "b7b9e51f9fdefabd242d50106a4cc64b0d7df7ceea60e30e73d7c6713108b4eb",
+    "results/factorial_windows.csv.gz": "318d3332a7996229a1ce93b63786412c2dfc805751b3d453770710950f86bdf2",
+    "results/factor_differences.csv.gz": "d5767acb7684db2c37707f47a2be5d9bfe612b3df872ebed3d5655be785bcec0",
+    "results/restored_B_tail.csv.gz": "4375a6ab85a79d14574a19ee526d473a32b4f90bd3e53e108fa99756d7661c42",
+    "results/tests.log": "553961ae95b7880cc5d11edca52d00d901e572b6feab339b5292c67163205870",
+    "results/run.log": "145d17f1e1d955adae90aeb9d3013005b76f6519d8431b177bad9defa78bd054",
+    "results/per_flight.csv": "665299c63fc70c4fd2f3b25360b6f19e2bf2f8e1e43e12597f45ebea0cbda000",
+    "results/run_receipt.json": "fe3ff251e28f86ede3136f30f10a3c49e8e29c54b114139cc9c3b12e79dde3f5",
+    "results/summary.csv": "8750053af1bedead91ccf36b7ff42367eab8bfa9cc39c714a1872d752ccdbdc6",
+    "results/summary.log": "e237da53bbcfa0a846aef57e8a0f98e69a9bb02f67edd48558ecd3679f28ff38",
+    "results/factor_summary.csv": "7c7bd0dac153fd44cc93190dca2caa9edb5362ed0c07bc767cab5a1dc5d58d32",
+    "figures/four_combinations.png": "65b0d97eaaf2a4fa8b03ebf7c957a5a40f854866ceb0a04ce3dc8b7c9e58bc33",
+    "figures/per_flight_effects.png": "872cd93ec0edf913054579554b44775097d59c47e95af3d8ee6fbe5b1abfc4fe",
+    "figures/factor_effects.png": "bb03b3d01fdd2d255efcade93c1b3796154da8dadca645f898e774edde02ce22"
+  }
+}
