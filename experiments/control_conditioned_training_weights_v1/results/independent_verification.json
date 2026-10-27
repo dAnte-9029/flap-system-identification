@@ -1,0 +1,42 @@
+{
+  "native_integral_windows": 4458,
+  "native_integral_flights": 94,
+  "max_mean_integral_difference": 0.0,
+  "max_W1_difference": 0.0,
+  "max_W2_difference": 0.0,
+  "full_array_checks": {
+    "full_train": {
+      "windows": 107920,
+      "ess_absolute_difference": 0.0,
+      "time_ess_min": 0.8954278862435667,
+      "flight_share_ratio": 1.0875746240947113,
+      "identities_and_isolation_pass": true
+    },
+    "fold0": {
+      "windows": 87239,
+      "ess_absolute_difference": 0.0,
+      "time_ess_min": 0.89544028277818,
+      "flight_share_ratio": 1.0888823875954408,
+      "identities_and_isolation_pass": true
+    },
+    "fold1": {
+      "windows": 95627,
+      "ess_absolute_difference": 1.4551915228366852e-11,
+      "time_ess_min": 0.8954278862435667,
+      "flight_share_ratio": 1.090513188167189,
+      "identities_and_isolation_pass": true
+    },
+    "fold2": {
+      "windows": 87750,
+      "ess_absolute_difference": 1.4551915228366852e-11,
+      "time_ess_min": 0.8954278862435667,
+      "flight_share_ratio": 1.0876409294321816,
+      "identities_and_isolation_pass": true
+    }
+  },
+  "training_runs": 0,
+  "test_opened": false,
+  "method": "independent raw-channel searchsorted and clipped interval overlap; independent normalized-weight ESS",
+  "all_window_history_source_publications_available": true,
+  "status": "passed"
+}

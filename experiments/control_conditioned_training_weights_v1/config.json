@@ -1,0 +1,17 @@
+{
+ "base_sha":"4fa56ea3893be814d226d1bfd3ad1ef966a15d67",
+ "dataset_id":"velocity_rate_multistep_v1","sampling_group":"main_50hz",
+ "data_root":"/home/zn/flap-system-identification/dataset/velocity_rate_multistep_v1",
+ "cache_root":"/home/zn/flap-system-identification/.worktrees/velocity-rate-dataset-v1/artifacts/velocity_rate_gru64_horizon_training_v1",
+ "history_us":500000,"training_horizon_us":1000000,
+ "partitions":["train"],"expected_train_windows":107920,"expected_train_flights":94,
+ "w1":{"horizon_us":300000,"lower":0.02,"span":0.08,"max_weight":2},
+ "w2":{"lookback_us":300000,"threshold":0.05,"saturation_us":100000,"max_weight":2},
+ "maximum_command_age_us":160000,
+ "safety":{"w1_ess_ratio_min":0.85,"w2_step_ess_ratio_min":0.85,"max_weight":2,"max_flight_share_ratio":1.5},
+ "descriptive_bins":{"speed":[0,4,6,8,12,100],"amplitude":[0,0.02,0.05,0.10,100],"duration_ms":[0,100,250,1001]},
+ "w2_clock":"absolute state measurement output timestamps; exposure restricted to [max(decision,t_k-300ms),t_k)",
+ "w2_support":"prefix validity through each output; later invalid controls cannot change earlier raw weights",
+ "scope_qualification":"exact H500/H1000 origin identity; recompute unchanged past-only AUTO_stable on all H1000 origins, check existing scope membership",
+ "no_dynamics_training":true,"no_gpu":true,"no_future_motion_values_read":true
+}

@@ -1,0 +1,81 @@
+{
+  "status": "frozen_plan_only_not_executed",
+  "selected_weight": "W1",
+  "backup_weight": "W2",
+  "selection_basis": "Both pass fixed numeric and sign/configuration coverage gates. W1 simpler; W2 redistributes toward later time in these records.",
+  "models": [
+    "M0",
+    "M1"
+  ],
+  "schemes": [
+    "W0",
+    "W1"
+  ],
+  "folds": [
+    0,
+    1,
+    2
+  ],
+  "seeds": [
+    17
+  ],
+  "epochs": 6,
+  "planned_runs": 12,
+  "executed_runs": 0,
+  "history_ms": 500,
+  "horizon_ms": 1000,
+  "batch_size": 1024,
+  "optimizer": "AdamW",
+  "learning_rate": 0.001,
+  "weight_decay": 0.0001,
+  "gradient_clip": 5,
+  "cosine_T_max": 6,
+  "early_stopping": false,
+  "normalization": "recompute or hash-verified reuse of fold-fit-only mean/scale/output_scale/loss_scales; shared across all model/weight arms",
+  "batch_order": "identical fold/seed window permutation across M0/M1 x W0/W1; retain order hashes and equal updates",
+  "checkpoint_selection": "best original uniform four-component validation loss, flight equal over original 27 flights; independent of held-out response or weighted loss",
+  "evaluation": {
+    "primary_time_ms": 300,
+    "references": [
+      "B",
+      "D"
+    ],
+    "secondary_reference": "A",
+    "D_average_ms": 270,
+    "direction_thresholds": [
+      0.1,
+      0.05,
+      0.2
+    ],
+    "primary_threshold": 0.1,
+    "secondary_times_ms": [
+      100,
+      200,
+      400
+    ],
+    "endpoints": "supported only, no extrapolation",
+    "groups": "48 assigned main pairs exactly once, 17 flight-disjoint, 11 dependence components, frozen quality subsets and eligible background",
+    "metrics": [
+      "direction wins/losses",
+      "sign-specific amplitude bias",
+      "RMS ratio",
+      "signed gain",
+      "p/q/r coupling",
+      "physical-unit factual trajectory error",
+      "cross-component consistency"
+    ],
+    "internal_swap": "diagnostic only, larger C is not success"
+  },
+  "limitations": [
+    "folds and matching protocol previously exposed; not fresh blinded evaluation",
+    "weights are not causal/propensity/identifiability weights",
+    "no label/model-error based eligibility",
+    "W1 self-normalizes per batch; full-dataset ESS describes offline coefficient concentration"
+  ],
+  "stop_after": "12 pilot runs plus frozen evaluation only in a separately authorized task",
+  "holdout_source_sha256": {
+    "holdout_protocol.json": "1ab616c14ac25e28fe0112c868af46bdb3483c0b5790a966928fdd425b5a3cc2",
+    "holdout_window_indices.npz": "f802647f15e2f97bfbd6aa8dfabbdb85e571e05bff56b08bfa3abfe175449cef",
+    "holdout_pair_assignments.csv": "a73425c7534240470f2e62fa676d8799d3aef3003d04acf242ee02fc28fd406a"
+  }
+}

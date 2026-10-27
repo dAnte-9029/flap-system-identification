@@ -1,0 +1,131 @@
+computed 0 / 107920
+computed 20000 / 107920
+computed 40000 / 107920
+computed 60000 / 107920
+computed 80000 / 107920
+computed 100000 / 107920
+computed 0 / 87239
+computed 20000 / 87239
+computed 40000 / 87239
+computed 60000 / 87239
+computed 80000 / 87239
+computed 0 / 95627
+computed 20000 / 95627
+computed 40000 / 95627
+computed 60000 / 95627
+computed 80000 / 95627
+computed 0 / 87750
+computed 20000 / 87750
+computed 40000 / 87750
+computed 60000 / 87750
+computed 80000 / 87750
+{
+  "full_train": {
+    "windows": 107920,
+    "flights": 94,
+    "auto_stable": 55091,
+    "w1_enhanced": 36202,
+    "w2_enhanced_windows": 54566,
+    "w1_ess": 102654.82646596064,
+    "w1_ess_ratio": 0.9512122541323261,
+    "w2_window_ess": 107920,
+    "w2_time_ess_ratio_min": 0.8954278862435667,
+    "w2_time_ess_ratio_median": 0.9926426114512168,
+    "w1_min": 1.0,
+    "w1_max": 2.0,
+    "w1_mean": 1.131651542532775,
+    "w2_max": 2.0,
+    "w2_valid_step_mean": 1.3486158420413186,
+    "max_flight_share_ratio_W1": 1.0875746240947115,
+    "max_flight_share_ratio_W2": 1.0,
+    "positive_enhanced_flights": 93,
+    "negative_enhanced_flights": 93,
+    "positive_enhanced_windows": 18438,
+    "negative_enhanced_windows": 17764,
+    "top1_added_share_W1": 0.018241365617384833,
+    "top5_added_share_W1": 0.08316950155924967,
+    "W1_numeric_gate_pass": true,
+    "W2_numeric_gate_pass": true
+  },
+  "fold0": {
+    "windows": 87239,
+    "flights": 76,
+    "auto_stable": 43515,
+    "w1_enhanced": 28728,
+    "w2_enhanced_windows": 43102,
+    "w1_ess": 82985.27757176035,
+    "w1_ess_ratio": 0.9512405870282826,
+    "w2_window_ess": 87239,
+    "w2_time_ess_ratio_min": 0.8954402827781801,
+    "w2_time_ess_ratio_median": 1.0,
+    "w1_min": 1.0,
+    "w1_max": 2.0,
+    "w1_mean": 1.1302924126582101,
+    "w2_max": 2.0,
+    "w2_valid_step_mean": 1.3427016174677677,
+    "max_flight_share_ratio_W1": 1.0888823875954405,
+    "max_flight_share_ratio_W2": 1.0,
+    "positive_enhanced_flights": 75,
+    "negative_enhanced_flights": 75,
+    "positive_enhanced_windows": 14612,
+    "negative_enhanced_windows": 14116,
+    "top1_added_share_W1": 0.02280108071534269,
+    "top5_added_share_W1": 0.10395902137392396,
+    "W1_numeric_gate_pass": true,
+    "W2_numeric_gate_pass": true
+  },
+  "fold1": {
+    "windows": 95627,
+    "flights": 83,
+    "auto_stable": 47442,
+    "w1_enhanced": 31254,
+    "w2_enhanced_windows": 47042,
+    "w1_ess": 91001.3116545042,
+    "w1_ess_ratio": 0.9516278002499733,
+    "w2_window_ess": 95627,
+    "w2_time_ess_ratio_min": 0.8954278862435667,
+    "w2_time_ess_ratio_median": 1.0,
+    "w1_min": 1.0,
+    "w1_max": 2.0,
+    "w1_mean": 1.1286021245142366,
+    "w2_max": 2.0,
+    "w2_valid_step_mean": 1.3412623466878437,
+    "max_flight_share_ratio_W1": 1.090513188167189,
+    "max_flight_share_ratio_W2": 1.0,
+    "positive_enhanced_flights": 82,
+    "negative_enhanced_flights": 82,
+    "positive_enhanced_windows": 15974,
+    "negative_enhanced_windows": 15280,
+    "top1_added_share_W1": 0.02107446518796166,
+    "top5_added_share_W1": 0.09578708209448422,
+    "W1_numeric_gate_pass": true,
+    "W2_numeric_gate_pass": true
+  },
+  "fold2": {
+    "windows": 87750,
+    "flights": 77,
+    "auto_stable": 44211,
+    "w1_enhanced": 29174,
+    "w2_enhanced_windows": 43768,
+    "w1_ess": 83439.41252829439,
+    "w1_ess_ratio": 0.9508764960489389,
+    "w2_window_ess": 87750,
+    "w2_time_ess_ratio_min": 0.8954278862435667,
+    "w2_time_ess_ratio_median": 1.0,
+    "w1_min": 1.0,
+    "w1_max": 2.0,
+    "w1_mean": 1.1315825541971984,
+    "w2_max": 2.0,
+    "w2_valid_step_mean": 1.3453234548724167,
+    "max_flight_share_ratio_W1": 1.0876409294321818,
+    "max_flight_share_ratio_W2": 1.0,
+    "positive_enhanced_flights": 76,
+    "negative_enhanced_flights": 76,
+    "positive_enhanced_windows": 14861,
+    "negative_enhanced_windows": 14313,
+    "top1_added_share_W1": 0.02244604345011125,
+    "top5_added_share_W1": 0.10234026798650672,
+    "W1_numeric_gate_pass": true,
+    "W2_numeric_gate_pass": true
+  }
+}

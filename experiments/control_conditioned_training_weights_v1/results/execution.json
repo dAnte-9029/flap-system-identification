@@ -1,0 +1,11 @@
+{
+  "seconds": 153.3243477344513,
+  "training_runs": 0,
+  "optimizer_steps": 0,
+  "gpu_used": false,
+  "partitions": [
+    "train"
+  ],
+  "validation_outcomes_used": false,
+  "test_read": false
+}
