@@ -1,0 +1,52 @@
+{
+  "base_sha": "d8181c294bb4f5af628822ff21d6b6d1ed005c2b",
+  "branch": "exp/control-target-alignment-v1",
+  "completed_utc": "2026-10-27T07:18:26Z",
+  "python": "/home/zn/anaconda3/envs/flap-train-gpu/bin/python",
+  "python_version": "3.11.14",
+  "platform": "Linux-5.15.0-186-generic-x86_64-with-glibc2.35",
+  "packages": {
+    "numpy": "1.26.0",
+    "pandas": "2.3.3",
+    "scipy": "1.15.3",
+    "matplotlib": "3.10.3",
+    "torch": "2.7.0+cu128",
+    "pytest": "9.0.2",
+    "pyarrow": "23.0.1"
+  },
+  "training_runs": 0,
+  "gpu_inference_runs": 0,
+  "checkpoint_loads": 0,
+  "test_data_read": false,
+  "raw_ulog_reads": 0,
+  "model_or_loss_modified": false,
+  "upstream_source_hashes_rechecked": 41,
+  "full_train_windows": 107920,
+  "full_validation_windows": 36332,
+  "full_train_flights": 94,
+  "full_validation_flights": 27,
+  "fixed_windows": 225,
+  "fixed_pairs": 113,
+  "main_train_pairs": 48,
+  "dependence_components": 11,
+  "tests": 14,
+  "independent_full_windows": 363,
+  "execution": [
+    "prepare.py",
+    "oracles.py",
+    "full_audit.py",
+    "compare_models.py",
+    "describe.py",
+    "extra.py",
+    "verify.py",
+    "pytest test_audit.py",
+    "plot.py",
+    "report.py",
+    "archive.py"
+  ],
+  "implementation_corrections": [
+    "full centered-filter support explicitly bounded to registered native support",
+    "independent endpoint check includes frozen common four-combination control support; does not expand reference masks"
+  ],
+  "stop": "offline audit only; no auxiliary loss training, lambda selection, phase-shift scan or MPC"
+}

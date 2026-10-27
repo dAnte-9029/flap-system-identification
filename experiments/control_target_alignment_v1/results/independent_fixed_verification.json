@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "point_rows": 19962,
+  "point_max_error": 4.996003610813204e-16,
+  "decomposition_max_error": 5.551115123125783e-16,
+  "summary_rows": 1620,
+  "summary_max_error": 3.552713678800501e-15,
+  "method": "SciPy linear interpolation, analytic segment integrals, direct per-flight and BFS-component averaging",
+  "test_read": false
+}

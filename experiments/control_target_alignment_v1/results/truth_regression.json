@@ -1,0 +1,6 @@
+{
+  "passed": true,
+  "max_abs_difference": 3.1086244689504383e-15,
+  "reference_rows": 28476,
+  "training_runs": 0
+}

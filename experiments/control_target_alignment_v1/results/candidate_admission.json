@@ -1,0 +1,12 @@
+{
+  "train_runs": 0,
+  "lambda_selected": false,
+  "implemented_loss": false,
+  "decision": "B: first resolve initial/target representation; do not add increment loss under the frozen initial contract",
+  "formula": "target_increment_equivalent_absolute = native_B(t) + causal_initial - native_B(0)",
+  "conflict": "differs from absolute target_A by -(E_future-E_origin); existing SO(3) integration uses absolute rate",
+  "full_support_source": "full_coverage.json",
+  "D_centering": "offline uses future half-window; admissible as targets only, no history/rollout access",
+  "scales": "any later experiment must fit p/q/r scales on fold-fit flights only; no scale or lambda fitted here",
+  "not_upper_bound": true
+}

@@ -1,0 +1,40 @@
+{
+  "base_sha": "d8181c294bb4f5af628822ff21d6b6d1ed005c2b",
+  "dataset": "velocity_rate_multistep_v1/main_50hz",
+  "manifest_sha256": "8afb8623bf7174e4da5b2044f644331b8b251433fed3576f6dcdab470935bcb5",
+  "splits": [
+    "train",
+    "validation"
+  ],
+  "training_runs": 0,
+  "main_ms": 300,
+  "times_ms": [
+    100,
+    200,
+    300,
+    400,
+    500
+  ],
+  "direction_threshold": 0.1,
+  "threshold_sensitivity": [
+    0.05,
+    0.2
+  ],
+  "filter_width_s": 0.27,
+  "native_gap_s": 0.02,
+  "registered_gap_s": 0.04,
+  "cases": [
+    "train:124",
+    "train:336",
+    "train:203",
+    "train:99",
+    "train:363",
+    "train:412",
+    "train:788",
+    "validation:44"
+  ],
+  "oracle_origin_bridge": "O0 starts at causal initial and joins the first registered A target; first-interval bridge recorded separately; O2 is an offline native-curve anchor subtraction and may be nonzero at t0",
+  "O3_contract": "native continuous reference self-check; not registered-grid network performance bound",
+  "full_audit": "all 107920 train and 36332 validation registered H1000 windows; CPU by flight; reject native gaps and extrapolation",
+  "model_comparison": "saved 6epoch M0W0/M1W0 seed17; saved 24epoch M0/M1 seeds17/29/43; budgets separate"
+}

@@ -1,0 +1,3 @@
+split cohort method variable weighting  pairs  future_rms  origin_rms  increment_rms   bridge_max  cross_moment  future_bias  origin_bias  increment_bias  opposing_in_error_fraction  enhancing_in_error_fraction
+train   main      B        p    flight     48    0.158522    0.292442       0.304551 1.318390e-16      0.008950    -0.049366    -0.049493        0.000127                    0.599457                     0.333514
+train   main      D        p    flight     48    0.048321    0.292442       0.268639 2.220446e-16      0.007845    -0.002313    -0.049493        0.047180                    0.447283                     0.485688
