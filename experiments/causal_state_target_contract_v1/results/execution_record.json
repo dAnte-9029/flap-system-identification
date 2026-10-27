@@ -1,0 +1,32 @@
+{
+  "base_sha": "3ee850af770631f6be3d5a9326987aa443307394",
+  "branch": "exp/causal-state-target-contract-v1",
+  "python": "/home/zn/anaconda3/envs/flap-train-gpu/bin/python",
+  "python_version": "3.11.14",
+  "packages": {
+    "numpy": "1.26.0",
+    "pandas": "2.3.3",
+    "torch": "2.7.0+cu128",
+    "matplotlib": "3.10.3",
+    "pytest": "9.0.2",
+    "pyarrow": "23.0.1"
+  },
+  "completed_utc": "2026-10-27T07:53:46Z",
+  "training_runs": 0,
+  "GRU_instances": 0,
+  "checkpoint_loads": 0,
+  "GPU_inference": 0,
+  "test_read": false,
+  "raw_ULog_reads": 0,
+  "windows": 144252,
+  "flights": 121,
+  "history_rows": 863457,
+  "target_contracts": [
+    "T0",
+    "T1"
+  ],
+  "tests": 9,
+  "source_receipt_reused": "/home/zn/flap-system-identification/.worktrees/causal-state-target-contract-v1/experiments/control_target_alignment_v1/results/source_receipt.json",
+  "decision": "C; do not start 6epoch training with this C1",
+  "implementation_note": "Unsupported kinematic outputs are NaN; both contracts stop on identical first missing B target. No missing target imputation."
+}

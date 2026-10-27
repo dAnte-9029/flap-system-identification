@@ -1,0 +1,22 @@
+{
+  "base_sha": "3ee850af770631f6be3d5a9326987aa443307394",
+  "historical_source_receipt_sha256": "2bfda6c6493d9b79d972159db355abdbaef5a51d13a2c003725c46ff69826720",
+  "files": {
+    "/home/zn/flap-system-identification/dataset/velocity_rate_multistep_v1/dataset_manifest.json": "8afb8623bf7174e4da5b2044f644331b8b251433fed3576f6dcdab470935bcb5",
+    "/home/zn/flap-system-identification/.worktrees/causal-state-target-contract-v1/src/system_identification/models/velocity_rate_gru.py": "76c6d29f7dfd60fec4e4094b474e3e876f3eb3d580c839141534685dced4302b",
+    "/home/zn/flap-system-identification/dataset/velocity_rate_multistep_v1/samples_train.parquet": "47a0d8d396d795fefa17ae0143484b7d63ef809f6bb3dfb8409ea75d5166f488",
+    "/home/zn/flap-system-identification/dataset/velocity_rate_multistep_v1/native_vehicle_angular_velocity_train.parquet": "8fdcd976a0ae4ea4f6a96f84131073709a828c5f5d7afc54e9c572dd724e21f3",
+    "/home/zn/flap-system-identification/.worktrees/velocity-rate-dataset-v1/artifacts/velocity_rate_gru64_horizon_training_v1/train.npz": "5702d548d4bc8486ee2dca95ced79b1f58d0c78776a3866a161cee99931ae451",
+    "/home/zn/flap-system-identification/.worktrees/causal-state-target-contract-v1/experiments/velocity_rate_gru64_horizon_training_v1/train_windows.parquet": "2b51e72201ff6f99c1be03e43951a6e75dc8a419a2716c996cd67a7377225862",
+    "/home/zn/flap-system-identification/dataset/velocity_rate_multistep_v1/samples_validation.parquet": "89f42ca256c3d04899d6824c0f9112f83aecfc7b82e6247347f14f3c97c33dae",
+    "/home/zn/flap-system-identification/dataset/velocity_rate_multistep_v1/native_vehicle_angular_velocity_validation.parquet": "a7430ba65c41937e5d62b3d73ac4f69bba631c10c5bfcb5f84399f2f5102c82d",
+    "/home/zn/flap-system-identification/.worktrees/velocity-rate-dataset-v1/artifacts/velocity_rate_gru64_horizon_training_v1/validation.npz": "5b8bb1b1a04e5cea32562b3342beca34ef0bee763b4c912e82d2792fcfa893e1",
+    "/home/zn/flap-system-identification/.worktrees/causal-state-target-contract-v1/experiments/velocity_rate_gru64_horizon_training_v1/validation_windows.parquet": "74194f10b1e7abbf3b8228e93384cf8948e0103b310a7c3e15f19451f3d8b222"
+  },
+  "training_runs": 0,
+  "model_inference": 0,
+  "test_read": false,
+  "history_initial_identity_checked": 144252,
+  "history_uses_each_row_deadline": true,
+  "CPU": true
+}

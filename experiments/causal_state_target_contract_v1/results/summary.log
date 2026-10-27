@@ -1,0 +1,10 @@
+     split         subset weighting  C0_p_rms  C1_p_rms  T0_attitude_rms_deg  T1_attitude_rms_deg
+     train  common_prefix    window  0.163292  0.235118             1.187159             0.931324
+     train  common_prefix    flight  0.161145  0.231448             1.178945             0.927131
+     train complete_H1000    window  0.147168  0.213657             1.171790             0.948598
+     train complete_H1000    flight  0.144645  0.209408             1.166895             0.946255
+validation  common_prefix    window  0.215541  0.306543             1.398986             1.059467
+validation  common_prefix    flight  0.214698  0.305686             1.391862             1.052793
+validation complete_H1000    window  0.189261  0.272169             1.393198             1.093278
+validation complete_H1000    flight  0.185680  0.268875             1.384098             1.084378
+Flights with lower C1 p RMS {'train': 0, 'validation': 0}

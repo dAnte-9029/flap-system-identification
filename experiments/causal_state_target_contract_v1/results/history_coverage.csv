@@ -1,0 +1,7 @@
+split,reason,unique_history_rows
+train,extrapolation_limit,25142
+train,forward_extrapolation,432780
+train,interpolation,189280
+validation,extrapolation_limit,8990
+validation,forward_extrapolation,144223
+validation,interpolation,63042

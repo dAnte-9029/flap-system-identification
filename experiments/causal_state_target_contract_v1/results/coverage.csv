@@ -1,0 +1,7 @@
+split,reason,windows,flights,fraction
+train,extrapolation_limit,4369,94,0.04048369162342476
+train,forward_extrapolation,72302,94,0.6699592290585619
+train,interpolation,31249,94,0.28955707931801333
+validation,extrapolation_limit,1706,27,0.04695585159088407
+validation,forward_extrapolation,24083,27,0.662859187493119
+validation,interpolation,10543,27,0.29018496091599694
