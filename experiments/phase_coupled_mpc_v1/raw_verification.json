@@ -1,0 +1,589 @@
+[
+  {
+    "log": "9.7数据/log_0_2026-9-7-18-00-56.ulg",
+    "split": "validation",
+    "firmware": "c9af571575af33d5403fbb479256848797c801e2",
+    "topics": {
+      "actuator_outputs:0": {
+        "rows": 28347,
+        "fields": [
+          "timestamp",
+          "noutputs",
+          "output[0]",
+          "output[1]",
+          "output[2]",
+          "output[3]",
+          "output[4]",
+          "output[5]",
+          "output[6]",
+          "output[7]",
+          "output[8]",
+          "output[9]",
+          "output[10]",
+          "output[11]",
+          "output[12]",
+          "output[13]",
+          "output[14]",
+          "output[15]"
+        ]
+      },
+      "actuator_outputs:1": {
+        "rows": 1,
+        "fields": [
+          "timestamp",
+          "noutputs",
+          "output[0]",
+          "output[1]",
+          "output[2]",
+          "output[3]",
+          "output[4]",
+          "output[5]",
+          "output[6]",
+          "output[7]",
+          "output[8]",
+          "output[9]",
+          "output[10]",
+          "output[11]",
+          "output[12]",
+          "output[13]",
+          "output[14]",
+          "output[15]"
+        ]
+      },
+      "actuator_outputs:2": {
+        "rows": 1,
+        "fields": [
+          "timestamp",
+          "noutputs",
+          "output[0]",
+          "output[1]",
+          "output[2]",
+          "output[3]",
+          "output[4]",
+          "output[5]",
+          "output[6]",
+          "output[7]",
+          "output[8]",
+          "output[9]",
+          "output[10]",
+          "output[11]",
+          "output[12]",
+          "output[13]",
+          "output[14]",
+          "output[15]"
+        ]
+      },
+      "encoder_count:0": {
+        "rows": 28345,
+        "fields": [
+          "timestamp",
+          "total_count",
+          "device_id",
+          "position_raw"
+        ]
+      },
+      "flap_frequency:0": {
+        "rows": 28346,
+        "fields": [
+          "timestamp",
+          "frequency_hz"
+        ]
+      },
+      "hall_event:0": {
+        "rows": 547,
+        "fields": [
+          "timestamp",
+          "pulse_count"
+        ]
+      },
+      "rpm:0": {
+        "rows": 28346,
+        "fields": [
+          "timestamp",
+          "rpm_estimate",
+          "rpm_raw"
+        ],
+        "encoder_timestamp_match_fraction": 0.9999647216538489
+      },
+      "rpm:1": {
+        "rows": 680,
+        "fields": [
+          "timestamp",
+          "rpm_estimate",
+          "rpm_raw"
+        ],
+        "encoder_timestamp_match_fraction": 0.0
+      },
+      "wing_phase:0": {
+        "rows": 28346,
+        "fields": [
+          "timestamp",
+          "encoder_total_count",
+          "phase_rad",
+          "phase_unwrapped_rad",
+          "phase_deg",
+          "phase_unwrapped_deg",
+          "phase_sin",
+          "phase_cos",
+          "flap_frequency_hz",
+          "encoder_position_raw",
+          "phase_valid"
+        ]
+      }
+    },
+    "encoder_count_check": {
+      "rows": 13523,
+      "max_abs_error": {
+        "total_count": 0.0
+      }
+    },
+    "wing_phase_check": {
+      "rows": 13523,
+      "max_abs_error": {
+        "encoder_total_count": 0.0,
+        "phase_rad": 0.0,
+        "phase_valid": 0.0
+      }
+    },
+    "hall_event_check": {
+      "rows": 504,
+      "max_abs_error": {
+        "pulse_count": 0.0
+      }
+    },
+    "candidate_hall_rpm_instance": 1,
+    "candidate_hall_availability_bound": {
+      "events": 502,
+      "lag_s_quantiles": [
+        0.21620743999999997,
+        0.26142750000000003,
+        0.38327355999999996
+      ],
+      "method": "max(second RPM timestamp after Hall, next encoder timestamp after right bracket)",
+      "limitation": "requires verified RPMCapture sole publisher and serialized Run; not measured publication time or cross-log physical index calibration"
+    }
+  },
+  {
+    "log": "9.15数据/log_11_2026-9-15-17-51-56.ulg",
+    "split": "train",
+    "firmware": "d0dd2354fdeadfbe505211a17b54d728309fedff",
+    "topics": {
+      "actuator_outputs:0": {
+        "rows": 19036,
+        "fields": [
+          "timestamp",
+          "noutputs",
+          "output[0]",
+          "output[1]",
+          "output[2]",
+          "output[3]",
+          "output[4]",
+          "output[5]",
+          "output[6]",
+          "output[7]",
+          "output[8]",
+          "output[9]",
+          "output[10]",
+          "output[11]",
+          "output[12]",
+          "output[13]",
+          "output[14]",
+          "output[15]"
+        ]
+      },
+      "encoder_count:0": {
+        "rows": 19035,
+        "fields": [
+          "timestamp",
+          "total_count",
+          "device_id",
+          "position_raw"
+        ]
+      },
+      "flap_frequency:0": {
+        "rows": 19035,
+        "fields": [
+          "timestamp",
+          "frequency_hz"
+        ]
+      },
+      "rpm:0": {
+        "rows": 19035,
+        "fields": [
+          "timestamp",
+          "rpm_estimate",
+          "rpm_raw"
+        ],
+        "encoder_timestamp_match_fraction": 1.0
+      },
+      "rpm:1": {
+        "rows": 1210,
+        "fields": [
+          "timestamp",
+          "rpm_estimate",
+          "rpm_raw"
+        ],
+        "encoder_timestamp_match_fraction": 0.0
+      },
+      "wing_phase:0": {
+        "rows": 19035,
+        "fields": [
+          "timestamp",
+          "encoder_total_count",
+          "phase_rad",
+          "phase_unwrapped_rad",
+          "phase_deg",
+          "phase_unwrapped_deg",
+          "phase_sin",
+          "phase_cos",
+          "flap_frequency_hz",
+          "encoder_position_raw",
+          "phase_valid"
+        ]
+      }
+    },
+    "encoder_count_check": {
+      "rows": 11054,
+      "max_abs_error": {
+        "total_count": 0.0
+      }
+    },
+    "wing_phase_check": {
+      "rows": 11054,
+      "max_abs_error": {
+        "encoder_total_count": 0.0,
+        "phase_rad": 0.0,
+        "phase_valid": 0.0
+      }
+    },
+    "candidate_hall_rpm_instance": 1
+  },
+  {
+    "log": "10.11数据-1/log_2_2026-10-11-08-09-26.ulg",
+    "split": "validation",
+    "firmware": "6f4f6aa05e3f1010f67357d5391d4e1fd20e5941",
+    "topics": {
+      "actuator_outputs:0": {
+        "rows": 2092,
+        "fields": [
+          "timestamp",
+          "noutputs",
+          "output[0]",
+          "output[1]",
+          "output[2]",
+          "output[3]",
+          "output[4]",
+          "output[5]",
+          "output[6]",
+          "output[7]",
+          "output[8]",
+          "output[9]",
+          "output[10]",
+          "output[11]",
+          "output[12]",
+          "output[13]",
+          "output[14]",
+          "output[15]"
+        ]
+      },
+      "actuator_outputs:1": {
+        "rows": 1,
+        "fields": [
+          "timestamp",
+          "noutputs",
+          "output[0]",
+          "output[1]",
+          "output[2]",
+          "output[3]",
+          "output[4]",
+          "output[5]",
+          "output[6]",
+          "output[7]",
+          "output[8]",
+          "output[9]",
+          "output[10]",
+          "output[11]",
+          "output[12]",
+          "output[13]",
+          "output[14]",
+          "output[15]"
+        ]
+      },
+      "actuator_outputs:2": {
+        "rows": 1,
+        "fields": [
+          "timestamp",
+          "noutputs",
+          "output[0]",
+          "output[1]",
+          "output[2]",
+          "output[3]",
+          "output[4]",
+          "output[5]",
+          "output[6]",
+          "output[7]",
+          "output[8]",
+          "output[9]",
+          "output[10]",
+          "output[11]",
+          "output[12]",
+          "output[13]",
+          "output[14]",
+          "output[15]"
+        ]
+      },
+      "encoder_count:0": {
+        "rows": 20909,
+        "fields": [
+          "timestamp",
+          "total_count",
+          "device_id",
+          "position_raw"
+        ]
+      },
+      "flap_frequency:0": {
+        "rows": 4183,
+        "fields": [
+          "timestamp",
+          "frequency_hz"
+        ]
+      },
+      "hall_event:0": {
+        "rows": 515,
+        "fields": [
+          "timestamp",
+          "pulse_count"
+        ]
+      },
+      "rpm:0": {
+        "rows": 1046,
+        "fields": [
+          "timestamp",
+          "rpm_estimate",
+          "rpm_raw"
+        ],
+        "encoder_timestamp_match_fraction": 1.0
+      },
+      "rpm:1": {
+        "rows": 587,
+        "fields": [
+          "timestamp",
+          "rpm_estimate",
+          "rpm_raw"
+        ],
+        "encoder_timestamp_match_fraction": 0.0
+      },
+      "wing_phase:0": {
+        "rows": 20910,
+        "fields": [
+          "timestamp",
+          "encoder_total_count",
+          "phase_rad",
+          "phase_unwrapped_rad",
+          "phase_deg",
+          "phase_unwrapped_deg",
+          "phase_sin",
+          "phase_cos",
+          "flap_frequency_hz",
+          "encoder_position_raw",
+          "phase_valid"
+        ]
+      }
+    },
+    "encoder_count_check": {
+      "rows": 13263,
+      "max_abs_error": {
+        "total_count": 0.0
+      }
+    },
+    "wing_phase_check": {
+      "rows": 13263,
+      "max_abs_error": {
+        "encoder_total_count": 0.0,
+        "phase_rad": 0.0,
+        "phase_valid": 0.0
+      }
+    },
+    "hall_event_check": {
+      "rows": 504,
+      "max_abs_error": {
+        "pulse_count": 0.0
+      }
+    },
+    "candidate_hall_rpm_instance": 1,
+    "candidate_hall_availability_bound": {
+      "events": 502,
+      "lag_s_quantiles": [
+        0.10171532,
+        0.2827805,
+        0.45759561
+      ],
+      "method": "max(second RPM timestamp after Hall, next encoder timestamp after right bracket)",
+      "limitation": "requires verified RPMCapture sole publisher and serialized Run; not measured publication time or cross-log physical index calibration"
+    }
+  },
+  {
+    "log": "10.11数据-2/log_2_2026-10-11-17-52-20.ulg",
+    "split": "validation",
+    "firmware": "6f4f6aa05e3f1010f67357d5391d4e1fd20e5941",
+    "topics": {
+      "actuator_outputs:0": {
+        "rows": 2195,
+        "fields": [
+          "timestamp",
+          "noutputs",
+          "output[0]",
+          "output[1]",
+          "output[2]",
+          "output[3]",
+          "output[4]",
+          "output[5]",
+          "output[6]",
+          "output[7]",
+          "output[8]",
+          "output[9]",
+          "output[10]",
+          "output[11]",
+          "output[12]",
+          "output[13]",
+          "output[14]",
+          "output[15]"
+        ]
+      },
+      "actuator_outputs:1": {
+        "rows": 1,
+        "fields": [
+          "timestamp",
+          "noutputs",
+          "output[0]",
+          "output[1]",
+          "output[2]",
+          "output[3]",
+          "output[4]",
+          "output[5]",
+          "output[6]",
+          "output[7]",
+          "output[8]",
+          "output[9]",
+          "output[10]",
+          "output[11]",
+          "output[12]",
+          "output[13]",
+          "output[14]",
+          "output[15]"
+        ]
+      },
+      "actuator_outputs:2": {
+        "rows": 1,
+        "fields": [
+          "timestamp",
+          "noutputs",
+          "output[0]",
+          "output[1]",
+          "output[2]",
+          "output[3]",
+          "output[4]",
+          "output[5]",
+          "output[6]",
+          "output[7]",
+          "output[8]",
+          "output[9]",
+          "output[10]",
+          "output[11]",
+          "output[12]",
+          "output[13]",
+          "output[14]",
+          "output[15]"
+        ]
+      },
+      "encoder_count:0": {
+        "rows": 21942,
+        "fields": [
+          "timestamp",
+          "total_count",
+          "device_id",
+          "position_raw"
+        ]
+      },
+      "flap_frequency:0": {
+        "rows": 4391,
+        "fields": [
+          "timestamp",
+          "frequency_hz"
+        ]
+      },
+      "hall_event:0": {
+        "rows": 636,
+        "fields": [
+          "timestamp",
+          "pulse_count"
+        ]
+      },
+      "rpm:0": {
+        "rows": 1098,
+        "fields": [
+          "timestamp",
+          "rpm_estimate",
+          "rpm_raw"
+        ],
+        "encoder_timestamp_match_fraction": 1.0
+      },
+      "rpm:1": {
+        "rows": 682,
+        "fields": [
+          "timestamp",
+          "rpm_estimate",
+          "rpm_raw"
+        ],
+        "encoder_timestamp_match_fraction": 0.0
+      },
+      "wing_phase:0": {
+        "rows": 21942,
+        "fields": [
+          "timestamp",
+          "encoder_total_count",
+          "phase_rad",
+          "phase_unwrapped_rad",
+          "phase_deg",
+          "phase_unwrapped_deg",
+          "phase_sin",
+          "phase_cos",
+          "flap_frequency_hz",
+          "encoder_position_raw",
+          "phase_valid"
+        ]
+      }
+    },
+    "encoder_count_check": {
+      "rows": 17033,
+      "max_abs_error": {
+        "total_count": 0.0
+      }
+    },
+    "wing_phase_check": {
+      "rows": 17033,
+      "max_abs_error": {
+        "encoder_total_count": 0.0,
+        "phase_rad": 0.0,
+        "phase_valid": 0.0
+      }
+    },
+    "hall_event_check": {
+      "rows": 630,
+      "max_abs_error": {
+        "pulse_count": 0.0
+      }
+    },
+    "candidate_hall_rpm_instance": 1,
+    "candidate_hall_availability_bound": {
+      "events": 628,
+      "lag_s_quantiles": [
+        0.111521,
+        0.2769745,
+        0.35288493
+      ],
+      "method": "max(second RPM timestamp after Hall, next encoder timestamp after right bracket)",
+      "limitation": "requires verified RPMCapture sole publisher and serialized Run; not measured publication time or cross-log physical index calibration"
+    }
+  }
+]

@@ -1,0 +1,37 @@
+{
+  "research_id": "phase_coupled_mpc_v1",
+  "source_branch": "reference-dynamics-data-v1",
+  "source_head": "84a9d1b0c9b889a16504e8fe18d6c0ecd7db6358",
+  "research_branch": "research/phase-coupled-mpc-v1",
+  "dataset_id": "velocity_rate_multistep_v1",
+  "dataset_root": "/home/zn/flap-system-identification/dataset/velocity_rate_multistep_v1",
+  "source_registry": "/home/zn/flap-system-identification/.worktrees/velocity-rate-dataset-v1/configs/data/velocity_rate_dataset_registry.yaml",
+  "dataset_manifest_sha256": "8afb8623bf7174e4da5b2044f644331b8b251433fed3576f6dcdab470935bcb5",
+  "authorized_read_partitions": ["train", "validation"],
+  "test_access": false,
+  "python": "/home/zn/anaconda3/envs/flap-train-gpu/bin/python",
+  "phase_forecast": {
+    "kind": "precondition_diagnostic_not_six_dof_training",
+    "model": "df/dt=b0+bu*u_motor+bf*f; dphi/dt=2*pi*f",
+    "fit": "train_only_flight_equal_linear_least_squares",
+    "ridge": 0.000001,
+    "seed": null,
+    "minimum_initial_frequency_hz": 1,
+    "maximum_encoder_gap_us": 30000,
+    "maximum_fit_frequency_gap_us": 30000,
+    "maximum_frequency_availability_age_us": 30000,
+    "start_stride_us": 2500000,
+    "horizons_s": [0.2, 0.5, 1, 2],
+    "future_controls": "actual_logged_zoh_conditional_replay",
+    "future_phase_frequency_inputs": false
+  },
+  "formal_dynamics_training": {
+    "executed": false,
+    "status": "BLOCKED_PENDING_MECHANICAL_REFERENCE_CONTRACT",
+    "missing_evidence": [
+      "Cross-date Hall-to-wing mechanical reference and mounting history",
+      "September-October mass, inertia, reference point and sensor installation provenance"
+    ],
+    "not_a_claim": "Does not establish that phase-coupled dynamics are unlearnable or that all data are unusable"
+  }
+}

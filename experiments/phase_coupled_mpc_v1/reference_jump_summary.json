@@ -1,0 +1,26 @@
+{
+  "train": {
+    "reference_updates": 63250,
+    "abs_wrapped_correction_deg_quantiles": [
+      0.12694818053353457,
+      12.472530054593543,
+      13.496004253155853,
+      161.02830498790405,
+      175.3713907905196
+    ],
+    "over10deg": 8418,
+    "over30deg": 2514
+  },
+  "validation": {
+    "reference_updates": 23284,
+    "abs_wrapped_correction_deg_quantiles": [
+      0.14402879565306898,
+      12.801103593414133,
+      136.28240696039782,
+      171.97783271677514,
+      179.19733920586697
+    ],
+    "over10deg": 3928,
+    "over30deg": 1489
+  }
+}

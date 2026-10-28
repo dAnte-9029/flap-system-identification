@@ -1,0 +1,52 @@
+completed train
+completed validation
+{
+  "train": {
+    "flights": 122,
+    "valid_phase_flights": 117,
+    "hall_flights": 66,
+    "valid_phase_rows": 1668409,
+    "wing_rows": 1741419,
+    "reset_count": 63250,
+    "relative_vs_hall_resultant": {
+      "p01": 0.21137834552211604,
+      "p50": 0.9972597747629774,
+      "p99": 0.9999982838304355
+    },
+    "hall_ratio_per_flight_median": {
+      "p01": 7.908704537877213,
+      "p50": 7.9090377975769,
+      "p99": 7.909298603658965
+    },
+    "reset_ratio_per_flight_median": {
+      "p01": 4.171032820343971,
+      "p50": 7.909061674028635,
+      "p99": 7.909755312204361
+    }
+  },
+  "validation": {
+    "flights": 39,
+    "valid_phase_flights": 39,
+    "hall_flights": 23,
+    "valid_phase_rows": 625006,
+    "wing_rows": 625006,
+    "reset_count": 23284,
+    "relative_vs_hall_resultant": {
+      "p01": 0.7498848066313432,
+      "p50": 0.9956859755130446,
+      "p99": 0.9999973161763781
+    },
+    "hall_ratio_per_flight_median": {
+      "p01": 7.8459358450460055,
+      "p50": 7.909008255925073,
+      "p99": 7.909183626726363
+    },
+    "reset_ratio_per_flight_median": {
+      "p01": 7.7974138180911545,
+      "p50": 7.909074533730745,
+      "p99": 7.909937614258379
+    }
+  },
+  "dataset_manifest_sha256": "8afb8623bf7174e4da5b2044f644331b8b251433fed3576f6dcdab470935bcb5",
+  "method": "Hall count interpolation is offline source validation, never deployable future input; no IMU alignment."
+}

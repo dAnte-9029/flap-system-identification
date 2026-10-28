@@ -1,0 +1,35 @@
+[
+  {
+    "commit": "c9af571575af33d5403fbb479256848797c801e2",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/c9af571575af33d5403fbb479256848797c801e2/src/drivers/rpm_capture/RPMCapture.cpp",
+    "sha256": "11a2044987dddb1b605988a7d3f0a8e172a701503418db3230b157fc254f48e9"
+  },
+  {
+    "commit": "d0dd2354fdeadfbe505211a17b54d728309fedff",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/d0dd2354fdeadfbe505211a17b54d728309fedff/src/drivers/rpm_capture/RPMCapture.cpp",
+    "sha256": "11a2044987dddb1b605988a7d3f0a8e172a701503418db3230b157fc254f48e9"
+  },
+  {
+    "commit": "6f4f6aa05e3f1010f67357d5391d4e1fd20e5941",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/6f4f6aa05e3f1010f67357d5391d4e1fd20e5941/src/drivers/rpm_capture/RPMCapture.cpp",
+    "sha256": "11a2044987dddb1b605988a7d3f0a8e172a701503418db3230b157fc254f48e9"
+  },
+  {
+    "commit": "0369024bbc9caaec19a12a6f5ce2eb68fab55c93",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/0369024bbc9caaec19a12a6f5ce2eb68fab55c93/src/drivers/rpm_capture/RPMCapture.cpp",
+    "local_file": "RPMCapture.cpp",
+    "sha256": "11a2044987dddb1b605988a7d3f0a8e172a701503418db3230b157fc254f48e9"
+  },
+  {
+    "commit": "0369024bbc9caaec19a12a6f5ce2eb68fab55c93",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/0369024bbc9caaec19a12a6f5ce2eb68fab55c93/src/drivers/rpm_capture/RPMCapture.hpp",
+    "local_file": "RPMCapture.hpp",
+    "sha256": "a66564b99b9407e444482111f5bee008fc45653fcf3c33c88c14c6272bc3a0d5"
+  },
+  {
+    "commit": "0369024bbc9caaec19a12a6f5ce2eb68fab55c93",
+    "url": "https://raw.githubusercontent.com/jiashunjiang2022/PX4-Autopilot/0369024bbc9caaec19a12a6f5ce2eb68fab55c93/src/modules/wing_phase/WingPhaseMath.cpp",
+    "local_file": "WingPhaseMath.cpp",
+    "sha256": "ac1412ebdf9e259cbc00044baa2d07120fb064acf058b0d85e6e145c3114c0fe"
+  }
+]

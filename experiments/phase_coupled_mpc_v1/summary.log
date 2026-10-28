@@ -1,0 +1,31 @@
+{
+  "train": {
+    "reference_updates": 63250,
+    "abs_wrapped_correction_deg_quantiles": [
+      0.12694818053353457,
+      12.472530054593543,
+      13.496004253155853,
+      161.02830498790405,
+      175.3713907905196
+    ],
+    "over10deg": 8418,
+    "over30deg": 2514
+  },
+  "validation": {
+    "reference_updates": 23284,
+    "abs_wrapped_correction_deg_quantiles": [
+      0.14402879565306898,
+      12.801103593414133,
+      136.28240696039782,
+      171.97783271677514,
+      179.19733920586697
+    ],
+    "over10deg": 3928,
+    "over30deg": 1489
+  }
+}
+     split             model  horizon_s  h1_coherence  h2_coherence  h3_coherence
+validation motor_first_order        0.2      0.974049      0.899982      0.788274
+validation motor_first_order        0.5      0.950342      0.814659      0.627118
+validation motor_first_order        1.0      0.878679      0.595921      0.300357
+validation motor_first_order        2.0      0.684250      0.208283      0.024796

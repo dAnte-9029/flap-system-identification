@@ -1,0 +1,97 @@
+{
+  "source": "/home/zn/flap-system-identification",
+  "source_branch": "reference-dynamics-data-v1",
+  "head": "84a9d1b0c9b889a16504e8fe18d6c0ecd7db6358",
+  "files": [
+    {
+      "path": "AGENTS.md",
+      "size": 4621,
+      "sha256": "34de330f41d68bb18015c5b759dcca7ebc989a21162b2009a97cc92e50639330"
+    },
+    {
+      "path": "src/system_identification/data/AGENTS.md",
+      "size": 391,
+      "sha256": "2278d262741483831af083c6f3a9428a268112be440a4ecced8b67d0c12e4984"
+    },
+    {
+      "path": "src/system_identification/physics/AGENTS.md",
+      "size": 809,
+      "sha256": "1ffbc2a75886615ce5bcefafe25f271f2291800d7184779c01604d9cd774f1b6"
+    },
+    {
+      "path": "src/system_identification/labels/AGENTS.md",
+      "size": 693,
+      "sha256": "525da804f87c42b6a940aa4a0126909e83d505749ab0a6520efc9c209d12ee87"
+    },
+    {
+      "path": "src/system_identification/conventions/AGENTS.md",
+      "size": 527,
+      "sha256": "3abc5ec41dc196fdbb769338b4762a19e2e64578da283277b9e1e53cc50df949"
+    },
+    {
+      "path": "src/system_identification/evaluation/AGENTS.md",
+      "size": 765,
+      "sha256": "91753939e62334557c82733aa9cf7588a6e67bc548cab400199d310e22572b6c"
+    },
+    {
+      "path": "src/system_identification/models/AGENTS.md",
+      "size": 910,
+      "sha256": "dee6733819df058b52c7a42b444a9f064866bcecd2f79540ff404f2d87752676"
+    },
+    {
+      "path": "src/system_identification/training/AGENTS.md",
+      "size": 883,
+      "sha256": "7fdbfd71e696ff475f4153ed5cfd9ca256dc3271d4bbde42760c4129d12e3994"
+    },
+    {
+      "path": "docs/papers/Wang 等 - 2025 - PI-WAN A Physics-Informed Wind-Adaptive Network for Quadrotor Dynamics Prediction in Unknown Enviro.pdf",
+      "size": 2340614,
+      "sha256": "b70fe9481a74d32f2ed81179b8fb2db77323b661579cac8a6d417688cc124aab"
+    },
+    {
+      "path": "docs/papers/Zhao 等 - 2025 - Modeling of Flapping Wing Aerial Vehicle Using Hybrid Phase-functioned Neural Network Based on Fligh.pdf",
+      "size": 7291131,
+      "sha256": "d8b06cb6b5d3d48dee7172e8cd3162592a8bd3b9454ef70b518e0ab937168252"
+    },
+    {
+      "path": "docs/papers/Sharvit 等 - 2025 - A Deep Inverse-Mapping Model for a Flapping Robotic Wing.pdf",
+      "size": 6127588,
+      "sha256": "20d485b29805b4d0c634320f079b0e3471c283eaef0505d23ce797933ed4785e"
+    },
+    {
+      "path": "docs/papers/Amini 等 - 2020 - A Simplified Model, Dynamic Analysis and Force Estimation for a Large-scale Orinthopter in Forward F.pdf",
+      "size": 3724287,
+      "sha256": "e35b5ee408c4ba099d33077b0ec0014c7243259f45de4be36d1f48f7a63bd6af"
+    },
+    {
+      "path": "docs/papers/Rao 等 - 2024 - Learning Long-Horizon Predictions for Quadrotor Dynamics.pdf",
+      "size": 689953,
+      "sha256": "5885a7210d5395099a2158420deb88f2e3cc526a2df99d0afa2b0948cd9e951e"
+    },
+    {
+      "path": "docs/papers/System Analysis and Control Design for a Flapping-Wing UAV Considering Periodic Effects.pdf",
+      "size": 3336151,
+      "sha256": "1615083179de11f5acfd961c978cfa3533c2547d6f9192a6b13612872f67677e"
+    },
+    {
+      "path": "docs/papers/Learning_Periodic_Patterns_and_Developing_Internal_Models_for_Avian-Inspired_Flapping-Wing_State_Estimation.pdf",
+      "size": 6451196,
+      "sha256": "46721626301ba78a019b4d8b7bd85fef6531947baac2ec263186b8becea55a54"
+    },
+    {
+      "path": "docs/papers/Beintema 等 - 2023 - Continuous-time identification of dynamic state-space models by deep subspace encoding.pdf",
+      "size": 3220098,
+      "sha256": "da3145b54c1cf29742f0f6b90b2885024e2e63bd06fe3d9256be27a12bb8cc3b"
+    },
+    {
+      "path": "docs/papers/Stabilization_Controller_Design_of_Flapping_Wing_Aircraft_Considering_the_Unique_Periodic_Characteristics.pdf",
+      "size": 1976659,
+      "sha256": "d79d47eea70bddaab013cd606a5fdef99106b94af002b852cc44901bfb124243"
+    },
+    {
+      "path": "docs/papers/Cai 等 - Learning-based Trajectory Tracking for Bird-inspired Flapping-Wing Robots.pdf",
+      "size": 1917245,
+      "sha256": "de2b4aca354b84e40c69f322a60bc2e910fc39a88072e57a01b968fc6e8c476f"
+    }
+  ]
+}
