@@ -1,0 +1,145 @@
+{
+  "schema": "pahbd_engineering_verification_v1",
+  "interpretation": "engineering verification only; no trained-model performance claim",
+  "test_command": "MPLCONFIGDIR=/tmp/pahbd-mpl PYTHONPATH=src /home/zn/anaconda3/envs/flap-train-gpu/bin/python -m pytest -q -s tests/test_pahbd.py",
+  "pytest": {
+    "passed": 15,
+    "seconds": 14.63
+  },
+  "dop853_comparison": {
+    "steps_s": [
+      0.01,
+      0.005,
+      0.0025
+    ],
+    "state_difference_norm": [
+      0.000102854430850902,
+      2.6900840735856754e-05,
+      6.8683180981252865e-06
+    ]
+  },
+  "third_harmonic": {
+    "phase_step_rad": [
+      0.15,
+      0.075
+    ],
+    "pv_difference_norm": [
+      8.0855489235717e-06,
+      2.0464982519117593e-06
+    ]
+  },
+  "smoke": {
+    "synthetic": {
+      "source_result": "/tmp/pahbd-synthetic-smoke-v1/result.json",
+      "seed": 17,
+      "code_base_revision": "8e6848c2ab0a59fa12cf11f53818c85c6e05346d",
+      "code_dirty_at_execution": true,
+      "window_ids": [
+        "synthetic_periodic:0"
+      ],
+      "flight_ids": [
+        "synthetic_periodic"
+      ],
+      "result": {
+        "optimizer_steps": [
+          {
+            "step": 1,
+            "state": 0.00939479996364198,
+            "variance": 0.12597130752584304,
+            "cycle": 0.00012172771469285509,
+            "total": 0.010666685810369695,
+            "gradient_norm": 0.11297816248734549
+          },
+          {
+            "step": 2,
+            "state": 0.008713211989624107,
+            "variance": 0.12405902346553521,
+            "cycle": 0.00012188870842748496,
+            "total": 0.009965991095122207,
+            "gradient_norm": 0.10610980446083368
+          }
+        ],
+        "changed_parameter_tensors": 19,
+        "parameter_count": 50683,
+        "events": [
+          {
+            "history": 44,
+            "targets": 88,
+            "controls": 3
+          }
+        ],
+        "per_window_checks": [
+          {
+            "flight_id": "synthetic_periodic",
+            "finite_loss": true,
+            "finite_gradients": true
+          }
+        ]
+      }
+    },
+    "native": {
+      "source_result": "/tmp/pahbd-native-smoke-v2/result.json",
+      "seed": 17,
+      "code_base_revision": "8e6848c2ab0a59fa12cf11f53818c85c6e05346d",
+      "code_dirty_at_execution": true,
+      "window_ids": [
+        "4c77a3e74b4c8e26d021fd1fa2bc618a2f2f52e005eb5022ecdf680c40678bfb:1:29:h500000:f200000",
+        "37ff9f8ea4e2e378fc13394288aa145a462259e2f53fa15af9511082f0e6d558:1:30:h500000:f200000"
+      ],
+      "flight_ids": [
+        "4c77a3e74b4c8e26d021fd1fa2bc618a2f2f52e005eb5022ecdf680c40678bfb:1",
+        "37ff9f8ea4e2e378fc13394288aa145a462259e2f53fa15af9511082f0e6d558:1"
+      ],
+      "result": {
+        "optimizer_steps": [
+          {
+            "step": 1,
+            "state": 145.78098458790873,
+            "variance": 121.05810428858487,
+            "cycle": 0.0,
+            "total": 146.99156563079458,
+            "gradient_norm": 156.53453971396314
+          }
+        ],
+        "changed_parameter_tensors": 19,
+        "parameter_count": 50683,
+        "events": [
+          {
+            "history": 208,
+            "targets": 42,
+            "controls": 37
+          },
+          {
+            "history": 208,
+            "targets": 40,
+            "controls": 37
+          }
+        ],
+        "per_window_checks": [
+          {
+            "flight_id": "4c77a3e74b4c8e26d021fd1fa2bc618a2f2f52e005eb5022ecdf680c40678bfb:1",
+            "finite_loss": true,
+            "finite_gradients": true
+          },
+          {
+            "flight_id": "37ff9f8ea4e2e378fc13394288aa145a462259e2f53fa15af9511082f0e6d558:1",
+            "finite_loss": true,
+            "finite_gradients": true
+          }
+        ]
+      }
+    }
+  },
+  "native_500ms": {
+    "window_id": "4c77a3e74b4c8e26d021fd1fa2bc618a2f2f52e005eb5022ecdf680c40678bfb:1:29:h500000:f500000",
+    "native_targets": 100,
+    "cycle_pairs": 35,
+    "finite_loss": true,
+    "finite_gradients": true,
+    "optimizer_steps": 0
+  },
+  "formal_gpu_training": false,
+  "sealed_test_access": false,
+  "performance_comparison": false,
+  "note": "Native smoke rerun after lazy-loader change; pytest also contains a one-step synthetic optimizer check. Counts above describe named invocations, not total updates across repeated engineering runs."
+}
