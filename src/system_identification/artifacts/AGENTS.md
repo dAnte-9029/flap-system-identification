@@ -1,6 +1,5 @@
-# Artifact I/O Guidelines
+# Artifact I/O
 
-- Own only paths and manifest, checkpoint, prediction, and report I/O; do not train, select models, or compute evaluation metrics.
-- Never overwrite a non-empty existing run unless the established caller explicitly allows it.
-- Preserve schemas and provenance for versions, Git state, splits, metadata, and parameter sources.
-- Artifact behavior changes require separate authorization; this phase only migrates existing behavior.
+Own paths, manifests, checkpoints, predictions, and report serialization. Avoid embedding training, model selection, or metric computation here.
+
+Do not silently overwrite existing results. Preserve enough data/model/split/version information to identify scientific outputs. Reuse existing provenance when available; do not introduce checksum scans, redundant receipts, or new audit formats without a concrete need. Artifact format changes are allowed when required by the requested research design, with affected readers updated in the same task.

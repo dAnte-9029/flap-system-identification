@@ -1,105 +1,34 @@
-# Repository Guidelines
+# Flapping-Wing System Identification: Agent Guidelines
 
-## Repository Startup
+## Goal and working style
 
-At the start of every task in this repository, before running project commands
-or editing files:
+This repository develops bird-scale flapping-wing dynamics models from flight data, with emphasis on control-relevant prediction. Prioritize the requested scientific result over procedural completeness. An approved research idea may require substantial changes to state representation, model architecture, learning targets, training, and evaluation; do not reduce it to a small patch just to preserve the old design.
 
-1. Discover every `AGENTS.md` file in the repository and read each one in full.
-   Do this even when Codex was started from the repository root and the task
-   initially appears to concern only one directory.
-2. Apply the root instructions repository-wide. Apply each nested
-   `AGENTS.md` to work within its directory subtree. If instructions conflict,
-   the more specific nested file takes precedence for that subtree.
-3. Use the `flap-train-gpu` Conda environment for project Python commands,
-   tests, analysis, and training. Prefer the environment interpreter directly:
+Inspect relevant code and contracts, then implement the requested scope. Do not add exploratory ablations, multi-seed sweeps, audits, manifests, or documentation tasks unless requested or essential to the scientific claim. Keep experiment design separate from implementation: Codex should execute the chosen design, not quietly replace it with incremental variants.
 
-   ```bash
-   /home/zn/anaconda3/envs/flap-train-gpu/bin/python
-   ```
+## Context and environment
 
-   For example, run the full test suite with:
+- Read this file and the nearest applicable nested `AGENTS.md` for paths being changed. Do not recursively read every `AGENTS.md` or every historical plan.
+- Consult the relevant active configuration, contract, or prior run only when it matters to the task. Historical documents are evidence, not permanent workflow gates.
+- Use `/home/zn/anaconda3/envs/flap-train-gpu/bin/python` for repository Python, tests, and training. Do not silently switch environments or modify dependencies; report an unavailable environment rather than guessing.
+- Preserve unrelated files and uncommitted user work. Do not expand the task into an unrelated cleanup.
 
-   ```bash
-   /home/zn/anaconda3/envs/flap-train-gpu/bin/python -m pytest -q
-   ```
+## Data and physical contracts
 
-4. Do not install or change project dependencies unless the user explicitly
-   authorizes that scope. If the environment is missing or unusable, stop and
-   report the problem instead of silently falling back to another interpreter.
+- Select the data registry for the **requested dataset family**. Canonical flight-sample experiments use `configs/data/canonical_dataset_registry.yaml`; native velocity/rate experiments use `configs/data/velocity_rate_dataset_registry.yaml`. Follow the selected versioned manifest and explicit user overrides. Do not force an unrelated experiment back to the canonical sample registry.
+- For canonical ratio-8 data, use the registered `mechanical_phase_rad` and `flap_frequency_hz` definitions. For other datasets, follow their declared phase, frequency, timestamp, and sample contracts. Never silently mix conventions.
+- For DeLaurier-based studies, resolve the applicable prior using `configs/physics/delaurier_prior_registry.yaml` and the experiment contract. New non-DeLaurier models do not need to load a DeLaurier prior. Never silently replace a missing selected artifact with an older or superseded artifact.
+- Keep train/validation/test roles explicit. Fit statistics and learn parameters from train data; use validation for development and selection; keep sealed test data out of development unless a final-evaluation protocol explicitly authorizes access. Do not open test data or compute its hashes as an incidental check.
+- Preserve log/sample identity, time ordering, causal input availability, and segment/gap boundaries. During autonomous rollout, do not inject future measured states or labels unless the experiment is explicitly identified as an oracle/teacher-forced diagnostic.
+- State frames, units, signs, moment reference points, and mass/geometry sources when they affect an experiment. Distinguish whole-aircraft effective wrench from isolated wing loads.
 
-## Skill Policy
+## Experiments and verification
 
-For work in this repository, treat the following skills as the default allowed set. These should stay enabled by default because they match the main workflows here: IsaacSim simulation development, PX4/control code work, and robotics paper writing.
+- Run the experiment that answers the user's research question, with meaningful baseline comparison and the requested metrics. Do not automatically add further ablations, thresholds, parameter sweeps, or repeated runs.
+- Validate proportional to risk: a focused executable check for a local code change; targeted numerical or data checks for changed physics, labels, datasets, training, or evaluation contracts. Recheck after failures or relevant subsequent changes, not by default after every step.
+- Preserve existing artifact provenance and integrity checks where necessary, but do not repeatedly calculate SHA256, produce hash inventories, or generate audit receipts for unrelated new runs. Use hashes when artifact identity or corruption is genuinely at issue.
+- Do not overwrite prior datasets, checkpoints, or results without instruction. Record only the experiment configuration, dataset/split identity, code revision, seed when relevant, and metrics needed to understand and reproduce the result. Reuse existing machinery rather than creating another verification framework.
 
-- Core process skills: `brainstorming`, `writing-plans`, `test-driven-development`, `systematic-debugging`, `verification-before-completion`, `requesting-code-review`, `receiving-code-review`, `using-git-worktrees`
-- Parallel execution skills: `dispatching-parallel-agents`, `subagent-driven-development`, `executing-plans`
-- Paper and documentation skills: `literature-review`, `citation-management`, `venue-templates`, `scientific-writing`, `scientific-visualization`, `markdown-mermaid-writing`, `scientific-slides`
-- Analysis and plotting skills: `get-available-resources`, `matplotlib`, `seaborn`, `plotly`, `statistical-analysis`, `statsmodels`
+## Completion
 
-For this repository, treat the following skill groups as disabled by default unless the user explicitly asks for them or the task clearly requires them:
-
-- Bioinformatics, genomics, proteomics, single-cell, and pathway analysis skills
-- Drug discovery, medicinal chemistry, molecular docking, cheminformatics, and compound database skills
-- Clinical medicine, treatment planning, clinical reporting, medical regulatory, and trial database skills
-- Finance, macroeconomics, SEC, Treasury, hedge fund, and market data skills
-- Astronomy, quantum computing, and materials science skills
-- Wet-lab automation, LIMS, ELN, microscopy, pathology, flow cytometry, and laboratory platform integration skills
-- General scientific database skills unrelated to robotics, controls, simulation, or academic writing in this project
-
-When working in this repository:
-
-- Prefer the smallest relevant skill set instead of loading broad scientific skill chains.
-- Do not invoke unrelated scientific database or life-science skills for IsaacSim, PX4, RL, controls, or robotics writing tasks.
-- Keep context tight: read only the minimum skill content needed for the current task.
-- If a task is purely IsaacSim/PX4 coding, default to the core process skills only.
-- If a task is paper-writing related, add only the specific writing or citation skills needed for that document step.
-
-## DeLaurier prior policy
-
-For new longitudinal-force analysis, resolve the DeLaurier prior through
-`configs/physics/delaurier_prior_registry.yaml`. Use the entry selected by
-`default_prior_id` unless the user explicitly requests a newer manifest-backed
-active prior.
-
-- Do not use entries marked `legacy` or `superseded` except for explicitly
-  requested historical reproduction.
-- Do not infer authority from a dated directory name or from an older
-  correction artifact that happens to reference a prior.
-- If the authoritative prior artifact is missing for the requested train or
-  validation partition, fail and report the missing artifact. Never fall back
-  to a legacy prior.
-- Before analysis, record the resolved prior ID, absolute path, lifecycle
-  status, physics source commit, frame/airflow/phase contracts, and partition
-  coverage in the run manifest.
-- Test-window diagnostic outputs are not training-ready prior artifacts and
-  must not be used to choose a correction structure.
-
-## Canonical dataset policy
-
-For all new experiments, resolve the canonical dataset through
-`configs/data/canonical_dataset_registry.yaml`. Use the entry selected by
-`default_dataset_id` unless the user explicitly requests a versioned
-historical reproduction.
-
-- The current authoritative dataset is
-  `canonical_v0.4_training_ready_split_measured_massprops_ratio8_phasefix_v3`.
-- Do not select a dataset by directory timestamp, modification time, or a
-  legacy script default.
-- Do not use the corresponding `v1` rebuild: its two no-`hall_event` logs used
-  an inaccurate fallback near the Hall crossing.
-- Do not use the source v0.2 ratio-8 dataset directly for new experiments. It
-  remains provenance input only; its logged phase/frequency contract is
-  superseded by the v0.3 dataset.
-- Use `mechanical_phase_rad` as the only phase coordinate and
-  `flap_frequency_hz` as the ratio-8 corrected frequency. Do not reconstruct a
-  parallel phase from legacy columns.
-- This immutable dataset contains the preserved whole-log train, validation,
-  and test assignments. EDA0/C1 and all pre-C7 correction work must request
-  train/validation explicitly and must not load the test Parquet; test remains
-  locked until the applicable gate.
-- Record the resolved dataset ID, repository-relative path, manifest hash,
-  sample artifact hashes, partitions, phase contract, and frequency contract
-  in every downstream run manifest.
-- Fail if the registered manifest or Git LFS sample artifacts are missing or
-  their hashes do not match. Never fall back silently to an older dataset.
+Report concisely what changed, what was actually run, the key measurements, and material limitations. Do not claim unexecuted tests. Stop when the requested deliverable is complete; do not launch follow-on stages without a request.

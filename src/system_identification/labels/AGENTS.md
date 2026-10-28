@@ -1,5 +1,7 @@
-# Labels Guidelines
+# Labels and Targets
 
-Labels represent the whole-aircraft effective external wrench, not isolated wing loads. Every label contract must state frame, unit, sign, and moment reference point.
+Keep target semantics explicit: frame, unit, sign, timing, moment reference, and whether a label is a whole-aircraft effective wrench, kinematic rate, or another observable. Do not misdescribe whole-aircraft effective-wrench labels as measured wing-only loads.
 
-Align labels and priors one-to-one with stable keys; equal row counts are not alignment evidence. This directory does not fit physics models, train models, or select models. A migration must not change the label definition.
+Align labels, priors, and predictions by stable sample/log/time keys; equal row counts do not demonstrate alignment. New target definitions and reconstruction methods are valid research changes. Version the changed meaning and update consumers together; do not silently reinterpret an old target.
+
+Use train data for fitted target-processing choices. Keep sealed test information out of design and selection.

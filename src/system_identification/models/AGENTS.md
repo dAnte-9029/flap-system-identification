@@ -1,5 +1,7 @@
-# Models Guidelines
+# Models
 
-This directory owns feature definitions, model structures, inference contracts, and only the serialization data structures required by inference. It must not read train, validation, or test paths, run training loops, select candidates, plot, or report results.
+Own reusable model structures, input/output contracts, features, and inference. Research may replace architectures, add explicit slow/periodic state representations, alter prediction targets, or restructure modules as the approved design requires. No separate authorization stage is needed simply because the change is substantial.
 
-Normalization fitting remains in training and may use train data only. Keep raw physics, calibrated physics, structured discrepancy, and neural residual parameters separate. A migration must not change model structure or defaults; new models require a separately authorized research stage.
+Do not use future observations, target values, or labels in deployable input features. Inference should not silently inspect test split paths or fit normalization. Keep physical priors, calibrated parameters, and learned corrections identifiable when a model uses them; purely learned models do not require fictitious physics components.
+
+Keep training/selection code in appropriate training workflows. Do not require a baseline switch, extra ablation, or backward-compatibility scaffold unless needed for the requested comparison or an actual downstream dependency.
