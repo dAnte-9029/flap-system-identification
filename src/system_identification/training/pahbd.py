@@ -107,7 +107,7 @@ def train_steps(model,windows,optimizer,steps,loss_config=None,sampler=None,seed
         if not torch.isfinite(loss):raise FloatingPointError('nonfinite training loss')
         loss.backward()
         grads=[p.grad for p in model.parameters() if p.grad is not None]
-        if not grads or not all(torch.isfinite(g).all() for g in grads):raise FloatingPointError('invalid gradients')
+        if not grads or not torch.stack([torch.isfinite(g).all() for g in grads]).all():raise FloatingPointError('invalid gradients')
         norm=torch.nn.utils.clip_grad_norm_(model.parameters(),10.)
         optimizer.step()
         records.append(dict(step=sampler.draws,window_id=window.metadata['window_id'],flight_id=window.metadata['flight_id'],horizon_us=int(sampler.index.iloc[index].horizon_us),actual_horizon_s=max(e.measurement for e in window.targets),**{k:float(v.detach()) for k,v in parts.items()},gradient_norm=float(norm)))
