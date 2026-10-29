@@ -1,0 +1,120 @@
+{
+  "metadata": {
+    "config": {
+      "model": {
+        "latent": 12,
+        "width": 128,
+        "forcing_harmonics": 3,
+        "control_harmonics": 3,
+        "rank": 2,
+        "mode": "A",
+        "max_step": 0.005,
+        "phase_step": 0.15,
+        "latent_rate": 0.8,
+        "latent_bound": 2.0,
+        "actuator_tau": 0.06,
+        "variance_min": 1e-05,
+        "variance_max": 25.0,
+        "phase_mode": "relative",
+        "frequency_coefficients": [
+          3.6354511983566393,
+          23.393570068972757,
+          -5.126725395181777
+        ],
+        "replay_seconds": 0.6,
+        "uncertainty_mode": "gaussian",
+        "frequency_noise_psd": 0.04,
+        "phase_noise_psd": 0.01
+      },
+      "data": {
+        "root": "/home/zn/flap-system-identification/dataset/velocity_rate_multistep_v1",
+        "registry": "configs/data/velocity_rate_dataset_registry.yaml",
+        "history_us": 500000,
+        "horizon_us": [
+          200000,
+          500000,
+          1000000,
+          2000000
+        ],
+        "phase_policy": "shared_or_average",
+        "reference_contract": "configs/pahbd/phase_reference.json"
+      },
+      "loss": {
+        "variance_weight": 0.01,
+        "cycle_weight": 0.1
+      },
+      "optimizer": {
+        "lr": 0.0003
+      },
+      "normalization": "fixed_unit_scales_no_data_fit",
+      "seed": 17,
+      "frequency_source": "experiments/phase_coupled_mpc_v1/frequency_fit.json",
+      "execution_contract": "CPU smoke default. Formal native training requires explicit mode, steps and eligible scientific objective. Never auto-launch.",
+      "training": {
+        "objective": "shared_periodic_AB",
+        "validation_interval": 1000,
+        "patience": 10,
+        "validation_windows_per_group": 1,
+        "sampling": "flight permutation -> horizon permutation -> uniform eligible window",
+        "selection": "fixed seeded validation subset; equal flights then horizons; source-scaled loss",
+        "average_dynamics_override": "Set objective=average_dynamics explicitly; this does not test periodic A/B hypothesis"
+      },
+      "uncertainty_contract": "Uncalibrated continuous independent diffusion PSD assumptions; correlated joint covariance; Gaussian harmonic expectation closure, not calibrated coverage"
+    },
+    "model_config": {
+      "latent": 12,
+      "width": 128,
+      "forcing_harmonics": 3,
+      "control_harmonics": 3,
+      "rank": 2,
+      "mode": "A",
+      "max_step": 0.005,
+      "phase_step": 0.15,
+      "latent_rate": 0.8,
+      "latent_bound": 2.0,
+      "actuator_tau": 0.06,
+      "variance_min": 1e-05,
+      "variance_max": 25.0,
+      "phase_mode": "relative",
+      "replay_seconds": 0.6,
+      "uncertainty_mode": "gaussian",
+      "frequency_noise_psd": 0.04,
+      "phase_noise_psd": 0.01,
+      "frequency_coefficients": [
+        3.6354511983566393,
+        23.393570068972757,
+        -5.126725395181777
+      ]
+    },
+    "seed": 17,
+    "code_revision": "ab1896ed181a60c1d8f781c3db8e9b62ba238792",
+    "code_dirty": true,
+    "mode": "smoke",
+    "source": "synthetic",
+    "device": "cpu",
+    "formal_performance_claim": false
+  },
+  "result": {
+    "optimizer_steps": [
+      {
+        "step": 1,
+        "window_id": "synthetic_periodic:0",
+        "flight_id": "synthetic_periodic",
+        "horizon_us": 495000,
+        "actual_horizon_s": 0.49499999999999966,
+        "state": 0.009455860001095112,
+        "variance": 0.1250704717976222,
+        "cycle": 0.00012102341064311201,
+        "total": 0.010718667060135644,
+        "gradient_norm": 0.11440772504426466
+      }
+    ],
+    "per_window_checks": [
+      {
+        "flight_id": "synthetic_periodic",
+        "finite_loss": true,
+        "finite_gradients": true
+      }
+    ]
+  }
+}

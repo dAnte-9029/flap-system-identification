@@ -25,8 +25,12 @@ DEFAULT_ROOT='/home/zn/flap-system-identification/dataset/velocity_rate_multiste
 
 class NativeWindows:
     def __init__(self,root=DEFAULT_ROOT,registry=DEFAULT_REGISTRY,split='train',
-                 history_us=500000,horizon_us=200000,dtype=torch.float64,device='cpu'):
+                 history_us=500000,horizon_us=(200000,500000,1000000,2000000),dtype=torch.float64,device='cpu',
+                 phase_policy='shared_or_average',relative_reference_id=None,evidence=None,reference_contract=None):
         if split not in ('train','validation'):raise ValueError('sealed test is not an allowed split')
+        if phase_policy not in ('shared_or_average','average','relative_single'):raise ValueError('invalid phase policy')
+        if phase_policy=='relative_single' and not relative_reference_id:raise ValueError('explicit single log reference required')
+        self.phase_policy=phase_policy;self.relative_reference_id=relative_reference_id
         self.root=Path(root);self.split=split;self.dtype=dtype;self.device=device
         entry=yaml.safe_load(Path(registry).read_text())['datasets']['velocity_rate_multistep_v1']
         # One identity check at construction; never hash/open sealed artifacts.
@@ -36,8 +40,23 @@ class NativeWindows:
         if self.contract['dataset_id']!='velocity_rate_multistep_v1':raise ValueError('wrong dataset family')
         self.provenance={m['flight_id']:m for m in json.loads((self.root/'flight_provenance.json').read_text()) if m['split']==split}
         w=pd.read_parquet(self.root/f'windows_{split}.parquet')
-        self.windows=w[(w.sampling_group=='main_50hz')&(w.history_us==history_us)&(w.horizon_us==horizon_us)
+        self.windows=w[(w.sampling_group=='main_50hz')&(w.history_us==history_us)&(w.horizon_us.isin([horizon_us] if isinstance(horizon_us,int) else horizon_us))
                        &w.firmware_verified&~w.provenance_review].reset_index(drop=True)
+        # REVIEW is excluded for formal supervision, not repaired by fractional weighting.
+        self.windows=self.windows[~self.windows.review & self.windows.complete_state_sequence].reset_index(drop=True)
+        from .pahbd_phase import annotate_phase
+        hall_events=pd.read_parquet(self.root/f'native_hall_event_{split}.parquet',columns=['flight_id','timestamp_us'])
+        self.windows=annotate_phase(self.windows,self.provenance,hall_events=hall_events,**({'evidence':evidence} if evidence else {}))
+        from .pahbd_phase import apply_shared_reference
+        reference_contract=reference_contract or Path(DEFAULT_REGISTRY).parents[1]/'pahbd/phase_reference.json'
+        self.windows=apply_shared_reference(self.windows,self.provenance,reference_contract)
+        if phase_policy=='shared_or_average' and self.windows.loc[self.windows.shared_periodic_eligible,'phase_reference_id'].nunique()>1:
+            raise ValueError('multiple uncertified-between-group sensor references cannot share periodic coefficients')
+        self.windows['phase_policy']=phase_policy
+        if phase_policy=='relative_single':
+            self.windows=self.windows[(self.windows.log_reference_id==relative_reference_id)&self.windows.relative_phase_eligible].reset_index(drop=True)
+            self.windows['phase_reference_id']=self.windows.log_reference_id
+            self.windows['phase_mode']='log_relative'
         self._cached_id=None;self.tables={}
 
     def tensor(self,value):return torch.as_tensor(value,dtype=self.dtype,device=self.device)
@@ -84,6 +103,8 @@ class NativeWindows:
 
     def __getitem__(self,index):
         w=self.windows.iloc[index];fid=w.flight_id;self._load(fid);meta=self.provenance[fid]
+        shared=bool(w.shared_periodic_eligible) and self.phase_policy!='relative_single'
+        if shared:meta=dict(meta,phase_origin_count=float(w.reference_count))
         parameters=meta['parameters']
         if any(parameters.get(k)!=v for k,v in self.contract['required_mapping_parameters'].items()):
             raise ValueError('unverified actuator channel mapping')
@@ -127,6 +148,8 @@ class NativeWindows:
         fseed=seeds.get('flap_frequency');pseed=seeds.get('encoder_count')
         valid=(fseed is not None and pseed is not None and bool(fseed.mask[12]) and bool(pseed.mask[13])
                and start-fseed.measurement<=.12 and start-pseed.measurement<=.05)
+        valid=valid and bool(w.relative_phase_eligible)
+        periodic=valid and (bool(w.shared_periodic_eligible) or self.phase_policy=='relative_single') and self.phase_policy!='average'
         if valid:
             f=fseed.value[13:14].clone()
             phi=pseed.value[14:15]+2*math.pi*f*(start-pseed.measurement)
@@ -136,11 +159,19 @@ class NativeWindows:
             f=-(b0+bu*controls.values[0,:1])/bf;phi=self.tensor([0.])
             events=[replace(e,mask=torch.cat((e.mask[:13],torch.zeros_like(e.mask[13:])))) for e in events]
         initial=State(x,self.tensor(np.zeros(12)),f,phi,controls.values[0,1:].clone(),
-                      self.tensor([1.]*6+[.1]*3+[1.]*3+[.2,.2]),self.tensor([float(valid)]))
+                      self.tensor([1.]*6+[.1]*3+[1.]*3+[.2,.2]),self.tensor([float(periodic)]))
         metadata=dict(window_id=w.window_id,flight_id=fid,split=self.split,segment_id=int(w.segment_id),
                       decision_us=decision,support_start_us=lower,support_end_us=int(w.support_end_us),
                       manifest_sha256=self.manifest_sha256,phase_valid=bool(valid),
-                      phase_reference='whole_log_encoder_relative_unverified_wing_zero',
+                      phase_reference=('certified_shared_sensor_index' if shared else 'whole_log_encoder_relative_unverified_wing_zero'),
+                      phase_policy=self.phase_policy,phase_mode=w.phase_mode,periodic_enabled=bool(periodic),
+                      phase_reference_id=w.phase_reference_id,relative_phase_eligible=bool(w.relative_phase_eligible),
+                      shared_periodic_eligible=bool(w.shared_periodic_eligible),
+                      sensor_index_shared_verified=bool(w.sensor_index_shared_verified),mechanical_zero_verified=bool(w.mechanical_zero_verified),
+                      hall_event_traceable=bool(w.hall_event_traceable),reference_updates=int(w.reference_updates),
+                      software_reference_unchanged=bool(w.software_reference_unchanged),
+                      reference_change_max_rad=float(w.reference_change_max_rad),hall_publication_verified=bool(w.hall_publication_verified),
+                      horizon_us=int(w.horizon_us),actual_horizon_s=(end-decision)*1e-6,
                       phase_initialization='causal held-frequency age extrapolation',
                       bootstrap_measurements={k:v.measurement for k,v in seeds.items()},
                       controls='logged_ZOH_conditional_replay',control_mapping=self.contract['control_mapping'],
@@ -163,9 +194,12 @@ class NativeWindows:
                             if targets[j].source==e.source and phases[j] is not None]
                 if candidates:
                     j,error=min(candidates,key=lambda pair:pair[1])
-                    if error<=.15:pairs.append((i,j))
+                    neighbors=[abs(phases[k]-phases[j]) for k in range(len(targets))
+                               if k!=j and targets[k].source==e.source and phases[k] is not None]
+                    tolerance=min(neighbors)/2 if neighbors else 0.
+                    if error<=tolerance:pairs.append((i,j))
         metadata.update(cycle_pairs=pairs,target_phase_reference=phases,
-                        cycle_section_tolerance_rad=.15,
+                        cycle_section_tolerance_rad='half nearest native same-source phase spacing',
                         cycle_reference='offline_encoder_bracket_30ms_native_state_pairs_not_exact_wing_sections')
         return Window(initial,start,sorted(events,key=lambda e:e.availability),controls,targets,metadata)
 
@@ -198,6 +232,10 @@ class ConfiguredWindows:
         self.dataset=dataset;self.indices=list(indices);self.config=config
 
     def __len__(self):return len(self.indices)
+
+    @property
+    def index(self):
+        return self.dataset.windows.iloc[self.indices].reset_index(drop=True)
 
     def __getitem__(self,index):
         return configure_latent(self.dataset[self.indices[index]],self.config)

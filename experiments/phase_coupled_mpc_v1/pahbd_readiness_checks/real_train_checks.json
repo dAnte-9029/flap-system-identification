@@ -1,0 +1,102 @@
+[
+  {
+    "flight_id": "4c77a3e74b4c8e26d021fd1fa2bc618a2f2f52e005eb5022ecdf680c40678bfb:1",
+    "window_id": "4c77a3e74b4c8e26d021fd1fa2bc618a2f2f52e005eb5022ecdf680c40678bfb:1:29:h500000:f200000",
+    "nominal_horizon_us": 200000,
+    "actual_horizon_s": 0.206448,
+    "load_seconds": 0.11023946898058057,
+    "forward_seconds": 1.0049002263695002,
+    "backward_seconds": 2.194273808039725,
+    "process_peak_rss_mib": 1918.5703125,
+    "history": 208,
+    "targets": 42,
+    "controls": 37,
+    "cycle_pairs": 0,
+    "periodic_enabled": false,
+    "loss_finite": true,
+    "gradients_finite": true,
+    "quaternion_norm_max_error": 0.0,
+    "joint_cov_min_eigenvalue": 0.0004828742005649541,
+    "joint_cov_f_phi": 0.003018994139592131,
+    "replay": {
+      "accepted": 206,
+      "rejected": 2,
+      "max_delay": 0.010053000000000006
+    }
+  },
+  {
+    "flight_id": "37ff9f8ea4e2e378fc13394288aa145a462259e2f53fa15af9511082f0e6d558:1",
+    "window_id": "37ff9f8ea4e2e378fc13394288aa145a462259e2f53fa15af9511082f0e6d558:1:30:h500000:f500000",
+    "nominal_horizon_us": 500000,
+    "actual_horizon_s": 0.498521,
+    "load_seconds": 0.14813988702371716,
+    "forward_seconds": 1.3069058959372342,
+    "backward_seconds": 2.0219883867539465,
+    "process_peak_rss_mib": 1943.77734375,
+    "history": 208,
+    "targets": 100,
+    "controls": 52,
+    "cycle_pairs": 38,
+    "periodic_enabled": false,
+    "loss_finite": true,
+    "gradients_finite": true,
+    "quaternion_norm_max_error": 1.1102230246251565e-16,
+    "joint_cov_min_eigenvalue": 0.0005030319682263488,
+    "joint_cov_f_phi": 0.004360749377739634,
+    "replay": {
+      "accepted": 206,
+      "rejected": 2,
+      "max_delay": 0.010043999999999997
+    }
+  },
+  {
+    "flight_id": "603a941c5ebbfcdf27b80b0d1c4b2de65dd4e114fdefb64bb70896e409c135a8:1",
+    "window_id": "603a941c5ebbfcdf27b80b0d1c4b2de65dd4e114fdefb64bb70896e409c135a8:1:30:h500000:f1000000",
+    "nominal_horizon_us": 1000000,
+    "actual_horizon_s": 1.004862,
+    "load_seconds": 0.165091410279274,
+    "forward_seconds": 1.8162211338058114,
+    "backward_seconds": 2.895501928869635,
+    "process_peak_rss_mib": 2101.2421875,
+    "history": 200,
+    "targets": 201,
+    "controls": 76,
+    "cycle_pairs": 139,
+    "periodic_enabled": false,
+    "loss_finite": true,
+    "gradients_finite": true,
+    "quaternion_norm_max_error": 2.220446049250313e-16,
+    "joint_cov_min_eigenvalue": 0.000495257053458282,
+    "joint_cov_f_phi": 0.004748981569484749,
+    "replay": {
+      "accepted": 198,
+      "rejected": 2,
+      "max_delay": 0.010048000000000001
+    }
+  },
+  {
+    "flight_id": "30f27b3c2ee46a05ed6108ec01a2150cd5c8fedaf4f0cb7a1f0347698412aacd:1",
+    "window_id": "30f27b3c2ee46a05ed6108ec01a2150cd5c8fedaf4f0cb7a1f0347698412aacd:1:29:h500000:f2000000",
+    "nominal_horizon_us": 2000000,
+    "actual_horizon_s": 1.995453,
+    "load_seconds": 0.2651830166578293,
+    "forward_seconds": 3.189894908107817,
+    "backward_seconds": 4.877524743322283,
+    "process_peak_rss_mib": 2452.3125,
+    "history": 203,
+    "targets": 398,
+    "controls": 126,
+    "cycle_pairs": 336,
+    "periodic_enabled": false,
+    "loss_finite": true,
+    "gradients_finite": true,
+    "quaternion_norm_max_error": 1.1102230246251565e-16,
+    "joint_cov_min_eigenvalue": 0.000540056628280766,
+    "joint_cov_f_phi": 0.004780920507157004,
+    "replay": {
+      "accepted": 201,
+      "rejected": 2,
+      "max_delay": 0.010023999999999977
+    }
+  }
+]

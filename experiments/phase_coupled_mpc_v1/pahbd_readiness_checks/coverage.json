@@ -1,0 +1,98 @@
+[
+  {
+    "split": "train",
+    "horizon_us": 200000,
+    "flights": 93,
+    "average_windows": 107816,
+    "relative_windows": 107816,
+    "shared_windows": 0,
+    "hall_traceable_windows": 52540,
+    "software_reference_update_windows": 106576,
+    "actual_horizon_s_min": 0.188774,
+    "actual_horizon_s_max": 0.20918299999999998
+  },
+  {
+    "split": "train",
+    "horizon_us": 500000,
+    "flights": 93,
+    "average_windows": 107054,
+    "relative_windows": 107054,
+    "shared_windows": 0,
+    "hall_traceable_windows": 52166,
+    "software_reference_update_windows": 105819,
+    "actual_horizon_s_min": 0.488013,
+    "actual_horizon_s_max": 0.508644
+  },
+  {
+    "split": "train",
+    "horizon_us": 1000000,
+    "flights": 93,
+    "average_windows": 104690,
+    "relative_windows": 104690,
+    "shared_windows": 0,
+    "hall_traceable_windows": 50948,
+    "software_reference_update_windows": 103459,
+    "actual_horizon_s_min": 0.987174,
+    "actual_horizon_s_max": 1.007703
+  },
+  {
+    "split": "train",
+    "horizon_us": 2000000,
+    "flights": 93,
+    "average_windows": 103312,
+    "relative_windows": 103312,
+    "shared_windows": 0,
+    "hall_traceable_windows": 50362,
+    "software_reference_update_windows": 102090,
+    "actual_horizon_s_min": 1.989382,
+    "actual_horizon_s_max": 2.010574
+  },
+  {
+    "split": "validation",
+    "horizon_us": 200000,
+    "flights": 27,
+    "average_windows": 35998,
+    "relative_windows": 35998,
+    "shared_windows": 0,
+    "hall_traceable_windows": 18667,
+    "software_reference_update_windows": 35998,
+    "actual_horizon_s_min": 0.18878199999999998,
+    "actual_horizon_s_max": 0.20915899999999998
+  },
+  {
+    "split": "validation",
+    "horizon_us": 500000,
+    "flights": 27,
+    "average_windows": 35850,
+    "relative_windows": 35850,
+    "shared_windows": 0,
+    "hall_traceable_windows": 18573,
+    "software_reference_update_windows": 35850,
+    "actual_horizon_s_min": 0.488206,
+    "actual_horizon_s_max": 0.508576
+  },
+  {
+    "split": "validation",
+    "horizon_us": 1000000,
+    "flights": 27,
+    "average_windows": 35310,
+    "relative_windows": 35310,
+    "shared_windows": 0,
+    "hall_traceable_windows": 18274,
+    "software_reference_update_windows": 35310,
+    "actual_horizon_s_min": 0.9871719999999999,
+    "actual_horizon_s_max": 1.007598
+  },
+  {
+    "split": "validation",
+    "horizon_us": 2000000,
+    "flights": 27,
+    "average_windows": 35147,
+    "relative_windows": 35147,
+    "shared_windows": 0,
+    "hall_traceable_windows": 18151,
+    "software_reference_update_windows": 35147,
+    "actual_horizon_s_min": 1.989279,
+    "actual_horizon_s_max": 2.0103079999999998
+  }
+]

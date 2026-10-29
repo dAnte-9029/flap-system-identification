@@ -74,7 +74,7 @@ def matched_control_response(model,belief,times,control_b,control_d,observed_b=N
 def control_sensitivity(model,state):
     """Jacobian of internal effective derivative w.r.t. actuator proxy, fixed x,h,f,phi."""
     c,_=model.flow.slow(state)
-    return torch.autograd.functional.jacobian(lambda a:model.flow.mixer(c,a,state.phi,state.phase_quality)[0],state.actuator,
+    return torch.autograd.functional.jacobian(lambda a:model.flow.mixer(c,a,state.phi,state.phase_quality,model.flow.phase_covariance(state)[...,1,1:2])[0],state.actuator,
                                                create_graph=True)
 
 
@@ -116,3 +116,142 @@ def wingbeat_transitions(model,belief,controls,count=2,max_time=2.,phase_toleran
     return dict(times=times,phase=torch.stack([s.phi for s in states]),
                 transitions=torch.stack([net_transition(a,b) for a,b in zip(starts,states)]),
                 reference='model_predicted_same_phase_not_verified_wing_position')
+
+
+def phase_scenarios(model,belief,times,controls):
+    """Four positive-weight joint initial sigma points, same state flow/control tape.
+
+    Initial (f,unwrapped phi) covariance is represented by scenarios. Each scenario
+    starts with zero residual joint covariance; uncalibrated process diffusion
+    grows inside each flow and damps harmonics in Gaussian mode. This is not a
+    calibrated probability ensemble or the exact nonlinear ensemble expectation.
+    """
+    cov=model.flow.phase_covariance(belief)
+    if cov.shape!=(2,2):raise ValueError('one belief required for scenario interface')
+    values,vectors=torch.linalg.eigh(cov)
+    if float(values.min()) < -1e-10:raise ValueError('non-PSD phase covariance')
+    root=vectors@torch.diag(values.clamp_min(0).sqrt())
+    offsets=torch.cat((math.sqrt(2)*root.T,-math.sqrt(2)*root.T),0)
+    states=[]
+    for delta in offsets:
+        s=belief.with_(f=belief.f+delta[:1],phi=belief.phi+delta[1:],phase_covariance=torch.zeros_like(cov))
+        states.append(model.flow.rollout(s,times,controls))
+    return dict(weights=belief.x.new_full((4,),.25),initial_offsets=offsets,states=states,
+                mean_phase=model.flow.rollout(belief,times,controls),
+                interpretation='joint_initial_sigma_points_with_conditional_Gaussian_process_diffusion_uncalibrated')
+
+
+class FrozenRollResponse:
+    """Read-only adapter to the existing frozen B/D observational roll cohort.
+
+    Retains original selection, labels, matching quality, flight and dependency
+    identities. It does not select pairs or score internal exchanged controls.
+    """
+    def __init__(self,source):
+        from pathlib import Path
+        import json
+        import pandas as pd
+        import importlib.util
+        self.source=Path(source)
+        self.config=json.loads((self.source/'config.json').read_text())
+        # Reuse the original component algorithm and metric definitions verbatim.
+        spec=importlib.util.spec_from_file_location('frozen_roll_analysis',self.source/'analyze.py')
+        self.analysis=importlib.util.module_from_spec(spec);spec.loader.exec_module(self.analysis)
+        root=self.source/'results'
+        self.windows=pd.read_csv(root/'windows.csv')
+        pairs=pd.read_csv(root/'pairs.csv');cohorts=pd.read_csv(root/'cohorts.csv')
+        if not set(self.windows.split)<= {'train','validation'} or not set(pairs.split)<= {'train','validation'}:
+            raise ValueError('sealed partitions forbidden')
+        self.pairs=pairs[pairs.pair_uid.isin(cohorts.loc[cohorts.cohort=='main','pair_uid'])].copy()
+        self.pairs['dependency_component']=-1
+        for split,g in self.pairs.groupby('split',sort=False):
+            labels=self.analysis.labels(g)
+            self.pairs.loc[g.index,'dependency_component']=g.pair_uid.map(labels)
+        tr=self.pairs[self.pairs.split=='train']
+        if len(tr)!=48 or tr.dependency_component.nunique()!=11:raise ValueError('frozen 48/11 cohort changed')
+
+    def load_truth(self):
+        import numpy as np
+        # Never materialize any historical model outputs in the archive.
+        with np.load(self.source/'results/native_rollouts.npz',allow_pickle=False) as z:
+            return {k:z[k] for k in ('truth','truth_initial','initial','future_count','native_time_us')}
+
+    def evaluate(self,predict,split='train',times=(.1,.2,.5)):
+        """predict(window_id, decision_relative_times)->(causal_anchor13, states[N,13]).
+
+        Callable adapters permit trained PA-HBD A/B and a future C. Factual logged
+        controls only. Targets retain the original aligned observation clock and
+        origin; model trajectories use their own causal encoded decision anchor.
+        """
+        import numpy as np
+        import pandas as pd
+        if split not in ('train','validation'):raise ValueError('sealed split')
+        z=self.load_truth();rows=[];cache={}
+        columns=[3,4,5,10,11,12];variables=['vx','vy','vz','p','q','r']
+        for pair in self.pairs[self.pairs.split==split].itertuples():
+            members=[]
+            for idx,wid in [(int(pair.a),pair.window_a),(int(pair.b),pair.window_b)]:
+                n=int(z['future_count'][idx]);t=z['native_time_us'][idx,:n+1]*1e-6
+                y=np.vstack((z['truth_initial'][idx],z['truth'][idx,:n]))[:,columns]
+                meta=self.windows.iloc[idx]
+                if meta.window_id!=wid:raise ValueError('frozen window ordering changed')
+                members.append((idx,wid,t,y,meta))
+            endpoint=min(.5,members[0][2][-1],members[1][2][-1])
+            at=np.array(list(times)+[endpoint]);kind=['requested']*len(times)+['supported_endpoint']
+            observed=[];predicted=[];anchors=[];valid=np.ones(len(at),bool)
+            for idx,wid,t,y,meta in members:
+                real,ok=self.analysis.interpolate(t,y,at);valid &= ok
+                shift=(int(meta.initial_measurement_us)-int(meta.decision_us))*1e-6
+                query=at+shift;ok &= query>=0
+                valid &= ok
+                key=(wid,tuple(query[ok]))
+                if key not in cache:cache[key]=predict(wid,query[ok].tolist())
+                anchor,states=cache[key];anchor=np.asarray(anchor)[columns]
+                pred=np.full_like(real,np.nan);pred[ok]=np.asarray(states)[:,columns]
+                observed.append(real);predicted.append(pred);anchors.append(anchor)
+            real_a,real_b=observed;pa,pb=predicted;aa,ab=anchors
+            ya0,yb0=members[0][3][0],members[1][3][0]
+            da,db=pa-aa,pb-ab;ra,rb=real_a-ya0,real_b-yb0
+            for k,t in enumerate(at):
+                for j,var in enumerate(variables):
+                    rows.append(dict(pair_uid=pair.pair_uid,split=split,flight_a=pair.flight_a,flight_b=pair.flight_b,
+                        dependency_component=int(pair.dependency_component),score=pair.score,strict=bool(pair.strict),
+                        variable=var,time_s=float(t),time_kind=kind[k],supported=bool(valid[k]),
+                        real=ra[k,j]-rb[k,j],pred=da[k,j]-db[k,j],
+                        increment_error_a=da[k,j]-ra[k,j],increment_error_b=db[k,j]-rb[k,j],
+                        absolute_error_a=pa[k,j]-real_a[k,j],absolute_error_b=pb[k,j]-real_b[k,j],
+                        causal_real=(real_a[k,j]-aa[j])-(real_b[k,j]-ab[j]),
+                        interpretation='factual_prediction_difference_vs_observational_increment_difference_not_counterfactual'))
+        frame=pd.DataFrame(rows);summary=[]
+        pairs=self.pairs[self.pairs.split==split]
+        # Dependencies remain those of the full frozen cohort even if support is missing.
+        for (var,kind),g in frame.groupby(['variable','time_kind']):
+            groups=[('endpoint',g)] if kind=='supported_endpoint' else list(g.groupby('time_s'))
+            for time,gg in groups:
+                for weighting in ('pair','flight','component'):
+                    supported=pairs[pairs.pair_uid.isin(gg.loc[gg.supported,'pair_uid'])]
+                    if len(supported)==0:weights={}
+                    elif weighting=='component':
+                        counts=supported.dependency_component.value_counts()
+                        weights={r.pair_uid:1/counts[r.dependency_component] for r in supported.itertuples()}
+                    else:weights=self.analysis.weights(supported,weighting)
+                    summary.append(dict(variable=var,time=time,kind=kind,weighting=weighting,
+                        **self.analysis.metrics(gg,gg.pair_uid.map(weights).fillna(0).to_numpy(),self.config['direction_floors'][var])))
+        component=[]
+        for (var,comp),g in frame[frame.time_kind=='supported_endpoint'].groupby(['variable','dependency_component']):
+            component.append(dict(variable=var,dependency_component=int(comp),**self.analysis.metrics(g,np.ones(len(g)),self.config['direction_floors'][var])))
+        return dict(rows=frame,summary=summary,components=component)
+
+
+def factual_predictor(model,windows):
+    """Lazy identity adapter for FrozenRollResponse; accepts explicit trained model."""
+    index=windows.index
+    lookup={wid:i for i,wid in enumerate(index.window_id)}
+    @torch.no_grad()
+    def predict(window_id,times):
+        w=windows[lookup[window_id]]
+        if not times:return model.encode(w).x.cpu().numpy(),torch.empty(0,13).numpy()
+        if min(times)<0 or max(times)>w.metadata['actual_horizon_s']+1e-9:raise ValueError('query outside factual support')
+        unique=sorted(set(times));belief,states=model(w,unique);bytime=dict(zip(unique,states))
+        return belief.x.cpu().numpy(),torch.stack([bytime[t].x for t in times]).cpu().numpy()
+    return predict

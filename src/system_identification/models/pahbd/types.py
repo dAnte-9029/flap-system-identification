@@ -13,6 +13,8 @@ class State:
     variance: torch.Tensor  # (...,14): p,v,body rotation,omega,f,phi diagonal proxy
     phase_quality: torch.Tensor  # (...,1) fixed causal reference confidence [0,1]
 
+    phase_covariance: torch.Tensor | None = None  # joint unwrapped (f, phi), never modulo covariance
+
     def with_(self, **kwargs):
         return replace(self, **kwargs)
 

@@ -1,0 +1,29 @@
+{
+  "schema": "pahbd_phase_reference_v1",
+  "status": "no_certified_shared_sensor_index_intervals",
+  "evidence": [
+    "experiments/phase_coupled_mpc_v1/phase_per_flight.csv",
+    "experiments/phase_coupled_mpc_v1/phase_by_date.csv",
+    "experiments/phase_coupled_mpc_v1/phase_resets.csv.gz",
+    "experiments/phase_coupled_mpc_v1/raw_verification.json",
+    "experiments/phase_coupled_mpc_v1/report_zh.md"
+  ],
+  "reason": "Hall existence and concentrated within-log phase do not certify a shared sensor index. Candidate publication bounds still require publisher/order verification. Mechanical wing zero is unresolved.",
+  "certified_intervals": [],
+  "interval_schema": {
+    "flight_id": "exact frozen physical flight identity",
+    "start_us": "inclusive verified continuity/reference interval start",
+    "end_us": "inclusive verified continuity/reference interval end",
+    "reference_count": "encoder total count at the independently traceable Hall index; finite",
+    "reference_availability_us": "verified publication upper bound, no later than start_us",
+    "reference_id": "shared SENSOR index identity, not automatically wing position",
+    "sensor_index_shared_verified": true,
+    "causal_publication_verified": true,
+    "continuity_verified": true,
+    "mechanical_zero_verified": false,
+    "evidence": [
+      "nonempty source references required; no validation trajectory phase fitting"
+    ],
+    "reference_measurement_us": "measurement time of the referenced Hall event, no later than its availability bound"
+  }
+}

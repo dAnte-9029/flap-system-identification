@@ -22,9 +22,15 @@ class Config:
     variance_min: float = 1e-5
     variance_max: float = 25.
     phase_mode: str = 'relative'  # relative, disabled; no claim of shared wing zero
+    replay_seconds: float = .6  # bounded decision-time replay; older readings rejected
+    uncertainty_mode: str = 'gaussian'  # deterministic or Gaussian harmonic expectation
+    frequency_noise_psd: float = .04  # Hz^2/s, uncalibrated modeling assumption
+    phase_noise_psd: float = .01  # rad^2/s, independent continuous diffusion
     frequency_coefficients: tuple = (3.6354511983566393,23.393570068972757,-5.126725395181777)
 
     def __post_init__(self):
+        if self.uncertainty_mode not in ('deterministic','gaussian') or min(self.frequency_noise_psd,self.phase_noise_psd)<0 or self.replay_seconds<=0:
+            raise ValueError('invalid uncertainty/replay contract')
         if self.mode not in ('A','B') or self.phase_mode not in ('relative','disabled'):
             raise ValueError('unsupported model/reference mode')
         if min(self.latent,self.width,self.rank,self.forcing_harmonics,self.control_harmonics) < 1:
@@ -52,13 +58,17 @@ class PhasePropagator(nn.Module):
 
     def covariance(self, covariance, dt, process_noise=None):
         """Optional full 2x2 (f,phi) covariance interface; no calibrated uncertainty claim."""
-        bf = self.coefficients[2].to(covariance)
-        e = torch.exp(bf*dt)
-        j = dt if abs(float(bf)) < 1e-9 else torch.expm1(bf*dt)/bf
-        zero, one = torch.zeros_like(e), torch.ones_like(e)
-        F = torch.stack((e,zero,2*math.pi*j,one)).reshape(2,2)
-        result = F@covariance@F.T
-        return result if process_noise is None else result+process_noise*dt
+        # Exact continuous linear SDE: df=b_f f dt+sqrt(q_f)dW_f,
+        # dphi=2*pi*f dt+sqrt(q_phi)dW_phi. Van Loan integral obeys semigroup.
+        if dt < 0:raise ValueError('negative covariance duration')
+        A=covariance.new_tensor([[float(self.coefficients[2]),0.],[2*math.pi,0.]])
+        Q=torch.zeros_like(A) if process_noise is None else process_noise.to(covariance)
+        if Q.shape != (2,2) or not torch.allclose(Q,Q.T) or torch.linalg.eigvalsh(Q).min() < 0:
+            raise ValueError('process_noise must be PSD spectral density')
+        block=torch.cat((torch.cat((A,Q),1),torch.cat((torch.zeros_like(A),-A.T),1)),0)
+        E=torch.matrix_exp(block*dt);F=E[:2,:2];discrete=E[:2,2:]@F.T
+        result=F@covariance@F.T+discrete
+        return (result+result.transpose(-1,-2))/2
 
 
 class SlowBackbone(nn.Module):
@@ -121,12 +131,15 @@ class ControlMixer(nn.Module):
         G=torch.einsum('...hkor,hrj->...hkoj',left,self.right)
         return mean,B,forcing,G
 
-    def forward(self,c,actuator,phi,quality):
+    def forward(self,c,actuator,phi,quality,phase_variance=None):
         mean,B,F,G=self.coefficients(c);da=actuator-self.reference_control
         avg=mean+torch.einsum('...ij,...j->...i',B,da)
         def basis(H):
             k=torch.arange(1,H+1,device=phi.device,dtype=phi.dtype)
-            return torch.stack((torch.cos(phi*k),torch.sin(phi*k)),-1)
+            result=torch.stack((torch.cos(phi*k),torch.sin(phi*k)),-1)
+            if phase_variance is not None and self.cfg.uncertainty_mode=='gaussian':
+                result=result*torch.exp(-.5*k.square()*phase_variance)[...,None]
+            return result
         enabled=quality if self.cfg.phase_mode=='relative' else torch.zeros_like(quality)
         forcing=torch.einsum('...hk,...hko->...o',basis(self.cfg.forcing_harmonics),F)*enabled
         interaction=torch.einsum('...hk,...hkoj,...j->...o',basis(self.cfg.control_harmonics),G,da)*enabled

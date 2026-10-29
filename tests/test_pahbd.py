@@ -172,7 +172,7 @@ def test_evaluation_interfaces_and_train_only_normalization():
 def test_batched_flow_dimensions():
     m,w,_=fixture();s=w.initial
     from dataclasses import fields
-    s=s.with_(**{f.name:getattr(s,f.name).expand(2,-1).clone() for f in fields(s)})
+    s=s.with_(**{f.name:getattr(s,f.name).expand(2,-1).clone() for f in fields(s) if getattr(s,f.name) is not None})
     tape=ControlTape(w.controls.times,w.controls.values[:,None,:].expand(-1,2,-1))
     out=m.flow.propagate(s,w.start,.01,tape)
     assert out.x.shape==(2,13) and out.h.shape==(2,8)

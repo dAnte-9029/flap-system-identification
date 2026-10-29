@@ -1,20 +1,61 @@
 {
   "model": {
-    "latent": 12, "width": 128, "forcing_harmonics": 3, "control_harmonics": 3,
-    "rank": 2, "mode": "A", "max_step": 0.005, "phase_step": 0.15,
-    "latent_rate": 0.8, "latent_bound": 2.0, "actuator_tau": 0.06,
-    "variance_min": 0.00001, "variance_max": 25.0, "phase_mode": "relative",
-    "frequency_coefficients": [3.6354511983566393,23.393570068972757,-5.126725395181777]
+    "latent": 12,
+    "width": 128,
+    "forcing_harmonics": 3,
+    "control_harmonics": 3,
+    "rank": 2,
+    "mode": "A",
+    "max_step": 0.005,
+    "phase_step": 0.15,
+    "latent_rate": 0.8,
+    "latent_bound": 2.0,
+    "actuator_tau": 0.06,
+    "variance_min": 1e-05,
+    "variance_max": 25.0,
+    "phase_mode": "relative",
+    "frequency_coefficients": [
+      3.6354511983566393,
+      23.393570068972757,
+      -5.126725395181777
+    ],
+    "replay_seconds": 0.6,
+    "uncertainty_mode": "gaussian",
+    "frequency_noise_psd": 0.04,
+    "phase_noise_psd": 0.01
   },
   "data": {
     "root": "/home/zn/flap-system-identification/dataset/velocity_rate_multistep_v1",
     "registry": "configs/data/velocity_rate_dataset_registry.yaml",
-    "history_us": 500000, "horizon_us": 200000
+    "history_us": 500000,
+    "horizon_us": [
+      200000,
+      500000,
+      1000000,
+      2000000
+    ],
+    "phase_policy": "shared_or_average",
+    "reference_contract": "configs/pahbd/phase_reference.json"
   },
-  "loss": {"variance_weight": 0.01, "cycle_weight": 0.1},
-  "optimizer": {"lr": 0.0003},
+  "loss": {
+    "variance_weight": 0.01,
+    "cycle_weight": 0.1
+  },
+  "optimizer": {
+    "lr": 0.0003
+  },
   "normalization": "fixed_unit_scales_no_data_fit",
   "seed": 17,
   "frequency_source": "experiments/phase_coupled_mpc_v1/frequency_fit.json",
-  "execution_contract": "CPU engineering smoke by default; train requires explicit mode and steps"
+  "execution_contract": "CPU smoke default. Formal native training requires explicit mode, steps and eligible scientific objective. Never auto-launch.",
+  "training": {
+    "objective": "shared_periodic_AB",
+    "validation_interval": 1000,
+    "patience": 10,
+    "validation_windows_per_group": 1,
+    "sampling": "flight permutation -> horizon permutation -> uniform eligible window",
+    "selection": "fixed seeded validation subset; equal flights then horizons; source-scaled loss",
+    "average_dynamics_override": "Set objective=average_dynamics explicitly; this does not test periodic A/B hypothesis"
+  },
+  "uncertainty_contract": "Uncalibrated continuous independent diffusion PSD assumptions; correlated joint covariance; Gaussian harmonic expectation closure, not calibrated coverage"
 }
