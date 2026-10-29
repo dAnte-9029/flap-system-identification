@@ -26,8 +26,17 @@ class LieGroupFlow(nn.Module):
         return torch.diag_embed(s.variance[...,12:14]) if s.phase_covariance is None else s.phase_covariance
 
     def propagate_covariance(self,s,dt):
-        q=s.x.new_tensor([self.cfg.frequency_noise_psd,self.cfg.phase_noise_psd]).diag()
-        return self.phase.covariance(self.phase_covariance(s),dt,q)
+        key=(dt,s.x.device,s.x.dtype,self.cfg.frequency_noise_psd,self.cfg.phase_noise_psd,id(self.phase.coefficients),self.phase.coefficients._version)
+        if not hasattr(self,'_noise_cache'):self._noise_cache={}
+        if key not in self._noise_cache:
+            q=s.x.new_tensor([self.cfg.frequency_noise_psd,self.cfg.phase_noise_psd]).diag()
+            F,_=self.phase.transition(dt,s.x)
+            D=self.phase.covariance(s.x.new_zeros(2,2),dt,q,validated=True)
+            if len(self._noise_cache)>=4096:self._noise_cache.clear()
+            self._noise_cache[key]=(F,D)
+        F,D=self._noise_cache[key]
+        result=F@self.phase_covariance(s)@F.T+D
+        return (result+result.transpose(-1,-2))/2
 
     def step(self,s,u,dt):
         if dt <= 0:raise ValueError('positive step required')
@@ -54,23 +63,26 @@ class LieGroupFlow(nn.Module):
     def propagate(self,s,start,end,controls):
         if end < start-1e-12:raise ValueError('backwards propagation forbidden')
         tape=controls.canonical()
-        i=bisect.bisect_right(tape.times,start+1e-12)-1
-        if i<0:raise ValueError('no causal control at integration start')
-        t=start
-        while t < end-1e-12:
-            boundary=min(end,tape.times[i+1] if i+1<len(tape.times) else end)
-            span=boundary-t
-            if span <= 1e-12:i+=1;continue
+        for i,span in tape.intervals(start,end):
             u=tape.values[i]
-            fend,_=self.phase(s.f,s.phi,u[...,:1],span)
-            fmax=max(float(s.f.detach().abs().max()),float(fend.detach().abs().max()),1.)
+            # One host transfer after a learned belief correction, then analytic
+            # scalar scheduling through uninterrupted autonomous propagation.
+            if getattr(self,'_frequency_tensor',None) is not s.f:
+                self._frequency_host=s.f.detach().cpu().numpy().copy()
+            b0,bu,bf=self.phase.host_coefficients()
+            motor=tape._cpu_values[i,...,0:1].numpy()
+            f0=self._frequency_host
+            steady=-(b0+bu*motor)/bf if abs(bf)>=1e-9 else None
+            fend=steady+(f0-steady)*math.exp(bf*span) if steady is not None else f0+(b0+bu*motor)*span
+            fmax=max(float(abs(f0).max()),float(abs(fend).max()),1.)
             H=max(self.cfg.forcing_harmonics,self.cfg.control_harmonics)
             step=min(self.cfg.max_step,self.cfg.phase_step/(2*math.pi*H*fmax),
                      self.cfg.latent_bound/self.cfg.latent_rate)
             n=max(1,math.ceil(span/step));dt=span/n
-            for _ in range(n):s=self.step(s,u,dt)
-            t=boundary
-            if i+1<len(tape.times) and t>=tape.times[i+1]-1e-12:i+=1
+            for _ in range(n):
+                s=self.step(s,u,dt)
+                self._frequency_host=steady+(self._frequency_host-steady)*math.exp(bf*dt) if steady is not None else self._frequency_host+(b0+bu*motor)*dt
+            self._frequency_tensor=s.f
         return s
 
     def rollout(self,s,times,controls,start=0.):

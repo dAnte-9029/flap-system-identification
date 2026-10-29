@@ -216,7 +216,10 @@ class NativeWindows:
                     raise ValueError('stale/out-of-segment control')
                 vals.extend(row[fields].to_numpy(float))
             out.append(vals)
-        return ControlTape([(t-decision)*1e-6 for t in ts],self.tensor(np.asarray(out))).canonical()
+        tape=ControlTape([(t-decision)*1e-6 for t in ts],torch.as_tensor(np.asarray(out),dtype=self.dtype)).canonical()
+        tape.values=tape.values.to(self.device)
+        tape._prepared_key=(id(tape.values),tape.values._version,tuple(tape.times),False)
+        return tape
 
 
 def configure_latent(window,config):

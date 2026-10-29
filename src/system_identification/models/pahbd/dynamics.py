@@ -50,24 +50,51 @@ class PhasePropagator(nn.Module):
     def forward(self, f, phi, motor, dt):
         b0,bu,bf = self.coefficients.to(f).unbind()
         c = b0+bu*motor
-        if abs(float(bf)) < 1e-9:
+        if abs(self.host_coefficients()[2]) < 1e-9:
             return f+c*dt, phi+2*math.pi*(f*dt+.5*c*dt*dt)
         steady = -c/bf
         integral = steady*dt+(f-steady)*torch.expm1(bf*dt)/bf
         return steady+(f-steady)*torch.exp(bf*dt), phi+2*math.pi*integral
 
-    def covariance(self, covariance, dt, process_noise=None):
-        """Optional full 2x2 (f,phi) covariance interface; no calibrated uncertainty claim."""
-        # Exact continuous linear SDE: df=b_f f dt+sqrt(q_f)dW_f,
-        # dphi=2*pi*f dt+sqrt(q_phi)dW_phi. Van Loan integral obeys semigroup.
-        if dt < 0:raise ValueError('negative covariance duration')
-        A=covariance.new_tensor([[float(self.coefficients[2]),0.],[2*math.pi,0.]])
-        Q=torch.zeros_like(A) if process_noise is None else process_noise.to(covariance)
-        if Q.shape != (2,2) or not torch.allclose(Q,Q.T) or torch.linalg.eigvalsh(Q).min() < 0:
+    def host_coefficients(self):
+        key=(id(self.coefficients),self.coefficients._version,self.coefficients.device,self.coefficients.dtype)
+        if getattr(self,'_host_key',None)!=key:
+            self._host_key=key;self._host_coefficients=tuple(self.coefficients.detach().cpu().tolist())
+            self._transition_cache={}
+        return self._host_coefficients
+
+    def transition(self,dt,like):
+        b=self.host_coefficients()[2]
+        key=(dt,like.device,like.dtype)
+        cache=self._transition_cache
+        if key not in cache:
+            z=b*dt;a=2*math.pi
+            def exprel(x):return math.expm1(x)/x if x else 1.
+            e=math.exp(z);ie=dt*exprel(z);iee=dt*exprel(2*z)
+            if abs(z)<.1:
+                ig=dt**2*sum(z**n/math.factorial(n+2) for n in range(18))
+                ieg=dt**2*sum((2**(n+1)-1)*z**n/(math.factorial(n+1)*(n+2)) for n in range(18))
+                igg=dt**3*sum((2**(n+2)-2)*z**n/(math.factorial(n+2)*(n+3)) for n in range(18))
+            else:
+                ig=(ie-dt)/b;ieg=(iee-ie)/b;igg=(iee-2*ie+dt)/(b*b)
+            F=like.new_tensor([[e,0.],[a*ie,1.]])
+            weights=like.new_tensor([iee,a*ieg,ie,a*a*igg,2*a*ig,dt])
+            if len(cache)>=4096:cache.clear()
+            cache[key]=(F,weights)
+        return cache[key]
+
+    def covariance(self,covariance,dt,process_noise=None,validated=False):
+        """Analytic integral of F(t) Q F(t)^T; coefficients fixed, Q remains differentiable."""
+        if dt<0:raise ValueError('negative covariance duration')
+        Q=covariance.new_zeros(2,2) if process_noise is None else process_noise.to(covariance)
+        if not validated and (Q.shape!=(2,2) or not torch.allclose(Q,Q.T) or torch.linalg.eigvalsh(Q).min()<0):
             raise ValueError('process_noise must be PSD spectral density')
-        block=torch.cat((torch.cat((A,Q),1),torch.cat((torch.zeros_like(A),-A.T),1)),0)
-        E=torch.matrix_exp(block*dt);F=E[:2,:2];discrete=E[:2,2:]@F.T
-        result=F@covariance@F.T+discrete
+        F,w=self.transition(dt,covariance)
+        cross=(Q[0,1]+Q[1,0])/2
+        d00=Q[0,0]*w[0];d01=Q[0,0]*w[1]+cross*w[2]
+        d11=Q[0,0]*w[3]+cross*w[4]+Q[1,1]*w[5]
+        D=torch.stack((d00,d01,d01,d11)).reshape(2,2)
+        result=F@covariance@F.T+D
         return (result+result.transpose(-1,-2))/2
 
 

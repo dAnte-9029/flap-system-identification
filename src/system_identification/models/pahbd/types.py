@@ -36,21 +36,40 @@ class ControlTape:
     times: list[float]
     values: torch.Tensor  # (events,4) or (events,batch,4); motor,left,right,rudder
 
+    def intervals(self,start,end):
+        """Exact ZOH breakpoints, cached per native event/query interval."""
+        import bisect
+        if not hasattr(self,'_interval_cache'):self._interval_cache={}
+        key=(start,end)
+        if key not in self._interval_cache:
+            i=bisect.bisect_right(self.times,start+1e-12)-1
+            if i<0:raise ValueError('no causal control at integration start')
+            t=start;segments=[]
+            while t<end-1e-12:
+                boundary=min(end,self.times[i+1] if i+1<len(self.times) else end)
+                if boundary-t>1e-12:segments.append((i,boundary-t))
+                t=boundary
+                if i+1<len(self.times) and t>=self.times[i+1]-1e-12:i+=1
+            self._interval_cache[key]=segments
+        return self._interval_cache[key]
+
     def canonical(self):
-        if not self.times or len(self.times) != len(self.values):
-            raise ValueError('empty/mismatched control tape')
-        if any(b <= a for a,b in zip(self.times, self.times[1:])):
-            raise ValueError('control times must strictly increase')
-        if not torch.isfinite(self.values).all():
-            raise ValueError('nonfinite controls')
-        indices = [0]
-        for i in range(1, len(self.times)):
-            if not torch.equal(self.values[i].detach(), self.values[indices[-1]].detach()):
-                indices.append(i)
-        # Do not merge distinct differentiable control variables during sensitivity evaluation.
-        if self.values.requires_grad:
-            indices = list(range(len(self.times)))
-        return ControlTape([self.times[i] for i in indices], self.values[indices])
+        key=(id(self.values),self.values._version,tuple(self.times),self.values.requires_grad)
+        if getattr(self,'_prepared_key',None)==key:return self
+        if getattr(self,'_canonical_key',None)==key:return self._canonical_tape
+        if not self.times or len(self.times)!=len(self.values):raise ValueError('empty/mismatched control tape')
+        if any(b<=a for a,b in zip(self.times,self.times[1:])):raise ValueError('control times must strictly increase')
+        cpu=self.values.detach().cpu()
+        if not torch.isfinite(cpu).all():raise ValueError('nonfinite controls')
+        indices=[0]
+        for i in range(1,len(self.times)):
+            if self.values.requires_grad or not torch.equal(cpu[i],cpu[indices[-1]]):indices.append(i)
+        tape=ControlTape([self.times[i] for i in indices],self.values[indices])
+        tape._cpu_values=cpu[indices]
+        tape._prepared_key=(id(tape.values),tape.values._version,tuple(tape.times),tape.values.requires_grad)
+        # Never cache a differentiable indexing graph across backwards.
+        if not self.values.requires_grad:self._canonical_key=key;self._canonical_tape=tape
+        return tape
 
 
 @dataclass

@@ -7,45 +7,40 @@ from system_identification.models.pahbd import geometry as so3
 
 
 def trajectory_loss(predictions,targets,times,variance_weight=.01,horizon_weights=None,cycles=(),cycle_weight=.1):
-    """EKF p/v/R share ONE family reduction, gyro another; no independent-truth NLL claim.
-
-    Main state loss uses fixed source noise. The optional bounded predictive variance
-    score cannot suppress that loss. Every target is evaluated at its native time.
-    cycles contains target-index pairs from the same source/reference section.
-    """
+    """Batched native-time residuals; retain window/source-family reductions."""
     if not targets:raise ValueError('no target observations')
-    lookup={t:s for t,s in zip(times,predictions)}
-    families={};uncertainty=[]
-    horizons={float(k):float(v) for k,v in (horizon_weights or { .2:1., .5:1., 1.:1., 2.:1. }).items()}
-    for e in targets:
-        if e.measurement<=0:raise ValueError('future target must follow decision')
-        s=lookup[e.measurement];r=so3.state_residual(s.x,e.value[:13])
-        weights=e.mask[:12]*e.quality[:12]
-        noise=e.variance[:12].clamp_min(1e-4)
-        norm=weights.sum().clamp_min(1)
-        horizon_weight=next((v for t,v in sorted(horizons.items()) if e.measurement<=t+1e-9),1.)
-        score=(r.square()/noise*weights).sum()/norm*horizon_weight
-        family='gyro' if e.source=='vehicle_angular_velocity' else 'ekf'
-        families.setdefault(family,[]).append(score)
-        total=noise+s.variance[:12]
-        uncertainty.append(((r.square()/total+torch.log(total/noise))*weights).sum()/norm)
-    state=torch.stack([torch.stack(v).mean() for v in families.values()]).mean()
-    calibration=torch.stack(uncertainty).mean()
-    cycle_terms={}
-    for i,j in cycles:
-        a,b=targets[i],targets[j]
-        pa,pb=lookup[a.measurement].x,lookup[b.measurement].x
-        ya,yb=a.value[:13],b.value[:13]
-        # Relative attitude error compares group increments, not differences of rotvecs.
-        pred_delta=so3.multiply(so3.conjugate(pa[6:10]),pb[6:10])
-        obs_delta=so3.multiply(so3.conjugate(ya[6:10]),yb[6:10])
-        r=torch.cat(((pb[:6]-pa[:6])-(yb[:6]-ya[:6]),so3.residual(obs_delta,pred_delta),
-                     (pb[10:]-pa[10:])-(yb[10:]-ya[10:])))
-        weight=a.mask[:12]*b.mask[:12]*torch.minimum(a.quality[:12],b.quality[:12])
-        noise=(a.variance[:12]+b.variance[:12]).clamp_min(1e-4)
-        family='gyro' if a.source=='vehicle_angular_velocity' else 'ekf'
-        cycle_terms.setdefault(family,[]).append((r.square()/noise*weight).sum()/weight.sum().clamp_min(1))
-    cycle=torch.stack([torch.stack(v).mean() for v in cycle_terms.values()]).mean() if cycle_terms else state*0
+    lookup={t:i for i,t in enumerate(times)}
+    if any(e.measurement<=0 for e in targets):raise ValueError('future target must follow decision')
+    device=predictions[0].x.device
+    indices=torch.tensor([lookup[e.measurement] for e in targets],device=device)
+    x=torch.stack([s.x for s in predictions])[indices]
+    variance=torch.stack([s.variance for s in predictions])[indices,:12]
+    y=torch.stack([e.value[:13] for e in targets])
+    masks=torch.stack([e.mask[:12] for e in targets]);quality=torch.stack([e.quality[:12] for e in targets])
+    noises=torch.stack([e.variance[:12] for e in targets])
+    families=['gyro' if e.source=='vehicle_angular_velocity' else 'ekf' for e in targets]
+    def reduce_family(values,labels):
+        return torch.stack([values[[i for i,l in enumerate(labels) if l==family]].mean() for family in dict.fromkeys(labels)]).mean()
+    with torch.profiler.record_function('state_loss'):
+        r=so3.state_residual(x,y);weights=masks*quality;noise=noises.clamp_min(1e-4)
+        norm=weights.sum(-1).clamp_min(1)
+        horizons={float(k):float(v) for k,v in (horizon_weights or {.2:1.,.5:1.,1.:1.,2.:1.}).items()}
+        hw=x.new_tensor([next((v for t,v in sorted(horizons.items()) if e.measurement<=t+1e-9),1.) for e in targets])
+        scores=(r.square()/noise*weights).sum(-1)/norm*hw
+        state=reduce_family(scores,families)
+        total=noise+variance
+        calibration=(((r.square()/total+torch.log(total/noise))*weights).sum(-1)/norm).mean()
+    with torch.profiler.record_function('cycle_loss'):
+        if cycles:
+            i,j=torch.tensor(cycles,device=device).unbind(-1)
+            pred_delta=so3.multiply(so3.conjugate(x[i,6:10]),x[j,6:10])
+            obs_delta=so3.multiply(so3.conjugate(y[i,6:10]),y[j,6:10])
+            r=torch.cat(((x[j,:6]-x[i,:6])-(y[j,:6]-y[i,:6]),so3.residual(obs_delta,pred_delta),
+                         (x[j,10:]-x[i,10:])-(y[j,10:]-y[i,10:])),dim=-1)
+            weight=masks[i]*masks[j]*torch.minimum(quality[i],quality[j]);noise=(noises[i]+noises[j]).clamp_min(1e-4)
+            scores=(r.square()/noise*weight).sum(-1)/weight.sum(-1).clamp_min(1)
+            cycle=reduce_family(scores,[families[a] for a,b in cycles])
+        else:cycle=state*0
     total=state+variance_weight*calibration+cycle_weight*cycle
     return total,dict(state=state,variance=calibration,cycle=cycle,total=total)
 
@@ -107,7 +102,7 @@ def train_steps(model,windows,optimizer,steps,loss_config=None,sampler=None,seed
         if not torch.isfinite(loss):raise FloatingPointError('nonfinite training loss')
         loss.backward()
         grads=[p.grad for p in model.parameters() if p.grad is not None]
-        if not grads or not all(torch.isfinite(g).all() for g in grads):raise FloatingPointError('invalid gradients')
+        if not grads or not torch.stack([torch.isfinite(g).all() for g in grads]).all():raise FloatingPointError('invalid gradients')
         norm=torch.nn.utils.clip_grad_norm_(model.parameters(),10.)
         optimizer.step()
         records.append(dict(step=sampler.draws,window_id=window.metadata['window_id'],flight_id=window.metadata['flight_id'],horizon_us=int(sampler.index.iloc[index].horizon_us),actual_horizon_s=max(e.measurement for e in window.targets),**{k:float(v.detach()) for k,v in parts.items()},gradient_norm=float(norm)))

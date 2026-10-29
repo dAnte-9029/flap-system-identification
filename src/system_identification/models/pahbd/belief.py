@@ -19,8 +19,12 @@ class CausalBeliefEncoder(nn.Module):
     def update(self,s,event,dt):
         if event.measurement > event.availability+1e-12:
             raise ValueError('measurement occurs after availability')
-        if not torch.isfinite(event.value).all():raise ValueError('masked values must be sanitized')
-        anchor=event.source=='wing_phase' and bool(event.mask[13]) and not bool(s.phase_quality.any())
+        if getattr(event,'_checked_version',None)!=(id(event.value),event.value._version,id(event.mask),event.mask._version):
+            if not torch.isfinite(event.value).all():raise ValueError('masked values must be sanitized')
+            event._mask13=bool(event.mask[13]);event._checked_version=(id(event.value),event.value._version,id(event.mask),event.mask._version)
+        if getattr(self,'_quality_tensor',None) is not s.phase_quality:
+            self._has_phase=bool(s.phase_quality.any());self._quality_tensor=s.phase_quality
+        anchor=event.source=='wing_phase' and event._mask13 and not self._has_phase
         if anchor:
             # The first accepted Hall observation supplies the missing phase gauge.
             # Later readings use circular innovations, never logged unwrapped phase.
@@ -28,6 +32,8 @@ class CausalBeliefEncoder(nn.Module):
             variance=torch.cat((s.variance[...,:13],event.variance[...,13:14]),-1)
             s=s.with_(phi=event.value[...,14:15].clone(),phase_quality=torch.ones_like(s.phase_quality),
                       phase_covariance=cov,variance=variance)
+        self._quality_tensor=s.phase_quality
+        if anchor:self._has_phase=True
         mask=event.mask.to(s.x)*event.quality.clamp(0,1)
         age=event.availability-event.measurement
         residual=torch.cat((so3.state_residual(s.x,event.value[...,:13]),
@@ -69,6 +75,13 @@ class CausalBeliefEncoder(nn.Module):
         available=sorted((e for e in published if e.measurement>=start and
                           e.availability-e.measurement<=self.cfg.replay_seconds),
                          key=lambda e:(e.measurement,e.availability,e.source))
+        # One transfer for all immutable event checks instead of one per event.
+        unchecked=[e for e in available if getattr(e,'_checked_version',None)!=(id(e.value),e.value._version,id(e.mask),e.mask._version)]
+        if unchecked:
+            flags=torch.stack([torch.stack((torch.isfinite(e.value).all(),e.mask[13].bool())) for e in unchecked]).cpu().tolist()
+            for e,(finite,mask13) in zip(unchecked,flags):
+                if not finite:raise ValueError('masked values must be sanitized')
+                e._mask13=mask13;e._checked_version=(id(e.value),e.value._version,id(e.mask),e.mask._version)
         self.last_replay=dict(accepted=len(available),rejected=len(published)-len(available),
                               max_delay=max((e.availability-e.measurement for e in available),default=0.))
         s=initial;t=start;last_update=start
