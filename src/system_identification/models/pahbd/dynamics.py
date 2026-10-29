@@ -21,7 +21,7 @@ class Config:
     actuator_tau: float = .06  # modeling prior, NOT measured servo time constant
     variance_min: float = 1e-5
     variance_max: float = 25.
-    phase_mode: str = 'relative'  # relative, disabled; no claim of shared wing zero
+    phase_mode: str = 'relative'  # Fourier relative coordinate or disabled; native data anchors it to Hall
     replay_seconds: float = .6  # bounded decision-time replay; older readings rejected
     uncertainty_mode: str = 'gaussian'  # deterministic or Gaussian harmonic expectation
     frequency_noise_psd: float = .04  # Hz^2/s, uncalibrated modeling assumption

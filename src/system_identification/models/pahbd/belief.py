@@ -20,6 +20,14 @@ class CausalBeliefEncoder(nn.Module):
         if event.measurement > event.availability+1e-12:
             raise ValueError('measurement occurs after availability')
         if not torch.isfinite(event.value).all():raise ValueError('masked values must be sanitized')
+        anchor=event.source=='wing_phase' and bool(event.mask[13]) and not bool(s.phase_quality.any())
+        if anchor:
+            # The first accepted Hall observation supplies the missing phase gauge.
+            # Later readings use circular innovations, never logged unwrapped phase.
+            cov=torch.diag_embed(torch.cat((s.variance[...,12:13],event.variance[...,13:14]),-1))
+            variance=torch.cat((s.variance[...,:13],event.variance[...,13:14]),-1)
+            s=s.with_(phi=event.value[...,14:15].clone(),phase_quality=torch.ones_like(s.phase_quality),
+                      phase_covariance=cov,variance=variance)
         mask=event.mask.to(s.x)*event.quality.clamp(0,1)
         age=event.availability-event.measurement
         residual=torch.cat((so3.state_residual(s.x,event.value[...,:13]),
@@ -34,6 +42,7 @@ class CausalBeliefEncoder(nn.Module):
         raw=self.update_net(features)
         noise=event.variance.clamp_min(self.cfg.variance_min)
         gain=torch.sigmoid(raw[...,:14])*s.variance/(s.variance+noise)*mask
+        if anchor:gain=torch.cat((gain[...,:13],torch.zeros_like(gain[...,13:])),dim=-1)
         correction=gain*residual
         x=so3.retract(s.x,correction[...,:12])
         gate=torch.sigmoid(raw[...,-1:])*mask.amax(-1,keepdim=True)

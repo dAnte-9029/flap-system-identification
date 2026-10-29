@@ -75,14 +75,14 @@ def save_checkpoint(path,model,optimizer,metadata,step,training_state=None):
     path=Path(path)
     if path.exists():raise FileExistsError(f'refusing to overwrite {path}')
     path.parent.mkdir(parents=True,exist_ok=True)
-    torch.save(dict(schema='pahbd_v2',config=asdict(model.config),model=model.state_dict(),
+    torch.save(dict(schema='pahbd_v3_hall',config=asdict(model.config),model=model.state_dict(),
                     optimizer=optimizer.state_dict() if optimizer else None,
                     metadata=metadata,step=step,training_state=training_state,dtype=str(next(model.parameters()).dtype)),path)
 
 
 def load_checkpoint(path,device='cpu',optimizer=False):
     bundle=torch.load(path,map_location=device,weights_only=True)
-    if bundle['schema']!='pahbd_v2':raise ValueError('requires pahbd_v2 checkpoint; v1 used different delayed-observation and uncertainty semantics')
+    if bundle['schema']!='pahbd_v3_hall':raise ValueError('requires pahbd_v3_hall checkpoint; earlier versions used a different phase initialization contract')
     dtype=getattr(torch,bundle['dtype'].split('.')[-1])
     model=PAHBD(Config(**bundle['config'])).to(device=device,dtype=dtype)
     model.load_state_dict(bundle['model'])
@@ -94,8 +94,6 @@ def load_checkpoint(path,device='cpu',optimizer=False):
 def train_steps(model,windows,optimizer,steps,loss_config=None,sampler=None,seed=17):
     if not windows:raise ValueError('empty training set')
     index=window_index(windows)
-    if 'phase_policy' in index and (index.phase_policy=='relative_single').any() and index.phase_reference_id.nunique()!=1:
-        raise ValueError('unknown independent log origins cannot share periodic coefficients')
     sampler=sampler or FlightBalancedSampler(index,seed)
     model.train();records=[]
     for step in range(steps):
@@ -206,6 +204,9 @@ def formal_fit(model,train,validation,optimizer,steps,output,metadata,seed=17,
     if min(steps,validation_interval,patience)<1:raise ValueError('positive explicit schedule required')
     if 'training' in metadata.get('config',{}):
         require_training_admission(metadata['config'],model.config,window_index(train),window_index(validation))
+        if metadata['config']['training']['objective']=='shared_periodic_AB':
+            if not all(window_index(w).shared_periodic_eligible.all() for w in (train,validation)):
+                raise ValueError('formal shared periodic fit requires Hall-only train/validation indices')
     if resume and not resume.get('training_state'):raise ValueError('checkpoint has no resumable formal schedule')
     output=Path(output);output.mkdir(parents=True,exist_ok=False)
     sampler=FlightBalancedSampler(window_index(train),seed)
@@ -253,9 +254,15 @@ def require_training_admission(config,model_config,index,validation_index=None):
         return
     if objective!='shared_periodic_AB':raise ValueError('unknown training objective')
     if config['data']['phase_policy']!='shared_or_average' or model_config.phase_mode!='relative':
-        raise ValueError('shared periodic A/B requires active certified phase admission')
+        raise ValueError('shared periodic A/B requires active Hall phase admission')
     references=set(index.loc[index.shared_periodic_eligible,'phase_reference_id'])
-    if len(references)!=1:raise ValueError('shared periodic A/B requires exactly one certified shared sensor reference')
+    if len(references)!=1:raise ValueError('shared periodic A/B requires exactly one shared Hall sensor reference')
     if validation_index is not None:
         val=set(validation_index.loc[validation_index.shared_periodic_eligible,'phase_reference_id'])
-        if references!=val:raise ValueError('validation must contain the same certified shared sensor reference')
+        if references!=val:raise ValueError('validation must contain the same shared Hall sensor reference')
+
+    for label,frame in [('train',index),('validation',validation_index)]:
+        if frame is None:continue
+        for horizon in config['data']['horizon_us']:
+            if not ((frame.horizon_us==horizon)&frame.shared_periodic_eligible).any():
+                raise ValueError(f'{label}: no shared Hall windows at {horizon} us')

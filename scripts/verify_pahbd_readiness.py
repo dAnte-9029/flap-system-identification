@@ -24,10 +24,10 @@ def main():
     for split in ('train','validation'):
         data=NativeWindows(**cfg['data'],split=split)
         frame=data.windows
-        groups=frame.groupby(['flight_id','horizon_us']).agg(windows=('window_id','size'),relative=('relative_phase_eligible','sum'),shared=('shared_periodic_eligible','sum'),reference_changed=('reference_updates',lambda x:int((x>0).sum())),hall_traceable=('hall_event_traceable','sum')).reset_index()
+        groups=frame.groupby(['flight_id','horizon_us']).agg(windows=('window_id','size'),shared=('shared_periodic_eligible','sum')).reset_index()
         groups.to_csv(output/f'{split}_coverage_per_flight.csv',index=False)
         for h,g in frame.groupby('horizon_us'):
-            coverage.append(dict(split=split,horizon_us=int(h),flights=int(g.flight_id.nunique()),average_windows=len(g),relative_windows=int(g.relative_phase_eligible.sum()),shared_windows=int(g.shared_periodic_eligible.sum()),hall_traceable_windows=int(g.hall_event_traceable.sum()),software_reference_update_windows=int((g.reference_updates>0).sum()),actual_horizon_s_min=float((g.last_target_measurement_us-g.decision_us).min()*1e-6),actual_horizon_s_max=float((g.last_target_measurement_us-g.decision_us).max()*1e-6)))
+            coverage.append(dict(split=split,horizon_us=int(h),flights=int(g.flight_id.nunique()),average_windows=len(g),shared_windows=int(g.shared_periodic_eligible.sum()),actual_horizon_s_min=float((g.last_target_measurement_us-g.decision_us).min()*1e-6),actual_horizon_s_max=float((g.last_target_measurement_us-g.decision_us).max()*1e-6)))
         if split=='train':train=data
     (output/'coverage.json').write_text(json.dumps(coverage,indent=2))
     sampler=FlightBalancedSampler(train.windows,cfg['seed'])
@@ -36,7 +36,7 @@ def main():
     if args.coverage_only:return
     records=[];used=set()
     for horizon in (200000,500000,1000000,2000000):
-        eligible=train.windows[(train.windows.horizon_us==horizon)&train.windows.relative_phase_eligible&~train.windows.flight_id.isin(used)]
+        eligible=train.windows[(train.windows.horizon_us==horizon)&train.windows.shared_periodic_eligible&~train.windows.flight_id.isin(used)]
         index=int(eligible.index[0]);t=time.perf_counter();w=configure_latent(train[index],model.config);load=time.perf_counter()-t
         used.add(w.metadata['flight_id']);model.zero_grad(set_to_none=True)
         t=time.perf_counter();loss,parts,belief,states,times=window_loss(model,w,**cfg['loss']);forward=time.perf_counter()-t

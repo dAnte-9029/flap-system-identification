@@ -200,7 +200,7 @@ def test_native_availability_masks_and_poisoned_future():
     assert w.metadata['split']=='train' and all(e.availability<=0 for e in w.history)
     assert all(e.measurement<=e.availability for e in w.history)
     assert all(e.measurement>0 for e in w.targets)
-    assert {e.source for e in w.history}==set(('vehicle_local_position','vehicle_attitude','vehicle_angular_velocity','encoder_count','flap_frequency'))
+    assert {e.source for e in w.history}==set(('vehicle_local_position','vehicle_attitude','vehicle_angular_velocity','wing_phase','flap_frequency'))
     assert all(t<=w.start for t in w.metadata['bootstrap_measurements'].values())
     a=m.encode(w)
     decision=w.metadata['decision_us']
@@ -208,7 +208,7 @@ def test_native_availability_masks_and_poisoned_future():
     for name,tab in d.tables.items():
         if name.startswith('actuator'):continue
         av=tab.get('availability_us',tab.timestamp_us)
-        cols={'encoder_count':['total_count'],'flap_frequency':['frequency_hz'],
+        cols={'wing_phase':['phase_rad','encoder_total_count'],'flap_frequency':['frequency_hz'],
               'vehicle_local_position':['x','y','z','vx','vy','vz'],
               'vehicle_attitude':[f'q[{i}]' for i in range(4)],
               'vehicle_angular_velocity':[f'xyz[{i}]' for i in range(3)]}[name]

@@ -1,6 +1,6 @@
 """Read-only adapter for frozen September/October velocity_rate_multistep_v1.
 
-Uses accepted main_50hz windows only for identities/boundaries, native sensor tables
+Uses accepted main_50hz and sparse_10hz windows only for identities/boundaries, native sensor tables
 for events. No interpolation-created targets and no test partition entry point.
 """
 from dataclasses import replace
@@ -15,7 +15,7 @@ import yaml
 from system_identification.models.pahbd import State,Observation,ControlTape,Window
 
 TOPICS=('vehicle_local_position','vehicle_attitude','vehicle_angular_velocity',
-        'encoder_count','flap_frequency','actuator_motors','actuator_servos')
+        'wing_phase','flap_frequency','actuator_motors','actuator_servos')
 FIELDS={'vehicle_local_position':['x','y','z','vx','vy','vz'],
         'vehicle_attitude':[f'q[{i}]' for i in range(4)],
         'vehicle_angular_velocity':[f'xyz[{i}]' for i in range(3)]}
@@ -26,11 +26,11 @@ DEFAULT_ROOT='/home/zn/flap-system-identification/dataset/velocity_rate_multiste
 class NativeWindows:
     def __init__(self,root=DEFAULT_ROOT,registry=DEFAULT_REGISTRY,split='train',
                  history_us=500000,horizon_us=(200000,500000,1000000,2000000),dtype=torch.float64,device='cpu',
-                 phase_policy='shared_or_average',relative_reference_id=None,evidence=None,reference_contract=None):
+                 phase_policy='shared_or_average',reference_contract=None,sampling_groups=('main_50hz','sparse_10hz')):
         if split not in ('train','validation'):raise ValueError('sealed test is not an allowed split')
-        if phase_policy not in ('shared_or_average','average','relative_single'):raise ValueError('invalid phase policy')
-        if phase_policy=='relative_single' and not relative_reference_id:raise ValueError('explicit single log reference required')
-        self.phase_policy=phase_policy;self.relative_reference_id=relative_reference_id
+        if phase_policy not in ('shared_or_average','average'):raise ValueError('invalid phase policy')
+        self.phase_policy=phase_policy
+        self.phase_coefficients=(3.6354511983566393,23.393570068972757,-5.126725395181777)
         self.root=Path(root);self.split=split;self.dtype=dtype;self.device=device
         entry=yaml.safe_load(Path(registry).read_text())['datasets']['velocity_rate_multistep_v1']
         # One identity check at construction; never hash/open sealed artifacts.
@@ -39,24 +39,22 @@ class NativeWindows:
         self.contract=yaml.safe_load((self.root/'build_config.yaml').read_text())
         if self.contract['dataset_id']!='velocity_rate_multistep_v1':raise ValueError('wrong dataset family')
         self.provenance={m['flight_id']:m for m in json.loads((self.root/'flight_provenance.json').read_text()) if m['split']==split}
-        w=pd.read_parquet(self.root/f'windows_{split}.parquet')
-        self.windows=w[(w.sampling_group=='main_50hz')&(w.history_us==history_us)&(w.horizon_us.isin([horizon_us] if isinstance(horizon_us,int) else horizon_us))
+        w=pd.read_parquet(self.root/f'windows_{split}.parquet',filters=[('sampling_group','in',list(sampling_groups)),('history_us','==',history_us),('horizon_us','in',[horizon_us] if isinstance(horizon_us,int) else list(horizon_us))])
+        self.windows=w[(w.sampling_group.isin(sampling_groups))&(w.history_us==history_us)&(w.horizon_us.isin([horizon_us] if isinstance(horizon_us,int) else horizon_us))
                        &w.firmware_verified&~w.provenance_review].reset_index(drop=True)
         # REVIEW is excluded for formal supervision, not repaired by fractional weighting.
         self.windows=self.windows[~self.windows.review & self.windows.complete_state_sequence].reset_index(drop=True)
-        from .pahbd_phase import annotate_phase
-        hall_events=pd.read_parquet(self.root/f'native_hall_event_{split}.parquet',columns=['flight_id','timestamp_us'])
-        self.windows=annotate_phase(self.windows,self.provenance,hall_events=hall_events,**({'evidence':evidence} if evidence else {}))
-        from .pahbd_phase import apply_shared_reference
+        from .pahbd_phase import prepare_phase,annotate_hall
         reference_contract=reference_contract or Path(DEFAULT_REGISTRY).parents[1]/'pahbd/phase_reference.json'
-        self.windows=apply_shared_reference(self.windows,self.provenance,reference_contract)
-        if phase_policy=='shared_or_average' and self.windows.loc[self.windows.shared_periodic_eligible,'phase_reference_id'].nunique()>1:
-            raise ValueError('multiple uncertified-between-group sensor references cannot share periodic coefficients')
+        self.phase_contract=json.loads(Path(reference_contract).read_text())
+        if self.phase_contract['schema']!='pahbd_hall_phase_v2':raise ValueError('Hall phase contract required')
+        phase=pd.read_parquet(self.root/f'native_wing_phase_{split}.parquet')
+        self.phase_tables={fid:prepare_phase(t,self.provenance[fid]['transmission_ratio'],self.phase_contract)
+                           for fid,t in phase.groupby('flight_id') if fid in self.provenance}
+        samples=pd.read_parquet(self.root/f'samples_{split}.parquet',columns=['flight_id','timestamp_us'])
+        starts={fid:t.timestamp_us.to_numpy() for fid,t in samples.groupby('flight_id',sort=False)}
+        self.windows=annotate_hall(self.windows,self.provenance,self.phase_tables,starts,self.phase_contract)
         self.windows['phase_policy']=phase_policy
-        if phase_policy=='relative_single':
-            self.windows=self.windows[(self.windows.log_reference_id==relative_reference_id)&self.windows.relative_phase_eligible].reset_index(drop=True)
-            self.windows['phase_reference_id']=self.windows.log_reference_id
-            self.windows['phase_mode']='log_relative'
         self._cached_id=None;self.tables={}
 
     def tensor(self,value):return torch.as_tensor(value,dtype=self.dtype,device=self.device)
@@ -65,13 +63,14 @@ class NativeWindows:
     def _load(self,fid):
         if self._cached_id==fid:return
         self.tables={name:pd.read_parquet(self.root/f'native_{name}_{self.split}.parquet',
-                      filters=[('flight_id','==',fid)]).sort_values('timestamp_us') for name in TOPICS}
+                      filters=[('flight_id','==',fid)]).sort_values('timestamp_us') for name in TOPICS if name!='wing_phase'}
+        self.tables['wing_phase']=self.phase_tables[fid]
         self.samples=pd.read_parquet(self.root/f'samples_{self.split}.parquet',filters=[('flight_id','==',fid)])
         self._cached_id=fid
 
     def _observation(self,name,row,decision,meta):
         measurement=int(row.timestamp_sample_us) if int(row.timestamp_sample_us)>0 else int(row.timestamp_us)
-        if name in ('encoder_count','flap_frequency'):measurement=int(row.timestamp_us)
+        if name in ('wing_phase','flap_frequency'):measurement=int(row.timestamp_us)
         availability=int(row.get('availability_us',row.timestamp_us))
         value=np.zeros(15);value[6]=1;mask=np.zeros(14);variance=np.ones(14);quality=np.ones(14)
         if name=='vehicle_local_position':
@@ -89,9 +88,9 @@ class NativeWindows:
             value[10:13]=row[FIELDS[name]].to_numpy(float);mask[9:12]=1;variance[9:12]=.05**2
         elif name=='flap_frequency':
             value[13]=row.frequency_hz;mask[12]=float(np.isfinite(value[13]) and value[13]>0);variance[12]=.2**2
-        elif name=='encoder_count':
-            value[14]=(row.total_count-meta['phase_origin_count'])*2*math.pi/(4096*meta['transmission_ratio'])
-            mask[13]=1;variance[13]=.03**2
+        elif name=='wing_phase':
+            value[14]=row.phase_rad
+            mask[13]=float(row.phase_usable);variance[13]=self.phase_contract['phase_variance_rad2']
         else:raise ValueError(name)
         finite=np.r_[np.isfinite(value[:6]),np.repeat(np.isfinite(value[6:10]).all(),3),np.isfinite(value[10:])]
         mask*=finite
@@ -103,8 +102,7 @@ class NativeWindows:
 
     def __getitem__(self,index):
         w=self.windows.iloc[index];fid=w.flight_id;self._load(fid);meta=self.provenance[fid]
-        shared=bool(w.shared_periodic_eligible) and self.phase_policy!='relative_single'
-        if shared:meta=dict(meta,phase_origin_count=float(w.reference_count))
+        shared=bool(w.shared_periodic_eligible)
         parameters=meta['parameters']
         if any(parameters.get(k)!=v for k,v in self.contract['required_mapping_parameters'].items()):
             raise ValueError('unverified actuator channel mapping')
@@ -119,7 +117,7 @@ class NativeWindows:
         for name in TOPICS[:5]:
             table=self.tables[name]
             mt=table.timestamp_sample_us.where(table.timestamp_sample_us>0,table.timestamp_us)
-            if name in ('encoder_count','flap_frequency'):mt=table.timestamp_us
+            if name in ('wing_phase','flap_frequency'):mt=table.timestamp_us
             av=table.get('availability_us',table.timestamp_us)
             # Future observations retained ONLY as separate loss targets for rigid-body state.
             selected=table[(mt>=lower)&(mt<=end)&(av>=mt)&table.in_reviewed_flight]
@@ -132,8 +130,10 @@ class NativeWindows:
                     targets.append(e)
         for name in FIELDS:
             if name not in seeds or not bool(seeds[name].mask[{'vehicle_local_position':slice(0,6),'vehicle_attitude':slice(6,9),'vehicle_angular_velocity':slice(9,12)}[name]].all()):raise ValueError('missing causal bootstrap state')
-        limits={'vehicle_local_position':.04,'vehicle_attitude':.05,'vehicle_angular_velocity':.05,
-                'encoder_count':.05,'flap_frequency':.12}
+        group=self.contract['groups'][w.sampling_group]
+        limits={'vehicle_local_position':group['maximum_state_gap_us']*1e-6,
+                'vehicle_attitude':group['history_attitude_age_us']*1e-6,
+                'vehicle_angular_velocity':self.contract['history_rate_age_us']*1e-6}
         for name in FIELDS:
             if start-seeds[name].measurement>limits[name]:raise ValueError('stale bootstrap state')
         x=torch.cat((seeds['vehicle_local_position'].value[:6],seeds['vehicle_attitude'].value[6:10],
@@ -145,40 +145,39 @@ class NativeWindows:
             return replace(e,value=v)
         events=[centered(e) for e in events];targets=[centered(e) for e in targets]
         controls=self._controls(start_us,end,decision,lower)
-        fseed=seeds.get('flap_frequency');pseed=seeds.get('encoder_count')
-        valid=(fseed is not None and pseed is not None and bool(fseed.mask[12]) and bool(pseed.mask[13])
-               and start-fseed.measurement<=.12 and start-pseed.measurement<=.05)
-        valid=valid and bool(w.relative_phase_eligible)
-        periodic=valid and (bool(w.shared_periodic_eligible) or self.phase_policy=='relative_single') and self.phase_policy!='average'
-        if valid:
-            f=fseed.value[13:14].clone()
-            phi=pseed.value[14:15]+2*math.pi*f*(start-pseed.measurement)
+        fseed=seeds.get('flap_frequency')
+        valid=(fseed is not None and bool(fseed.mask[12]) and start-fseed.measurement<=.12
+               and bool(w.shared_periodic_eligible))
+        periodic=valid and self.phase_policy!='average'
+        if fseed is not None and bool(fseed.mask[12]):f=fseed.value[13:14].clone()
         else:
-            # Explicit frequency prior and periodic-disabled window, never future fallback.
-            b0,bu,bf=3.6354511983566393,23.393570068972757,-5.126725395181777
-            f=-(b0+bu*controls.values[0,:1])/bf;phi=self.tensor([0.])
+            b0,bu,bf=self.phase_coefficients
+            f=-(b0+bu*controls.values[0,:1])/bf
+        # No phase origin prior: first reliable Hall event initializes the circular
+        # state at measurement time in the causal replay, then flow propagates it.
+        phi=self.tensor([0.])
+        if not periodic:
             events=[replace(e,mask=torch.cat((e.mask[:13],torch.zeros_like(e.mask[13:])))) for e in events]
+        covariance=torch.diag(self.tensor([.04,.2]))
         initial=State(x,self.tensor(np.zeros(12)),f,phi,controls.values[0,1:].clone(),
-                      self.tensor([1.]*6+[.1]*3+[1.]*3+[.2,.2]),self.tensor([float(periodic)]))
+                      torch.cat((self.tensor([1.]*6+[.1]*3+[1.]*3),covariance.diagonal())),
+                      self.tensor([0.]),phase_covariance=covariance)
         metadata=dict(window_id=w.window_id,flight_id=fid,split=self.split,segment_id=int(w.segment_id),
                       decision_us=decision,support_start_us=lower,support_end_us=int(w.support_end_us),
                       manifest_sha256=self.manifest_sha256,phase_valid=bool(valid),
-                      phase_reference=('certified_shared_sensor_index' if shared else 'whole_log_encoder_relative_unverified_wing_zero'),
+                      phase_reference=('hall_circular' if shared else 'periodic_disabled'),
                       phase_policy=self.phase_policy,phase_mode=w.phase_mode,periodic_enabled=bool(periodic),
-                      phase_reference_id=w.phase_reference_id,relative_phase_eligible=bool(w.relative_phase_eligible),
+                      phase_reference_id=w.phase_reference_id,
                       shared_periodic_eligible=bool(w.shared_periodic_eligible),
-                      sensor_index_shared_verified=bool(w.sensor_index_shared_verified),mechanical_zero_verified=bool(w.mechanical_zero_verified),
-                      hall_event_traceable=bool(w.hall_event_traceable),reference_updates=int(w.reference_updates),
-                      software_reference_unchanged=bool(w.software_reference_unchanged),
-                      reference_change_max_rad=float(w.reference_change_max_rad),hall_publication_verified=bool(w.hall_publication_verified),
+                      phase_contract=self.phase_contract,phase_exclusion=w.phase_exclusion,
                       horizon_us=int(w.horizon_us),actual_horizon_s=(end-decision)*1e-6,
-                      phase_initialization='causal held-frequency age extrapolation',
+                      phase_initialization='Hall circular anchor + autonomous ZOH PhasePropagator',
                       bootstrap_measurements={k:v.measurement for k,v in seeds.items()},
                       controls='logged_ZOH_conditional_replay',control_mapping=self.contract['control_mapping'],
-                      sampling_group='main_50hz',review=bool(w.review))
+                      sampling_group=w.sampling_group,review=bool(w.review))
         targets.sort(key=lambda e:e.measurement)
         # OFFLINE target-only encoder reference: never passed to encode/flow.
-        enc=self.tables['encoder_count']
+        enc=pd.read_parquet(self.root/f'native_encoder_count_{self.split}.parquet',filters=[('flight_id','==',fid)]).sort_values('timestamp_us')
         enc=enc[(enc.timestamp_us>=lower)&(enc.timestamp_us<=int(w.support_end_us))]
         et=enc.timestamp_us.to_numpy();ep=(enc.total_count.to_numpy()-meta['phase_origin_count'])*2*math.pi/(4096*meta['transmission_ratio'])
         phases=[]

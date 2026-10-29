@@ -1,29 +1,17 @@
 {
-  "schema": "pahbd_phase_reference_v1",
-  "status": "no_certified_shared_sensor_index_intervals",
-  "evidence": [
-    "experiments/phase_coupled_mpc_v1/phase_per_flight.csv",
-    "experiments/phase_coupled_mpc_v1/phase_by_date.csv",
-    "experiments/phase_coupled_mpc_v1/phase_resets.csv.gz",
-    "experiments/phase_coupled_mpc_v1/raw_verification.json",
-    "experiments/phase_coupled_mpc_v1/report_zh.md"
-  ],
-  "reason": "Hall existence and concentrated within-log phase do not certify a shared sensor index. Candidate publication bounds still require publisher/order verification. Mechanical wing zero is unresolved.",
-  "certified_intervals": [],
-  "interval_schema": {
-    "flight_id": "exact frozen physical flight identity",
-    "start_us": "inclusive verified continuity/reference interval start",
-    "end_us": "inclusive verified continuity/reference interval end",
-    "reference_count": "encoder total count at the independently traceable Hall index; finite",
-    "reference_availability_us": "verified publication upper bound, no later than start_us",
-    "reference_id": "shared SENSOR index identity, not automatically wing position",
-    "sensor_index_shared_verified": true,
-    "causal_publication_verified": true,
-    "continuity_verified": true,
-    "mechanical_zero_verified": false,
-    "evidence": [
-      "nonempty source references required; no validation trajectory phase fitting"
-    ],
-    "reference_measurement_us": "measurement time of the referenced Hall event, no later than its availability bound"
-  }
+  "schema": "pahbd_hall_phase_v2",
+  "reference_id": "hall_zero_positive_upstroke_working_assumption",
+  "phase_source": "wing_phase.phase_rad",
+  "mechanical_assumption": "Hall=0; increasing counts; upward motion begins after zero; no pi switching label",
+  "absolute_wing_calibration": false,
+  "availability_delay_us": 20000,
+  "availability_assumption": "Encoder timestamp + 20 ms guard; assumes work queue publication latency <=20 ms. Not a measured upper bound; offline research only.",
+  "max_gap_us": 50000,
+  "max_reference_error_rad": 0.15,
+  "recovery_us": 500000,
+  "phase_variance_rad2": 0.0009,
+  "max_encoder_frequency_hz": 20.0,
+  "frozen_contract_override": "Overrides build_config.phase.wing_phase_history_allowed=false for PA-HBD only; frozen tables/splits/quality exclusions unchanged.",
+  "firmware_source": "dataset/velocity_rate_multistep_v1/firmware_sources/c9af571575af33d5403fbb479256848797c801e2/src/modules/wing_phase/WingPhase.cpp",
+  "threshold_scope": "Fixed sensor QC: 0.15 rad reference innovation, 50 ms gap, 500 ms recovery, 20 Hz count-rate sanity ceiling; not tuned by model error or absolute calibration."
 }

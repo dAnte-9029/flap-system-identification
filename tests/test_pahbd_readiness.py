@@ -113,23 +113,6 @@ def test_sampler_flight_horizon_balance_resume_and_changed_index():
     with pytest.raises(ValueError):FlightBalancedSampler(index.iloc[:-1],17).load_state_dict(state)
 
 
-def test_phase_reference_admission_uses_interval_evidence(tmp_path):
-    from system_identification.data.pahbd_phase import annotate_phase
-    pd.DataFrame([dict(flight_id='logA:1',hall_rows=30)]).to_csv(tmp_path/'phase_per_flight.csv',index=False)
-    pd.DataFrame([dict(flight_id='logA:1',timestamp_us=150,reset_correction_rad=.2)]).to_csv(tmp_path/'phase_resets.csv.gz',index=False)
-    w=pd.DataFrame([dict(flight_id='logA:1',support_start_us=a,support_end_us=b,complete_phase_frequency=True,review=False) for a,b in [(100,200),(300,400)]])
-    out=annotate_phase(w,{'logA:1':dict(reset_times_us=[350])},tmp_path,
-                       hall_events=pd.DataFrame([dict(flight_id='logA:1',timestamp_us=130)]))
-    assert out.relative_phase_eligible.tolist()==[True,False]
-    assert out.reference_updates.tolist()==[1,0]
-    assert not out.shared_periodic_eligible.any() and out.hall_event_traceable.tolist()==[True,False]
-    m,window=model_window();s=window.initial.with_(phase_quality=window.initial.phase_quality*0)
-    c,_=m.flow.slow(s)
-    a,parts=m.flow.mixer(c,s.actuator,s.phi,s.phase_quality)
-    b,_=m.flow.mixer(c,s.actuator,s.phi+1,s.phase_quality)
-    assert torch.equal(a,b) and parts['interaction'].abs().sum()==0
-
-
 def test_checkpoint_sampler_optimizer_exact_resume(tmp_path):
     m,w=model_window(.02);windows=[w];index=pd.DataFrame([w.metadata])
     opt=torch.optim.Adam(m.parameters(),lr=1e-4);sampler=FlightBalancedSampler(index)
@@ -174,35 +157,6 @@ def test_frozen_response_48_pairs_11_components_and_metric_oracle():
     assert max(r['rmse'] for r in result['summary'])<1e-10
 
 
-def test_shared_reference_certificate_is_causal_and_uses_per_log_count_anchor(tmp_path):
-    import json
-    from system_identification.data.pahbd_phase import apply_shared_reference
-    base=pd.DataFrame([dict(flight_id=f,phase_reference_id=f,relative_phase_eligible=True,
-                           support_start_us=100,support_end_us=200,shared_periodic_eligible=False)
-                       for f in ('a','b')])
-    provenance={f:dict(start_us=0,end_us=300) for f in ('a','b')}
-    entries=[dict(flight_id=f,start_us=90,end_us=250,reference_count=count,reference_measurement_us=70,reference_availability_us=80,
-                  reference_id='synthetic_shared_sensor',sensor_index_shared_verified=True,
-                  causal_publication_verified=True,continuity_verified=True,mechanical_zero_verified=False,
-                  evidence=['synthetic mathematical fixture only']) for f,count in [('a',1000.),('b',28000.)]]
-    path=tmp_path/'reference.json'
-    def write():path.write_text(json.dumps(dict(schema='pahbd_phase_reference_v1',certified_intervals=entries)))
-    write();out=apply_shared_reference(base,provenance,path)
-    assert out.shared_periodic_eligible.all() and not out.mechanical_zero_verified.any()
-    assert out.reference_count.tolist()==[1000.,28000.]
-    # Independent anchors, never a single fitted global gauge offset.
-    from system_identification.data.pahbd import NativeWindows
-    adapter=NativeWindows.__new__(NativeWindows);adapter.dtype=torch.float64;adapter.device='cpu'
-    phases=[]
-    for count in out.reference_count:
-        row=pd.Series(dict(timestamp_us=120,timestamp_sample_us=0,availability_us=125,total_count=count+4096*8/4))
-        obs=adapter._observation('encoder_count',row,150,dict(phase_origin_count=count,transmission_ratio=8.,review_intervals_us=[]))
-        phases.append(float(obs.value[14]))
-    assert np.allclose(phases,[math.pi/2]*2)
-    entries[0]['reference_availability_us']=101;write()
-    with pytest.raises(ValueError):apply_shared_reference(base,provenance,path)
-
-
 def test_sampler_checkpoint_serializes_unfinished_flight_round(tmp_path):
     m,w=model_window();index=pd.DataFrame([dict(w.metadata,flight_id=str(i),window_id=str(i)) for i in range(5)])
     sampler=FlightBalancedSampler(index);sampler.draw()
@@ -212,32 +166,34 @@ def test_sampler_checkpoint_serializes_unfinished_flight_round(tmp_path):
     assert [sampler.draw() for _ in range(15)]==[resumed.draw() for _ in range(15)]
 
 
-def test_real_single_log_periodic_graph_and_reference_admission():
-    from system_identification.data.pahbd import NativeWindows,configure_latent,ConfiguredWindows,DEFAULT_ROOT
-    if not (Path(DEFAULT_ROOT)/'windows_train.parquet').exists():pytest.skip('frozen native train absent')
-    reference='37ff9f8ea4e2e378fc13394288aa145a462259e2f53fa15af9511082f0e6d558'
-    d=NativeWindows(horizon_us=500000,phase_policy='relative_single',relative_reference_id=reference)
-    m,_=model_window();w=configure_latent(d[0],m.config)
-    assert w.metadata['periodic_enabled'] and not w.metadata['shared_periodic_eligible']
-    assert w.metadata['phase_reference_id']==reference and w.metadata['cycle_pairs']
-    from system_identification.training.pahbd import window_loss
-    loss,*_=window_loss(m,w);loss.backward()
-    assert torch.isfinite(loss)
-    assert m.flow.mixer.forcing.weight.grad.abs().sum()>0
-    assert m.flow.mixer.control.weight.grad.abs().sum()>0
-    # This dataset cannot silently admit any other unknown log origin.
-    assert d.windows.phase_reference_id.nunique()==1
-
-
 def test_formal_scientific_admission_cannot_silently_train_disabled_ab():
     from system_identification.training.pahbd import require_training_admission
-    cfg=dict(training=dict(objective='shared_periodic_AB'),data=dict(phase_policy='shared_or_average'))
+    cfg=dict(training=dict(objective='shared_periodic_AB'),data=dict(phase_policy='shared_or_average',horizon_us=[200000]))
     empty=pd.DataFrame(dict(shared_periodic_eligible=[False],phase_reference_id=['unknown_log']))
     with pytest.raises(ValueError):require_training_admission(cfg,Config(),empty)
-    certified=pd.DataFrame(dict(shared_periodic_eligible=[True],phase_reference_id=['sensor']))
+    certified=pd.DataFrame(dict(shared_periodic_eligible=[True],phase_reference_id=['sensor'],horizon_us=[200000]))
     require_training_admission(cfg,Config(),certified,certified)
     with pytest.raises(ValueError):require_training_admission(cfg,Config(phase_mode='disabled'),certified)
     with pytest.raises(ValueError):require_training_admission(cfg,Config(),certified,empty)
     cfg['training']['objective']='average_dynamics'
     with pytest.raises(ValueError):require_training_admission(cfg,Config(),empty)
     cfg['data']['phase_policy']='average';require_training_admission(cfg,Config(),empty)
+
+
+def test_hall_wrap_reset_gap_and_causal_recovery():
+    import json
+    from system_identification.data.pahbd_phase import prepare_phase
+    c=json.loads(Path('configs/pahbd/phase_reference.json').read_text())
+    ts=np.arange(200)*10000;angle=ts*1e-6*2*np.pi*4
+    table=pd.DataFrame(dict(timestamp_us=ts,phase_rad=angle%(2*np.pi),
+                           phase_unwrapped_rad=angle%(2*np.pi),encoder_total_count=angle*4096*8/(2*np.pi),
+                           phase_valid=True,in_reviewed_flight=True))
+    good=prepare_phase(table,8,c)
+    assert good.phase_usable.iloc[50:].all()  # wraps and Hall zero resets are normal
+    assert np.all(good.availability_us==ts+20000)
+    table.loc[100:,'phase_rad']=(table.loc[100:,'phase_rad']+1)%(2*np.pi)
+    bad=prepare_phase(table,8,c)
+    assert bad.phase_anomaly.iloc[100] and not bad.phase_usable.iloc[100:150].any()
+    assert bad.phase_usable.iloc[150:].all()
+    table.loc[170:,'encoder_total_count']-=100000
+    assert prepare_phase(table,8,c).phase_anomaly.iloc[170]

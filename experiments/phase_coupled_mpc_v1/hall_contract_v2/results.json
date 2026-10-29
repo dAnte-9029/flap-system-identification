@@ -1,0 +1,180 @@
+{
+  "code_revision": "14d47196eeeb23d67175448caa4e664aa3f37a00",
+  "seed": 17,
+  "manifest_sha256": "8afb8623bf7174e4da5b2044f644331b8b251433fed3576f6dcdab470935bcb5",
+  "phase_contract": {
+    "schema": "pahbd_hall_phase_v2",
+    "reference_id": "hall_zero_positive_upstroke_working_assumption",
+    "phase_source": "wing_phase.phase_rad",
+    "mechanical_assumption": "Hall=0; increasing counts; upward motion begins after zero; no pi switching label",
+    "absolute_wing_calibration": false,
+    "availability_delay_us": 20000,
+    "availability_assumption": "Encoder timestamp + 20 ms guard; assumes work queue publication latency <=20 ms. Not a measured upper bound; offline research only.",
+    "max_gap_us": 50000,
+    "max_reference_error_rad": 0.15,
+    "recovery_us": 500000,
+    "phase_variance_rad2": 0.0009,
+    "max_encoder_frequency_hz": 20.0,
+    "frozen_contract_override": "Overrides build_config.phase.wing_phase_history_allowed=false for PA-HBD only; frozen tables/splits/quality exclusions unchanged.",
+    "firmware_source": "dataset/velocity_rate_multistep_v1/firmware_sources/c9af571575af33d5403fbb479256848797c801e2/src/modules/wing_phase/WingPhase.cpp",
+    "threshold_scope": "Fixed sensor QC: 0.15 rad reference innovation, 50 ms gap, 500 ms recovery, 20 Hz count-rate sanity ceiling; not tuned by model error or absolute calibration."
+  },
+  "coverage": [
+    {
+      "split": "train",
+      "horizon_us": 200000,
+      "flights": 114,
+      "windows": 92682,
+      "average_only": 38364,
+      "dates": 17,
+      "firmwares": 15,
+      "exclusions": {
+        "no_causal_phase_bootstrap": 28009,
+        "phase_anomaly_or_recovery": 10355
+      }
+    },
+    {
+      "split": "train",
+      "horizon_us": 500000,
+      "flights": 114,
+      "windows": 89248,
+      "average_only": 40987,
+      "dates": 17,
+      "firmwares": 15,
+      "exclusions": {
+        "no_causal_phase_bootstrap": 27890,
+        "phase_anomaly_or_recovery": 13097
+      }
+    },
+    {
+      "split": "train",
+      "horizon_us": 1000000,
+      "flights": 114,
+      "windows": 83654,
+      "average_only": 44130,
+      "dates": 17,
+      "firmwares": 15,
+      "exclusions": {
+        "no_causal_phase_bootstrap": 27497,
+        "phase_anomaly_or_recovery": 16633
+      }
+    },
+    {
+      "split": "train",
+      "horizon_us": 2000000,
+      "flights": 114,
+      "windows": 77524,
+      "average_only": 48713,
+      "dates": 17,
+      "firmwares": 15,
+      "exclusions": {
+        "no_causal_phase_bootstrap": 27246,
+        "phase_anomaly_or_recovery": 21467
+      }
+    },
+    {
+      "split": "validation",
+      "horizon_us": 200000,
+      "flights": 39,
+      "windows": 30745,
+      "average_only": 14770,
+      "dates": 4,
+      "firmwares": 5,
+      "exclusions": {
+        "no_causal_phase_bootstrap": 9771,
+        "phase_anomaly_or_recovery": 4999
+      }
+    },
+    {
+      "split": "validation",
+      "horizon_us": 500000,
+      "flights": 39,
+      "windows": 29393,
+      "average_only": 15951,
+      "dates": 4,
+      "firmwares": 5,
+      "exclusions": {
+        "no_causal_phase_bootstrap": 9742,
+        "phase_anomaly_or_recovery": 6209
+      }
+    },
+    {
+      "split": "validation",
+      "horizon_us": 1000000,
+      "flights": 39,
+      "windows": 27389,
+      "average_only": 17375,
+      "dates": 4,
+      "firmwares": 5,
+      "exclusions": {
+        "no_causal_phase_bootstrap": 9665,
+        "phase_anomaly_or_recovery": 7710
+      }
+    },
+    {
+      "split": "validation",
+      "horizon_us": 2000000,
+      "flights": 39,
+      "windows": 25406,
+      "average_only": 19118,
+      "dates": 4,
+      "firmwares": 5,
+      "exclusions": {
+        "no_causal_phase_bootstrap": 9636,
+        "phase_anomaly_or_recovery": 9482
+      }
+    }
+  ],
+  "probes": [
+    {
+      "date": "2026-09-06",
+      "flight_id": "4c77a3e74b4c8e26d021fd1fa2bc618a2f2f52e005eb5022ecdf680c40678bfb:1",
+      "window_id": "4c77a3e74b4c8e26d021fd1fa2bc618a2f2f52e005eb5022ecdf680c40678bfb:1:689:h500000:f200000",
+      "loss": 43.91873316565919,
+      "gradients": {
+        "forcing": 47.65561383197892,
+        "control": 3.857273909105762
+      },
+      "hall_updates": 48,
+      "future_poison_invariant": true,
+      "AB_same_phase": true
+    },
+    {
+      "date": "2026-09-15",
+      "flight_id": "5abe5e80b02948c33d55cfa19837725934dbb0caa2132facd63e2129cf792952:1",
+      "window_id": "5abe5e80b02948c33d55cfa19837725934dbb0caa2132facd63e2129cf792952:1:53:h500000:f200000",
+      "loss": 69.27594704978151,
+      "gradients": {
+        "forcing": 40.055514305729474,
+        "control": 1.713582455516003
+      },
+      "hall_updates": 48,
+      "future_poison_invariant": true,
+      "AB_same_phase": true
+    },
+    {
+      "date": "2026-10-12",
+      "flight_id": "e09b2ec1b35d10ce5dc571a850fd0d5c3cbcf241fc691a2c625574aba4646262:1",
+      "window_id": "e09b2ec1b35d10ce5dc571a850fd0d5c3cbcf241fc691a2c625574aba4646262:1:28:h500000:f200000",
+      "loss": 35.942145194933495,
+      "gradients": {
+        "forcing": 34.4447367386731,
+        "control": 4.0449523947555965
+      },
+      "hall_updates": 58,
+      "future_poison_invariant": true,
+      "AB_same_phase": true
+    }
+  ],
+  "admission": "PASS conditional on recorded publication latency and mechanical working assumptions",
+  "formal_training_started": false,
+  "code_dirty": true,
+  "runtime_materialized_date_horizon_groups": {
+    "train": 68,
+    "validation": 16
+  },
+  "frequency_bootstrap_missing_or_stale_windows": {
+    "train": 0,
+    "validation": 0
+  }
+}

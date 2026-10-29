@@ -63,9 +63,16 @@ def main():
         split=args.response_split if args.mode=='response' else ('validation' if args.mode=='validate' else 'train')
         dataset=NativeWindows(**cfg['data'],split=split,device=args.device)
         if args.mode=='smoke':indices=dataset.windows.groupby('flight_id',sort=True).head(1).index[:args.windows]
-        elif args.mode=='validate':indices=validation_indices(dataset.windows,cfg['seed'],cfg['training']['validation_windows_per_group'])
+        elif args.mode=='validate':
+            frame=dataset.windows
+            if cfg['training']['objective']=='shared_periodic_AB':frame=frame[frame.shared_periodic_eligible]
+            indices=validation_indices(frame,cfg['seed'],cfg['training']['validation_windows_per_group'])
+        elif args.mode=='train' and cfg['training']['objective']=='shared_periodic_AB':
+            indices=dataset.windows.index[dataset.windows.shared_periodic_eligible]
         else:indices=range(len(dataset))
         windows=ConfiguredWindows(dataset,indices,model_cfg)
+        if cfg.get('phase_contract')!=dataset.phase_contract:raise ValueError('configured and loaded phase contracts differ')
+        metadata['phase_contract']=dataset.phase_contract
         metadata['data']=dict(split=split,windows=len(windows),manifest_sha256=dataset.manifest_sha256,
                               phase_policy=dataset.phase_policy,selection='full eligible training index; seeded per-flight/horizon validation cohort')
     if not windows:raise RuntimeError('no eligible windows')
@@ -73,7 +80,9 @@ def main():
         require_training_admission(cfg,model_cfg,dataset.windows)
         validation=NativeWindows(**cfg['data'],split='validation',device=args.device)
         require_training_admission(cfg,model_cfg,dataset.windows,validation.windows)
-        vi=validation_indices(validation.windows,cfg['seed'],cfg['training']['validation_windows_per_group'])
+        vf=validation.windows
+        if cfg['training']['objective']=='shared_periodic_AB':vf=vf[vf.shared_periodic_eligible]
+        vi=validation_indices(vf,cfg['seed'],cfg['training']['validation_windows_per_group'])
         val=ConfiguredWindows(validation,vi,model_cfg)
         metadata['validation_window_ids']=validation.windows.iloc[vi].window_id.tolist()
         result=formal_fit(model,windows,val,optimizer,args.steps,output,metadata,seed=cfg['seed'],

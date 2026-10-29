@@ -19,7 +19,7 @@
       23.393570068972757,
       -5.126725395181777
     ],
-    "replay_seconds": 0.6,
+    "replay_seconds": 0.65,
     "uncertainty_mode": "gaussian",
     "frequency_noise_psd": 0.04,
     "phase_noise_psd": 0.01
@@ -35,7 +35,11 @@
       2000000
     ],
     "phase_policy": "shared_or_average",
-    "reference_contract": "configs/pahbd/phase_reference.json"
+    "reference_contract": "configs/pahbd/phase_reference.json",
+    "sampling_groups": [
+      "main_50hz",
+      "sparse_10hz"
+    ]
   },
   "loss": {
     "variance_weight": 0.01,
@@ -53,9 +57,26 @@
     "validation_interval": 1000,
     "patience": 10,
     "validation_windows_per_group": 1,
-    "sampling": "flight permutation -> horizon permutation -> uniform eligible window",
+    "sampling": "shared_periodic_AB: Hall eligible only; flight permutation -> horizon permutation -> uniform window; same index and seed for A/B",
     "selection": "fixed seeded validation subset; equal flights then horizons; source-scaled loss",
     "average_dynamics_override": "Set objective=average_dynamics explicitly; this does not test periodic A/B hypothesis"
   },
-  "uncertainty_contract": "Uncalibrated continuous independent diffusion PSD assumptions; correlated joint covariance; Gaussian harmonic expectation closure, not calibrated coverage"
+  "uncertainty_contract": "Uncalibrated continuous independent diffusion PSD assumptions; correlated joint covariance; Gaussian harmonic expectation closure, not calibrated coverage",
+  "phase_contract": {
+    "schema": "pahbd_hall_phase_v2",
+    "reference_id": "hall_zero_positive_upstroke_working_assumption",
+    "phase_source": "wing_phase.phase_rad",
+    "mechanical_assumption": "Hall=0; increasing counts; upward motion begins after zero; no pi switching label",
+    "absolute_wing_calibration": false,
+    "availability_delay_us": 20000,
+    "availability_assumption": "Encoder timestamp + 20 ms guard; assumes work queue publication latency <=20 ms. Not a measured upper bound; offline research only.",
+    "max_gap_us": 50000,
+    "max_reference_error_rad": 0.15,
+    "recovery_us": 500000,
+    "phase_variance_rad2": 0.0009,
+    "max_encoder_frequency_hz": 20.0,
+    "frozen_contract_override": "Overrides build_config.phase.wing_phase_history_allowed=false for PA-HBD only; frozen tables/splits/quality exclusions unchanged.",
+    "firmware_source": "dataset/velocity_rate_multistep_v1/firmware_sources/c9af571575af33d5403fbb479256848797c801e2/src/modules/wing_phase/WingPhase.cpp",
+    "threshold_scope": "Fixed sensor QC: 0.15 rad reference innovation, 50 ms gap, 500 ms recovery, 20 Hz count-rate sanity ceiling; not tuned by model error or absolute calibration."
+  }
 }
