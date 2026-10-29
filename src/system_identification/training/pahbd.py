@@ -91,13 +91,16 @@ def load_checkpoint(path,device='cpu',optimizer=False):
     return model,opt,bundle
 
 
-def train_steps(model,windows,optimizer,steps,loss_config=None,sampler=None,seed=17):
+def train_steps(model,windows,optimizer,steps,loss_config=None,sampler=None,seed=17,on_update=None):
     if not windows:raise ValueError('empty training set')
     index=window_index(windows)
     sampler=sampler or FlightBalancedSampler(index,seed)
     model.train();records=[]
     for step in range(steps):
+        import time
+        started=time.monotonic()
         index=sampler.draw();window=windows[index]
+        loaded=time.monotonic()
         if window.metadata['split']!='train':raise ValueError('parameter fitting requires train')
         optimizer.zero_grad(set_to_none=True)
         loss,parts,*_=window_loss(model,window,**(loss_config or {}))
@@ -108,6 +111,8 @@ def train_steps(model,windows,optimizer,steps,loss_config=None,sampler=None,seed
         norm=torch.nn.utils.clip_grad_norm_(model.parameters(),10.)
         optimizer.step()
         records.append(dict(step=sampler.draws,window_id=window.metadata['window_id'],flight_id=window.metadata['flight_id'],horizon_us=int(sampler.index.iloc[index].horizon_us),actual_horizon_s=max(e.measurement for e in window.targets),**{k:float(v.detach()) for k,v in parts.items()},gradient_norm=float(norm)))
+        records[-1].update(data_seconds=loaded-started,update_seconds=time.monotonic()-started)
+        if on_update:on_update(records[-1])
     return records
 
 
@@ -175,18 +180,19 @@ def window_index(windows):
 
 
 @torch.no_grad()
-def validation_selection_score(model,windows,loss_config=None):
+def validation_selection_score(model,windows,loss_config=None,on_window=None):
     """Fixed source-scaled objective: average windows per flight/horizon, then horizons,
     then independent flights. No pooling of high-rate target counts across windows.
     """
     from system_identification.evaluation.pahbd import native_horizon_errors,aggregate_flights
     groups={};metrics=[];model.eval()
-    for w in windows:
+    for validation_index,w in enumerate(windows):
         if w.metadata['split']!='validation':raise ValueError('selection requires validation')
         loss,_,_,pred,times=window_loss(model,w,**(loss_config or {}))
         metrics.extend(native_horizon_errors(pred,times,w.targets,w.metadata))
         key=(w.metadata['flight_id'],w.metadata['horizon_us'])
         groups.setdefault(key,[]).append(float(loss))
+        if on_window:on_window(validation_index+1,len(windows))
     if not groups:raise ValueError('empty validation cohort')
     flights={}
     for (f,h),values in groups.items():flights.setdefault(f,[]).append(sum(values)/len(values))
@@ -198,7 +204,7 @@ def validation_selection_score(model,windows,loss_config=None):
 
 
 def formal_fit(model,train,validation,optimizer,steps,output,metadata,seed=17,
-               validation_interval=1000,patience=10,loss_config=None,resume=None):
+               validation_interval=1000,patience=10,loss_config=None,resume=None,fixed_budget=False):
     """Explicit caller-owned budget; no search or automatic follow-on runs."""
     import json
     if min(steps,validation_interval,patience)<1:raise ValueError('positive explicit schedule required')
@@ -220,15 +226,21 @@ def formal_fit(model,train,validation,optimizer,steps,output,metadata,seed=17,
         torch.set_rng_state(resume['training_state']['torch_rng'].cpu())
         if torch.cuda.is_available() and resume['training_state'].get('cuda_rng') is not None:
             torch.cuda.set_rng_state_all(resume['training_state']['cuda_rng'])
+    from system_identification.training.pahbd_status import RunStatus
+    status=RunStatus(output,metadata,steps,schedule['step'],validation_interval)
     records=[]
-    if schedule['bad_validations']>=patience:raise ValueError('checkpoint already early-stopped')
+    def updated(draw):
+        with (output/'training_draws.jsonl').open('a') as stream:
+            stream.write(json.dumps(draw)+'\n')
+        status.update(draw)
+    if not fixed_budget and schedule['bad_validations']>=patience:raise ValueError('checkpoint already early-stopped')
     while schedule['step']<steps:
         count=min(validation_interval-schedule['step']%validation_interval,steps-schedule['step'])
-        draws=train_steps(model,train,optimizer,count,loss_config,sampler=sampler)
-        with (output/'training_draws.jsonl').open('a') as stream:
-            for draw in draws:stream.write(json.dumps(draw)+'\n')
+        draws=train_steps(model,train,optimizer,count,loss_config,sampler=sampler,on_update=updated)
         schedule['step']+=count
-        result=validation_selection_score(model,validation,loss_config)
+        status.validation_start()
+        result=validation_selection_score(model,validation,loss_config,on_window=status.validation_window)
+        status.validation_end()
         if not torch.isfinite(torch.tensor(result['score'])):raise FloatingPointError('nonfinite validation score')
         improved=result['score']<schedule['best_score']
         if improved:schedule.update(best_score=result['score'],bad_validations=0)
@@ -241,7 +253,8 @@ def formal_fit(model,train,validation,optimizer,steps,output,metadata,seed=17,
         (output/'best.json').write_text(json.dumps(dict(checkpoint=schedule['best_checkpoint'],score=schedule['best_score'])))
         records.append(dict(step=schedule['step'],checkpoint=name,improved=improved,validation=result))
         (output/'progress.json').write_text(json.dumps(dict(records=records,coverage=sampler.coverage()),indent=2))
-        if schedule['bad_validations']>=patience:break
+        if not fixed_budget and schedule['bad_validations']>=patience:break
+    status.finish()
     return dict(schedule=schedule,records=records,coverage=sampler.coverage())
 
 

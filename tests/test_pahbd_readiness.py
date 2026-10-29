@@ -197,3 +197,27 @@ def test_hall_wrap_reset_gap_and_causal_recovery():
     assert bad.phase_usable.iloc[150:].all()
     table.loc[170:,'encoder_total_count']-=100000
     assert prepare_phase(table,8,c).phase_anomaly.iloc[170]
+
+
+def test_fixed_budget_ignores_patience_and_persists_early_progress(tmp_path,monkeypatch):
+    import json
+    import system_identification.training.pahbd as training
+    m,w=model_window(.02);v=copy.deepcopy(w);v.metadata['split']='validation'
+    monkeypatch.setattr(training,'validation_selection_score',lambda *a,**k:dict(score=1.))
+    result=formal_fit(m,[w],[v],torch.optim.Adam(m.parameters()),3,tmp_path/'fixed',{},
+                      validation_interval=1,patience=1,fixed_budget=True)
+    assert result['schedule']['step']==3
+    status=json.loads((tmp_path/'fixed/status.json').read_text())
+    assert status['step']==3 and status['state']=='completed'
+    assert len((tmp_path/'fixed/training_draws.jsonl').read_text().splitlines())==3
+    assert len(list((tmp_path/'fixed').glob('step_*.pt')))==3
+
+
+def test_validation_seed_is_independent_of_training_seed():
+    import importlib.util
+    spec=importlib.util.spec_from_file_location('run_pahbd',Path('scripts/run_pahbd.py'))
+    runner=importlib.util.module_from_spec(spec);spec.loader.exec_module(runner)
+    frame=pd.DataFrame([dict(flight_id=f,horizon_us=h,phase_mode='shared',window_id=i)
+                        for f in ('f1','f2') for h in (200000,2000000) for i in range(20)])
+    assert runner.validation_indices(frame,1701,1)==runner.validation_indices(frame,1701,1)
+    assert runner.validation_indices(frame,17,1)!=runner.validation_indices(frame,29,1)

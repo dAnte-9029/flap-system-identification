@@ -66,7 +66,7 @@ def main():
         elif args.mode=='validate':
             frame=dataset.windows
             if cfg['training']['objective']=='shared_periodic_AB':frame=frame[frame.shared_periodic_eligible]
-            indices=validation_indices(frame,cfg['seed'],cfg['training']['validation_windows_per_group'])
+            indices=validation_indices(frame,cfg['training'].get('validation_seed',1701),cfg['training']['validation_windows_per_group'])
         elif args.mode=='train' and cfg['training']['objective']=='shared_periodic_AB':
             indices=dataset.windows.index[dataset.windows.shared_periodic_eligible]
         else:indices=range(len(dataset))
@@ -82,12 +82,15 @@ def main():
         require_training_admission(cfg,model_cfg,dataset.windows,validation.windows)
         vf=validation.windows
         if cfg['training']['objective']=='shared_periodic_AB':vf=vf[vf.shared_periodic_eligible]
-        vi=validation_indices(vf,cfg['seed'],cfg['training']['validation_windows_per_group'])
+        vi=validation_indices(vf,cfg['training'].get('validation_seed',1701),cfg['training']['validation_windows_per_group'])
         val=ConfiguredWindows(validation,vi,model_cfg)
         metadata['validation_window_ids']=validation.windows.iloc[vi].window_id.tolist()
+        if cfg.get('validation_window_ids') is not None and cfg['validation_window_ids']!=metadata['validation_window_ids']:
+            raise ValueError('fixed validation membership changed')
         result=formal_fit(model,windows,val,optimizer,args.steps,output,metadata,seed=cfg['seed'],
                           validation_interval=cfg['training']['validation_interval'],patience=cfg['training']['patience'],
-                          loss_config=cfg['loss'],resume=bundle)
+                          loss_config=cfg['loss'],resume=bundle,
+                          fixed_budget=cfg['training'].get('fixed_budget',False))
     elif args.mode=='response':
         if not args.response_source:p.error('response requires --response-source frozen experiment directory')
         from system_identification.evaluation.pahbd import FrozenRollResponse,factual_predictor
