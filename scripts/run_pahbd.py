@@ -45,6 +45,7 @@ def main():
     output=Path(args.output)
     if output.exists():p.error('output exists; choose a new directory')
     cfg=json.loads(Path(args.config).read_text());torch.manual_seed(cfg['seed']);torch.set_num_threads(1)
+    if args.device.startswith('cuda'):torch.cuda.set_device(args.device)
     model_cfg=Config(**cfg['model'])
     if args.variant:model_cfg.mode=args.variant
     bundle=None

@@ -17,6 +17,7 @@ def main():
     p=argparse.ArgumentParser();p.add_argument('--run-root',type=Path,required=True);p.add_argument('--device',required=True)
     a=p.parse_args();torch.set_num_threads(1)
     if not a.device.startswith('cuda'):raise ValueError('requires actual GPU measurements')
+    torch.cuda.set_device(a.device)
     root=a.run_root;out=root/'preflight';out.mkdir(exist_ok=False)
     cfg=json.loads((root/'configs/A_seed17.json').read_text());records=[]
     started=time.monotonic();train=NativeWindows(**cfg['data'],split='train',device=a.device)
