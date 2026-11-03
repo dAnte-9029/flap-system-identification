@@ -70,13 +70,27 @@ def save_checkpoint(path,model,optimizer,metadata,step,training_state=None):
     path=Path(path)
     if path.exists():raise FileExistsError(f'refusing to overwrite {path}')
     path.parent.mkdir(parents=True,exist_ok=True)
-    torch.save(dict(schema='pahbd_v3_hall',config=asdict(model.config),model=model.state_dict(),
-                    optimizer=optimizer.state_dict() if optimizer else None,
-                    metadata=metadata,step=step,training_state=training_state,dtype=str(next(model.parameters()).dtype)),path)
+    import os
+    import tempfile
+    bundle=dict(schema='pahbd_v3_hall',config=asdict(model.config),model=model.state_dict(),
+                optimizer=optimizer.state_dict() if optimizer else None,
+                metadata=metadata,step=step,training_state=training_state,dtype=str(next(model.parameters()).dtype))
+    # Publish only a fully flushed checkpoint; link refuses an existing target.
+    fd,tmp=tempfile.mkstemp(prefix='.checkpoint-',dir=path.parent)
+    try:
+        with os.fdopen(fd,'wb') as stream:
+            torch.save(bundle,stream);stream.flush();os.fsync(stream.fileno())
+        os.link(tmp,path)
+        directory=os.open(path.parent,os.O_RDONLY)
+        try:os.fsync(directory)
+        finally:os.close(directory)
+    finally:
+        os.unlink(tmp)
+
 
 
 def load_checkpoint(path,device='cpu',optimizer=False):
-    bundle=torch.load(path,map_location=device,weights_only=True)
+    bundle=torch.load(path,map_location='cpu',weights_only=True)
     if bundle['schema']!='pahbd_v3_hall':raise ValueError('requires pahbd_v3_hall checkpoint; earlier versions used a different phase initialization contract')
     dtype=getattr(torch,bundle['dtype'].split('.')[-1])
     model=PAHBD(Config(**bundle['config'])).to(device=device,dtype=dtype)
@@ -107,7 +121,7 @@ def train_steps(model,windows,optimizer,steps,loss_config=None,sampler=None,seed
         optimizer.step()
         records.append(dict(step=sampler.draws,window_id=window.metadata['window_id'],flight_id=window.metadata['flight_id'],horizon_us=int(sampler.index.iloc[index].horizon_us),actual_horizon_s=max(e.measurement for e in window.targets),**{k:float(v.detach()) for k,v in parts.items()},gradient_norm=float(norm)))
         records[-1].update(data_seconds=loaded-started,update_seconds=time.monotonic()-started)
-        if on_update:on_update(records[-1])
+        if on_update and on_update(records[-1]):break
     return records
 
 
@@ -199,10 +213,11 @@ def validation_selection_score(model,windows,loss_config=None,on_window=None):
 
 
 def formal_fit(model,train,validation,optimizer,steps,output,metadata,seed=17,
-               validation_interval=1000,patience=10,loss_config=None,resume=None,fixed_budget=False):
+               validation_interval=1000,patience=10,loss_config=None,resume=None,fixed_budget=False,
+               recovery_interval=200,pause_requested=None):
     """Explicit caller-owned budget; no search or automatic follow-on runs."""
     import json
-    if min(steps,validation_interval,patience)<1:raise ValueError('positive explicit schedule required')
+    if min(steps,validation_interval,patience,recovery_interval)<1:raise ValueError('positive explicit schedule required')
     if 'training' in metadata.get('config',{}):
         require_training_admission(metadata['config'],model.config,window_index(train),window_index(validation))
         if metadata['config']['training']['objective']=='shared_periodic_AB':
@@ -215,24 +230,48 @@ def formal_fit(model,train,validation,optimizer,steps,output,metadata,seed=17,
     if resume:
         if resume['metadata']['config']!=metadata['config']:raise ValueError('resume configuration differs')
         if resume['metadata'].get('validation_window_ids')!=metadata.get('validation_window_ids'):raise ValueError('validation cohort changed')
+        if resume['metadata'].get('phase_contract')!=metadata.get('phase_contract'):raise ValueError('phase contract changed')
+        if resume['metadata'].get('data',{}).get('manifest_sha256')!=metadata.get('data',{}).get('manifest_sha256'):raise ValueError('data manifest changed')
         sampler.load_state_dict(resume['training_state']['sampler'])
         schedule=resume['training_state']['schedule'].copy()
         if schedule['validation_interval']!=validation_interval or schedule['patience']!=patience:raise ValueError('schedule changed')
         torch.set_rng_state(resume['training_state']['torch_rng'].cpu())
         if torch.cuda.is_available() and resume['training_state'].get('cuda_rng') is not None:
-            torch.cuda.set_rng_state_all(resume['training_state']['cuda_rng'])
-    from system_identification.training.pahbd_status import RunStatus
+            torch.cuda.set_rng_state_all([state.cpu() for state in resume['training_state']['cuda_rng']])
+    if schedule['step']>steps:raise ValueError('resume step exceeds total budget')
+    from system_identification.training.pahbd_status import RunStatus,atomic_json
     status=RunStatus(output,metadata,steps,schedule['step'],validation_interval)
     records=[]
+    def requested():
+        return (output/'PAUSE_REQUEST').exists() or bool(pause_requested and pause_requested())
+    def snapshot(name):
+        state=dict(sampler=sampler.state_dict(),schedule=schedule.copy(),torch_rng=torch.get_rng_state(),
+                   cuda_rng=torch.cuda.get_rng_state_all() if torch.cuda.is_available() else None)
+        save_checkpoint(output/name,model,optimizer,metadata,schedule['step'],training_state=state)
+        atomic_json(output/'latest.json',dict(checkpoint=str((output/name).resolve()),step=schedule['step']))
+    def paused():
+        name=f"pause_{schedule['step']:08d}.pt"
+        snapshot(name)
+        status.value.update(state='paused',phase='paused',checkpoint=str((output/name).resolve()))
+        status.flush()
+        return dict(state='paused',schedule=schedule,records=records,coverage=sampler.coverage())
     def updated(draw):
+        schedule['step']=draw['step']
+        schedule['validation_pending']=schedule['step']%validation_interval==0 or schedule['step']==steps
         with (output/'training_draws.jsonl').open('a') as stream:
             stream.write(json.dumps(draw)+'\n')
         status.update(draw)
+        if requested():return True
+        if schedule['step']%recovery_interval==0:
+            snapshot(f"recovery_{schedule['step']:08d}.pt")
+        return False
     if not fixed_budget and schedule['bad_validations']>=patience:raise ValueError('checkpoint already early-stopped')
-    while schedule['step']<steps:
-        count=min(validation_interval-schedule['step']%validation_interval,steps-schedule['step'])
-        draws=train_steps(model,train,optimizer,count,loss_config,sampler=sampler,on_update=updated)
-        schedule['step']+=count
+    while schedule['step']<steps or schedule.get('validation_pending',False):
+        if requested():return paused()
+        if not schedule.get('validation_pending',False):
+            count=min(validation_interval-schedule['step']%validation_interval,steps-schedule['step'])
+            train_steps(model,train,optimizer,count,loss_config,sampler=sampler,on_update=updated)
+            if requested():return paused()
         status.validation_start()
         result=validation_selection_score(model,validation,loss_config,on_window=status.validation_window)
         status.validation_end()
@@ -242,15 +281,15 @@ def formal_fit(model,train,validation,optimizer,steps,output,metadata,seed=17,
         else:schedule['bad_validations']+=1
         name=f"step_{schedule['step']:08d}.pt"
         if improved:schedule['best_checkpoint']=str((output/name).resolve())
-        state=dict(sampler=sampler.state_dict(),schedule=schedule.copy(),torch_rng=torch.get_rng_state(),
-                   cuda_rng=torch.cuda.get_rng_state_all() if torch.cuda.is_available() else None)
-        save_checkpoint(output/name,model,optimizer,metadata,schedule['step'],training_state=state)
+        schedule['validation_pending']=False
+        snapshot(name)
         (output/'best.json').write_text(json.dumps(dict(checkpoint=schedule['best_checkpoint'],score=schedule['best_score'])))
         records.append(dict(step=schedule['step'],checkpoint=name,improved=improved,validation=result))
         (output/'progress.json').write_text(json.dumps(dict(records=records,coverage=sampler.coverage()),indent=2))
+        if requested():return paused()
         if not fixed_budget and schedule['bad_validations']>=patience:break
     status.finish()
-    return dict(schedule=schedule,records=records,coverage=sampler.coverage())
+    return dict(state='completed',schedule=schedule,records=records,coverage=sampler.coverage())
 
 
 def require_training_admission(config,model_config,index,validation_index=None):

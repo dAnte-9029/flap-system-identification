@@ -38,7 +38,10 @@ def main():
               f"loss={s.get('loss','-')} val={s.get('validation_done','-')}/{s.get('validation_total','-')} "
               f"ETA={str(round(eta/3600,2))+'h' if eta is not None else '数据不足'} "
               f"heartbeat={str(round(age,1))+'s ago' if age is not None else '-'} exit={task.get('exit_code','-')}")
-    print('Queue remaining:',f'{remaining/3600:.2f}h; finish ~{dt.datetime.fromtimestamp(now+remaining).isoformat(timespec="minutes")}' if known else '数据不足')
+    if q.get('state') in ('paused','stopped_by_user','failed'):
+        print('Queue stopped; completion time unavailable until explicitly resumed.')
+    else:
+        print('Queue remaining:',f'{remaining/3600:.2f}h; finish ~{dt.datetime.fromtimestamp(now+remaining).isoformat(timespec="minutes")}' if known else '数据不足')
     subprocess.run(['nvidia-smi','--query-gpu=index,utilization.gpu,memory.used,memory.total,temperature.gpu','--format=csv'],check=False)
     pids=[str(t['pid']) for t in q.get('tasks',[]) if t.get('state')=='running' and t.get('pid')]
     if pids:subprocess.run(['ps','-p',','.join(pids),'-o','pid,etime,pcpu,pmem,stat,args'],check=False)

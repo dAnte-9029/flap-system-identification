@@ -32,6 +32,7 @@ def main():
     p.add_argument('--windows',type=int,default=2,help='smoke only; formal fitting always uses the full eligible index')
     p.add_argument('--device',default='cpu')
     p.add_argument('--checkpoint')
+    p.add_argument('--recovery-interval',type=int,default=200)
     p.add_argument('--response-source')
     p.add_argument('--response-split',choices=['train','validation'],default='validation')
     p.add_argument('--output',required=True)
@@ -88,10 +89,16 @@ def main():
         metadata['validation_window_ids']=validation.windows.iloc[vi].window_id.tolist()
         if cfg.get('validation_window_ids') is not None and cfg['validation_window_ids']!=metadata['validation_window_ids']:
             raise ValueError('fixed validation membership changed')
+        import signal
+        pause=[False]
+        def request_pause(signum,frame):pause[0]=True
+        signal.signal(signal.SIGTERM,request_pause);signal.signal(signal.SIGINT,request_pause)
+        if bundle:metadata['resumed_from']=str(Path(args.checkpoint).resolve())
         result=formal_fit(model,windows,val,optimizer,args.steps,output,metadata,seed=cfg['seed'],
                           validation_interval=cfg['training']['validation_interval'],patience=cfg['training']['patience'],
                           loss_config=cfg['loss'],resume=bundle,
-                          fixed_budget=cfg['training'].get('fixed_budget',False))
+                          fixed_budget=cfg['training'].get('fixed_budget',False),
+                          recovery_interval=args.recovery_interval,pause_requested=lambda:pause[0])
     elif args.mode=='response':
         if not args.response_source:p.error('response requires --response-source frozen experiment directory')
         from system_identification.evaluation.pahbd import FrozenRollResponse,factual_predictor
@@ -114,6 +121,7 @@ def main():
             save_checkpoint(output/'checkpoint.pt',model,optimizer,metadata,args.steps or 1)
     (output/'result.json').write_text(json.dumps(dict(metadata=metadata,result=result),indent=2))
     print(json.dumps(result,indent=2))
+    if result.get("state")=="paused":raise SystemExit(75)
 
 
 if __name__=='__main__':main()

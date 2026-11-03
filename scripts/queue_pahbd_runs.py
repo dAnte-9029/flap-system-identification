@@ -24,7 +24,10 @@ def main():
     def persist():
         q['heartbeat']=time.time();atomic_json(root/'queue.json',q)
     def interrupted(signum,frame):
-        raise RuntimeError(f'queue received signal {signum}')
+        if child is not None and child.poll() is None:
+            child.send_signal(signal.SIGTERM)
+        else:
+            raise RuntimeError(f'queue received signal {signum} before training initialized')
     signal.signal(signal.SIGTERM,interrupted);signal.signal(signal.SIGINT,interrupted)
     persist()
     try:
@@ -33,13 +36,18 @@ def main():
             command=[sys.executable,str(Path(__file__).with_name('run_pahbd.py')),'--mode','train','--source','native',
                      '--config',str(root/'configs'/f"{task['name']}.json"),'--device',q['device'],
                      '--steps',str(task['steps']),'--output',str(root/task['name'])]
+            if task.get('checkpoint'):command.extend(['--checkpoint',task['checkpoint']])
             with (root/f"{task['name']}.log").open('x') as log:
                 child=subprocess.Popen(command,stdout=log,stderr=subprocess.STDOUT,env=dict(os.environ,PYTHONUNBUFFERED='1'))
                 task['pid']=child.pid;persist()
                 while True:
                     try:code=child.wait(timeout=10);break
                     except subprocess.TimeoutExpired:persist()
-            task.update(exit_code=code,ended=time.time(),state='completed' if code==0 else 'failed');persist()
+            task.update(exit_code=code,ended=time.time(),state='completed' if code==0 else ('paused' if code==75 else 'failed'));persist()
+            if code==75:
+                q.update(state='paused',exit_code=75,ended=time.time());persist()
+                atomic_json(root/'PAUSED.json',dict(exit_code=75,task=task['name']))
+                return
             atomic_json(root/f"{task['name']}.exit.json",dict(exit_code=code,ended=task['ended']))
             if code:raise RuntimeError(f"{task['name']} exited {code}; remaining tasks not started")
         q.update(state='completed',exit_code=0,ended=time.time());persist()
