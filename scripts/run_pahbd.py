@@ -33,6 +33,8 @@ def main():
     p.add_argument('--device',default='cpu')
     p.add_argument('--checkpoint')
     p.add_argument('--prefetch',action='store_true')
+    p.add_argument('--execution-engine',choices=['reference','step'],default='reference',
+                   help='opt-in validated float64 compiled Lie step; requires the isolated compiler environment')
     p.add_argument('--prefetch-cpu',type=int)
     p.add_argument('--recovery-interval',type=int,default=200)
     p.add_argument('--response-source')
@@ -58,11 +60,16 @@ def main():
         if args.variant and args.variant!=model_cfg.mode:p.error('variant disagrees with checkpoint')
     else:model=PAHBD(model_cfg).to(device=args.device,dtype=torch.float64);optimizer=None
     if optimizer is None:optimizer=torch.optim.Adam(model.parameters(),**cfg['optimizer'])
+    if args.execution_engine=='step':
+        if not args.device.startswith('cuda'):p.error('compiled step execution requires CUDA')
+        from system_identification.models.pahbd.tensor_flow import enable_tensor_engine
+        enable_tensor_engine(model,'step')
     revision=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()
     metadata=dict(config=cfg,model_config=asdict(model_cfg),seed=cfg['seed'],code_revision=revision,
                   code_dirty=bool(subprocess.check_output(['git','status','--porcelain'],text=True).strip()),
                   mode=args.mode,source=args.source,device=args.device,formal_performance_claim=False,
-                  runtime=dict(prefetch=args.prefetch,prefetch_cpu=args.prefetch_cpu))
+                  runtime=dict(prefetch=args.prefetch,prefetch_cpu=args.prefetch_cpu,
+                               execution_engine=args.execution_engine,python=sys.executable,torch=torch.__version__))
     if args.source=='synthetic':windows=[controlled_periodic_window(model_cfg)[0]]
     else:
         split=args.response_split if args.mode=='response' else ('validation' if args.mode=='validate' else 'train')

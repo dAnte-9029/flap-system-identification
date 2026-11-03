@@ -55,7 +55,7 @@ def test_two_workers_overlap_and_global_pause(tmp_path,action):
     (checkout/'run_pahbd.py').write_text('''import sys,os,json,time
 from pathlib import Path
 out=Path(sys.argv[sys.argv.index('--output')+1]);out.mkdir()
-(out/'seen.json').write_text(json.dumps(dict(gpu=os.environ['CUDA_VISIBLE_DEVICES'],affinity=sorted(os.sched_getaffinity(0)),start=time.time())))
+(out/'seen.json').write_text(json.dumps(dict(gpu=os.environ['CUDA_VISIBLE_DEVICES'],affinity=sorted(os.sched_getaffinity(0)),start=time.time(),engine=sys.argv[sys.argv.index('--execution-engine')+1])))
 if out.name=='t1' and FAIL:
     time.sleep(.3);sys.exit(7)
 while not (out/'PAUSE_REQUEST').exists():time.sleep(.01)
@@ -64,7 +64,7 @@ sys.exit(75)
     def git(*args):return subprocess.check_output(['git',*args],cwd=checkout,text=True).strip()
     git('init','-q');git('add','.');git('-c','user.name=Test','-c','user.email=test@example.invalid','commit','-qm','fixture')
     root=tmp_path/'run';root.mkdir()
-    q=dict(state='prepared',code_revision=git('rev-parse','HEAD'),device='cuda:0',workers=[dict(id='a',physical_gpu=0),dict(id='b',physical_gpu=1)],tasks=[dict(name=f't{i}',steps=2,state='pending') for i in range(4)])
+    q=dict(state='prepared',code_revision=git('rev-parse','HEAD'),device='cuda:0',execution_engine='step',workers=[dict(id='a',physical_gpu=0),dict(id='b',physical_gpu=1)],tasks=[dict(name=f't{i}',steps=2,state='pending') for i in range(4)])
     (root/'queue.json').write_text(json.dumps(q))
     proc=subprocess.Popen([sys.executable,str(checkout/'queue_pahbd_runs.py'),'--run-root',str(root)],cwd=checkout,env=dict(os.environ,PYTHONPATH=str(repo/'src')))
     try:
@@ -73,6 +73,7 @@ sys.exit(75)
             assert time.monotonic()<deadline;time.sleep(.05)
         a=json.loads((root/'t0/seen.json').read_text());b=json.loads((root/'t1/seen.json').read_text())
         assert a['gpu']=='0' and b['gpu']=='1' and abs(a['start']-b['start'])<2
+        assert a['engine']==b['engine']=='step'
         if action=='file':(root/'PAUSE_REQUEST').touch()
         elif action=='ctrl_c':
             import signal

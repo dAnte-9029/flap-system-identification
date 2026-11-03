@@ -75,6 +75,7 @@ def main():
                              '--config',str(root/'configs'/f"{task['name']}.json"),'--device',device,
                              '--steps',str(task['steps']),'--output',str(root/task['name'])]
                     if task.get('checkpoint'):command.extend(['--checkpoint',task['checkpoint']])
+                    if q.get('execution_engine'):command.extend(['--execution-engine',q['execution_engine']])
                     if q.get('prefetch',False):
                         command.append('--prefetch')
                         if w.get('prefetch_cpu') is not None:command.extend(['--prefetch-cpu',str(w['prefetch_cpu'])])
