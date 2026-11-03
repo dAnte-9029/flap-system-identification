@@ -16,6 +16,8 @@ from run_pahbd import validation_indices
 
 def main():
     p=argparse.ArgumentParser();p.add_argument('--run-root',type=Path,required=True);p.add_argument('--device',required=True)
+    p.add_argument('--workers',type=Path,help='JSON array of distinct physical GPU workers and CPU affinities')
+    p.add_argument('--prefetch',action='store_true')
     a=p.parse_args();root=a.run_root.resolve();root.mkdir(parents=True,exist_ok=False);(root/'configs').mkdir()
     cfg=json.loads(Path('configs/pahbd/default.json').read_text())
     train=NativeWindows(**cfg['data'],split='train');val=NativeWindows(**cfg['data'],split='validation')
@@ -47,8 +49,11 @@ def main():
             name=f'{mode}_seed{seed}'
             (root/'configs'/f'{name}.json').write_text(json.dumps(c,indent=2))
             tasks.append(dict(name=name,seed=seed,variant=mode,steps=10944,state='pending',device=a.device))
+    workers=json.loads(a.workers.read_text()) if a.workers else None
+    if workers:
+        for i,t in enumerate(tasks):t['worker']=workers[i%len(workers)]['id']
     sha=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()
-    (root/'queue.json').write_text(json.dumps(dict(state='prepared',code_revision=sha,device=a.device,created=time.time(),tasks=tasks),indent=2))
+    (root/'queue.json').write_text(json.dumps(dict(state='prepared',code_revision=sha,device=a.device,created=time.time(),tasks=tasks,workers=workers,prefetch=a.prefetch),indent=2))
     print(json.dumps(dict(run_root=str(root),code_revision=sha,**{k:v for k,v in identity.items() if k not in ('validation_window_ids','phase_contract')}),indent=2))
 
 

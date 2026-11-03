@@ -32,6 +32,8 @@ def main():
     p.add_argument('--windows',type=int,default=2,help='smoke only; formal fitting always uses the full eligible index')
     p.add_argument('--device',default='cpu')
     p.add_argument('--checkpoint')
+    p.add_argument('--prefetch',action='store_true')
+    p.add_argument('--prefetch-cpu',type=int)
     p.add_argument('--recovery-interval',type=int,default=200)
     p.add_argument('--response-source')
     p.add_argument('--response-split',choices=['train','validation'],default='validation')
@@ -59,7 +61,8 @@ def main():
     revision=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()
     metadata=dict(config=cfg,model_config=asdict(model_cfg),seed=cfg['seed'],code_revision=revision,
                   code_dirty=bool(subprocess.check_output(['git','status','--porcelain'],text=True).strip()),
-                  mode=args.mode,source=args.source,device=args.device,formal_performance_claim=False)
+                  mode=args.mode,source=args.source,device=args.device,formal_performance_claim=False,
+                  runtime=dict(prefetch=args.prefetch,prefetch_cpu=args.prefetch_cpu))
     if args.source=='synthetic':windows=[controlled_periodic_window(model_cfg)[0]]
     else:
         split=args.response_split if args.mode=='response' else ('validation' if args.mode=='validate' else 'train')
@@ -98,7 +101,8 @@ def main():
                           validation_interval=cfg['training']['validation_interval'],patience=cfg['training']['patience'],
                           loss_config=cfg['loss'],resume=bundle,
                           fixed_budget=cfg['training'].get('fixed_budget',False),
-                          recovery_interval=args.recovery_interval,pause_requested=lambda:pause[0])
+                          recovery_interval=args.recovery_interval,pause_requested=lambda:pause[0],
+                          prefetch=args.prefetch,prefetch_cpu=args.prefetch_cpu)
     elif args.mode=='response':
         if not args.response_source:p.error('response requires --response-source frozen experiment directory')
         from system_identification.evaluation.pahbd import FrozenRollResponse,factual_predictor

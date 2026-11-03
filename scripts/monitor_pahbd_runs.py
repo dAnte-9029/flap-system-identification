@@ -22,22 +22,26 @@ def alive(pid):
 
 def main():
     p=argparse.ArgumentParser();p.add_argument('--run-root',type=Path,required=True);a=p.parse_args()
-    q=read(a.run_root/'queue.json');now=time.time();remaining=0.;known=True
+    q=read(a.run_root/'queue.json');now=time.time();remaining=0.;known=True;worker_remaining={}
     print('Run:',a.run_root,'\nQueue:',q.get('state','not started'),'PID:',q.get('pid'),'alive:',alive(q.get('pid')))
     baseline=read(a.run_root/'benchmark.json').get('task_eta_seconds')
     for task in q.get('tasks',[]):
         s=read(a.run_root/task['name']/'status.json');state=task['state']
+        worker=next((w for w in q.get('workers',[]) if w['id']==task.get('worker')), {}) if q.get('workers') else {}
+        physical_gpu=task.get('physical_gpu',worker.get('physical_gpu','-'))
         if state=='running' and not alive(task.get('pid')):state='ABNORMAL STOP'
         eta=s.get('eta_seconds')
         if state in ('pending','running'):
             if eta is None and baseline is not None:eta=baseline*(1-s.get('step',0)/task['steps'])
             if eta is None:known=False
-            else:remaining+=eta
+            else:
+                wid=task.get('worker','default');worker_remaining[wid]=worker_remaining.get(wid,0.)+eta
         age=now-s['heartbeat'] if 'heartbeat' in s else None
-        print(f"{task['name']}: {state} {s.get('phase','queued')} {s.get('step',0)}/{task['steps']} "
+        print(f"{task['name']} [worker={task.get('worker','default')}, GPU={physical_gpu}]: {state} {s.get('phase','queued')} {s.get('step',0)}/{task['steps']} "
               f"loss={s.get('loss','-')} val={s.get('validation_done','-')}/{s.get('validation_total','-')} "
               f"ETA={str(round(eta/3600,2))+'h' if eta is not None else '数据不足'} "
               f"heartbeat={str(round(age,1))+'s ago' if age is not None else '-'} exit={task.get('exit_code','-')}")
+    remaining=max(worker_remaining.values(),default=0.)
     if q.get('state') in ('paused','stopped_by_user','failed'):
         print('Queue stopped; completion time unavailable until explicitly resumed.')
     else:

@@ -19,12 +19,9 @@ def main():
     p.add_argument('--checkpoint',type=Path)
     a=p.parse_args();root=a.run_root.resolve();q=json.loads((root/'queue.json').read_text())
     if a.action=='pause':
-        active=[t for t in q['tasks'] if t['state']=='running']
-        if q['state']!='running' or len(active)!=1:p.error('expected exactly one running task')
-        target=root/active[0]['name']
-        if not target.is_dir():p.error('training has not initialized; retry after initialization')
-        (target/'PAUSE_REQUEST').touch()
-        print('Pause requested; wait for queue state paused and a complete pause checkpoint.');return
+        if q['state']!='running':p.error('queue is not running')
+        (root/'PAUSE_REQUEST').touch()
+        print('Queue pause requested; all active workers will save and pause, pending tasks stay queued.');return
     if q['state'] not in ('paused','stopped_by_user','failed'):p.error('source queue must be stopped')
     if not a.output or not a.checkpoint:p.error('resume requires --output and explicit --checkpoint')
     from system_identification.training.pahbd import load_checkpoint
@@ -32,7 +29,9 @@ def main():
     if not bundle.get('training_state'):p.error('checkpoint is not resumable')
     candidates=[t for t in q['tasks'] if checkpoint.parent==root/t['name']]
     if len(candidates)!=1:p.error('checkpoint must belong to a source task')
-    task=candidates[0];cfg=root/'configs'/f"{task['name']}.json"
+    task=candidates[0]
+    selected_workers=[w for w in (q.get('workers') or []) if w['id']==task.get('worker')]
+    cfg=root/'configs'/f"{task['name']}.json"
     if json.loads(cfg.read_text())!=bundle['metadata']['config']:p.error('checkpoint config differs')
     output=a.output.resolve();output.mkdir(parents=True,exist_ok=False);(output/'configs').mkdir()
     shutil.copy2(cfg,output/'configs'/cfg.name)
@@ -43,7 +42,7 @@ def main():
     task.update(state='pending',checkpoint=str(checkpoint))
     prepared=dict(state='prepared',created=time.time(),code_revision=revision,device=q['device'],
                   physical_gpu=q.get('physical_gpu'),cpu_affinity=q.get('cpu_affinity'),
-                  resumed_from=str(root),tasks=[task])
+                  resumed_from=str(root),tasks=[task],workers=selected_workers or None,prefetch=q.get('prefetch',False))
     atomic_json(output/'queue.json',prepared)
     print(f'Prepared only: {output}; total budget {task["steps"]}, saved step {bundle["step"]}.')
 

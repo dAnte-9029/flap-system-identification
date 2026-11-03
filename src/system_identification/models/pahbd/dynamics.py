@@ -48,13 +48,24 @@ class PhasePropagator(nn.Module):
         self.register_buffer('coefficients', torch.tensor(coefficients, dtype=torch.float64))
 
     def forward(self, f, phi, motor, dt):
-        b0,bu,bf = self.coefficients.to(f).unbind()
-        c = b0+bu*motor
-        if abs(self.host_coefficients()[2]) < 1e-9:
-            return f+c*dt, phi+2*math.pi*(f*dt+.5*c*dt*dt)
-        steady = -c/bf
-        integral = steady*dt+(f-steady)*torch.expm1(bf*dt)/bf
-        return steady+(f-steady)*torch.exp(bf*dt), phi+2*math.pi*integral
+        # Frozen scalar factors depend only on dt/device/dtype, not on state/control.
+        key=(dt,f.device,f.dtype,id(self.coefficients),self.coefficients._version)
+        if not hasattr(self,'_forward_cache'):self._forward_cache={}
+        cache=self._forward_cache
+        if key not in cache or self.coefficients.requires_grad:
+            b0,bu,bf=self.coefficients.to(f).unbind()
+            factors=(b0,bu,bf,torch.expm1(bf*dt),torch.exp(bf*dt))
+            if not self.coefficients.requires_grad:
+                if len(cache)>=4096:cache.clear()
+                cache[key]=factors
+        else:factors=cache[key]
+        b0,bu,bf,em1,e=factors
+        c=b0+bu*motor
+        if abs(self.host_coefficients()[2])<1e-9:
+            return f+c*dt,phi+2*math.pi*(f*dt+.5*c*dt*dt)
+        steady=-c/bf
+        integral=steady*dt+(f-steady)*em1/bf
+        return steady+(f-steady)*e,phi+2*math.pi*integral
 
     def host_coefficients(self):
         key=(id(self.coefficients),self.coefficients._version,self.coefficients.device,self.coefficients.dtype)
@@ -148,13 +159,27 @@ class ControlMixer(nn.Module):
         c,s=coefficients.unbind(-2);cd=torch.cos(k*offset)[...,None];sd=torch.sin(k*offset)[...,None]
         return torch.stack((c*cd-s*sd,c*sd+s*cd),-2)
 
+    def _rotate(self,coefficients):
+        H=coefficients.shape[-3]
+        key=(H,coefficients.device,coefficients.dtype,id(self.gauge_offset),self.gauge_offset._version)
+        if not hasattr(self,'_gauge_cache'):self._gauge_cache={}
+        if key not in self._gauge_cache or self.gauge_offset.requires_grad:
+            k=torch.arange(1,H+1,device=coefficients.device,dtype=coefficients.dtype)
+            cd=torch.cos(k*self.gauge_offset)[...,None];sd=torch.sin(k*self.gauge_offset)[...,None]
+            if not self.gauge_offset.requires_grad:
+                if len(self._gauge_cache)>=16:self._gauge_cache.clear()
+                self._gauge_cache[key]=(cd,sd)
+        else:cd,sd=self._gauge_cache[key]
+        c,s=coefficients.unbind(-2)
+        return torch.stack((c*cd-s*sd,c*sd+s*cd),-2)
+
     def coefficients(self,c):
         lead=c.shape[:-1];cfg=self.cfg
         raw=self.mean(c);mean=raw[...,:6];B=raw[...,6:].reshape(*lead,6,3)
         forcing=self.forcing(c).reshape(*lead,cfg.forcing_harmonics,2,6)
         left=self.control(c).reshape(*lead,cfg.control_harmonics,2,6*cfg.rank)
-        forcing=self.rotate_coefficients(forcing,self.gauge_offset)
-        left=self.rotate_coefficients(left,self.gauge_offset).reshape(*lead,cfg.control_harmonics,2,6,cfg.rank)
+        forcing=self._rotate(forcing)
+        left=self._rotate(left).reshape(*lead,cfg.control_harmonics,2,6,cfg.rank)
         G=torch.einsum('...hkor,hrj->...hkoj',left,self.right)
         return mean,B,forcing,G
 
@@ -168,7 +193,9 @@ class ControlMixer(nn.Module):
                 result=result*torch.exp(-.5*k.square()*phase_variance)[...,None]
             return result
         enabled=quality if self.cfg.phase_mode=='relative' else torch.zeros_like(quality)
-        forcing=torch.einsum('...hk,...hko->...o',basis(self.cfg.forcing_harmonics),F)*enabled
-        interaction=torch.einsum('...hk,...hkoj,...j->...o',basis(self.cfg.control_harmonics),G,da)*enabled
+        forcing_basis=basis(self.cfg.forcing_harmonics)
+        forcing=torch.einsum('...hk,...hko->...o',forcing_basis,F)*enabled
+        control_basis=forcing_basis if self.cfg.control_harmonics==self.cfg.forcing_harmonics else basis(self.cfg.control_harmonics)
+        interaction=torch.einsum('...hk,...hkoj,...j->...o',control_basis,G,da)*enabled
         if self.cfg.mode=='B':interaction=interaction*0
         return avg+forcing+interaction,dict(mean=avg,forcing=forcing,interaction=interaction)

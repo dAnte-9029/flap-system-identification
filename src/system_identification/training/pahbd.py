@@ -100,28 +100,34 @@ def load_checkpoint(path,device='cpu',optimizer=False):
     return model,opt,bundle
 
 
-def train_steps(model,windows,optimizer,steps,loss_config=None,sampler=None,seed=17,on_update=None):
+def train_steps(model,windows,optimizer,steps,loss_config=None,sampler=None,seed=17,on_update=None,prefetch=False,prefetch_cpu=None):
     if not windows:raise ValueError('empty training set')
     index=window_index(windows)
     sampler=sampler or FlightBalancedSampler(index,seed)
     model.train();records=[]
-    for step in range(steps):
-        import time
-        started=time.monotonic()
-        index=sampler.draw();window=windows[index]
-        loaded=time.monotonic()
-        if window.metadata['split']!='train':raise ValueError('parameter fitting requires train')
-        optimizer.zero_grad(set_to_none=True)
-        loss,parts,*_=window_loss(model,window,**(loss_config or {}))
-        if not torch.isfinite(loss):raise FloatingPointError('nonfinite training loss')
-        loss.backward()
-        grads=[p.grad for p in model.parameters() if p.grad is not None]
-        if not grads or not torch.stack([torch.isfinite(g).all() for g in grads]).all():raise FloatingPointError('invalid gradients')
-        norm=torch.nn.utils.clip_grad_norm_(model.parameters(),10.)
-        optimizer.step()
-        records.append(dict(step=sampler.draws,window_id=window.metadata['window_id'],flight_id=window.metadata['flight_id'],horizon_us=int(sampler.index.iloc[index].horizon_us),actual_horizon_s=max(e.measurement for e in window.targets),**{k:float(v.detach()) for k,v in parts.items()},gradient_norm=float(norm)))
-        records[-1].update(data_seconds=loaded-started,update_seconds=time.monotonic()-started)
-        if on_update and on_update(records[-1]):break
+    from .pahbd_prefetch import WindowStream
+    stream=WindowStream(windows,sampler,steps,prefetch,prefetch_cpu)
+    try:
+        for step in range(steps):
+            import time
+            started=time.monotonic()
+            index,window,load_seconds=stream.next()
+            loaded=time.monotonic()
+            if window.metadata['split']!='train':raise ValueError('parameter fitting requires train')
+            optimizer.zero_grad(set_to_none=True)
+            loss,parts,*_=window_loss(model,window,**(loss_config or {}))
+            if not torch.isfinite(loss):raise FloatingPointError('nonfinite training loss')
+            loss.backward()
+            grads=[p.grad for p in model.parameters() if p.grad is not None]
+            if not grads or not torch.stack([torch.isfinite(g).all() for g in grads]).all():raise FloatingPointError('invalid gradients')
+            norm=torch.nn.utils.clip_grad_norm_(model.parameters(),10.)
+            optimizer.step()
+            records.append(dict(step=sampler.draws,window_id=window.metadata['window_id'],flight_id=window.metadata['flight_id'],horizon_us=int(sampler.index.iloc[index].horizon_us),actual_horizon_s=max(e.measurement for e in window.targets),**{k:float(v.detach()) for k,v in parts.items()},gradient_norm=float(norm)))
+            records[-1].update(data_seconds=loaded-started,loader_seconds=load_seconds,update_seconds=time.monotonic()-started)
+            if on_update and on_update(records[-1]):break
+    finally:
+        stream.close()
+
     return records
 
 
@@ -214,7 +220,7 @@ def validation_selection_score(model,windows,loss_config=None,on_window=None):
 
 def formal_fit(model,train,validation,optimizer,steps,output,metadata,seed=17,
                validation_interval=1000,patience=10,loss_config=None,resume=None,fixed_budget=False,
-               recovery_interval=200,pause_requested=None):
+               recovery_interval=200,pause_requested=None,prefetch=False,prefetch_cpu=None):
     """Explicit caller-owned budget; no search or automatic follow-on runs."""
     import json
     if min(steps,validation_interval,patience,recovery_interval)<1:raise ValueError('positive explicit schedule required')
@@ -270,7 +276,8 @@ def formal_fit(model,train,validation,optimizer,steps,output,metadata,seed=17,
         if requested():return paused()
         if not schedule.get('validation_pending',False):
             count=min(validation_interval-schedule['step']%validation_interval,steps-schedule['step'])
-            train_steps(model,train,optimizer,count,loss_config,sampler=sampler,on_update=updated)
+            train_steps(model,train,optimizer,count,loss_config,sampler=sampler,on_update=updated,
+                        prefetch=prefetch,prefetch_cpu=prefetch_cpu)
             if requested():return paused()
         status.validation_start()
         result=validation_selection_score(model,validation,loss_config,on_window=status.validation_window)

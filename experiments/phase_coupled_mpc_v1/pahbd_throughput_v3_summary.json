@@ -1,0 +1,381 @@
+{
+  "comparison": {
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-08
+    },
+    "rows": [
+      {
+        "mode": "A",
+        "horizon": 200000,
+        "old_seconds": 3.132042540702969,
+        "new_seconds": 2.910312213236466,
+        "speedup": 1.0761878146468429,
+        "errors": {
+          "pred": {
+            "x": 0.0,
+            "f": 0.0,
+            "phi": 0.0,
+            "h": 0.0,
+            "variance": 0.0,
+            "phase_covariance": 0.0
+          },
+          "loss": {
+            "state": 0.0,
+            "variance": 0.0,
+            "cycle": 0.0,
+            "total": 0.0
+          },
+          "grads": {
+            "flow.process_logit": 0.0,
+            "flow.slow.retention": 0.0,
+            "flow.slow.encoder.0.weight": 2.710505431213761e-20,
+            "flow.slow.encoder.0.bias": 0.0,
+            "flow.slow.encoder.2.weight": 4.336808689942018e-19,
+            "flow.slow.encoder.2.bias": 0.0,
+            "flow.slow.memory.weight": 1.3552527156068805e-20,
+            "flow.slow.memory.bias": 0.0,
+            "flow.mixer.right": 0.0,
+            "flow.mixer.mean.weight": 0.0,
+            "flow.mixer.mean.bias": 0.0,
+            "flow.mixer.forcing.weight": 2.168404344971009e-19,
+            "flow.mixer.forcing.bias": 0.0,
+            "flow.mixer.control.weight": 3.3881317890172014e-21,
+            "flow.mixer.control.bias": 0.0,
+            "belief.update_net.0.weight": 1.1102230246251565e-16,
+            "belief.update_net.0.bias": 1.3877787807814457e-17,
+            "belief.update_net.2.weight": 2.7755575615628914e-17,
+            "belief.update_net.2.bias": 3.469446951953614e-18
+          }
+        }
+      },
+      {
+        "mode": "A",
+        "horizon": 500000,
+        "old_seconds": 4.168131961254403,
+        "new_seconds": 3.8815721308346838,
+        "speedup": 1.0738257130772675,
+        "errors": {
+          "pred": {
+            "x": 0.0,
+            "f": 0.0,
+            "phi": 0.0,
+            "h": 0.0,
+            "variance": 0.0,
+            "phase_covariance": 0.0
+          },
+          "loss": {
+            "state": 0.0,
+            "variance": 0.0,
+            "cycle": 0.0,
+            "total": 0.0
+          },
+          "grads": {
+            "flow.process_logit": 0.0,
+            "flow.slow.retention": 0.0,
+            "flow.slow.encoder.0.weight": 5.293955920339377e-23,
+            "flow.slow.encoder.0.bias": 0.0,
+            "flow.slow.encoder.2.weight": 0.0,
+            "flow.slow.encoder.2.bias": 0.0,
+            "flow.slow.memory.weight": 1.3552527156068805e-20,
+            "flow.slow.memory.bias": 0.0,
+            "flow.mixer.right": 0.0,
+            "flow.mixer.mean.weight": 0.0,
+            "flow.mixer.mean.bias": 0.0,
+            "flow.mixer.forcing.weight": 0.0,
+            "flow.mixer.forcing.bias": 0.0,
+            "flow.mixer.control.weight": 0.0,
+            "flow.mixer.control.bias": 0.0,
+            "belief.update_net.0.weight": 2.220446049250313e-16,
+            "belief.update_net.0.bias": 2.7755575615628914e-17,
+            "belief.update_net.2.weight": 1.1102230246251565e-16,
+            "belief.update_net.2.bias": 1.0408340855860843e-17
+          }
+        }
+      },
+      {
+        "mode": "A",
+        "horizon": 1000000,
+        "old_seconds": 6.075954522006214,
+        "new_seconds": 5.784147414844483,
+        "speedup": 1.0504494588801168,
+        "errors": {
+          "pred": {
+            "x": 0.0,
+            "f": 0.0,
+            "phi": 0.0,
+            "h": 0.0,
+            "variance": 0.0,
+            "phase_covariance": 0.0
+          },
+          "loss": {
+            "state": 0.0,
+            "variance": 0.0,
+            "cycle": 0.0,
+            "total": 0.0
+          },
+          "grads": {
+            "flow.process_logit": 6.938893903907228e-18,
+            "flow.slow.retention": 0.0,
+            "flow.slow.encoder.0.weight": 0.0,
+            "flow.slow.encoder.0.bias": 0.0,
+            "flow.slow.encoder.2.weight": 0.0,
+            "flow.slow.encoder.2.bias": 0.0,
+            "flow.slow.memory.weight": 2.710505431213761e-20,
+            "flow.slow.memory.bias": 0.0,
+            "flow.mixer.right": 0.0,
+            "flow.mixer.mean.weight": 0.0,
+            "flow.mixer.mean.bias": 0.0,
+            "flow.mixer.forcing.weight": 0.0,
+            "flow.mixer.forcing.bias": 0.0,
+            "flow.mixer.control.weight": 0.0,
+            "flow.mixer.control.bias": 0.0,
+            "belief.update_net.0.weight": 4.440892098500626e-16,
+            "belief.update_net.0.bias": 2.7755575615628914e-17,
+            "belief.update_net.2.weight": 1.1102230246251565e-16,
+            "belief.update_net.2.bias": 6.938893903907228e-18
+          }
+        }
+      },
+      {
+        "mode": "A",
+        "horizon": 2000000,
+        "old_seconds": 9.897554820170626,
+        "new_seconds": 9.194720491534099,
+        "speedup": 1.07643890091968,
+        "errors": {
+          "pred": {
+            "x": 0.0,
+            "f": 0.0,
+            "phi": 0.0,
+            "h": 0.0,
+            "variance": 0.0,
+            "phase_covariance": 0.0
+          },
+          "loss": {
+            "state": 0.0,
+            "variance": 0.0,
+            "cycle": 0.0,
+            "total": 0.0
+          },
+          "grads": {
+            "flow.process_logit": 5.551115123125783e-17,
+            "flow.slow.retention": 0.0,
+            "flow.slow.encoder.0.weight": 3.469446951953614e-18,
+            "flow.slow.encoder.0.bias": 0.0,
+            "flow.slow.encoder.2.weight": 0.0,
+            "flow.slow.encoder.2.bias": 0.0,
+            "flow.slow.memory.weight": 2.710505431213761e-20,
+            "flow.slow.memory.bias": 0.0,
+            "flow.mixer.right": 0.0,
+            "flow.mixer.mean.weight": 0.0,
+            "flow.mixer.mean.bias": 0.0,
+            "flow.mixer.forcing.weight": 0.0,
+            "flow.mixer.forcing.bias": 0.0,
+            "flow.mixer.control.weight": 0.0,
+            "flow.mixer.control.bias": 0.0,
+            "belief.update_net.0.weight": 4.440892098500626e-16,
+            "belief.update_net.0.bias": 5.551115123125783e-17,
+            "belief.update_net.2.weight": 4.440892098500626e-16,
+            "belief.update_net.2.bias": 5.551115123125783e-17
+          }
+        }
+      },
+      {
+        "mode": "B",
+        "horizon": 200000,
+        "old_seconds": 3.0731470726896077,
+        "new_seconds": 3.041252779075876,
+        "speedup": 1.0104872221846102,
+        "errors": {
+          "pred": {
+            "x": 0.0,
+            "f": 0.0,
+            "phi": 0.0,
+            "h": 0.0,
+            "variance": 0.0,
+            "phase_covariance": 0.0
+          },
+          "loss": {
+            "state": 0.0,
+            "variance": 0.0,
+            "cycle": 0.0,
+            "total": 0.0
+          },
+          "grads": {
+            "flow.process_logit": 0.0,
+            "flow.slow.retention": 0.0,
+            "flow.slow.encoder.0.weight": 0.0,
+            "flow.slow.encoder.0.bias": 0.0,
+            "flow.slow.encoder.2.weight": 0.0,
+            "flow.slow.encoder.2.bias": 0.0,
+            "flow.slow.memory.weight": 0.0,
+            "flow.slow.memory.bias": 0.0,
+            "flow.mixer.right": 0.0,
+            "flow.mixer.mean.weight": 0.0,
+            "flow.mixer.mean.bias": 0.0,
+            "flow.mixer.forcing.weight": 0.0,
+            "flow.mixer.forcing.bias": 0.0,
+            "flow.mixer.control.weight": 0.0,
+            "flow.mixer.control.bias": 0.0,
+            "belief.update_net.0.weight": 0.0,
+            "belief.update_net.0.bias": 0.0,
+            "belief.update_net.2.weight": 0.0,
+            "belief.update_net.2.bias": 0.0
+          }
+        }
+      },
+      {
+        "mode": "B",
+        "horizon": 500000,
+        "old_seconds": 4.235325491288677,
+        "new_seconds": 4.072778304340318,
+        "speedup": 1.0399106395688502,
+        "errors": {
+          "pred": {
+            "x": 0.0,
+            "f": 0.0,
+            "phi": 0.0,
+            "h": 0.0,
+            "variance": 0.0,
+            "phase_covariance": 0.0
+          },
+          "loss": {
+            "state": 0.0,
+            "variance": 0.0,
+            "cycle": 0.0,
+            "total": 0.0
+          },
+          "grads": {
+            "flow.process_logit": 0.0,
+            "flow.slow.retention": 0.0,
+            "flow.slow.encoder.0.weight": 0.0,
+            "flow.slow.encoder.0.bias": 0.0,
+            "flow.slow.encoder.2.weight": 0.0,
+            "flow.slow.encoder.2.bias": 0.0,
+            "flow.slow.memory.weight": 0.0,
+            "flow.slow.memory.bias": 0.0,
+            "flow.mixer.right": 0.0,
+            "flow.mixer.mean.weight": 0.0,
+            "flow.mixer.mean.bias": 0.0,
+            "flow.mixer.forcing.weight": 0.0,
+            "flow.mixer.forcing.bias": 0.0,
+            "flow.mixer.control.weight": 0.0,
+            "flow.mixer.control.bias": 0.0,
+            "belief.update_net.0.weight": 0.0,
+            "belief.update_net.0.bias": 0.0,
+            "belief.update_net.2.weight": 0.0,
+            "belief.update_net.2.bias": 0.0
+          }
+        }
+      },
+      {
+        "mode": "B",
+        "horizon": 1000000,
+        "old_seconds": 6.132762665860355,
+        "new_seconds": 5.745434178505093,
+        "speedup": 1.0674150073469366,
+        "errors": {
+          "pred": {
+            "x": 0.0,
+            "f": 0.0,
+            "phi": 0.0,
+            "h": 0.0,
+            "variance": 0.0,
+            "phase_covariance": 0.0
+          },
+          "loss": {
+            "state": 0.0,
+            "variance": 0.0,
+            "cycle": 0.0,
+            "total": 0.0
+          },
+          "grads": {
+            "flow.process_logit": 0.0,
+            "flow.slow.retention": 0.0,
+            "flow.slow.encoder.0.weight": 0.0,
+            "flow.slow.encoder.0.bias": 0.0,
+            "flow.slow.encoder.2.weight": 0.0,
+            "flow.slow.encoder.2.bias": 0.0,
+            "flow.slow.memory.weight": 0.0,
+            "flow.slow.memory.bias": 0.0,
+            "flow.mixer.right": 0.0,
+            "flow.mixer.mean.weight": 0.0,
+            "flow.mixer.mean.bias": 0.0,
+            "flow.mixer.forcing.weight": 0.0,
+            "flow.mixer.forcing.bias": 0.0,
+            "flow.mixer.control.weight": 0.0,
+            "flow.mixer.control.bias": 0.0,
+            "belief.update_net.0.weight": 0.0,
+            "belief.update_net.0.bias": 0.0,
+            "belief.update_net.2.weight": 0.0,
+            "belief.update_net.2.bias": 0.0
+          }
+        }
+      },
+      {
+        "mode": "B",
+        "horizon": 2000000,
+        "old_seconds": 9.97994298581034,
+        "new_seconds": 9.111020694719627,
+        "speedup": 1.0953704661865495,
+        "errors": {
+          "pred": {
+            "x": 0.0,
+            "f": 0.0,
+            "phi": 0.0,
+            "h": 0.0,
+            "variance": 0.0,
+            "phase_covariance": 0.0
+          },
+          "loss": {
+            "state": 0.0,
+            "variance": 0.0,
+            "cycle": 0.0,
+            "total": 0.0
+          },
+          "grads": {
+            "flow.process_logit": 0.0,
+            "flow.slow.retention": 0.0,
+            "flow.slow.encoder.0.weight": 0.0,
+            "flow.slow.encoder.0.bias": 0.0,
+            "flow.slow.encoder.2.weight": 0.0,
+            "flow.slow.encoder.2.bias": 0.0,
+            "flow.slow.memory.weight": 0.0,
+            "flow.slow.memory.bias": 0.0,
+            "flow.mixer.right": 0.0,
+            "flow.mixer.mean.weight": 0.0,
+            "flow.mixer.mean.bias": 0.0,
+            "flow.mixer.forcing.weight": 0.0,
+            "flow.mixer.forcing.bias": 0.0,
+            "flow.mixer.control.weight": 0.0,
+            "flow.mixer.control.bias": 0.0,
+            "belief.update_net.0.weight": 0.0,
+            "belief.update_net.0.bias": 0.0,
+            "belief.update_net.2.weight": 0.0,
+            "belief.update_net.2.bias": 0.0
+          }
+        }
+      }
+    ],
+    "mean_step_seconds": 5.467654775886331,
+    "validation_window_seconds": 1.6265078848227859,
+    "queue_eta_seconds": 377297.01976612955
+  },
+  "concurrency": {
+    "prefetch_speedup": 0.9950511643581326,
+    "selected_prefetch": false,
+    "serial_seconds": 90.46337805641815,
+    "dual_seconds": 46.018186120316386,
+    "dual_speedup": 1.9658179881296935,
+    "dual_steps_per_second": 0.34768862810384055,
+    "dual_process_elapsed": 46.73750200076029
+  },
+  "real_update_model_bitwise_equal": true,
+  "cross_flight_prefetch": {
+    "off_seconds": 36.54749707272276,
+    "on_seconds": 36.898084921296686,
+    "flights": 8,
+    "model_bitwise_equal": true
+  }
+}

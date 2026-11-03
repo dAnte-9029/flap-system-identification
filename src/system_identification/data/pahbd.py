@@ -240,4 +240,8 @@ class ConfiguredWindows:
         return self.dataset.windows.iloc[self.indices].reset_index(drop=True)
 
     def __getitem__(self,index):
+        if torch.device(self.dataset.device).type!='cpu':
+            from .pahbd_transfer import cpu_windows,window_to_device
+            if not hasattr(self,'_cpu_loader'):self._cpu_loader=cpu_windows(self)
+            return window_to_device(self._cpu_loader[index],self.dataset.device)
         return configure_latent(self.dataset[self.indices[index]],self.config)
