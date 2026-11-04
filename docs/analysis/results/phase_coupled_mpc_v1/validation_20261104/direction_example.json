@@ -1,0 +1,10 @@
+{
+  "i": 79,
+  "window_id": "72b77806f1d23dd9d32bf76275b6a94d3cc4dd2f860a9394fd1b3e42ab10c8de:1:4364:h500000:f2000000",
+  "flight_id": "72b77806f1d23dd9d32bf76275b6a94d3cc4dd2f860a9394fd1b3e42ab10c8de:1",
+  "horizon_us": 2000000,
+  "sampling_group": "main_50hz",
+  "anchor_measurement": -0.010480999999999999,
+  "anchor_availability": -0.010376,
+  "points": 201
+}

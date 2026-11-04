@@ -1,0 +1,50 @@
+{
+  "endpoint": "sign(delta_pred)==sign(delta_true), abs(delta_true)>0.01 rad/s; abs(delta_pred)<=0.01 counts incorrect",
+  "interval": "sign(dt-weighted mean delta_pred)==sign(dt-weighted mean delta_true); abs(mean delta_true)>historical per-axis frozen floor; no prediction amplitude gate (original definition)",
+  "origin": "latest causal measured gyro available at decision, shared by prediction and truth; no future correction",
+  "endpoint_horizons_s": [
+    0.02,
+    0.2,
+    0.5,
+    1.0,
+    2.0
+  ],
+  "endpoint_tolerance_s": 0.03,
+  "intervals": [
+    [
+      "early",
+      0.0,
+      0.1
+    ],
+    [
+      "middle",
+      0.1,
+      0.3
+    ],
+    [
+      "late",
+      0.3,
+      0.5
+    ],
+    [
+      "extended",
+      0.5,
+      1.0
+    ],
+    [
+      "long",
+      1.0,
+      2.0
+    ]
+  ],
+  "interval_floors_rad_s": {
+    "p": 0.15996404353446483,
+    "q": 0.20729854999788178,
+    "r": 0.06034291333093696
+  },
+  "floor_source": "/home/zn/flap-system-identification/.worktrees/pahbd-compile-v4/docs/analysis/results/model_flight_response_diagnostic_v1/protocol.json",
+  "floor_scope": "historical TRAIN q25 thresholds reused numerically; not recalibrated on current train or validation, not a noise estimate",
+  "aggregation": "eligible windows within flight then equal eligible flights, then equal seeds; amplitude ratio = mean flight RMS predicted increment / mean flight RMS true increment",
+  "selection": "original 156 validation members; original independently selected best checkpoints; all eligible flights retained",
+  "case": "seed17, nominal2s, middle member after sorting flight_id; selected by identity not error"
+}

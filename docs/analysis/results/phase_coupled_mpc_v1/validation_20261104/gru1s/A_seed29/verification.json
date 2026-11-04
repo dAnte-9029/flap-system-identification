@@ -1,0 +1,8 @@
+{
+  "checkpoint": "/home/zn/pahbd-runs/ab-compiled-dual-20261103-1812/A_seed29/step_00010944.pt",
+  "windows": 108,
+  "seconds": 72.78088183887303,
+  "old_pahbd_gyro_max_abs_difference": 0.0,
+  "new_integration_queries": false,
+  "precision": "float64"
+}

@@ -1,0 +1,7 @@
+{
+  "seed": 17,
+  "original_batch_start": 0,
+  "compared_values": 24,
+  "max_abs_difference": 0.0,
+  "conclusion": "same archived batch reproduces original metrics; new cohort batch changes float32/TF32 execution numerics"
+}

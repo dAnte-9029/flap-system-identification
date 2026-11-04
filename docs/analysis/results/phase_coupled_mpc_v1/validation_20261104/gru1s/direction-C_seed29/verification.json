@@ -1,0 +1,1 @@
+{"checkpoint": "/home/zn/flap-system-identification/.worktrees/velocity-rate-dataset-v1/experiments/velocity_rate_gru64_horizon_training_v1/train_1000ms/GRU-Control/seed_29/best.pt", "windows": 108, "batch_size": 2048, "precision": "float32; TF32 enabled as archived", "dummy_rows": "padding only, never scored; batch-independent GRU", "seconds": 0.06180540798231959}

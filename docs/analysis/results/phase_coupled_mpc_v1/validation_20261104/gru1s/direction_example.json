@@ -1,0 +1,8 @@
+{
+  "i": 55,
+  "window_id": "8d1191724e9bb10dcc592dc354b6c8cc21f51ae79dd14e9960bc656411cb7758:1:5884:h500000:f2000000",
+  "flight_id": "8d1191724e9bb10dcc592dc354b6c8cc21f51ae79dd14e9960bc656411cb7758:1",
+  "horizon_us": 2000000,
+  "sampling_group": "main_50hz",
+  "anchor_measurement": -0.007953
+}

@@ -1,0 +1,22 @@
+{
+  "windows": 108,
+  "flights": 27,
+  "seeds": [
+    17,
+    29
+  ],
+  "models": [
+    "A",
+    "B",
+    "H1000-GRU-Control"
+  ],
+  "shared_evaluation": "same original native VLP state grid and same nearest paired sensor labels; no interpolation; original PAHBD integration queries unchanged",
+  "rate_target_offset_seconds": [
+    -0.004992,
+    0.0,
+    0.004990999999999968
+  ],
+  "gru_archived_regression_count": 648,
+  "gru_archived_max_abs_difference": 0.003421073835417232,
+  "error_metric": "sqrt(mean_seed(mean_flight(mean_window(vector_error_squared))))"
+}

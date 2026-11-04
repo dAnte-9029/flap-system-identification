@@ -1,0 +1,51 @@
+{
+  "windows": 108,
+  "flights": 27,
+  "packing_exact_checks": 27,
+  "baseline": "frozen H1000-GRU-Control",
+  "checkpoints": [
+    {
+      "seed": 17,
+      "checkpoint": "/home/zn/flap-system-identification/.worktrees/velocity-rate-dataset-v1/experiments/velocity_rate_gru64_horizon_training_v1/train_1000ms/GRU-Control/seed_17/best.pt",
+      "sha256": "337521208087cb67d8230c6d11390e71a28989059d5b7a86e42a2fd3a2f6803e",
+      "summary": {
+        "model": "GRU-Control",
+        "seed": 17,
+        "parameters": 37590,
+        "gradient_parameters": 37590,
+        "epochs": 24,
+        "updates": 2544,
+        "examples_seen": 2590080,
+        "best_epoch": 23,
+        "best_validation_flight_loss": 0.6029369831085205,
+        "seconds": 232.39275360107422,
+        "peak_allocated_bytes": 1941391360,
+        "stop_reason": "fixed_epoch_budget",
+        "checkpoint_sha256": "337521208087cb67d8230c6d11390e71a28989059d5b7a86e42a2fd3a2f6803e"
+      }
+    },
+    {
+      "seed": 29,
+      "checkpoint": "/home/zn/flap-system-identification/.worktrees/velocity-rate-dataset-v1/experiments/velocity_rate_gru64_horizon_training_v1/train_1000ms/GRU-Control/seed_29/best.pt",
+      "sha256": "7f5f8487a062f9f93f5a089929830fcc3cb9061e2f287d20b356a69b749258c8",
+      "summary": {
+        "model": "GRU-Control",
+        "seed": 29,
+        "parameters": 37590,
+        "gradient_parameters": 37590,
+        "epochs": 24,
+        "updates": 2544,
+        "examples_seen": 2590080,
+        "best_epoch": 22,
+        "best_validation_flight_loss": 0.6024097800254822,
+        "seconds": 230.66517186164856,
+        "peak_allocated_bytes": 1941391360,
+        "stop_reason": "fixed_epoch_budget",
+        "checkpoint_sha256": "7f5f8487a062f9f93f5a089929830fcc3cb9061e2f287d20b356a69b749258c8"
+      }
+    }
+  ],
+  "source_model": "/home/zn/flap-system-identification/.worktrees/velocity-rate-dataset-v1/src/system_identification/models/velocity_rate_gru.py",
+  "source_model_sha256": "f4a06a64e10e9e52cc77b2121a0eec77c9e08982b0899c2eac736f67116cdc67",
+  "test_access": false
+}

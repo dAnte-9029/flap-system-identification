@@ -1,0 +1,9 @@
+{
+  "checkpoint": "/home/zn/pahbd-runs/ab-compiled-dual-20261103-1812/B_seed29/step_00010944.pt",
+  "windows": 156,
+  "score": 29.867137833330073,
+  "saved_score": 29.867137833330073,
+  "score_difference": 0.0,
+  "native_metrics_match": true,
+  "seconds": 104.83847338985652
+}

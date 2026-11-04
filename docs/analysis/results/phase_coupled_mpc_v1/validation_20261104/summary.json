@@ -1,0 +1,217 @@
+{
+  "run": "/home/zn/pahbd-runs/ab-compiled-dual-20261103-1812",
+  "source_revision": "2066d5ca71e72b37d528c03a4fd8f988fe8c73ed",
+  "cohort_windows": 156,
+  "cohort_flights": 39,
+  "validation_cohort_equal": true,
+  "paired_training_order_exact": true,
+  "paused": {
+    "A_seed43": {
+      "step": 6741,
+      "checkpoint": "/home/zn/pahbd-runs/ab-compiled-dual-20261103-1812/A_seed43/pause_00006741.pt",
+      "adam_states": 19
+    },
+    "B_seed43": {
+      "step": 4851,
+      "checkpoint": "/home/zn/pahbd-runs/ab-compiled-dual-20261103-1812/B_seed43/pause_00004851.pt",
+      "adam_states": 19
+    }
+  },
+  "models": [
+    {
+      "task": "A_seed17",
+      "best_step": 9120,
+      "best_score": 29.735433783096102,
+      "last_score": 30.129116927607786,
+      "first_step": 912,
+      "first_score": 42.115754728111035,
+      "best_improvement_vs_first_pct": 29.395937517775106,
+      "checkpoint": "/home/zn/pahbd-runs/ab-compiled-dual-20261103-1812/A_seed17/step_00009120.pt"
+    },
+    {
+      "task": "B_seed17",
+      "best_step": 10944,
+      "best_score": 29.892510924731706,
+      "last_score": 29.892510924731706,
+      "first_step": 912,
+      "first_score": 44.120206739369756,
+      "best_improvement_vs_first_pct": 32.247572860854845,
+      "checkpoint": "/home/zn/pahbd-runs/ab-compiled-dual-20261103-1812/B_seed17/step_00010944.pt"
+    },
+    {
+      "task": "A_seed29",
+      "best_step": 10944,
+      "best_score": 30.175857828252838,
+      "last_score": 30.175857828252838,
+      "first_step": 912,
+      "first_score": 40.77165831265455,
+      "best_improvement_vs_first_pct": 25.98815187537523,
+      "checkpoint": "/home/zn/pahbd-runs/ab-compiled-dual-20261103-1812/A_seed29/step_00010944.pt"
+    },
+    {
+      "task": "B_seed29",
+      "best_step": 10944,
+      "best_score": 29.867137833330073,
+      "last_score": 29.867137833330073,
+      "first_step": 912,
+      "first_score": 42.29282232876586,
+      "best_improvement_vs_first_pct": 29.380126014868345,
+      "checkpoint": "/home/zn/pahbd-runs/ab-compiled-dual-20261103-1812/B_seed29/step_00010944.pt"
+    }
+  ],
+  "paired_scores": [
+    {
+      "seed": 17,
+      "A": 29.735433783096102,
+      "B": 29.892510924731706,
+      "A_improvement_pct": 0.5254732264918127,
+      "A_wins": 18,
+      "flights": 39,
+      "mean_A_minus_B": -0.15707714163560957,
+      "median_A_minus_B": 0.01467787825574618,
+      "last_A_improvement_pct": -0.7915226776092688
+    },
+    {
+      "seed": 29,
+      "A": 30.175857828252838,
+      "B": 29.867137833330073,
+      "A_improvement_pct": -1.0336443908537163,
+      "A_wins": 17,
+      "flights": 39,
+      "mean_A_minus_B": 0.3087199949227582,
+      "median_A_minus_B": 0.2081693306101755,
+      "last_A_improvement_pct": -1.0336443908537163
+    }
+  ],
+  "pooled_native": [
+    {
+      "component": "p",
+      "horizon_s": 0.2,
+      "flights": 39,
+      "A": 0.10014879421688179,
+      "B": 0.12661002958347453,
+      "A_improvement_pct": 20.899794000242878
+    },
+    {
+      "component": "p",
+      "horizon_s": 0.5,
+      "flights": 39,
+      "A": 0.21624881367617518,
+      "B": 0.24133019270676112,
+      "A_improvement_pct": 10.392971865340606
+    },
+    {
+      "component": "p",
+      "horizon_s": 1.0,
+      "flights": 39,
+      "A": 0.5358996198573782,
+      "B": 0.5530526593710796,
+      "A_improvement_pct": 3.1015201216476385
+    },
+    {
+      "component": "p",
+      "horizon_s": 2.0,
+      "flights": 39,
+      "A": 2.0730436717227305,
+      "B": 2.1191579225671227,
+      "A_improvement_pct": 2.1760648582777598
+    },
+    {
+      "component": "v",
+      "horizon_s": 0.2,
+      "flights": 39,
+      "A": 0.2991327993801291,
+      "B": 0.31008948767043115,
+      "A_improvement_pct": 3.5333955925481164
+    },
+    {
+      "component": "v",
+      "horizon_s": 0.5,
+      "flights": 39,
+      "A": 0.5131462155976426,
+      "B": 0.5107550260903343,
+      "A_improvement_pct": -0.46816759212573444
+    },
+    {
+      "component": "v",
+      "horizon_s": 1.0,
+      "flights": 39,
+      "A": 0.9700895135996375,
+      "B": 0.9938363935130472,
+      "A_improvement_pct": 2.389415407647577
+    },
+    {
+      "component": "v",
+      "horizon_s": 2.0,
+      "flights": 39,
+      "A": 2.3794457080549014,
+      "B": 2.3946952835761373,
+      "A_improvement_pct": 0.6368065125372802
+    },
+    {
+      "component": "R",
+      "horizon_s": 0.2,
+      "flights": 39,
+      "A": 0.05405387541457693,
+      "B": 0.058258251231865926,
+      "A_improvement_pct": 7.216790288736474
+    },
+    {
+      "component": "R",
+      "horizon_s": 0.5,
+      "flights": 39,
+      "A": 0.10033426024350973,
+      "B": 0.10752292840397358,
+      "A_improvement_pct": 6.685707194892753
+    },
+    {
+      "component": "R",
+      "horizon_s": 1.0,
+      "flights": 39,
+      "A": 0.17784221253244514,
+      "B": 0.1918335233734907,
+      "A_improvement_pct": 7.293464976820097
+    },
+    {
+      "component": "R",
+      "horizon_s": 2.0,
+      "flights": 31,
+      "A": 0.35704347416033727,
+      "B": 0.3911505063882005,
+      "A_improvement_pct": 8.719669710465217
+    },
+    {
+      "component": "omega",
+      "horizon_s": 0.2,
+      "flights": 39,
+      "A": 0.6175837342134624,
+      "B": 0.6126526830521504,
+      "A_improvement_pct": -0.8048689408730159
+    },
+    {
+      "component": "omega",
+      "horizon_s": 0.5,
+      "flights": 39,
+      "A": 0.584622395178625,
+      "B": 0.5855927620165979,
+      "A_improvement_pct": 0.1657067677256263
+    },
+    {
+      "component": "omega",
+      "horizon_s": 1.0,
+      "flights": 39,
+      "A": 0.6433566864854909,
+      "B": 0.6265426248921878,
+      "A_improvement_pct": -2.683626129378891
+    },
+    {
+      "component": "omega",
+      "horizon_s": 2.0,
+      "flights": 39,
+      "A": 0.8017223494206407,
+      "B": 0.7814852331305849,
+      "A_improvement_pct": -2.5895711693728396
+    }
+  ],
+  "method": "Existing fixed-cohort validation outputs; best selected independently by original score; two seeds equal weight in MSE; no fresh inference or test access"
+}

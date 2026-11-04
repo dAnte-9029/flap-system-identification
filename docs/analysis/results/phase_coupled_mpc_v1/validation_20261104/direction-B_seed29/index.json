@@ -1,0 +1,1562 @@
+[
+  {
+    "i": 0,
+    "window_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:1255:h500000:f200000",
+    "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+    "horizon_us": 200000,
+    "sampling_group": "sparse_10hz",
+    "anchor_measurement": -0.017789,
+    "anchor_availability": -0.017612,
+    "points": 10
+  },
+  {
+    "i": 1,
+    "window_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:748:h500000:f500000",
+    "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+    "horizon_us": 500000,
+    "sampling_group": "sparse_10hz",
+    "anchor_measurement": -0.015347999999999999,
+    "anchor_availability": -0.015172,
+    "points": 25
+  },
+  {
+    "i": 2,
+    "window_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:424:h500000:f1000000",
+    "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+    "horizon_us": 1000000,
+    "sampling_group": "sparse_10hz",
+    "anchor_measurement": -0.020316,
+    "anchor_availability": -0.020139999999999998,
+    "points": 50
+  },
+  {
+    "i": 3,
+    "window_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:1156:h500000:f2000000",
+    "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+    "horizon_us": 2000000,
+    "sampling_group": "sparse_10hz",
+    "anchor_measurement": -0.010421,
+    "anchor_availability": -0.010244,
+    "points": 100
+  },
+  {
+    "i": 4,
+    "window_id": "0451d1a43890608c6b767e31fc9f342d905b82c9394689649574157a6b2e9764:1:1449:h500000:f200000",
+    "flight_id": "0451d1a43890608c6b767e31fc9f342d905b82c9394689649574157a6b2e9764:1",
+    "horizon_us": 200000,
+    "sampling_group": "sparse_10hz",
+    "anchor_measurement": -0.000432,
+    "anchor_availability": -0.00035299999999999996,
+    "points": 9
+  },
+  {
+    "i": 5,
+    "window_id": "0451d1a43890608c6b767e31fc9f342d905b82c9394689649574157a6b2e9764:1:1357:h500000:f500000",
+    "flight_id": "0451d1a43890608c6b767e31fc9f342d905b82c9394689649574157a6b2e9764:1",
+    "horizon_us": 500000,
+    "sampling_group": "sparse_10hz",
+    "anchor_measurement": -0.017971,
+    "anchor_availability": -0.017891999999999998,
+    "points": 25
+  },
+  {
+    "i": 6,
+    "window_id": "0451d1a43890608c6b767e31fc9f342d905b82c9394689649574157a6b2e9764:1:1123:h500000:f1000000",
+    "flight_id": "0451d1a43890608c6b767e31fc9f342d905b82c9394689649574157a6b2e9764:1",
+    "horizon_us": 1000000,
+    "sampling_group": "sparse_10hz",
+    "anchor_measurement": -0.01789,
+    "anchor_availability": -0.017811999999999998,
+    "points": 50
+  },
+  {
+    "i": 7,
+    "window_id": "0451d1a43890608c6b767e31fc9f342d905b82c9394689649574157a6b2e9764:1:668:h500000:f2000000",
+    "flight_id": "0451d1a43890608c6b767e31fc9f342d905b82c9394689649574157a6b2e9764:1",
+    "horizon_us": 2000000,
+    "sampling_group": "sparse_10hz",
+    "anchor_measurement": -0.00046199999999999995,
+    "anchor_availability": -0.000383,
+    "points": 99
+  },
+  {
+    "i": 8,
+    "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:2866:h500000:f200000",
+    "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+    "horizon_us": 200000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.000665,
+    "anchor_availability": -0.000488,
+    "points": 19
+  },
+  {
+    "i": 9,
+    "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:6675:h500000:f500000",
+    "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+    "horizon_us": 500000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.00378,
+    "anchor_availability": -0.003603,
+    "points": 50
+  },
+  {
+    "i": 10,
+    "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:3469:h500000:f1000000",
+    "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+    "horizon_us": 1000000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.003114,
+    "anchor_availability": -0.002934,
+    "points": 101
+  },
+  {
+    "i": 11,
+    "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:829:h500000:f2000000",
+    "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+    "horizon_us": 2000000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.010536,
+    "anchor_availability": -0.010358,
+    "points": 201
+  },
+  {
+    "i": 12,
+    "window_id": "05c2f81037b89babb98b66a43ceb29e4cdc37ea53d15b671d3716f02cbcddbc7:1:1658:h500000:f200000",
+    "flight_id": "05c2f81037b89babb98b66a43ceb29e4cdc37ea53d15b671d3716f02cbcddbc7:1",
+    "horizon_us": 200000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.005575,
+    "anchor_availability": -0.005333,
+    "points": 20
+  },
+  {
+    "i": 13,
+    "window_id": "05c2f81037b89babb98b66a43ceb29e4cdc37ea53d15b671d3716f02cbcddbc7:1:2050:h500000:f500000",
+    "flight_id": "05c2f81037b89babb98b66a43ceb29e4cdc37ea53d15b671d3716f02cbcddbc7:1",
+    "horizon_us": 500000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.0006169999999999999,
+    "anchor_availability": -0.000437,
+    "points": 50
+  },
+  {
+    "i": 14,
+    "window_id": "05c2f81037b89babb98b66a43ceb29e4cdc37ea53d15b671d3716f02cbcddbc7:1:230:h500000:f1000000",
+    "flight_id": "05c2f81037b89babb98b66a43ceb29e4cdc37ea53d15b671d3716f02cbcddbc7:1",
+    "horizon_us": 1000000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.003064,
+    "anchor_availability": -0.0029809999999999997,
+    "points": 100
+  },
+  {
+    "i": 15,
+    "window_id": "05c2f81037b89babb98b66a43ceb29e4cdc37ea53d15b671d3716f02cbcddbc7:1:242:h500000:f2000000",
+    "flight_id": "05c2f81037b89babb98b66a43ceb29e4cdc37ea53d15b671d3716f02cbcddbc7:1",
+    "horizon_us": 2000000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.005444,
+    "anchor_availability": -0.005363,
+    "points": 201
+  },
+  {
+    "i": 16,
+    "window_id": "0e3d4d085a0d8bcd87a2c76c5c3230e2ae238cf0d3b54051abd498e0b9c8bf8c:1:5879:h500000:f200000",
+    "flight_id": "0e3d4d085a0d8bcd87a2c76c5c3230e2ae238cf0d3b54051abd498e0b9c8bf8c:1",
+    "horizon_us": 200000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.005475,
+    "anchor_availability": -0.005392999999999999,
+    "points": 20
+  },
+  {
+    "i": 17,
+    "window_id": "0e3d4d085a0d8bcd87a2c76c5c3230e2ae238cf0d3b54051abd498e0b9c8bf8c:1:9751:h500000:f500000",
+    "flight_id": "0e3d4d085a0d8bcd87a2c76c5c3230e2ae238cf0d3b54051abd498e0b9c8bf8c:1",
+    "horizon_us": 500000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.007967,
+    "anchor_availability": -0.007885999999999999,
+    "points": 50
+  },
+  {
+    "i": 18,
+    "window_id": "0e3d4d085a0d8bcd87a2c76c5c3230e2ae238cf0d3b54051abd498e0b9c8bf8c:1:4094:h500000:f1000000",
+    "flight_id": "0e3d4d085a0d8bcd87a2c76c5c3230e2ae238cf0d3b54051abd498e0b9c8bf8c:1",
+    "horizon_us": 1000000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.0007559999999999999,
+    "anchor_availability": -0.000669,
+    "points": 99
+  },
+  {
+    "i": 19,
+    "window_id": "0e3d4d085a0d8bcd87a2c76c5c3230e2ae238cf0d3b54051abd498e0b9c8bf8c:1:3349:h500000:f2000000",
+    "flight_id": "0e3d4d085a0d8bcd87a2c76c5c3230e2ae238cf0d3b54051abd498e0b9c8bf8c:1",
+    "horizon_us": 2000000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.010475,
+    "anchor_availability": -0.010393999999999999,
+    "points": 201
+  },
+  {
+    "i": 20,
+    "window_id": "1a2f3f28b2bc9096e90f68bee1897d7da44918ca0d568d8b8c44672228addb06:1:913:h500000:f200000",
+    "flight_id": "1a2f3f28b2bc9096e90f68bee1897d7da44918ca0d568d8b8c44672228addb06:1",
+    "horizon_us": 200000,
+    "sampling_group": "sparse_10hz",
+    "anchor_measurement": -0.000587,
+    "anchor_availability": -0.00041099999999999996,
+    "points": 9
+  },
+  {
+    "i": 21,
+    "window_id": "1a2f3f28b2bc9096e90f68bee1897d7da44918ca0d568d8b8c44672228addb06:1:976:h500000:f500000",
+    "flight_id": "1a2f3f28b2bc9096e90f68bee1897d7da44918ca0d568d8b8c44672228addb06:1",
+    "horizon_us": 500000,
+    "sampling_group": "sparse_10hz",
+    "anchor_measurement": -0.020270999999999997,
+    "anchor_availability": -0.020095,
+    "points": 26
+  },
+  {
+    "i": 22,
+    "window_id": "1a2f3f28b2bc9096e90f68bee1897d7da44918ca0d568d8b8c44672228addb06:1:260:h500000:f1000000",
+    "flight_id": "1a2f3f28b2bc9096e90f68bee1897d7da44918ca0d568d8b8c44672228addb06:1",
+    "horizon_us": 1000000,
+    "sampling_group": "sparse_10hz",
+    "anchor_measurement": -0.017849,
+    "anchor_availability": -0.017669999999999998,
+    "points": 50
+  },
+  {
+    "i": 23,
+    "window_id": "1a2f3f28b2bc9096e90f68bee1897d7da44918ca0d568d8b8c44672228addb06:1:1186:h500000:f2000000",
+    "flight_id": "1a2f3f28b2bc9096e90f68bee1897d7da44918ca0d568d8b8c44672228addb06:1",
+    "horizon_us": 2000000,
+    "sampling_group": "sparse_10hz",
+    "anchor_measurement": -0.000594,
+    "anchor_availability": -0.000417,
+    "points": 99
+  },
+  {
+    "i": 24,
+    "window_id": "1d0eccb6bff5bbec48711611b652a5d920c132c230ac1801fe8b53314ce52ebc:1:4478:h500000:f200000",
+    "flight_id": "1d0eccb6bff5bbec48711611b652a5d920c132c230ac1801fe8b53314ce52ebc:1",
+    "horizon_us": 200000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.008258999999999999,
+    "anchor_availability": -0.008076999999999999,
+    "points": 20
+  },
+  {
+    "i": 25,
+    "window_id": "1d0eccb6bff5bbec48711611b652a5d920c132c230ac1801fe8b53314ce52ebc:1:5618:h500000:f500000",
+    "flight_id": "1d0eccb6bff5bbec48711611b652a5d920c132c230ac1801fe8b53314ce52ebc:1",
+    "horizon_us": 500000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.005496,
+    "anchor_availability": -0.005319,
+    "points": 50
+  },
+  {
+    "i": 26,
+    "window_id": "1d0eccb6bff5bbec48711611b652a5d920c132c230ac1801fe8b53314ce52ebc:1:4478:h500000:f1000000",
+    "flight_id": "1d0eccb6bff5bbec48711611b652a5d920c132c230ac1801fe8b53314ce52ebc:1",
+    "horizon_us": 1000000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.008258999999999999,
+    "anchor_availability": -0.008076999999999999,
+    "points": 100
+  },
+  {
+    "i": 27,
+    "window_id": "1d0eccb6bff5bbec48711611b652a5d920c132c230ac1801fe8b53314ce52ebc:1:4701:h500000:f2000000",
+    "flight_id": "1d0eccb6bff5bbec48711611b652a5d920c132c230ac1801fe8b53314ce52ebc:1",
+    "horizon_us": 2000000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.00061,
+    "anchor_availability": -0.00043299999999999995,
+    "points": 199
+  },
+  {
+    "i": 28,
+    "window_id": "2f0f47422f9ee289467bdc2b2efe0b23caff3bbd2b8c4c7090db13b09b0032c8:1:344:h500000:f200000",
+    "flight_id": "2f0f47422f9ee289467bdc2b2efe0b23caff3bbd2b8c4c7090db13b09b0032c8:1",
+    "horizon_us": 200000,
+    "sampling_group": "sparse_10hz",
+    "anchor_measurement": -0.012934,
+    "anchor_availability": -0.012855,
+    "points": 10
+  },
+  {
+    "i": 29,
+    "window_id": "2f0f47422f9ee289467bdc2b2efe0b23caff3bbd2b8c4c7090db13b09b0032c8:1:1302:h500000:f500000",
+    "flight_id": "2f0f47422f9ee289467bdc2b2efe0b23caff3bbd2b8c4c7090db13b09b0032c8:1",
+    "horizon_us": 500000,
+    "sampling_group": "sparse_10hz",
+    "anchor_measurement": -0.015415,
+    "anchor_availability": -0.015333999999999999,
+    "points": 25
+  },
+  {
+    "i": 30,
+    "window_id": "2f0f47422f9ee289467bdc2b2efe0b23caff3bbd2b8c4c7090db13b09b0032c8:1:1423:h500000:f1000000",
+    "flight_id": "2f0f47422f9ee289467bdc2b2efe0b23caff3bbd2b8c4c7090db13b09b0032c8:1",
+    "horizon_us": 1000000,
+    "sampling_group": "sparse_10hz",
+    "anchor_measurement": -0.000507,
+    "anchor_availability": -0.000426,
+    "points": 49
+  },
+  {
+    "i": 31,
+    "window_id": "2f0f47422f9ee289467bdc2b2efe0b23caff3bbd2b8c4c7090db13b09b0032c8:1:555:h500000:f2000000",
+    "flight_id": "2f0f47422f9ee289467bdc2b2efe0b23caff3bbd2b8c4c7090db13b09b0032c8:1",
+    "horizon_us": 2000000,
+    "sampling_group": "sparse_10hz",
+    "anchor_measurement": -0.000468,
+    "anchor_availability": -0.000383,
+    "points": 99
+  },
+  {
+    "i": 32,
+    "window_id": "3bb6ff6472a11102b2cd3d4b64d26f3a6795f2c8411df1564b54cf7acbab1fc7:1:2736:h500000:f200000",
+    "flight_id": "3bb6ff6472a11102b2cd3d4b64d26f3a6795f2c8411df1564b54cf7acbab1fc7:1",
+    "horizon_us": 200000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.0032259999999999997,
+    "anchor_availability": -0.0030399999999999997,
+    "points": 21
+  },
+  {
+    "i": 33,
+    "window_id": "3bb6ff6472a11102b2cd3d4b64d26f3a6795f2c8411df1564b54cf7acbab1fc7:1:544:h500000:f500000",
+    "flight_id": "3bb6ff6472a11102b2cd3d4b64d26f3a6795f2c8411df1564b54cf7acbab1fc7:1",
+    "horizon_us": 500000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.003039,
+    "anchor_availability": -0.002862,
+    "points": 50
+  },
+  {
+    "i": 34,
+    "window_id": "3bb6ff6472a11102b2cd3d4b64d26f3a6795f2c8411df1564b54cf7acbab1fc7:1:328:h500000:f1000000",
+    "flight_id": "3bb6ff6472a11102b2cd3d4b64d26f3a6795f2c8411df1564b54cf7acbab1fc7:1",
+    "horizon_us": 1000000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.0055379999999999995,
+    "anchor_availability": -0.005359,
+    "points": 100
+  },
+  {
+    "i": 35,
+    "window_id": "3bb6ff6472a11102b2cd3d4b64d26f3a6795f2c8411df1564b54cf7acbab1fc7:1:7601:h500000:f2000000",
+    "flight_id": "3bb6ff6472a11102b2cd3d4b64d26f3a6795f2c8411df1564b54cf7acbab1fc7:1",
+    "horizon_us": 2000000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.0030589999999999997,
+    "anchor_availability": -0.002882,
+    "points": 200
+  },
+  {
+    "i": 36,
+    "window_id": "4b5e90d7f0e7d8ecc77c4c680cde74d6848246d6878e3606503b97570bb9f462:1:4142:h500000:f200000",
+    "flight_id": "4b5e90d7f0e7d8ecc77c4c680cde74d6848246d6878e3606503b97570bb9f462:1",
+    "horizon_us": 200000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.0030139999999999998,
+    "anchor_availability": -0.0028339999999999997,
+    "points": 21
+  },
+  {
+    "i": 37,
+    "window_id": "4b5e90d7f0e7d8ecc77c4c680cde74d6848246d6878e3606503b97570bb9f462:1:7282:h500000:f500000",
+    "flight_id": "4b5e90d7f0e7d8ecc77c4c680cde74d6848246d6878e3606503b97570bb9f462:1",
+    "horizon_us": 500000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.005513,
+    "anchor_availability": -0.0053349999999999995,
+    "points": 50
+  },
+  {
+    "i": 38,
+    "window_id": "4b5e90d7f0e7d8ecc77c4c680cde74d6848246d6878e3606503b97570bb9f462:1:4247:h500000:f1000000",
+    "flight_id": "4b5e90d7f0e7d8ecc77c4c680cde74d6848246d6878e3606503b97570bb9f462:1",
+    "horizon_us": 1000000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.003067,
+    "anchor_availability": -0.002888,
+    "points": 100
+  },
+  {
+    "i": 39,
+    "window_id": "4b5e90d7f0e7d8ecc77c4c680cde74d6848246d6878e3606503b97570bb9f462:1:1568:h500000:f2000000",
+    "flight_id": "4b5e90d7f0e7d8ecc77c4c680cde74d6848246d6878e3606503b97570bb9f462:1",
+    "horizon_us": 2000000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.005477,
+    "anchor_availability": -0.005293,
+    "points": 200
+  },
+  {
+    "i": 40,
+    "window_id": "4d23bcddc841239bc48be8c9c89a9f70a26e5c2ca95a053805efda24b4cb641c:1:902:h500000:f200000",
+    "flight_id": "4d23bcddc841239bc48be8c9c89a9f70a26e5c2ca95a053805efda24b4cb641c:1",
+    "horizon_us": 200000,
+    "sampling_group": "sparse_10hz",
+    "anchor_measurement": -0.00047999999999999996,
+    "anchor_availability": -0.000399,
+    "points": 10
+  },
+  {
+    "i": 41,
+    "window_id": "4d23bcddc841239bc48be8c9c89a9f70a26e5c2ca95a053805efda24b4cb641c:1:398:h500000:f500000",
+    "flight_id": "4d23bcddc841239bc48be8c9c89a9f70a26e5c2ca95a053805efda24b4cb641c:1",
+    "horizon_us": 500000,
+    "sampling_group": "sparse_10hz",
+    "anchor_measurement": -0.012974999999999999,
+    "anchor_availability": -0.012894,
+    "points": 26
+  },
+  {
+    "i": 42,
+    "window_id": "4d23bcddc841239bc48be8c9c89a9f70a26e5c2ca95a053805efda24b4cb641c:1:533:h500000:f1000000",
+    "flight_id": "4d23bcddc841239bc48be8c9c89a9f70a26e5c2ca95a053805efda24b4cb641c:1",
+    "horizon_us": 1000000,
+    "sampling_group": "sparse_10hz",
+    "anchor_measurement": -0.017891,
+    "anchor_availability": -0.01781,
+    "points": 50
+  },
+  {
+    "i": 43,
+    "window_id": "4d23bcddc841239bc48be8c9c89a9f70a26e5c2ca95a053805efda24b4cb641c:1:339:h500000:f2000000",
+    "flight_id": "4d23bcddc841239bc48be8c9c89a9f70a26e5c2ca95a053805efda24b4cb641c:1",
+    "horizon_us": 2000000,
+    "sampling_group": "sparse_10hz",
+    "anchor_measurement": -0.013016999999999999,
+    "anchor_availability": -0.012936999999999999,
+    "points": 100
+  },
+  {
+    "i": 44,
+    "window_id": "51b14f03c6f5f6c84a8dfeceea3c5e86e4ed008a19f1f176abaa84663efaa1e4:1:467:h500000:f200000",
+    "flight_id": "51b14f03c6f5f6c84a8dfeceea3c5e86e4ed008a19f1f176abaa84663efaa1e4:1",
+    "horizon_us": 200000,
+    "sampling_group": "sparse_10hz",
+    "anchor_measurement": -0.010402999999999999,
+    "anchor_availability": -0.010322999999999999,
+    "points": 10
+  },
+  {
+    "i": 45,
+    "window_id": "51b14f03c6f5f6c84a8dfeceea3c5e86e4ed008a19f1f176abaa84663efaa1e4:1:1085:h500000:f500000",
+    "flight_id": "51b14f03c6f5f6c84a8dfeceea3c5e86e4ed008a19f1f176abaa84663efaa1e4:1",
+    "horizon_us": 500000,
+    "sampling_group": "sparse_10hz",
+    "anchor_measurement": -0.012938,
+    "anchor_availability": -0.012738999999999999,
+    "points": 25
+  },
+  {
+    "i": 46,
+    "window_id": "51b14f03c6f5f6c84a8dfeceea3c5e86e4ed008a19f1f176abaa84663efaa1e4:1:1136:h500000:f1000000",
+    "flight_id": "51b14f03c6f5f6c84a8dfeceea3c5e86e4ed008a19f1f176abaa84663efaa1e4:1",
+    "horizon_us": 1000000,
+    "sampling_group": "sparse_10hz",
+    "anchor_measurement": -0.012903,
+    "anchor_availability": -0.012825,
+    "points": 50
+  },
+  {
+    "i": 47,
+    "window_id": "51b14f03c6f5f6c84a8dfeceea3c5e86e4ed008a19f1f176abaa84663efaa1e4:1:538:h500000:f2000000",
+    "flight_id": "51b14f03c6f5f6c84a8dfeceea3c5e86e4ed008a19f1f176abaa84663efaa1e4:1",
+    "horizon_us": 2000000,
+    "sampling_group": "sparse_10hz",
+    "anchor_measurement": -0.018108,
+    "anchor_availability": -0.018028,
+    "points": 100
+  },
+  {
+    "i": 48,
+    "window_id": "580d9dd51677020f5a87c43f51f9d7082d4157599eab9e148b683e4baa03eadd:1:4425:h500000:f200000",
+    "flight_id": "580d9dd51677020f5a87c43f51f9d7082d4157599eab9e148b683e4baa03eadd:1",
+    "horizon_us": 200000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.00069,
+    "anchor_availability": -0.000609,
+    "points": 20
+  },
+  {
+    "i": 49,
+    "window_id": "580d9dd51677020f5a87c43f51f9d7082d4157599eab9e148b683e4baa03eadd:1:2243:h500000:f500000",
+    "flight_id": "580d9dd51677020f5a87c43f51f9d7082d4157599eab9e148b683e4baa03eadd:1",
+    "horizon_us": 500000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.007947,
+    "anchor_availability": -0.007869,
+    "points": 50
+  },
+  {
+    "i": 50,
+    "window_id": "580d9dd51677020f5a87c43f51f9d7082d4157599eab9e148b683e4baa03eadd:1:5602:h500000:f1000000",
+    "flight_id": "580d9dd51677020f5a87c43f51f9d7082d4157599eab9e148b683e4baa03eadd:1",
+    "horizon_us": 1000000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.000576,
+    "anchor_availability": -0.00043099999999999996,
+    "points": 99
+  },
+  {
+    "i": 51,
+    "window_id": "580d9dd51677020f5a87c43f51f9d7082d4157599eab9e148b683e4baa03eadd:1:6681:h500000:f2000000",
+    "flight_id": "580d9dd51677020f5a87c43f51f9d7082d4157599eab9e148b683e4baa03eadd:1",
+    "horizon_us": 2000000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.005488,
+    "anchor_availability": -0.00514,
+    "points": 200
+  },
+  {
+    "i": 52,
+    "window_id": "58964d09038a4b0aaaad819e7b853daf34d01c716a0332fb5b543d918d797bcc:1:329:h500000:f200000",
+    "flight_id": "58964d09038a4b0aaaad819e7b853daf34d01c716a0332fb5b543d918d797bcc:1",
+    "horizon_us": 200000,
+    "sampling_group": "sparse_10hz",
+    "anchor_measurement": -0.017896,
+    "anchor_availability": -0.017816,
+    "points": 10
+  },
+  {
+    "i": 53,
+    "window_id": "58964d09038a4b0aaaad819e7b853daf34d01c716a0332fb5b543d918d797bcc:1:392:h500000:f500000",
+    "flight_id": "58964d09038a4b0aaaad819e7b853daf34d01c716a0332fb5b543d918d797bcc:1",
+    "horizon_us": 500000,
+    "sampling_group": "sparse_10hz",
+    "anchor_measurement": -0.015425999999999999,
+    "anchor_availability": -0.01534,
+    "points": 25
+  },
+  {
+    "i": 54,
+    "window_id": "58964d09038a4b0aaaad819e7b853daf34d01c716a0332fb5b543d918d797bcc:1:384:h500000:f1000000",
+    "flight_id": "58964d09038a4b0aaaad819e7b853daf34d01c716a0332fb5b543d918d797bcc:1",
+    "horizon_us": 1000000,
+    "sampling_group": "sparse_10hz",
+    "anchor_measurement": -0.015444999999999999,
+    "anchor_availability": -0.015358,
+    "points": 50
+  },
+  {
+    "i": 55,
+    "window_id": "58964d09038a4b0aaaad819e7b853daf34d01c716a0332fb5b543d918d797bcc:1:276:h500000:f2000000",
+    "flight_id": "58964d09038a4b0aaaad819e7b853daf34d01c716a0332fb5b543d918d797bcc:1",
+    "horizon_us": 2000000,
+    "sampling_group": "sparse_10hz",
+    "anchor_measurement": -0.017979,
+    "anchor_availability": -0.017891999999999998,
+    "points": 100
+  },
+  {
+    "i": 56,
+    "window_id": "5b1381497c5cc6f171c55d95ebd46c8e2adda297ba900f05bf992fbf2d2dfab3:1:3210:h500000:f200000",
+    "flight_id": "5b1381497c5cc6f171c55d95ebd46c8e2adda297ba900f05bf992fbf2d2dfab3:1",
+    "horizon_us": 200000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.0005,
+    "anchor_availability": -0.000421,
+    "points": 20
+  },
+  {
+    "i": 57,
+    "window_id": "5b1381497c5cc6f171c55d95ebd46c8e2adda297ba900f05bf992fbf2d2dfab3:1:308:h500000:f500000",
+    "flight_id": "5b1381497c5cc6f171c55d95ebd46c8e2adda297ba900f05bf992fbf2d2dfab3:1",
+    "horizon_us": 500000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.005522,
+    "anchor_availability": -0.005441,
+    "points": 50
+  },
+  {
+    "i": 58,
+    "window_id": "5b1381497c5cc6f171c55d95ebd46c8e2adda297ba900f05bf992fbf2d2dfab3:1:3794:h500000:f1000000",
+    "flight_id": "5b1381497c5cc6f171c55d95ebd46c8e2adda297ba900f05bf992fbf2d2dfab3:1",
+    "horizon_us": 1000000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.005444,
+    "anchor_availability": -0.005362,
+    "points": 100
+  },
+  {
+    "i": 59,
+    "window_id": "5b1381497c5cc6f171c55d95ebd46c8e2adda297ba900f05bf992fbf2d2dfab3:1:12525:h500000:f2000000",
+    "flight_id": "5b1381497c5cc6f171c55d95ebd46c8e2adda297ba900f05bf992fbf2d2dfab3:1",
+    "horizon_us": 2000000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.0005639999999999999,
+    "anchor_availability": -0.000483,
+    "points": 199
+  },
+  {
+    "i": 60,
+    "window_id": "5bc50ebb95abd5fb7653cf7e9dd046323e866b146da223125bb1bb8f3ef11f9d:1:2170:h500000:f200000",
+    "flight_id": "5bc50ebb95abd5fb7653cf7e9dd046323e866b146da223125bb1bb8f3ef11f9d:1",
+    "horizon_us": 200000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.005455,
+    "anchor_availability": -0.0053739999999999994,
+    "points": 20
+  },
+  {
+    "i": 61,
+    "window_id": "5bc50ebb95abd5fb7653cf7e9dd046323e866b146da223125bb1bb8f3ef11f9d:1:1778:h500000:f500000",
+    "flight_id": "5bc50ebb95abd5fb7653cf7e9dd046323e866b146da223125bb1bb8f3ef11f9d:1",
+    "horizon_us": 500000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.000439,
+    "anchor_availability": -0.00035999999999999997,
+    "points": 49
+  },
+  {
+    "i": 62,
+    "window_id": "5bc50ebb95abd5fb7653cf7e9dd046323e866b146da223125bb1bb8f3ef11f9d:1:6590:h500000:f1000000",
+    "flight_id": "5bc50ebb95abd5fb7653cf7e9dd046323e866b146da223125bb1bb8f3ef11f9d:1",
+    "horizon_us": 1000000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.007961,
+    "anchor_availability": -0.007878999999999999,
+    "points": 100
+  },
+  {
+    "i": 63,
+    "window_id": "5bc50ebb95abd5fb7653cf7e9dd046323e866b146da223125bb1bb8f3ef11f9d:1:5913:h500000:f2000000",
+    "flight_id": "5bc50ebb95abd5fb7653cf7e9dd046323e866b146da223125bb1bb8f3ef11f9d:1",
+    "horizon_us": 2000000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.00294,
+    "anchor_availability": -0.002855,
+    "points": 201
+  },
+  {
+    "i": 64,
+    "window_id": "639068bda89a25c019dec70adeaf32ada88119bed17d20b09f0d48f91231146a:1:352:h500000:f200000",
+    "flight_id": "639068bda89a25c019dec70adeaf32ada88119bed17d20b09f0d48f91231146a:1",
+    "horizon_us": 200000,
+    "sampling_group": "sparse_10hz",
+    "anchor_measurement": -0.000557,
+    "anchor_availability": -0.000474,
+    "points": 10
+  },
+  {
+    "i": 65,
+    "window_id": "639068bda89a25c019dec70adeaf32ada88119bed17d20b09f0d48f91231146a:1:351:h500000:f500000",
+    "flight_id": "639068bda89a25c019dec70adeaf32ada88119bed17d20b09f0d48f91231146a:1",
+    "horizon_us": 500000,
+    "sampling_group": "sparse_10hz",
+    "anchor_measurement": -0.012915999999999999,
+    "anchor_availability": -0.012837,
+    "points": 26
+  },
+  {
+    "i": 66,
+    "window_id": "639068bda89a25c019dec70adeaf32ada88119bed17d20b09f0d48f91231146a:1:450:h500000:f1000000",
+    "flight_id": "639068bda89a25c019dec70adeaf32ada88119bed17d20b09f0d48f91231146a:1",
+    "horizon_us": 1000000,
+    "sampling_group": "sparse_10hz",
+    "anchor_measurement": -0.0005639999999999999,
+    "anchor_availability": -0.00035299999999999996,
+    "points": 50
+  },
+  {
+    "i": 67,
+    "window_id": "639068bda89a25c019dec70adeaf32ada88119bed17d20b09f0d48f91231146a:1:272:h500000:f2000000",
+    "flight_id": "639068bda89a25c019dec70adeaf32ada88119bed17d20b09f0d48f91231146a:1",
+    "horizon_us": 2000000,
+    "sampling_group": "sparse_10hz",
+    "anchor_measurement": -0.017945,
+    "anchor_availability": -0.017862,
+    "points": 100
+  },
+  {
+    "i": 68,
+    "window_id": "6e85c320a2a3e46df78ae6ad480ebec5afe2d3f78abb6084d4623b8f313db32f:1:245:h500000:f200000",
+    "flight_id": "6e85c320a2a3e46df78ae6ad480ebec5afe2d3f78abb6084d4623b8f313db32f:1",
+    "horizon_us": 200000,
+    "sampling_group": "sparse_10hz",
+    "anchor_measurement": -0.000439,
+    "anchor_availability": -0.000359,
+    "points": 10
+  },
+  {
+    "i": 69,
+    "window_id": "6e85c320a2a3e46df78ae6ad480ebec5afe2d3f78abb6084d4623b8f313db32f:1:711:h500000:f500000",
+    "flight_id": "6e85c320a2a3e46df78ae6ad480ebec5afe2d3f78abb6084d4623b8f313db32f:1",
+    "horizon_us": 500000,
+    "sampling_group": "sparse_10hz",
+    "anchor_measurement": -0.015427,
+    "anchor_availability": -0.015347999999999999,
+    "points": 25
+  },
+  {
+    "i": 70,
+    "window_id": "6e85c320a2a3e46df78ae6ad480ebec5afe2d3f78abb6084d4623b8f313db32f:1:340:h500000:f1000000",
+    "flight_id": "6e85c320a2a3e46df78ae6ad480ebec5afe2d3f78abb6084d4623b8f313db32f:1",
+    "horizon_us": 1000000,
+    "sampling_group": "sparse_10hz",
+    "anchor_measurement": -0.000498,
+    "anchor_availability": -0.000417,
+    "points": 49
+  },
+  {
+    "i": 71,
+    "window_id": "6e85c320a2a3e46df78ae6ad480ebec5afe2d3f78abb6084d4623b8f313db32f:1:338:h500000:f2000000",
+    "flight_id": "6e85c320a2a3e46df78ae6ad480ebec5afe2d3f78abb6084d4623b8f313db32f:1",
+    "horizon_us": 2000000,
+    "sampling_group": "sparse_10hz",
+    "anchor_measurement": -0.000527,
+    "anchor_availability": -0.000446,
+    "points": 99
+  },
+  {
+    "i": 72,
+    "window_id": "7140f8e656e0558ee00c851bcbff461d0c685d1c4d3bdf046b1d0ffcc120259f:1:3013:h500000:f200000",
+    "flight_id": "7140f8e656e0558ee00c851bcbff461d0c685d1c4d3bdf046b1d0ffcc120259f:1",
+    "horizon_us": 200000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.005573,
+    "anchor_availability": -0.005392,
+    "points": 20
+  },
+  {
+    "i": 73,
+    "window_id": "7140f8e656e0558ee00c851bcbff461d0c685d1c4d3bdf046b1d0ffcc120259f:1:3252:h500000:f500000",
+    "flight_id": "7140f8e656e0558ee00c851bcbff461d0c685d1c4d3bdf046b1d0ffcc120259f:1",
+    "horizon_us": 500000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.008066,
+    "anchor_availability": -0.007889,
+    "points": 51
+  },
+  {
+    "i": 74,
+    "window_id": "7140f8e656e0558ee00c851bcbff461d0c685d1c4d3bdf046b1d0ffcc120259f:1:2060:h500000:f1000000",
+    "flight_id": "7140f8e656e0558ee00c851bcbff461d0c685d1c4d3bdf046b1d0ffcc120259f:1",
+    "horizon_us": 1000000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.005637,
+    "anchor_availability": -0.005457,
+    "points": 100
+  },
+  {
+    "i": 75,
+    "window_id": "7140f8e656e0558ee00c851bcbff461d0c685d1c4d3bdf046b1d0ffcc120259f:1:7065:h500000:f2000000",
+    "flight_id": "7140f8e656e0558ee00c851bcbff461d0c685d1c4d3bdf046b1d0ffcc120259f:1",
+    "horizon_us": 2000000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.0006529999999999999,
+    "anchor_availability": -0.00047599999999999997,
+    "points": 199
+  },
+  {
+    "i": 76,
+    "window_id": "72b77806f1d23dd9d32bf76275b6a94d3cc4dd2f860a9394fd1b3e42ab10c8de:1:3874:h500000:f200000",
+    "flight_id": "72b77806f1d23dd9d32bf76275b6a94d3cc4dd2f860a9394fd1b3e42ab10c8de:1",
+    "horizon_us": 200000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.000468,
+    "anchor_availability": -0.000388,
+    "points": 19
+  },
+  {
+    "i": 77,
+    "window_id": "72b77806f1d23dd9d32bf76275b6a94d3cc4dd2f860a9394fd1b3e42ab10c8de:1:6481:h500000:f500000",
+    "flight_id": "72b77806f1d23dd9d32bf76275b6a94d3cc4dd2f860a9394fd1b3e42ab10c8de:1",
+    "horizon_us": 500000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.0054459999999999995,
+    "anchor_availability": -0.005365,
+    "points": 50
+  },
+  {
+    "i": 78,
+    "window_id": "72b77806f1d23dd9d32bf76275b6a94d3cc4dd2f860a9394fd1b3e42ab10c8de:1:7207:h500000:f1000000",
+    "flight_id": "72b77806f1d23dd9d32bf76275b6a94d3cc4dd2f860a9394fd1b3e42ab10c8de:1",
+    "horizon_us": 1000000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.005447,
+    "anchor_availability": -0.005314999999999999,
+    "points": 101
+  },
+  {
+    "i": 79,
+    "window_id": "72b77806f1d23dd9d32bf76275b6a94d3cc4dd2f860a9394fd1b3e42ab10c8de:1:4364:h500000:f2000000",
+    "flight_id": "72b77806f1d23dd9d32bf76275b6a94d3cc4dd2f860a9394fd1b3e42ab10c8de:1",
+    "horizon_us": 2000000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.010480999999999999,
+    "anchor_availability": -0.010376,
+    "points": 201
+  },
+  {
+    "i": 80,
+    "window_id": "7ac7478f2dbfed10646618cf4ce9a50c0fa793c3adb307c0446f968f622096e3:1:6616:h500000:f200000",
+    "flight_id": "7ac7478f2dbfed10646618cf4ce9a50c0fa793c3adb307c0446f968f622096e3:1",
+    "horizon_us": 200000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.002962,
+    "anchor_availability": -0.002882,
+    "points": 20
+  },
+  {
+    "i": 81,
+    "window_id": "7ac7478f2dbfed10646618cf4ce9a50c0fa793c3adb307c0446f968f622096e3:1:6419:h500000:f500000",
+    "flight_id": "7ac7478f2dbfed10646618cf4ce9a50c0fa793c3adb307c0446f968f622096e3:1",
+    "horizon_us": 500000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.000518,
+    "anchor_availability": -0.000437,
+    "points": 50
+  },
+  {
+    "i": 82,
+    "window_id": "7ac7478f2dbfed10646618cf4ce9a50c0fa793c3adb307c0446f968f622096e3:1:5847:h500000:f1000000",
+    "flight_id": "7ac7478f2dbfed10646618cf4ce9a50c0fa793c3adb307c0446f968f622096e3:1",
+    "horizon_us": 1000000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.005565,
+    "anchor_availability": -0.0054789999999999995,
+    "points": 101
+  },
+  {
+    "i": 83,
+    "window_id": "7ac7478f2dbfed10646618cf4ce9a50c0fa793c3adb307c0446f968f622096e3:1:1182:h500000:f2000000",
+    "flight_id": "7ac7478f2dbfed10646618cf4ce9a50c0fa793c3adb307c0446f968f622096e3:1",
+    "horizon_us": 2000000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.005497,
+    "anchor_availability": -0.005418,
+    "points": 201
+  },
+  {
+    "i": 84,
+    "window_id": "89fbf848c8f15d95ebeb6bb58d6ec857bbc6cf65094f75cd986a4a661c0c44cf:1:416:h500000:f200000",
+    "flight_id": "89fbf848c8f15d95ebeb6bb58d6ec857bbc6cf65094f75cd986a4a661c0c44cf:1",
+    "horizon_us": 200000,
+    "sampling_group": "sparse_10hz",
+    "anchor_measurement": -0.000448,
+    "anchor_availability": -0.000366,
+    "points": 10
+  },
+  {
+    "i": 85,
+    "window_id": "89fbf848c8f15d95ebeb6bb58d6ec857bbc6cf65094f75cd986a4a661c0c44cf:1:713:h500000:f500000",
+    "flight_id": "89fbf848c8f15d95ebeb6bb58d6ec857bbc6cf65094f75cd986a4a661c0c44cf:1",
+    "horizon_us": 500000,
+    "sampling_group": "sparse_10hz",
+    "anchor_measurement": -0.015432999999999999,
+    "anchor_availability": -0.015354999999999999,
+    "points": 25
+  },
+  {
+    "i": 86,
+    "window_id": "89fbf848c8f15d95ebeb6bb58d6ec857bbc6cf65094f75cd986a4a661c0c44cf:1:760:h500000:f1000000",
+    "flight_id": "89fbf848c8f15d95ebeb6bb58d6ec857bbc6cf65094f75cd986a4a661c0c44cf:1",
+    "horizon_us": 1000000,
+    "sampling_group": "sparse_10hz",
+    "anchor_measurement": -0.015397999999999998,
+    "anchor_availability": -0.015316,
+    "points": 50
+  },
+  {
+    "i": 87,
+    "window_id": "89fbf848c8f15d95ebeb6bb58d6ec857bbc6cf65094f75cd986a4a661c0c44cf:1:744:h500000:f2000000",
+    "flight_id": "89fbf848c8f15d95ebeb6bb58d6ec857bbc6cf65094f75cd986a4a661c0c44cf:1",
+    "horizon_us": 2000000,
+    "sampling_group": "sparse_10hz",
+    "anchor_measurement": -0.00043299999999999995,
+    "anchor_availability": -0.00035299999999999996,
+    "points": 99
+  },
+  {
+    "i": 88,
+    "window_id": "8c24613d6cd518a0391183fe8c8f51198d2d1af8b05962081aa36180eb12f5fb:1:4737:h500000:f200000",
+    "flight_id": "8c24613d6cd518a0391183fe8c8f51198d2d1af8b05962081aa36180eb12f5fb:1",
+    "horizon_us": 200000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.005437,
+    "anchor_availability": -0.005352,
+    "points": 20
+  },
+  {
+    "i": 89,
+    "window_id": "8c24613d6cd518a0391183fe8c8f51198d2d1af8b05962081aa36180eb12f5fb:1:1348:h500000:f500000",
+    "flight_id": "8c24613d6cd518a0391183fe8c8f51198d2d1af8b05962081aa36180eb12f5fb:1",
+    "horizon_us": 500000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.0054919999999999995,
+    "anchor_availability": -0.005411,
+    "points": 50
+  },
+  {
+    "i": 90,
+    "window_id": "8c24613d6cd518a0391183fe8c8f51198d2d1af8b05962081aa36180eb12f5fb:1:2652:h500000:f1000000",
+    "flight_id": "8c24613d6cd518a0391183fe8c8f51198d2d1af8b05962081aa36180eb12f5fb:1",
+    "horizon_us": 1000000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.000435,
+    "anchor_availability": -0.000355,
+    "points": 100
+  },
+  {
+    "i": 91,
+    "window_id": "8c24613d6cd518a0391183fe8c8f51198d2d1af8b05962081aa36180eb12f5fb:1:3331:h500000:f2000000",
+    "flight_id": "8c24613d6cd518a0391183fe8c8f51198d2d1af8b05962081aa36180eb12f5fb:1",
+    "horizon_us": 2000000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.003028,
+    "anchor_availability": -0.002947,
+    "points": 201
+  },
+  {
+    "i": 92,
+    "window_id": "8d1191724e9bb10dcc592dc354b6c8cc21f51ae79dd14e9960bc656411cb7758:1:2206:h500000:f200000",
+    "flight_id": "8d1191724e9bb10dcc592dc354b6c8cc21f51ae79dd14e9960bc656411cb7758:1",
+    "horizon_us": 200000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.010504,
+    "anchor_availability": -0.010326,
+    "points": 20
+  },
+  {
+    "i": 93,
+    "window_id": "8d1191724e9bb10dcc592dc354b6c8cc21f51ae79dd14e9960bc656411cb7758:1:5872:h500000:f500000",
+    "flight_id": "8d1191724e9bb10dcc592dc354b6c8cc21f51ae79dd14e9960bc656411cb7758:1",
+    "horizon_us": 500000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.00099,
+    "anchor_availability": -0.0007599999999999999,
+    "points": 49
+  },
+  {
+    "i": 94,
+    "window_id": "8d1191724e9bb10dcc592dc354b6c8cc21f51ae79dd14e9960bc656411cb7758:1:2990:h500000:f1000000",
+    "flight_id": "8d1191724e9bb10dcc592dc354b6c8cc21f51ae79dd14e9960bc656411cb7758:1",
+    "horizon_us": 1000000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.000649,
+    "anchor_availability": -0.00047,
+    "points": 99
+  },
+  {
+    "i": 95,
+    "window_id": "8d1191724e9bb10dcc592dc354b6c8cc21f51ae79dd14e9960bc656411cb7758:1:5884:h500000:f2000000",
+    "flight_id": "8d1191724e9bb10dcc592dc354b6c8cc21f51ae79dd14e9960bc656411cb7758:1",
+    "horizon_us": 2000000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.007953,
+    "anchor_availability": -0.007774,
+    "points": 200
+  },
+  {
+    "i": 96,
+    "window_id": "8ea1a9652b9bcb07c2e8a028fd0e2e1c07f3b611c6754fc7011006ec6f72f1a2:2:6555:h500000:f200000",
+    "flight_id": "8ea1a9652b9bcb07c2e8a028fd0e2e1c07f3b611c6754fc7011006ec6f72f1a2:2",
+    "horizon_us": 200000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.00045799999999999997,
+    "anchor_availability": -0.000379,
+    "points": 20
+  },
+  {
+    "i": 97,
+    "window_id": "8ea1a9652b9bcb07c2e8a028fd0e2e1c07f3b611c6754fc7011006ec6f72f1a2:2:1872:h500000:f500000",
+    "flight_id": "8ea1a9652b9bcb07c2e8a028fd0e2e1c07f3b611c6754fc7011006ec6f72f1a2:2",
+    "horizon_us": 500000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.00543,
+    "anchor_availability": -0.005349,
+    "points": 50
+  },
+  {
+    "i": 98,
+    "window_id": "8ea1a9652b9bcb07c2e8a028fd0e2e1c07f3b611c6754fc7011006ec6f72f1a2:2:5253:h500000:f1000000",
+    "flight_id": "8ea1a9652b9bcb07c2e8a028fd0e2e1c07f3b611c6754fc7011006ec6f72f1a2:2",
+    "horizon_us": 1000000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.0030039999999999997,
+    "anchor_availability": -0.002889,
+    "points": 101
+  },
+  {
+    "i": 99,
+    "window_id": "8ea1a9652b9bcb07c2e8a028fd0e2e1c07f3b611c6754fc7011006ec6f72f1a2:2:1914:h500000:f2000000",
+    "flight_id": "8ea1a9652b9bcb07c2e8a028fd0e2e1c07f3b611c6754fc7011006ec6f72f1a2:2",
+    "horizon_us": 2000000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.0030169999999999997,
+    "anchor_availability": -0.002719,
+    "points": 201
+  },
+  {
+    "i": 100,
+    "window_id": "9258b097970593d85c54daa5d13905f8b7b1c9bcab8d800ddd78e14e6be8f0c5:1:3930:h500000:f200000",
+    "flight_id": "9258b097970593d85c54daa5d13905f8b7b1c9bcab8d800ddd78e14e6be8f0c5:1",
+    "horizon_us": 200000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.000495,
+    "anchor_availability": -0.000414,
+    "points": 20
+  },
+  {
+    "i": 101,
+    "window_id": "9258b097970593d85c54daa5d13905f8b7b1c9bcab8d800ddd78e14e6be8f0c5:1:3373:h500000:f500000",
+    "flight_id": "9258b097970593d85c54daa5d13905f8b7b1c9bcab8d800ddd78e14e6be8f0c5:1",
+    "horizon_us": 500000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.005621999999999999,
+    "anchor_availability": -0.005542,
+    "points": 51
+  },
+  {
+    "i": 102,
+    "window_id": "9258b097970593d85c54daa5d13905f8b7b1c9bcab8d800ddd78e14e6be8f0c5:1:4008:h500000:f1000000",
+    "flight_id": "9258b097970593d85c54daa5d13905f8b7b1c9bcab8d800ddd78e14e6be8f0c5:1",
+    "horizon_us": 1000000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.005436,
+    "anchor_availability": -0.0053549999999999995,
+    "points": 100
+  },
+  {
+    "i": 103,
+    "window_id": "9258b097970593d85c54daa5d13905f8b7b1c9bcab8d800ddd78e14e6be8f0c5:1:5906:h500000:f2000000",
+    "flight_id": "9258b097970593d85c54daa5d13905f8b7b1c9bcab8d800ddd78e14e6be8f0c5:1",
+    "horizon_us": 2000000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.000511,
+    "anchor_availability": -0.00042899999999999997,
+    "points": 199
+  },
+  {
+    "i": 104,
+    "window_id": "a1945d5edee81010214065ee8ff847438d7306eb73e9a8aa359a727ff7a9070e:1:2452:h500000:f200000",
+    "flight_id": "a1945d5edee81010214065ee8ff847438d7306eb73e9a8aa359a727ff7a9070e:1",
+    "horizon_us": 200000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.002944,
+    "anchor_availability": -0.0028629999999999997,
+    "points": 20
+  },
+  {
+    "i": 105,
+    "window_id": "a1945d5edee81010214065ee8ff847438d7306eb73e9a8aa359a727ff7a9070e:1:485:h500000:f500000",
+    "flight_id": "a1945d5edee81010214065ee8ff847438d7306eb73e9a8aa359a727ff7a9070e:1",
+    "horizon_us": 500000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.005915999999999999,
+    "anchor_availability": -0.0058379999999999994,
+    "points": 50
+  },
+  {
+    "i": 106,
+    "window_id": "a1945d5edee81010214065ee8ff847438d7306eb73e9a8aa359a727ff7a9070e:1:5067:h500000:f1000000",
+    "flight_id": "a1945d5edee81010214065ee8ff847438d7306eb73e9a8aa359a727ff7a9070e:1",
+    "horizon_us": 1000000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.000448,
+    "anchor_availability": -0.000368,
+    "points": 99
+  },
+  {
+    "i": 107,
+    "window_id": "a1945d5edee81010214065ee8ff847438d7306eb73e9a8aa359a727ff7a9070e:1:4416:h500000:f2000000",
+    "flight_id": "a1945d5edee81010214065ee8ff847438d7306eb73e9a8aa359a727ff7a9070e:1",
+    "horizon_us": 2000000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.010494999999999999,
+    "anchor_availability": -0.010417,
+    "points": 200
+  },
+  {
+    "i": 108,
+    "window_id": "a907493b8fd3708bac45e39fc54185e2fa4e9f9a35a71ba030f3f38b06c1d51f:1:8122:h500000:f200000",
+    "flight_id": "a907493b8fd3708bac45e39fc54185e2fa4e9f9a35a71ba030f3f38b06c1d51f:1",
+    "horizon_us": 200000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.003021,
+    "anchor_availability": -0.002843,
+    "points": 21
+  },
+  {
+    "i": 109,
+    "window_id": "a907493b8fd3708bac45e39fc54185e2fa4e9f9a35a71ba030f3f38b06c1d51f:1:4318:h500000:f500000",
+    "flight_id": "a907493b8fd3708bac45e39fc54185e2fa4e9f9a35a71ba030f3f38b06c1d51f:1",
+    "horizon_us": 500000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.005647,
+    "anchor_availability": -0.005349,
+    "points": 50
+  },
+  {
+    "i": 110,
+    "window_id": "a907493b8fd3708bac45e39fc54185e2fa4e9f9a35a71ba030f3f38b06c1d51f:1:3955:h500000:f1000000",
+    "flight_id": "a907493b8fd3708bac45e39fc54185e2fa4e9f9a35a71ba030f3f38b06c1d51f:1",
+    "horizon_us": 1000000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.0007,
+    "anchor_availability": -0.000522,
+    "points": 99
+  },
+  {
+    "i": 111,
+    "window_id": "a907493b8fd3708bac45e39fc54185e2fa4e9f9a35a71ba030f3f38b06c1d51f:1:3171:h500000:f2000000",
+    "flight_id": "a907493b8fd3708bac45e39fc54185e2fa4e9f9a35a71ba030f3f38b06c1d51f:1",
+    "horizon_us": 2000000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.000581,
+    "anchor_availability": -0.00039999999999999996,
+    "points": 199
+  },
+  {
+    "i": 112,
+    "window_id": "b472f27bdb908bca69c4d18cc793cde099d4632285026878d766c2bc912a6949:1:5723:h500000:f200000",
+    "flight_id": "b472f27bdb908bca69c4d18cc793cde099d4632285026878d766c2bc912a6949:1",
+    "horizon_us": 200000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.005514,
+    "anchor_availability": -0.005327,
+    "points": 21
+  },
+  {
+    "i": 113,
+    "window_id": "b472f27bdb908bca69c4d18cc793cde099d4632285026878d766c2bc912a6949:1:5366:h500000:f500000",
+    "flight_id": "b472f27bdb908bca69c4d18cc793cde099d4632285026878d766c2bc912a6949:1",
+    "horizon_us": 500000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.008043999999999999,
+    "anchor_availability": -0.007866,
+    "points": 51
+  },
+  {
+    "i": 114,
+    "window_id": "b472f27bdb908bca69c4d18cc793cde099d4632285026878d766c2bc912a6949:1:7442:h500000:f1000000",
+    "flight_id": "b472f27bdb908bca69c4d18cc793cde099d4632285026878d766c2bc912a6949:1",
+    "horizon_us": 1000000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.000549,
+    "anchor_availability": -0.000372,
+    "points": 99
+  },
+  {
+    "i": 115,
+    "window_id": "b472f27bdb908bca69c4d18cc793cde099d4632285026878d766c2bc912a6949:1:5536:h500000:f2000000",
+    "flight_id": "b472f27bdb908bca69c4d18cc793cde099d4632285026878d766c2bc912a6949:1",
+    "horizon_us": 2000000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.008055,
+    "anchor_availability": -0.007876,
+    "points": 200
+  },
+  {
+    "i": 116,
+    "window_id": "b5be88943c2c096d750a057375566c1e3812f30e42155d06c6ccafe4b713d9e0:1:2323:h500000:f200000",
+    "flight_id": "b5be88943c2c096d750a057375566c1e3812f30e42155d06c6ccafe4b713d9e0:1",
+    "horizon_us": 200000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.000667,
+    "anchor_availability": -0.00045,
+    "points": 19
+  },
+  {
+    "i": 117,
+    "window_id": "b5be88943c2c096d750a057375566c1e3812f30e42155d06c6ccafe4b713d9e0:1:4552:h500000:f500000",
+    "flight_id": "b5be88943c2c096d750a057375566c1e3812f30e42155d06c6ccafe4b713d9e0:1",
+    "horizon_us": 500000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.000571,
+    "anchor_availability": -0.000394,
+    "points": 49
+  },
+  {
+    "i": 118,
+    "window_id": "b5be88943c2c096d750a057375566c1e3812f30e42155d06c6ccafe4b713d9e0:1:1159:h500000:f1000000",
+    "flight_id": "b5be88943c2c096d750a057375566c1e3812f30e42155d06c6ccafe4b713d9e0:1",
+    "horizon_us": 1000000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.007987,
+    "anchor_availability": -0.007808,
+    "points": 101
+  },
+  {
+    "i": 119,
+    "window_id": "b5be88943c2c096d750a057375566c1e3812f30e42155d06c6ccafe4b713d9e0:1:2867:h500000:f2000000",
+    "flight_id": "b5be88943c2c096d750a057375566c1e3812f30e42155d06c6ccafe4b713d9e0:1",
+    "horizon_us": 2000000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.000649,
+    "anchor_availability": -0.00047,
+    "points": 199
+  },
+  {
+    "i": 120,
+    "window_id": "b9b276a937ef21b53dc65c8f8cdeb72063f754c0aa9b7a15448580fedd3e9933:1:3050:h500000:f200000",
+    "flight_id": "b9b276a937ef21b53dc65c8f8cdeb72063f754c0aa9b7a15448580fedd3e9933:1",
+    "horizon_us": 200000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.005428,
+    "anchor_availability": -0.005343,
+    "points": 20
+  },
+  {
+    "i": 121,
+    "window_id": "b9b276a937ef21b53dc65c8f8cdeb72063f754c0aa9b7a15448580fedd3e9933:1:3291:h500000:f500000",
+    "flight_id": "b9b276a937ef21b53dc65c8f8cdeb72063f754c0aa9b7a15448580fedd3e9933:1",
+    "horizon_us": 500000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.00551,
+    "anchor_availability": -0.00543,
+    "points": 50
+  },
+  {
+    "i": 122,
+    "window_id": "b9b276a937ef21b53dc65c8f8cdeb72063f754c0aa9b7a15448580fedd3e9933:1:3666:h500000:f1000000",
+    "flight_id": "b9b276a937ef21b53dc65c8f8cdeb72063f754c0aa9b7a15448580fedd3e9933:1",
+    "horizon_us": 1000000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.008093,
+    "anchor_availability": -0.008013,
+    "points": 100
+  },
+  {
+    "i": 123,
+    "window_id": "b9b276a937ef21b53dc65c8f8cdeb72063f754c0aa9b7a15448580fedd3e9933:1:8022:h500000:f2000000",
+    "flight_id": "b9b276a937ef21b53dc65c8f8cdeb72063f754c0aa9b7a15448580fedd3e9933:1",
+    "horizon_us": 2000000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.000434,
+    "anchor_availability": -0.00035299999999999996,
+    "points": 199
+  },
+  {
+    "i": 124,
+    "window_id": "bd26ee146ebaf890bd945730dd7a2bc39b88ae92fcdf028d81a5db255a02ac45:1:1400:h500000:f200000",
+    "flight_id": "bd26ee146ebaf890bd945730dd7a2bc39b88ae92fcdf028d81a5db255a02ac45:1",
+    "horizon_us": 200000,
+    "sampling_group": "sparse_10hz",
+    "anchor_measurement": -0.020388,
+    "anchor_availability": -0.020208,
+    "points": 10
+  },
+  {
+    "i": 125,
+    "window_id": "bd26ee146ebaf890bd945730dd7a2bc39b88ae92fcdf028d81a5db255a02ac45:1:1367:h500000:f500000",
+    "flight_id": "bd26ee146ebaf890bd945730dd7a2bc39b88ae92fcdf028d81a5db255a02ac45:1",
+    "horizon_us": 500000,
+    "sampling_group": "sparse_10hz",
+    "anchor_measurement": -0.015387,
+    "anchor_availability": -0.01521,
+    "points": 25
+  },
+  {
+    "i": 126,
+    "window_id": "bd26ee146ebaf890bd945730dd7a2bc39b88ae92fcdf028d81a5db255a02ac45:1:1687:h500000:f1000000",
+    "flight_id": "bd26ee146ebaf890bd945730dd7a2bc39b88ae92fcdf028d81a5db255a02ac45:1",
+    "horizon_us": 1000000,
+    "sampling_group": "sparse_10hz",
+    "anchor_measurement": -0.020284,
+    "anchor_availability": -0.020104999999999998,
+    "points": 50
+  },
+  {
+    "i": 127,
+    "window_id": "bd26ee146ebaf890bd945730dd7a2bc39b88ae92fcdf028d81a5db255a02ac45:1:1851:h500000:f2000000",
+    "flight_id": "bd26ee146ebaf890bd945730dd7a2bc39b88ae92fcdf028d81a5db255a02ac45:1",
+    "horizon_us": 2000000,
+    "sampling_group": "sparse_10hz",
+    "anchor_measurement": -0.020359,
+    "anchor_availability": -0.020180999999999998,
+    "points": 101
+  },
+  {
+    "i": 128,
+    "window_id": "c07bdc4184a5800d6d2faf6bba0f9d45c8c52cdaab26f14944102ad672838510:1:789:h500000:f200000",
+    "flight_id": "c07bdc4184a5800d6d2faf6bba0f9d45c8c52cdaab26f14944102ad672838510:1",
+    "horizon_us": 200000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.000566,
+    "anchor_availability": -0.00038899999999999997,
+    "points": 19
+  },
+  {
+    "i": 129,
+    "window_id": "c07bdc4184a5800d6d2faf6bba0f9d45c8c52cdaab26f14944102ad672838510:1:5158:h500000:f500000",
+    "flight_id": "c07bdc4184a5800d6d2faf6bba0f9d45c8c52cdaab26f14944102ad672838510:1",
+    "horizon_us": 500000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.0030239999999999998,
+    "anchor_availability": -0.002846,
+    "points": 50
+  },
+  {
+    "i": 130,
+    "window_id": "c07bdc4184a5800d6d2faf6bba0f9d45c8c52cdaab26f14944102ad672838510:1:2555:h500000:f1000000",
+    "flight_id": "c07bdc4184a5800d6d2faf6bba0f9d45c8c52cdaab26f14944102ad672838510:1",
+    "horizon_us": 1000000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.003097,
+    "anchor_availability": -0.002918,
+    "points": 101
+  },
+  {
+    "i": 131,
+    "window_id": "c07bdc4184a5800d6d2faf6bba0f9d45c8c52cdaab26f14944102ad672838510:1:6806:h500000:f2000000",
+    "flight_id": "c07bdc4184a5800d6d2faf6bba0f9d45c8c52cdaab26f14944102ad672838510:1",
+    "horizon_us": 2000000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.00306,
+    "anchor_availability": -0.002882,
+    "points": 201
+  },
+  {
+    "i": 132,
+    "window_id": "c1b477a8bc2758431548cbfe085aa083f8d52725c18ca0daa588fe59d7d8dfc3:1:5637:h500000:f200000",
+    "flight_id": "c1b477a8bc2758431548cbfe085aa083f8d52725c18ca0daa588fe59d7d8dfc3:1",
+    "horizon_us": 200000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.010497,
+    "anchor_availability": -0.010314,
+    "points": 20
+  },
+  {
+    "i": 133,
+    "window_id": "c1b477a8bc2758431548cbfe085aa083f8d52725c18ca0daa588fe59d7d8dfc3:1:5023:h500000:f500000",
+    "flight_id": "c1b477a8bc2758431548cbfe085aa083f8d52725c18ca0daa588fe59d7d8dfc3:1",
+    "horizon_us": 500000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.008277999999999999,
+    "anchor_availability": -0.008098,
+    "points": 49
+  },
+  {
+    "i": 134,
+    "window_id": "c1b477a8bc2758431548cbfe085aa083f8d52725c18ca0daa588fe59d7d8dfc3:1:1257:h500000:f1000000",
+    "flight_id": "c1b477a8bc2758431548cbfe085aa083f8d52725c18ca0daa588fe59d7d8dfc3:1",
+    "horizon_us": 1000000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.0030199999999999997,
+    "anchor_availability": -0.002838,
+    "points": 101
+  },
+  {
+    "i": 135,
+    "window_id": "c1b477a8bc2758431548cbfe085aa083f8d52725c18ca0daa588fe59d7d8dfc3:1:7133:h500000:f2000000",
+    "flight_id": "c1b477a8bc2758431548cbfe085aa083f8d52725c18ca0daa588fe59d7d8dfc3:1",
+    "horizon_us": 2000000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.000552,
+    "anchor_availability": -0.00037299999999999996,
+    "points": 199
+  },
+  {
+    "i": 136,
+    "window_id": "c728467cbea2bad08f7f060c6498120efe8cd4f54a3b5cf156d82939cf174480:1:176:h500000:f200000",
+    "flight_id": "c728467cbea2bad08f7f060c6498120efe8cd4f54a3b5cf156d82939cf174480:1",
+    "horizon_us": 200000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.005795,
+    "anchor_availability": -0.005617,
+    "points": 20
+  },
+  {
+    "i": 137,
+    "window_id": "c728467cbea2bad08f7f060c6498120efe8cd4f54a3b5cf156d82939cf174480:1:5547:h500000:f500000",
+    "flight_id": "c728467cbea2bad08f7f060c6498120efe8cd4f54a3b5cf156d82939cf174480:1",
+    "horizon_us": 500000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.007993,
+    "anchor_availability": -0.007816,
+    "points": 51
+  },
+  {
+    "i": 138,
+    "window_id": "c728467cbea2bad08f7f060c6498120efe8cd4f54a3b5cf156d82939cf174480:1:368:h500000:f1000000",
+    "flight_id": "c728467cbea2bad08f7f060c6498120efe8cd4f54a3b5cf156d82939cf174480:1",
+    "horizon_us": 1000000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.000645,
+    "anchor_availability": -0.00046499999999999997,
+    "points": 99
+  },
+  {
+    "i": 139,
+    "window_id": "c728467cbea2bad08f7f060c6498120efe8cd4f54a3b5cf156d82939cf174480:1:4809:h500000:f2000000",
+    "flight_id": "c728467cbea2bad08f7f060c6498120efe8cd4f54a3b5cf156d82939cf174480:1",
+    "horizon_us": 2000000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.0032389999999999997,
+    "anchor_availability": -0.003031,
+    "points": 200
+  },
+  {
+    "i": 140,
+    "window_id": "d33e53d14a9d7c1d7a8ab7a211f430d17b75addc2844c157ee5ccee51faa5854:1:1730:h500000:f200000",
+    "flight_id": "d33e53d14a9d7c1d7a8ab7a211f430d17b75addc2844c157ee5ccee51faa5854:1",
+    "horizon_us": 200000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.00549,
+    "anchor_availability": -0.005311,
+    "points": 21
+  },
+  {
+    "i": 141,
+    "window_id": "d33e53d14a9d7c1d7a8ab7a211f430d17b75addc2844c157ee5ccee51faa5854:1:2945:h500000:f500000",
+    "flight_id": "d33e53d14a9d7c1d7a8ab7a211f430d17b75addc2844c157ee5ccee51faa5854:1",
+    "horizon_us": 500000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.000571,
+    "anchor_availability": -0.000392,
+    "points": 49
+  },
+  {
+    "i": 142,
+    "window_id": "d33e53d14a9d7c1d7a8ab7a211f430d17b75addc2844c157ee5ccee51faa5854:1:5436:h500000:f1000000",
+    "flight_id": "d33e53d14a9d7c1d7a8ab7a211f430d17b75addc2844c157ee5ccee51faa5854:1",
+    "horizon_us": 1000000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.005519,
+    "anchor_availability": -0.005340999999999999,
+    "points": 100
+  },
+  {
+    "i": 143,
+    "window_id": "d33e53d14a9d7c1d7a8ab7a211f430d17b75addc2844c157ee5ccee51faa5854:1:4786:h500000:f2000000",
+    "flight_id": "d33e53d14a9d7c1d7a8ab7a211f430d17b75addc2844c157ee5ccee51faa5854:1",
+    "horizon_us": 2000000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.0030429999999999997,
+    "anchor_availability": -0.002866,
+    "points": 200
+  },
+  {
+    "i": 144,
+    "window_id": "dda8db581b4fc5dd656c3f02517fef1083358a8d7ee58bf9b8074d121a225909:1:763:h500000:f200000",
+    "flight_id": "dda8db581b4fc5dd656c3f02517fef1083358a8d7ee58bf9b8074d121a225909:1",
+    "horizon_us": 200000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.002993,
+    "anchor_availability": -0.002913,
+    "points": 20
+  },
+  {
+    "i": 145,
+    "window_id": "dda8db581b4fc5dd656c3f02517fef1083358a8d7ee58bf9b8074d121a225909:1:5945:h500000:f500000",
+    "flight_id": "dda8db581b4fc5dd656c3f02517fef1083358a8d7ee58bf9b8074d121a225909:1",
+    "horizon_us": 500000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.000527,
+    "anchor_availability": -0.000446,
+    "points": 50
+  },
+  {
+    "i": 146,
+    "window_id": "dda8db581b4fc5dd656c3f02517fef1083358a8d7ee58bf9b8074d121a225909:1:6510:h500000:f1000000",
+    "flight_id": "dda8db581b4fc5dd656c3f02517fef1083358a8d7ee58bf9b8074d121a225909:1",
+    "horizon_us": 1000000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.005441,
+    "anchor_availability": -0.005363,
+    "points": 100
+  },
+  {
+    "i": 147,
+    "window_id": "dda8db581b4fc5dd656c3f02517fef1083358a8d7ee58bf9b8074d121a225909:1:2648:h500000:f2000000",
+    "flight_id": "dda8db581b4fc5dd656c3f02517fef1083358a8d7ee58bf9b8074d121a225909:1",
+    "horizon_us": 2000000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.002944,
+    "anchor_availability": -0.002865,
+    "points": 201
+  },
+  {
+    "i": 148,
+    "window_id": "e90e0d42c4b97a0769107ca94c1ca462135040c0bf832b5abbe0c23464df890f:1:83:h500000:f200000",
+    "flight_id": "e90e0d42c4b97a0769107ca94c1ca462135040c0bf832b5abbe0c23464df890f:1",
+    "horizon_us": 200000,
+    "sampling_group": "sparse_10hz",
+    "anchor_measurement": -0.000441,
+    "anchor_availability": -0.000358,
+    "points": 10
+  },
+  {
+    "i": 149,
+    "window_id": "e90e0d42c4b97a0769107ca94c1ca462135040c0bf832b5abbe0c23464df890f:1:621:h500000:f500000",
+    "flight_id": "e90e0d42c4b97a0769107ca94c1ca462135040c0bf832b5abbe0c23464df890f:1",
+    "horizon_us": 500000,
+    "sampling_group": "sparse_10hz",
+    "anchor_measurement": -0.01294,
+    "anchor_availability": -0.012856999999999999,
+    "points": 25
+  },
+  {
+    "i": 150,
+    "window_id": "e90e0d42c4b97a0769107ca94c1ca462135040c0bf832b5abbe0c23464df890f:1:1922:h500000:f1000000",
+    "flight_id": "e90e0d42c4b97a0769107ca94c1ca462135040c0bf832b5abbe0c23464df890f:1",
+    "horizon_us": 1000000,
+    "sampling_group": "sparse_10hz",
+    "anchor_measurement": -0.020628,
+    "anchor_availability": -0.020527,
+    "points": 50
+  },
+  {
+    "i": 151,
+    "window_id": "e90e0d42c4b97a0769107ca94c1ca462135040c0bf832b5abbe0c23464df890f:1:229:h500000:f2000000",
+    "flight_id": "e90e0d42c4b97a0769107ca94c1ca462135040c0bf832b5abbe0c23464df890f:1",
+    "horizon_us": 2000000,
+    "sampling_group": "sparse_10hz",
+    "anchor_measurement": -0.000493,
+    "anchor_availability": -0.000414,
+    "points": 99
+  },
+  {
+    "i": 152,
+    "window_id": "f265efde972974cc8bad4223ace9abe36dceeddebf26d92fd0f9b1ae0498905b:1:2525:h500000:f200000",
+    "flight_id": "f265efde972974cc8bad4223ace9abe36dceeddebf26d92fd0f9b1ae0498905b:1",
+    "horizon_us": 200000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.000628,
+    "anchor_availability": -0.00045,
+    "points": 20
+  },
+  {
+    "i": 153,
+    "window_id": "f265efde972974cc8bad4223ace9abe36dceeddebf26d92fd0f9b1ae0498905b:1:4541:h500000:f500000",
+    "flight_id": "f265efde972974cc8bad4223ace9abe36dceeddebf26d92fd0f9b1ae0498905b:1",
+    "horizon_us": 500000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.00554,
+    "anchor_availability": -0.005363,
+    "points": 51
+  },
+  {
+    "i": 154,
+    "window_id": "f265efde972974cc8bad4223ace9abe36dceeddebf26d92fd0f9b1ae0498905b:1:4365:h500000:f1000000",
+    "flight_id": "f265efde972974cc8bad4223ace9abe36dceeddebf26d92fd0f9b1ae0498905b:1",
+    "horizon_us": 1000000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.007968,
+    "anchor_availability": -0.00779,
+    "points": 100
+  },
+  {
+    "i": 155,
+    "window_id": "f265efde972974cc8bad4223ace9abe36dceeddebf26d92fd0f9b1ae0498905b:1:4271:h500000:f2000000",
+    "flight_id": "f265efde972974cc8bad4223ace9abe36dceeddebf26d92fd0f9b1ae0498905b:1",
+    "horizon_us": 2000000,
+    "sampling_group": "main_50hz",
+    "anchor_measurement": -0.003034,
+    "anchor_availability": -0.002858,
+    "points": 200
+  }
+]
