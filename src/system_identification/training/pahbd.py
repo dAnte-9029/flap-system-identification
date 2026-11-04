@@ -90,7 +90,11 @@ def save_checkpoint(path,model,optimizer,metadata,step,training_state=None):
 
 
 def load_checkpoint(path,device='cpu',optimizer=False):
-    bundle=torch.load(path,map_location='cpu',weights_only=True)
+    # Early compiled runs stored torch.__version__ as PyTorch's str subclass.
+    # Permit that known metadata type while retaining restricted tensor loading.
+    from torch.torch_version import TorchVersion
+    with torch.serialization.safe_globals([TorchVersion]):
+        bundle=torch.load(path,map_location='cpu',weights_only=True)
     if bundle['schema']!='pahbd_v3_hall':raise ValueError('requires pahbd_v3_hall checkpoint; earlier versions used a different phase initialization contract')
     dtype=getattr(torch,bundle['dtype'].split('.')[-1])
     model=PAHBD(Config(**bundle['config'])).to(device=device,dtype=dtype)

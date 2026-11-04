@@ -69,7 +69,7 @@ def main():
                   code_dirty=bool(subprocess.check_output(['git','status','--porcelain'],text=True).strip()),
                   mode=args.mode,source=args.source,device=args.device,formal_performance_claim=False,
                   runtime=dict(prefetch=args.prefetch,prefetch_cpu=args.prefetch_cpu,
-                               execution_engine=args.execution_engine,python=sys.executable,torch=torch.__version__))
+                               execution_engine=args.execution_engine,python=sys.executable,torch=str(torch.__version__)))
     if args.source=='synthetic':windows=[controlled_periodic_window(model_cfg)[0]]
     else:
         split=args.response_split if args.mode=='response' else ('validation' if args.mode=='validate' else 'train')
