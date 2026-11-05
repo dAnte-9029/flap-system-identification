@@ -56,3 +56,38 @@ def causal_template(cs, lead=1):
     if np.isfinite(d).all():d-=cs[-1]['w']@np.interp(cs[-1]['p'],GRID,d,period=2*np.pi)
     slope=np.linalg.lstsq(np.column_stack([np.ones(3),tau[-3:]-tau[-1]]),mu[-3:],rcond=None)[0]
     return d,slope,tau[-1]
+
+
+def fit_common(cycles, n, holdout=False):
+    """F/L share B's exact trend and target quadrature; held-out y is never read."""
+    ids = np.arange(n-25, n+26)
+    if holdout:
+        ids = ids[ids % 5 != 2]
+    cs = [cycles[i] for i in ids]
+    target = cycles[n]
+    tau = np.array([c['tau'] for c in cs])
+    mu = np.array([c['mu'] for c in cs])
+    t = np.concatenate([c['t'] for c in cs])
+    p = np.concatenate([c['p'] for c in cs])
+    residual = np.concatenate([c['y'] for c in cs]) - linear(t, tau, mu)
+    # Preserve A's equal-cycle LS measure, with a residual intercept but no slope.
+    w = np.concatenate([np.full(len(c['t']), 1/np.sqrt(len(c['t']))) for c in cs])
+    X = np.column_stack([np.ones(len(t))] + [f(h*p) for h in (1,2,3) for f in (np.cos,np.sin)])
+    coef = np.linalg.lstsq(X*w[:, None], residual*w, rcond=None)[0]
+    qp = target['p']
+    Z = np.column_stack([f(h*qp) for h in (1,2,3) for f in (np.cos,np.sin)])
+    fast_f = Z @ coef[1:]
+    fast_f -= target['w'] @ fast_f
+    d = np.full(8, np.nan)
+    for j in range(8):
+        good = np.array([np.isfinite(c['g'][j]) for c in cs])
+        offset = ids[good]-n
+        if good.sum()<8 or (offset<0).sum()<2 or (offset>0).sum()<2:
+            continue
+        tg = np.array([c['gt'][j] for c in cs])[good]
+        g = np.array([c['g'][j] for c in cs])[good]
+        r = g-linear(tg, tau, mu)
+        d[j] = np.linalg.lstsq(np.vander(offset/25, 4, increasing=True), r, rcond=None)[0][0]
+    fast_l = np.interp(qp, GRID, d, period=2*np.pi) if np.isfinite(d).all() else np.full(len(qp), np.nan)
+    fast_l -= target['w'] @ fast_l
+    return linear(target['t'], tau, mu), fast_f, fast_l
