@@ -1,0 +1,41 @@
+         273516 function calls (238824 primitive calls) in 1.838 seconds
+
+   Ordered by: cumulative time
+   List reduced from 171 to 35 due to restriction <35>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.000    0.000    1.303    1.303 /home/zn/anaconda3/envs/flap-train-gpu/lib/python3.11/site-packages/torch/_tensor.py:592(backward)
+        1    0.000    0.000    1.303    1.303 /home/zn/anaconda3/envs/flap-train-gpu/lib/python3.11/site-packages/torch/autograd/__init__.py:243(backward)
+        1    0.000    0.000    1.303    1.303 /home/zn/anaconda3/envs/flap-train-gpu/lib/python3.11/site-packages/torch/autograd/graph.py:815(_engine_run_backward)
+        1    1.303    1.303    1.303    1.303 {method 'run_backward' of 'torch._C._EngineBase' objects}
+        1    0.000    0.000    0.536    0.536 /home/zn/flap-system-identification/.worktrees/pacld-gpu-batched-v1/src/system_identification/training/pacld.py:169(window_objective)
+17582/237    0.010    0.000    0.501    0.002 /home/zn/anaconda3/envs/flap-train-gpu/lib/python3.11/site-packages/torch/nn/modules/module.py:1747(_wrapped_call_impl)
+17582/237    0.013    0.000    0.501    0.002 /home/zn/anaconda3/envs/flap-train-gpu/lib/python3.11/site-packages/torch/nn/modules/module.py:1755(_call_impl)
+        1    0.000    0.000    0.431    0.431 /home/zn/flap-system-identification/.worktrees/pacld-gpu-batched-v1/src/system_identification/models/pacld/__init__.py:16(encode)
+        1    0.002    0.002    0.431    0.431 /home/zn/flap-system-identification/.worktrees/pacld-gpu-batched-v1/src/system_identification/models/pacld/belief.py:77(forward)
+      230    0.003    0.000    0.398    0.002 /home/zn/flap-system-identification/.worktrees/pacld-gpu-batched-v1/src/system_identification/models/pacld/flow.py:45(_propagate)
+      247    0.028    0.000    0.391    0.002 /home/zn/flap-system-identification/.worktrees/pacld-gpu-batched-v1/src/system_identification/models/pacld/flow.py:19(step)
+      494    0.007    0.000    0.259    0.001 /home/zn/flap-system-identification/.worktrees/pacld-gpu-batched-v1/src/system_identification/models/pacld/dynamics.py:111(forward)
+      494    0.017    0.000    0.143    0.000 /home/zn/flap-system-identification/.worktrees/pacld-gpu-batched-v1/src/system_identification/models/pacld/dynamics.py:93(latent_rates)
+      197    0.027    0.000    0.129    0.001 /home/zn/flap-system-identification/.worktrees/pacld-gpu-batched-v1/src/system_identification/models/pacld/belief.py:28(update)
+     2667    0.005    0.000    0.100    0.000 /home/zn/anaconda3/envs/flap-train-gpu/lib/python3.11/site-packages/torch/nn/modules/container.py:238(forward)
+     1185    0.018    0.000    0.100    0.000 /home/zn/flap-system-identification/.worktrees/pacld-gpu-batched-v1/src/system_identification/models/pacld/dynamics.py:65(physical_features)
+        1    0.000    0.000    0.098    0.098 /home/zn/flap-system-identification/.worktrees/pacld-gpu-batched-v1/src/system_identification/models/pacld/flow.py:72(rollout)
+      494    0.003    0.000    0.093    0.000 /home/zn/flap-system-identification/.worktrees/pacld-gpu-batched-v1/src/system_identification/models/pacld/dynamics.py:103(decode)
+      988    0.004    0.000    0.090    0.000 /home/zn/flap-system-identification/.worktrees/pacld-gpu-batched-v1/src/system_identification/models/pacld/dynamics.py:89(context)
+     2864    0.039    0.000    0.085    0.000 /home/zn/flap-system-identification/.worktrees/pacld-gpu-batched-v1/src/system_identification/models/pahbd/geometry.py:37(rotate)
+     8592    0.009    0.000    0.066    0.000 /home/zn/anaconda3/envs/flap-train-gpu/lib/python3.11/site-packages/torch/nn/modules/linear.py:124(forward)
+     8592    0.054    0.000    0.054    0.000 {built-in method torch._C._nn.linear}
+     4272    0.002    0.000    0.050    0.000 /home/zn/flap-system-identification/.worktrees/pacld-gpu-batched-v1/src/system_identification/models/pahbd/geometry.py:6(unit)
+     4272    0.011    0.000    0.048    0.000 /home/zn/anaconda3/envs/flap-train-gpu/lib/python3.11/site-packages/torch/nn/functional.py:5456(normalize)
+      247    0.011    0.000    0.040    0.000 /home/zn/flap-system-identification/.worktrees/pacld-gpu-batched-v1/src/system_identification/models/pahbd/dynamics.py:59(covariance)
+      930    0.025    0.000    0.032    0.000 /home/zn/flap-system-identification/.worktrees/pacld-gpu-batched-v1/src/system_identification/models/pahbd/geometry.py:14(multiply)
+      239    0.003    0.000    0.031    0.000 /home/zn/flap-system-identification/.worktrees/pacld-gpu-batched-v1/src/system_identification/models/pahbd/geometry.py:43(state_residual)
+      239    0.000    0.000    0.028    0.000 /home/zn/flap-system-identification/.worktrees/pacld-gpu-batched-v1/src/system_identification/models/pahbd/geometry.py:33(residual)
+     4272    0.002    0.000    0.024    0.000 /home/zn/anaconda3/envs/flap-train-gpu/lib/python3.11/site-packages/torch/_tensor.py:882(norm)
+     4272    0.009    0.000    0.022    0.000 /home/zn/anaconda3/envs/flap-train-gpu/lib/python3.11/site-packages/torch/functional.py:1698(norm)
+     9306    0.021    0.000    0.021    0.000 {built-in method torch.cat}
+      494    0.008    0.000    0.019    0.000 /home/zn/flap-system-identification/.worktrees/pacld-gpu-batched-v1/src/system_identification/models/pacld/dynamics.py:56(phase_carrier)
+      494    0.013    0.000    0.017    0.000 /home/zn/flap-system-identification/.worktrees/pacld-gpu-batched-v1/src/system_identification/models/pahbd/dynamics.py:50(forward)
+      197    0.003    0.000    0.017    0.000 /home/zn/flap-system-identification/.worktrees/pacld-gpu-batched-v1/src/system_identification/models/pahbd/geometry.py:48(retract)
+      247    0.017    0.000    0.017    0.000 {built-in method torch.matrix_exp}

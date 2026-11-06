@@ -1,0 +1,47 @@
+{
+  "args": {
+    "batch_size": 8,
+    "horizon": 2000000,
+    "precision": "mixed",
+    "compile": true,
+    "device": "cuda:0",
+    "repeats": 2,
+    "output": "runs/pacld_gpu_batched/single_b8_h2000000.json",
+    "profile": false
+  },
+  "window_ids": [
+    "4c77a3e74b4c8e26d021fd1fa2bc618a2f2f52e005eb5022ecdf680c40678bfb:1:689:h500000:f2000000",
+    "37ff9f8ea4e2e378fc13394288aa145a462259e2f53fa15af9511082f0e6d558:1:53:h500000:f2000000",
+    "603a941c5ebbfcdf27b80b0d1c4b2de65dd4e114fdefb64bb70896e409c135a8:1:53:h500000:f2000000",
+    "30f27b3c2ee46a05ed6108ec01a2150cd5c8fedaf4f0cb7a1f0347698412aacd:1:53:h500000:f2000000",
+    "3b0afa4b3526fae934d9705082c0dbfe247fc39baff68014c06cf6642e71275e:1:51:h500000:f2000000",
+    "73dd94d60553a00efb3e2d9009430686c08ee611f11eb4e3f8e3a427f26df842:1:1402:h500000:f2000000",
+    "0ad472f5e6d2fdd7f5a94c403a49e07e089f7d16de603f5703d4e2260938cc5b:1:54:h500000:f2000000",
+    "65c8b8b39c7ac62f8abcc600c7676294c46c99a1d1d19a1d6e3c588608eb834b:1:258:h500000:f2000000"
+  ],
+  "preparation_seconds": 1.9799541258253157,
+  "records": [
+    {
+      "iteration": 0,
+      "forward_seconds": 5.5564544247463346,
+      "backward_seconds": 1.8374472791329026,
+      "optimizer_seconds": 0.05615899711847305,
+      "seconds": 7.45006070099771,
+      "windows_per_second": 1.0738167541277404,
+      "loss": 211.5166951613629,
+      "grad_norm": 373.2880167716546,
+      "peak_memory_bytes": 526512640
+    },
+    {
+      "iteration": 1,
+      "forward_seconds": 1.4839038182981312,
+      "backward_seconds": 1.822292230091989,
+      "optimizer_seconds": 0.028517241589725018,
+      "seconds": 3.3347132899798453,
+      "windows_per_second": 2.3990068423688538,
+      "loss": 203.45841945327473,
+      "grad_norm": 339.3954083037087,
+      "peak_memory_bytes": 530646016
+    }
+  ]
+}

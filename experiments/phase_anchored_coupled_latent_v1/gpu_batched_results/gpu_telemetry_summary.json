@@ -1,0 +1,18 @@
+{
+  "scope": "Whole test session including loading, compilation, profiling, validation and idle; not steady-state training utilization",
+  "unparseable_rows": 0,
+  "gpus": {
+    "0": {
+      "samples": 1395,
+      "utilization_mean_including_idle": 8.739068100358423,
+      "utilization_max": 100.0,
+      "memory_peak_mib": 2773.0
+    },
+    "1": {
+      "samples": 1395,
+      "utilization_mean_including_idle": 14.082437275985663,
+      "utilization_max": 100.0,
+      "memory_peak_mib": 1679.0
+    }
+  }
+}

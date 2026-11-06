@@ -1,0 +1,57 @@
+{
+  "args": {
+    "batch_size": 8,
+    "horizon": 500000,
+    "compile": true,
+    "output": "runs/pacld_gpu_batched/ddp_parity.json",
+    "parity": true
+  },
+  "world_size": 2,
+  "preparation_seconds": 0.623498098924756,
+  "records": [
+    {
+      "iteration": 0,
+      "forward_seconds": 20.077732407022268,
+      "backward_seconds": 11.263270027004182,
+      "seconds": 31.34100243402645,
+      "windows_per_second": 0.25525667268748625,
+      "peak_memory_bytes": 148901888,
+      "gradient_norm": 28.73311421787285
+    },
+    {
+      "iteration": 1,
+      "forward_seconds": 0.6031388160772622,
+      "backward_seconds": 0.8074475261382759,
+      "seconds": 1.41084919963032,
+      "windows_per_second": 5.670343791594603,
+      "peak_memory_bytes": 148901888,
+      "gradient_norm": 27.185491817880397
+    }
+  ],
+  "parity": {
+    "loss_abs": 3.91732299931391e-07,
+    "gradient_max_abs": 1.239776611328125e-05,
+    "gradient_relative_l2": 6.954551906187821e-07,
+    "restore_next_update_max_abs": 0.0,
+    "restore_next_indices": [
+      207612,
+      241672,
+      189105,
+      142916,
+      308940,
+      292007,
+      148158,
+      254843
+    ]
+  },
+  "global_indices": [
+    134,
+    1941,
+    7803,
+    12784,
+    17741,
+    21356,
+    23305,
+    26389
+  ]
+}

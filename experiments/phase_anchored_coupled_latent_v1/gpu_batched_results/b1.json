@@ -1,0 +1,7 @@
+{
+  "window_id": "4c77a3e74b4c8e26d021fd1fa2bc618a2f2f52e005eb5022ecdf680c40678bfb:1:689:h500000:f200000",
+  "belief_max_abs": 9.935242732683758e-13,
+  "trajectory_max_abs": 5.0959236830294685e-14,
+  "gradient_max_abs": 3.411271265463256e-12,
+  "loss_abs": 2.7000623958883807e-13
+}

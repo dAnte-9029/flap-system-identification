@@ -1,0 +1,322 @@
+[
+  {
+    "horizon_us": 200000,
+    "index": 0,
+    "window_id": "4c77a3e74b4c8e26d021fd1fa2bc618a2f2f52e005eb5022ecdf680c40678bfb:1:689:h500000:f200000",
+    "prepare_seconds": 0.14243708876892924,
+    "forward_seconds": 0.5964991440996528,
+    "backward_seconds": 1.294300600886345,
+    "optimizer_seconds": 0.0025651301257312298,
+    "seconds": 1.893364875111729
+  },
+  {
+    "horizon_us": 200000,
+    "index": 391,
+    "window_id": "37ff9f8ea4e2e378fc13394288aa145a462259e2f53fa15af9511082f0e6d558:1:53:h500000:f200000",
+    "prepare_seconds": 0.11904173996299505,
+    "forward_seconds": 0.5025492501445115,
+    "backward_seconds": 0.8339285650290549,
+    "optimizer_seconds": 0.005596906878054142,
+    "seconds": 1.3420747220516205
+  },
+  {
+    "horizon_us": 200000,
+    "index": 6566,
+    "window_id": "603a941c5ebbfcdf27b80b0d1c4b2de65dd4e114fdefb64bb70896e409c135a8:1:53:h500000:f200000",
+    "prepare_seconds": 0.10740822926163673,
+    "forward_seconds": 0.4193434310145676,
+    "backward_seconds": 0.8726555272005498,
+    "optimizer_seconds": 0.004801137838512659,
+    "seconds": 1.2968000960536301
+  },
+  {
+    "horizon_us": 200000,
+    "index": 11467,
+    "window_id": "30f27b3c2ee46a05ed6108ec01a2150cd5c8fedaf4f0cb7a1f0347698412aacd:1:53:h500000:f200000",
+    "prepare_seconds": 0.1760499752126634,
+    "forward_seconds": 0.4170306189917028,
+    "backward_seconds": 0.7459156159311533,
+    "optimizer_seconds": 0.005389772821217775,
+    "seconds": 1.1683360077440739
+  },
+  {
+    "horizon_us": 200000,
+    "index": 16688,
+    "window_id": "3b0afa4b3526fae934d9705082c0dbfe247fc39baff68014c06cf6642e71275e:1:51:h500000:f200000",
+    "prepare_seconds": 0.09920280706137419,
+    "forward_seconds": 0.49560451600700617,
+    "backward_seconds": 0.7288931128568947,
+    "optimizer_seconds": 0.004797331988811493,
+    "seconds": 1.2292949608527124
+  },
+  {
+    "horizon_us": 200000,
+    "index": 20870,
+    "window_id": "73dd94d60553a00efb3e2d9009430686c08ee611f11eb4e3f8e3a427f26df842:1:550:h500000:f200000",
+    "prepare_seconds": 0.1074602440930903,
+    "forward_seconds": 0.4813523329794407,
+    "backward_seconds": 0.7588078491389751,
+    "optimizer_seconds": 0.004845933988690376,
+    "seconds": 1.2450061161071062
+  },
+  {
+    "horizon_us": 200000,
+    "index": 22501,
+    "window_id": "0ad472f5e6d2fdd7f5a94c403a49e07e089f7d16de603f5703d4e2260938cc5b:1:54:h500000:f200000",
+    "prepare_seconds": 0.09868363384157419,
+    "forward_seconds": 0.4152576900087297,
+    "backward_seconds": 0.8285791510716081,
+    "optimizer_seconds": 0.0065529560670256615,
+    "seconds": 1.2503897971473634
+  },
+  {
+    "horizon_us": 200000,
+    "index": 25672,
+    "window_id": "65c8b8b39c7ac62f8abcc600c7676294c46c99a1d1d19a1d6e3c588608eb834b:1:52:h500000:f200000",
+    "prepare_seconds": 0.10114497086033225,
+    "forward_seconds": 0.5377191929146647,
+    "backward_seconds": 0.8058911650441587,
+    "optimizer_seconds": 0.009099999908357859,
+    "seconds": 1.3527103578671813
+  },
+  {
+    "horizon_us": 500000,
+    "index": 134,
+    "window_id": "4c77a3e74b4c8e26d021fd1fa2bc618a2f2f52e005eb5022ecdf680c40678bfb:1:689:h500000:f500000",
+    "prepare_seconds": 0.07175660831853747,
+    "forward_seconds": 0.8438487872481346,
+    "backward_seconds": 1.225762624759227,
+    "optimizer_seconds": 0.0020226011984050274,
+    "seconds": 2.0716340132057667
+  },
+  {
+    "horizon_us": 500000,
+    "index": 1941,
+    "window_id": "37ff9f8ea4e2e378fc13394288aa145a462259e2f53fa15af9511082f0e6d558:1:53:h500000:f500000",
+    "prepare_seconds": 0.07378268614411354,
+    "forward_seconds": 0.8608414400368929,
+    "backward_seconds": 1.4493436361663043,
+    "optimizer_seconds": 0.010517584159970284,
+    "seconds": 2.3207026603631675
+  },
+  {
+    "horizon_us": 500000,
+    "index": 7803,
+    "window_id": "603a941c5ebbfcdf27b80b0d1c4b2de65dd4e114fdefb64bb70896e409c135a8:1:53:h500000:f500000",
+    "prepare_seconds": 0.07805788703262806,
+    "forward_seconds": 0.8353632823564112,
+    "backward_seconds": 1.3202834771946073,
+    "optimizer_seconds": 0.011229472700506449,
+    "seconds": 2.166876232251525
+  },
+  {
+    "horizon_us": 500000,
+    "index": 12784,
+    "window_id": "30f27b3c2ee46a05ed6108ec01a2150cd5c8fedaf4f0cb7a1f0347698412aacd:1:53:h500000:f500000",
+    "prepare_seconds": 0.07284496771171689,
+    "forward_seconds": 0.8762254239991307,
+    "backward_seconds": 1.30192681401968,
+    "optimizer_seconds": 0.01147703779861331,
+    "seconds": 2.189629275817424
+  },
+  {
+    "horizon_us": 500000,
+    "index": 17741,
+    "window_id": "3b0afa4b3526fae934d9705082c0dbfe247fc39baff68014c06cf6642e71275e:1:51:h500000:f500000",
+    "prepare_seconds": 0.07399450009688735,
+    "forward_seconds": 0.6957356580533087,
+    "backward_seconds": 1.2803265140391886,
+    "optimizer_seconds": 0.0129362428560853,
+    "seconds": 1.9889984149485826
+  },
+  {
+    "horizon_us": 500000,
+    "index": 21356,
+    "window_id": "73dd94d60553a00efb3e2d9009430686c08ee611f11eb4e3f8e3a427f26df842:1:1402:h500000:f500000",
+    "prepare_seconds": 0.07467504404485226,
+    "forward_seconds": 0.9258164190687239,
+    "backward_seconds": 1.3953187009319663,
+    "optimizer_seconds": 0.01249219011515379,
+    "seconds": 2.333627310115844
+  },
+  {
+    "horizon_us": 500000,
+    "index": 23305,
+    "window_id": "0ad472f5e6d2fdd7f5a94c403a49e07e089f7d16de603f5703d4e2260938cc5b:1:54:h500000:f500000",
+    "prepare_seconds": 0.07583074923604727,
+    "forward_seconds": 0.7816435541026294,
+    "backward_seconds": 1.2617400488816202,
+    "optimizer_seconds": 0.01067987410351634,
+    "seconds": 2.054063477087766
+  },
+  {
+    "horizon_us": 500000,
+    "index": 26389,
+    "window_id": "65c8b8b39c7ac62f8abcc600c7676294c46c99a1d1d19a1d6e3c588608eb834b:1:52:h500000:f500000",
+    "prepare_seconds": 0.07310152007266879,
+    "forward_seconds": 0.854885758832097,
+    "backward_seconds": 1.450423592235893,
+    "optimizer_seconds": 0.014031593687832355,
+    "seconds": 2.3193409447558224
+  },
+  {
+    "horizon_us": 1000000,
+    "index": 246,
+    "window_id": "4c77a3e74b4c8e26d021fd1fa2bc618a2f2f52e005eb5022ecdf680c40678bfb:1:689:h500000:f1000000",
+    "prepare_seconds": 0.1095769521780312,
+    "forward_seconds": 1.24833432585001,
+    "backward_seconds": 1.9224667381495237,
+    "optimizer_seconds": 0.004270789213478565,
+    "seconds": 3.175071853213012
+  },
+  {
+    "horizon_us": 1000000,
+    "index": 3488,
+    "window_id": "37ff9f8ea4e2e378fc13394288aa145a462259e2f53fa15af9511082f0e6d558:1:53:h500000:f1000000",
+    "prepare_seconds": 0.1060837060213089,
+    "forward_seconds": 1.1335722729563713,
+    "backward_seconds": 1.9999249409884214,
+    "optimizer_seconds": 0.01658275816589594,
+    "seconds": 3.1500799721106887
+  },
+  {
+    "horizon_us": 1000000,
+    "index": 9036,
+    "window_id": "603a941c5ebbfcdf27b80b0d1c4b2de65dd4e114fdefb64bb70896e409c135a8:1:53:h500000:f1000000",
+    "prepare_seconds": 0.10682078311219811,
+    "forward_seconds": 1.2126926551572978,
+    "backward_seconds": 2.11802826076746,
+    "optimizer_seconds": 0.015963273588567972,
+    "seconds": 3.3466841895133257
+  },
+  {
+    "horizon_us": 1000000,
+    "index": 14097,
+    "window_id": "30f27b3c2ee46a05ed6108ec01a2150cd5c8fedaf4f0cb7a1f0347698412aacd:1:53:h500000:f1000000",
+    "prepare_seconds": 0.12128375098109245,
+    "forward_seconds": 1.2743884450756013,
+    "backward_seconds": 2.068445221055299,
+    "optimizer_seconds": 0.01980295917019248,
+    "seconds": 3.362636625301093
+  },
+  {
+    "horizon_us": 1000000,
+    "index": 18792,
+    "window_id": "3b0afa4b3526fae934d9705082c0dbfe247fc39baff68014c06cf6642e71275e:1:51:h500000:f1000000",
+    "prepare_seconds": 0.13783141877502203,
+    "forward_seconds": 1.2223493410274386,
+    "backward_seconds": 2.064544707071036,
+    "optimizer_seconds": 0.021392140071839094,
+    "seconds": 3.308286188170314
+  },
+  {
+    "horizon_us": 1000000,
+    "index": 21792,
+    "window_id": "73dd94d60553a00efb3e2d9009430686c08ee611f11eb4e3f8e3a427f26df842:1:1402:h500000:f1000000",
+    "prepare_seconds": 0.1270141019485891,
+    "forward_seconds": 1.432189418002963,
+    "backward_seconds": 2.0623948127031326,
+    "optimizer_seconds": 0.02046914678066969,
+    "seconds": 3.5150533774867654
+  },
+  {
+    "horizon_us": 1000000,
+    "index": 24106,
+    "window_id": "0ad472f5e6d2fdd7f5a94c403a49e07e089f7d16de603f5703d4e2260938cc5b:1:54:h500000:f1000000",
+    "prepare_seconds": 0.11377664934843779,
+    "forward_seconds": 1.1895940070971847,
+    "backward_seconds": 2.122462931089103,
+    "optimizer_seconds": 0.015717879869043827,
+    "seconds": 3.3277748180553317
+  },
+  {
+    "horizon_us": 1000000,
+    "index": 27085,
+    "window_id": "65c8b8b39c7ac62f8abcc600c7676294c46c99a1d1d19a1d6e3c588608eb834b:1:52:h500000:f1000000",
+    "prepare_seconds": 0.1084757917560637,
+    "forward_seconds": 1.3265486592426896,
+    "backward_seconds": 2.0048015699721873,
+    "optimizer_seconds": 0.016401675064116716,
+    "seconds": 3.3477519042789936
+  },
+  {
+    "horizon_us": 2000000,
+    "index": 335,
+    "window_id": "4c77a3e74b4c8e26d021fd1fa2bc618a2f2f52e005eb5022ecdf680c40678bfb:1:689:h500000:f2000000",
+    "prepare_seconds": 0.1743584922514856,
+    "forward_seconds": 2.164531829766929,
+    "backward_seconds": 3.360357776284218,
+    "optimizer_seconds": 0.0061633409932255745,
+    "seconds": 5.531052947044373
+  },
+  {
+    "horizon_us": 2000000,
+    "index": 5031,
+    "window_id": "37ff9f8ea4e2e378fc13394288aa145a462259e2f53fa15af9511082f0e6d558:1:53:h500000:f2000000",
+    "prepare_seconds": 0.1787523259408772,
+    "forward_seconds": 1.985784789081663,
+    "backward_seconds": 3.6833058539777994,
+    "optimizer_seconds": 0.02936267899349332,
+    "seconds": 5.698453322052956
+  },
+  {
+    "horizon_us": 2000000,
+    "index": 10260,
+    "window_id": "603a941c5ebbfcdf27b80b0d1c4b2de65dd4e114fdefb64bb70896e409c135a8:1:53:h500000:f2000000",
+    "prepare_seconds": 0.20725762797519565,
+    "forward_seconds": 2.18926415592432,
+    "backward_seconds": 3.6341458512470126,
+    "optimizer_seconds": 0.03130865702405572,
+    "seconds": 5.8547186641953886
+  },
+  {
+    "horizon_us": 2000000,
+    "index": 15401,
+    "window_id": "30f27b3c2ee46a05ed6108ec01a2150cd5c8fedaf4f0cb7a1f0347698412aacd:1:53:h500000:f2000000",
+    "prepare_seconds": 0.183905309997499,
+    "forward_seconds": 2.0604378539137542,
+    "backward_seconds": 3.47338982578367,
+    "optimizer_seconds": 0.031509868800640106,
+    "seconds": 5.565337548498064
+  },
+  {
+    "horizon_us": 2000000,
+    "index": 19833,
+    "window_id": "3b0afa4b3526fae934d9705082c0dbfe247fc39baff68014c06cf6642e71275e:1:51:h500000:f2000000",
+    "prepare_seconds": 0.185929412022233,
+    "forward_seconds": 2.1548733580857515,
+    "backward_seconds": 3.6161463176831603,
+    "optimizer_seconds": 0.0323535748757422,
+    "seconds": 5.803373250644654
+  },
+  {
+    "horizon_us": 2000000,
+    "index": 22178,
+    "window_id": "73dd94d60553a00efb3e2d9009430686c08ee611f11eb4e3f8e3a427f26df842:1:1402:h500000:f2000000",
+    "prepare_seconds": 0.1846247809007764,
+    "forward_seconds": 2.2580564920790493,
+    "backward_seconds": 3.5078333849087358,
+    "optimizer_seconds": 0.030017121694982052,
+    "seconds": 5.795906998682767
+  },
+  {
+    "horizon_us": 2000000,
+    "index": 24883,
+    "window_id": "0ad472f5e6d2fdd7f5a94c403a49e07e089f7d16de603f5703d4e2260938cc5b:1:54:h500000:f2000000",
+    "prepare_seconds": 0.18721165414899588,
+    "forward_seconds": 2.4813853288069367,
+    "backward_seconds": 3.8436627937480807,
+    "optimizer_seconds": 0.03445371985435486,
+    "seconds": 6.359501842409372
+  },
+  {
+    "horizon_us": 2000000,
+    "index": 27748,
+    "window_id": "65c8b8b39c7ac62f8abcc600c7676294c46c99a1d1d19a1d6e3c588608eb834b:1:258:h500000:f2000000",
+    "prepare_seconds": 0.19765587616711855,
+    "forward_seconds": 2.4255347084254026,
+    "backward_seconds": 3.784721795003861,
+    "optimizer_seconds": 0.031205097679048777,
+    "seconds": 6.241461601108313
+  }
+]

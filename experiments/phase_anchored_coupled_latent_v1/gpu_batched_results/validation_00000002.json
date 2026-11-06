@@ -1,0 +1,1735 @@
+{
+  "selection_score": 66.72416503765396,
+  "full": {
+    "score": 66.72416503765396,
+    "per_flight": {
+      "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1": 63.38325160904226,
+      "0451d1a43890608c6b767e31fc9f342d905b82c9394689649574157a6b2e9764:1": 43.11474578022957,
+      "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1": 84.59035359168058,
+      "05c2f81037b89babb98b66a43ceb29e4cdc37ea53d15b671d3716f02cbcddbc7:1": 58.93699628397421,
+      "0e3d4d085a0d8bcd87a2c76c5c3230e2ae238cf0d3b54051abd498e0b9c8bf8c:1": 82.77353132159473,
+      "1a2f3f28b2bc9096e90f68bee1897d7da44918ca0d568d8b8c44672228addb06:1": 50.944509703549095,
+      "1d0eccb6bff5bbec48711611b652a5d920c132c230ac1801fe8b53314ce52ebc:1": 75.98845552397819,
+      "2f0f47422f9ee289467bdc2b2efe0b23caff3bbd2b8c4c7090db13b09b0032c8:1": 78.04685218975263,
+      "3bb6ff6472a11102b2cd3d4b64d26f3a6795f2c8411df1564b54cf7acbab1fc7:1": 103.66567521680074,
+      "4b5e90d7f0e7d8ecc77c4c680cde74d6848246d6878e3606503b97570bb9f462:1": 84.29432854057285,
+      "4d23bcddc841239bc48be8c9c89a9f70a26e5c2ca95a053805efda24b4cb641c:1": 33.963158691246974,
+      "51b14f03c6f5f6c84a8dfeceea3c5e86e4ed008a19f1f176abaa84663efaa1e4:1": 126.87915932743817,
+      "580d9dd51677020f5a87c43f51f9d7082d4157599eab9e148b683e4baa03eadd:1": 77.60943361036729,
+      "58964d09038a4b0aaaad819e7b853daf34d01c716a0332fb5b543d918d797bcc:1": 36.74794558312035,
+      "5b1381497c5cc6f171c55d95ebd46c8e2adda297ba900f05bf992fbf2d2dfab3:1": 71.81494126784688,
+      "5bc50ebb95abd5fb7653cf7e9dd046323e866b146da223125bb1bb8f3ef11f9d:1": 76.60549219189483,
+      "639068bda89a25c019dec70adeaf32ada88119bed17d20b09f0d48f91231146a:1": 36.82259292536109,
+      "6e85c320a2a3e46df78ae6ad480ebec5afe2d3f78abb6084d4623b8f313db32f:1": 68.57797605726017,
+      "7140f8e656e0558ee00c851bcbff461d0c685d1c4d3bdf046b1d0ffcc120259f:1": 57.653202410970934,
+      "72b77806f1d23dd9d32bf76275b6a94d3cc4dd2f860a9394fd1b3e42ab10c8de:1": 85.44322286603388,
+      "7ac7478f2dbfed10646618cf4ce9a50c0fa793c3adb307c0446f968f622096e3:1": 86.42021437691051,
+      "89fbf848c8f15d95ebeb6bb58d6ec857bbc6cf65094f75cd986a4a661c0c44cf:1": 58.48410093994503,
+      "8c24613d6cd518a0391183fe8c8f51198d2d1af8b05962081aa36180eb12f5fb:1": 67.56086583717025,
+      "8d1191724e9bb10dcc592dc354b6c8cc21f51ae79dd14e9960bc656411cb7758:1": 59.46853154814235,
+      "8ea1a9652b9bcb07c2e8a028fd0e2e1c07f3b611c6754fc7011006ec6f72f1a2:2": 54.860099072843795,
+      "9258b097970593d85c54daa5d13905f8b7b1c9bcab8d800ddd78e14e6be8f0c5:1": 100.32945628704832,
+      "a1945d5edee81010214065ee8ff847438d7306eb73e9a8aa359a727ff7a9070e:1": 92.67669032373034,
+      "a907493b8fd3708bac45e39fc54185e2fa4e9f9a35a71ba030f3f38b06c1d51f:1": 60.58653867766171,
+      "b472f27bdb908bca69c4d18cc793cde099d4632285026878d766c2bc912a6949:1": 70.85667451302001,
+      "b5be88943c2c096d750a057375566c1e3812f30e42155d06c6ccafe4b713d9e0:1": 55.15878501954171,
+      "b9b276a937ef21b53dc65c8f8cdeb72063f754c0aa9b7a15448580fedd3e9933:1": 65.23862285100802,
+      "bd26ee146ebaf890bd945730dd7a2bc39b88ae92fcdf028d81a5db255a02ac45:1": 42.43180784140985,
+      "c07bdc4184a5800d6d2faf6bba0f9d45c8c52cdaab26f14944102ad672838510:1": 39.611054137710326,
+      "c1b477a8bc2758431548cbfe085aa083f8d52725c18ca0daa588fe59d7d8dfc3:1": 52.98785413583356,
+      "c728467cbea2bad08f7f060c6498120efe8cd4f54a3b5cf156d82939cf174480:1": 74.15691623504446,
+      "d33e53d14a9d7c1d7a8ab7a211f430d17b75addc2844c157ee5ccee51faa5854:1": 48.4337684090619,
+      "dda8db581b4fc5dd656c3f02517fef1083358a8d7ee58bf9b8074d121a225909:1": 50.59994146082626,
+      "e90e0d42c4b97a0769107ca94c1ca462135040c0bf832b5abbe0c23464df890f:1": 45.37743739115186,
+      "f265efde972974cc8bad4223ace9abe36dceeddebf26d92fd0f9b1ae0498905b:1": 79.14725271772869
+    },
+    "per_flight_horizon": [
+      {
+        "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+        "horizon_us": 200000,
+        "value": 27.400691678360467,
+        "windows": 1
+      },
+      {
+        "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+        "horizon_us": 500000,
+        "value": 35.25383300172457,
+        "windows": 1
+      },
+      {
+        "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+        "horizon_us": 1000000,
+        "value": 37.755125608360196,
+        "windows": 1
+      },
+      {
+        "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+        "horizon_us": 2000000,
+        "value": 153.12335614772383,
+        "windows": 1
+      },
+      {
+        "flight_id": "0451d1a43890608c6b767e31fc9f342d905b82c9394689649574157a6b2e9764:1",
+        "horizon_us": 200000,
+        "value": 23.52598413599954,
+        "windows": 1
+      },
+      {
+        "flight_id": "0451d1a43890608c6b767e31fc9f342d905b82c9394689649574157a6b2e9764:1",
+        "horizon_us": 500000,
+        "value": 22.5806503283238,
+        "windows": 1
+      },
+      {
+        "flight_id": "0451d1a43890608c6b767e31fc9f342d905b82c9394689649574157a6b2e9764:1",
+        "horizon_us": 1000000,
+        "value": 36.43100339434834,
+        "windows": 1
+      },
+      {
+        "flight_id": "0451d1a43890608c6b767e31fc9f342d905b82c9394689649574157a6b2e9764:1",
+        "horizon_us": 2000000,
+        "value": 89.92134526224659,
+        "windows": 1
+      },
+      {
+        "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+        "horizon_us": 200000,
+        "value": 51.11185620931422,
+        "windows": 1
+      },
+      {
+        "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+        "horizon_us": 500000,
+        "value": 59.12948630044349,
+        "windows": 1
+      },
+      {
+        "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+        "horizon_us": 1000000,
+        "value": 63.22859295661603,
+        "windows": 1
+      },
+      {
+        "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+        "horizon_us": 2000000,
+        "value": 164.8914789003486,
+        "windows": 1
+      },
+      {
+        "flight_id": "05c2f81037b89babb98b66a43ceb29e4cdc37ea53d15b671d3716f02cbcddbc7:1",
+        "horizon_us": 200000,
+        "value": 36.486354508886556,
+        "windows": 1
+      },
+      {
+        "flight_id": "05c2f81037b89babb98b66a43ceb29e4cdc37ea53d15b671d3716f02cbcddbc7:1",
+        "horizon_us": 500000,
+        "value": 20.64835355771917,
+        "windows": 1
+      },
+      {
+        "flight_id": "05c2f81037b89babb98b66a43ceb29e4cdc37ea53d15b671d3716f02cbcddbc7:1",
+        "horizon_us": 1000000,
+        "value": 47.911260488766324,
+        "windows": 1
+      },
+      {
+        "flight_id": "05c2f81037b89babb98b66a43ceb29e4cdc37ea53d15b671d3716f02cbcddbc7:1",
+        "horizon_us": 2000000,
+        "value": 130.7020165805248,
+        "windows": 1
+      },
+      {
+        "flight_id": "0e3d4d085a0d8bcd87a2c76c5c3230e2ae238cf0d3b54051abd498e0b9c8bf8c:1",
+        "horizon_us": 200000,
+        "value": 64.56216463034734,
+        "windows": 1
+      },
+      {
+        "flight_id": "0e3d4d085a0d8bcd87a2c76c5c3230e2ae238cf0d3b54051abd498e0b9c8bf8c:1",
+        "horizon_us": 500000,
+        "value": 46.79273250420982,
+        "windows": 1
+      },
+      {
+        "flight_id": "0e3d4d085a0d8bcd87a2c76c5c3230e2ae238cf0d3b54051abd498e0b9c8bf8c:1",
+        "horizon_us": 1000000,
+        "value": 71.67778579215381,
+        "windows": 1
+      },
+      {
+        "flight_id": "0e3d4d085a0d8bcd87a2c76c5c3230e2ae238cf0d3b54051abd498e0b9c8bf8c:1",
+        "horizon_us": 2000000,
+        "value": 148.06144235966798,
+        "windows": 1
+      },
+      {
+        "flight_id": "1a2f3f28b2bc9096e90f68bee1897d7da44918ca0d568d8b8c44672228addb06:1",
+        "horizon_us": 200000,
+        "value": 79.39665906474225,
+        "windows": 1
+      },
+      {
+        "flight_id": "1a2f3f28b2bc9096e90f68bee1897d7da44918ca0d568d8b8c44672228addb06:1",
+        "horizon_us": 500000,
+        "value": 29.01521662261362,
+        "windows": 1
+      },
+      {
+        "flight_id": "1a2f3f28b2bc9096e90f68bee1897d7da44918ca0d568d8b8c44672228addb06:1",
+        "horizon_us": 1000000,
+        "value": 34.0596935622278,
+        "windows": 1
+      },
+      {
+        "flight_id": "1a2f3f28b2bc9096e90f68bee1897d7da44918ca0d568d8b8c44672228addb06:1",
+        "horizon_us": 2000000,
+        "value": 61.30646956461271,
+        "windows": 1
+      },
+      {
+        "flight_id": "1d0eccb6bff5bbec48711611b652a5d920c132c230ac1801fe8b53314ce52ebc:1",
+        "horizon_us": 200000,
+        "value": 33.306080331131,
+        "windows": 1
+      },
+      {
+        "flight_id": "1d0eccb6bff5bbec48711611b652a5d920c132c230ac1801fe8b53314ce52ebc:1",
+        "horizon_us": 500000,
+        "value": 47.60264791480296,
+        "windows": 1
+      },
+      {
+        "flight_id": "1d0eccb6bff5bbec48711611b652a5d920c132c230ac1801fe8b53314ce52ebc:1",
+        "horizon_us": 1000000,
+        "value": 62.23699257513089,
+        "windows": 1
+      },
+      {
+        "flight_id": "1d0eccb6bff5bbec48711611b652a5d920c132c230ac1801fe8b53314ce52ebc:1",
+        "horizon_us": 2000000,
+        "value": 160.8081012748479,
+        "windows": 1
+      },
+      {
+        "flight_id": "2f0f47422f9ee289467bdc2b2efe0b23caff3bbd2b8c4c7090db13b09b0032c8:1",
+        "horizon_us": 200000,
+        "value": 17.844253520660704,
+        "windows": 1
+      },
+      {
+        "flight_id": "2f0f47422f9ee289467bdc2b2efe0b23caff3bbd2b8c4c7090db13b09b0032c8:1",
+        "horizon_us": 500000,
+        "value": 62.36839832011161,
+        "windows": 1
+      },
+      {
+        "flight_id": "2f0f47422f9ee289467bdc2b2efe0b23caff3bbd2b8c4c7090db13b09b0032c8:1",
+        "horizon_us": 1000000,
+        "value": 44.757566939609696,
+        "windows": 1
+      },
+      {
+        "flight_id": "2f0f47422f9ee289467bdc2b2efe0b23caff3bbd2b8c4c7090db13b09b0032c8:1",
+        "horizon_us": 2000000,
+        "value": 187.2171899786285,
+        "windows": 1
+      },
+      {
+        "flight_id": "3bb6ff6472a11102b2cd3d4b64d26f3a6795f2c8411df1564b54cf7acbab1fc7:1",
+        "horizon_us": 200000,
+        "value": 90.51458692171101,
+        "windows": 1
+      },
+      {
+        "flight_id": "3bb6ff6472a11102b2cd3d4b64d26f3a6795f2c8411df1564b54cf7acbab1fc7:1",
+        "horizon_us": 500000,
+        "value": 75.51873961326052,
+        "windows": 1
+      },
+      {
+        "flight_id": "3bb6ff6472a11102b2cd3d4b64d26f3a6795f2c8411df1564b54cf7acbab1fc7:1",
+        "horizon_us": 1000000,
+        "value": 98.55414194994191,
+        "windows": 1
+      },
+      {
+        "flight_id": "3bb6ff6472a11102b2cd3d4b64d26f3a6795f2c8411df1564b54cf7acbab1fc7:1",
+        "horizon_us": 2000000,
+        "value": 150.0752323822895,
+        "windows": 1
+      },
+      {
+        "flight_id": "4b5e90d7f0e7d8ecc77c4c680cde74d6848246d6878e3606503b97570bb9f462:1",
+        "horizon_us": 200000,
+        "value": 57.663933260081016,
+        "windows": 1
+      },
+      {
+        "flight_id": "4b5e90d7f0e7d8ecc77c4c680cde74d6848246d6878e3606503b97570bb9f462:1",
+        "horizon_us": 500000,
+        "value": 49.91653586825838,
+        "windows": 1
+      },
+      {
+        "flight_id": "4b5e90d7f0e7d8ecc77c4c680cde74d6848246d6878e3606503b97570bb9f462:1",
+        "horizon_us": 1000000,
+        "value": 64.60405931647885,
+        "windows": 1
+      },
+      {
+        "flight_id": "4b5e90d7f0e7d8ecc77c4c680cde74d6848246d6878e3606503b97570bb9f462:1",
+        "horizon_us": 2000000,
+        "value": 164.99278571747314,
+        "windows": 1
+      },
+      {
+        "flight_id": "4d23bcddc841239bc48be8c9c89a9f70a26e5c2ca95a053805efda24b4cb641c:1",
+        "horizon_us": 200000,
+        "value": 24.00796519949011,
+        "windows": 1
+      },
+      {
+        "flight_id": "4d23bcddc841239bc48be8c9c89a9f70a26e5c2ca95a053805efda24b4cb641c:1",
+        "horizon_us": 500000,
+        "value": 23.421304108821925,
+        "windows": 1
+      },
+      {
+        "flight_id": "4d23bcddc841239bc48be8c9c89a9f70a26e5c2ca95a053805efda24b4cb641c:1",
+        "horizon_us": 1000000,
+        "value": 38.91224941457073,
+        "windows": 1
+      },
+      {
+        "flight_id": "4d23bcddc841239bc48be8c9c89a9f70a26e5c2ca95a053805efda24b4cb641c:1",
+        "horizon_us": 2000000,
+        "value": 49.51111604210513,
+        "windows": 1
+      },
+      {
+        "flight_id": "51b14f03c6f5f6c84a8dfeceea3c5e86e4ed008a19f1f176abaa84663efaa1e4:1",
+        "horizon_us": 200000,
+        "value": 51.02890413220455,
+        "windows": 1
+      },
+      {
+        "flight_id": "51b14f03c6f5f6c84a8dfeceea3c5e86e4ed008a19f1f176abaa84663efaa1e4:1",
+        "horizon_us": 500000,
+        "value": 67.32717190471382,
+        "windows": 1
+      },
+      {
+        "flight_id": "51b14f03c6f5f6c84a8dfeceea3c5e86e4ed008a19f1f176abaa84663efaa1e4:1",
+        "horizon_us": 1000000,
+        "value": 97.4879577347129,
+        "windows": 1
+      },
+      {
+        "flight_id": "51b14f03c6f5f6c84a8dfeceea3c5e86e4ed008a19f1f176abaa84663efaa1e4:1",
+        "horizon_us": 2000000,
+        "value": 291.67260353812145,
+        "windows": 1
+      },
+      {
+        "flight_id": "580d9dd51677020f5a87c43f51f9d7082d4157599eab9e148b683e4baa03eadd:1",
+        "horizon_us": 200000,
+        "value": 37.5938586484954,
+        "windows": 1
+      },
+      {
+        "flight_id": "580d9dd51677020f5a87c43f51f9d7082d4157599eab9e148b683e4baa03eadd:1",
+        "horizon_us": 500000,
+        "value": 51.74888606474468,
+        "windows": 1
+      },
+      {
+        "flight_id": "580d9dd51677020f5a87c43f51f9d7082d4157599eab9e148b683e4baa03eadd:1",
+        "horizon_us": 1000000,
+        "value": 79.3124714261037,
+        "windows": 1
+      },
+      {
+        "flight_id": "580d9dd51677020f5a87c43f51f9d7082d4157599eab9e148b683e4baa03eadd:1",
+        "horizon_us": 2000000,
+        "value": 141.7825183021254,
+        "windows": 1
+      },
+      {
+        "flight_id": "58964d09038a4b0aaaad819e7b853daf34d01c716a0332fb5b543d918d797bcc:1",
+        "horizon_us": 200000,
+        "value": 23.86526423210705,
+        "windows": 1
+      },
+      {
+        "flight_id": "58964d09038a4b0aaaad819e7b853daf34d01c716a0332fb5b543d918d797bcc:1",
+        "horizon_us": 500000,
+        "value": 22.262950150300732,
+        "windows": 1
+      },
+      {
+        "flight_id": "58964d09038a4b0aaaad819e7b853daf34d01c716a0332fb5b543d918d797bcc:1",
+        "horizon_us": 1000000,
+        "value": 27.277796017563443,
+        "windows": 1
+      },
+      {
+        "flight_id": "58964d09038a4b0aaaad819e7b853daf34d01c716a0332fb5b543d918d797bcc:1",
+        "horizon_us": 2000000,
+        "value": 73.58577193251017,
+        "windows": 1
+      },
+      {
+        "flight_id": "5b1381497c5cc6f171c55d95ebd46c8e2adda297ba900f05bf992fbf2d2dfab3:1",
+        "horizon_us": 200000,
+        "value": 57.34382084934782,
+        "windows": 1
+      },
+      {
+        "flight_id": "5b1381497c5cc6f171c55d95ebd46c8e2adda297ba900f05bf992fbf2d2dfab3:1",
+        "horizon_us": 500000,
+        "value": 82.54204116998498,
+        "windows": 1
+      },
+      {
+        "flight_id": "5b1381497c5cc6f171c55d95ebd46c8e2adda297ba900f05bf992fbf2d2dfab3:1",
+        "horizon_us": 1000000,
+        "value": 54.95813113255767,
+        "windows": 1
+      },
+      {
+        "flight_id": "5b1381497c5cc6f171c55d95ebd46c8e2adda297ba900f05bf992fbf2d2dfab3:1",
+        "horizon_us": 2000000,
+        "value": 92.41577191949703,
+        "windows": 1
+      },
+      {
+        "flight_id": "5bc50ebb95abd5fb7653cf7e9dd046323e866b146da223125bb1bb8f3ef11f9d:1",
+        "horizon_us": 200000,
+        "value": 45.599967770707266,
+        "windows": 1
+      },
+      {
+        "flight_id": "5bc50ebb95abd5fb7653cf7e9dd046323e866b146da223125bb1bb8f3ef11f9d:1",
+        "horizon_us": 500000,
+        "value": 76.58956568779273,
+        "windows": 1
+      },
+      {
+        "flight_id": "5bc50ebb95abd5fb7653cf7e9dd046323e866b146da223125bb1bb8f3ef11f9d:1",
+        "horizon_us": 1000000,
+        "value": 76.07069012726707,
+        "windows": 1
+      },
+      {
+        "flight_id": "5bc50ebb95abd5fb7653cf7e9dd046323e866b146da223125bb1bb8f3ef11f9d:1",
+        "horizon_us": 2000000,
+        "value": 108.16174518181226,
+        "windows": 1
+      },
+      {
+        "flight_id": "639068bda89a25c019dec70adeaf32ada88119bed17d20b09f0d48f91231146a:1",
+        "horizon_us": 200000,
+        "value": 29.13221314542897,
+        "windows": 1
+      },
+      {
+        "flight_id": "639068bda89a25c019dec70adeaf32ada88119bed17d20b09f0d48f91231146a:1",
+        "horizon_us": 500000,
+        "value": 30.076662528985313,
+        "windows": 1
+      },
+      {
+        "flight_id": "639068bda89a25c019dec70adeaf32ada88119bed17d20b09f0d48f91231146a:1",
+        "horizon_us": 1000000,
+        "value": 29.938180078989415,
+        "windows": 1
+      },
+      {
+        "flight_id": "639068bda89a25c019dec70adeaf32ada88119bed17d20b09f0d48f91231146a:1",
+        "horizon_us": 2000000,
+        "value": 58.143315948040666,
+        "windows": 1
+      },
+      {
+        "flight_id": "6e85c320a2a3e46df78ae6ad480ebec5afe2d3f78abb6084d4623b8f313db32f:1",
+        "horizon_us": 200000,
+        "value": 24.001435736381755,
+        "windows": 1
+      },
+      {
+        "flight_id": "6e85c320a2a3e46df78ae6ad480ebec5afe2d3f78abb6084d4623b8f313db32f:1",
+        "horizon_us": 500000,
+        "value": 60.306171022548824,
+        "windows": 1
+      },
+      {
+        "flight_id": "6e85c320a2a3e46df78ae6ad480ebec5afe2d3f78abb6084d4623b8f313db32f:1",
+        "horizon_us": 1000000,
+        "value": 48.35851697687958,
+        "windows": 1
+      },
+      {
+        "flight_id": "6e85c320a2a3e46df78ae6ad480ebec5afe2d3f78abb6084d4623b8f313db32f:1",
+        "horizon_us": 2000000,
+        "value": 141.64578049323055,
+        "windows": 1
+      },
+      {
+        "flight_id": "7140f8e656e0558ee00c851bcbff461d0c685d1c4d3bdf046b1d0ffcc120259f:1",
+        "horizon_us": 200000,
+        "value": 44.30808347275164,
+        "windows": 1
+      },
+      {
+        "flight_id": "7140f8e656e0558ee00c851bcbff461d0c685d1c4d3bdf046b1d0ffcc120259f:1",
+        "horizon_us": 500000,
+        "value": 41.993834633610476,
+        "windows": 1
+      },
+      {
+        "flight_id": "7140f8e656e0558ee00c851bcbff461d0c685d1c4d3bdf046b1d0ffcc120259f:1",
+        "horizon_us": 1000000,
+        "value": 56.514680294385826,
+        "windows": 1
+      },
+      {
+        "flight_id": "7140f8e656e0558ee00c851bcbff461d0c685d1c4d3bdf046b1d0ffcc120259f:1",
+        "horizon_us": 2000000,
+        "value": 87.79621124313583,
+        "windows": 1
+      },
+      {
+        "flight_id": "72b77806f1d23dd9d32bf76275b6a94d3cc4dd2f860a9394fd1b3e42ab10c8de:1",
+        "horizon_us": 200000,
+        "value": 38.20790710356859,
+        "windows": 1
+      },
+      {
+        "flight_id": "72b77806f1d23dd9d32bf76275b6a94d3cc4dd2f860a9394fd1b3e42ab10c8de:1",
+        "horizon_us": 500000,
+        "value": 42.505484660051145,
+        "windows": 1
+      },
+      {
+        "flight_id": "72b77806f1d23dd9d32bf76275b6a94d3cc4dd2f860a9394fd1b3e42ab10c8de:1",
+        "horizon_us": 1000000,
+        "value": 65.34792394753462,
+        "windows": 1
+      },
+      {
+        "flight_id": "72b77806f1d23dd9d32bf76275b6a94d3cc4dd2f860a9394fd1b3e42ab10c8de:1",
+        "horizon_us": 2000000,
+        "value": 195.71157575298116,
+        "windows": 1
+      },
+      {
+        "flight_id": "7ac7478f2dbfed10646618cf4ce9a50c0fa793c3adb307c0446f968f622096e3:1",
+        "horizon_us": 200000,
+        "value": 35.66719353286464,
+        "windows": 1
+      },
+      {
+        "flight_id": "7ac7478f2dbfed10646618cf4ce9a50c0fa793c3adb307c0446f968f622096e3:1",
+        "horizon_us": 500000,
+        "value": 69.39468820316758,
+        "windows": 1
+      },
+      {
+        "flight_id": "7ac7478f2dbfed10646618cf4ce9a50c0fa793c3adb307c0446f968f622096e3:1",
+        "horizon_us": 1000000,
+        "value": 45.35534353655312,
+        "windows": 1
+      },
+      {
+        "flight_id": "7ac7478f2dbfed10646618cf4ce9a50c0fa793c3adb307c0446f968f622096e3:1",
+        "horizon_us": 2000000,
+        "value": 195.26363223505672,
+        "windows": 1
+      },
+      {
+        "flight_id": "89fbf848c8f15d95ebeb6bb58d6ec857bbc6cf65094f75cd986a4a661c0c44cf:1",
+        "horizon_us": 200000,
+        "value": 43.13842114332843,
+        "windows": 1
+      },
+      {
+        "flight_id": "89fbf848c8f15d95ebeb6bb58d6ec857bbc6cf65094f75cd986a4a661c0c44cf:1",
+        "horizon_us": 500000,
+        "value": 30.50625561816455,
+        "windows": 1
+      },
+      {
+        "flight_id": "89fbf848c8f15d95ebeb6bb58d6ec857bbc6cf65094f75cd986a4a661c0c44cf:1",
+        "horizon_us": 1000000,
+        "value": 39.100733195653916,
+        "windows": 1
+      },
+      {
+        "flight_id": "89fbf848c8f15d95ebeb6bb58d6ec857bbc6cf65094f75cd986a4a661c0c44cf:1",
+        "horizon_us": 2000000,
+        "value": 121.19099380263323,
+        "windows": 1
+      },
+      {
+        "flight_id": "8c24613d6cd518a0391183fe8c8f51198d2d1af8b05962081aa36180eb12f5fb:1",
+        "horizon_us": 200000,
+        "value": 49.473246320314324,
+        "windows": 1
+      },
+      {
+        "flight_id": "8c24613d6cd518a0391183fe8c8f51198d2d1af8b05962081aa36180eb12f5fb:1",
+        "horizon_us": 500000,
+        "value": 58.78490119916466,
+        "windows": 1
+      },
+      {
+        "flight_id": "8c24613d6cd518a0391183fe8c8f51198d2d1af8b05962081aa36180eb12f5fb:1",
+        "horizon_us": 1000000,
+        "value": 92.16093892759919,
+        "windows": 1
+      },
+      {
+        "flight_id": "8c24613d6cd518a0391183fe8c8f51198d2d1af8b05962081aa36180eb12f5fb:1",
+        "horizon_us": 2000000,
+        "value": 69.82437690160283,
+        "windows": 1
+      },
+      {
+        "flight_id": "8d1191724e9bb10dcc592dc354b6c8cc21f51ae79dd14e9960bc656411cb7758:1",
+        "horizon_us": 200000,
+        "value": 54.822215765896416,
+        "windows": 1
+      },
+      {
+        "flight_id": "8d1191724e9bb10dcc592dc354b6c8cc21f51ae79dd14e9960bc656411cb7758:1",
+        "horizon_us": 500000,
+        "value": 34.68406872751887,
+        "windows": 1
+      },
+      {
+        "flight_id": "8d1191724e9bb10dcc592dc354b6c8cc21f51ae79dd14e9960bc656411cb7758:1",
+        "horizon_us": 1000000,
+        "value": 51.819556422379414,
+        "windows": 1
+      },
+      {
+        "flight_id": "8d1191724e9bb10dcc592dc354b6c8cc21f51ae79dd14e9960bc656411cb7758:1",
+        "horizon_us": 2000000,
+        "value": 96.54828527677472,
+        "windows": 1
+      },
+      {
+        "flight_id": "8ea1a9652b9bcb07c2e8a028fd0e2e1c07f3b611c6754fc7011006ec6f72f1a2:2",
+        "horizon_us": 200000,
+        "value": 58.82590725930931,
+        "windows": 1
+      },
+      {
+        "flight_id": "8ea1a9652b9bcb07c2e8a028fd0e2e1c07f3b611c6754fc7011006ec6f72f1a2:2",
+        "horizon_us": 500000,
+        "value": 32.253623633124874,
+        "windows": 1
+      },
+      {
+        "flight_id": "8ea1a9652b9bcb07c2e8a028fd0e2e1c07f3b611c6754fc7011006ec6f72f1a2:2",
+        "horizon_us": 1000000,
+        "value": 56.66827827854958,
+        "windows": 1
+      },
+      {
+        "flight_id": "8ea1a9652b9bcb07c2e8a028fd0e2e1c07f3b611c6754fc7011006ec6f72f1a2:2",
+        "horizon_us": 2000000,
+        "value": 71.69258712039141,
+        "windows": 1
+      },
+      {
+        "flight_id": "9258b097970593d85c54daa5d13905f8b7b1c9bcab8d800ddd78e14e6be8f0c5:1",
+        "horizon_us": 200000,
+        "value": 65.76086763103625,
+        "windows": 1
+      },
+      {
+        "flight_id": "9258b097970593d85c54daa5d13905f8b7b1c9bcab8d800ddd78e14e6be8f0c5:1",
+        "horizon_us": 500000,
+        "value": 41.33971199914587,
+        "windows": 1
+      },
+      {
+        "flight_id": "9258b097970593d85c54daa5d13905f8b7b1c9bcab8d800ddd78e14e6be8f0c5:1",
+        "horizon_us": 1000000,
+        "value": 86.26062611151724,
+        "windows": 1
+      },
+      {
+        "flight_id": "9258b097970593d85c54daa5d13905f8b7b1c9bcab8d800ddd78e14e6be8f0c5:1",
+        "horizon_us": 2000000,
+        "value": 207.95661940649393,
+        "windows": 1
+      },
+      {
+        "flight_id": "a1945d5edee81010214065ee8ff847438d7306eb73e9a8aa359a727ff7a9070e:1",
+        "horizon_us": 200000,
+        "value": 50.03497453029938,
+        "windows": 1
+      },
+      {
+        "flight_id": "a1945d5edee81010214065ee8ff847438d7306eb73e9a8aa359a727ff7a9070e:1",
+        "horizon_us": 500000,
+        "value": 80.79866498153007,
+        "windows": 1
+      },
+      {
+        "flight_id": "a1945d5edee81010214065ee8ff847438d7306eb73e9a8aa359a727ff7a9070e:1",
+        "horizon_us": 1000000,
+        "value": 56.12651411991389,
+        "windows": 1
+      },
+      {
+        "flight_id": "a1945d5edee81010214065ee8ff847438d7306eb73e9a8aa359a727ff7a9070e:1",
+        "horizon_us": 2000000,
+        "value": 183.746607663178,
+        "windows": 1
+      },
+      {
+        "flight_id": "a907493b8fd3708bac45e39fc54185e2fa4e9f9a35a71ba030f3f38b06c1d51f:1",
+        "horizon_us": 200000,
+        "value": 63.95347163479999,
+        "windows": 1
+      },
+      {
+        "flight_id": "a907493b8fd3708bac45e39fc54185e2fa4e9f9a35a71ba030f3f38b06c1d51f:1",
+        "horizon_us": 500000,
+        "value": 38.39085493056256,
+        "windows": 1
+      },
+      {
+        "flight_id": "a907493b8fd3708bac45e39fc54185e2fa4e9f9a35a71ba030f3f38b06c1d51f:1",
+        "horizon_us": 1000000,
+        "value": 61.00230445221954,
+        "windows": 1
+      },
+      {
+        "flight_id": "a907493b8fd3708bac45e39fc54185e2fa4e9f9a35a71ba030f3f38b06c1d51f:1",
+        "horizon_us": 2000000,
+        "value": 78.99952369306472,
+        "windows": 1
+      },
+      {
+        "flight_id": "b472f27bdb908bca69c4d18cc793cde099d4632285026878d766c2bc912a6949:1",
+        "horizon_us": 200000,
+        "value": 46.50333740007335,
+        "windows": 1
+      },
+      {
+        "flight_id": "b472f27bdb908bca69c4d18cc793cde099d4632285026878d766c2bc912a6949:1",
+        "horizon_us": 500000,
+        "value": 44.96413161218571,
+        "windows": 1
+      },
+      {
+        "flight_id": "b472f27bdb908bca69c4d18cc793cde099d4632285026878d766c2bc912a6949:1",
+        "horizon_us": 1000000,
+        "value": 45.400911894618766,
+        "windows": 1
+      },
+      {
+        "flight_id": "b472f27bdb908bca69c4d18cc793cde099d4632285026878d766c2bc912a6949:1",
+        "horizon_us": 2000000,
+        "value": 146.5583171452022,
+        "windows": 1
+      },
+      {
+        "flight_id": "b5be88943c2c096d750a057375566c1e3812f30e42155d06c6ccafe4b713d9e0:1",
+        "horizon_us": 200000,
+        "value": 63.60981428706162,
+        "windows": 1
+      },
+      {
+        "flight_id": "b5be88943c2c096d750a057375566c1e3812f30e42155d06c6ccafe4b713d9e0:1",
+        "horizon_us": 500000,
+        "value": 43.09554640788828,
+        "windows": 1
+      },
+      {
+        "flight_id": "b5be88943c2c096d750a057375566c1e3812f30e42155d06c6ccafe4b713d9e0:1",
+        "horizon_us": 1000000,
+        "value": 27.06407692600979,
+        "windows": 1
+      },
+      {
+        "flight_id": "b5be88943c2c096d750a057375566c1e3812f30e42155d06c6ccafe4b713d9e0:1",
+        "horizon_us": 2000000,
+        "value": 86.86570245720715,
+        "windows": 1
+      },
+      {
+        "flight_id": "b9b276a937ef21b53dc65c8f8cdeb72063f754c0aa9b7a15448580fedd3e9933:1",
+        "horizon_us": 200000,
+        "value": 38.61373929072101,
+        "windows": 1
+      },
+      {
+        "flight_id": "b9b276a937ef21b53dc65c8f8cdeb72063f754c0aa9b7a15448580fedd3e9933:1",
+        "horizon_us": 500000,
+        "value": 38.65944877571214,
+        "windows": 1
+      },
+      {
+        "flight_id": "b9b276a937ef21b53dc65c8f8cdeb72063f754c0aa9b7a15448580fedd3e9933:1",
+        "horizon_us": 1000000,
+        "value": 68.17918607906233,
+        "windows": 1
+      },
+      {
+        "flight_id": "b9b276a937ef21b53dc65c8f8cdeb72063f754c0aa9b7a15448580fedd3e9933:1",
+        "horizon_us": 2000000,
+        "value": 115.50211725853661,
+        "windows": 1
+      },
+      {
+        "flight_id": "bd26ee146ebaf890bd945730dd7a2bc39b88ae92fcdf028d81a5db255a02ac45:1",
+        "horizon_us": 200000,
+        "value": 22.497904333678633,
+        "windows": 1
+      },
+      {
+        "flight_id": "bd26ee146ebaf890bd945730dd7a2bc39b88ae92fcdf028d81a5db255a02ac45:1",
+        "horizon_us": 500000,
+        "value": 47.41079250302658,
+        "windows": 1
+      },
+      {
+        "flight_id": "bd26ee146ebaf890bd945730dd7a2bc39b88ae92fcdf028d81a5db255a02ac45:1",
+        "horizon_us": 1000000,
+        "value": 37.34063878623204,
+        "windows": 1
+      },
+      {
+        "flight_id": "bd26ee146ebaf890bd945730dd7a2bc39b88ae92fcdf028d81a5db255a02ac45:1",
+        "horizon_us": 2000000,
+        "value": 62.47789574270215,
+        "windows": 1
+      },
+      {
+        "flight_id": "c07bdc4184a5800d6d2faf6bba0f9d45c8c52cdaab26f14944102ad672838510:1",
+        "horizon_us": 200000,
+        "value": 16.791527806429595,
+        "windows": 1
+      },
+      {
+        "flight_id": "c07bdc4184a5800d6d2faf6bba0f9d45c8c52cdaab26f14944102ad672838510:1",
+        "horizon_us": 500000,
+        "value": 26.48201870992705,
+        "windows": 1
+      },
+      {
+        "flight_id": "c07bdc4184a5800d6d2faf6bba0f9d45c8c52cdaab26f14944102ad672838510:1",
+        "horizon_us": 1000000,
+        "value": 30.653960655790126,
+        "windows": 1
+      },
+      {
+        "flight_id": "c07bdc4184a5800d6d2faf6bba0f9d45c8c52cdaab26f14944102ad672838510:1",
+        "horizon_us": 2000000,
+        "value": 84.51670937869451,
+        "windows": 1
+      },
+      {
+        "flight_id": "c1b477a8bc2758431548cbfe085aa083f8d52725c18ca0daa588fe59d7d8dfc3:1",
+        "horizon_us": 200000,
+        "value": 42.78928523739098,
+        "windows": 1
+      },
+      {
+        "flight_id": "c1b477a8bc2758431548cbfe085aa083f8d52725c18ca0daa588fe59d7d8dfc3:1",
+        "horizon_us": 500000,
+        "value": 55.528873001454556,
+        "windows": 1
+      },
+      {
+        "flight_id": "c1b477a8bc2758431548cbfe085aa083f8d52725c18ca0daa588fe59d7d8dfc3:1",
+        "horizon_us": 1000000,
+        "value": 41.37215629481542,
+        "windows": 1
+      },
+      {
+        "flight_id": "c1b477a8bc2758431548cbfe085aa083f8d52725c18ca0daa588fe59d7d8dfc3:1",
+        "horizon_us": 2000000,
+        "value": 72.26110200967328,
+        "windows": 1
+      },
+      {
+        "flight_id": "c728467cbea2bad08f7f060c6498120efe8cd4f54a3b5cf156d82939cf174480:1",
+        "horizon_us": 200000,
+        "value": 68.45767106140208,
+        "windows": 1
+      },
+      {
+        "flight_id": "c728467cbea2bad08f7f060c6498120efe8cd4f54a3b5cf156d82939cf174480:1",
+        "horizon_us": 500000,
+        "value": 50.6404013799873,
+        "windows": 1
+      },
+      {
+        "flight_id": "c728467cbea2bad08f7f060c6498120efe8cd4f54a3b5cf156d82939cf174480:1",
+        "horizon_us": 1000000,
+        "value": 90.37788390069986,
+        "windows": 1
+      },
+      {
+        "flight_id": "c728467cbea2bad08f7f060c6498120efe8cd4f54a3b5cf156d82939cf174480:1",
+        "horizon_us": 2000000,
+        "value": 87.15170859808863,
+        "windows": 1
+      },
+      {
+        "flight_id": "d33e53d14a9d7c1d7a8ab7a211f430d17b75addc2844c157ee5ccee51faa5854:1",
+        "horizon_us": 200000,
+        "value": 25.445477465009127,
+        "windows": 1
+      },
+      {
+        "flight_id": "d33e53d14a9d7c1d7a8ab7a211f430d17b75addc2844c157ee5ccee51faa5854:1",
+        "horizon_us": 500000,
+        "value": 44.19996141777673,
+        "windows": 1
+      },
+      {
+        "flight_id": "d33e53d14a9d7c1d7a8ab7a211f430d17b75addc2844c157ee5ccee51faa5854:1",
+        "horizon_us": 1000000,
+        "value": 51.34222670860537,
+        "windows": 1
+      },
+      {
+        "flight_id": "d33e53d14a9d7c1d7a8ab7a211f430d17b75addc2844c157ee5ccee51faa5854:1",
+        "horizon_us": 2000000,
+        "value": 72.74740804485636,
+        "windows": 1
+      },
+      {
+        "flight_id": "dda8db581b4fc5dd656c3f02517fef1083358a8d7ee58bf9b8074d121a225909:1",
+        "horizon_us": 200000,
+        "value": 30.45006497250428,
+        "windows": 1
+      },
+      {
+        "flight_id": "dda8db581b4fc5dd656c3f02517fef1083358a8d7ee58bf9b8074d121a225909:1",
+        "horizon_us": 500000,
+        "value": 20.97321273593899,
+        "windows": 1
+      },
+      {
+        "flight_id": "dda8db581b4fc5dd656c3f02517fef1083358a8d7ee58bf9b8074d121a225909:1",
+        "horizon_us": 1000000,
+        "value": 39.660002668888076,
+        "windows": 1
+      },
+      {
+        "flight_id": "dda8db581b4fc5dd656c3f02517fef1083358a8d7ee58bf9b8074d121a225909:1",
+        "horizon_us": 2000000,
+        "value": 111.31648546597371,
+        "windows": 1
+      },
+      {
+        "flight_id": "e90e0d42c4b97a0769107ca94c1ca462135040c0bf832b5abbe0c23464df890f:1",
+        "horizon_us": 200000,
+        "value": 28.83755411016999,
+        "windows": 1
+      },
+      {
+        "flight_id": "e90e0d42c4b97a0769107ca94c1ca462135040c0bf832b5abbe0c23464df890f:1",
+        "horizon_us": 500000,
+        "value": 37.023488909103335,
+        "windows": 1
+      },
+      {
+        "flight_id": "e90e0d42c4b97a0769107ca94c1ca462135040c0bf832b5abbe0c23464df890f:1",
+        "horizon_us": 1000000,
+        "value": 38.68432458219678,
+        "windows": 1
+      },
+      {
+        "flight_id": "e90e0d42c4b97a0769107ca94c1ca462135040c0bf832b5abbe0c23464df890f:1",
+        "horizon_us": 2000000,
+        "value": 76.96438196313731,
+        "windows": 1
+      },
+      {
+        "flight_id": "f265efde972974cc8bad4223ace9abe36dceeddebf26d92fd0f9b1ae0498905b:1",
+        "horizon_us": 200000,
+        "value": 54.019487584922885,
+        "windows": 1
+      },
+      {
+        "flight_id": "f265efde972974cc8bad4223ace9abe36dceeddebf26d92fd0f9b1ae0498905b:1",
+        "horizon_us": 500000,
+        "value": 50.70183576655741,
+        "windows": 1
+      },
+      {
+        "flight_id": "f265efde972974cc8bad4223ace9abe36dceeddebf26d92fd0f9b1ae0498905b:1",
+        "horizon_us": 1000000,
+        "value": 75.69355843843228,
+        "windows": 1
+      },
+      {
+        "flight_id": "f265efde972974cc8bad4223ace9abe36dceeddebf26d92fd0f9b1ae0498905b:1",
+        "horizon_us": 2000000,
+        "value": 136.17412908100218,
+        "windows": 1
+      }
+    ]
+  },
+  "macro": {
+    "score": 8.959998186171607,
+    "per_flight": {
+      "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1": 16.41581549447541,
+      "0451d1a43890608c6b767e31fc9f342d905b82c9394689649574157a6b2e9764:1": 4.075746104645515,
+      "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1": 7.327730662244787,
+      "05c2f81037b89babb98b66a43ceb29e4cdc37ea53d15b671d3716f02cbcddbc7:1": 4.061597634787178,
+      "0e3d4d085a0d8bcd87a2c76c5c3230e2ae238cf0d3b54051abd498e0b9c8bf8c:1": 5.893494179712743,
+      "1a2f3f28b2bc9096e90f68bee1897d7da44918ca0d568d8b8c44672228addb06:1": 8.121453624569623,
+      "1d0eccb6bff5bbec48711611b652a5d920c132c230ac1801fe8b53314ce52ebc:1": 9.273962181819735,
+      "2f0f47422f9ee289467bdc2b2efe0b23caff3bbd2b8c4c7090db13b09b0032c8:1": 19.035824142175496,
+      "3bb6ff6472a11102b2cd3d4b64d26f3a6795f2c8411df1564b54cf7acbab1fc7:1": 4.430201085091739,
+      "4b5e90d7f0e7d8ecc77c4c680cde74d6848246d6878e3606503b97570bb9f462:1": 5.907337057632826,
+      "4d23bcddc841239bc48be8c9c89a9f70a26e5c2ca95a053805efda24b4cb641c:1": 3.0744912587541555,
+      "51b14f03c6f5f6c84a8dfeceea3c5e86e4ed008a19f1f176abaa84663efaa1e4:1": 19.791550936077503,
+      "580d9dd51677020f5a87c43f51f9d7082d4157599eab9e148b683e4baa03eadd:1": 6.67757082348664,
+      "58964d09038a4b0aaaad819e7b853daf34d01c716a0332fb5b543d918d797bcc:1": 4.990067972629688,
+      "5b1381497c5cc6f171c55d95ebd46c8e2adda297ba900f05bf992fbf2d2dfab3:1": 6.9677528925432926,
+      "5bc50ebb95abd5fb7653cf7e9dd046323e866b146da223125bb1bb8f3ef11f9d:1": 20.128037623549343,
+      "639068bda89a25c019dec70adeaf32ada88119bed17d20b09f0d48f91231146a:1": 4.070039409374172,
+      "6e85c320a2a3e46df78ae6ad480ebec5afe2d3f78abb6084d4623b8f313db32f:1": 17.275883347271606,
+      "7140f8e656e0558ee00c851bcbff461d0c685d1c4d3bdf046b1d0ffcc120259f:1": 3.37984389724669,
+      "72b77806f1d23dd9d32bf76275b6a94d3cc4dd2f860a9394fd1b3e42ab10c8de:1": 14.160363683241684,
+      "7ac7478f2dbfed10646618cf4ce9a50c0fa793c3adb307c0446f968f622096e3:1": 5.391780531561214,
+      "89fbf848c8f15d95ebeb6bb58d6ec857bbc6cf65094f75cd986a4a661c0c44cf:1": 9.239627440686924,
+      "8c24613d6cd518a0391183fe8c8f51198d2d1af8b05962081aa36180eb12f5fb:1": 8.131619671244323,
+      "8d1191724e9bb10dcc592dc354b6c8cc21f51ae79dd14e9960bc656411cb7758:1": 10.386753330715317,
+      "8ea1a9652b9bcb07c2e8a028fd0e2e1c07f3b611c6754fc7011006ec6f72f1a2:2": 6.74872486322906,
+      "9258b097970593d85c54daa5d13905f8b7b1c9bcab8d800ddd78e14e6be8f0c5:1": 17.619603101738182,
+      "a1945d5edee81010214065ee8ff847438d7306eb73e9a8aa359a727ff7a9070e:1": 9.498245016668685,
+      "a907493b8fd3708bac45e39fc54185e2fa4e9f9a35a71ba030f3f38b06c1d51f:1": 10.032134440850784,
+      "b472f27bdb908bca69c4d18cc793cde099d4632285026878d766c2bc912a6949:1": 13.011325888122721,
+      "b5be88943c2c096d750a057375566c1e3812f30e42155d06c6ccafe4b713d9e0:1": 3.3859286459085873,
+      "b9b276a937ef21b53dc65c8f8cdeb72063f754c0aa9b7a15448580fedd3e9933:1": 14.66024645126564,
+      "bd26ee146ebaf890bd945730dd7a2bc39b88ae92fcdf028d81a5db255a02ac45:1": 4.0526450057825025,
+      "c07bdc4184a5800d6d2faf6bba0f9d45c8c52cdaab26f14944102ad672838510:1": 6.0186766332686235,
+      "c1b477a8bc2758431548cbfe085aa083f8d52725c18ca0daa588fe59d7d8dfc3:1": 12.99546625115036,
+      "c728467cbea2bad08f7f060c6498120efe8cd4f54a3b5cf156d82939cf174480:1": 13.832275299897935,
+      "d33e53d14a9d7c1d7a8ab7a211f430d17b75addc2844c157ee5ccee51faa5854:1": 4.115501933238913,
+      "dda8db581b4fc5dd656c3f02517fef1083358a8d7ee58bf9b8074d121a225909:1": 5.6922108460687015,
+      "e90e0d42c4b97a0769107ca94c1ca462135040c0bf832b5abbe0c23464df890f:1": 3.791530616396083,
+      "f265efde972974cc8bad4223ace9abe36dceeddebf26d92fd0f9b1ae0498905b:1": 5.77686928156828
+    },
+    "per_flight_horizon": [
+      {
+        "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+        "horizon_us": 500000,
+        "value": 3.927205033849903,
+        "windows": 1
+      },
+      {
+        "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+        "horizon_us": 1000000,
+        "value": 7.270783035329739,
+        "windows": 1
+      },
+      {
+        "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+        "horizon_us": 2000000,
+        "value": 38.04945841424659,
+        "windows": 1
+      },
+      {
+        "flight_id": "0451d1a43890608c6b767e31fc9f342d905b82c9394689649574157a6b2e9764:1",
+        "horizon_us": 500000,
+        "value": 2.022783080509282,
+        "windows": 1
+      },
+      {
+        "flight_id": "0451d1a43890608c6b767e31fc9f342d905b82c9394689649574157a6b2e9764:1",
+        "horizon_us": 1000000,
+        "value": 3.893837381740459,
+        "windows": 1
+      },
+      {
+        "flight_id": "0451d1a43890608c6b767e31fc9f342d905b82c9394689649574157a6b2e9764:1",
+        "horizon_us": 2000000,
+        "value": 6.310617851686805,
+        "windows": 1
+      },
+      {
+        "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+        "horizon_us": 500000,
+        "value": 6.0859260022749835,
+        "windows": 1
+      },
+      {
+        "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+        "horizon_us": 1000000,
+        "value": 8.42105267170933,
+        "windows": 1
+      },
+      {
+        "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+        "horizon_us": 2000000,
+        "value": 7.476213312750049,
+        "windows": 1
+      },
+      {
+        "flight_id": "05c2f81037b89babb98b66a43ceb29e4cdc37ea53d15b671d3716f02cbcddbc7:1",
+        "horizon_us": 500000,
+        "value": 1.8656077761995238,
+        "windows": 1
+      },
+      {
+        "flight_id": "05c2f81037b89babb98b66a43ceb29e4cdc37ea53d15b671d3716f02cbcddbc7:1",
+        "horizon_us": 1000000,
+        "value": 4.130343629283469,
+        "windows": 1
+      },
+      {
+        "flight_id": "05c2f81037b89babb98b66a43ceb29e4cdc37ea53d15b671d3716f02cbcddbc7:1",
+        "horizon_us": 2000000,
+        "value": 6.188841498878542,
+        "windows": 1
+      },
+      {
+        "flight_id": "0e3d4d085a0d8bcd87a2c76c5c3230e2ae238cf0d3b54051abd498e0b9c8bf8c:1",
+        "horizon_us": 500000,
+        "value": 4.898013866249631,
+        "windows": 1
+      },
+      {
+        "flight_id": "0e3d4d085a0d8bcd87a2c76c5c3230e2ae238cf0d3b54051abd498e0b9c8bf8c:1",
+        "horizon_us": 1000000,
+        "value": 4.8320012585134045,
+        "windows": 1
+      },
+      {
+        "flight_id": "0e3d4d085a0d8bcd87a2c76c5c3230e2ae238cf0d3b54051abd498e0b9c8bf8c:1",
+        "horizon_us": 2000000,
+        "value": 7.950467414375193,
+        "windows": 1
+      },
+      {
+        "flight_id": "1a2f3f28b2bc9096e90f68bee1897d7da44918ca0d568d8b8c44672228addb06:1",
+        "horizon_us": 500000,
+        "value": 5.8320733672028915,
+        "windows": 1
+      },
+      {
+        "flight_id": "1a2f3f28b2bc9096e90f68bee1897d7da44918ca0d568d8b8c44672228addb06:1",
+        "horizon_us": 1000000,
+        "value": 4.006961906938904,
+        "windows": 1
+      },
+      {
+        "flight_id": "1a2f3f28b2bc9096e90f68bee1897d7da44918ca0d568d8b8c44672228addb06:1",
+        "horizon_us": 2000000,
+        "value": 14.525325599567076,
+        "windows": 1
+      },
+      {
+        "flight_id": "1d0eccb6bff5bbec48711611b652a5d920c132c230ac1801fe8b53314ce52ebc:1",
+        "horizon_us": 500000,
+        "value": 10.170733886096619,
+        "windows": 1
+      },
+      {
+        "flight_id": "1d0eccb6bff5bbec48711611b652a5d920c132c230ac1801fe8b53314ce52ebc:1",
+        "horizon_us": 1000000,
+        "value": 7.161526936283932,
+        "windows": 1
+      },
+      {
+        "flight_id": "1d0eccb6bff5bbec48711611b652a5d920c132c230ac1801fe8b53314ce52ebc:1",
+        "horizon_us": 2000000,
+        "value": 10.489625723078653,
+        "windows": 1
+      },
+      {
+        "flight_id": "2f0f47422f9ee289467bdc2b2efe0b23caff3bbd2b8c4c7090db13b09b0032c8:1",
+        "horizon_us": 500000,
+        "value": 28.051692224852975,
+        "windows": 1
+      },
+      {
+        "flight_id": "2f0f47422f9ee289467bdc2b2efe0b23caff3bbd2b8c4c7090db13b09b0032c8:1",
+        "horizon_us": 1000000,
+        "value": 10.22654964622051,
+        "windows": 1
+      },
+      {
+        "flight_id": "2f0f47422f9ee289467bdc2b2efe0b23caff3bbd2b8c4c7090db13b09b0032c8:1",
+        "horizon_us": 2000000,
+        "value": 18.82923055545301,
+        "windows": 1
+      },
+      {
+        "flight_id": "3bb6ff6472a11102b2cd3d4b64d26f3a6795f2c8411df1564b54cf7acbab1fc7:1",
+        "horizon_us": 500000,
+        "value": 3.2607462130510383,
+        "windows": 1
+      },
+      {
+        "flight_id": "3bb6ff6472a11102b2cd3d4b64d26f3a6795f2c8411df1564b54cf7acbab1fc7:1",
+        "horizon_us": 1000000,
+        "value": 2.1492098619162947,
+        "windows": 1
+      },
+      {
+        "flight_id": "3bb6ff6472a11102b2cd3d4b64d26f3a6795f2c8411df1564b54cf7acbab1fc7:1",
+        "horizon_us": 2000000,
+        "value": 7.880647180307886,
+        "windows": 1
+      },
+      {
+        "flight_id": "4b5e90d7f0e7d8ecc77c4c680cde74d6848246d6878e3606503b97570bb9f462:1",
+        "horizon_us": 500000,
+        "value": 5.971767755099298,
+        "windows": 1
+      },
+      {
+        "flight_id": "4b5e90d7f0e7d8ecc77c4c680cde74d6848246d6878e3606503b97570bb9f462:1",
+        "horizon_us": 1000000,
+        "value": 4.376372398049047,
+        "windows": 1
+      },
+      {
+        "flight_id": "4b5e90d7f0e7d8ecc77c4c680cde74d6848246d6878e3606503b97570bb9f462:1",
+        "horizon_us": 2000000,
+        "value": 7.373871019750133,
+        "windows": 1
+      },
+      {
+        "flight_id": "4d23bcddc841239bc48be8c9c89a9f70a26e5c2ca95a053805efda24b4cb641c:1",
+        "horizon_us": 500000,
+        "value": 1.953092132562661,
+        "windows": 1
+      },
+      {
+        "flight_id": "4d23bcddc841239bc48be8c9c89a9f70a26e5c2ca95a053805efda24b4cb641c:1",
+        "horizon_us": 1000000,
+        "value": 4.873622106392008,
+        "windows": 1
+      },
+      {
+        "flight_id": "4d23bcddc841239bc48be8c9c89a9f70a26e5c2ca95a053805efda24b4cb641c:1",
+        "horizon_us": 2000000,
+        "value": 2.3967595373077972,
+        "windows": 1
+      },
+      {
+        "flight_id": "51b14f03c6f5f6c84a8dfeceea3c5e86e4ed008a19f1f176abaa84663efaa1e4:1",
+        "horizon_us": 500000,
+        "value": 12.624536035317803,
+        "windows": 1
+      },
+      {
+        "flight_id": "51b14f03c6f5f6c84a8dfeceea3c5e86e4ed008a19f1f176abaa84663efaa1e4:1",
+        "horizon_us": 1000000,
+        "value": 17.90680462412607,
+        "windows": 1
+      },
+      {
+        "flight_id": "51b14f03c6f5f6c84a8dfeceea3c5e86e4ed008a19f1f176abaa84663efaa1e4:1",
+        "horizon_us": 2000000,
+        "value": 28.84331214878864,
+        "windows": 1
+      },
+      {
+        "flight_id": "580d9dd51677020f5a87c43f51f9d7082d4157599eab9e148b683e4baa03eadd:1",
+        "horizon_us": 500000,
+        "value": 7.156008396960378,
+        "windows": 1
+      },
+      {
+        "flight_id": "580d9dd51677020f5a87c43f51f9d7082d4157599eab9e148b683e4baa03eadd:1",
+        "horizon_us": 1000000,
+        "value": 5.480745064905778,
+        "windows": 1
+      },
+      {
+        "flight_id": "580d9dd51677020f5a87c43f51f9d7082d4157599eab9e148b683e4baa03eadd:1",
+        "horizon_us": 2000000,
+        "value": 7.395959008593765,
+        "windows": 1
+      },
+      {
+        "flight_id": "58964d09038a4b0aaaad819e7b853daf34d01c716a0332fb5b543d918d797bcc:1",
+        "horizon_us": 500000,
+        "value": 3.3110281397076253,
+        "windows": 1
+      },
+      {
+        "flight_id": "58964d09038a4b0aaaad819e7b853daf34d01c716a0332fb5b543d918d797bcc:1",
+        "horizon_us": 1000000,
+        "value": 3.528053186433513,
+        "windows": 1
+      },
+      {
+        "flight_id": "58964d09038a4b0aaaad819e7b853daf34d01c716a0332fb5b543d918d797bcc:1",
+        "horizon_us": 2000000,
+        "value": 8.131122591747925,
+        "windows": 1
+      },
+      {
+        "flight_id": "5b1381497c5cc6f171c55d95ebd46c8e2adda297ba900f05bf992fbf2d2dfab3:1",
+        "horizon_us": 500000,
+        "value": 4.41857575479252,
+        "windows": 1
+      },
+      {
+        "flight_id": "5b1381497c5cc6f171c55d95ebd46c8e2adda297ba900f05bf992fbf2d2dfab3:1",
+        "horizon_us": 1000000,
+        "value": 4.498161814218776,
+        "windows": 1
+      },
+      {
+        "flight_id": "5b1381497c5cc6f171c55d95ebd46c8e2adda297ba900f05bf992fbf2d2dfab3:1",
+        "horizon_us": 2000000,
+        "value": 11.986521108618582,
+        "windows": 1
+      },
+      {
+        "flight_id": "5bc50ebb95abd5fb7653cf7e9dd046323e866b146da223125bb1bb8f3ef11f9d:1",
+        "horizon_us": 500000,
+        "value": 7.538336772669161,
+        "windows": 1
+      },
+      {
+        "flight_id": "5bc50ebb95abd5fb7653cf7e9dd046323e866b146da223125bb1bb8f3ef11f9d:1",
+        "horizon_us": 1000000,
+        "value": 22.231900684160344,
+        "windows": 1
+      },
+      {
+        "flight_id": "5bc50ebb95abd5fb7653cf7e9dd046323e866b146da223125bb1bb8f3ef11f9d:1",
+        "horizon_us": 2000000,
+        "value": 30.613875413818523,
+        "windows": 1
+      },
+      {
+        "flight_id": "639068bda89a25c019dec70adeaf32ada88119bed17d20b09f0d48f91231146a:1",
+        "horizon_us": 500000,
+        "value": 3.1570345999562504,
+        "windows": 1
+      },
+      {
+        "flight_id": "639068bda89a25c019dec70adeaf32ada88119bed17d20b09f0d48f91231146a:1",
+        "horizon_us": 1000000,
+        "value": 4.214546908298248,
+        "windows": 1
+      },
+      {
+        "flight_id": "639068bda89a25c019dec70adeaf32ada88119bed17d20b09f0d48f91231146a:1",
+        "horizon_us": 2000000,
+        "value": 4.83853671986802,
+        "windows": 1
+      },
+      {
+        "flight_id": "6e85c320a2a3e46df78ae6ad480ebec5afe2d3f78abb6084d4623b8f313db32f:1",
+        "horizon_us": 500000,
+        "value": 23.321786935199846,
+        "windows": 1
+      },
+      {
+        "flight_id": "6e85c320a2a3e46df78ae6ad480ebec5afe2d3f78abb6084d4623b8f313db32f:1",
+        "horizon_us": 1000000,
+        "value": 9.30922234359834,
+        "windows": 1
+      },
+      {
+        "flight_id": "6e85c320a2a3e46df78ae6ad480ebec5afe2d3f78abb6084d4623b8f313db32f:1",
+        "horizon_us": 2000000,
+        "value": 19.196640763016628,
+        "windows": 1
+      },
+      {
+        "flight_id": "7140f8e656e0558ee00c851bcbff461d0c685d1c4d3bdf046b1d0ffcc120259f:1",
+        "horizon_us": 500000,
+        "value": 2.5672710880561067,
+        "windows": 1
+      },
+      {
+        "flight_id": "7140f8e656e0558ee00c851bcbff461d0c685d1c4d3bdf046b1d0ffcc120259f:1",
+        "horizon_us": 1000000,
+        "value": 3.8927023210420644,
+        "windows": 1
+      },
+      {
+        "flight_id": "7140f8e656e0558ee00c851bcbff461d0c685d1c4d3bdf046b1d0ffcc120259f:1",
+        "horizon_us": 2000000,
+        "value": 3.679558282641899,
+        "windows": 1
+      },
+      {
+        "flight_id": "72b77806f1d23dd9d32bf76275b6a94d3cc4dd2f860a9394fd1b3e42ab10c8de:1",
+        "horizon_us": 500000,
+        "value": 4.7630660511274385,
+        "windows": 1
+      },
+      {
+        "flight_id": "72b77806f1d23dd9d32bf76275b6a94d3cc4dd2f860a9394fd1b3e42ab10c8de:1",
+        "horizon_us": 1000000,
+        "value": 16.925088565746847,
+        "windows": 1
+      },
+      {
+        "flight_id": "72b77806f1d23dd9d32bf76275b6a94d3cc4dd2f860a9394fd1b3e42ab10c8de:1",
+        "horizon_us": 2000000,
+        "value": 20.79293643285077,
+        "windows": 1
+      },
+      {
+        "flight_id": "7ac7478f2dbfed10646618cf4ce9a50c0fa793c3adb307c0446f968f622096e3:1",
+        "horizon_us": 500000,
+        "value": 2.456040231083858,
+        "windows": 1
+      },
+      {
+        "flight_id": "7ac7478f2dbfed10646618cf4ce9a50c0fa793c3adb307c0446f968f622096e3:1",
+        "horizon_us": 1000000,
+        "value": 2.373528045849724,
+        "windows": 1
+      },
+      {
+        "flight_id": "7ac7478f2dbfed10646618cf4ce9a50c0fa793c3adb307c0446f968f622096e3:1",
+        "horizon_us": 2000000,
+        "value": 11.345773317750064,
+        "windows": 1
+      },
+      {
+        "flight_id": "89fbf848c8f15d95ebeb6bb58d6ec857bbc6cf65094f75cd986a4a661c0c44cf:1",
+        "horizon_us": 500000,
+        "value": 10.993253433708093,
+        "windows": 1
+      },
+      {
+        "flight_id": "89fbf848c8f15d95ebeb6bb58d6ec857bbc6cf65094f75cd986a4a661c0c44cf:1",
+        "horizon_us": 1000000,
+        "value": 5.683129253601092,
+        "windows": 1
+      },
+      {
+        "flight_id": "89fbf848c8f15d95ebeb6bb58d6ec857bbc6cf65094f75cd986a4a661c0c44cf:1",
+        "horizon_us": 2000000,
+        "value": 11.042499634751586,
+        "windows": 1
+      },
+      {
+        "flight_id": "8c24613d6cd518a0391183fe8c8f51198d2d1af8b05962081aa36180eb12f5fb:1",
+        "horizon_us": 500000,
+        "value": 5.4347469107306905,
+        "windows": 1
+      },
+      {
+        "flight_id": "8c24613d6cd518a0391183fe8c8f51198d2d1af8b05962081aa36180eb12f5fb:1",
+        "horizon_us": 1000000,
+        "value": 14.509328818556527,
+        "windows": 1
+      },
+      {
+        "flight_id": "8c24613d6cd518a0391183fe8c8f51198d2d1af8b05962081aa36180eb12f5fb:1",
+        "horizon_us": 2000000,
+        "value": 4.450783284445752,
+        "windows": 1
+      },
+      {
+        "flight_id": "8d1191724e9bb10dcc592dc354b6c8cc21f51ae79dd14e9960bc656411cb7758:1",
+        "horizon_us": 500000,
+        "value": 11.922974963155895,
+        "windows": 1
+      },
+      {
+        "flight_id": "8d1191724e9bb10dcc592dc354b6c8cc21f51ae79dd14e9960bc656411cb7758:1",
+        "horizon_us": 1000000,
+        "value": 5.182470524282034,
+        "windows": 1
+      },
+      {
+        "flight_id": "8d1191724e9bb10dcc592dc354b6c8cc21f51ae79dd14e9960bc656411cb7758:1",
+        "horizon_us": 2000000,
+        "value": 14.05481450470802,
+        "windows": 1
+      },
+      {
+        "flight_id": "8ea1a9652b9bcb07c2e8a028fd0e2e1c07f3b611c6754fc7011006ec6f72f1a2:2",
+        "horizon_us": 500000,
+        "value": 7.404824876881106,
+        "windows": 1
+      },
+      {
+        "flight_id": "8ea1a9652b9bcb07c2e8a028fd0e2e1c07f3b611c6754fc7011006ec6f72f1a2:2",
+        "horizon_us": 1000000,
+        "value": 5.1871165731843005,
+        "windows": 1
+      },
+      {
+        "flight_id": "8ea1a9652b9bcb07c2e8a028fd0e2e1c07f3b611c6754fc7011006ec6f72f1a2:2",
+        "horizon_us": 2000000,
+        "value": 7.654233139621775,
+        "windows": 1
+      },
+      {
+        "flight_id": "9258b097970593d85c54daa5d13905f8b7b1c9bcab8d800ddd78e14e6be8f0c5:1",
+        "horizon_us": 500000,
+        "value": 9.545239368321923,
+        "windows": 1
+      },
+      {
+        "flight_id": "9258b097970593d85c54daa5d13905f8b7b1c9bcab8d800ddd78e14e6be8f0c5:1",
+        "horizon_us": 1000000,
+        "value": 21.543139292211684,
+        "windows": 1
+      },
+      {
+        "flight_id": "9258b097970593d85c54daa5d13905f8b7b1c9bcab8d800ddd78e14e6be8f0c5:1",
+        "horizon_us": 2000000,
+        "value": 21.770430644680946,
+        "windows": 1
+      },
+      {
+        "flight_id": "a1945d5edee81010214065ee8ff847438d7306eb73e9a8aa359a727ff7a9070e:1",
+        "horizon_us": 500000,
+        "value": 9.515236203852956,
+        "windows": 1
+      },
+      {
+        "flight_id": "a1945d5edee81010214065ee8ff847438d7306eb73e9a8aa359a727ff7a9070e:1",
+        "horizon_us": 1000000,
+        "value": 5.716939902586467,
+        "windows": 1
+      },
+      {
+        "flight_id": "a1945d5edee81010214065ee8ff847438d7306eb73e9a8aa359a727ff7a9070e:1",
+        "horizon_us": 2000000,
+        "value": 13.262558943566635,
+        "windows": 1
+      },
+      {
+        "flight_id": "a907493b8fd3708bac45e39fc54185e2fa4e9f9a35a71ba030f3f38b06c1d51f:1",
+        "horizon_us": 500000,
+        "value": 2.5342330995747533,
+        "windows": 1
+      },
+      {
+        "flight_id": "a907493b8fd3708bac45e39fc54185e2fa4e9f9a35a71ba030f3f38b06c1d51f:1",
+        "horizon_us": 1000000,
+        "value": 10.132759649184258,
+        "windows": 1
+      },
+      {
+        "flight_id": "a907493b8fd3708bac45e39fc54185e2fa4e9f9a35a71ba030f3f38b06c1d51f:1",
+        "horizon_us": 2000000,
+        "value": 17.42941057379334,
+        "windows": 1
+      },
+      {
+        "flight_id": "b472f27bdb908bca69c4d18cc793cde099d4632285026878d766c2bc912a6949:1",
+        "horizon_us": 500000,
+        "value": 11.020300305214592,
+        "windows": 1
+      },
+      {
+        "flight_id": "b472f27bdb908bca69c4d18cc793cde099d4632285026878d766c2bc912a6949:1",
+        "horizon_us": 1000000,
+        "value": 14.164182414753046,
+        "windows": 1
+      },
+      {
+        "flight_id": "b472f27bdb908bca69c4d18cc793cde099d4632285026878d766c2bc912a6949:1",
+        "horizon_us": 2000000,
+        "value": 13.849494944400522,
+        "windows": 1
+      },
+      {
+        "flight_id": "b5be88943c2c096d750a057375566c1e3812f30e42155d06c6ccafe4b713d9e0:1",
+        "horizon_us": 500000,
+        "value": 4.516253022666486,
+        "windows": 1
+      },
+      {
+        "flight_id": "b5be88943c2c096d750a057375566c1e3812f30e42155d06c6ccafe4b713d9e0:1",
+        "horizon_us": 1000000,
+        "value": 2.0715759795574544,
+        "windows": 1
+      },
+      {
+        "flight_id": "b5be88943c2c096d750a057375566c1e3812f30e42155d06c6ccafe4b713d9e0:1",
+        "horizon_us": 2000000,
+        "value": 3.569956935501821,
+        "windows": 1
+      },
+      {
+        "flight_id": "b9b276a937ef21b53dc65c8f8cdeb72063f754c0aa9b7a15448580fedd3e9933:1",
+        "horizon_us": 500000,
+        "value": 12.456797113386799,
+        "windows": 1
+      },
+      {
+        "flight_id": "b9b276a937ef21b53dc65c8f8cdeb72063f754c0aa9b7a15448580fedd3e9933:1",
+        "horizon_us": 1000000,
+        "value": 12.673830518334281,
+        "windows": 1
+      },
+      {
+        "flight_id": "b9b276a937ef21b53dc65c8f8cdeb72063f754c0aa9b7a15448580fedd3e9933:1",
+        "horizon_us": 2000000,
+        "value": 18.850111722075837,
+        "windows": 1
+      },
+      {
+        "flight_id": "bd26ee146ebaf890bd945730dd7a2bc39b88ae92fcdf028d81a5db255a02ac45:1",
+        "horizon_us": 500000,
+        "value": 3.1923261521622956,
+        "windows": 1
+      },
+      {
+        "flight_id": "bd26ee146ebaf890bd945730dd7a2bc39b88ae92fcdf028d81a5db255a02ac45:1",
+        "horizon_us": 1000000,
+        "value": 4.170033690281706,
+        "windows": 1
+      },
+      {
+        "flight_id": "bd26ee146ebaf890bd945730dd7a2bc39b88ae92fcdf028d81a5db255a02ac45:1",
+        "horizon_us": 2000000,
+        "value": 4.795575174903507,
+        "windows": 1
+      },
+      {
+        "flight_id": "c07bdc4184a5800d6d2faf6bba0f9d45c8c52cdaab26f14944102ad672838510:1",
+        "horizon_us": 500000,
+        "value": 3.5662068919276746,
+        "windows": 1
+      },
+      {
+        "flight_id": "c07bdc4184a5800d6d2faf6bba0f9d45c8c52cdaab26f14944102ad672838510:1",
+        "horizon_us": 1000000,
+        "value": 3.1285518729217814,
+        "windows": 1
+      },
+      {
+        "flight_id": "c07bdc4184a5800d6d2faf6bba0f9d45c8c52cdaab26f14944102ad672838510:1",
+        "horizon_us": 2000000,
+        "value": 11.361271134956414,
+        "windows": 1
+      },
+      {
+        "flight_id": "c1b477a8bc2758431548cbfe085aa083f8d52725c18ca0daa588fe59d7d8dfc3:1",
+        "horizon_us": 500000,
+        "value": 19.38906145440943,
+        "windows": 1
+      },
+      {
+        "flight_id": "c1b477a8bc2758431548cbfe085aa083f8d52725c18ca0daa588fe59d7d8dfc3:1",
+        "horizon_us": 1000000,
+        "value": 7.051078896520302,
+        "windows": 1
+      },
+      {
+        "flight_id": "c1b477a8bc2758431548cbfe085aa083f8d52725c18ca0daa588fe59d7d8dfc3:1",
+        "horizon_us": 2000000,
+        "value": 12.546258402521348,
+        "windows": 1
+      },
+      {
+        "flight_id": "c728467cbea2bad08f7f060c6498120efe8cd4f54a3b5cf156d82939cf174480:1",
+        "horizon_us": 500000,
+        "value": 25.40299940640522,
+        "windows": 1
+      },
+      {
+        "flight_id": "c728467cbea2bad08f7f060c6498120efe8cd4f54a3b5cf156d82939cf174480:1",
+        "horizon_us": 1000000,
+        "value": 4.536629020912768,
+        "windows": 1
+      },
+      {
+        "flight_id": "c728467cbea2bad08f7f060c6498120efe8cd4f54a3b5cf156d82939cf174480:1",
+        "horizon_us": 2000000,
+        "value": 11.557197472375819,
+        "windows": 1
+      },
+      {
+        "flight_id": "d33e53d14a9d7c1d7a8ab7a211f430d17b75addc2844c157ee5ccee51faa5854:1",
+        "horizon_us": 500000,
+        "value": 3.7047242103994877,
+        "windows": 1
+      },
+      {
+        "flight_id": "d33e53d14a9d7c1d7a8ab7a211f430d17b75addc2844c157ee5ccee51faa5854:1",
+        "horizon_us": 1000000,
+        "value": 5.885331092263351,
+        "windows": 1
+      },
+      {
+        "flight_id": "d33e53d14a9d7c1d7a8ab7a211f430d17b75addc2844c157ee5ccee51faa5854:1",
+        "horizon_us": 2000000,
+        "value": 2.7564504970539008,
+        "windows": 1
+      },
+      {
+        "flight_id": "dda8db581b4fc5dd656c3f02517fef1083358a8d7ee58bf9b8074d121a225909:1",
+        "horizon_us": 500000,
+        "value": 2.787652997069388,
+        "windows": 1
+      },
+      {
+        "flight_id": "dda8db581b4fc5dd656c3f02517fef1083358a8d7ee58bf9b8074d121a225909:1",
+        "horizon_us": 1000000,
+        "value": 5.856232754724455,
+        "windows": 1
+      },
+      {
+        "flight_id": "dda8db581b4fc5dd656c3f02517fef1083358a8d7ee58bf9b8074d121a225909:1",
+        "horizon_us": 2000000,
+        "value": 8.432746786412263,
+        "windows": 1
+      },
+      {
+        "flight_id": "e90e0d42c4b97a0769107ca94c1ca462135040c0bf832b5abbe0c23464df890f:1",
+        "horizon_us": 500000,
+        "value": 2.324387921134357,
+        "windows": 1
+      },
+      {
+        "flight_id": "e90e0d42c4b97a0769107ca94c1ca462135040c0bf832b5abbe0c23464df890f:1",
+        "horizon_us": 1000000,
+        "value": 3.9080451934005245,
+        "windows": 1
+      },
+      {
+        "flight_id": "e90e0d42c4b97a0769107ca94c1ca462135040c0bf832b5abbe0c23464df890f:1",
+        "horizon_us": 2000000,
+        "value": 5.142158734653368,
+        "windows": 1
+      },
+      {
+        "flight_id": "f265efde972974cc8bad4223ace9abe36dceeddebf26d92fd0f9b1ae0498905b:1",
+        "horizon_us": 500000,
+        "value": 5.394522657237573,
+        "windows": 1
+      },
+      {
+        "flight_id": "f265efde972974cc8bad4223ace9abe36dceeddebf26d92fd0f9b1ae0498905b:1",
+        "horizon_us": 1000000,
+        "value": 4.500558404762536,
+        "windows": 1
+      },
+      {
+        "flight_id": "f265efde972974cc8bad4223ace9abe36dceeddebf26d92fd0f9b1ae0498905b:1",
+        "horizon_us": 2000000,
+        "value": 7.43552678270473,
+        "windows": 1
+      }
+    ]
+  },
+  "windows": 156,
+  "macro_valid_windows": 117
+}

@@ -1,0 +1,50 @@
+{
+  "args": {
+    "batch_size": 16,
+    "horizon": 2000000,
+    "compile": true,
+    "output": "runs/pacld_gpu_batched/ddp_b16_h2000000.json",
+    "parity": false
+  },
+  "world_size": 2,
+  "preparation_seconds": 2.1687557878904045,
+  "records": [
+    {
+      "iteration": 0,
+      "forward_seconds": 5.580531631130725,
+      "backward_seconds": 1.855290446896106,
+      "seconds": 7.4901314452290535,
+      "windows_per_second": 2.136144087323251,
+      "peak_memory_bytes": 527120384,
+      "gradient_norm": 299.9398288513548
+    },
+    {
+      "iteration": 1,
+      "forward_seconds": 1.474127323832363,
+      "backward_seconds": 1.7801569500006735,
+      "seconds": 3.2819299260154366,
+      "windows_per_second": 4.875180263042808,
+      "peak_memory_bytes": 530812928,
+      "gradient_norm": 269.096857081617
+    }
+  ],
+  "parity": null,
+  "global_indices": [
+    335,
+    5031,
+    10260,
+    15401,
+    19833,
+    22178,
+    24883,
+    27748,
+    30459,
+    34287,
+    38878,
+    43603,
+    48466,
+    53441,
+    57997,
+    62593
+  ]
+}
