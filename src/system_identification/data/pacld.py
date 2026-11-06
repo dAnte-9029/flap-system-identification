@@ -1,9 +1,66 @@
 """Read-only PACLD view over frozen NativeWindows; no config.latent dependency."""
 from dataclasses import replace
+from collections import OrderedDict
 import hashlib
 import numpy as np
 import torch
 from .pahbd import NativeWindows
+
+
+class CachedNativeWindows(NativeWindows):
+    """Bounded read-only per-instance LRU. Keys include split and flight identity.
+
+    NativeWindows owns phase tables/index already; this cache holds only the
+    lazily loaded flight tables, samples and encoder counts, never windows.
+    """
+    def __init__(self, *args, cache_flights=8, cache_bytes=268435456, **kwargs):
+        if cache_flights < 0 or cache_bytes < 0:
+            raise ValueError('nonnegative cache bounds required')
+        self.cache_flights = cache_flights
+        self.cache_bytes = cache_bytes
+        self._flights = OrderedDict()
+        self._cache_stats = dict(hits=0, misses=0, evictions=0, parquet_reads=0,
+                                 retained_bytes=0, peak_retained_bytes=0, active_bytes=0)
+        self._active_encoder = None
+        super().__init__(*args, **kwargs)
+
+    def _load(self, fid):
+        key = (self.split, fid)
+        if key in self._flights:
+            self._cache_stats['hits'] += 1
+            payload = self._flights.pop(key)
+            self._flights[key] = payload
+        else:
+            self._cache_stats['misses'] += 1
+            self._cached_id = None  # force a read after eviction, including oversized entries
+            super()._load(fid)
+            encoder = super()._encoder_counts(fid)
+            self._cache_stats['parquet_reads'] += 8  # six topics + samples + encoder
+            frames = [v for k, v in self.tables.items() if k != 'wing_phase']+[self.samples, encoder]
+            size = sum(int(frame.memory_usage(index=True, deep=True).sum()) for frame in frames)
+            payload = (self.tables, self.samples, encoder, size)
+            if self.cache_flights and size <= self.cache_bytes:
+                while self._flights and (len(self._flights) >= self.cache_flights or
+                                         self._cache_stats['retained_bytes']+size > self.cache_bytes):
+                    _, old = self._flights.popitem(last=False)
+                    self._cache_stats['retained_bytes'] -= old[3]
+                    self._cache_stats['evictions'] += 1
+                self._flights[key] = payload
+                self._cache_stats['retained_bytes'] += size
+                self._cache_stats['peak_retained_bytes'] = max(self._cache_stats['peak_retained_bytes'],
+                                                              self._cache_stats['retained_bytes'])
+        self.tables, self.samples, self._active_encoder, size = payload
+        self._cache_stats['active_bytes'] = size
+        self._cached_id = fid
+
+    def _encoder_counts(self, fid):
+        if fid != self._cached_id or self._active_encoder is None:
+            raise ValueError('encoder requested outside active flight')
+        return self._active_encoder
+
+    def cache_stats(self):
+        return dict(self._cache_stats, entries=len(self._flights), split=self.split,
+                    max_flights=self.cache_flights, max_bytes=self.cache_bytes)
 
 
 class PACLDWindows:
@@ -45,7 +102,10 @@ def open_windows(config, split, device='cpu', dtype=torch.float64, indices=None)
         raise ValueError('PACLD v1 requires frozen 0.5s history and four horizons')
     if sorted(data['sampling_groups']) != ['main_50hz', 'sparse_10hz'] or data['phase_policy'] != 'shared_or_average':
         raise ValueError('native sampling groups and shared Hall contract required')
-    dataset = NativeWindows(**data, split=split, device=device, dtype=dtype)
+    cache = config.get('data_cache', {})
+    dataset = CachedNativeWindows(**data, split=split, device=device, dtype=dtype,
+                                  cache_flights=cache.get('max_flights', 8),
+                                  cache_bytes=cache.get('max_bytes', 268435456))
     # Phase v1 config overrides only the descriptive scope; numeric contract is frozen.
     expected = dict(config['phase_contract']); actual = dict(dataset.phase_contract)
     expected.pop('frozen_contract_override', None); actual.pop('frozen_contract_override', None)

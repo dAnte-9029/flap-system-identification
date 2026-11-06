@@ -177,7 +177,7 @@ class NativeWindows:
                       sampling_group=w.sampling_group,review=bool(w.review))
         targets.sort(key=lambda e:e.measurement)
         # OFFLINE target-only encoder reference: never passed to encode/flow.
-        enc=pd.read_parquet(self.root/f'native_encoder_count_{self.split}.parquet',filters=[('flight_id','==',fid)]).sort_values('timestamp_us')
+        enc=self._encoder_counts(fid)
         enc=enc[(enc.timestamp_us>=lower)&(enc.timestamp_us<=int(w.support_end_us))]
         et=enc.timestamp_us.to_numpy();ep=(enc.total_count.to_numpy()-meta['phase_origin_count'])*2*math.pi/(4096*meta['transmission_ratio'])
         phases=[]
@@ -201,6 +201,10 @@ class NativeWindows:
                         cycle_section_tolerance_rad='half nearest native same-source phase spacing',
                         cycle_reference='offline_encoder_bracket_30ms_native_state_pairs_not_exact_wing_sections')
         return Window(initial,start,sorted(events,key=lambda e:e.availability),controls,targets,metadata)
+
+    def _encoder_counts(self,fid):
+        """Read-only hook; default PA-HBD behavior remains one read per window."""
+        return pd.read_parquet(self.root/f'native_encoder_count_{self.split}.parquet',filters=[('flight_id','==',fid)]).sort_values('timestamp_us')
 
     def _controls(self,start,end,decision,lower):
         tabs=[self.tables[n] for n in ('actuator_motors','actuator_servos')]

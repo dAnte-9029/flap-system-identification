@@ -1,0 +1,18 @@
+[
+  {
+    "path": "/tmp/pacld_pretrain_cpu_optimized_v1/midpoint.pt",
+    "step": 8,
+    "saved_source": "6436fda5cfe906d3c21a1a6c9bdf3ba983aea708aca2025dac0437f1765ebc0c",
+    "current_source": "1e7e775b5c8f5aa9a07aa19475ea53af5ae4d82ccbf82a4835fc772fab5f062a",
+    "same_version": true,
+    "restored_adam_states": 43
+  },
+  {
+    "path": "/tmp/pacld_pretrain_cuda_optimized_v1/midpoint.pt",
+    "step": 8,
+    "saved_source": "6436fda5cfe906d3c21a1a6c9bdf3ba983aea708aca2025dac0437f1765ebc0c",
+    "current_source": "1e7e775b5c8f5aa9a07aa19475ea53af5ae4d82ccbf82a4835fc772fab5f062a",
+    "same_version": true,
+    "restored_adam_states": 43
+  }
+]

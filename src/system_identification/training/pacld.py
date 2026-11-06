@@ -12,7 +12,7 @@ from system_identification.models.pacld import PACLD, Config
 from system_identification.models.pahbd import geometry as so3
 from system_identification.training.pahbd import FlightBalancedSampler
 
-SCHEMA = 'pacld_training_v1'
+SCHEMA = 'pacld_training_v2'
 
 
 def seed_all(seed):
@@ -27,11 +27,14 @@ def save_checkpoint(path, model, optimizer, config, data_identity, sampler, sche
     path = Path(path)
     if path.exists():
         raise FileExistsError(path)
+    from .pacld_compatibility import current_contract, optimization_rule
+    contract = current_contract()
     state = np.random.get_state()
     rng = dict(torch=torch.get_rng_state(), python=random.getstate(),
                numpy=[state[0], state[1].tolist(), state[2], state[3], state[4]],
                cuda=torch.cuda.get_rng_state_all() if torch.cuda.is_available() else None)
-    bundle = dict(schema=SCHEMA, model=model.state_dict(), optimizer=optimizer.state_dict(),
+    bundle = dict(schema=SCHEMA, source_contract=contract, optimization_rule=optimization_rule(config),
+                  sampler_identity=sampler.identity, model=model.state_dict(), optimizer=optimizer.state_dict(),
                   config=config, model_config=asdict(model.config), data_identity=data_identity,
                   seed=config['seed'], rng=rng, sampler=sampler.state_dict(), schedule=schedule.copy(),
                   step=schedule['step'], lambda_macro=float(lambda_macro),
@@ -41,12 +44,27 @@ def save_checkpoint(path, model, optimizer, config, data_identity, sampler, sche
     torch.save(bundle, path)
 
 
-def load_checkpoint(path, config, data_identity, device='cpu', restore_rng=True):
+def load_checkpoint(path, config, data_identity, device='cpu', restore_rng=True, sampler_index=None):
     b = torch.load(path, map_location='cpu', weights_only=True)
     if b.get('schema') != SCHEMA:
-        raise ValueError('PACLD training checkpoint required; PA-HBD is incompatible')
-    if b['config'] != config or b['data_identity'] != data_identity:
+        raise ValueError('PACLD v2 source-verified checkpoint required; legacy/v1 has no verified source/clipping contract')
+    from .pacld_compatibility import check_source_contract, scientific_config, optimization_rule
+    current = check_source_contract(b.get('source_contract',{}))
+    if b.get('optimization_rule') != optimization_rule(config):
+        raise ValueError('checkpoint optimizer/clipping rule mismatch')
+    if b.get('sampler_identity') != b['sampler']['identity'] or b['sampler']['seed'] != config['seed']:
+        raise ValueError('checkpoint sampler identity mismatch')
+    if sampler_index is not None:
+        expected_sampler = FlightBalancedSampler(sampler_index,config['seed'])
+        expected_sampler.load_state_dict(b['sampler'])
+    if scientific_config(b['config']) != scientific_config(config) or b['data_identity'] != data_identity:
         raise ValueError('checkpoint configuration/data identity mismatch')
+    if (json.loads(json.dumps(asdict(Config(**b['model_config'])))) !=
+            json.loads(json.dumps(asdict(Config(**config['model'])))) or b['dtype'] != config['training']['dtype']):
+        raise ValueError('checkpoint embedded model/dtype configuration mismatch')
+    if any(group.get(key) != value for group in b['optimizer']['param_groups']
+           for key,value in config['optimizer'].items()):
+        raise ValueError('checkpoint embedded Adam configuration mismatch')
     if not math.isfinite(b['lambda_macro']) or b['lambda_macro'] < 0:
         raise ValueError('invalid checkpoint lambda_macro')
     model = PACLD(Config(**b['model_config'])).to(device=device, dtype=getattr(torch, b['dtype']))
@@ -61,6 +79,10 @@ def load_checkpoint(path, config, data_identity, device='cpu', restore_rng=True)
             if len(b['rng']['cuda']) != torch.cuda.device_count():
                 raise ValueError('CUDA device topology changed for exact RNG restore')
             torch.cuda.set_rng_state_all(b['rng']['cuda'])
+    b['resume_compatibility'] = dict(saved_git=b['git_revision'],
+        current_git=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),
+        source_contract=current, saved_operational_config={k:b['config'].get(k) for k in ('training','data_cache')},
+        current_operational_config={k:config.get(k) for k in ('training','data_cache')})
     return model, optimizer, b
 
 
@@ -144,17 +166,25 @@ def macro_loss(predictions, targets, times, pairs):
     return torch.stack(list(reduced.values())).mean(), reduced
 
 
-def window_objective(model, window, lambda_macro, diagnostic_base=False):
+def window_objective(model, window, lambda_macro, diagnostic_base=False, timings=None):
     if not math.isfinite(lambda_macro) or lambda_macro < 0:
         raise ValueError('nonnegative finite fixed lambda required')
     pairs, rejected = valid_pairs(window)
     times = sorted({e.measurement for e in window.targets})
+    mark = synchronized_time(model) if timings is not None else None
     belief = model.encode(window)  # Exactly once; no detach between the branches.
+    if timings is not None:
+        now = synchronized_time(model); timings['encode_seconds'] = now-mark; mark = now
     full = model.flow.rollout(belief, times, window.controls, mode='FULL')
+    if timings is not None:
+        now = synchronized_time(model); timings['full_forward_seconds'] = now-mark; mark = now
     base = model.flow.rollout(belief, times, window.controls, mode='BASE') if pairs or diagnostic_base else None
+    if timings is not None:
+        now = synchronized_time(model); timings['base_forward_seconds'] = now-mark; mark = now
     full_loss = state_loss(full, window.targets, times)
     macro, sources = macro_loss(base, window.targets, times, pairs)
     total = full_loss if macro is None else full_loss+lambda_macro*macro
+    if timings is not None: timings['loss_seconds'] = synchronized_time(model)-mark
     return dict(total=total, full=full_loss, macro=macro, macro_sources=sources,
                 pairs=pairs, rejected_pairs=rejected, belief=belief,
                 predictions={'FULL': full, 'BASE': base}, times=times)
@@ -183,20 +213,71 @@ def gradient_norms(model, terms):
     return result
 
 
-def update(model, window, optimizer, lambda_macro, diagnostics=True):
+def synchronized_time(model):
+    device = next(model.parameters()).device
+    if device.type == 'cuda': torch.cuda.synchronize(device)
+    return time.perf_counter()
+
+
+def diagnostics_due(completed_steps, interval):
+    """Global steps 1, 101, 201 for interval=100; resume never restarts the phase."""
+    if interval < 1 or completed_steps < 0: raise ValueError('invalid diagnostic schedule')
+    return completed_steps % interval == 0
+
+
+def check_states(result):
+    states = [result['belief']]
+    for predictions in result['predictions'].values():
+        if predictions is not None: states.extend(predictions)
+    fields = ('x','z_s','c','f','phi','actuator','variance','phase_covariance','phase_quality')
+    values = [getattr(s, field).detach().reshape(-1) for s in states for field in fields
+              if getattr(s, field) is not None]
+    if not torch.isfinite(torch.cat(values)).all():
+        raise FloatingPointError('nonfinite autonomous state; update aborted')
+    q = torch.stack([s.x[6:10].detach() for s in states])
+    if (q.norm(dim=-1)-1).abs().max() > 1e-6:
+        raise FloatingPointError('nonunit attitude; update aborted')
+
+
+def update(model, window, optimizer, lambda_macro, diagnostics=True, max_grad_norm=10.0):
     if window.metadata['split'] != 'train':
         raise ValueError('optimizer updates require train split')
+    if max_grad_norm is not None and (not math.isfinite(max_grad_norm) or max_grad_norm <= 0):
+        raise ValueError('max_grad_norm must be positive finite or None (disabled)')
     model.train(); optimizer.zero_grad(set_to_none=True)
-    result = window_objective(model, window, lambda_macro)
+    timing = {}; start = synchronized_time(model)
+    result = window_objective(model, window, lambda_macro, timings=timing)
+    mark = synchronized_time(model)
+    if not torch.isfinite(result['total']):
+        raise FloatingPointError('nonfinite objective; update aborted')
+    check_states(result)
+    now = synchronized_time(model); timing['state_check_seconds'] = now-mark; mark = now
     norms = gradient_norms(model, result) if diagnostics else None
+    now = synchronized_time(model); timing['gradient_diagnostic_seconds'] = now-mark; mark = now
     result['total'].backward()
-    if not torch.isfinite(result['total']) or any(not torch.isfinite(p.grad).all() for p in model.parameters() if p.grad is not None):
-        raise FloatingPointError('nonfinite objective/gradient; update aborted')
+    now = synchronized_time(model); timing['backward_seconds'] = now-mark; mark = now
+    parameters = [p for p in model.parameters() if p.requires_grad and p.grad is not None]
+    if not parameters or not torch.isfinite(torch.cat([p.grad.reshape(-1) for p in parameters])).all():
+        raise FloatingPointError('nonfinite/missing gradient; update aborted')
+    if max_grad_norm is None:
+        pre_norm = torch.linalg.vector_norm(torch.stack([p.grad.norm(2) for p in parameters]),2)
+        coefficient = 1.
+    else:
+        pre_norm = torch.nn.utils.clip_grad_norm_(parameters,max_grad_norm,norm_type=2.,error_if_nonfinite=True)
+        coefficient = min(1.,max_grad_norm/(float(pre_norm)+1e-6))
+    if not torch.isfinite(pre_norm): raise FloatingPointError('nonfinite gradient norm; update aborted')
+    now = synchronized_time(model); timing['gradient_check_clip_seconds'] = now-mark; mark = now
     optimizer.step()
+    now = synchronized_time(model); timing['optimizer_seconds'] = now-mark; mark = now
+    if not torch.isfinite(torch.cat([p.detach().reshape(-1) for p in model.parameters()])).all():
+        raise FloatingPointError('nonfinite parameters after optimizer; stop without checkpointing')
+    timing['parameter_check_seconds'] = synchronized_time(model)-mark
+    timing['update_seconds'] = synchronized_time(model)-start
     return dict(full=float(result['full'].detach()), macro=None if result['macro'] is None else float(result['macro'].detach()),
                 total=float(result['total'].detach()), pairs=len(result['pairs']), rejected_pairs=result['rejected_pairs'],
-                gradient_norms=norms, lambda_macro=lambda_macro,
-                window_id=window.metadata['window_id'], flight_id=window.metadata['flight_id'],
+                gradient_norms=norms, lambda_macro=lambda_macro, max_grad_norm=max_grad_norm,
+                pre_clip_grad_norm=float(pre_norm), gradient_clipped=coefficient < 1., clip_coefficient=coefficient,
+                timing=timing, window_id=window.metadata['window_id'], flight_id=window.metadata['flight_id'],
                 horizon_us=window.metadata.get('horizon_us'), sampling_group=window.metadata.get('sampling_group'))
 
 
@@ -275,6 +356,11 @@ def fit(model, train, validation, optimizer, config, data_identity, lambda_macro
     if set(train.index.split) != {'train'} or set(validation.index.split) != {'validation'}:
         raise ValueError('train/validation roles required')
     output=Path(output); output.mkdir(parents=True,exist_ok=False)
+    from .pacld_compatibility import current_contract
+    contract=current_contract()
+    (output/'run_contract.json').write_text(json.dumps(dict(config=config,data_identity=data_identity,
+        source_contract=contract,lambda_macro=lambda_macro,
+        resume_compatibility=resume.get('resume_compatibility') if resume else None),indent=2))
     sampler=FlightBalancedSampler(train.index,config['seed'])
     schedule=dict(step=0,best_score=float('inf'),best_checkpoint=None)
     if resume:
@@ -290,10 +376,18 @@ def fit(model, train, validation, optimizer, config, data_identity, lambda_macro
         w=move_window(train[i],device,dtype)
         if device.type=='cuda': torch.cuda.synchronize(device)
         load_seconds=time.perf_counter()-begin; begin=time.perf_counter()
-        draw=update(model,w,optimizer,lambda_macro,diagnostics=schedule['step']%diagnostic_interval==0)
+        try:
+            draw=update(model,w,optimizer,lambda_macro,
+                        diagnostics=diagnostics_due(schedule['step'],diagnostic_interval),
+                        max_grad_norm=config['training']['max_grad_norm'])
+        except (FloatingPointError, ValueError, RuntimeError) as error:
+            (output/'failure.json').write_text(json.dumps(dict(completed_steps=schedule['step'],
+                attempted_window=w.metadata['window_id'],error=str(error)),indent=2))
+            raise
         if device.type=='cuda': torch.cuda.synchronize(device)
         schedule['step']+=1
         draw.update(step=schedule['step'],load_seconds=load_seconds,compute_seconds=time.perf_counter()-begin)
+        if hasattr(getattr(train,'dataset',None),'cache_stats'): draw['data_cache']=train.dataset.cache_stats()
         with (output/'training.jsonl').open('a') as f: f.write(json.dumps(draw)+'\n')
         if schedule['step']%interval==0 or schedule['step']==steps:
             validation_result=evaluate(model,validation,config,diagnostics=False)
@@ -305,5 +399,6 @@ def fit(model, train, validation, optimizer, config, data_identity, lambda_macro
             save_checkpoint(output/name,model,optimizer,config,data_identity,sampler,schedule,lambda_macro)
             (output/f"validation_{schedule['step']:08d}.json").write_text(json.dumps(validation_result,indent=2))
             (output/'best.json').write_text(json.dumps(schedule,indent=2))
-        print(json.dumps(draw),flush=True)
+        if schedule['step']==1 or schedule['step']%config['training'].get('terminal_log_interval',100)==0 or schedule['step']==steps:
+            print(json.dumps({k:draw[k] for k in ('step','full','macro','total','pre_clip_grad_norm','compute_seconds')}),flush=True)
     return schedule

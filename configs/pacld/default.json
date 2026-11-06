@@ -75,8 +75,10 @@
     "validation_windows_per_group": 1,
     "selection": "FULL state loss: windows mean within flight/horizon, horizons equal within flight, flights equal",
     "sampling": "FlightBalancedSampler: shuffled flights, shuffled horizons per flight, uniform window",
-    "gradient_diagnostics_interval": 1,
-    "calibration": "experiments/phase_anchored_coupled_latent_v1/training_readiness/calibration.json"
+    "gradient_diagnostics_interval": 100,
+    "calibration": "experiments/phase_anchored_coupled_latent_v1/training_readiness/calibration.json",
+    "max_grad_norm": 10.0,
+    "terminal_log_interval": 100
   },
   "loss": {
     "objective": "L_full + lambda_macro * L_macro",
@@ -91,5 +93,9 @@
     "control_change_threshold": 0.02,
     "control_change_lookback_s": 0.06,
     "phase_harmonics": 3
+  },
+  "data_cache": {
+    "max_flights": 8,
+    "max_bytes": 268435456
   }
 }

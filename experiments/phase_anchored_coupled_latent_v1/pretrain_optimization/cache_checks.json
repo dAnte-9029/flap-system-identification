@@ -1,0 +1,279 @@
+{
+  "records": [
+    {
+      "case": "cold_main",
+      "window_id": "4c77a3e74b4c8e26d021fd1fa2bc618a2f2f52e005eb5022ecdf680c40678bfb:1:689:h500000:f500000",
+      "sampling_group": "main_50hz",
+      "baseline_seconds": 0.12631461629644036,
+      "cached_seconds": 0.11264739371836185,
+      "parquet_reads": {
+        "baseline": 8,
+        "cached": 8
+      },
+      "cache_before": {
+        "hits": 0,
+        "misses": 0,
+        "evictions": 0,
+        "parquet_reads": 0,
+        "retained_bytes": 0,
+        "peak_retained_bytes": 0,
+        "active_bytes": 0,
+        "entries": 0,
+        "split": "train",
+        "max_flights": 2,
+        "max_bytes": 268435456
+      },
+      "cache_after": {
+        "hits": 0,
+        "misses": 1,
+        "evictions": 0,
+        "parquet_reads": 8,
+        "retained_bytes": 7915026,
+        "peak_retained_bytes": 7915026,
+        "active_bytes": 7915026,
+        "entries": 1,
+        "split": "train",
+        "max_flights": 2,
+        "max_bytes": 268435456
+      },
+      "rss_peak_mib": 2202.36328125,
+      "all_fields_equal": true
+    },
+    {
+      "case": "hit_main",
+      "window_id": "4c77a3e74b4c8e26d021fd1fa2bc618a2f2f52e005eb5022ecdf680c40678bfb:1:689:h500000:f500000",
+      "sampling_group": "main_50hz",
+      "baseline_seconds": 0.11723136622458696,
+      "cached_seconds": 0.07206445001065731,
+      "parquet_reads": {
+        "baseline": 1,
+        "cached": 0
+      },
+      "cache_before": {
+        "hits": 0,
+        "misses": 1,
+        "evictions": 0,
+        "parquet_reads": 8,
+        "retained_bytes": 7915026,
+        "peak_retained_bytes": 7915026,
+        "active_bytes": 7915026,
+        "entries": 1,
+        "split": "train",
+        "max_flights": 2,
+        "max_bytes": 268435456
+      },
+      "cache_after": {
+        "hits": 1,
+        "misses": 1,
+        "evictions": 0,
+        "parquet_reads": 8,
+        "retained_bytes": 7915026,
+        "peak_retained_bytes": 7915026,
+        "active_bytes": 7915026,
+        "entries": 1,
+        "split": "train",
+        "max_flights": 2,
+        "max_bytes": 268435456
+      },
+      "rss_peak_mib": 2202.8125,
+      "all_fields_equal": true
+    },
+    {
+      "case": "cold_sparse",
+      "window_id": "00d803ef294b0e2907520c488d89345a9ef54f2936940828ab3e1df104d715b2:1:12:h500000:f500000",
+      "sampling_group": "sparse_10hz",
+      "baseline_seconds": 0.07124138297513127,
+      "cached_seconds": 0.07166117709130049,
+      "parquet_reads": {
+        "baseline": 8,
+        "cached": 8
+      },
+      "cache_before": {
+        "hits": 1,
+        "misses": 1,
+        "evictions": 0,
+        "parquet_reads": 8,
+        "retained_bytes": 7915026,
+        "peak_retained_bytes": 7915026,
+        "active_bytes": 7915026,
+        "entries": 1,
+        "split": "train",
+        "max_flights": 2,
+        "max_bytes": 268435456
+      },
+      "cache_after": {
+        "hits": 1,
+        "misses": 2,
+        "evictions": 0,
+        "parquet_reads": 16,
+        "retained_bytes": 14255285,
+        "peak_retained_bytes": 14255285,
+        "active_bytes": 6340259,
+        "entries": 2,
+        "split": "train",
+        "max_flights": 2,
+        "max_bytes": 268435456
+      },
+      "rss_peak_mib": 2204.3515625,
+      "all_fields_equal": true
+    },
+    {
+      "case": "switch_hit_main",
+      "window_id": "4c77a3e74b4c8e26d021fd1fa2bc618a2f2f52e005eb5022ecdf680c40678bfb:1:689:h500000:f500000",
+      "sampling_group": "main_50hz",
+      "baseline_seconds": 0.10085772490128875,
+      "cached_seconds": 0.06744570704177022,
+      "parquet_reads": {
+        "baseline": 8,
+        "cached": 0
+      },
+      "cache_before": {
+        "hits": 1,
+        "misses": 2,
+        "evictions": 0,
+        "parquet_reads": 16,
+        "retained_bytes": 14255285,
+        "peak_retained_bytes": 14255285,
+        "active_bytes": 6340259,
+        "entries": 2,
+        "split": "train",
+        "max_flights": 2,
+        "max_bytes": 268435456
+      },
+      "cache_after": {
+        "hits": 2,
+        "misses": 2,
+        "evictions": 0,
+        "parquet_reads": 16,
+        "retained_bytes": 14255285,
+        "peak_retained_bytes": 14255285,
+        "active_bytes": 7915026,
+        "entries": 2,
+        "split": "train",
+        "max_flights": 2,
+        "max_bytes": 268435456
+      },
+      "rss_peak_mib": 2204.3515625,
+      "all_fields_equal": true
+    },
+    {
+      "case": "evict_with_third",
+      "window_id": "37ff9f8ea4e2e378fc13394288aa145a462259e2f53fa15af9511082f0e6d558:1:53:h500000:f500000",
+      "sampling_group": "main_50hz",
+      "baseline_seconds": 0.1109900358133018,
+      "cached_seconds": 0.12074898229911923,
+      "parquet_reads": {
+        "baseline": 8,
+        "cached": 8
+      },
+      "cache_before": {
+        "hits": 2,
+        "misses": 2,
+        "evictions": 0,
+        "parquet_reads": 16,
+        "retained_bytes": 14255285,
+        "peak_retained_bytes": 14255285,
+        "active_bytes": 7915026,
+        "entries": 2,
+        "split": "train",
+        "max_flights": 2,
+        "max_bytes": 268435456
+      },
+      "cache_after": {
+        "hits": 2,
+        "misses": 3,
+        "evictions": 1,
+        "parquet_reads": 24,
+        "retained_bytes": 34693133,
+        "peak_retained_bytes": 34693133,
+        "active_bytes": 26778107,
+        "entries": 2,
+        "split": "train",
+        "max_flights": 2,
+        "max_bytes": 268435456
+      },
+      "rss_peak_mib": 2211.984375,
+      "all_fields_equal": true
+    },
+    {
+      "case": "reload_sparse",
+      "window_id": "00d803ef294b0e2907520c488d89345a9ef54f2936940828ab3e1df104d715b2:1:12:h500000:f500000",
+      "sampling_group": "sparse_10hz",
+      "baseline_seconds": 0.0690631358884275,
+      "cached_seconds": 0.07553386176005006,
+      "parquet_reads": {
+        "baseline": 8,
+        "cached": 8
+      },
+      "cache_before": {
+        "hits": 2,
+        "misses": 3,
+        "evictions": 1,
+        "parquet_reads": 24,
+        "retained_bytes": 34693133,
+        "peak_retained_bytes": 34693133,
+        "active_bytes": 26778107,
+        "entries": 2,
+        "split": "train",
+        "max_flights": 2,
+        "max_bytes": 268435456
+      },
+      "cache_after": {
+        "hits": 2,
+        "misses": 4,
+        "evictions": 2,
+        "parquet_reads": 32,
+        "retained_bytes": 33118366,
+        "peak_retained_bytes": 34693133,
+        "active_bytes": 6340259,
+        "entries": 2,
+        "split": "train",
+        "max_flights": 2,
+        "max_bytes": 268435456
+      },
+      "rss_peak_mib": 2212.5,
+      "all_fields_equal": true
+    },
+    {
+      "case": "reload_main",
+      "window_id": "4c77a3e74b4c8e26d021fd1fa2bc618a2f2f52e005eb5022ecdf680c40678bfb:1:689:h500000:f500000",
+      "sampling_group": "main_50hz",
+      "baseline_seconds": 0.10900109307840466,
+      "cached_seconds": 0.10630180779844522,
+      "parquet_reads": {
+        "baseline": 8,
+        "cached": 8
+      },
+      "cache_before": {
+        "hits": 2,
+        "misses": 4,
+        "evictions": 2,
+        "parquet_reads": 32,
+        "retained_bytes": 33118366,
+        "peak_retained_bytes": 34693133,
+        "active_bytes": 6340259,
+        "entries": 2,
+        "split": "train",
+        "max_flights": 2,
+        "max_bytes": 268435456
+      },
+      "cache_after": {
+        "hits": 2,
+        "misses": 5,
+        "evictions": 3,
+        "parquet_reads": 40,
+        "retained_bytes": 14255285,
+        "peak_retained_bytes": 34693133,
+        "active_bytes": 7915026,
+        "entries": 2,
+        "split": "train",
+        "max_flights": 2,
+        "max_bytes": 268435456
+      },
+      "rss_peak_mib": 2213.26171875,
+      "all_fields_equal": true
+    }
+  ],
+  "second_window_equal": true,
+  "scope": "all dataclass tensors, clocks, controls, masks, phase and metadata recursively bitwise/equal; no window pre-materialization"
+}

@@ -1,0 +1,1145 @@
+{
+  "baseline_revision": "371765df7b94d89864d415fd19b6c31f68518705",
+  "variant": "baseline",
+  "device": "cpu",
+  "steps": 16,
+  "startup_seconds": 2.8176611848175526,
+  "wall_seconds_including_checkpoint": 72.83867168799043,
+  "mean_step_seconds": 4.518943781149574,
+  "windows_per_second": 0.22129064852973454,
+  "rss_peak_mib": 2577.6796875,
+  "cuda_peak_allocated_mib": null,
+  "cuda_peak_reserved_mib": null,
+  "flights": 16,
+  "all_finite": true,
+  "clipped_steps": 0,
+  "diagnostic_steps": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16
+  ],
+  "cache": null,
+  "equivalence_probe": "bitwise CPU equality: baseline vs new with clipping disabled",
+  "midpoint_resume_verified": false,
+  "config": {
+    "schema": "pacld_v1",
+    "model": {
+      "slow_dim": 12,
+      "fast_dim": 6,
+      "width": 128,
+      "max_step": 0.005,
+      "actuator_tau": 0.06,
+      "slow_rate_limit": 10.0,
+      "envelope_bound": 2.0,
+      "lambda_min": 0.5,
+      "lambda_max": 20.0,
+      "coupling_bound": 1.0,
+      "initial_slow_bound": 2.0,
+      "replay_seconds": 0.65,
+      "variance_min": 1e-05,
+      "variance_max": 25.0,
+      "frequency_noise_psd": 0.04,
+      "phase_noise_psd": 0.01,
+      "frequency_coefficients": [
+        3.6354511983566393,
+        23.393570068972757,
+        -5.126725395181777
+      ]
+    },
+    "data": {
+      "root": "/home/zn/flap-system-identification/dataset/velocity_rate_multistep_v1",
+      "registry": "configs/data/velocity_rate_dataset_registry.yaml",
+      "history_us": 500000,
+      "horizon_us": [
+        200000,
+        500000,
+        1000000,
+        2000000
+      ],
+      "phase_policy": "shared_or_average",
+      "reference_contract": "configs/pahbd/phase_reference.json",
+      "sampling_groups": [
+        "main_50hz",
+        "sparse_10hz"
+      ]
+    },
+    "phase_contract": {
+      "schema": "pahbd_hall_phase_v2",
+      "reference_id": "hall_zero_positive_upstroke_working_assumption",
+      "phase_source": "wing_phase.phase_rad",
+      "mechanical_assumption": "Hall=0; increasing counts; upward motion begins after zero; no pi switching label",
+      "absolute_wing_calibration": false,
+      "availability_delay_us": 20000,
+      "availability_assumption": "Encoder timestamp + 20 ms guard; assumes work queue publication latency <=20 ms. Not a measured upper bound; offline research only.",
+      "max_gap_us": 50000,
+      "max_reference_error_rad": 0.15,
+      "recovery_us": 500000,
+      "phase_variance_rad2": 0.0009,
+      "max_encoder_frequency_hz": 20.0,
+      "frozen_contract_override": "PACLD explicitly inherits PA-HBD Hall observation override; frozen tables/splits/QC unchanged.",
+      "firmware_source": "dataset/velocity_rate_multistep_v1/firmware_sources/c9af571575af33d5403fbb479256848797c801e2/src/modules/wing_phase/WingPhase.cpp",
+      "threshold_scope": "Fixed sensor QC: 0.15 rad reference innovation, 50 ms gap, 500 ms recovery, 20 Hz count-rate sanity ceiling; not tuned by model error or absolute calibration."
+    },
+    "seed": 17,
+    "normalization": "fixed physical unit scales; no data fit",
+    "execution_contract": "Explicit steps only; smoke bounded to 1-3 updates. No automatic formal launch.",
+    "modes": [
+      "BASE",
+      "FULL"
+    ],
+    "optimizer": {
+      "lr": 0.0003
+    },
+    "training": {
+      "dtype": "float64",
+      "cpu_threads": 1,
+      "validation_interval": 1000,
+      "validation_seed": 1701,
+      "validation_windows_per_group": 1,
+      "selection": "FULL state loss: windows mean within flight/horizon, horizons equal within flight, flights equal",
+      "sampling": "FlightBalancedSampler: shuffled flights, shuffled horizons per flight, uniform window",
+      "gradient_diagnostics_interval": 100,
+      "calibration": "experiments/phase_anchored_coupled_latent_v1/training_readiness/calibration.json",
+      "max_grad_norm": 10.0,
+      "terminal_log_interval": 100
+    },
+    "loss": {
+      "objective": "L_full + lambda_macro * L_macro",
+      "full_reduction": "EKF family and gyro equal, events equal within family",
+      "macro_reduction": "sources equal, valid pairs equal within source",
+      "no_pair": "macro absent; FULL remains active",
+      "lambda_rule": "clip(0.1*median(full)/max(median(macro),1e-8),0.01,1.0)",
+      "calibration_windows": 64,
+      "calibration_seed": 17
+    },
+    "diagnostics": {
+      "control_change_threshold": 0.02,
+      "control_change_lookback_s": 0.06,
+      "phase_harmonics": 3
+    },
+    "data_cache": {
+      "max_flights": 8,
+      "max_bytes": 268435456
+    }
+  },
+  "records": [
+    {
+      "full": 41.83773187085051,
+      "macro": 11.067830187669285,
+      "total": 52.9055620585198,
+      "pairs": 39,
+      "gradient_norms": {
+        "full": {
+          "total": 37.99573002677994,
+          "modules": {
+            "flow.process_logit": 4.029029799579057,
+            "flow.dynamics.slow": 0.8516642110680662,
+            "flow.dynamics.equilibrium": 0.6396939361390356,
+            "flow.dynamics.relaxation": 0.05866300561066335,
+            "flow.dynamics.coupling": 0.0093544103443722,
+            "flow.dynamics.decoder": 29.37204635386183,
+            "belief.shared": 18.56824333493321,
+            "belief.slow_head": 5.97909147798658,
+            "belief.fast_head": 2.3286949011938196,
+            "belief.correction_head": 13.32780420682448,
+            "belief.gate_head": 0.06973269933972696
+          }
+        },
+        "macro": {
+          "total": 6.647054268286034,
+          "modules": {
+            "flow.process_logit": 0.5400800405891153,
+            "flow.dynamics.slow": 0.22286989986564065,
+            "flow.dynamics.equilibrium": 0.2011284293619292,
+            "flow.dynamics.relaxation": 0.018929261033924918,
+            "flow.dynamics.coupling": 0.0025233037135393636,
+            "flow.dynamics.decoder": 5.566994277664044,
+            "belief.shared": 2.864005427880522,
+            "belief.slow_head": 1.0708343767207285,
+            "belief.fast_head": 0.4002628958677734,
+            "belief.correction_head": 1.8166163237750044,
+            "belief.gate_head": 0.014552645593665455
+          }
+        }
+      },
+      "pre_clip_grad_norm": 43.910263267092716,
+      "gradient_clipped": false,
+      "max_grad_norm": null,
+      "timing": {
+        "encode_seconds": 0.35441093565896153,
+        "full_forward_seconds": 0.26884762523695827,
+        "base_forward_seconds": 0.19455066695809364,
+        "loss_pair_overhead_seconds": 0.019730827305465937,
+        "gradient_diagnostic_seconds": 1.9048120500519872,
+        "backward_seconds": 1.1169633818790317,
+        "gradient_check_clip_seconds": 0.0009533404372632504,
+        "optimizer_seconds": 0.0013439534232020378,
+        "update_seconds": 3.861817420925945
+      },
+      "step": 1,
+      "window_id": "b580e7f3b3e45522e06110849be1e3735f831ac40ad50ddea45f68fbd3c73bce:1:3654:h500000:f500000",
+      "flight_id": "b580e7f3b3e45522e06110849be1e3735f831ac40ad50ddea45f68fbd3c73bce:1",
+      "horizon_us": 500000,
+      "sampling_group": "main_50hz",
+      "sampler_seconds": 0.0001597958616912365,
+      "read_seconds": 0.13001367589458823,
+      "move_seconds": 0.0008855140767991543,
+      "compute_seconds": 3.924746158067137,
+      "e2e_seconds": 4.055805143900216,
+      "cache": null
+    },
+    {
+      "full": 22.65518360466492,
+      "macro": null,
+      "total": 22.65518360466492,
+      "pairs": 0,
+      "gradient_norms": {
+        "full": {
+          "total": 13.265246023447993,
+          "modules": {
+            "flow.process_logit": 0.9321450226670226,
+            "flow.dynamics.slow": 0.07666893507019423,
+            "flow.dynamics.equilibrium": 0.07755256990557148,
+            "flow.dynamics.relaxation": 0.005332268432955645,
+            "flow.dynamics.coupling": 0.0007528752175489935,
+            "flow.dynamics.decoder": 11.276199320103942,
+            "belief.shared": 5.560160326836629,
+            "belief.slow_head": 2.0990085061459736,
+            "belief.fast_head": 1.1011356602835543,
+            "belief.correction_head": 3.376316413170661,
+            "belief.gate_head": 0.005766524166719961
+          }
+        },
+        "macro": null
+      },
+      "pre_clip_grad_norm": 13.265246023447995,
+      "gradient_clipped": false,
+      "max_grad_norm": null,
+      "timing": {
+        "encode_seconds": 0.3413343201391399,
+        "full_forward_seconds": 0.06763191893696785,
+        "loss_pair_overhead_seconds": 0.004494326189160347,
+        "gradient_diagnostic_seconds": 0.7975128018297255,
+        "backward_seconds": 0.729319937992841,
+        "gradient_check_clip_seconds": 0.003563270904123783,
+        "optimizer_seconds": 0.0010994449257850647,
+        "update_seconds": 1.945193475112319
+      },
+      "step": 2,
+      "window_id": "9723ebfeb4a7b483ef81b580da6f4b6cf723d75a3ef49e5cccc3ce5378762373:1:2097:h500000:f200000",
+      "flight_id": "9723ebfeb4a7b483ef81b580da6f4b6cf723d75a3ef49e5cccc3ce5378762373:1",
+      "horizon_us": 200000,
+      "sampling_group": "main_50hz",
+      "sampler_seconds": 7.672188803553581e-05,
+      "read_seconds": 0.09139058971777558,
+      "move_seconds": 0.0007223840802907944,
+      "compute_seconds": 2.015258839353919,
+      "e2e_seconds": 2.107448535040021,
+      "cache": null
+    },
+    {
+      "full": 64.03553165027252,
+      "macro": 12.07385215474074,
+      "total": 76.10938380501325,
+      "pairs": 17,
+      "gradient_norms": {
+        "full": {
+          "total": 38.2060797498775,
+          "modules": {
+            "flow.process_logit": 2.6364230543488016,
+            "flow.dynamics.slow": 0.9067954147146152,
+            "flow.dynamics.equilibrium": 0.49260106958715055,
+            "flow.dynamics.relaxation": 0.010284763478853293,
+            "flow.dynamics.coupling": 0.02291698529074219,
+            "flow.dynamics.decoder": 35.17665026462471,
+            "belief.shared": 11.559399802195152,
+            "belief.slow_head": 3.6299449451642216,
+            "belief.fast_head": 1.4820372579952794,
+            "belief.correction_head": 8.080684535152056,
+            "belief.gate_head": 0.037332394127688566
+          }
+        },
+        "macro": {
+          "total": 9.533950044737452,
+          "modules": {
+            "flow.process_logit": 0.18438662835869715,
+            "flow.dynamics.slow": 0.4357222623851295,
+            "flow.dynamics.equilibrium": 0.2635693604161554,
+            "flow.dynamics.relaxation": 0.004595868550676291,
+            "flow.dynamics.coupling": 0.01231506948869471,
+            "flow.dynamics.decoder": 9.276004667735988,
+            "belief.shared": 1.7191244066135671,
+            "belief.slow_head": 1.059225752322499,
+            "belief.fast_head": 0.1573831204842457,
+            "belief.correction_head": 0.6753748717193329,
+            "belief.gate_head": 0.01408426705984338
+          }
+        }
+      },
+      "pre_clip_grad_norm": 46.23103641117807,
+      "gradient_clipped": false,
+      "max_grad_norm": null,
+      "timing": {
+        "encode_seconds": 0.3248654566705227,
+        "full_forward_seconds": 0.13212050311267376,
+        "base_forward_seconds": 0.13452233979478478,
+        "loss_pair_overhead_seconds": 0.007277417462319136,
+        "gradient_diagnostic_seconds": 1.465484174899757,
+        "backward_seconds": 0.9160462990403175,
+        "gradient_check_clip_seconds": 0.004660516045987606,
+        "optimizer_seconds": 0.0011230399832129478,
+        "update_seconds": 2.986325833015144
+      },
+      "step": 3,
+      "window_id": "b02d93738477786af358a1559f101aab17a1bdd4185726bf8b788285ef941a9d:1:661:h500000:f500000",
+      "flight_id": "b02d93738477786af358a1559f101aab17a1bdd4185726bf8b788285ef941a9d:1",
+      "horizon_us": 500000,
+      "sampling_group": "sparse_10hz",
+      "sampler_seconds": 6.706221029162407e-05,
+      "read_seconds": 0.06825658306479454,
+      "move_seconds": 0.0005270009860396385,
+      "compute_seconds": 3.085693098139018,
+      "e2e_seconds": 3.1545437444001436,
+      "cache": null
+    },
+    {
+      "full": 36.731471070161575,
+      "macro": 2.6279246644201253,
+      "total": 39.3593957345817,
+      "pairs": 51,
+      "gradient_norms": {
+        "full": {
+          "total": 19.408225618744154,
+          "modules": {
+            "flow.process_logit": 1.2985450691408988,
+            "flow.dynamics.slow": 0.5209407378495848,
+            "flow.dynamics.equilibrium": 0.3388014899890879,
+            "flow.dynamics.relaxation": 0.01448761481797212,
+            "flow.dynamics.coupling": 0.001954642938882387,
+            "flow.dynamics.decoder": 16.996877430143254,
+            "belief.shared": 7.488003929077512,
+            "belief.slow_head": 2.489153873127691,
+            "belief.fast_head": 1.1490944090226565,
+            "belief.correction_head": 4.703822963575483,
+            "belief.gate_head": 0.01795280193470834
+          }
+        },
+        "macro": {
+          "total": 3.24332078820663,
+          "modules": {
+            "flow.process_logit": 0.10916570882633683,
+            "flow.dynamics.slow": 0.18795707480313717,
+            "flow.dynamics.equilibrium": 0.11029507037389996,
+            "flow.dynamics.relaxation": 0.004158266987958346,
+            "flow.dynamics.coupling": 0.0005618544064075189,
+            "flow.dynamics.decoder": 3.069531521701799,
+            "belief.shared": 0.7980923808674235,
+            "belief.slow_head": 0.48238964454540467,
+            "belief.fast_head": 0.11952843475134849,
+            "belief.correction_head": 0.3920757044439418,
+            "belief.gate_head": 0.0040898452423366125
+          }
+        }
+      },
+      "pre_clip_grad_norm": 22.079691331383483,
+      "gradient_clipped": false,
+      "max_grad_norm": null,
+      "timing": {
+        "encode_seconds": 0.3959044241346419,
+        "full_forward_seconds": 0.16182600799947977,
+        "base_forward_seconds": 0.2356581031344831,
+        "loss_pair_overhead_seconds": 0.021241746842861176,
+        "gradient_diagnostic_seconds": 1.9482436082325876,
+        "backward_seconds": 1.1579909669235349,
+        "gradient_check_clip_seconds": 0.008327037561684847,
+        "optimizer_seconds": 0.0011659897863864899,
+        "update_seconds": 3.930620213970542
+      },
+      "step": 4,
+      "window_id": "961d925ce5f1fc9e02845864340a0864eec811ac584cc4b1546208856dd5a138:1:691:h500000:f500000",
+      "flight_id": "961d925ce5f1fc9e02845864340a0864eec811ac584cc4b1546208856dd5a138:1",
+      "horizon_us": 500000,
+      "sampling_group": "main_50hz",
+      "sampler_seconds": 6.91702589392662e-05,
+      "read_seconds": 0.10830253502354026,
+      "move_seconds": 0.0009046318009495735,
+      "compute_seconds": 3.9931400613859296,
+      "e2e_seconds": 4.102416398469359,
+      "cache": null
+    },
+    {
+      "full": 78.57002331742092,
+      "macro": null,
+      "total": 78.57002331742092,
+      "pairs": 0,
+      "gradient_norms": {
+        "full": {
+          "total": 38.95195183675745,
+          "modules": {
+            "flow.process_logit": 0.5107332367636677,
+            "flow.dynamics.slow": 0.3382684401331979,
+            "flow.dynamics.equilibrium": 0.45280305341585037,
+            "flow.dynamics.relaxation": 0.06224743993869501,
+            "flow.dynamics.coupling": 0.036149121831390615,
+            "flow.dynamics.decoder": 36.88226305820225,
+            "belief.shared": 9.484888024136684,
+            "belief.slow_head": 6.229324026323758,
+            "belief.fast_head": 3.8502941250617937,
+            "belief.correction_head": 3.572929364998394,
+            "belief.gate_head": 0.09782515957803585
+          }
+        },
+        "macro": null
+      },
+      "pre_clip_grad_norm": 38.95195183675745,
+      "gradient_clipped": false,
+      "max_grad_norm": null,
+      "timing": {
+        "encode_seconds": 0.34161621099337935,
+        "full_forward_seconds": 0.0724962679669261,
+        "loss_pair_overhead_seconds": 0.004405946005135775,
+        "gradient_diagnostic_seconds": 0.8060717731714249,
+        "backward_seconds": 0.7380872517824173,
+        "gradient_check_clip_seconds": 0.003574877046048641,
+        "optimizer_seconds": 0.0012012082152068615,
+        "update_seconds": 1.9676813152618706
+      },
+      "step": 5,
+      "window_id": "7776c02279408943be82a7ab8ac9f7fad67cf642d73f2d6446c4f2eb949c0922:1:6350:h500000:f200000",
+      "flight_id": "7776c02279408943be82a7ab8ac9f7fad67cf642d73f2d6446c4f2eb949c0922:1",
+      "horizon_us": 200000,
+      "sampling_group": "main_50hz",
+      "sampler_seconds": 8.312799036502838e-05,
+      "read_seconds": 0.08821935439482331,
+      "move_seconds": 0.0007828869856894016,
+      "compute_seconds": 2.03828762518242,
+      "e2e_seconds": 2.1273729945532978,
+      "cache": null
+    },
+    {
+      "full": 54.11377562588348,
+      "macro": 6.493288122339439,
+      "total": 60.60706374822291,
+      "pairs": 304,
+      "gradient_norms": {
+        "full": {
+          "total": 154.06272023002035,
+          "modules": {
+            "flow.process_logit": 4.408555032599946,
+            "flow.dynamics.slow": 11.044470063960018,
+            "flow.dynamics.equilibrium": 5.1951273535128,
+            "flow.dynamics.relaxation": 0.1012808014539186,
+            "flow.dynamics.coupling": 0.05780160108348789,
+            "flow.dynamics.decoder": 147.0672961078758,
+            "belief.shared": 33.53260146491727,
+            "belief.slow_head": 21.865291018503008,
+            "belief.fast_head": 7.134450104087146,
+            "belief.correction_head": 16.872613379861207,
+            "belief.gate_head": 0.042234996190555534
+          }
+        },
+        "macro": {
+          "total": 9.052990001836566,
+          "modules": {
+            "flow.process_logit": 0.20730437532140525,
+            "flow.dynamics.slow": 0.874963894206478,
+            "flow.dynamics.equilibrium": 0.30844663933168603,
+            "flow.dynamics.relaxation": 0.006286555197215804,
+            "flow.dynamics.coupling": 0.0039476118009578514,
+            "flow.dynamics.decoder": 8.647243813257838,
+            "belief.shared": 1.9391813055034017,
+            "belief.slow_head": 1.319688018698466,
+            "belief.fast_head": 0.3947924744398071,
+            "belief.correction_head": 0.7875110513996877,
+            "belief.gate_head": 0.005974716998730486
+          }
+        }
+      },
+      "pre_clip_grad_norm": 162.74440920206874,
+      "gradient_clipped": false,
+      "max_grad_norm": null,
+      "timing": {
+        "encode_seconds": 0.4000076949596405,
+        "full_forward_seconds": 0.8109517572447658,
+        "base_forward_seconds": 0.8814976331777871,
+        "loss_pair_overhead_seconds": 0.12745928671211004,
+        "gradient_diagnostic_seconds": 4.008630742318928,
+        "backward_seconds": 3.066200294997543,
+        "gradient_check_clip_seconds": 0.000994125846773386,
+        "optimizer_seconds": 0.0011245659552514553,
+        "update_seconds": 9.297120001167059
+      },
+      "step": 6,
+      "window_id": "e3e4c7669ab5352358121e438acf850a62ada4d8c98393228fdc39f226f242d5:1:4657:h500000:f2000000",
+      "flight_id": "e3e4c7669ab5352358121e438acf850a62ada4d8c98393228fdc39f226f242d5:1",
+      "horizon_us": 2000000,
+      "sampling_group": "main_50hz",
+      "sampler_seconds": 8.470797911286354e-05,
+      "read_seconds": 0.2241741088218987,
+      "move_seconds": 0.0017854529432952404,
+      "compute_seconds": 9.635687457863241,
+      "e2e_seconds": 9.861731727607548,
+      "cache": null
+    },
+    {
+      "full": 73.86200603309511,
+      "macro": null,
+      "total": 73.86200603309511,
+      "pairs": 0,
+      "gradient_norms": {
+        "full": {
+          "total": 16.136781218464392,
+          "modules": {
+            "flow.process_logit": 2.013102538970491,
+            "flow.dynamics.slow": 0.04279223135225433,
+            "flow.dynamics.equilibrium": 0.05460938246220162,
+            "flow.dynamics.relaxation": 0.008605541891103867,
+            "flow.dynamics.coupling": 0.0014105163538463154,
+            "flow.dynamics.decoder": 11.227462134498976,
+            "belief.shared": 8.945830878061734,
+            "belief.slow_head": 1.5625295273748954,
+            "belief.fast_head": 1.4934790591451048,
+            "belief.correction_head": 6.7514064577532835,
+            "belief.gate_head": 0.031199250694992943
+          }
+        },
+        "macro": null
+      },
+      "pre_clip_grad_norm": 16.136781218464392,
+      "gradient_clipped": false,
+      "max_grad_norm": null,
+      "timing": {
+        "encode_seconds": 0.3221136899664998,
+        "full_forward_seconds": 0.06705228798091412,
+        "loss_pair_overhead_seconds": 0.004276341293007135,
+        "gradient_diagnostic_seconds": 0.777594396378845,
+        "backward_seconds": 0.7130042412318289,
+        "gradient_check_clip_seconds": 0.0033905310556292534,
+        "optimizer_seconds": 0.0010356768034398556,
+        "update_seconds": 1.8886879300698638
+      },
+      "step": 7,
+      "window_id": "5e074998eb0cf7d7db4fad4033b56d08d91bc2c176c5bae3f56b128505c46081:1:351:h500000:f200000",
+      "flight_id": "5e074998eb0cf7d7db4fad4033b56d08d91bc2c176c5bae3f56b128505c46081:1",
+      "horizon_us": 200000,
+      "sampling_group": "main_50hz",
+      "sampler_seconds": 9.422935545444489e-05,
+      "read_seconds": 0.08871832117438316,
+      "move_seconds": 0.0008224388584494591,
+      "compute_seconds": 1.9551595617085695,
+      "e2e_seconds": 2.0447945510968566,
+      "cache": null
+    },
+    {
+      "full": 37.81386722332696,
+      "macro": 5.287427260563946,
+      "total": 43.101294483890904,
+      "pairs": 17,
+      "gradient_norms": {
+        "full": {
+          "total": 14.481284460980199,
+          "modules": {
+            "flow.process_logit": 1.3265054607755944,
+            "flow.dynamics.slow": 0.23546574700975745,
+            "flow.dynamics.equilibrium": 0.2524789211490071,
+            "flow.dynamics.relaxation": 0.004728692455015178,
+            "flow.dynamics.coupling": 0.006949275758115263,
+            "flow.dynamics.decoder": 12.749125049401085,
+            "belief.shared": 5.210702064433903,
+            "belief.slow_head": 1.4907424014089496,
+            "belief.fast_head": 0.7785802011575388,
+            "belief.correction_head": 3.912617353085348,
+            "belief.gate_head": 0.006512106739359742
+          }
+        },
+        "macro": {
+          "total": 3.32424644461367,
+          "modules": {
+            "flow.process_logit": 0.15180919001318113,
+            "flow.dynamics.slow": 0.165707335827103,
+            "flow.dynamics.equilibrium": 0.1824424371540133,
+            "flow.dynamics.relaxation": 0.0038725220720716943,
+            "flow.dynamics.coupling": 0.004816715750342921,
+            "flow.dynamics.decoder": 3.176457374197976,
+            "belief.shared": 0.761646990549897,
+            "belief.slow_head": 0.28730920383803493,
+            "belief.fast_head": 0.15197375461474608,
+            "belief.correction_head": 0.43720622448117247,
+            "belief.gate_head": 0.0025615263986775447
+          }
+        }
+      },
+      "pre_clip_grad_norm": 16.268385234570854,
+      "gradient_clipped": false,
+      "max_grad_norm": null,
+      "timing": {
+        "encode_seconds": 0.25620795879513025,
+        "full_forward_seconds": 0.20274695614352822,
+        "base_forward_seconds": 0.1325553939677775,
+        "loss_pair_overhead_seconds": 0.00723921786993742,
+        "gradient_diagnostic_seconds": 1.52649925975129,
+        "backward_seconds": 0.9250118411146104,
+        "gradient_check_clip_seconds": 0.005066678859293461,
+        "optimizer_seconds": 0.0011012977920472622,
+        "update_seconds": 3.0566589292138815
+      },
+      "step": 8,
+      "window_id": "7cc9ef8d0a059873cb975aa9e410f2ee5f026c6c3184593f5c5518d5a81e21d3:1:845:h500000:f500000",
+      "flight_id": "7cc9ef8d0a059873cb975aa9e410f2ee5f026c6c3184593f5c5518d5a81e21d3:1",
+      "horizon_us": 500000,
+      "sampling_group": "sparse_10hz",
+      "sampler_seconds": 0.00010606087744235992,
+      "read_seconds": 0.0668676421046257,
+      "move_seconds": 0.0004917290061712265,
+      "compute_seconds": 3.15680831996724,
+      "e2e_seconds": 3.2242737519554794,
+      "cache": null
+    },
+    {
+      "full": 36.666408081784475,
+      "macro": 5.11211967169902,
+      "total": 41.778527753483495,
+      "pairs": 116,
+      "gradient_norms": {
+        "full": {
+          "total": 37.41819407075057,
+          "modules": {
+            "flow.process_logit": 1.507792847258712,
+            "flow.dynamics.slow": 2.4280144347052466,
+            "flow.dynamics.equilibrium": 0.8662088895842426,
+            "flow.dynamics.relaxation": 0.011910860402703602,
+            "flow.dynamics.coupling": 0.018144240542754562,
+            "flow.dynamics.decoder": 34.99001346851363,
+            "belief.shared": 10.53206954869833,
+            "belief.slow_head": 5.3409430558724695,
+            "belief.fast_head": 1.4033755954042204,
+            "belief.correction_head": 5.0477296720577325,
+            "belief.gate_head": 0.03902682554776131
+          }
+        },
+        "macro": {
+          "total": 9.594842771047967,
+          "modules": {
+            "flow.process_logit": 0.25428311112250074,
+            "flow.dynamics.slow": 0.6917671871223752,
+            "flow.dynamics.equilibrium": 0.3018738449579172,
+            "flow.dynamics.relaxation": 0.0041261674636802,
+            "flow.dynamics.coupling": 0.004010336356023982,
+            "flow.dynamics.decoder": 9.081133548663072,
+            "belief.shared": 2.4264862310101734,
+            "belief.slow_head": 1.480656449947689,
+            "belief.fast_head": 0.32737733341448827,
+            "belief.correction_head": 0.8787352806901478,
+            "belief.gate_head": 0.011315491771433884
+          }
+        }
+      },
+      "pre_clip_grad_norm": 46.349958337748845,
+      "gradient_clipped": false,
+      "max_grad_norm": null,
+      "timing": {
+        "encode_seconds": 0.35443308809772134,
+        "full_forward_seconds": 0.39513749489560723,
+        "base_forward_seconds": 0.3136091227643192,
+        "loss_pair_overhead_seconds": 0.04414170095697045,
+        "gradient_diagnostic_seconds": 2.5693136183544993,
+        "backward_seconds": 1.8721969230100513,
+        "gradient_check_clip_seconds": 0.011816463898867369,
+        "optimizer_seconds": 0.001087029930204153,
+        "update_seconds": 5.561965631321073
+      },
+      "step": 9,
+      "window_id": "01a4a8c5def815f65ead5b70f05854cb388e6874bbc49344ecf0bccdfb5ace2b:1:5904:h500000:f1000000",
+      "flight_id": "01a4a8c5def815f65ead5b70f05854cb388e6874bbc49344ecf0bccdfb5ace2b:1",
+      "horizon_us": 1000000,
+      "sampling_group": "main_50hz",
+      "sampler_seconds": 6.36102631688118e-05,
+      "read_seconds": 0.14657686231657863,
+      "move_seconds": 0.001187433023005724,
+      "compute_seconds": 5.656955871731043,
+      "e2e_seconds": 5.804783777333796,
+      "cache": null
+    },
+    {
+      "full": 41.03609051091027,
+      "macro": null,
+      "total": 41.03609051091027,
+      "pairs": 0,
+      "gradient_norms": {
+        "full": {
+          "total": 12.354556496186941,
+          "modules": {
+            "flow.process_logit": 1.2751525071747414,
+            "flow.dynamics.slow": 0.11225170813518867,
+            "flow.dynamics.equilibrium": 0.15659476550668003,
+            "flow.dynamics.relaxation": 0.00986797901369266,
+            "flow.dynamics.coupling": 0.006464160156200319,
+            "flow.dynamics.decoder": 9.974897570542094,
+            "belief.shared": 5.45371714223879,
+            "belief.slow_head": 1.111572227306998,
+            "belief.fast_head": 1.0889137633081396,
+            "belief.correction_head": 4.3941310462441345,
+            "belief.gate_head": 0.021561762839084873
+          }
+        },
+        "macro": null
+      },
+      "pre_clip_grad_norm": 12.354556496186941,
+      "gradient_clipped": false,
+      "max_grad_norm": null,
+      "timing": {
+        "encode_seconds": 0.31237366516143084,
+        "full_forward_seconds": 0.06262708595022559,
+        "loss_pair_overhead_seconds": 0.00432230019941926,
+        "gradient_diagnostic_seconds": 0.7404334358870983,
+        "backward_seconds": 0.6813098518177867,
+        "gradient_check_clip_seconds": 0.0032148691825568676,
+        "optimizer_seconds": 0.001065760850906372,
+        "update_seconds": 1.8055736990645528
+      },
+      "step": 10,
+      "window_id": "6c5b344e087a1a7ab333f75405589cdf20fdd2ad091eba2768e27de76b076dc3:1:3155:h500000:f200000",
+      "flight_id": "6c5b344e087a1a7ab333f75405589cdf20fdd2ad091eba2768e27de76b076dc3:1",
+      "horizon_us": 200000,
+      "sampling_group": "main_50hz",
+      "sampler_seconds": 5.6752003729343414e-05,
+      "read_seconds": 0.1562525499612093,
+      "move_seconds": 0.0007986710406839848,
+      "compute_seconds": 1.8737939028069377,
+      "e2e_seconds": 2.0309018758125603,
+      "cache": null
+    },
+    {
+      "full": 93.91061187435479,
+      "macro": 10.069116137062585,
+      "total": 103.97972801141736,
+      "pairs": 328,
+      "gradient_norms": {
+        "full": {
+          "total": 173.74395838581825,
+          "modules": {
+            "flow.process_logit": 14.991085181837509,
+            "flow.dynamics.slow": 10.776586833073901,
+            "flow.dynamics.equilibrium": 5.365554840405462,
+            "flow.dynamics.relaxation": 0.10490345670502636,
+            "flow.dynamics.coupling": 0.05521103515218331,
+            "flow.dynamics.decoder": 143.1506058190397,
+            "belief.shared": 78.00535298444562,
+            "belief.slow_head": 17.536364149369202,
+            "belief.fast_head": 7.611840456891078,
+            "belief.correction_head": 53.61801814357727,
+            "belief.gate_head": 0.0727473886691026
+          }
+        },
+        "macro": {
+          "total": 7.318558099698236,
+          "modules": {
+            "flow.process_logit": 0.43996933109767367,
+            "flow.dynamics.slow": 0.6393058630517526,
+            "flow.dynamics.equilibrium": 0.27825906864560523,
+            "flow.dynamics.relaxation": 0.004911059633507063,
+            "flow.dynamics.coupling": 0.0040820784316661345,
+            "flow.dynamics.decoder": 6.621424392466695,
+            "belief.shared": 2.4503283986692614,
+            "belief.slow_head": 0.6478732770309228,
+            "belief.fast_head": 0.32634538664640594,
+            "belief.correction_head": 1.583630629446235,
+            "belief.gate_head": 0.006438725862648344
+          }
+        }
+      },
+      "pre_clip_grad_norm": 180.04234465279123,
+      "gradient_clipped": false,
+      "max_grad_norm": null,
+      "timing": {
+        "encode_seconds": 0.38951960671693087,
+        "full_forward_seconds": 0.7630198793485761,
+        "base_forward_seconds": 0.7860167841427028,
+        "loss_pair_overhead_seconds": 0.12244774680584669,
+        "gradient_diagnostic_seconds": 4.433181061875075,
+        "backward_seconds": 3.4425527788698673,
+        "gradient_check_clip_seconds": 0.025149782188236713,
+        "optimizer_seconds": 0.0010566702112555504,
+        "update_seconds": 9.963183956220746
+      },
+      "step": 11,
+      "window_id": "531a4f5ad9f0770e3a369375c0113cffc3f1ec6ea7070378ce84b234546fb2d9:1:7927:h500000:f2000000",
+      "flight_id": "531a4f5ad9f0770e3a369375c0113cffc3f1ec6ea7070378ce84b234546fb2d9:1",
+      "horizon_us": 2000000,
+      "sampling_group": "main_50hz",
+      "sampler_seconds": 5.741976201534271e-05,
+      "read_seconds": 0.22242373367771506,
+      "move_seconds": 0.001750790048390627,
+      "compute_seconds": 10.133740704972297,
+      "e2e_seconds": 10.357972648460418,
+      "cache": null
+    },
+    {
+      "full": 41.173053637414014,
+      "macro": 7.810413191262949,
+      "total": 48.98346682867697,
+      "pairs": 38,
+      "gradient_norms": {
+        "full": {
+          "total": 33.394027984999546,
+          "modules": {
+            "flow.process_logit": 3.378129544038337,
+            "flow.dynamics.slow": 0.740657115442413,
+            "flow.dynamics.equilibrium": 0.6374296117351286,
+            "flow.dynamics.relaxation": 0.033418733056284546,
+            "flow.dynamics.coupling": 0.005111166705595877,
+            "flow.dynamics.decoder": 27.27082786071697,
+            "belief.shared": 14.960069708435476,
+            "belief.slow_head": 2.6674458694171244,
+            "belief.fast_head": 2.658866821199001,
+            "belief.correction_head": 11.00461000983672,
+            "belief.gate_head": 0.07275878272997588
+          }
+        },
+        "macro": {
+          "total": 6.540889223507558,
+          "modules": {
+            "flow.process_logit": 0.21862709971953415,
+            "flow.dynamics.slow": 0.46975452046009586,
+            "flow.dynamics.equilibrium": 0.2757121013868089,
+            "flow.dynamics.relaxation": 0.007629243888980979,
+            "flow.dynamics.coupling": 0.0022800338400820095,
+            "flow.dynamics.decoder": 6.123578952717394,
+            "belief.shared": 1.8314075951424336,
+            "belief.slow_head": 1.0467637619015817,
+            "belief.fast_head": 0.12910655065259063,
+            "belief.correction_head": 0.6884277711261768,
+            "belief.gate_head": 0.009772859700456304
+          }
+        }
+      },
+      "pre_clip_grad_norm": 34.95688458551429,
+      "gradient_clipped": false,
+      "max_grad_norm": null,
+      "timing": {
+        "encode_seconds": 0.32317387918010354,
+        "full_forward_seconds": 0.23340520402416587,
+        "base_forward_seconds": 0.1691664168611169,
+        "loss_pair_overhead_seconds": 0.01876067603006959,
+        "gradient_diagnostic_seconds": 1.913110536057502,
+        "backward_seconds": 1.1716905338689685,
+        "gradient_check_clip_seconds": 0.005529615096747875,
+        "optimizer_seconds": 0.0010974169708788395,
+        "update_seconds": 3.836168095935136
+      },
+      "step": 12,
+      "window_id": "95b2e74ad704fbe261d081ad317f01a9bba5c99b3c2f32b64e3a5e57602164a8:1:5987:h500000:f500000",
+      "flight_id": "95b2e74ad704fbe261d081ad317f01a9bba5c99b3c2f32b64e3a5e57602164a8:1",
+      "horizon_us": 500000,
+      "sampling_group": "main_50hz",
+      "sampler_seconds": 6.343703716993332e-05,
+      "read_seconds": 0.11312813591212034,
+      "move_seconds": 0.0010018819011747837,
+      "compute_seconds": 3.9577244049869478,
+      "e2e_seconds": 4.071917859837413,
+      "cache": null
+    },
+    {
+      "full": 77.4741778132542,
+      "macro": 10.63591106039258,
+      "total": 88.11008887364679,
+      "pairs": 110,
+      "gradient_norms": {
+        "full": {
+          "total": 204.62883996424145,
+          "modules": {
+            "flow.process_logit": 4.112106308418482,
+            "flow.dynamics.slow": 15.401063740390548,
+            "flow.dynamics.equilibrium": 4.802177893008719,
+            "flow.dynamics.relaxation": 0.05929447106601332,
+            "flow.dynamics.coupling": 0.15598307933000716,
+            "flow.dynamics.decoder": 198.91057199628287,
+            "belief.shared": 36.24476953043716,
+            "belief.slow_head": 23.488486964155445,
+            "belief.fast_head": 6.661398101472604,
+            "belief.correction_head": 10.979079814040887,
+            "belief.gate_head": 0.22089616287854644
+          }
+        },
+        "macro": {
+          "total": 14.274577227057879,
+          "modules": {
+            "flow.process_logit": 0.33549780589705,
+            "flow.dynamics.slow": 0.7161948935558127,
+            "flow.dynamics.equilibrium": 0.3796511126564658,
+            "flow.dynamics.relaxation": 0.006973143785527017,
+            "flow.dynamics.coupling": 0.016823625417424944,
+            "flow.dynamics.decoder": 13.888730300330108,
+            "belief.shared": 2.5673163058586836,
+            "belief.slow_head": 1.551201694526669,
+            "belief.fast_head": 0.545347416576627,
+            "belief.correction_head": 0.8952647916357636,
+            "belief.gate_head": 0.022859633135909857
+          }
+        }
+      },
+      "pre_clip_grad_norm": 218.30461009273893,
+      "gradient_clipped": false,
+      "max_grad_norm": null,
+      "timing": {
+        "encode_seconds": 0.2761739958077669,
+        "full_forward_seconds": 0.62251355079934,
+        "base_forward_seconds": 0.642307713162154,
+        "loss_pair_overhead_seconds": 0.04075680207461119,
+        "gradient_diagnostic_seconds": 3.358042217325419,
+        "backward_seconds": 2.5228283419273794,
+        "gradient_check_clip_seconds": 0.01664555398747325,
+        "optimizer_seconds": 0.001045732293277979,
+        "update_seconds": 7.4805575790815055
+      },
+      "step": 13,
+      "window_id": "577bb3e13672746298c2b07ddae4468a522e1e1e0ca2a776b7bf47aa2835beb1:1:1118:h500000:f2000000",
+      "flight_id": "577bb3e13672746298c2b07ddae4468a522e1e1e0ca2a776b7bf47aa2835beb1:1",
+      "horizon_us": 2000000,
+      "sampling_group": "sparse_10hz",
+      "sampler_seconds": 5.9279147535562515e-05,
+      "read_seconds": 0.1084632370620966,
+      "move_seconds": 0.000886945053935051,
+      "compute_seconds": 7.61151285097003,
+      "e2e_seconds": 7.720922312233597,
+      "cache": null
+    },
+    {
+      "full": 92.18027328451308,
+      "macro": 145.07091536686067,
+      "total": 237.25118865137375,
+      "pairs": 1,
+      "gradient_norms": {
+        "full": {
+          "total": 81.43355069427083,
+          "modules": {
+            "flow.process_logit": 8.08606899679473,
+            "flow.dynamics.slow": 1.1941738180058576,
+            "flow.dynamics.equilibrium": 1.4958293112790735,
+            "flow.dynamics.relaxation": 0.06862588797885122,
+            "flow.dynamics.coupling": 0.016850516960349914,
+            "flow.dynamics.decoder": 65.20190771963496,
+            "belief.shared": 38.74242464146676,
+            "belief.slow_head": 9.230292868396711,
+            "belief.fast_head": 5.782833223456675,
+            "belief.correction_head": 26.294957254173852,
+            "belief.gate_head": 0.20404916538374485
+          }
+        },
+        "macro": {
+          "total": 119.82045247996031,
+          "modules": {
+            "flow.process_logit": 0.055208181344488294,
+            "flow.dynamics.slow": 5.6885208578190625,
+            "flow.dynamics.equilibrium": 5.514599652091777,
+            "flow.dynamics.relaxation": 0.1278667917784274,
+            "flow.dynamics.coupling": 0.0854090975897779,
+            "flow.dynamics.decoder": 117.19782224029773,
+            "belief.shared": 19.433941511789207,
+            "belief.slow_head": 13.01266568706857,
+            "belief.fast_head": 3.4052672628225547,
+            "belief.correction_head": 0.37055341890244087,
+            "belief.gate_head": 0.27169330698429833
+          }
+        }
+      },
+      "pre_clip_grad_norm": 179.4645028800806,
+      "gradient_clipped": false,
+      "max_grad_norm": null,
+      "timing": {
+        "encode_seconds": 0.2719473126344383,
+        "full_forward_seconds": 0.14297002600505948,
+        "base_forward_seconds": 0.1448250710964203,
+        "loss_pair_overhead_seconds": 0.004582734312862158,
+        "gradient_diagnostic_seconds": 1.5589599637314677,
+        "backward_seconds": 0.9633618579246104,
+        "gradient_check_clip_seconds": 0.004903117194771767,
+        "optimizer_seconds": 0.0010982519015669823,
+        "update_seconds": 3.0929173808544874
+      },
+      "step": 14,
+      "window_id": "e09b2ec1b35d10ce5dc571a850fd0d5c3cbcf241fc691a2c625574aba4646262:1:1248:h500000:f500000",
+      "flight_id": "e09b2ec1b35d10ce5dc571a850fd0d5c3cbcf241fc691a2c625574aba4646262:1",
+      "horizon_us": 500000,
+      "sampling_group": "sparse_10hz",
+      "sampler_seconds": 5.504721775650978e-05,
+      "read_seconds": 0.0681492849253118,
+      "move_seconds": 0.00045928312465548515,
+      "compute_seconds": 3.1845534527674317,
+      "e2e_seconds": 3.2532170680351555,
+      "cache": null
+    },
+    {
+      "full": 62.95991583913892,
+      "macro": 28.68659918972176,
+      "total": 91.64651502886068,
+      "pairs": 36,
+      "gradient_norms": {
+        "full": {
+          "total": 58.46305140995546,
+          "modules": {
+            "flow.process_logit": 2.703017425804832,
+            "flow.dynamics.slow": 1.4622836475730496,
+            "flow.dynamics.equilibrium": 1.2502202654345702,
+            "flow.dynamics.relaxation": 0.067543496174191,
+            "flow.dynamics.coupling": 0.038731421647715654,
+            "flow.dynamics.decoder": 53.49323215707799,
+            "belief.shared": 19.05963399855305,
+            "belief.slow_head": 7.944902932512803,
+            "belief.fast_head": 4.969520070508455,
+            "belief.correction_head": 9.709877048133018,
+            "belief.gate_head": 0.14082306625870006
+          }
+        },
+        "macro": {
+          "total": 18.428405560089924,
+          "modules": {
+            "flow.process_logit": 0.3481852913810292,
+            "flow.dynamics.slow": 1.0010416877950807,
+            "flow.dynamics.equilibrium": 0.5512476269511828,
+            "flow.dynamics.relaxation": 0.01074141956429776,
+            "flow.dynamics.coupling": 0.01739848372022305,
+            "flow.dynamics.decoder": 17.698674586553803,
+            "belief.shared": 3.9709216805110166,
+            "belief.slow_head": 2.703132597568054,
+            "belief.fast_head": 0.505926049230898,
+            "belief.correction_head": 1.266446491840026,
+            "belief.gate_head": 0.02114616440246608
+          }
+        }
+      },
+      "pre_clip_grad_norm": 70.02660728553066,
+      "gradient_clipped": false,
+      "max_grad_norm": null,
+      "timing": {
+        "encode_seconds": 0.4075284479185939,
+        "full_forward_seconds": 0.17728055687621236,
+        "base_forward_seconds": 0.2527829958125949,
+        "loss_pair_overhead_seconds": 0.01894443016499281,
+        "gradient_diagnostic_seconds": 2.057702406309545,
+        "backward_seconds": 1.2500946060754359,
+        "gradient_check_clip_seconds": 0.006304090842604637,
+        "optimizer_seconds": 0.0010858080349862576,
+        "update_seconds": 4.171960828825831
+      },
+      "step": 15,
+      "window_id": "6180f025a0d896b0955d73a444199e6a48f756e4f6e9c16049f9268fc63f3e04:1:3122:h500000:f500000",
+      "flight_id": "6180f025a0d896b0955d73a444199e6a48f756e4f6e9c16049f9268fc63f3e04:1",
+      "horizon_us": 500000,
+      "sampling_group": "main_50hz",
+      "sampler_seconds": 5.258433520793915e-05,
+      "read_seconds": 0.12192303407937288,
+      "move_seconds": 0.0009854682721197605,
+      "compute_seconds": 4.296824054792523,
+      "e2e_seconds": 4.419785141479224,
+      "cache": null
+    },
+    {
+      "full": 35.300907211921455,
+      "macro": 2.7169291698844162,
+      "total": 38.01783638180587,
+      "pairs": 40,
+      "gradient_norms": {
+        "full": {
+          "total": 16.57071770798841,
+          "modules": {
+            "flow.process_logit": 0.4976454578278766,
+            "flow.dynamics.slow": 0.32867536791594437,
+            "flow.dynamics.equilibrium": 0.4062701715197015,
+            "flow.dynamics.relaxation": 0.022002192690168225,
+            "flow.dynamics.coupling": 0.002662777166769887,
+            "flow.dynamics.decoder": 15.72059506760922,
+            "belief.shared": 4.279032699553823,
+            "belief.slow_head": 1.7378864709851127,
+            "belief.fast_head": 1.2675349516410015,
+            "belief.correction_head": 1.997940759725113,
+            "belief.gate_head": 0.039605263683153466
+          }
+        },
+        "macro": {
+          "total": 3.628615176836516,
+          "modules": {
+            "flow.process_logit": 0.1432517639717263,
+            "flow.dynamics.slow": 0.11104276761783904,
+            "flow.dynamics.equilibrium": 0.13635396664529656,
+            "flow.dynamics.relaxation": 0.005845738790499425,
+            "flow.dynamics.coupling": 0.0006756644460436763,
+            "flow.dynamics.decoder": 3.44213684853808,
+            "belief.shared": 0.9168096529520423,
+            "belief.slow_head": 0.3599259269657183,
+            "belief.fast_head": 0.1572982802879554,
+            "belief.correction_head": 0.5217290393529828,
+            "belief.gate_head": 0.005733048501933029
+          }
+        }
+      },
+      "pre_clip_grad_norm": 19.742349560207387,
+      "gradient_clipped": false,
+      "max_grad_norm": null,
+      "timing": {
+        "encode_seconds": 0.31194437481462955,
+        "full_forward_seconds": 0.15371509594842792,
+        "base_forward_seconds": 0.23370959796011448,
+        "loss_pair_overhead_seconds": 0.017814232502132654,
+        "gradient_diagnostic_seconds": 1.8971320656128228,
+        "backward_seconds": 1.1153495241887867,
+        "gradient_check_clip_seconds": 0.006912949029356241,
+        "optimizer_seconds": 0.0010818392038345337,
+        "update_seconds": 3.7378920228220522
+      },
+      "step": 16,
+      "window_id": "a978956f5f191a4daabd24086ef734b611060f7467063c838c8c78bc898a5a68:1:3456:h500000:f500000",
+      "flight_id": "a978956f5f191a4daabd24086ef734b611060f7467063c838c8c78bc898a5a68:1",
+      "horizon_us": 500000,
+      "sampling_group": "main_50hz",
+      "sampler_seconds": 6.313389167189598e-05,
+      "read_seconds": 0.10971923731267452,
+      "move_seconds": 0.0009382739663124084,
+      "compute_seconds": 3.8544923230074346,
+      "e2e_seconds": 3.9652129681780934,
+      "cache": null
+    }
+  ],
+  "effective_training_settings": {
+    "gradient_diagnostics_interval": 1,
+    "max_grad_norm": null,
+    "cache": "legacy current-flight only; encoder every window"
+  },
+  "data_identity": {
+    "split": "train",
+    "windows": 343108,
+    "manifest_sha256": "8afb8623bf7174e4da5b2044f644331b8b251433fed3576f6dcdab470935bcb5",
+    "index_sha256": "5a8ed2d0ecaf38520e6ddd4a0eeddb2754ffb78036c40b3fbe951a7ba05f70a3",
+    "phase_contract": {
+      "schema": "pahbd_hall_phase_v2",
+      "reference_id": "hall_zero_positive_upstroke_working_assumption",
+      "phase_source": "wing_phase.phase_rad",
+      "mechanical_assumption": "Hall=0; increasing counts; upward motion begins after zero; no pi switching label",
+      "absolute_wing_calibration": false,
+      "availability_delay_us": 20000,
+      "availability_assumption": "Encoder timestamp + 20 ms guard; assumes work queue publication latency <=20 ms. Not a measured upper bound; offline research only.",
+      "max_gap_us": 50000,
+      "max_reference_error_rad": 0.15,
+      "recovery_us": 500000,
+      "phase_variance_rad2": 0.0009,
+      "max_encoder_frequency_hz": 20.0,
+      "frozen_contract_override": "Overrides build_config.phase.wing_phase_history_allowed=false for PA-HBD only; frozen tables/splits/quality exclusions unchanged.",
+      "firmware_source": "dataset/velocity_rate_multistep_v1/firmware_sources/c9af571575af33d5403fbb479256848797c801e2/src/modules/wing_phase/WingPhase.cpp",
+      "threshold_scope": "Fixed sensor QC: 0.15 rad reference innovation, 50 ms gap, 500 ms recovery, 20 Hz count-rate sanity ceiling; not tuned by model error or absolute calibration."
+    },
+    "phase_policy": "shared_or_average"
+  }
+}

@@ -11,7 +11,7 @@ sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'src'))
 from system_identification.models.pacld import PACLD, Config
 from system_identification.data.pacld import open_windows, subset, fixed_validation_indices, move_window
 from system_identification.training.pacld import (seed_all,calibrate,calibration_positions,calibrated_weight,
-    update,fit,load_checkpoint,save_checkpoint,FlightBalancedSampler)
+    update,fit,load_checkpoint,save_checkpoint,FlightBalancedSampler,diagnostics_due)
 from system_identification.evaluation.pacld import evaluate
 
 
@@ -59,7 +59,8 @@ def main():
         from system_identification.models.pahbd import Config as SyntheticConfig
         w=move_window(controlled_periodic_window(SyntheticConfig(),.5)[0],device)
         out.mkdir(parents=True)
-        records=[update(model,w,optimizer,.1) for _ in range(args.steps)]
+        records=[update(model,w,optimizer,.1,diagnostics=diagnostics_due(i,config['training']['gradient_diagnostics_interval']),
+                        max_grad_norm=config['training']['max_grad_norm']) for i in range(args.steps)]
         (out/'smoke.json').write_text(json.dumps(dict(source='synthetic',lambda_macro=.1,
             weight_scope='engineering smoke only; native training uses frozen train calibration',records=records),indent=2))
         return
@@ -73,7 +74,7 @@ def main():
     train,validation,identity=datasets(config)
     weight=calibrated_weight(args.calibration or config['training']['calibration'],config,train)
     if args.checkpoint:
-        model,optimizer,bundle=load_checkpoint(args.checkpoint,config,identity,device,restore_rng=args.mode=='train')
+        model,optimizer,bundle=load_checkpoint(args.checkpoint,config,identity,device,restore_rng=args.mode=='train',sampler_index=train.index)
         if bundle['lambda_macro']!=weight: raise ValueError('checkpoint and calibrated weight differ')
     if args.mode=='train':
         fit(model,train,validation,optimizer,config,identity,weight,args.steps,out,bundle)
@@ -88,8 +89,10 @@ def main():
         out.mkdir(parents=True)
         sampler=FlightBalancedSampler(train.index,config['seed'])
         records=[]
-        for _ in range(args.steps):
-            records.append(update(model,move_window(train[sampler.draw()],device),optimizer,weight))
+        for i in range(args.steps):
+            records.append(update(model,move_window(train[sampler.draw()],device),optimizer,weight,
+                diagnostics=diagnostics_due(i,config['training']['gradient_diagnostics_interval']),
+                max_grad_norm=config['training']['max_grad_norm']))
         # Fixed, small smoke cohort: first member of each horizon/group in fixed validation selection.
         vi=validation.index.groupby(['horizon_us','sampling_group'],sort=True).head(1).index.tolist()
         result=evaluate(model,subset(validation,vi),config,diagnostics=True)
