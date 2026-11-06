@@ -1,0 +1,67 @@
+{
+  "schema": "pacld_v1",
+  "model": {
+    "slow_dim": 12,
+    "fast_dim": 6,
+    "width": 128,
+    "max_step": 0.005,
+    "actuator_tau": 0.06,
+    "slow_rate_limit": 10.0,
+    "envelope_bound": 2.0,
+    "lambda_min": 0.5,
+    "lambda_max": 20.0,
+    "coupling_bound": 1.0,
+    "initial_slow_bound": 2.0,
+    "replay_seconds": 0.65,
+    "variance_min": 1e-05,
+    "variance_max": 25.0,
+    "frequency_noise_psd": 0.04,
+    "phase_noise_psd": 0.01,
+    "frequency_coefficients": [
+      3.6354511983566393,
+      23.393570068972757,
+      -5.126725395181777
+    ]
+  },
+  "data": {
+    "root": "/home/zn/flap-system-identification/dataset/velocity_rate_multistep_v1",
+    "registry": "configs/data/velocity_rate_dataset_registry.yaml",
+    "history_us": 500000,
+    "horizon_us": [
+      200000,
+      500000,
+      1000000,
+      2000000
+    ],
+    "phase_policy": "shared_or_average",
+    "reference_contract": "configs/pahbd/phase_reference.json",
+    "sampling_groups": [
+      "main_50hz",
+      "sparse_10hz"
+    ]
+  },
+  "phase_contract": {
+    "schema": "pahbd_hall_phase_v2",
+    "reference_id": "hall_zero_positive_upstroke_working_assumption",
+    "phase_source": "wing_phase.phase_rad",
+    "mechanical_assumption": "Hall=0; increasing counts; upward motion begins after zero; no pi switching label",
+    "absolute_wing_calibration": false,
+    "availability_delay_us": 20000,
+    "availability_assumption": "Encoder timestamp + 20 ms guard; assumes work queue publication latency <=20 ms. Not a measured upper bound; offline research only.",
+    "max_gap_us": 50000,
+    "max_reference_error_rad": 0.15,
+    "recovery_us": 500000,
+    "phase_variance_rad2": 0.0009,
+    "max_encoder_frequency_hz": 20.0,
+    "frozen_contract_override": "PACLD explicitly inherits PA-HBD Hall observation override; frozen tables/splits/QC unchanged.",
+    "firmware_source": "dataset/velocity_rate_multistep_v1/firmware_sources/c9af571575af33d5403fbb479256848797c801e2/src/modules/wing_phase/WingPhase.cpp",
+    "threshold_scope": "Fixed sensor QC: 0.15 rad reference innovation, 50 ms gap, 500 ms recovery, 20 Hz count-rate sanity ceiling; not tuned by model error or absolute calibration."
+  },
+  "seed": 17,
+  "normalization": "fixed physical unit scales; no data fit",
+  "execution_contract": "Architecture and CPU forward/backward smoke only; no training scheduler.",
+  "modes": [
+    "BASE",
+    "FULL"
+  ]
+}

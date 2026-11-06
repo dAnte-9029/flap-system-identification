@@ -1,0 +1,130 @@
+{
+  "schema": "pacld_cpu_smoke_v1",
+  "seed": 17,
+  "config": {
+    "slow_dim": 12,
+    "fast_dim": 6,
+    "width": 128,
+    "max_step": 0.005,
+    "actuator_tau": 0.06,
+    "slow_rate_limit": 10.0,
+    "envelope_bound": 2.0,
+    "lambda_min": 0.5,
+    "lambda_max": 20.0,
+    "coupling_bound": 1.0,
+    "initial_slow_bound": 2.0,
+    "replay_seconds": 0.65,
+    "variance_min": 1e-05,
+    "variance_max": 25.0,
+    "frequency_noise_psd": 0.04,
+    "phase_noise_psd": 0.01,
+    "frequency_coefficients": [
+      3.6354511983566393,
+      23.393570068972757,
+      -5.126725395181777
+    ]
+  },
+  "code_revision": "330257f223544366549f12212812af8eb6973bb7",
+  "revision_note": "base revision before the PACLD source commit; source and this report are committed together",
+  "device": "cpu",
+  "dtype": "float64",
+  "threads": 1,
+  "torch_version": "2.7.0+cu128",
+  "dataset_load_seconds": 0.6798104010522366,
+  "optimizer_steps": 0,
+  "records": [
+    {
+      "window_id": "synthetic_periodic:0",
+      "flight_id": "synthetic_periodic",
+      "split": "train",
+      "sampling_group": "synthetic_native",
+      "segment_id": null,
+      "decision_us": null,
+      "manifest_sha256": null,
+      "history_events": 44,
+      "native_queries": 34,
+      "history_start": -0.25,
+      "horizon_s": 0.19699999999999973,
+      "phase_quality": 1.0,
+      "forward_seconds": 0.316387461964041,
+      "backward_seconds": 0.989655168261379,
+      "loss": {
+        "BASE": 0.014783754925357391,
+        "FULL": 0.014757951120805234
+      },
+      "gradient_l1": {
+        "shared": 2.814096800240784,
+        "slow_head": 0.6641495911883486,
+        "fast_head": 0.3162350014046919,
+        "slow": 0.11940171229049784,
+        "equilibrium": 0.1322874720803442,
+        "relaxation": 0.009284796623231084,
+        "coupling": 0.006334076614685591,
+        "decoder": 9.133693577887348
+      },
+      "interpretation": "untrained computation/gradient smoke; losses are not performance evidence"
+    },
+    {
+      "window_id": "4c77a3e74b4c8e26d021fd1fa2bc618a2f2f52e005eb5022ecdf680c40678bfb:1:689:h500000:f200000",
+      "flight_id": "4c77a3e74b4c8e26d021fd1fa2bc618a2f2f52e005eb5022ecdf680c40678bfb:1",
+      "split": "train",
+      "sampling_group": "main_50hz",
+      "segment_id": 0,
+      "decision_us": 120819094,
+      "manifest_sha256": "8afb8623bf7174e4da5b2044f644331b8b251433fed3576f6dcdab470935bcb5",
+      "history_events": 200,
+      "native_queries": 32,
+      "history_start": -0.502682,
+      "horizon_s": 0.20641299999999999,
+      "phase_quality": 1.0,
+      "forward_seconds": 0.514336233958602,
+      "backward_seconds": 0.7610258487984538,
+      "loss": {
+        "BASE": 44.26009626075762,
+        "FULL": 44.25707041511305
+      },
+      "gradient_l1": {
+        "shared": 1001.4636034919862,
+        "slow_head": 65.07123314484821,
+        "fast_head": 41.55718281316135,
+        "slow": 15.316024783363588,
+        "equilibrium": 19.384238823062002,
+        "relaxation": 1.156472156058955,
+        "coupling": 2.133192004089323,
+        "decoder": 1101.9065393686762
+      },
+      "interpretation": "untrained computation/gradient smoke; losses are not performance evidence"
+    },
+    {
+      "window_id": "00d803ef294b0e2907520c488d89345a9ef54f2936940828ab3e1df104d715b2:1:12:h500000:f200000",
+      "flight_id": "00d803ef294b0e2907520c488d89345a9ef54f2936940828ab3e1df104d715b2:1",
+      "split": "train",
+      "sampling_group": "sparse_10hz",
+      "segment_id": 0,
+      "decision_us": 88848846,
+      "manifest_sha256": "8afb8623bf7174e4da5b2044f644331b8b251433fed3576f6dcdab470935bcb5",
+      "history_events": 121,
+      "native_queries": 15,
+      "history_start": -0.598788,
+      "horizon_s": 0.209121,
+      "phase_quality": 1.0,
+      "forward_seconds": 0.4014904140494764,
+      "backward_seconds": 0.6379843270406127,
+      "loss": {
+        "BASE": 40.926244029772114,
+        "FULL": 40.93386804608629
+      },
+      "gradient_l1": {
+        "shared": 500.9506399256937,
+        "slow_head": 77.04278088626188,
+        "fast_head": 37.3352808104594,
+        "slow": 12.5572012798999,
+        "equilibrium": 14.700956077774839,
+        "relaxation": 1.0106874688166314,
+        "coupling": 0.27506236055582056,
+        "decoder": 1640.037189657584
+      },
+      "interpretation": "untrained computation/gradient smoke; losses are not performance evidence"
+    }
+  ]
+}
