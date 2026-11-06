@@ -58,7 +58,7 @@ def update(model,batch,optimizer,weight,max_grad_norm):
 
 
 @torch.no_grad()
-def validate(model,windows,batch_size,device,dtype):
+def validate(model,windows,batch_size,device,dtype,progress=None):
     model.eval(); rows=[]
     for _,group in windows.index.groupby('horizon_us',sort=True):
         ids=group.index.tolist()
@@ -69,6 +69,7 @@ def validate(model,windows,batch_size,device,dtype):
             batch=compile_windows(padded,model.config).to(device,dtype); r=model(batch,0.)
             for i,w in enumerate(ws):
                 rows.append(dict(w.metadata,full=float(r['full'][i]),macro=float(r['macro'][i]) if bool(r['macro_valid'][i]) else None))
+            if progress is not None: progress(len(rows),len(windows.index))
     # Identical fixed cohort and flight/horizon hierarchical FULL selection rule.
     return dict(selection_score=hierarchical(rows,'full')['score'],full=hierarchical(rows,'full'),macro=hierarchical(rows,'macro'),windows=len(rows),macro_valid_windows=sum(r['macro'] is not None for r in rows))
 

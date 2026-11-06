@@ -29,7 +29,7 @@ def main():
    r=m(batch.to('cuda:1',dt),.1);r['total'].backward();g=grad(m);x=r['predictions'].detach().double().cpu();belief={k:getattr(r['belief'],k).detach().double().cpu() for k in FIELDS}
    if precision=='fp64':gpu_reference=x;gpu_grad=g
    belief_error=max(float((belief[k][i]-ref_beliefs[i][k]).abs().max()) for k in FIELDS for i in range(len(ws)))
-   reference_error=max(float((x[i+offset,:len(batch.times[i])]-ref_paths[i][mode]).abs().max()) for i in range(len(ws)) for mode,offset in [('FULL',0),('BASE',len(ws))])
+   reference_error=max(float((x[i+offset,:len(batch.times[i])]-ref_paths[i][mode]).abs().max()) for i in range(len(ws)) for mode,offset in ([('FULL',0),('BASE',len(ws))] if x.shape[0]==2*len(ws) else [('FULL',0)]))
    qerror=float((torch.linalg.vector_norm(x[...,6:10],dim=-1)-1).abs().max());angle=float(so3.residual(gpu_reference[...,6:10],x[...,6:10]).abs().max())
    phase_error=max(float((r['phases'][i,:len(batch.times[i])].detach().double().cpu()-ref_phases[i]).abs().max()) for i in range(len(ws)))
    loss=float(r['total']);macro=r['macro'].detach().cpu().tolist();full=r['full'].detach().cpu().tolist();del r

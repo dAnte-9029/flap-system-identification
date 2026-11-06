@@ -13,9 +13,11 @@ from system_identification.training.pacld import seed_all,calibrated_weight
 from system_identification.training.pacld_gpu import BucketSampler,update,validate,checkpoint_bundle,restore,gather_rng
 
 
+from system_identification.training.pacld_monitor import Monitor, Telemetry
+
 def main():
     p=argparse.ArgumentParser(description=__doc__)
-    p.add_argument('--config',default='configs/pacld/default.json');p.add_argument('--output',required=True)
+    p.add_argument('--config',default='configs/pacld/gpu.json');p.add_argument('--output',required=True)
     p.add_argument('--steps',required=True,type=int,help='explicit total optimizer updates, including resumed updates')
     p.add_argument('--batch-size',type=int,default=8,help='global batch, divided equally between ranks')
     p.add_argument('--precision',choices=['fp64','mixed','fp32'],default='mixed')
@@ -42,6 +44,10 @@ def main():
     # process_logit influences posterior gains, not a disconnected auxiliary model.
     model=DDP(raw,device_ids=[local],find_unused_parameters=True) if world>1 else raw
     if rank==0:(out/'configuration.json').write_text(json.dumps(dict(args=vars(a),config=config,data_identity=identity,world_size=world,lambda_macro=weight,git_revision=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()),indent=2))
+    if rank==0:
+        monitor=Monitor(out/'progress.log',config['seed'],local,a.batch_size,a.steps,config['training']['validation_interval'],schedule)
+        telemetry=Telemetry(local);telemetry.sample(request=True)
+        monitor.status('INITIALIZING')
     while schedule['optimizer_steps']<a.steps:
         begin=time.perf_counter();ids=sampler.draw();local_ids=ids[rank*(a.batch_size//world):(rank+1)*(a.batch_size//world)]
         batch=compile_windows([train[i] for i in local_ids],raw.config).to(device,dtype)
@@ -49,23 +55,38 @@ def main():
         stats=update(model,batch,optimizer,weight,config['training']['max_grad_norm']);torch.cuda.synchronize()
         elapsed=time.perf_counter()-t;schedule['optimizer_steps']+=1;schedule['windows_seen']+=a.batch_size
         stats.update(optimizer_steps=schedule['optimizer_steps'],windows_seen=schedule['windows_seen'],preparation_seconds=prep,compute_seconds=elapsed,end_to_end_seconds=time.perf_counter()-begin,windows_per_second=a.batch_size/(time.perf_counter()-begin),updates_per_second=1/(time.perf_counter()-begin),peak_memory_bytes=torch.cuda.max_memory_allocated(),global_window_indices=ids)
-        stats['gpu_sample']=subprocess.check_output(['nvidia-smi','-i',str(local),'--query-gpu=utilization.gpu,memory.used','--format=csv,noheader,nounits'],text=True).strip()
+        stats['clipped']='Yes' if stats['grad_norm']>config['training']['max_grad_norm'] else 'No'
         if rank==0:
+            stats['gpu_sample']=telemetry.sample(request=schedule['optimizer_steps']%20==0)
+            monitor.observe(stats,stats['gpu_sample'])
+            if schedule['optimizer_steps']==1 or monitor.session_updates==1 or schedule['optimizer_steps']%10==0:monitor.status('TRAINING')
             with (out/'training.jsonl').open('a') as f:f.write(json.dumps(stats)+'\n')
-            print(json.dumps(stats),flush=True)
+
         if schedule['optimizer_steps']%config['training']['validation_interval']==0 or schedule['optimizer_steps']==a.steps:
             if world>1:torch.distributed.barrier()
             rank_rng=gather_rng()
             if rank==0:
-                result=validate(raw,val,a.batch_size//world,device,dtype);score=result['selection_score']
+                monitor.write(f"[VALIDATING] step={schedule['optimizer_steps']} | {len(val.index)} windows | {val.index.flight_id.nunique()} flights")
+                monitor.status('VALIDATING');vstart=time.perf_counter()
+                result=validate(raw,val,a.batch_size//world,device,dtype,progress=lambda done,total: monitor.write(f'[VALIDATING] {done:3d} / {total} windows [{100*done/total:5.1f}%]'))
+                torch.cuda.synchronize();vseconds=time.perf_counter()-vstart;score=result['selection_score']
                 if not __import__('math').isfinite(score):raise FloatingPointError('validation nonfinite')
                 name=f"step_{schedule['optimizer_steps']:08d}.pt"
-                if score<schedule['best_score']:schedule.update(best_score=score,best_checkpoint=name)
+                best=score<schedule['best_score']
+                if best:schedule.update(best_score=score,best_checkpoint=name,best_step=schedule['optimizer_steps'])
+                monitor.validation_end(schedule['optimizer_steps'],score,vseconds,best)
+                monitor.gpu=telemetry.sample(request=True)
+                schedule['last_checkpoint']=name
+                schedule['monitor']=monitor.snapshot()
                 torch.save(checkpoint_bundle(raw,optimizer,sampler,schedule,config,identity,weight,world,rank_rng),out/name)
                 (out/f"validation_{schedule['optimizer_steps']:08d}.json").write_text(json.dumps(result,indent=2))
                 (out/'best.json').write_text(json.dumps(schedule,indent=2))
+                monitor.write(f'[CHECKPOINT] saved {out/name}')
+                monitor.status('VALIDATED')
             if world>1:
                 obj=[schedule];torch.distributed.broadcast_object_list(obj,src=0);schedule=obj[0]
+    if rank==0:
+        monitor.status('FINISHED');monitor.close();telemetry.close()
     if world>1:torch.distributed.destroy_process_group()
 
 if __name__=='__main__':main()

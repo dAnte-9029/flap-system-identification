@@ -154,15 +154,17 @@ class BatchedPACLD(PACLD):
         return state
 
     def predict_batch(self,batch):
+        """Return B FULL rows, plus B shared-model BASE rows only with Macro pairs."""
         with torch.profiler.record_function("pacld/history"):
             belief=self.encode_batch(batch)
         # [FULL B, BASE B] share every parameter and their initial history graph.
-        state=belief.with_(**{k:torch.cat((getattr(belief,k),getattr(belief,k)),0) for k in FIELDS})
-        state=state.with_(phase_quality=torch.cat((belief.phase_quality,torch.zeros_like(belief.phase_quality)),0))
+        has_macro=batch.pairs['batch'].numel()>0
+        state=belief.with_(**{k:torch.cat((getattr(belief,k),getattr(belief,k)),0) for k in FIELDS}) if has_macro else belief
+        if has_macro: state=state.with_(phase_quality=torch.cat((belief.phase_quality,torch.zeros_like(belief.phase_quality)),0))
         predictions=[]; phases=[]
-        with torch.profiler.record_function("pacld/full_base_parallel"):
+        with torch.profiler.record_function("pacld/full_base_parallel" if has_macro else "pacld/full_only"):
             for dt,u in batch.future:
-                state=self.propagate_plan(state,(torch.cat((dt,dt),1),torch.cat((u,u),1)))
+                state=self.propagate_plan(state,(torch.cat((dt,dt),1),torch.cat((u,u),1)) if has_macro else (dt,u))
                 predictions.append(state.x); phases.append(state.phi)
         return belief,torch.stack(predictions,1),torch.stack(phases,1)
 

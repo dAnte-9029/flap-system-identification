@@ -66,3 +66,40 @@ def test_checkpointed_steps_preserve_gradients():
     torch.testing.assert_close(ra['total'],rb['total'],rtol=0,atol=0)
     for p,q in zip(a.parameters(),b.parameters()):
         if p.grad is not None:torch.testing.assert_close(p.grad,q.grad,rtol=0,atol=0)
+
+class LegacyBatchedPACLD(BatchedPACLD):
+    """Pre-optimization 2B propagation for paired regression only."""
+    def predict_batch(self,batch):
+        belief=self.encode_batch(batch)
+        state=belief.with_(**{k:torch.cat((getattr(belief,k),getattr(belief,k)),0) for k in FIELDS})
+        state=state.with_(phase_quality=torch.cat((belief.phase_quality,torch.zeros_like(belief.phase_quality)),0))
+        predictions=[];phases=[]
+        for dt,u in batch.future:
+            state=self.propagate_plan(state,(torch.cat((dt,dt),1),torch.cat((u,u),1)))
+            predictions.append(state.x);phases.append(state.phi)
+        return belief,torch.stack(predictions,1),torch.stack(phases,1)
+
+
+def no_macro(batch):
+    batch=copy.copy(batch);batch.pairs={k:(torch.zeros_like(v) if k=='valid_windows' else v[:0]) for k,v in batch.pairs.items()}
+    return batch
+
+
+def test_no_macro_full_loss_gradient_adam_equivalence():
+    torch.set_num_threads(1);torch.manual_seed(17);cfg=Config(width=8)
+    old=LegacyBatchedPACLD(cfg);new=BatchedPACLD(cfg);new.load_state_dict(old.state_dict())
+    batch=no_macro(compile_windows(windows(),cfg));B=len(batch.metadata)
+    opts=[torch.optim.Adam(m.parameters(),lr=.0003) for m in (old,new)]
+    a=old(batch,.1);b=new(batch,.1)
+    assert a['predictions'].shape[0]==2*B and b['predictions'].shape[0]==B
+    torch.testing.assert_close(a['predictions'][:B],b['predictions'],rtol=1e-10,atol=1e-12)
+    torch.testing.assert_close(a['total'],b['total'],rtol=1e-10,atol=1e-12)
+    torch.testing.assert_close(b['total'],b['full'].mean(),rtol=0,atol=0)
+    a['total'].backward();b['total'].backward()
+    for p,q in zip(old.parameters(),new.parameters()):
+        assert (p.grad is None)==(q.grad is None)
+        if p.grad is not None:torch.testing.assert_close(p.grad,q.grad,rtol=1e-9,atol=1e-11)
+    for m,o in zip((old,new),opts):torch.nn.utils.clip_grad_norm_(m.parameters(),10);o.step()
+    for p,q in zip(old.parameters(),new.parameters()):torch.testing.assert_close(p,q,rtol=1e-9,atol=1e-11)
+    for x,y in zip(opts[0].state.values(),opts[1].state.values()):
+        for k in x:torch.testing.assert_close(x[k],y[k],rtol=1e-9,atol=1e-11)
