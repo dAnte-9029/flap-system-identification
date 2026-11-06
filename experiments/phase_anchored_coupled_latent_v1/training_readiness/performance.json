@@ -1,0 +1,574 @@
+{
+  "hardware": {
+    "cuda_available": true,
+    "device_count": 2,
+    "cpu_threads": 1,
+    "cpu_model": "Intel(R) Core(TM) i9-14900K",
+    "cuda_requested": "cuda:0",
+    "cuda_name": "NVIDIA GeForce RTX 4090"
+  },
+  "records": [
+    {
+      "window_id": "synthetic_periodic:0",
+      "flight_id": "synthetic_periodic",
+      "horizon_us": null,
+      "sampling_group": "synthetic",
+      "actual_horizon_s": 0.49499999999999966,
+      "native_queries": 87,
+      "pairs": 23,
+      "device": "cpu",
+      "dtype": "torch.float64",
+      "forward_seconds": 0.5474890265613794,
+      "backward_seconds": 0.879627357237041,
+      "gradient_diagnostic_seconds": 1.1664743949659169,
+      "windows_per_second": 0.38556583721215626,
+      "rss_peak_mib": 1930.74609375,
+      "rss_increase_mib": 193.046875,
+      "cuda_peak_allocated_mib": null,
+      "cuda_peak_reserved_mib": null,
+      "full": 0.040741915941481126,
+      "macro": 0.0027199289779167414,
+      "gradient_norms": {
+        "full": {
+          "total": 0.36313109739510296,
+          "modules": {
+            "flow.process_logit": 0.00017732931073064257,
+            "flow.dynamics.slow": 0.012156023103264885,
+            "flow.dynamics.equilibrium": 0.00850712780802704,
+            "flow.dynamics.relaxation": 0.00036350956132546347,
+            "flow.dynamics.coupling": 0.00038378056529762025,
+            "flow.dynamics.decoder": 0.3541400542363018,
+            "belief.shared": 0.05878239668506645,
+            "belief.slow_head": 0.04874473801805551,
+            "belief.fast_head": 0.019110414862997478,
+            "belief.correction_head": 0.00564803271916948,
+            "belief.gate_head": 0.00019238742635182627
+          }
+        },
+        "macro": {
+          "total": 0.05140750327939352,
+          "modules": {
+            "flow.process_logit": 2.1913355490962723e-06,
+            "flow.dynamics.slow": 0.0034199688246535887,
+            "flow.dynamics.equilibrium": 0.0018489934363751686,
+            "flow.dynamics.relaxation": 4.3675416161526665e-05,
+            "flow.dynamics.coupling": 6.290260716671559e-05,
+            "flow.dynamics.decoder": 0.050355023073033314,
+            "belief.shared": 0.007229243299380359,
+            "belief.slow_head": 0.006278719309852693,
+            "belief.fast_head": 0.0005431992772864958,
+            "belief.correction_head": 5.149814604126548e-05,
+            "belief.gate_head": 1.4825532629298644e-05
+          }
+        }
+      }
+    },
+    {
+      "window_id": "4c77a3e74b4c8e26d021fd1fa2bc618a2f2f52e005eb5022ecdf680c40678bfb:1:689:h500000:f200000",
+      "flight_id": "4c77a3e74b4c8e26d021fd1fa2bc618a2f2f52e005eb5022ecdf680c40678bfb:1",
+      "horizon_us": 200000,
+      "sampling_group": "main_50hz",
+      "actual_horizon_s": 0.20641299999999999,
+      "native_queries": 32,
+      "pairs": 0,
+      "device": "cpu",
+      "dtype": "torch.float64",
+      "forward_seconds": 0.4299254100769758,
+      "backward_seconds": 0.7949665291234851,
+      "gradient_diagnostic_seconds": 0.8943282812833786,
+      "windows_per_second": 0.4718716772963264,
+      "rss_peak_mib": 1786.44140625,
+      "rss_increase_mib": 4.89453125,
+      "cuda_peak_allocated_mib": null,
+      "cuda_peak_reserved_mib": null,
+      "full": 43.89743002387041,
+      "macro": null,
+      "gradient_norms": {
+        "full": {
+          "total": 14.987255965698422,
+          "modules": {
+            "flow.process_logit": 1.6195416847973934,
+            "flow.dynamics.slow": 0.15303332450494966,
+            "flow.dynamics.equilibrium": 0.21458980386017604,
+            "flow.dynamics.relaxation": 0.012849768790023548,
+            "flow.dynamics.coupling": 0.022153944532747317,
+            "flow.dynamics.decoder": 11.427580997301941,
+            "belief.shared": 7.476172612632216,
+            "belief.slow_head": 1.434471664912939,
+            "belief.fast_head": 1.2573384751343633,
+            "belief.correction_head": 5.63943228016209,
+            "belief.gate_head": 0.015244396559092308
+          }
+        },
+        "macro": null
+      }
+    },
+    {
+      "window_id": "4c77a3e74b4c8e26d021fd1fa2bc618a2f2f52e005eb5022ecdf680c40678bfb:1:689:h500000:f500000",
+      "flight_id": "4c77a3e74b4c8e26d021fd1fa2bc618a2f2f52e005eb5022ecdf680c40678bfb:1",
+      "horizon_us": 500000,
+      "sampling_group": "main_50hz",
+      "actual_horizon_s": 0.5021329999999999,
+      "native_queries": 71,
+      "pairs": 41,
+      "device": "cpu",
+      "dtype": "torch.float64",
+      "forward_seconds": 0.8373621888458729,
+      "backward_seconds": 1.2736744559369981,
+      "gradient_diagnostic_seconds": 2.0536399739794433,
+      "windows_per_second": 0.24011468153250912,
+      "rss_peak_mib": 1917.625,
+      "rss_increase_mib": 135.86328125,
+      "cuda_peak_allocated_mib": null,
+      "cuda_peak_reserved_mib": null,
+      "full": 79.2267014939975,
+      "macro": 22.598547800538554,
+      "gradient_norms": {
+        "full": {
+          "total": 47.00076124536754,
+          "modules": {
+            "flow.process_logit": 2.9438952751249157,
+            "flow.dynamics.slow": 1.1195142633447457,
+            "flow.dynamics.equilibrium": 0.8051726256037417,
+            "flow.dynamics.relaxation": 0.033606909795283794,
+            "flow.dynamics.coupling": 0.0565176551773659,
+            "flow.dynamics.decoder": 42.00428431100315,
+            "belief.shared": 16.49064049846737,
+            "belief.slow_head": 6.230663511219606,
+            "belief.fast_head": 2.993019489061477,
+            "belief.correction_head": 10.696644448379988,
+            "belief.gate_head": 0.02095242881506776
+          }
+        },
+        "macro": {
+          "total": 14.582567437406677,
+          "modules": {
+            "flow.process_logit": 0.46459044510291714,
+            "flow.dynamics.slow": 0.8386755521002361,
+            "flow.dynamics.equilibrium": 0.3826606224141173,
+            "flow.dynamics.relaxation": 0.01118555496783839,
+            "flow.dynamics.coupling": 0.01985100268197943,
+            "flow.dynamics.decoder": 13.841419169464235,
+            "belief.shared": 3.5141039237431677,
+            "belief.slow_head": 2.225018381429798,
+            "belief.fast_head": 0.418699187867724,
+            "belief.correction_head": 1.589045387246216,
+            "belief.gate_head": 0.014550265255991096
+          }
+        }
+      }
+    },
+    {
+      "window_id": "4c77a3e74b4c8e26d021fd1fa2bc618a2f2f52e005eb5022ecdf680c40678bfb:1:689:h500000:f1000000",
+      "flight_id": "4c77a3e74b4c8e26d021fd1fa2bc618a2f2f52e005eb5022ecdf680c40678bfb:1",
+      "horizon_us": 1000000,
+      "sampling_group": "main_50hz",
+      "actual_horizon_s": 1.004858,
+      "native_queries": 145,
+      "pairs": 135,
+      "device": "cpu",
+      "dtype": "torch.float64",
+      "forward_seconds": 1.174050832632929,
+      "backward_seconds": 1.9923049923963845,
+      "gradient_diagnostic_seconds": 2.8032855726778507,
+      "windows_per_second": 0.16751424974774576,
+      "rss_peak_mib": 2109.73046875,
+      "rss_increase_mib": 200.3125,
+      "cuda_peak_allocated_mib": null,
+      "cuda_peak_reserved_mib": null,
+      "full": 94.96887629590631,
+      "macro": 17.0911401583441,
+      "gradient_norms": {
+        "full": {
+          "total": 88.93695805054216,
+          "modules": {
+            "flow.process_logit": 4.127148472114524,
+            "flow.dynamics.slow": 4.1842480974768375,
+            "flow.dynamics.equilibrium": 2.795968455839181,
+            "flow.dynamics.relaxation": 0.06631552100500403,
+            "flow.dynamics.coupling": 0.11573723777065731,
+            "flow.dynamics.decoder": 83.1051152398475,
+            "belief.shared": 24.30347268666026,
+            "belief.slow_head": 10.541253034930927,
+            "belief.fast_head": 4.802951823453702,
+            "belief.correction_head": 15.365333379324378,
+            "belief.gate_head": 0.08481088956534082
+          }
+        },
+        "macro": {
+          "total": 7.441982711097122,
+          "modules": {
+            "flow.process_logit": 0.22234799127384966,
+            "flow.dynamics.slow": 0.6669061380274947,
+            "flow.dynamics.equilibrium": 0.35545273945475286,
+            "flow.dynamics.relaxation": 0.004641362236172124,
+            "flow.dynamics.coupling": 0.012541533025407468,
+            "flow.dynamics.decoder": 7.029367696533317,
+            "belief.shared": 1.787422312495605,
+            "belief.slow_head": 1.1806417429565472,
+            "belief.fast_head": 0.281802746227318,
+            "belief.correction_head": 0.825893697271476,
+            "belief.gate_head": 0.007868631873615273
+          }
+        }
+      }
+    },
+    {
+      "window_id": "4c77a3e74b4c8e26d021fd1fa2bc618a2f2f52e005eb5022ecdf680c40678bfb:1:689:h500000:f2000000",
+      "flight_id": "4c77a3e74b4c8e26d021fd1fa2bc618a2f2f52e005eb5022ecdf680c40678bfb:1",
+      "horizon_us": 2000000,
+      "sampling_group": "main_50hz",
+      "actual_horizon_s": 2.000451,
+      "native_queries": 291,
+      "pairs": 317,
+      "device": "cpu",
+      "dtype": "torch.float64",
+      "forward_seconds": 2.07501217816025,
+      "backward_seconds": 3.622494897339493,
+      "gradient_diagnostic_seconds": 4.620564190205187,
+      "windows_per_second": 0.09691733796448827,
+      "rss_peak_mib": 2515.4921875,
+      "rss_increase_mib": 418.94140625,
+      "cuda_peak_allocated_mib": null,
+      "cuda_peak_reserved_mib": null,
+      "full": 152.6900258502768,
+      "macro": 12.992231517484706,
+      "gradient_norms": {
+        "full": {
+          "total": 269.7393510263525,
+          "modules": {
+            "flow.process_logit": 11.237117286210406,
+            "flow.dynamics.slow": 16.63485784183435,
+            "flow.dynamics.equilibrium": 10.421755321338164,
+            "flow.dynamics.relaxation": 0.11862191000167369,
+            "flow.dynamics.coupling": 0.2429658546548315,
+            "flow.dynamics.decoder": 256.36570795719587,
+            "belief.shared": 63.54061130076069,
+            "belief.slow_head": 27.984370474483363,
+            "belief.fast_head": 10.227783024668708,
+            "belief.correction_head": 39.98896848885036,
+            "belief.gate_head": 0.06682911118715729
+          }
+        },
+        "macro": {
+          "total": 8.13420587983787,
+          "modules": {
+            "flow.process_logit": 0.3463928532873734,
+            "flow.dynamics.slow": 1.0356617371010652,
+            "flow.dynamics.equilibrium": 0.38187259583706384,
+            "flow.dynamics.relaxation": 0.003966101382437693,
+            "flow.dynamics.coupling": 0.009180283304709127,
+            "flow.dynamics.decoder": 7.7216010107351805,
+            "belief.shared": 1.7785314678783894,
+            "belief.slow_head": 0.7580130374094637,
+            "belief.fast_head": 0.2529713089452528,
+            "belief.correction_head": 1.1840223438319697,
+            "belief.gate_head": 0.0034432726272661
+          }
+        }
+      }
+    },
+    {
+      "window_id": "00d803ef294b0e2907520c488d89345a9ef54f2936940828ab3e1df104d715b2:1:12:h500000:f200000",
+      "flight_id": "00d803ef294b0e2907520c488d89345a9ef54f2936940828ab3e1df104d715b2:1",
+      "horizon_us": 200000,
+      "sampling_group": "sparse_10hz",
+      "actual_horizon_s": 0.209121,
+      "native_queries": 15,
+      "pairs": 0,
+      "device": "cpu",
+      "dtype": "torch.float64",
+      "forward_seconds": 0.335661165881902,
+      "backward_seconds": 0.6711061899550259,
+      "gradient_diagnostic_seconds": 0.7059588907286525,
+      "windows_per_second": 0.5838644687119355,
+      "rss_peak_mib": 2491.55078125,
+      "rss_increase_mib": 1.80078125,
+      "cuda_peak_allocated_mib": null,
+      "cuda_peak_reserved_mib": null,
+      "full": 40.56116607600629,
+      "macro": null,
+      "gradient_norms": {
+        "full": {
+          "total": 18.22607722758912,
+          "modules": {
+            "flow.process_logit": 0.39161940596879097,
+            "flow.dynamics.slow": 0.13809896688799353,
+            "flow.dynamics.equilibrium": 0.17109788237951035,
+            "flow.dynamics.relaxation": 0.010926157862923438,
+            "flow.dynamics.coupling": 0.002846164741551922,
+            "flow.dynamics.decoder": 17.707152154681417,
+            "belief.shared": 3.2756444983600743,
+            "belief.slow_head": 1.663479466580962,
+            "belief.fast_head": 1.2020747570275747,
+            "belief.correction_head": 1.8715565468923123,
+            "belief.gate_head": 0.009807202014406062
+          }
+        },
+        "macro": null
+      }
+    },
+    {
+      "window_id": "00d803ef294b0e2907520c488d89345a9ef54f2936940828ab3e1df104d715b2:1:12:h500000:f500000",
+      "flight_id": "00d803ef294b0e2907520c488d89345a9ef54f2936940828ab3e1df104d715b2:1",
+      "horizon_us": 500000,
+      "sampling_group": "sparse_10hz",
+      "actual_horizon_s": 0.498529,
+      "native_queries": 35,
+      "pairs": 22,
+      "device": "cpu",
+      "dtype": "torch.float64",
+      "forward_seconds": 0.5930430120788515,
+      "backward_seconds": 1.1250178711488843,
+      "gradient_diagnostic_seconds": 1.8329097153618932,
+      "windows_per_second": 0.28161314554313094,
+      "rss_peak_mib": 2495.2109375,
+      "rss_increase_mib": 4.92578125,
+      "cuda_peak_allocated_mib": null,
+      "cuda_peak_reserved_mib": null,
+      "full": 49.78168936083813,
+      "macro": 4.276676696008488,
+      "gradient_norms": {
+        "full": {
+          "total": 34.20256080802308,
+          "modules": {
+            "flow.process_logit": 0.618100896060835,
+            "flow.dynamics.slow": 0.5547812104546337,
+            "flow.dynamics.equilibrium": 0.48497600583708933,
+            "flow.dynamics.relaxation": 0.01438407418405862,
+            "flow.dynamics.coupling": 0.003594507963204645,
+            "flow.dynamics.decoder": 33.35178212068379,
+            "belief.shared": 5.717636619151167,
+            "belief.slow_head": 3.094954134865096,
+            "belief.fast_head": 1.7769360724736099,
+            "belief.correction_head": 3.334765263057579,
+            "belief.gate_head": 0.016491589460201166
+          }
+        },
+        "macro": {
+          "total": 2.764529762511089,
+          "modules": {
+            "flow.process_logit": 0.030643321911102264,
+            "flow.dynamics.slow": 0.08309089446439147,
+            "flow.dynamics.equilibrium": 0.055154905221758234,
+            "flow.dynamics.relaxation": 0.002451907070242727,
+            "flow.dynamics.coupling": 0.0006857460445906883,
+            "flow.dynamics.decoder": 2.679931768344249,
+            "belief.shared": 0.5105402706649792,
+            "belief.slow_head": 0.324712716693409,
+            "belief.fast_head": 0.11563806312104627,
+            "belief.correction_head": 0.2650160008021006,
+            "belief.gate_head": 0.001873650365800854
+          }
+        }
+      }
+    },
+    {
+      "window_id": "4c77a3e74b4c8e26d021fd1fa2bc618a2f2f52e005eb5022ecdf680c40678bfb:1:689:h500000:f200000",
+      "flight_id": "4c77a3e74b4c8e26d021fd1fa2bc618a2f2f52e005eb5022ecdf680c40678bfb:1",
+      "horizon_us": 200000,
+      "sampling_group": "main_50hz",
+      "actual_horizon_s": 0.20641299999999999,
+      "native_queries": 32,
+      "pairs": 0,
+      "device": "cuda:0",
+      "dtype": "torch.float64",
+      "forward_seconds": 0.8708935170434415,
+      "backward_seconds": 1.596041820012033,
+      "gradient_diagnostic_seconds": 1.6054274789057672,
+      "windows_per_second": 0.24555768854400556,
+      "rss_peak_mib": 2965.0078125,
+      "rss_increase_mib": 0.0,
+      "cuda_peak_allocated_mib": 50.32666015625,
+      "cuda_peak_reserved_mib": 62.0,
+      "full": 43.89743002387041,
+      "macro": null,
+      "gradient_norms": {
+        "full": {
+          "total": 14.987255965698417,
+          "modules": {
+            "flow.process_logit": 1.6195416847973927,
+            "flow.dynamics.slow": 0.15303332450494964,
+            "flow.dynamics.equilibrium": 0.21458980386017604,
+            "flow.dynamics.relaxation": 0.012849768790023542,
+            "flow.dynamics.coupling": 0.022153944532747317,
+            "flow.dynamics.decoder": 11.427580997301941,
+            "belief.shared": 7.476172612632213,
+            "belief.slow_head": 1.434471664912939,
+            "belief.fast_head": 1.257338475134363,
+            "belief.correction_head": 5.6394322801620875,
+            "belief.gate_head": 0.015244396559092318
+          }
+        },
+        "macro": null
+      }
+    },
+    {
+      "window_id": "4c77a3e74b4c8e26d021fd1fa2bc618a2f2f52e005eb5022ecdf680c40678bfb:1:689:h500000:f500000",
+      "flight_id": "4c77a3e74b4c8e26d021fd1fa2bc618a2f2f52e005eb5022ecdf680c40678bfb:1",
+      "horizon_us": 500000,
+      "sampling_group": "main_50hz",
+      "actual_horizon_s": 0.5021329999999999,
+      "native_queries": 71,
+      "pairs": 41,
+      "device": "cuda:0",
+      "dtype": "torch.float64",
+      "forward_seconds": 1.5276598278433084,
+      "backward_seconds": 2.6258011860772967,
+      "gradient_diagnostic_seconds": 3.9515060847625136,
+      "windows_per_second": 0.12338113009274009,
+      "rss_peak_mib": 3095.4609375,
+      "rss_increase_mib": 130.453125,
+      "cuda_peak_allocated_mib": 73.04833984375,
+      "cuda_peak_reserved_mib": 78.0,
+      "full": 79.2267014939975,
+      "macro": 22.598547800538554,
+      "gradient_norms": {
+        "full": {
+          "total": 47.00076124536754,
+          "modules": {
+            "flow.process_logit": 2.9438952751249152,
+            "flow.dynamics.slow": 1.1195142633447457,
+            "flow.dynamics.equilibrium": 0.8051726256037416,
+            "flow.dynamics.relaxation": 0.03360690979528377,
+            "flow.dynamics.coupling": 0.0565176551773659,
+            "flow.dynamics.decoder": 42.00428431100314,
+            "belief.shared": 16.49064049846737,
+            "belief.slow_head": 6.230663511219606,
+            "belief.fast_head": 2.9930194890614774,
+            "belief.correction_head": 10.69664444837999,
+            "belief.gate_head": 0.020952428815067783
+          }
+        },
+        "macro": {
+          "total": 14.582567437406677,
+          "modules": {
+            "flow.process_logit": 0.46459044510291675,
+            "flow.dynamics.slow": 0.8386755521002361,
+            "flow.dynamics.equilibrium": 0.38266062241411736,
+            "flow.dynamics.relaxation": 0.011185554967838384,
+            "flow.dynamics.coupling": 0.019851002681979434,
+            "flow.dynamics.decoder": 13.841419169464235,
+            "belief.shared": 3.5141039237431673,
+            "belief.slow_head": 2.2250183814297975,
+            "belief.fast_head": 0.418699187867724,
+            "belief.correction_head": 1.5890453872462154,
+            "belief.gate_head": 0.014550265255991146
+          }
+        }
+      }
+    },
+    {
+      "window_id": "4c77a3e74b4c8e26d021fd1fa2bc618a2f2f52e005eb5022ecdf680c40678bfb:1:689:h500000:f1000000",
+      "flight_id": "4c77a3e74b4c8e26d021fd1fa2bc618a2f2f52e005eb5022ecdf680c40678bfb:1",
+      "horizon_us": 1000000,
+      "sampling_group": "main_50hz",
+      "actual_horizon_s": 1.004858,
+      "native_queries": 145,
+      "pairs": 135,
+      "device": "cuda:0",
+      "dtype": "torch.float64",
+      "forward_seconds": 2.2980228099040687,
+      "backward_seconds": 4.2784302700310946,
+      "gradient_diagnostic_seconds": 5.314057592302561,
+      "windows_per_second": 0.08410067721774357,
+      "rss_peak_mib": 3291.9609375,
+      "rss_increase_mib": 199.28515625,
+      "cuda_peak_allocated_mib": 100.693359375,
+      "cuda_peak_reserved_mib": 106.0,
+      "full": 94.96887629590633,
+      "macro": 17.091140158344096,
+      "gradient_norms": {
+        "full": {
+          "total": 88.93695805054217,
+          "modules": {
+            "flow.process_logit": 4.127148472114524,
+            "flow.dynamics.slow": 4.184248097476838,
+            "flow.dynamics.equilibrium": 2.795968455839181,
+            "flow.dynamics.relaxation": 0.066315521005004,
+            "flow.dynamics.coupling": 0.11573723777065734,
+            "flow.dynamics.decoder": 83.1051152398475,
+            "belief.shared": 24.303472686660257,
+            "belief.slow_head": 10.541253034930927,
+            "belief.fast_head": 4.802951823453702,
+            "belief.correction_head": 15.365333379324376,
+            "belief.gate_head": 0.08481088956534082
+          }
+        },
+        "macro": {
+          "total": 7.441982711097125,
+          "modules": {
+            "flow.process_logit": 0.2223479912738497,
+            "flow.dynamics.slow": 0.6669061380274948,
+            "flow.dynamics.equilibrium": 0.35545273945475286,
+            "flow.dynamics.relaxation": 0.004641362236172123,
+            "flow.dynamics.coupling": 0.012541533025407468,
+            "flow.dynamics.decoder": 7.029367696533319,
+            "belief.shared": 1.787422312495605,
+            "belief.slow_head": 1.1806417429565472,
+            "belief.fast_head": 0.28180274622731805,
+            "belief.correction_head": 0.8258936972714763,
+            "belief.gate_head": 0.00786863187361536
+          }
+        }
+      }
+    },
+    {
+      "window_id": "4c77a3e74b4c8e26d021fd1fa2bc618a2f2f52e005eb5022ecdf680c40678bfb:1:689:h500000:f2000000",
+      "flight_id": "4c77a3e74b4c8e26d021fd1fa2bc618a2f2f52e005eb5022ecdf680c40678bfb:1",
+      "horizon_us": 2000000,
+      "sampling_group": "main_50hz",
+      "actual_horizon_s": 2.000451,
+      "native_queries": 291,
+      "pairs": 317,
+      "device": "cuda:0",
+      "dtype": "torch.float64",
+      "forward_seconds": 3.949131766334176,
+      "backward_seconds": 6.746229361742735,
+      "gradient_diagnostic_seconds": 8.08499752311036,
+      "windows_per_second": 0.05324711942797648,
+      "rss_peak_mib": 3693.046875,
+      "rss_increase_mib": 407.85546875,
+      "cuda_peak_allocated_mib": 156.42236328125,
+      "cuda_peak_reserved_mib": 162.0,
+      "full": 152.69002585027675,
+      "macro": 12.992231517484706,
+      "gradient_norms": {
+        "full": {
+          "total": 269.7393510263525,
+          "modules": {
+            "flow.process_logit": 11.237117286210404,
+            "flow.dynamics.slow": 16.63485784183435,
+            "flow.dynamics.equilibrium": 10.421755321338162,
+            "flow.dynamics.relaxation": 0.11862191000167363,
+            "flow.dynamics.coupling": 0.24296585465483156,
+            "flow.dynamics.decoder": 256.3657079571959,
+            "belief.shared": 63.540611300760695,
+            "belief.slow_head": 27.98437047448337,
+            "belief.fast_head": 10.227783024668708,
+            "belief.correction_head": 39.98896848885036,
+            "belief.gate_head": 0.06682911118715716
+          }
+        },
+        "macro": {
+          "total": 8.134205879837868,
+          "modules": {
+            "flow.process_logit": 0.34639285328737296,
+            "flow.dynamics.slow": 1.0356617371010648,
+            "flow.dynamics.equilibrium": 0.3818725958370637,
+            "flow.dynamics.relaxation": 0.0039661013824376905,
+            "flow.dynamics.coupling": 0.009180283304709127,
+            "flow.dynamics.decoder": 7.72160101073518,
+            "belief.shared": 1.7785314678783877,
+            "belief.slow_head": 0.7580130374094635,
+            "belief.fast_head": 0.25297130894525277,
+            "belief.correction_head": 1.1840223438319681,
+            "belief.gate_head": 0.0034432726272661026
+          }
+        }
+      }
+    }
+  ],
+  "timing_scope": "materialized window; forward + separate gradient norms + total backward; no optimizer in timing rows",
+  "rss_scope": "sampled process RSS incl loaded dataset, not allocator-only; single-process peaks may retain prior allocations"
+}

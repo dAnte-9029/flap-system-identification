@@ -1,0 +1,146 @@
+[
+  {
+    "window_id": "01a4a8c5def815f65ead5b70f05854cb388e6874bbc49344ecf0bccdfb5ace2b:1:53:h500000:f200000",
+    "counts": {
+      "vehicle_local_position": 0,
+      "vehicle_attitude": 0,
+      "vehicle_angular_velocity": 0
+    },
+    "split": "train"
+  },
+  {
+    "window_id": "00d803ef294b0e2907520c488d89345a9ef54f2936940828ab3e1df104d715b2:1:12:h500000:f200000",
+    "counts": {
+      "vehicle_local_position": 0,
+      "vehicle_attitude": 0,
+      "vehicle_angular_velocity": 0
+    },
+    "split": "train"
+  },
+  {
+    "window_id": "01a4a8c5def815f65ead5b70f05854cb388e6874bbc49344ecf0bccdfb5ace2b:1:53:h500000:f500000",
+    "counts": {
+      "vehicle_local_position": 13,
+      "vehicle_attitude": 13,
+      "vehicle_angular_velocity": 23
+    },
+    "split": "train"
+  },
+  {
+    "window_id": "00d803ef294b0e2907520c488d89345a9ef54f2936940828ab3e1df104d715b2:1:12:h500000:f500000",
+    "counts": {
+      "vehicle_local_position": 2,
+      "vehicle_attitude": 6,
+      "vehicle_angular_velocity": 14
+    },
+    "split": "train"
+  },
+  {
+    "window_id": "01a4a8c5def815f65ead5b70f05854cb388e6874bbc49344ecf0bccdfb5ace2b:1:53:h500000:f1000000",
+    "counts": {
+      "vehicle_local_position": 38,
+      "vehicle_attitude": 37,
+      "vehicle_angular_velocity": 71
+    },
+    "split": "train"
+  },
+  {
+    "window_id": "00d803ef294b0e2907520c488d89345a9ef54f2936940828ab3e1df104d715b2:1:12:h500000:f1000000",
+    "counts": {
+      "vehicle_local_position": 7,
+      "vehicle_attitude": 12,
+      "vehicle_angular_velocity": 38
+    },
+    "split": "train"
+  },
+  {
+    "window_id": "01a4a8c5def815f65ead5b70f05854cb388e6874bbc49344ecf0bccdfb5ace2b:1:53:h500000:f2000000",
+    "counts": {
+      "vehicle_local_position": 88,
+      "vehicle_attitude": 87,
+      "vehicle_angular_velocity": 169
+    },
+    "split": "train"
+  },
+  {
+    "window_id": "00d803ef294b0e2907520c488d89345a9ef54f2936940828ab3e1df104d715b2:1:12:h500000:f2000000",
+    "counts": {
+      "vehicle_local_position": 18,
+      "vehicle_attitude": 29,
+      "vehicle_angular_velocity": 84
+    },
+    "split": "train"
+  },
+  {
+    "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:53:h500000:f200000",
+    "counts": {
+      "vehicle_local_position": 0,
+      "vehicle_attitude": 0,
+      "vehicle_angular_velocity": 0
+    },
+    "split": "validation"
+  },
+  {
+    "window_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:26:h500000:f200000",
+    "counts": {
+      "vehicle_local_position": 0,
+      "vehicle_attitude": 0,
+      "vehicle_angular_velocity": 0
+    },
+    "split": "validation"
+  },
+  {
+    "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:53:h500000:f500000",
+    "counts": {
+      "vehicle_local_position": 10,
+      "vehicle_attitude": 12,
+      "vehicle_angular_velocity": 24
+    },
+    "split": "validation"
+  },
+  {
+    "window_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:200:h500000:f500000",
+    "counts": {
+      "vehicle_local_position": 1,
+      "vehicle_attitude": 4,
+      "vehicle_angular_velocity": 9
+    },
+    "split": "validation"
+  },
+  {
+    "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:53:h500000:f1000000",
+    "counts": {
+      "vehicle_local_position": 34,
+      "vehicle_attitude": 36,
+      "vehicle_angular_velocity": 67
+    },
+    "split": "validation"
+  },
+  {
+    "window_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:259:h500000:f1000000",
+    "counts": {
+      "vehicle_local_position": 6,
+      "vehicle_attitude": 13,
+      "vehicle_angular_velocity": 36
+    },
+    "split": "validation"
+  },
+  {
+    "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:53:h500000:f2000000",
+    "counts": {
+      "vehicle_local_position": 80,
+      "vehicle_attitude": 83,
+      "vehicle_angular_velocity": 159
+    },
+    "split": "validation"
+  },
+  {
+    "window_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:735:h500000:f2000000",
+    "counts": {
+      "vehicle_local_position": 17,
+      "vehicle_attitude": 33,
+      "vehicle_angular_velocity": 82
+    },
+    "split": "validation"
+  }
+]

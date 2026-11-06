@@ -1,0 +1,3582 @@
+{
+  "selection_metric": "FULL state loss: windows mean within flight/horizon, horizons equal within flight, flights equal",
+  "selection_score": 75.47963166004952,
+  "loss_reduction": {
+    "full": {
+      "score": 75.47963166004952,
+      "per_flight": {
+        "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1": 64.9605680440554,
+        "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1": 85.99869527604363
+      },
+      "per_flight_horizon": [
+        {
+          "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+          "horizon_us": 200000,
+          "value": 27.553616167839216,
+          "windows": 1
+        },
+        {
+          "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+          "horizon_us": 500000,
+          "value": 35.42882863453807,
+          "windows": 1
+        },
+        {
+          "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+          "horizon_us": 1000000,
+          "value": 38.27381065388029,
+          "windows": 1
+        },
+        {
+          "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+          "horizon_us": 2000000,
+          "value": 158.58601671996405,
+          "windows": 1
+        },
+        {
+          "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+          "horizon_us": 200000,
+          "value": 51.685299946788845,
+          "windows": 1
+        },
+        {
+          "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+          "horizon_us": 500000,
+          "value": 59.692416810554015,
+          "windows": 1
+        },
+        {
+          "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+          "horizon_us": 1000000,
+          "value": 62.338451843220454,
+          "windows": 1
+        },
+        {
+          "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+          "horizon_us": 2000000,
+          "value": 170.27861250361119,
+          "windows": 1
+        }
+      ]
+    },
+    "macro": {
+      "score": 12.111174573540739,
+      "per_flight": {
+        "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1": 16.85169258444321,
+        "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1": 7.370656562638266
+      },
+      "per_flight_horizon": [
+        {
+          "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+          "horizon_us": 500000,
+          "value": 3.921239818603356,
+          "windows": 1
+        },
+        {
+          "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+          "horizon_us": 1000000,
+          "value": 7.294213624862043,
+          "windows": 1
+        },
+        {
+          "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+          "horizon_us": 2000000,
+          "value": 39.339624309864234,
+          "windows": 1
+        },
+        {
+          "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+          "horizon_us": 500000,
+          "value": 6.149989865044085,
+          "windows": 1
+        },
+        {
+          "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+          "horizon_us": 1000000,
+          "value": 8.286079096691237,
+          "windows": 1
+        },
+        {
+          "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+          "horizon_us": 2000000,
+          "value": 7.675900726179473,
+          "windows": 1
+        }
+      ]
+    },
+    "full_macro": {
+      "score": 12.106322953341758,
+      "per_flight": {
+        "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1": 16.841603042079917,
+        "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1": 7.3710428646035995
+      },
+      "per_flight_horizon": [
+        {
+          "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+          "horizon_us": 500000,
+          "value": 3.9201423703783718,
+          "windows": 1
+        },
+        {
+          "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+          "horizon_us": 1000000,
+          "value": 7.292722576394837,
+          "windows": 1
+        },
+        {
+          "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+          "horizon_us": 2000000,
+          "value": 39.31194417946654,
+          "windows": 1
+        },
+        {
+          "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+          "horizon_us": 500000,
+          "value": 6.146485646271493,
+          "windows": 1
+        },
+        {
+          "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+          "horizon_us": 1000000,
+          "value": 8.285716640795352,
+          "windows": 1
+        },
+        {
+          "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+          "horizon_us": 2000000,
+          "value": 7.680926306743952,
+          "windows": 1
+        }
+      ]
+    }
+  },
+  "windows": [
+    {
+      "window_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:1255:h500000:f200000",
+      "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+      "horizon_us": 200000,
+      "sampling_group": "sparse_10hz",
+      "full": 27.553616167839216,
+      "macro": null,
+      "full_macro": null,
+      "pairs": 0,
+      "proposed_pairs": 0,
+      "rejected_pairs": 0,
+      "latent": {
+        "slow_std": [
+          0.04136487062693666,
+          0.06142590838218007,
+          0.0361190034467333,
+          0.06420074047877525,
+          0.07886930689187162,
+          0.024179227907846018,
+          0.030456762015553352,
+          0.0265426679729688,
+          0.03387769846144875,
+          0.02308911274642692,
+          0.0712594920797914,
+          0.051546217853947404
+        ],
+        "envelope_std": [
+          0.21468480508525634,
+          0.00408779082175959,
+          0.09112604699713013,
+          0.11515523065934787,
+          0.04001020935486961,
+          0.13209407780022628
+        ],
+        "modes": [
+          {
+            "harmonic": 1,
+            "envelope_amplitude_rms": 0.44160864369768493,
+            "envelope_phase_slope_vs_phi": -0.03878087216035855,
+            "exact_counter_rotation_slope": -1,
+            "angle_valid_samples": 15
+          },
+          {
+            "harmonic": 2,
+            "envelope_amplitude_rms": 0.34043174788720376,
+            "envelope_phase_slope_vs_phi": 0.12632019922315227,
+            "exact_counter_rotation_slope": -2,
+            "angle_valid_samples": 15
+          },
+          {
+            "harmonic": 3,
+            "envelope_amplitude_rms": 0.30597695421971693,
+            "envelope_phase_slope_vs_phi": 0.2324109629466867,
+            "exact_counter_rotation_slope": -3,
+            "angle_valid_samples": 15
+          }
+        ],
+        "explicit_acceleration_rms": [
+          0.0067180659133132805,
+          0.004994675032009596,
+          0.002773588689862868
+        ],
+        "explicit_angular_acceleration_rms": [
+          0.0021336272428915956,
+          0.00572687028783693,
+          0.004147603526821888
+        ],
+        "interpretation": "descriptive branch activity/counter-rotation probes; no physical latent truth or collapse verdict"
+      }
+    },
+    {
+      "window_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:748:h500000:f500000",
+      "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+      "horizon_us": 500000,
+      "sampling_group": "sparse_10hz",
+      "full": 35.42882863453807,
+      "macro": 3.921239818603356,
+      "full_macro": 3.9201423703783718,
+      "pairs": 16,
+      "proposed_pairs": 16,
+      "rejected_pairs": 0,
+      "latent": {
+        "slow_std": [
+          0.08609184145528677,
+          0.1806426788204815,
+          0.05866062230977116,
+          0.167716826183338,
+          0.18612091478176726,
+          0.04594759330731876,
+          0.0666619371563961,
+          0.06239263659742561,
+          0.11615061534616453,
+          0.048633157441746885,
+          0.1843557099998522,
+          0.13820925311541316
+        ],
+        "envelope_std": [
+          0.21628516135709053,
+          0.0023502540453023825,
+          0.10143794551739832,
+          0.11750848509140269,
+          0.04241544005386849,
+          0.14830445990919053
+        ],
+        "modes": [
+          {
+            "harmonic": 1,
+            "envelope_amplitude_rms": 0.32164657628987947,
+            "envelope_phase_slope_vs_phi": 0.019614123649108618,
+            "exact_counter_rotation_slope": -1,
+            "angle_valid_samples": 35
+          },
+          {
+            "harmonic": 2,
+            "envelope_amplitude_rms": 0.23022829162436462,
+            "envelope_phase_slope_vs_phi": 0.07225115372339755,
+            "exact_counter_rotation_slope": -2,
+            "angle_valid_samples": 35
+          },
+          {
+            "harmonic": 3,
+            "envelope_amplitude_rms": 0.2365892969346078,
+            "envelope_phase_slope_vs_phi": 0.12680120356056263,
+            "exact_counter_rotation_slope": -3,
+            "angle_valid_samples": 35
+          }
+        ],
+        "explicit_acceleration_rms": [
+          0.0072674892000281635,
+          0.0052996608372003476,
+          0.003046400265283815
+        ],
+        "explicit_angular_acceleration_rms": [
+          0.0031897832379335026,
+          0.001910744849990707,
+          0.0032516860919792057
+        ],
+        "interpretation": "descriptive branch activity/counter-rotation probes; no physical latent truth or collapse verdict"
+      }
+    },
+    {
+      "window_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:424:h500000:f1000000",
+      "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+      "horizon_us": 1000000,
+      "sampling_group": "sparse_10hz",
+      "full": 38.27381065388029,
+      "macro": 7.294213624862043,
+      "full_macro": 7.292722576394837,
+      "pairs": 53,
+      "proposed_pairs": 53,
+      "rejected_pairs": 0,
+      "latent": {
+        "slow_std": [
+          0.19994495034044538,
+          0.3172448550713442,
+          0.12063087792957936,
+          0.3290800797994238,
+          0.3293586255330479,
+          0.04060663279509238,
+          0.14306313600837067,
+          0.11276504399726797,
+          0.19530896920309276,
+          0.08061138967760437,
+          0.37810797913237293,
+          0.2700469658808973
+        ],
+        "envelope_std": [
+          0.16509296523571604,
+          0.009168987923503999,
+          0.08482886975949457,
+          0.08107689895540544,
+          0.026186585318150112,
+          0.1195996538177203
+        ],
+        "modes": [
+          {
+            "harmonic": 1,
+            "envelope_amplitude_rms": 0.21537671071022058,
+            "envelope_phase_slope_vs_phi": 0.014134201797334904,
+            "exact_counter_rotation_slope": -1,
+            "angle_valid_samples": 71
+          },
+          {
+            "harmonic": 2,
+            "envelope_amplitude_rms": 0.16946658821514277,
+            "envelope_phase_slope_vs_phi": -0.01533416447477748,
+            "exact_counter_rotation_slope": -2,
+            "angle_valid_samples": 71
+          },
+          {
+            "harmonic": 3,
+            "envelope_amplitude_rms": 0.19121811425963803,
+            "envelope_phase_slope_vs_phi": 0.06344289762841603,
+            "exact_counter_rotation_slope": -3,
+            "angle_valid_samples": 71
+          }
+        ],
+        "explicit_acceleration_rms": [
+          0.004086921061760718,
+          0.004396637983583016,
+          0.0023301469451961765
+        ],
+        "explicit_angular_acceleration_rms": [
+          0.001969541379225303,
+          0.0026931023306851773,
+          0.004164921032181839
+        ],
+        "interpretation": "descriptive branch activity/counter-rotation probes; no physical latent truth or collapse verdict"
+      }
+    },
+    {
+      "window_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:1156:h500000:f2000000",
+      "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+      "horizon_us": 2000000,
+      "sampling_group": "sparse_10hz",
+      "full": 158.58601671996405,
+      "macro": 39.339624309864234,
+      "full_macro": 39.31194417946654,
+      "pairs": 118,
+      "proposed_pairs": 118,
+      "rejected_pairs": 0,
+      "latent": {
+        "slow_std": [
+          0.4411900100491387,
+          0.6295398229118979,
+          0.19202430282374133,
+          0.6408687201413051,
+          0.5948174061729037,
+          0.24392237983678755,
+          0.25919512921087334,
+          0.11708569309784427,
+          0.31274022902492093,
+          0.12095301670199851,
+          0.7962598333727405,
+          0.535433500095449
+        ],
+        "envelope_std": [
+          0.13338215325165328,
+          0.033734865012333685,
+          0.11138338439348765,
+          0.073105113285135,
+          0.028507144834886637,
+          0.10401291402761181
+        ],
+        "modes": [
+          {
+            "harmonic": 1,
+            "envelope_amplitude_rms": 0.16857287339384883,
+            "envelope_phase_slope_vs_phi": 0.04633574693533996,
+            "exact_counter_rotation_slope": -1,
+            "angle_valid_samples": 141
+          },
+          {
+            "harmonic": 2,
+            "envelope_amplitude_rms": 0.15691571022020748,
+            "envelope_phase_slope_vs_phi": -0.08772293260897737,
+            "exact_counter_rotation_slope": -2,
+            "angle_valid_samples": 141
+          },
+          {
+            "harmonic": 3,
+            "envelope_amplitude_rms": 0.1949917847642248,
+            "envelope_phase_slope_vs_phi": 0.03371840661099318,
+            "exact_counter_rotation_slope": -3,
+            "angle_valid_samples": 141
+          }
+        ],
+        "explicit_acceleration_rms": [
+          0.003562039866606594,
+          0.0038472811742187845,
+          0.0025139745216757915
+        ],
+        "explicit_angular_acceleration_rms": [
+          0.001405951456524192,
+          0.00230489272692102,
+          0.004111721054834786
+        ],
+        "interpretation": "descriptive branch activity/counter-rotation probes; no physical latent truth or collapse verdict"
+      }
+    },
+    {
+      "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:2866:h500000:f200000",
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "horizon_us": 200000,
+      "sampling_group": "main_50hz",
+      "full": 51.685299946788845,
+      "macro": null,
+      "full_macro": null,
+      "pairs": 0,
+      "proposed_pairs": 0,
+      "rejected_pairs": 0,
+      "latent": {
+        "slow_std": [
+          0.04354926656883031,
+          0.06592207209485336,
+          0.02559091029157326,
+          0.0677358973870414,
+          0.08126416021791545,
+          0.025139121571177456,
+          0.023364442501017876,
+          0.025479846225084788,
+          0.045431681220029226,
+          0.01849901229201451,
+          0.073853867070623,
+          0.05567547954028061
+        ],
+        "envelope_std": [
+          0.2357700195345359,
+          0.002995232655222757,
+          0.11039871470987939,
+          0.14154867137674704,
+          0.08913502727376788,
+          0.1355891811087587
+        ],
+        "modes": [
+          {
+            "harmonic": 1,
+            "envelope_amplitude_rms": 0.5241907498976497,
+            "envelope_phase_slope_vs_phi": -0.0069680851824861535,
+            "exact_counter_rotation_slope": -1,
+            "angle_valid_samples": 24
+          },
+          {
+            "harmonic": 2,
+            "envelope_amplitude_rms": 0.39626808359685634,
+            "envelope_phase_slope_vs_phi": 0.06830096848007984,
+            "exact_counter_rotation_slope": -2,
+            "angle_valid_samples": 24
+          },
+          {
+            "harmonic": 3,
+            "envelope_amplitude_rms": 0.4146989514089435,
+            "envelope_phase_slope_vs_phi": 0.09598789424825187,
+            "exact_counter_rotation_slope": -3,
+            "angle_valid_samples": 24
+          }
+        ],
+        "explicit_acceleration_rms": [
+          0.009106565460294527,
+          0.010020159784834927,
+          0.0061722948685349905
+        ],
+        "explicit_angular_acceleration_rms": [
+          0.004203732706909125,
+          0.005282697993892767,
+          0.009106739954786619
+        ],
+        "interpretation": "descriptive branch activity/counter-rotation probes; no physical latent truth or collapse verdict"
+      }
+    },
+    {
+      "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:6675:h500000:f500000",
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "horizon_us": 500000,
+      "sampling_group": "main_50hz",
+      "full": 59.692416810554015,
+      "macro": 6.149989865044085,
+      "full_macro": 6.146485646271493,
+      "pairs": 33,
+      "proposed_pairs": 33,
+      "rejected_pairs": 0,
+      "latent": {
+        "slow_std": [
+          0.11555791811493173,
+          0.16531890670286448,
+          0.06843334186736848,
+          0.17099575994568628,
+          0.19061240370790355,
+          0.047768672269279264,
+          0.07011420236937285,
+          0.06357458292270604,
+          0.10127485633040967,
+          0.04746437294705977,
+          0.20036108174259296,
+          0.14466578789798928
+        ],
+        "envelope_std": [
+          0.265568919901122,
+          0.009642474167033049,
+          0.11823222359286205,
+          0.15343064036500126,
+          0.10939850869290134,
+          0.1639047269665007
+        ],
+        "modes": [
+          {
+            "harmonic": 1,
+            "envelope_amplitude_rms": 0.37168964899809126,
+            "envelope_phase_slope_vs_phi": -0.04320310320420958,
+            "exact_counter_rotation_slope": -1,
+            "angle_valid_samples": 73
+          },
+          {
+            "harmonic": 2,
+            "envelope_amplitude_rms": 0.29709120930096905,
+            "envelope_phase_slope_vs_phi": 0.0612594632755939,
+            "exact_counter_rotation_slope": -2,
+            "angle_valid_samples": 73
+          },
+          {
+            "harmonic": 3,
+            "envelope_amplitude_rms": 0.3235629602354053,
+            "envelope_phase_slope_vs_phi": 0.12002478033761642,
+            "exact_counter_rotation_slope": -3,
+            "angle_valid_samples": 73
+          }
+        ],
+        "explicit_acceleration_rms": [
+          0.008590689715012137,
+          0.004928877303687961,
+          0.003483227138894976
+        ],
+        "explicit_angular_acceleration_rms": [
+          0.003416891811913324,
+          0.0029242676679653444,
+          0.0049574861426878725
+        ],
+        "interpretation": "descriptive branch activity/counter-rotation probes; no physical latent truth or collapse verdict"
+      }
+    },
+    {
+      "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:3469:h500000:f1000000",
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "horizon_us": 1000000,
+      "sampling_group": "main_50hz",
+      "full": 62.338451843220454,
+      "macro": 8.286079096691237,
+      "full_macro": 8.285716640795352,
+      "pairs": 138,
+      "proposed_pairs": 138,
+      "rejected_pairs": 0,
+      "latent": {
+        "slow_std": [
+          0.22624396941040992,
+          0.3235024152137458,
+          0.11281152077801096,
+          0.35898304355814675,
+          0.3473404951421546,
+          0.039340651417040094,
+          0.13200564179798552,
+          0.1040651978478498,
+          0.18420384469323578,
+          0.08584399580062775,
+          0.4085341872253379,
+          0.2937698708243043
+        ],
+        "envelope_std": [
+          0.2081189044392076,
+          0.016128528892864178,
+          0.10585657727453013,
+          0.11056855556460407,
+          0.08242467986996523,
+          0.13456011458363157
+        ],
+        "modes": [
+          {
+            "harmonic": 1,
+            "envelope_amplitude_rms": 0.26563058434375697,
+            "envelope_phase_slope_vs_phi": 0.0051008275535827634,
+            "exact_counter_rotation_slope": -1,
+            "angle_valid_samples": 151
+          },
+          {
+            "harmonic": 2,
+            "envelope_amplitude_rms": 0.2091526413826875,
+            "envelope_phase_slope_vs_phi": -0.0162215691558498,
+            "exact_counter_rotation_slope": -2,
+            "angle_valid_samples": 151
+          },
+          {
+            "harmonic": 3,
+            "envelope_amplitude_rms": 0.256116492072556,
+            "envelope_phase_slope_vs_phi": 0.04430111337937716,
+            "exact_counter_rotation_slope": -3,
+            "angle_valid_samples": 151
+          }
+        ],
+        "explicit_acceleration_rms": [
+          0.005368813132511721,
+          0.003474163732803806,
+          0.0030300118994475178
+        ],
+        "explicit_angular_acceleration_rms": [
+          0.00210009035300071,
+          0.0031452176143546384,
+          0.003224589591209617
+        ],
+        "interpretation": "descriptive branch activity/counter-rotation probes; no physical latent truth or collapse verdict"
+      }
+    },
+    {
+      "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:829:h500000:f2000000",
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "horizon_us": 2000000,
+      "sampling_group": "main_50hz",
+      "full": 170.27861250361119,
+      "macro": 7.675900726179473,
+      "full_macro": 7.680926306743952,
+      "pairs": 289,
+      "proposed_pairs": 289,
+      "rejected_pairs": 0,
+      "latent": {
+        "slow_std": [
+          0.47260280128685944,
+          0.6234244107741734,
+          0.12634888074350312,
+          0.6829791222970868,
+          0.643107450642226,
+          0.26184421071018343,
+          0.26197728197556946,
+          0.12044351172156495,
+          0.3520646087417775,
+          0.08836727832831277,
+          0.835376170000781,
+          0.539853227137182
+        ],
+        "envelope_std": [
+          0.13762245665660233,
+          0.039809718757959495,
+          0.11304532794618391,
+          0.07218157445752235,
+          0.05266829931562807,
+          0.10145296740221015
+        ],
+        "modes": [
+          {
+            "harmonic": 1,
+            "envelope_amplitude_rms": 0.1750936600358818,
+            "envelope_phase_slope_vs_phi": 0.027889802434339184,
+            "exact_counter_rotation_slope": -1,
+            "angle_valid_samples": 300
+          },
+          {
+            "harmonic": 2,
+            "envelope_amplitude_rms": 0.1624476339488744,
+            "envelope_phase_slope_vs_phi": -0.0481070552840655,
+            "exact_counter_rotation_slope": -2,
+            "angle_valid_samples": 300
+          },
+          {
+            "harmonic": 3,
+            "envelope_amplitude_rms": 0.21953065368416502,
+            "envelope_phase_slope_vs_phi": 0.017181453134019295,
+            "exact_counter_rotation_slope": -3,
+            "angle_valid_samples": 300
+          }
+        ],
+        "explicit_acceleration_rms": [
+          0.003409434369701038,
+          0.0033408831856028835,
+          0.0026841181989817257
+        ],
+        "explicit_angular_acceleration_rms": [
+          0.0016794744110776019,
+          0.002309751046131235,
+          0.0031055165374303897
+        ],
+        "interpretation": "descriptive branch activity/counter-rotation probes; no physical latent truth or collapse verdict"
+      }
+    }
+  ],
+  "native_flight_equal": [
+    {
+      "component": "p",
+      "horizon_s": 0.2,
+      "flights": 2,
+      "rmse": 0.2928791037188159
+    },
+    {
+      "component": "v",
+      "horizon_s": 0.2,
+      "flights": 2,
+      "rmse": 1.2209286682254086
+    },
+    {
+      "component": "omega",
+      "horizon_s": 0.2,
+      "flights": 2,
+      "rmse": 0.6852846170683826
+    },
+    {
+      "component": "R",
+      "horizon_s": 0.2,
+      "flights": 2,
+      "rmse": 0.050450043120248075
+    },
+    {
+      "component": "p",
+      "horizon_s": 0.5,
+      "flights": 2,
+      "rmse": 0.7845988791787059
+    },
+    {
+      "component": "v",
+      "horizon_s": 0.5,
+      "flights": 2,
+      "rmse": 2.129145177824193
+    },
+    {
+      "component": "omega",
+      "horizon_s": 0.5,
+      "flights": 2,
+      "rmse": 0.7168440078932128
+    },
+    {
+      "component": "R",
+      "horizon_s": 0.5,
+      "flights": 2,
+      "rmse": 0.14561837298397226
+    },
+    {
+      "component": "p",
+      "horizon_s": 1.0,
+      "flights": 2,
+      "rmse": 2.4467149250027
+    },
+    {
+      "component": "v",
+      "horizon_s": 1.0,
+      "flights": 2,
+      "rmse": 4.08278736369327
+    },
+    {
+      "component": "omega",
+      "horizon_s": 1.0,
+      "flights": 2,
+      "rmse": 0.7590957664561084
+    },
+    {
+      "component": "R",
+      "horizon_s": 1.0,
+      "flights": 2,
+      "rmse": 0.3003778340519874
+    },
+    {
+      "component": "p",
+      "horizon_s": 2.0,
+      "flights": 2,
+      "rmse": 10.005048347696908
+    },
+    {
+      "component": "v",
+      "horizon_s": 2.0,
+      "flights": 2,
+      "rmse": 10.604900931727258
+    },
+    {
+      "component": "omega",
+      "horizon_s": 2.0,
+      "flights": 2,
+      "rmse": 1.0256061168441166
+    },
+    {
+      "component": "R",
+      "horizon_s": 2.0,
+      "flights": 1,
+      "rmse": 0.6604200945154014
+    }
+  ],
+  "native_rows": [
+    {
+      "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+      "window_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:1255:h500000:f200000",
+      "split": "validation",
+      "horizon_s": 0.2,
+      "actual_time_s": 0.19655399999999998,
+      "component": "p",
+      "squared_error": 0.02722395600417514,
+      "interpretation": "native_observation_consistency_conditional_control_replay",
+      "window_horizon_us": 200000
+    },
+    {
+      "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+      "window_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:1255:h500000:f200000",
+      "split": "validation",
+      "horizon_s": 0.2,
+      "actual_time_s": 0.19655399999999998,
+      "component": "v",
+      "squared_error": 0.8552973784678188,
+      "interpretation": "native_observation_consistency_conditional_control_replay",
+      "window_horizon_us": 200000
+    },
+    {
+      "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+      "window_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:1255:h500000:f200000",
+      "split": "validation",
+      "horizon_s": 0.2,
+      "actual_time_s": 0.181772,
+      "component": "omega",
+      "squared_error": 0.23647647845937447,
+      "interpretation": "native_observation_consistency_conditional_control_replay",
+      "window_horizon_us": 200000
+    },
+    {
+      "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+      "window_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:748:h500000:f500000",
+      "split": "validation",
+      "horizon_s": 0.2,
+      "actual_time_s": 0.206392,
+      "component": "p",
+      "squared_error": 0.091799009021011,
+      "interpretation": "native_observation_consistency_conditional_control_replay",
+      "window_horizon_us": 500000
+    },
+    {
+      "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+      "window_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:748:h500000:f500000",
+      "split": "validation",
+      "horizon_s": 0.2,
+      "actual_time_s": 0.206392,
+      "component": "v",
+      "squared_error": 2.224422149995159,
+      "interpretation": "native_observation_consistency_conditional_control_replay",
+      "window_horizon_us": 500000
+    },
+    {
+      "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+      "window_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:748:h500000:f500000",
+      "split": "validation",
+      "horizon_s": 0.2,
+      "actual_time_s": 0.206392,
+      "component": "R",
+      "squared_error": 0.002031041319318936,
+      "interpretation": "native_observation_consistency_conditional_control_replay",
+      "window_horizon_us": 500000
+    },
+    {
+      "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+      "window_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:748:h500000:f500000",
+      "split": "validation",
+      "horizon_s": 0.2,
+      "actual_time_s": 0.206392,
+      "component": "omega",
+      "squared_error": 0.11243811680970991,
+      "interpretation": "native_observation_consistency_conditional_control_replay",
+      "window_horizon_us": 500000
+    },
+    {
+      "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+      "window_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:748:h500000:f500000",
+      "split": "validation",
+      "horizon_s": 0.5,
+      "actual_time_s": 0.502047,
+      "component": "p",
+      "squared_error": 0.5964542329711662,
+      "interpretation": "native_observation_consistency_conditional_control_replay",
+      "window_horizon_us": 500000
+    },
+    {
+      "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+      "window_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:748:h500000:f500000",
+      "split": "validation",
+      "horizon_s": 0.5,
+      "actual_time_s": 0.502047,
+      "component": "v",
+      "squared_error": 4.638760719716126,
+      "interpretation": "native_observation_consistency_conditional_control_replay",
+      "window_horizon_us": 500000
+    },
+    {
+      "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+      "window_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:748:h500000:f500000",
+      "split": "validation",
+      "horizon_s": 0.5,
+      "actual_time_s": 0.487264,
+      "component": "omega",
+      "squared_error": 0.04424563940202411,
+      "interpretation": "native_observation_consistency_conditional_control_replay",
+      "window_horizon_us": 500000
+    },
+    {
+      "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+      "window_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:424:h500000:f1000000",
+      "split": "validation",
+      "horizon_s": 0.2,
+      "actual_time_s": 0.19650399999999998,
+      "component": "p",
+      "squared_error": 0.042179483191595785,
+      "interpretation": "native_observation_consistency_conditional_control_replay",
+      "window_horizon_us": 1000000
+    },
+    {
+      "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+      "window_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:424:h500000:f1000000",
+      "split": "validation",
+      "horizon_s": 0.2,
+      "actual_time_s": 0.19650399999999998,
+      "component": "v",
+      "squared_error": 1.3126460701575813,
+      "interpretation": "native_observation_consistency_conditional_control_replay",
+      "window_horizon_us": 1000000
+    },
+    {
+      "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+      "window_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:424:h500000:f1000000",
+      "split": "validation",
+      "horizon_s": 0.2,
+      "actual_time_s": 0.201431,
+      "component": "R",
+      "squared_error": 0.00404263362071066,
+      "interpretation": "native_observation_consistency_conditional_control_replay",
+      "window_horizon_us": 1000000
+    },
+    {
+      "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+      "window_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:424:h500000:f1000000",
+      "split": "validation",
+      "horizon_s": 0.2,
+      "actual_time_s": 0.201431,
+      "component": "omega",
+      "squared_error": 0.15920105311401145,
+      "interpretation": "native_observation_consistency_conditional_control_replay",
+      "window_horizon_us": 1000000
+    },
+    {
+      "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+      "window_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:424:h500000:f1000000",
+      "split": "validation",
+      "horizon_s": 0.5,
+      "actual_time_s": 0.502023,
+      "component": "p",
+      "squared_error": 0.3823661920706467,
+      "interpretation": "native_observation_consistency_conditional_control_replay",
+      "window_horizon_us": 1000000
+    },
+    {
+      "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+      "window_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:424:h500000:f1000000",
+      "split": "validation",
+      "horizon_s": 0.5,
+      "actual_time_s": 0.502023,
+      "component": "v",
+      "squared_error": 5.064723055511543,
+      "interpretation": "native_observation_consistency_conditional_control_replay",
+      "window_horizon_us": 1000000
+    },
+    {
+      "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+      "window_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:424:h500000:f1000000",
+      "split": "validation",
+      "horizon_s": 0.5,
+      "actual_time_s": 0.502023,
+      "component": "R",
+      "squared_error": 0.011571777955737786,
+      "interpretation": "native_observation_consistency_conditional_control_replay",
+      "window_horizon_us": 1000000
+    },
+    {
+      "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+      "window_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:424:h500000:f1000000",
+      "split": "validation",
+      "horizon_s": 0.5,
+      "actual_time_s": 0.502023,
+      "component": "omega",
+      "squared_error": 0.282039863864355,
+      "interpretation": "native_observation_consistency_conditional_control_replay",
+      "window_horizon_us": 1000000
+    },
+    {
+      "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+      "window_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:424:h500000:f1000000",
+      "split": "validation",
+      "horizon_s": 1.0,
+      "actual_time_s": 0.994795,
+      "component": "p",
+      "squared_error": 3.946938222815869,
+      "interpretation": "native_observation_consistency_conditional_control_replay",
+      "window_horizon_us": 1000000
+    },
+    {
+      "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+      "window_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:424:h500000:f1000000",
+      "split": "validation",
+      "horizon_s": 1.0,
+      "actual_time_s": 0.994795,
+      "component": "v",
+      "squared_error": 12.821022282846597,
+      "interpretation": "native_observation_consistency_conditional_control_replay",
+      "window_horizon_us": 1000000
+    },
+    {
+      "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+      "window_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:424:h500000:f1000000",
+      "split": "validation",
+      "horizon_s": 1.0,
+      "actual_time_s": 0.982475,
+      "component": "omega",
+      "squared_error": 0.2138014210743432,
+      "interpretation": "native_observation_consistency_conditional_control_replay",
+      "window_horizon_us": 1000000
+    },
+    {
+      "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+      "window_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:1156:h500000:f2000000",
+      "split": "validation",
+      "horizon_s": 0.2,
+      "actual_time_s": 0.206387,
+      "component": "p",
+      "squared_error": 0.046780081922023896,
+      "interpretation": "native_observation_consistency_conditional_control_replay",
+      "window_horizon_us": 2000000
+    },
+    {
+      "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+      "window_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:1156:h500000:f2000000",
+      "split": "validation",
+      "horizon_s": 0.2,
+      "actual_time_s": 0.206387,
+      "component": "v",
+      "squared_error": 0.46074361121439555,
+      "interpretation": "native_observation_consistency_conditional_control_replay",
+      "window_horizon_us": 2000000
+    },
+    {
+      "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+      "window_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:1156:h500000:f2000000",
+      "split": "validation",
+      "horizon_s": 0.2,
+      "actual_time_s": 0.206387,
+      "component": "R",
+      "squared_error": 0.0030599905318762924,
+      "interpretation": "native_observation_consistency_conditional_control_replay",
+      "window_horizon_us": 2000000
+    },
+    {
+      "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+      "window_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:1156:h500000:f2000000",
+      "split": "validation",
+      "horizon_s": 0.2,
+      "actual_time_s": 0.206387,
+      "component": "omega",
+      "squared_error": 1.4251013505193277,
+      "interpretation": "native_observation_consistency_conditional_control_replay",
+      "window_horizon_us": 2000000
+    },
+    {
+      "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+      "window_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:1156:h500000:f2000000",
+      "split": "validation",
+      "horizon_s": 0.5,
+      "actual_time_s": 0.502034,
+      "component": "p",
+      "squared_error": 0.3357196518744487,
+      "interpretation": "native_observation_consistency_conditional_control_replay",
+      "window_horizon_us": 2000000
+    },
+    {
+      "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+      "window_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:1156:h500000:f2000000",
+      "split": "validation",
+      "horizon_s": 0.5,
+      "actual_time_s": 0.502034,
+      "component": "v",
+      "squared_error": 2.7873932093862854,
+      "interpretation": "native_observation_consistency_conditional_control_replay",
+      "window_horizon_us": 2000000
+    },
+    {
+      "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+      "window_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:1156:h500000:f2000000",
+      "split": "validation",
+      "horizon_s": 0.5,
+      "actual_time_s": 0.506961,
+      "component": "R",
+      "squared_error": 0.03458703432898777,
+      "interpretation": "native_observation_consistency_conditional_control_replay",
+      "window_horizon_us": 2000000
+    },
+    {
+      "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+      "window_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:1156:h500000:f2000000",
+      "split": "validation",
+      "horizon_s": 0.5,
+      "actual_time_s": 0.506961,
+      "component": "omega",
+      "squared_error": 0.5225848193893219,
+      "interpretation": "native_observation_consistency_conditional_control_replay",
+      "window_horizon_us": 2000000
+    },
+    {
+      "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+      "window_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:1156:h500000:f2000000",
+      "split": "validation",
+      "horizon_s": 1.0,
+      "actual_time_s": 1.004634,
+      "component": "p",
+      "squared_error": 4.01961448890734,
+      "interpretation": "native_observation_consistency_conditional_control_replay",
+      "window_horizon_us": 2000000
+    },
+    {
+      "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+      "window_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:1156:h500000:f2000000",
+      "split": "validation",
+      "horizon_s": 1.0,
+      "actual_time_s": 1.004634,
+      "component": "v",
+      "squared_error": 14.930027678818469,
+      "interpretation": "native_observation_consistency_conditional_control_replay",
+      "window_horizon_us": 2000000
+    },
+    {
+      "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+      "window_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:1156:h500000:f2000000",
+      "split": "validation",
+      "horizon_s": 1.0,
+      "actual_time_s": 1.004634,
+      "component": "R",
+      "squared_error": 0.14298207657738715,
+      "interpretation": "native_observation_consistency_conditional_control_replay",
+      "window_horizon_us": 2000000
+    },
+    {
+      "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+      "window_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:1156:h500000:f2000000",
+      "split": "validation",
+      "horizon_s": 1.0,
+      "actual_time_s": 1.007097,
+      "component": "omega",
+      "squared_error": 0.6489383718757893,
+      "interpretation": "native_observation_consistency_conditional_control_replay",
+      "window_horizon_us": 2000000
+    },
+    {
+      "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+      "window_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:1156:h500000:f2000000",
+      "split": "validation",
+      "horizon_s": 2.0,
+      "actual_time_s": 1.9999779999999998,
+      "component": "p",
+      "squared_error": 84.76247748760946,
+      "interpretation": "native_observation_consistency_conditional_control_replay",
+      "window_horizon_us": 2000000
+    },
+    {
+      "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+      "window_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:1156:h500000:f2000000",
+      "split": "validation",
+      "horizon_s": 2.0,
+      "actual_time_s": 1.9999779999999998,
+      "component": "v",
+      "squared_error": 126.19746216644428,
+      "interpretation": "native_observation_consistency_conditional_control_replay",
+      "window_horizon_us": 2000000
+    },
+    {
+      "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+      "window_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:1156:h500000:f2000000",
+      "split": "validation",
+      "horizon_s": 2.0,
+      "actual_time_s": 1.9876589999999998,
+      "component": "omega",
+      "squared_error": 1.7096176290452068,
+      "interpretation": "native_observation_consistency_conditional_control_replay",
+      "window_horizon_us": 2000000
+    },
+    {
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:2866:h500000:f200000",
+      "split": "validation",
+      "horizon_s": 0.2,
+      "actual_time_s": 0.19644399999999998,
+      "component": "p",
+      "squared_error": 0.07455201923574775,
+      "interpretation": "native_observation_consistency_conditional_control_replay",
+      "window_horizon_us": 200000
+    },
+    {
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:2866:h500000:f200000",
+      "split": "validation",
+      "horizon_s": 0.2,
+      "actual_time_s": 0.19644399999999998,
+      "component": "v",
+      "squared_error": 1.7308870617998884,
+      "interpretation": "native_observation_consistency_conditional_control_replay",
+      "window_horizon_us": 200000
+    },
+    {
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:2866:h500000:f200000",
+      "split": "validation",
+      "horizon_s": 0.2,
+      "actual_time_s": 0.19644399999999998,
+      "component": "R",
+      "squared_error": 0.00016191519872458325,
+      "interpretation": "native_observation_consistency_conditional_control_replay",
+      "window_horizon_us": 200000
+    },
+    {
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:2866:h500000:f200000",
+      "split": "validation",
+      "horizon_s": 0.2,
+      "actual_time_s": 0.186589,
+      "component": "omega",
+      "squared_error": 0.38544389984931315,
+      "interpretation": "native_observation_consistency_conditional_control_replay",
+      "window_horizon_us": 200000
+    },
+    {
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:6675:h500000:f500000",
+      "split": "validation",
+      "horizon_s": 0.2,
+      "actual_time_s": 0.205648,
+      "component": "p",
+      "squared_error": 0.03301520309261392,
+      "interpretation": "native_observation_consistency_conditional_control_replay",
+      "window_horizon_us": 500000
+    },
+    {
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:6675:h500000:f500000",
+      "split": "validation",
+      "horizon_s": 0.2,
+      "actual_time_s": 0.205648,
+      "component": "v",
+      "squared_error": 0.49391077559876034,
+      "interpretation": "native_observation_consistency_conditional_control_replay",
+      "window_horizon_us": 500000
+    },
+    {
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:6675:h500000:f500000",
+      "split": "validation",
+      "horizon_s": 0.2,
+      "actual_time_s": 0.205648,
+      "component": "R",
+      "squared_error": 0.0038779549572292094,
+      "interpretation": "native_observation_consistency_conditional_control_replay",
+      "window_horizon_us": 500000
+    },
+    {
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:6675:h500000:f500000",
+      "split": "validation",
+      "horizon_s": 0.2,
+      "actual_time_s": 0.195793,
+      "component": "omega",
+      "squared_error": 0.29443149556971976,
+      "interpretation": "native_observation_consistency_conditional_control_replay",
+      "window_horizon_us": 500000
+    },
+    {
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:6675:h500000:f500000",
+      "split": "validation",
+      "horizon_s": 0.5,
+      "actual_time_s": 0.501312,
+      "component": "p",
+      "squared_error": 0.16990879282411106,
+      "interpretation": "native_observation_consistency_conditional_control_replay",
+      "window_horizon_us": 500000
+    },
+    {
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:6675:h500000:f500000",
+      "split": "validation",
+      "horizon_s": 0.5,
+      "actual_time_s": 0.501312,
+      "component": "v",
+      "squared_error": 1.190339220188975,
+      "interpretation": "native_observation_consistency_conditional_control_replay",
+      "window_horizon_us": 500000
+    },
+    {
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:6675:h500000:f500000",
+      "split": "validation",
+      "horizon_s": 0.5,
+      "actual_time_s": 0.486529,
+      "component": "R",
+      "squared_error": 0.032782297060076376,
+      "interpretation": "native_observation_consistency_conditional_control_replay",
+      "window_horizon_us": 500000
+    },
+    {
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:6675:h500000:f500000",
+      "split": "validation",
+      "horizon_s": 0.5,
+      "actual_time_s": 0.496384,
+      "component": "omega",
+      "squared_error": 1.3798790317689118,
+      "interpretation": "native_observation_consistency_conditional_control_replay",
+      "window_horizon_us": 500000
+    },
+    {
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:3469:h500000:f1000000",
+      "split": "validation",
+      "horizon_s": 0.2,
+      "actual_time_s": 0.206314,
+      "component": "p",
+      "squared_error": 0.13902064870593275,
+      "interpretation": "native_observation_consistency_conditional_control_replay",
+      "window_horizon_us": 1000000
+    },
+    {
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:3469:h500000:f1000000",
+      "split": "validation",
+      "horizon_s": 0.2,
+      "actual_time_s": 0.206314,
+      "component": "v",
+      "squared_error": 1.7678809594610434,
+      "interpretation": "native_observation_consistency_conditional_control_replay",
+      "window_horizon_us": 1000000
+    },
+    {
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:3469:h500000:f1000000",
+      "split": "validation",
+      "horizon_s": 0.2,
+      "actual_time_s": 0.206314,
+      "component": "R",
+      "squared_error": 0.0023631429369970125,
+      "interpretation": "native_observation_consistency_conditional_control_replay",
+      "window_horizon_us": 1000000
+    },
+    {
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:3469:h500000:f1000000",
+      "split": "validation",
+      "horizon_s": 0.2,
+      "actual_time_s": 0.193995,
+      "component": "omega",
+      "squared_error": 0.3668619186228373,
+      "interpretation": "native_observation_consistency_conditional_control_replay",
+      "window_horizon_us": 1000000
+    },
+    {
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:3469:h500000:f1000000",
+      "split": "validation",
+      "horizon_s": 0.5,
+      "actual_time_s": 0.501977,
+      "component": "p",
+      "squared_error": 0.7706300466327024,
+      "interpretation": "native_observation_consistency_conditional_control_replay",
+      "window_horizon_us": 1000000
+    },
+    {
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:3469:h500000:f1000000",
+      "split": "validation",
+      "horizon_s": 0.5,
+      "actual_time_s": 0.501977,
+      "component": "v",
+      "squared_error": 4.954961881971245,
+      "interpretation": "native_observation_consistency_conditional_control_replay",
+      "window_horizon_us": 1000000
+    },
+    {
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:3469:h500000:f1000000",
+      "split": "validation",
+      "horizon_s": 0.5,
+      "actual_time_s": 0.506906,
+      "component": "R",
+      "squared_error": 0.00431544301755891,
+      "interpretation": "native_observation_consistency_conditional_control_replay",
+      "window_horizon_us": 1000000
+    },
+    {
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:3469:h500000:f1000000",
+      "split": "validation",
+      "horizon_s": 0.5,
+      "actual_time_s": 0.49704899999999996,
+      "component": "omega",
+      "squared_error": 0.3181303131484216,
+      "interpretation": "native_observation_consistency_conditional_control_replay",
+      "window_horizon_us": 1000000
+    },
+    {
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:3469:h500000:f1000000",
+      "split": "validation",
+      "horizon_s": 1.0,
+      "actual_time_s": 1.004604,
+      "component": "p",
+      "squared_error": 5.584264416589162,
+      "interpretation": "native_observation_consistency_conditional_control_replay",
+      "window_horizon_us": 1000000
+    },
+    {
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:3469:h500000:f1000000",
+      "split": "validation",
+      "horizon_s": 1.0,
+      "actual_time_s": 1.004604,
+      "component": "v",
+      "squared_error": 13.386959679393271,
+      "interpretation": "native_observation_consistency_conditional_control_replay",
+      "window_horizon_us": 1000000
+    },
+    {
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:3469:h500000:f1000000",
+      "split": "validation",
+      "horizon_s": 1.0,
+      "actual_time_s": 1.004604,
+      "component": "R",
+      "squared_error": 0.00741256093654334,
+      "interpretation": "native_observation_consistency_conditional_control_replay",
+      "window_horizon_us": 1000000
+    },
+    {
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:3469:h500000:f1000000",
+      "split": "validation",
+      "horizon_s": 1.0,
+      "actual_time_s": 0.997212,
+      "component": "omega",
+      "squared_error": 0.6829105078036862,
+      "interpretation": "native_observation_consistency_conditional_control_replay",
+      "window_horizon_us": 1000000
+    },
+    {
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:829:h500000:f2000000",
+      "split": "validation",
+      "horizon_s": 0.2,
+      "actual_time_s": 0.196428,
+      "component": "p",
+      "squared_error": 0.23165495398799538,
+      "interpretation": "native_observation_consistency_conditional_control_replay",
+      "window_horizon_us": 2000000
+    },
+    {
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:829:h500000:f2000000",
+      "split": "validation",
+      "horizon_s": 0.2,
+      "actual_time_s": 0.196428,
+      "component": "v",
+      "squared_error": 3.07954649646271,
+      "interpretation": "native_observation_consistency_conditional_control_replay",
+      "window_horizon_us": 2000000
+    },
+    {
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:829:h500000:f2000000",
+      "split": "validation",
+      "horizon_s": 0.2,
+      "actual_time_s": 0.20135499999999998,
+      "component": "R",
+      "squared_error": 0.0017804210845204652,
+      "interpretation": "native_observation_consistency_conditional_control_replay",
+      "window_horizon_us": 2000000
+    },
+    {
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:829:h500000:f2000000",
+      "split": "validation",
+      "horizon_s": 0.2,
+      "actual_time_s": 0.20135499999999998,
+      "component": "omega",
+      "squared_error": 0.7769657381801843,
+      "interpretation": "native_observation_consistency_conditional_control_replay",
+      "window_horizon_us": 2000000
+    },
+    {
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:829:h500000:f2000000",
+      "split": "validation",
+      "horizon_s": 0.5,
+      "actual_time_s": 0.501945,
+      "component": "p",
+      "squared_error": 1.4384934908778144,
+      "interpretation": "native_observation_consistency_conditional_control_replay",
+      "window_horizon_us": 2000000
+    },
+    {
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:829:h500000:f2000000",
+      "split": "validation",
+      "horizon_s": 0.5,
+      "actual_time_s": 0.501945,
+      "component": "v",
+      "squared_error": 8.563377042737912,
+      "interpretation": "native_observation_consistency_conditional_control_replay",
+      "window_horizon_us": 2000000
+    },
+    {
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:829:h500000:f2000000",
+      "split": "validation",
+      "horizon_s": 0.5,
+      "actual_time_s": 0.501945,
+      "component": "R",
+      "squared_error": 0.02089230479827194,
+      "interpretation": "native_observation_consistency_conditional_control_replay",
+      "window_horizon_us": 2000000
+    },
+    {
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:829:h500000:f2000000",
+      "split": "validation",
+      "horizon_s": 0.5,
+      "actual_time_s": 0.501945,
+      "component": "omega",
+      "squared_error": 0.5363123223413924,
+      "interpretation": "native_observation_consistency_conditional_control_replay",
+      "window_horizon_us": 2000000
+    },
+    {
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:829:h500000:f2000000",
+      "split": "validation",
+      "horizon_s": 1.0,
+      "actual_time_s": 0.994714,
+      "component": "p",
+      "squared_error": 10.394838568611496,
+      "interpretation": "native_observation_consistency_conditional_control_replay",
+      "window_horizon_us": 2000000
+    },
+    {
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:829:h500000:f2000000",
+      "split": "validation",
+      "horizon_s": 1.0,
+      "actual_time_s": 0.994714,
+      "component": "v",
+      "squared_error": 25.53860098747542,
+      "interpretation": "native_observation_consistency_conditional_control_replay",
+      "window_horizon_us": 2000000
+    },
+    {
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:829:h500000:f2000000",
+      "split": "validation",
+      "horizon_s": 1.0,
+      "actual_time_s": 0.9996419999999999,
+      "component": "R",
+      "squared_error": 0.0675306586677355,
+      "interpretation": "native_observation_consistency_conditional_control_replay",
+      "window_horizon_us": 2000000
+    },
+    {
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:829:h500000:f2000000",
+      "split": "validation",
+      "horizon_s": 1.0,
+      "actual_time_s": 1.002106,
+      "component": "omega",
+      "squared_error": 0.7592552298525278,
+      "interpretation": "native_observation_consistency_conditional_control_replay",
+      "window_horizon_us": 2000000
+    },
+    {
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:829:h500000:f2000000",
+      "split": "validation",
+      "horizon_s": 2.0,
+      "actual_time_s": 1.9999639999999999,
+      "component": "p",
+      "squared_error": 115.43950739189582,
+      "interpretation": "native_observation_consistency_conditional_control_replay",
+      "window_horizon_us": 2000000
+    },
+    {
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:829:h500000:f2000000",
+      "split": "validation",
+      "horizon_s": 2.0,
+      "actual_time_s": 1.9999639999999999,
+      "component": "v",
+      "squared_error": 98.73038537705506,
+      "interpretation": "native_observation_consistency_conditional_control_replay",
+      "window_horizon_us": 2000000
+    },
+    {
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:829:h500000:f2000000",
+      "split": "validation",
+      "horizon_s": 2.0,
+      "actual_time_s": 1.9999639999999999,
+      "component": "R",
+      "squared_error": 0.4361547012397317,
+      "interpretation": "native_observation_consistency_conditional_control_replay",
+      "window_horizon_us": 2000000
+    },
+    {
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:829:h500000:f2000000",
+      "split": "validation",
+      "horizon_s": 2.0,
+      "actual_time_s": 1.9999639999999999,
+      "component": "omega",
+      "squared_error": 0.3941181847709284,
+      "interpretation": "native_observation_consistency_conditional_control_replay",
+      "window_horizon_us": 2000000
+    }
+  ],
+  "paired_rows": [
+    {
+      "window_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:748:h500000:f500000",
+      "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+      "horizon_us": 500000,
+      "sampling_group": "sparse_10hz",
+      "mode": "BASE",
+      "component": "R",
+      "mean_squared": 0.004301599455062952,
+      "pairs": 4
+    },
+    {
+      "window_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:748:h500000:f500000",
+      "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+      "horizon_us": 500000,
+      "sampling_group": "sparse_10hz",
+      "mode": "BASE",
+      "component": "omega",
+      "mean_squared": 0.08519059022478802,
+      "pairs": 11
+    },
+    {
+      "window_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:748:h500000:f500000",
+      "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+      "horizon_us": 500000,
+      "sampling_group": "sparse_10hz",
+      "mode": "BASE",
+      "component": "p",
+      "mean_squared": 0.15257494749354564,
+      "pairs": 1
+    },
+    {
+      "window_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:748:h500000:f500000",
+      "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+      "horizon_us": 500000,
+      "sampling_group": "sparse_10hz",
+      "mode": "BASE",
+      "component": "v",
+      "mean_squared": 0.6603964074498937,
+      "pairs": 1
+    },
+    {
+      "window_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:748:h500000:f500000",
+      "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+      "horizon_us": 500000,
+      "sampling_group": "sparse_10hz",
+      "mode": "FULL",
+      "component": "R",
+      "mean_squared": 0.004291840317506908,
+      "pairs": 4
+    },
+    {
+      "window_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:748:h500000:f500000",
+      "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+      "horizon_us": 500000,
+      "sampling_group": "sparse_10hz",
+      "mode": "FULL",
+      "component": "omega",
+      "mean_squared": 0.085158745566072,
+      "pairs": 11
+    },
+    {
+      "window_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:748:h500000:f500000",
+      "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+      "horizon_us": 500000,
+      "sampling_group": "sparse_10hz",
+      "mode": "FULL",
+      "component": "p",
+      "mean_squared": 0.15256000837802283,
+      "pairs": 1
+    },
+    {
+      "window_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:748:h500000:f500000",
+      "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+      "horizon_us": 500000,
+      "sampling_group": "sparse_10hz",
+      "mode": "FULL",
+      "component": "v",
+      "mean_squared": 0.6605534870326898,
+      "pairs": 1
+    },
+    {
+      "window_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:424:h500000:f1000000",
+      "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+      "horizon_us": 1000000,
+      "sampling_group": "sparse_10hz",
+      "mode": "BASE",
+      "component": "omega",
+      "mean_squared": 0.1980698546774966,
+      "pairs": 33
+    },
+    {
+      "window_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:424:h500000:f1000000",
+      "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+      "horizon_us": 1000000,
+      "sampling_group": "sparse_10hz",
+      "mode": "BASE",
+      "component": "R",
+      "mean_squared": 0.004541740333011204,
+      "pairs": 13
+    },
+    {
+      "window_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:424:h500000:f1000000",
+      "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+      "horizon_us": 1000000,
+      "sampling_group": "sparse_10hz",
+      "mode": "BASE",
+      "component": "p",
+      "mean_squared": 0.4311606057861459,
+      "pairs": 7
+    },
+    {
+      "window_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:424:h500000:f1000000",
+      "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+      "horizon_us": 1000000,
+      "sampling_group": "sparse_10hz",
+      "mode": "BASE",
+      "component": "v",
+      "mean_squared": 1.133491066183106,
+      "pairs": 7
+    },
+    {
+      "window_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:424:h500000:f1000000",
+      "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+      "horizon_us": 1000000,
+      "sampling_group": "sparse_10hz",
+      "mode": "FULL",
+      "component": "omega",
+      "mean_squared": 0.19806904321202487,
+      "pairs": 33
+    },
+    {
+      "window_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:424:h500000:f1000000",
+      "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+      "horizon_us": 1000000,
+      "sampling_group": "sparse_10hz",
+      "mode": "FULL",
+      "component": "R",
+      "mean_squared": 0.004536334853358285,
+      "pairs": 13
+    },
+    {
+      "window_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:424:h500000:f1000000",
+      "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+      "horizon_us": 1000000,
+      "sampling_group": "sparse_10hz",
+      "mode": "FULL",
+      "component": "p",
+      "mean_squared": 0.43107428314908386,
+      "pairs": 7
+    },
+    {
+      "window_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:424:h500000:f1000000",
+      "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+      "horizon_us": 1000000,
+      "sampling_group": "sparse_10hz",
+      "mode": "FULL",
+      "component": "v",
+      "mean_squared": 1.1329773281464008,
+      "pairs": 7
+    },
+    {
+      "window_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:1156:h500000:f2000000",
+      "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+      "horizon_us": 2000000,
+      "sampling_group": "sparse_10hz",
+      "mode": "BASE",
+      "component": "R",
+      "mean_squared": 0.04718994833053794,
+      "pairs": 31
+    },
+    {
+      "window_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:1156:h500000:f2000000",
+      "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+      "horizon_us": 2000000,
+      "sampling_group": "sparse_10hz",
+      "mode": "BASE",
+      "component": "omega",
+      "mean_squared": 0.7819830008916712,
+      "pairs": 73
+    },
+    {
+      "window_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:1156:h500000:f2000000",
+      "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+      "horizon_us": 2000000,
+      "sampling_group": "sparse_10hz",
+      "mode": "BASE",
+      "component": "p",
+      "mean_squared": 6.046947247169284,
+      "pairs": 14
+    },
+    {
+      "window_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:1156:h500000:f2000000",
+      "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+      "horizon_us": 2000000,
+      "sampling_group": "sparse_10hz",
+      "mode": "BASE",
+      "component": "v",
+      "mean_squared": 7.035325196809507,
+      "pairs": 14
+    },
+    {
+      "window_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:1156:h500000:f2000000",
+      "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+      "horizon_us": 2000000,
+      "sampling_group": "sparse_10hz",
+      "mode": "FULL",
+      "component": "R",
+      "mean_squared": 0.04712086914500077,
+      "pairs": 31
+    },
+    {
+      "window_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:1156:h500000:f2000000",
+      "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+      "horizon_us": 2000000,
+      "sampling_group": "sparse_10hz",
+      "mode": "FULL",
+      "component": "omega",
+      "mean_squared": 0.7820056427653937,
+      "pairs": 73
+    },
+    {
+      "window_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:1156:h500000:f2000000",
+      "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+      "horizon_us": 2000000,
+      "sampling_group": "sparse_10hz",
+      "mode": "FULL",
+      "component": "p",
+      "mean_squared": 6.041701382010154,
+      "pairs": 14
+    },
+    {
+      "window_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:1156:h500000:f2000000",
+      "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+      "horizon_us": 2000000,
+      "sampling_group": "sparse_10hz",
+      "mode": "FULL",
+      "component": "v",
+      "mean_squared": 7.027844397210771,
+      "pairs": 14
+    },
+    {
+      "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:6675:h500000:f500000",
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "horizon_us": 500000,
+      "sampling_group": "main_50hz",
+      "mode": "BASE",
+      "component": "R",
+      "mean_squared": 0.012003948791756128,
+      "pairs": 8
+    },
+    {
+      "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:6675:h500000:f500000",
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "horizon_us": 500000,
+      "sampling_group": "main_50hz",
+      "mode": "BASE",
+      "component": "omega",
+      "mean_squared": 0.22924247410578094,
+      "pairs": 17
+    },
+    {
+      "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:6675:h500000:f500000",
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "horizon_us": 500000,
+      "sampling_group": "main_50hz",
+      "mode": "BASE",
+      "component": "p",
+      "mean_squared": 0.05495294707629174,
+      "pairs": 8
+    },
+    {
+      "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:6675:h500000:f500000",
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "horizon_us": 500000,
+      "sampling_group": "main_50hz",
+      "mode": "BASE",
+      "component": "v",
+      "mean_squared": 0.1477874143536665,
+      "pairs": 8
+    },
+    {
+      "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:6675:h500000:f500000",
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "horizon_us": 500000,
+      "sampling_group": "main_50hz",
+      "mode": "FULL",
+      "component": "R",
+      "mean_squared": 0.011986210132125183,
+      "pairs": 8
+    },
+    {
+      "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:6675:h500000:f500000",
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "horizon_us": 500000,
+      "sampling_group": "main_50hz",
+      "mode": "FULL",
+      "component": "omega",
+      "mean_squared": 0.2291508773885915,
+      "pairs": 17
+    },
+    {
+      "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:6675:h500000:f500000",
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "horizon_us": 500000,
+      "sampling_group": "main_50hz",
+      "mode": "FULL",
+      "component": "p",
+      "mean_squared": 0.05509424305504462,
+      "pairs": 8
+    },
+    {
+      "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:6675:h500000:f500000",
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "horizon_us": 500000,
+      "sampling_group": "main_50hz",
+      "mode": "FULL",
+      "component": "v",
+      "mean_squared": 0.1475925919176473,
+      "pairs": 8
+    },
+    {
+      "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:3469:h500000:f1000000",
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "horizon_us": 1000000,
+      "sampling_group": "main_50hz",
+      "mode": "BASE",
+      "component": "omega",
+      "mean_squared": 0.31149504749482,
+      "pairs": 72
+    },
+    {
+      "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:3469:h500000:f1000000",
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "horizon_us": 1000000,
+      "sampling_group": "main_50hz",
+      "mode": "BASE",
+      "component": "p",
+      "mean_squared": 0.31293026561952264,
+      "pairs": 33
+    },
+    {
+      "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:3469:h500000:f1000000",
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "horizon_us": 1000000,
+      "sampling_group": "main_50hz",
+      "mode": "BASE",
+      "component": "v",
+      "mean_squared": 0.5623317058691827,
+      "pairs": 33
+    },
+    {
+      "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:3469:h500000:f1000000",
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "horizon_us": 1000000,
+      "sampling_group": "main_50hz",
+      "mode": "BASE",
+      "component": "R",
+      "mean_squared": 0.001236888740598948,
+      "pairs": 33
+    },
+    {
+      "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:3469:h500000:f1000000",
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "horizon_us": 1000000,
+      "sampling_group": "main_50hz",
+      "mode": "FULL",
+      "component": "omega",
+      "mean_squared": 0.3114875471389107,
+      "pairs": 72
+    },
+    {
+      "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:3469:h500000:f1000000",
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "horizon_us": 1000000,
+      "sampling_group": "main_50hz",
+      "mode": "FULL",
+      "component": "p",
+      "mean_squared": 0.3128582029327139,
+      "pairs": 33
+    },
+    {
+      "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:3469:h500000:f1000000",
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "horizon_us": 1000000,
+      "sampling_group": "main_50hz",
+      "mode": "FULL",
+      "component": "v",
+      "mean_squared": 0.5622214833184664,
+      "pairs": 33
+    },
+    {
+      "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:3469:h500000:f1000000",
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "horizon_us": 1000000,
+      "sampling_group": "main_50hz",
+      "mode": "FULL",
+      "component": "R",
+      "mean_squared": 0.0012379001029671714,
+      "pairs": 33
+    },
+    {
+      "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:829:h500000:f2000000",
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "horizon_us": 2000000,
+      "sampling_group": "main_50hz",
+      "mode": "BASE",
+      "component": "omega",
+      "mean_squared": 0.164409039350344,
+      "pairs": 139
+    },
+    {
+      "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:829:h500000:f2000000",
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "horizon_us": 2000000,
+      "sampling_group": "main_50hz",
+      "mode": "BASE",
+      "component": "p",
+      "mean_squared": 2.065210750871683,
+      "pairs": 72
+    },
+    {
+      "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:829:h500000:f2000000",
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "horizon_us": 2000000,
+      "sampling_group": "main_50hz",
+      "mode": "BASE",
+      "component": "v",
+      "mean_squared": 1.2829826602562862,
+      "pairs": 72
+    },
+    {
+      "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:829:h500000:f2000000",
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "horizon_us": 2000000,
+      "sampling_group": "main_50hz",
+      "mode": "BASE",
+      "component": "R",
+      "mean_squared": 0.008134339775486147,
+      "pairs": 78
+    },
+    {
+      "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:829:h500000:f2000000",
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "horizon_us": 2000000,
+      "sampling_group": "main_50hz",
+      "mode": "FULL",
+      "component": "omega",
+      "mean_squared": 0.16441155884380296,
+      "pairs": 139
+    },
+    {
+      "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:829:h500000:f2000000",
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "horizon_us": 2000000,
+      "sampling_group": "main_50hz",
+      "mode": "FULL",
+      "component": "p",
+      "mean_squared": 2.0665719122493735,
+      "pairs": 72
+    },
+    {
+      "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:829:h500000:f2000000",
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "horizon_us": 2000000,
+      "sampling_group": "main_50hz",
+      "mode": "FULL",
+      "component": "v",
+      "mean_squared": 1.2846491134853155,
+      "pairs": 72
+    },
+    {
+      "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:829:h500000:f2000000",
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "horizon_us": 2000000,
+      "sampling_group": "main_50hz",
+      "mode": "FULL",
+      "component": "R",
+      "mean_squared": 0.008147385861994476,
+      "pairs": 78
+    }
+  ],
+  "paired_flight_equal": [
+    {
+      "mode": "BASE",
+      "component": "p",
+      "horizon_us": 500000,
+      "rmse": 0.32212411782559636,
+      "flights": 2
+    },
+    {
+      "mode": "BASE",
+      "component": "p",
+      "horizon_us": 1000000,
+      "rmse": 0.6099552735265384,
+      "flights": 2
+    },
+    {
+      "mode": "BASE",
+      "component": "p",
+      "horizon_us": 2000000,
+      "rmse": 2.0139709528740686,
+      "flights": 2
+    },
+    {
+      "mode": "BASE",
+      "component": "v",
+      "horizon_us": 500000,
+      "rmse": 0.6356822405115469,
+      "flights": 2
+    },
+    {
+      "mode": "BASE",
+      "component": "v",
+      "horizon_us": 1000000,
+      "rmse": 0.9208210390874788,
+      "flights": 2
+    },
+    {
+      "mode": "BASE",
+      "component": "v",
+      "horizon_us": 2000000,
+      "rmse": 2.0394003845574065,
+      "flights": 2
+    },
+    {
+      "mode": "BASE",
+      "component": "R",
+      "horizon_us": 500000,
+      "rmse": 0.0902927135676492,
+      "flights": 2
+    },
+    {
+      "mode": "BASE",
+      "component": "R",
+      "horizon_us": 1000000,
+      "rmse": 0.0537523444772884,
+      "flights": 2
+    },
+    {
+      "mode": "BASE",
+      "component": "R",
+      "horizon_us": 2000000,
+      "rmse": 0.1663194037177023,
+      "flights": 2
+    },
+    {
+      "mode": "BASE",
+      "component": "omega",
+      "horizon_us": 500000,
+      "rmse": 0.3965053999194519,
+      "flights": 2
+    },
+    {
+      "mode": "BASE",
+      "component": "omega",
+      "horizon_us": 1000000,
+      "rmse": 0.5047597954335886,
+      "flights": 2
+    },
+    {
+      "mode": "BASE",
+      "component": "omega",
+      "horizon_us": 2000000,
+      "rmse": 0.6878924480767379,
+      "flights": 2
+    },
+    {
+      "mode": "FULL",
+      "component": "p",
+      "horizon_us": 500000,
+      "rmse": 0.32222216825745204,
+      "flights": 2
+    },
+    {
+      "mode": "FULL",
+      "component": "p",
+      "horizon_us": 1000000,
+      "rmse": 0.6098903532938514,
+      "flights": 2
+    },
+    {
+      "mode": "FULL",
+      "component": "p",
+      "horizon_us": 2000000,
+      "rmse": 2.013488675689477,
+      "flights": 2
+    },
+    {
+      "mode": "FULL",
+      "component": "v",
+      "horizon_us": 500000,
+      "rmse": 0.6356673968949238,
+      "flights": 2
+    },
+    {
+      "mode": "FULL",
+      "component": "v",
+      "horizon_us": 1000000,
+      "rmse": 0.9206516201758588,
+      "flights": 2
+    },
+    {
+      "mode": "FULL",
+      "component": "v",
+      "horizon_us": 2000000,
+      "rmse": 2.038687508017853,
+      "flights": 2
+    },
+    {
+      "mode": "FULL",
+      "component": "R",
+      "horizon_us": 500000,
+      "rmse": 0.09021654629177535,
+      "flights": 2
+    },
+    {
+      "mode": "FULL",
+      "component": "R",
+      "horizon_us": 1000000,
+      "rmse": 0.05373190372732691,
+      "flights": 2
+    },
+    {
+      "mode": "FULL",
+      "component": "R",
+      "horizon_us": 2000000,
+      "rmse": 0.16623515724267723,
+      "flights": 2
+    },
+    {
+      "mode": "FULL",
+      "component": "omega",
+      "horizon_us": 500000,
+      "rmse": 0.3964275614501743,
+      "flights": 2
+    },
+    {
+      "mode": "FULL",
+      "component": "omega",
+      "horizon_us": 1000000,
+      "rmse": 0.5047556786956119,
+      "flights": 2
+    },
+    {
+      "mode": "FULL",
+      "component": "omega",
+      "horizon_us": 2000000,
+      "rmse": 0.687901592384113,
+      "flights": 2
+    }
+  ],
+  "intracycle_rows": [
+    {
+      "window_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:1255:h500000:f200000",
+      "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+      "horizon_us": 200000,
+      "sampling_group": "sparse_10hz",
+      "variable": "q",
+      "regime": "control_change",
+      "mode": "BASE",
+      "samples": 5,
+      "mean_squared": 0.35538634271959213,
+      "full_base_rms": 0.00019949805665630708,
+      "phase_residual": {
+        "samples": 5,
+        "r2": null,
+        "reason": "insufficient native phase support"
+      }
+    },
+    {
+      "window_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:1255:h500000:f200000",
+      "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+      "horizon_us": 200000,
+      "sampling_group": "sparse_10hz",
+      "variable": "q",
+      "regime": "control_change",
+      "mode": "FULL",
+      "samples": 5,
+      "mean_squared": 0.3554073232811028,
+      "full_base_rms": 0.00019949805665630708,
+      "phase_residual": {
+        "samples": 5,
+        "r2": null,
+        "reason": "insufficient native phase support"
+      }
+    },
+    {
+      "window_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:1255:h500000:f200000",
+      "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+      "horizon_us": 200000,
+      "sampling_group": "sparse_10hz",
+      "variable": "q",
+      "regime": "stable",
+      "mode": "BASE",
+      "samples": 5,
+      "mean_squared": 0.222698233306695,
+      "full_base_rms": 4.827917194112108e-05,
+      "phase_residual": {
+        "samples": 5,
+        "r2": null,
+        "reason": "insufficient native phase support"
+      }
+    },
+    {
+      "window_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:1255:h500000:f200000",
+      "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+      "horizon_us": 200000,
+      "sampling_group": "sparse_10hz",
+      "variable": "q",
+      "regime": "stable",
+      "mode": "FULL",
+      "samples": 5,
+      "mean_squared": 0.22270673727113982,
+      "full_base_rms": 4.827917194112108e-05,
+      "phase_residual": {
+        "samples": 5,
+        "r2": null,
+        "reason": "insufficient native phase support"
+      }
+    },
+    {
+      "window_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:1255:h500000:f200000",
+      "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+      "horizon_us": 200000,
+      "sampling_group": "sparse_10hz",
+      "variable": "vD",
+      "regime": "stable",
+      "mode": "BASE",
+      "samples": 2,
+      "mean_squared": 0.16304068550456569,
+      "full_base_rms": 4.960683582798999e-05,
+      "phase_residual": {
+        "samples": 2,
+        "r2": null,
+        "reason": "insufficient native phase support"
+      }
+    },
+    {
+      "window_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:1255:h500000:f200000",
+      "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+      "horizon_us": 200000,
+      "sampling_group": "sparse_10hz",
+      "variable": "vD",
+      "regime": "stable",
+      "mode": "FULL",
+      "samples": 2,
+      "mean_squared": 0.16307427881563094,
+      "full_base_rms": 4.960683582798999e-05,
+      "phase_residual": {
+        "samples": 2,
+        "r2": null,
+        "reason": "insufficient native phase support"
+      }
+    },
+    {
+      "window_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:748:h500000:f500000",
+      "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+      "horizon_us": 500000,
+      "sampling_group": "sparse_10hz",
+      "variable": "q",
+      "regime": "control_change",
+      "mode": "BASE",
+      "samples": 14,
+      "mean_squared": 0.19166914138185723,
+      "full_base_rms": 0.0001827170865357496,
+      "phase_residual": {
+        "samples": 14,
+        "r2": 0.9374744929101825,
+        "amplitude": [
+          0.49922099931958175,
+          0.4140138710016066,
+          0.25116158782491405
+        ],
+        "phase_span_rad": 9.333621030932363,
+        "median_native_phase_step_rad": 0.4812200111271068,
+        "caution": "descriptive in-sample harmonic association, not independent periodic truth"
+      }
+    },
+    {
+      "window_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:748:h500000:f500000",
+      "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+      "horizon_us": 500000,
+      "sampling_group": "sparse_10hz",
+      "variable": "q",
+      "regime": "control_change",
+      "mode": "FULL",
+      "samples": 14,
+      "mean_squared": 0.19159049426736954,
+      "full_base_rms": 0.0001827170865357496,
+      "phase_residual": {
+        "samples": 14,
+        "r2": 0.9374965722709655,
+        "amplitude": [
+          0.49924073145279074,
+          0.41397551704708135,
+          0.2511590398283444
+        ],
+        "phase_span_rad": 9.333621030932363,
+        "median_native_phase_step_rad": 0.4812200111271068,
+        "caution": "descriptive in-sample harmonic association, not independent periodic truth"
+      }
+    },
+    {
+      "window_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:748:h500000:f500000",
+      "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+      "horizon_us": 500000,
+      "sampling_group": "sparse_10hz",
+      "variable": "q",
+      "regime": "stable",
+      "mode": "BASE",
+      "samples": 11,
+      "mean_squared": 0.22356406456172848,
+      "full_base_rms": 0.00022232785318693145,
+      "phase_residual": {
+        "samples": 11,
+        "r2": 0.9711763965826188,
+        "amplitude": [
+          0.21766261728932113,
+          0.4291941856724772,
+          0.2701945631104857
+        ],
+        "phase_span_rad": 10.601718543955258,
+        "median_native_phase_step_rad": 0.9271003636773685,
+        "caution": "descriptive in-sample harmonic association, not independent periodic truth"
+      }
+    },
+    {
+      "window_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:748:h500000:f500000",
+      "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+      "horizon_us": 500000,
+      "sampling_group": "sparse_10hz",
+      "variable": "q",
+      "regime": "stable",
+      "mode": "FULL",
+      "samples": 11,
+      "mean_squared": 0.22349923320961074,
+      "full_base_rms": 0.00022232785318693145,
+      "phase_residual": {
+        "samples": 11,
+        "r2": 0.9711905625857078,
+        "amplitude": [
+          0.21764494305199678,
+          0.4291794324105069,
+          0.2701768560761101
+        ],
+        "phase_span_rad": 10.601718543955258,
+        "median_native_phase_step_rad": 0.9271003636773685,
+        "caution": "descriptive in-sample harmonic association, not independent periodic truth"
+      }
+    },
+    {
+      "window_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:748:h500000:f500000",
+      "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+      "horizon_us": 500000,
+      "sampling_group": "sparse_10hz",
+      "variable": "vD",
+      "regime": "stable",
+      "mode": "BASE",
+      "samples": 5,
+      "mean_squared": 0.3811633994468765,
+      "full_base_rms": 0.0002889757108465666,
+      "phase_residual": {
+        "samples": 4,
+        "r2": null,
+        "reason": "insufficient native phase support"
+      }
+    },
+    {
+      "window_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:748:h500000:f500000",
+      "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+      "horizon_us": 500000,
+      "sampling_group": "sparse_10hz",
+      "variable": "vD",
+      "regime": "stable",
+      "mode": "FULL",
+      "samples": 5,
+      "mean_squared": 0.38095261512453354,
+      "full_base_rms": 0.0002889757108465666,
+      "phase_residual": {
+        "samples": 4,
+        "r2": null,
+        "reason": "insufficient native phase support"
+      }
+    },
+    {
+      "window_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:424:h500000:f1000000",
+      "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+      "horizon_us": 1000000,
+      "sampling_group": "sparse_10hz",
+      "variable": "q",
+      "regime": "control_change",
+      "mode": "BASE",
+      "samples": 26,
+      "mean_squared": 0.20794145019963703,
+      "full_base_rms": 5.1641762393028614e-05,
+      "phase_residual": {
+        "samples": 26,
+        "r2": 0.9319423308309864,
+        "amplitude": [
+          0.38417033057213906,
+          0.3671425065256107,
+          0.09783271113130194
+        ],
+        "phase_span_rad": 20.543339290082713,
+        "median_native_phase_step_rad": 0.48554937550352406,
+        "caution": "descriptive in-sample harmonic association, not independent periodic truth"
+      }
+    },
+    {
+      "window_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:424:h500000:f1000000",
+      "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+      "horizon_us": 1000000,
+      "sampling_group": "sparse_10hz",
+      "variable": "q",
+      "regime": "control_change",
+      "mode": "FULL",
+      "samples": 26,
+      "mean_squared": 0.20791682022992702,
+      "full_base_rms": 5.1641762393028614e-05,
+      "phase_residual": {
+        "samples": 26,
+        "r2": 0.9319504629358004,
+        "amplitude": [
+          0.38417065752140483,
+          0.36709512694675395,
+          0.09785602051929392
+        ],
+        "phase_span_rad": 20.543339290082713,
+        "median_native_phase_step_rad": 0.48554937550352406,
+        "caution": "descriptive in-sample harmonic association, not independent periodic truth"
+      }
+    },
+    {
+      "window_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:424:h500000:f1000000",
+      "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+      "horizon_us": 1000000,
+      "sampling_group": "sparse_10hz",
+      "variable": "q",
+      "regime": "stable",
+      "mode": "BASE",
+      "samples": 24,
+      "mean_squared": 0.18240029292115614,
+      "full_base_rms": 4.365633027196468e-05,
+      "phase_residual": {
+        "samples": 24,
+        "r2": 0.8754992471507015,
+        "amplitude": [
+          0.5042004733362767,
+          0.45157342538765355,
+          0.22509995988601023
+        ],
+        "phase_span_rad": 21.444505592778796,
+        "median_native_phase_step_rad": 0.4724778120046267,
+        "caution": "descriptive in-sample harmonic association, not independent periodic truth"
+      }
+    },
+    {
+      "window_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:424:h500000:f1000000",
+      "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+      "horizon_us": 1000000,
+      "sampling_group": "sparse_10hz",
+      "variable": "q",
+      "regime": "stable",
+      "mode": "FULL",
+      "samples": 24,
+      "mean_squared": 0.18239949175838396,
+      "full_base_rms": 4.365633027196468e-05,
+      "phase_residual": {
+        "samples": 24,
+        "r2": 0.8754929597694029,
+        "amplitude": [
+          0.5042280342775821,
+          0.4515345199674128,
+          0.22512595699613866
+        ],
+        "phase_span_rad": 21.444505592778796,
+        "median_native_phase_step_rad": 0.4724778120046267,
+        "caution": "descriptive in-sample harmonic association, not independent periodic truth"
+      }
+    },
+    {
+      "window_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:424:h500000:f1000000",
+      "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+      "horizon_us": 1000000,
+      "sampling_group": "sparse_10hz",
+      "variable": "vD",
+      "regime": "stable",
+      "mode": "BASE",
+      "samples": 10,
+      "mean_squared": 0.35826729770599336,
+      "full_base_rms": 0.0004166045259507639,
+      "phase_residual": {
+        "samples": 10,
+        "r2": 0.9785149207135698,
+        "amplitude": [
+          0.7009322650158456,
+          0.024295220317609896,
+          0.3365067995039807
+        ],
+        "phase_span_rad": 19.612277897525928,
+        "median_native_phase_step_rad": 2.220320491393977,
+        "caution": "descriptive in-sample harmonic association, not independent periodic truth"
+      }
+    },
+    {
+      "window_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:424:h500000:f1000000",
+      "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+      "horizon_us": 1000000,
+      "sampling_group": "sparse_10hz",
+      "variable": "vD",
+      "regime": "stable",
+      "mode": "FULL",
+      "samples": 10,
+      "mean_squared": 0.35800149764565614,
+      "full_base_rms": 0.0004166045259507639,
+      "phase_residual": {
+        "samples": 10,
+        "r2": 0.9785265203212825,
+        "amplitude": [
+          0.7009183048778891,
+          0.024296203468959034,
+          0.336381995757847
+        ],
+        "phase_span_rad": 19.612277897525928,
+        "median_native_phase_step_rad": 2.220320491393977,
+        "caution": "descriptive in-sample harmonic association, not independent periodic truth"
+      }
+    },
+    {
+      "window_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:1156:h500000:f2000000",
+      "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+      "horizon_us": 2000000,
+      "sampling_group": "sparse_10hz",
+      "variable": "q",
+      "regime": "control_change",
+      "mode": "BASE",
+      "samples": 52,
+      "mean_squared": 0.4848179257267135,
+      "full_base_rms": 0.00018870228159042015,
+      "phase_residual": {
+        "samples": 52,
+        "r2": 0.8317014925068844,
+        "amplitude": [
+          0.4138661414273297,
+          0.4396352215563694,
+          0.2345970105283868
+        ],
+        "phase_span_rad": 28.191408123267593,
+        "median_native_phase_step_rad": 0.32970672201236084,
+        "caution": "descriptive in-sample harmonic association, not independent periodic truth"
+      }
+    },
+    {
+      "window_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:1156:h500000:f2000000",
+      "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+      "horizon_us": 2000000,
+      "sampling_group": "sparse_10hz",
+      "variable": "q",
+      "regime": "control_change",
+      "mode": "FULL",
+      "samples": 52,
+      "mean_squared": 0.4846523064975434,
+      "full_base_rms": 0.00018870228159042015,
+      "phase_residual": {
+        "samples": 52,
+        "r2": 0.8316854644561337,
+        "amplitude": [
+          0.41388543547926576,
+          0.43958403228832327,
+          0.23458933281701494
+        ],
+        "phase_span_rad": 28.191408123267593,
+        "median_native_phase_step_rad": 0.32970672201236084,
+        "caution": "descriptive in-sample harmonic association, not independent periodic truth"
+      }
+    },
+    {
+      "window_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:1156:h500000:f2000000",
+      "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+      "horizon_us": 2000000,
+      "sampling_group": "sparse_10hz",
+      "variable": "q",
+      "regime": "stable",
+      "mode": "BASE",
+      "samples": 48,
+      "mean_squared": 0.3532885037926056,
+      "full_base_rms": 0.00018238547659211654,
+      "phase_residual": {
+        "samples": 48,
+        "r2": 0.8131568613045174,
+        "amplitude": [
+          0.45879064107058143,
+          0.4342833740380328,
+          0.07735543038851728
+        ],
+        "phase_span_rad": 28.789643191576033,
+        "median_native_phase_step_rad": 0.3327231369094079,
+        "caution": "descriptive in-sample harmonic association, not independent periodic truth"
+      }
+    },
+    {
+      "window_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:1156:h500000:f2000000",
+      "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+      "horizon_us": 2000000,
+      "sampling_group": "sparse_10hz",
+      "variable": "q",
+      "regime": "stable",
+      "mode": "FULL",
+      "samples": 48,
+      "mean_squared": 0.3531466559773393,
+      "full_base_rms": 0.00018238547659211654,
+      "phase_residual": {
+        "samples": 48,
+        "r2": 0.8131435045903951,
+        "amplitude": [
+          0.4587804506392654,
+          0.43423330581002745,
+          0.07734407128136574
+        ],
+        "phase_span_rad": 28.789643191576033,
+        "median_native_phase_step_rad": 0.3327231369094079,
+        "caution": "descriptive in-sample harmonic association, not independent periodic truth"
+      }
+    },
+    {
+      "window_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:1156:h500000:f2000000",
+      "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+      "horizon_us": 2000000,
+      "sampling_group": "sparse_10hz",
+      "variable": "vD",
+      "regime": "stable",
+      "mode": "BASE",
+      "samples": 20,
+      "mean_squared": 1.7641008046027278,
+      "full_base_rms": 0.0018989801735639982,
+      "phase_residual": {
+        "samples": 20,
+        "r2": 0.2135551164255458,
+        "amplitude": [
+          0.5650343168682174,
+          0.1670472991763206,
+          0.09131994791753487
+        ],
+        "phase_span_rad": 27.232900088319184,
+        "median_native_phase_step_rad": 1.540396486381269,
+        "caution": "descriptive in-sample harmonic association, not independent periodic truth"
+      }
+    },
+    {
+      "window_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:1156:h500000:f2000000",
+      "flight_id": "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1",
+      "horizon_us": 2000000,
+      "sampling_group": "sparse_10hz",
+      "variable": "vD",
+      "regime": "stable",
+      "mode": "FULL",
+      "samples": 20,
+      "mean_squared": 1.7593577503862186,
+      "full_base_rms": 0.0018989801735639982,
+      "phase_residual": {
+        "samples": 20,
+        "r2": 0.21394255941866824,
+        "amplitude": [
+          0.5650290783204498,
+          0.16690216780548842,
+          0.09122182247067523
+        ],
+        "phase_span_rad": 27.232900088319184,
+        "median_native_phase_step_rad": 1.540396486381269,
+        "caution": "descriptive in-sample harmonic association, not independent periodic truth"
+      }
+    },
+    {
+      "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:2866:h500000:f200000",
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "horizon_us": 200000,
+      "sampling_group": "main_50hz",
+      "variable": "q",
+      "regime": "control_change",
+      "mode": "BASE",
+      "samples": 19,
+      "mean_squared": 0.2931959999250767,
+      "full_base_rms": 0.0001565849241127583,
+      "phase_residual": {
+        "samples": 19,
+        "r2": null,
+        "reason": "insufficient native phase support"
+      }
+    },
+    {
+      "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:2866:h500000:f200000",
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "horizon_us": 200000,
+      "sampling_group": "main_50hz",
+      "variable": "q",
+      "regime": "control_change",
+      "mode": "FULL",
+      "samples": 19,
+      "mean_squared": 0.29310589518628416,
+      "full_base_rms": 0.0001565849241127583,
+      "phase_residual": {
+        "samples": 19,
+        "r2": null,
+        "reason": "insufficient native phase support"
+      }
+    },
+    {
+      "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:2866:h500000:f200000",
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "horizon_us": 200000,
+      "sampling_group": "main_50hz",
+      "variable": "vD",
+      "regime": "control_change",
+      "mode": "BASE",
+      "samples": 10,
+      "mean_squared": 0.15757569543335198,
+      "full_base_rms": 0.0004493790725227326,
+      "phase_residual": {
+        "samples": 9,
+        "r2": null,
+        "reason": "insufficient native phase support"
+      }
+    },
+    {
+      "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:2866:h500000:f200000",
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "horizon_us": 200000,
+      "sampling_group": "main_50hz",
+      "variable": "vD",
+      "regime": "control_change",
+      "mode": "FULL",
+      "samples": 10,
+      "mean_squared": 0.1576019705792686,
+      "full_base_rms": 0.0004493790725227326,
+      "phase_residual": {
+        "samples": 9,
+        "r2": null,
+        "reason": "insufficient native phase support"
+      }
+    },
+    {
+      "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:6675:h500000:f500000",
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "horizon_us": 500000,
+      "sampling_group": "main_50hz",
+      "variable": "q",
+      "regime": "control_change",
+      "mode": "BASE",
+      "samples": 36,
+      "mean_squared": 0.1623133715890621,
+      "full_base_rms": 9.328220506206342e-05,
+      "phase_residual": {
+        "samples": 36,
+        "r2": 0.9096132211918997,
+        "amplitude": [
+          0.458980342839908,
+          0.47478244745334136,
+          0.067204063829478
+        ],
+        "phase_span_rad": 9.201644319894513,
+        "median_native_phase_step_rad": 0.17633580558776885,
+        "caution": "descriptive in-sample harmonic association, not independent periodic truth"
+      }
+    },
+    {
+      "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:6675:h500000:f500000",
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "horizon_us": 500000,
+      "sampling_group": "main_50hz",
+      "variable": "q",
+      "regime": "control_change",
+      "mode": "FULL",
+      "samples": 36,
+      "mean_squared": 0.16228610594876225,
+      "full_base_rms": 9.328220506206342e-05,
+      "phase_residual": {
+        "samples": 36,
+        "r2": 0.909668255649313,
+        "amplitude": [
+          0.4590150049855895,
+          0.4747263543218543,
+          0.0672203732608642
+        ],
+        "phase_span_rad": 9.201644319894513,
+        "median_native_phase_step_rad": 0.17633580558776885,
+        "caution": "descriptive in-sample harmonic association, not independent periodic truth"
+      }
+    },
+    {
+      "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:6675:h500000:f500000",
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "horizon_us": 500000,
+      "sampling_group": "main_50hz",
+      "variable": "q",
+      "regime": "stable",
+      "mode": "BASE",
+      "samples": 14,
+      "mean_squared": 0.5202274504116905,
+      "full_base_rms": 0.00015312303875894063,
+      "phase_residual": {
+        "samples": 14,
+        "r2": 0.9872264551754198,
+        "amplitude": [
+          0.853283147974893,
+          0.765348649898779,
+          0.5678193776900228
+        ],
+        "phase_span_rad": 7.149834150970946,
+        "median_native_phase_step_rad": 0.20881165004948343,
+        "caution": "descriptive in-sample harmonic association, not independent periodic truth"
+      }
+    },
+    {
+      "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:6675:h500000:f500000",
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "horizon_us": 500000,
+      "sampling_group": "main_50hz",
+      "variable": "q",
+      "regime": "stable",
+      "mode": "FULL",
+      "samples": 14,
+      "mean_squared": 0.5200227682538479,
+      "full_base_rms": 0.00015312303875894063,
+      "phase_residual": {
+        "samples": 14,
+        "r2": 0.9872419412134157,
+        "amplitude": [
+          0.8535266890277238,
+          0.765717623648337,
+          0.5680566587324498
+        ],
+        "phase_span_rad": 7.149834150970946,
+        "median_native_phase_step_rad": 0.20881165004948343,
+        "caution": "descriptive in-sample harmonic association, not independent periodic truth"
+      }
+    },
+    {
+      "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:6675:h500000:f500000",
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "horizon_us": 500000,
+      "sampling_group": "main_50hz",
+      "variable": "vD",
+      "regime": "control_change",
+      "mode": "BASE",
+      "samples": 18,
+      "mean_squared": 0.15122905678403248,
+      "full_base_rms": 0.0004663575477048357,
+      "phase_residual": {
+        "samples": 17,
+        "r2": 0.9948033797046911,
+        "amplitude": [
+          0.5122807516656056,
+          0.037521573962287155,
+          0.04123038925153273
+        ],
+        "phase_span_rad": 7.501420485516519,
+        "median_native_phase_step_rad": 0.34967019501573304,
+        "caution": "descriptive in-sample harmonic association, not independent periodic truth"
+      }
+    },
+    {
+      "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:6675:h500000:f500000",
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "horizon_us": 500000,
+      "sampling_group": "main_50hz",
+      "variable": "vD",
+      "regime": "control_change",
+      "mode": "FULL",
+      "samples": 18,
+      "mean_squared": 0.1513949818894822,
+      "full_base_rms": 0.0004663575477048357,
+      "phase_residual": {
+        "samples": 17,
+        "r2": 0.9948257339748947,
+        "amplitude": [
+          0.5122627021851905,
+          0.03752259948996836,
+          0.041311093977056734
+        ],
+        "phase_span_rad": 7.501420485516519,
+        "median_native_phase_step_rad": 0.34967019501573304,
+        "caution": "descriptive in-sample harmonic association, not independent periodic truth"
+      }
+    },
+    {
+      "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:6675:h500000:f500000",
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "horizon_us": 500000,
+      "sampling_group": "main_50hz",
+      "variable": "vD",
+      "regime": "stable",
+      "mode": "BASE",
+      "samples": 7,
+      "mean_squared": 0.3224550813666594,
+      "full_base_rms": 0.0005387085042564219,
+      "phase_residual": {
+        "samples": 7,
+        "r2": null,
+        "reason": "insufficient native phase support"
+      }
+    },
+    {
+      "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:6675:h500000:f500000",
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "horizon_us": 500000,
+      "sampling_group": "main_50hz",
+      "variable": "vD",
+      "regime": "stable",
+      "mode": "FULL",
+      "samples": 7,
+      "mean_squared": 0.3229360647951495,
+      "full_base_rms": 0.0005387085042564219,
+      "phase_residual": {
+        "samples": 7,
+        "r2": null,
+        "reason": "insufficient native phase support"
+      }
+    },
+    {
+      "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:3469:h500000:f1000000",
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "horizon_us": 1000000,
+      "sampling_group": "main_50hz",
+      "variable": "q",
+      "regime": "control_change",
+      "mode": "BASE",
+      "samples": 92,
+      "mean_squared": 0.2897305838601529,
+      "full_base_rms": 9.11252290797662e-05,
+      "phase_residual": {
+        "samples": 91,
+        "r2": 0.9387947482479838,
+        "amplitude": [
+          0.5174810962558265,
+          0.4989877011141958,
+          0.10605315838016272
+        ],
+        "phase_span_rad": 24.127100839327113,
+        "median_native_phase_step_rad": 0.2531821356267301,
+        "caution": "descriptive in-sample harmonic association, not independent periodic truth"
+      }
+    },
+    {
+      "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:3469:h500000:f1000000",
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "horizon_us": 1000000,
+      "sampling_group": "main_50hz",
+      "variable": "q",
+      "regime": "control_change",
+      "mode": "FULL",
+      "samples": 92,
+      "mean_squared": 0.2897243133716231,
+      "full_base_rms": 9.11252290797662e-05,
+      "phase_residual": {
+        "samples": 91,
+        "r2": 0.9387959542455832,
+        "amplitude": [
+          0.5174966585361404,
+          0.4989587522390254,
+          0.10604954730018673
+        ],
+        "phase_span_rad": 24.127100839327113,
+        "median_native_phase_step_rad": 0.2531821356267301,
+        "caution": "descriptive in-sample harmonic association, not independent periodic truth"
+      }
+    },
+    {
+      "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:3469:h500000:f1000000",
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "horizon_us": 1000000,
+      "sampling_group": "main_50hz",
+      "variable": "q",
+      "regime": "stable",
+      "mode": "BASE",
+      "samples": 9,
+      "mean_squared": 0.1134751524917491,
+      "full_base_rms": 0.00011501876559447024,
+      "phase_residual": {
+        "samples": 9,
+        "r2": 0.9911430219964006,
+        "amplitude": [
+          0.7071252274452785,
+          0.5714569940324654,
+          0.3311658003064744
+        ],
+        "phase_span_rad": 19.69015069510897,
+        "median_native_phase_step_rad": 0.30062518029978946,
+        "caution": "descriptive in-sample harmonic association, not independent periodic truth"
+      }
+    },
+    {
+      "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:3469:h500000:f1000000",
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "horizon_us": 1000000,
+      "sampling_group": "main_50hz",
+      "variable": "q",
+      "regime": "stable",
+      "mode": "FULL",
+      "samples": 9,
+      "mean_squared": 0.1134809740835194,
+      "full_base_rms": 0.00011501876559447024,
+      "phase_residual": {
+        "samples": 9,
+        "r2": 0.99117660871174,
+        "amplitude": [
+          0.7072122382374608,
+          0.5714515343877176,
+          0.3312023624090607
+        ],
+        "phase_span_rad": 19.69015069510897,
+        "median_native_phase_step_rad": 0.30062518029978946,
+        "caution": "descriptive in-sample harmonic association, not independent periodic truth"
+      }
+    },
+    {
+      "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:3469:h500000:f1000000",
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "horizon_us": 1000000,
+      "sampling_group": "main_50hz",
+      "variable": "vD",
+      "regime": "control_change",
+      "mode": "BASE",
+      "samples": 46,
+      "mean_squared": 0.7679476461055185,
+      "full_base_rms": 7.528786242956641e-05,
+      "phase_residual": {
+        "samples": 45,
+        "r2": 0.7574356449120206,
+        "amplitude": [
+          0.5896646444071324,
+          0.03960900460516766,
+          0.06237336074745346
+        ],
+        "phase_span_rad": 23.677639432492697,
+        "median_native_phase_step_rad": 0.49343269399480505,
+        "caution": "descriptive in-sample harmonic association, not independent periodic truth"
+      }
+    },
+    {
+      "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:3469:h500000:f1000000",
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "horizon_us": 1000000,
+      "sampling_group": "main_50hz",
+      "variable": "vD",
+      "regime": "control_change",
+      "mode": "FULL",
+      "samples": 46,
+      "mean_squared": 0.7678536052738383,
+      "full_base_rms": 7.528786242956641e-05,
+      "phase_residual": {
+        "samples": 45,
+        "r2": 0.7574761302858363,
+        "amplitude": [
+          0.5896666132607458,
+          0.039612446755596234,
+          0.062405803024523636
+        ],
+        "phase_span_rad": 23.677639432492697,
+        "median_native_phase_step_rad": 0.49343269399480505,
+        "caution": "descriptive in-sample harmonic association, not independent periodic truth"
+      }
+    },
+    {
+      "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:3469:h500000:f1000000",
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "horizon_us": 1000000,
+      "sampling_group": "main_50hz",
+      "variable": "vD",
+      "regime": "stable",
+      "mode": "BASE",
+      "samples": 4,
+      "mean_squared": 0.6928673159144462,
+      "full_base_rms": 9.210914415070845e-05,
+      "phase_residual": {
+        "samples": 4,
+        "r2": null,
+        "reason": "insufficient native phase support"
+      }
+    },
+    {
+      "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:3469:h500000:f1000000",
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "horizon_us": 1000000,
+      "sampling_group": "main_50hz",
+      "variable": "vD",
+      "regime": "stable",
+      "mode": "FULL",
+      "samples": 4,
+      "mean_squared": 0.6927335815233218,
+      "full_base_rms": 9.210914415070845e-05,
+      "phase_residual": {
+        "samples": 4,
+        "r2": null,
+        "reason": "insufficient native phase support"
+      }
+    },
+    {
+      "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:829:h500000:f2000000",
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "horizon_us": 2000000,
+      "sampling_group": "main_50hz",
+      "variable": "q",
+      "regime": "control_change",
+      "mode": "BASE",
+      "samples": 183,
+      "mean_squared": 0.21885106924198264,
+      "full_base_rms": 0.000237302593078433,
+      "phase_residual": {
+        "samples": 182,
+        "r2": 0.9111044013894397,
+        "amplitude": [
+          0.3806031378165062,
+          0.4640941850994589,
+          0.15306071555224107
+        ],
+        "phase_span_rad": 50.58356959230383,
+        "median_native_phase_step_rad": 0.25092132250540544,
+        "caution": "descriptive in-sample harmonic association, not independent periodic truth"
+      }
+    },
+    {
+      "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:829:h500000:f2000000",
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "horizon_us": 2000000,
+      "sampling_group": "main_50hz",
+      "variable": "q",
+      "regime": "control_change",
+      "mode": "FULL",
+      "samples": 183,
+      "mean_squared": 0.21887788078759138,
+      "full_base_rms": 0.000237302593078433,
+      "phase_residual": {
+        "samples": 182,
+        "r2": 0.9111019219921052,
+        "amplitude": [
+          0.3806151511510353,
+          0.46406286040788136,
+          0.1530447637527385
+        ],
+        "phase_span_rad": 50.58356959230383,
+        "median_native_phase_step_rad": 0.25092132250540544,
+        "caution": "descriptive in-sample harmonic association, not independent periodic truth"
+      }
+    },
+    {
+      "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:829:h500000:f2000000",
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "horizon_us": 2000000,
+      "sampling_group": "main_50hz",
+      "variable": "q",
+      "regime": "stable",
+      "mode": "BASE",
+      "samples": 18,
+      "mean_squared": 0.11174806024320952,
+      "full_base_rms": 0.00023291872656012563,
+      "phase_residual": {
+        "samples": 18,
+        "r2": 0.9684292187877721,
+        "amplitude": [
+          0.9043781739719579,
+          0.344410663241869,
+          0.23881145915264268
+        ],
+        "phase_span_rad": 44.049120192416694,
+        "median_native_phase_step_rad": 0.3345057637154696,
+        "caution": "descriptive in-sample harmonic association, not independent periodic truth"
+      }
+    },
+    {
+      "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:829:h500000:f2000000",
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "horizon_us": 2000000,
+      "sampling_group": "main_50hz",
+      "variable": "q",
+      "regime": "stable",
+      "mode": "FULL",
+      "samples": 18,
+      "mean_squared": 0.1117129709071489,
+      "full_base_rms": 0.00023291872656012563,
+      "phase_residual": {
+        "samples": 18,
+        "r2": 0.968425013733749,
+        "amplitude": [
+          0.9044409706111011,
+          0.3443985566841173,
+          0.23880496330665937
+        ],
+        "phase_span_rad": 44.049120192416694,
+        "median_native_phase_step_rad": 0.3345057637154696,
+        "caution": "descriptive in-sample harmonic association, not independent periodic truth"
+      }
+    },
+    {
+      "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:829:h500000:f2000000",
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "horizon_us": 2000000,
+      "sampling_group": "main_50hz",
+      "variable": "vD",
+      "regime": "control_change",
+      "mode": "BASE",
+      "samples": 91,
+      "mean_squared": 1.5552696221225109,
+      "full_base_rms": 0.0009686906412207352,
+      "phase_residual": {
+        "samples": 90,
+        "r2": 0.3526289158881152,
+        "amplitude": [
+          0.5756720982198018,
+          0.03282704363235822,
+          0.056056705581617836
+        ],
+        "phase_span_rad": 49.910457958755046,
+        "median_native_phase_step_rad": 0.5000413800024717,
+        "caution": "descriptive in-sample harmonic association, not independent periodic truth"
+      }
+    },
+    {
+      "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:829:h500000:f2000000",
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "horizon_us": 2000000,
+      "sampling_group": "main_50hz",
+      "variable": "vD",
+      "regime": "control_change",
+      "mode": "FULL",
+      "samples": 91,
+      "mean_squared": 1.5574365798991998,
+      "full_base_rms": 0.0009686906412207352,
+      "phase_residual": {
+        "samples": 90,
+        "r2": 0.3520528799988749,
+        "amplitude": [
+          0.5756270431575382,
+          0.0329110673713055,
+          0.056154594669864936
+        ],
+        "phase_span_rad": 49.910457958755046,
+        "median_native_phase_step_rad": 0.5000413800024717,
+        "caution": "descriptive in-sample harmonic association, not independent periodic truth"
+      }
+    },
+    {
+      "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:829:h500000:f2000000",
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "horizon_us": 2000000,
+      "sampling_group": "main_50hz",
+      "variable": "vD",
+      "regime": "stable",
+      "mode": "BASE",
+      "samples": 9,
+      "mean_squared": 1.3153274958462902,
+      "full_base_rms": 0.0010600057392902923,
+      "phase_residual": {
+        "samples": 9,
+        "r2": 0.9982979884708963,
+        "amplitude": [
+          213.27954932034976,
+          24.267821039138347,
+          84.77770648673436
+        ],
+        "phase_span_rad": 43.846551462284424,
+        "median_native_phase_step_rad": 3.262627814309269,
+        "caution": "descriptive in-sample harmonic association, not independent periodic truth"
+      }
+    },
+    {
+      "window_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:829:h500000:f2000000",
+      "flight_id": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+      "horizon_us": 2000000,
+      "sampling_group": "main_50hz",
+      "variable": "vD",
+      "regime": "stable",
+      "mode": "FULL",
+      "samples": 9,
+      "mean_squared": 1.3174634239180245,
+      "full_base_rms": 0.0010600057392902923,
+      "phase_residual": {
+        "samples": 9,
+        "r2": 0.9982992372603958,
+        "amplitude": [
+          213.66532214265024,
+          24.30820525849417,
+          84.93083936907823
+        ],
+        "phase_span_rad": 43.846551462284424,
+        "median_native_phase_step_rad": 3.262627814309269,
+        "caution": "descriptive in-sample harmonic association, not independent periodic truth"
+      }
+    }
+  ],
+  "coverage": {
+    "windows": 8,
+    "paired_windows": 6,
+    "paired_flights": 2,
+    "valid_pairs": 647,
+    "rejected_pairs": 0
+  },
+  "seconds": 7.013025249354541,
+  "data_identity": {
+    "train": {
+      "split": "train",
+      "windows": 343108,
+      "manifest_sha256": "8afb8623bf7174e4da5b2044f644331b8b251433fed3576f6dcdab470935bcb5",
+      "index_sha256": "5a8ed2d0ecaf38520e6ddd4a0eeddb2754ffb78036c40b3fbe951a7ba05f70a3",
+      "phase_contract": {
+        "schema": "pahbd_hall_phase_v2",
+        "reference_id": "hall_zero_positive_upstroke_working_assumption",
+        "phase_source": "wing_phase.phase_rad",
+        "mechanical_assumption": "Hall=0; increasing counts; upward motion begins after zero; no pi switching label",
+        "absolute_wing_calibration": false,
+        "availability_delay_us": 20000,
+        "availability_assumption": "Encoder timestamp + 20 ms guard; assumes work queue publication latency <=20 ms. Not a measured upper bound; offline research only.",
+        "max_gap_us": 50000,
+        "max_reference_error_rad": 0.15,
+        "recovery_us": 500000,
+        "phase_variance_rad2": 0.0009,
+        "max_encoder_frequency_hz": 20.0,
+        "frozen_contract_override": "Overrides build_config.phase.wing_phase_history_allowed=false for PA-HBD only; frozen tables/splits/quality exclusions unchanged.",
+        "firmware_source": "dataset/velocity_rate_multistep_v1/firmware_sources/c9af571575af33d5403fbb479256848797c801e2/src/modules/wing_phase/WingPhase.cpp",
+        "threshold_scope": "Fixed sensor QC: 0.15 rad reference innovation, 50 ms gap, 500 ms recovery, 20 Hz count-rate sanity ceiling; not tuned by model error or absolute calibration."
+      },
+      "phase_policy": "shared_or_average"
+    },
+    "validation": {
+      "split": "validation",
+      "windows": 112933,
+      "manifest_sha256": "8afb8623bf7174e4da5b2044f644331b8b251433fed3576f6dcdab470935bcb5",
+      "index_sha256": "cf332f3f7030a3c7f070731a7238fc5ba92c670ee4a4ff0c2c220d38920e26aa",
+      "phase_contract": {
+        "schema": "pahbd_hall_phase_v2",
+        "reference_id": "hall_zero_positive_upstroke_working_assumption",
+        "phase_source": "wing_phase.phase_rad",
+        "mechanical_assumption": "Hall=0; increasing counts; upward motion begins after zero; no pi switching label",
+        "absolute_wing_calibration": false,
+        "availability_delay_us": 20000,
+        "availability_assumption": "Encoder timestamp + 20 ms guard; assumes work queue publication latency <=20 ms. Not a measured upper bound; offline research only.",
+        "max_gap_us": 50000,
+        "max_reference_error_rad": 0.15,
+        "recovery_us": 500000,
+        "phase_variance_rad2": 0.0009,
+        "max_encoder_frequency_hz": 20.0,
+        "frozen_contract_override": "Overrides build_config.phase.wing_phase_history_allowed=false for PA-HBD only; frozen tables/splits/quality exclusions unchanged.",
+        "firmware_source": "dataset/velocity_rate_multistep_v1/firmware_sources/c9af571575af33d5403fbb479256848797c801e2/src/modules/wing_phase/WingPhase.cpp",
+        "threshold_scope": "Fixed sensor QC: 0.15 rad reference innovation, 50 ms gap, 500 ms recovery, 20 Hz count-rate sanity ceiling; not tuned by model error or absolute calibration."
+      },
+      "phase_policy": "shared_or_average"
+    },
+    "validation_window_ids": [
+      "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:1255:h500000:f200000",
+      "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:748:h500000:f500000",
+      "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:424:h500000:f1000000",
+      "02db60bb6062facf8b92ef5fb76f6a75574eb9497873a3a616960df3e54cf0d2:1:1156:h500000:f2000000",
+      "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:2866:h500000:f200000",
+      "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:6675:h500000:f500000",
+      "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:3469:h500000:f1000000",
+      "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1:829:h500000:f2000000"
+    ],
+    "scope": "readiness_only_not_formal_resume"
+  },
+  "intracycle_flight_equal": [
+    {
+      "sampling_group": "main_50hz",
+      "variable": "q",
+      "regime": "control_change",
+      "full_rmse": 0.4909160303183888,
+      "base_rmse": 0.49094068496516824,
+      "base_minus_full_mse": 2.4207330503345226e-05,
+      "flights": 1,
+      "interpretation": "native sample prediction error; no interpolated high-frequency truth"
+    },
+    {
+      "sampling_group": "main_50hz",
+      "variable": "q",
+      "regime": "stable",
+      "full_rmse": 0.49840302073874454,
+      "base_rmse": 0.4984812477738921,
+      "base_minus_full_mse": 7.798330071095982e-05,
+      "flights": 1,
+      "interpretation": "native sample prediction error; no interpolated high-frequency truth"
+    },
+    {
+      "sampling_group": "main_50hz",
+      "variable": "vD",
+      "regime": "control_change",
+      "full_rmse": 0.8115243584825087,
+      "base_rmse": 0.8111753849269303,
+      "base_minus_full_mse": -0.0005662792990938081,
+      "flights": 1,
+      "interpretation": "native sample prediction error; no interpolated high-frequency truth"
+    },
+    {
+      "sampling_group": "main_50hz",
+      "variable": "vD",
+      "regime": "stable",
+      "full_rmse": 0.8818792567081761,
+      "base_rmse": 0.881409835269117,
+      "base_minus_full_mse": -0.0008277257030333551,
+      "flights": 1,
+      "interpretation": "native sample prediction error; no interpolated high-frequency truth"
+    },
+    {
+      "sampling_group": "sparse_10hz",
+      "variable": "q",
+      "regime": "control_change",
+      "full_rmse": 0.5566792039127972,
+      "base_rmse": 0.55673486958062,
+      "base_minus_full_mse": 6.197893796427989e-05,
+      "flights": 1,
+      "interpretation": "native sample prediction error; no interpolated high-frequency truth"
+    },
+    {
+      "sampling_group": "sparse_10hz",
+      "variable": "q",
+      "regime": "stable",
+      "full_rmse": 0.49541702590254044,
+      "base_rmse": 0.4954672276200983,
+      "base_minus_full_mse": 4.974409142785574e-05,
+      "flights": 1,
+      "interpretation": "native sample prediction error; no interpolated high-frequency truth"
+    },
+    {
+      "sampling_group": "sparse_10hz",
+      "variable": "vD",
+      "regime": "stable",
+      "full_rmse": 0.8156877683850664,
+      "base_rmse": 0.8164821166535375,
+      "base_minus_full_mse": 0.0012965113220310132,
+      "flights": 1,
+      "interpretation": "native sample prediction error; no interpolated high-frequency truth"
+    }
+  ]
+}

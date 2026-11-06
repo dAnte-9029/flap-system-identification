@@ -1,0 +1,150 @@
+{
+  "lambda_macro": 1.0,
+  "updates": [
+    {
+      "full": 79.2267014939975,
+      "macro": 22.598547800538554,
+      "total": 101.82524929453605,
+      "pairs": 41,
+      "rejected_pairs": 0,
+      "gradient_norms": {
+        "full": {
+          "total": 47.00076124536754,
+          "modules": {
+            "flow.process_logit": 2.9438952751249157,
+            "flow.dynamics.slow": 1.1195142633447457,
+            "flow.dynamics.equilibrium": 0.8051726256037417,
+            "flow.dynamics.relaxation": 0.033606909795283794,
+            "flow.dynamics.coupling": 0.0565176551773659,
+            "flow.dynamics.decoder": 42.00428431100315,
+            "belief.shared": 16.49064049846737,
+            "belief.slow_head": 6.230663511219606,
+            "belief.fast_head": 2.993019489061477,
+            "belief.correction_head": 10.696644448379988,
+            "belief.gate_head": 0.02095242881506776
+          }
+        },
+        "macro": {
+          "total": 14.582567437406677,
+          "modules": {
+            "flow.process_logit": 0.46459044510291714,
+            "flow.dynamics.slow": 0.8386755521002361,
+            "flow.dynamics.equilibrium": 0.3826606224141173,
+            "flow.dynamics.relaxation": 0.01118555496783839,
+            "flow.dynamics.coupling": 0.01985100268197943,
+            "flow.dynamics.decoder": 13.841419169464235,
+            "belief.shared": 3.5141039237431677,
+            "belief.slow_head": 2.225018381429798,
+            "belief.fast_head": 0.418699187867724,
+            "belief.correction_head": 1.589045387246216,
+            "belief.gate_head": 0.014550265255991096
+          }
+        }
+      },
+      "lambda_macro": 1.0,
+      "window_id": "4c77a3e74b4c8e26d021fd1fa2bc618a2f2f52e005eb5022ecdf680c40678bfb:1:689:h500000:f500000",
+      "flight_id": "4c77a3e74b4c8e26d021fd1fa2bc618a2f2f52e005eb5022ecdf680c40678bfb:1",
+      "horizon_us": 500000,
+      "sampling_group": "main_50hz",
+      "device": "cpu",
+      "seconds": 3.930693049915135
+    },
+    {
+      "full": 49.24368400738075,
+      "macro": 4.2337498506028375,
+      "total": 53.477433857983584,
+      "pairs": 22,
+      "rejected_pairs": 0,
+      "gradient_norms": {
+        "full": {
+          "total": 33.45792937189591,
+          "modules": {
+            "flow.process_logit": 0.6476104520193556,
+            "flow.dynamics.slow": 0.5398707430696317,
+            "flow.dynamics.equilibrium": 0.5184725393716546,
+            "flow.dynamics.relaxation": 0.014139832144273964,
+            "flow.dynamics.coupling": 0.0037935520466223778,
+            "flow.dynamics.decoder": 32.62807753200568,
+            "belief.shared": 5.552353971563961,
+            "belief.slow_head": 2.9361304637584213,
+            "belief.fast_head": 1.9309376231049384,
+            "belief.correction_head": 3.268480876694711,
+            "belief.gate_head": 0.026879956236529286
+          }
+        },
+        "macro": {
+          "total": 2.671931469677541,
+          "modules": {
+            "flow.process_logit": 0.02989533002634981,
+            "flow.dynamics.slow": 0.07859075019448374,
+            "flow.dynamics.equilibrium": 0.05490443398379797,
+            "flow.dynamics.relaxation": 0.0021309605817521116,
+            "flow.dynamics.coupling": 0.0007191542103307181,
+            "flow.dynamics.decoder": 2.598811832363854,
+            "belief.shared": 0.4607657282560596,
+            "belief.slow_head": 0.29597573635280017,
+            "belief.fast_head": 0.12007636462247445,
+            "belief.correction_head": 0.24693789322512336,
+            "belief.gate_head": 0.0013028822299158362
+          }
+        }
+      },
+      "lambda_macro": 1.0,
+      "window_id": "00d803ef294b0e2907520c488d89345a9ef54f2936940828ab3e1df104d715b2:1:12:h500000:f500000",
+      "flight_id": "00d803ef294b0e2907520c488d89345a9ef54f2936940828ab3e1df104d715b2:1",
+      "horizon_us": 500000,
+      "sampling_group": "sparse_10hz",
+      "device": "cpu",
+      "seconds": 3.2445260202512145
+    },
+    {
+      "full": 48.691364578825905,
+      "macro": 4.191790782637899,
+      "total": 52.88315536146381,
+      "pairs": 22,
+      "rejected_pairs": 0,
+      "gradient_norms": {
+        "full": {
+          "total": 32.81057025089751,
+          "modules": {
+            "flow.process_logit": 0.6725772691438376,
+            "flow.dynamics.slow": 0.5610440097321427,
+            "flow.dynamics.equilibrium": 0.5450899480667,
+            "flow.dynamics.relaxation": 0.015738224664433007,
+            "flow.dynamics.coupling": 0.003972388920178233,
+            "flow.dynamics.decoder": 31.920865232716576,
+            "belief.shared": 5.723913582302414,
+            "belief.slow_head": 3.000548283980609,
+            "belief.fast_head": 2.0569103843323937,
+            "belief.correction_head": 3.2447577008673156,
+            "belief.gate_head": 0.03945032638349819
+          }
+        },
+        "macro": {
+          "total": 2.594016433807059,
+          "modules": {
+            "flow.process_logit": 0.029262519381852637,
+            "flow.dynamics.slow": 0.0772598044896834,
+            "flow.dynamics.equilibrium": 0.05445911353485472,
+            "flow.dynamics.relaxation": 0.0019194338626977077,
+            "flow.dynamics.coupling": 0.0007531127540613444,
+            "flow.dynamics.decoder": 2.526109313172123,
+            "belief.shared": 0.4348484321386315,
+            "belief.slow_head": 0.28278094444848134,
+            "belief.fast_head": 0.12413987566151503,
+            "belief.correction_head": 0.23114342695281734,
+            "belief.gate_head": 0.0011678417169985584
+          }
+        }
+      },
+      "lambda_macro": 1.0,
+      "window_id": "00d803ef294b0e2907520c488d89345a9ef54f2936940828ab3e1df104d715b2:1:12:h500000:f500000",
+      "flight_id": "00d803ef294b0e2907520c488d89345a9ef54f2936940828ab3e1df104d715b2:1",
+      "horizon_us": 500000,
+      "sampling_group": "sparse_10hz",
+      "device": "cuda:0",
+      "seconds": 6.57686280598864
+    }
+  ],
+  "optimizer_steps": 3
+}

@@ -1,0 +1,659 @@
+{
+  "schema": "pacld_lambda_v1",
+  "seed": 17,
+  "model_config": {
+    "slow_dim": 12,
+    "fast_dim": 6,
+    "width": 128,
+    "max_step": 0.005,
+    "actuator_tau": 0.06,
+    "slow_rate_limit": 10.0,
+    "envelope_bound": 2.0,
+    "lambda_min": 0.5,
+    "lambda_max": 20.0,
+    "coupling_bound": 1.0,
+    "initial_slow_bound": 2.0,
+    "replay_seconds": 0.65,
+    "variance_min": 1e-05,
+    "variance_max": 25.0,
+    "frequency_noise_psd": 0.04,
+    "phase_noise_psd": 0.01,
+    "frequency_coefficients": [
+      3.6354511983566393,
+      23.393570068972757,
+      -5.126725395181777
+    ]
+  },
+  "loss_config": {
+    "objective": "L_full + lambda_macro * L_macro",
+    "full_reduction": "EKF family and gyro equal, events equal within family",
+    "macro_reduction": "sources equal, valid pairs equal within source",
+    "no_pair": "macro absent; FULL remains active",
+    "lambda_rule": "clip(0.1*median(full)/max(median(macro),1e-8),0.01,1.0)",
+    "calibration_windows": 64,
+    "calibration_seed": 17
+  },
+  "data_identity": {
+    "split": "train",
+    "windows": 343108,
+    "manifest_sha256": "8afb8623bf7174e4da5b2044f644331b8b251433fed3576f6dcdab470935bcb5",
+    "index_sha256": "5a8ed2d0ecaf38520e6ddd4a0eeddb2754ffb78036c40b3fbe951a7ba05f70a3",
+    "phase_contract": {
+      "schema": "pahbd_hall_phase_v2",
+      "reference_id": "hall_zero_positive_upstroke_working_assumption",
+      "phase_source": "wing_phase.phase_rad",
+      "mechanical_assumption": "Hall=0; increasing counts; upward motion begins after zero; no pi switching label",
+      "absolute_wing_calibration": false,
+      "availability_delay_us": 20000,
+      "availability_assumption": "Encoder timestamp + 20 ms guard; assumes work queue publication latency <=20 ms. Not a measured upper bound; offline research only.",
+      "max_gap_us": 50000,
+      "max_reference_error_rad": 0.15,
+      "recovery_us": 500000,
+      "phase_variance_rad2": 0.0009,
+      "max_encoder_frequency_hz": 20.0,
+      "frozen_contract_override": "Overrides build_config.phase.wing_phase_history_allowed=false for PA-HBD only; frozen tables/splits/quality exclusions unchanged.",
+      "firmware_source": "dataset/velocity_rate_multistep_v1/firmware_sources/c9af571575af33d5403fbb479256848797c801e2/src/modules/wing_phase/WingPhase.cpp",
+      "threshold_scope": "Fixed sensor QC: 0.15 rad reference innovation, 50 ms gap, 500 ms recovery, 20 Hz count-rate sanity ceiling; not tuned by model error or absolute calibration."
+    },
+    "phase_policy": "shared_or_average"
+  },
+  "lambda_macro": 1.0,
+  "median_full": 68.93725691821686,
+  "median_macro": 6.248055250713996,
+  "windows": 64,
+  "distributions": {
+    "full": {
+      "min": 17.75589789850186,
+      "q25": 41.24048677131724,
+      "median": 68.93725691821686,
+      "q75": 89.78966616438353,
+      "max": 209.4861007753749
+    },
+    "macro": {
+      "min": 0.16807759389834884,
+      "q25": 3.463618751284633,
+      "median": 6.248055250713996,
+      "q75": 10.121426412228205,
+      "max": 234.70508973532995
+    }
+  },
+  "records": [
+    {
+      "window_id": "91efff1aca54c8fcbafcc3fa5f089339d7445077a50b905a5368be205ce389e9:1:177:h500000:f200000",
+      "flight_id": "91efff1aca54c8fcbafcc3fa5f089339d7445077a50b905a5368be205ce389e9:1",
+      "horizon_us": 200000,
+      "sampling_group": "main_50hz",
+      "full": 81.93313862818187,
+      "macro": 6.0580062953240885,
+      "pairs": 3
+    },
+    {
+      "window_id": "960410f28c48aa5625a9f635a20c64f4b169dd4fab906ca1855cbc468ba74a66:1:42:h500000:f200000",
+      "flight_id": "960410f28c48aa5625a9f635a20c64f4b169dd4fab906ca1855cbc468ba74a66:1",
+      "horizon_us": 200000,
+      "sampling_group": "sparse_10hz",
+      "full": 37.98266771215436,
+      "macro": 0.23083369626071124,
+      "pairs": 1
+    },
+    {
+      "window_id": "9723ebfeb4a7b483ef81b580da6f4b6cf723d75a3ef49e5cccc3ce5378762373:1:1715:h500000:f500000",
+      "flight_id": "9723ebfeb4a7b483ef81b580da6f4b6cf723d75a3ef49e5cccc3ce5378762373:1",
+      "horizon_us": 500000,
+      "sampling_group": "main_50hz",
+      "full": 37.877779469216506,
+      "macro": 3.5199829302098684,
+      "pairs": 37
+    },
+    {
+      "window_id": "7cc9ef8d0a059873cb975aa9e410f2ee5f026c6c3184593f5c5518d5a81e21d3:1:415:h500000:f500000",
+      "flight_id": "7cc9ef8d0a059873cb975aa9e410f2ee5f026c6c3184593f5c5518d5a81e21d3:1",
+      "horizon_us": 500000,
+      "sampling_group": "sparse_10hz",
+      "full": 68.676668823201,
+      "macro": 10.591494241304739,
+      "pairs": 19
+    },
+    {
+      "window_id": "95b2e74ad704fbe261d081ad317f01a9bba5c99b3c2f32b64e3a5e57602164a8:1:3325:h500000:f1000000",
+      "flight_id": "95b2e74ad704fbe261d081ad317f01a9bba5c99b3c2f32b64e3a5e57602164a8:1",
+      "horizon_us": 1000000,
+      "sampling_group": "main_50hz",
+      "full": 52.29632715880976,
+      "macro": 2.2514238059676117,
+      "pairs": 144
+    },
+    {
+      "window_id": "074a4578148db3f939476075d981f9222e5279e6962ce9bc93de6841a1bd1ec4:1:122:h500000:f1000000",
+      "flight_id": "074a4578148db3f939476075d981f9222e5279e6962ce9bc93de6841a1bd1ec4:1",
+      "horizon_us": 1000000,
+      "sampling_group": "sparse_10hz",
+      "full": 35.82542500182467,
+      "macro": 3.626322416000022,
+      "pairs": 56
+    },
+    {
+      "window_id": "bb1f0984727ec1aa0d2a8eb18164d581e4b1fb387ace936abdf485b258ae125e:1:6012:h500000:f2000000",
+      "flight_id": "bb1f0984727ec1aa0d2a8eb18164d581e4b1fb387ace936abdf485b258ae125e:1",
+      "horizon_us": 2000000,
+      "sampling_group": "main_50hz",
+      "full": 76.68161289608929,
+      "macro": 6.51164984291535,
+      "pairs": 321
+    },
+    {
+      "window_id": "00d803ef294b0e2907520c488d89345a9ef54f2936940828ab3e1df104d715b2:1:643:h500000:f2000000",
+      "flight_id": "00d803ef294b0e2907520c488d89345a9ef54f2936940828ab3e1df104d715b2:1",
+      "horizon_us": 2000000,
+      "sampling_group": "sparse_10hz",
+      "full": 73.927086623775,
+      "macro": 4.743033173293765,
+      "pairs": 135
+    },
+    {
+      "window_id": "642e50e4c1d984910cff8c5bf098c00cc1f962f60e20941f8602461caf6d9c04:1:440:h500000:f200000",
+      "flight_id": "642e50e4c1d984910cff8c5bf098c00cc1f962f60e20941f8602461caf6d9c04:1",
+      "horizon_us": 200000,
+      "sampling_group": "main_50hz",
+      "full": 66.38904611760707,
+      "macro": 13.036230529471228,
+      "pairs": 2
+    },
+    {
+      "window_id": "50e29035713d7b518d2f9f4e035cdd8505351e34102ac618fa34ce7f391f1d01:1:406:h500000:f200000",
+      "flight_id": "50e29035713d7b518d2f9f4e035cdd8505351e34102ac618fa34ce7f391f1d01:1",
+      "horizon_us": 200000,
+      "sampling_group": "sparse_10hz",
+      "full": 75.62808852125188,
+      "macro": 0.16807759389834884,
+      "pairs": 1
+    },
+    {
+      "window_id": "0ad472f5e6d2fdd7f5a94c403a49e07e089f7d16de603f5703d4e2260938cc5b:1:873:h500000:f500000",
+      "flight_id": "0ad472f5e6d2fdd7f5a94c403a49e07e089f7d16de603f5703d4e2260938cc5b:1",
+      "horizon_us": 500000,
+      "sampling_group": "main_50hz",
+      "full": 61.93865163940792,
+      "macro": 9.091039750037107,
+      "pairs": 47
+    },
+    {
+      "window_id": "5a65e381f2befd7d8f8ca5a5812b5639a5534563eb094a72b6a05adfb09647a0:1:1320:h500000:f500000",
+      "flight_id": "5a65e381f2befd7d8f8ca5a5812b5639a5534563eb094a72b6a05adfb09647a0:1",
+      "horizon_us": 500000,
+      "sampling_group": "sparse_10hz",
+      "full": 27.75023874973005,
+      "macro": 3.8613130921552643,
+      "pairs": 16
+    },
+    {
+      "window_id": "a978956f5f191a4daabd24086ef734b611060f7467063c838c8c78bc898a5a68:1:6565:h500000:f1000000",
+      "flight_id": "a978956f5f191a4daabd24086ef734b611060f7467063c838c8c78bc898a5a68:1",
+      "horizon_us": 1000000,
+      "sampling_group": "main_50hz",
+      "full": 61.23755489800092,
+      "macro": 6.387698507355893,
+      "pairs": 137
+    },
+    {
+      "window_id": "28516b6a7b7ec0279112d0576bcc895b8768e7eaf83b60c813ffb89ba3647332:1:1535:h500000:f1000000",
+      "flight_id": "28516b6a7b7ec0279112d0576bcc895b8768e7eaf83b60c813ffb89ba3647332:1",
+      "horizon_us": 1000000,
+      "sampling_group": "sparse_10hz",
+      "full": 48.02018738686549,
+      "macro": 7.547971363472192,
+      "pairs": 49
+    },
+    {
+      "window_id": "4cb7cd25d37ed3fce01ddeca9d7331177fb877de4a8829af6070312edf0f9c99:1:5852:h500000:f2000000",
+      "flight_id": "4cb7cd25d37ed3fce01ddeca9d7331177fb877de4a8829af6070312edf0f9c99:1",
+      "horizon_us": 2000000,
+      "sampling_group": "main_50hz",
+      "full": 77.95018253880261,
+      "macro": 6.2066473855071544,
+      "pairs": 307
+    },
+    {
+      "window_id": "28516b6a7b7ec0279112d0576bcc895b8768e7eaf83b60c813ffb89ba3647332:1:178:h500000:f2000000",
+      "flight_id": "28516b6a7b7ec0279112d0576bcc895b8768e7eaf83b60c813ffb89ba3647332:1",
+      "horizon_us": 2000000,
+      "sampling_group": "sparse_10hz",
+      "full": 105.11418344875868,
+      "macro": 11.189993595686863,
+      "pairs": 130
+    },
+    {
+      "window_id": "74a22ee9334cb525aec5257f6f852240f695ed38934ec50cb7960af69c723adb:1:183:h500000:f200000",
+      "flight_id": "74a22ee9334cb525aec5257f6f852240f695ed38934ec50cb7960af69c723adb:1",
+      "horizon_us": 200000,
+      "sampling_group": "main_50hz",
+      "full": 76.02485392035499,
+      "macro": 5.414934482023806,
+      "pairs": 2
+    },
+    {
+      "window_id": "960410f28c48aa5625a9f635a20c64f4b169dd4fab906ca1855cbc468ba74a66:1:49:h500000:f200000",
+      "flight_id": "960410f28c48aa5625a9f635a20c64f4b169dd4fab906ca1855cbc468ba74a66:1",
+      "horizon_us": 200000,
+      "sampling_group": "sparse_10hz",
+      "full": 53.840486177341354,
+      "macro": 0.49691883074240745,
+      "pairs": 1
+    },
+    {
+      "window_id": "284731a01071468a9862d0cdce9238e8a2ce7375911acd40c46a49640e67111d:1:754:h500000:f500000",
+      "flight_id": "284731a01071468a9862d0cdce9238e8a2ce7375911acd40c46a49640e67111d:1",
+      "horizon_us": 500000,
+      "sampling_group": "main_50hz",
+      "full": 49.013845170726846,
+      "macro": 18.37603258893044,
+      "pairs": 44
+    },
+    {
+      "window_id": "50e29035713d7b518d2f9f4e035cdd8505351e34102ac618fa34ce7f391f1d01:1:1089:h500000:f500000",
+      "flight_id": "50e29035713d7b518d2f9f4e035cdd8505351e34102ac618fa34ce7f391f1d01:1",
+      "horizon_us": 500000,
+      "sampling_group": "sparse_10hz",
+      "full": 35.109642042503786,
+      "macro": 12.55593606555189,
+      "pairs": 10
+    },
+    {
+      "window_id": "e3e4c7669ab5352358121e438acf850a62ada4d8c98393228fdc39f226f242d5:1:4886:h500000:f1000000",
+      "flight_id": "e3e4c7669ab5352358121e438acf850a62ada4d8c98393228fdc39f226f242d5:1",
+      "horizon_us": 1000000,
+      "sampling_group": "main_50hz",
+      "full": 29.61919729709264,
+      "macro": 6.883261497651681,
+      "pairs": 127
+    },
+    {
+      "window_id": "0388e0d4a0855f5bad87c7826cc828511176471e7883645a1b1b3facacdb7486:1:1210:h500000:f1000000",
+      "flight_id": "0388e0d4a0855f5bad87c7826cc828511176471e7883645a1b1b3facacdb7486:1",
+      "horizon_us": 1000000,
+      "sampling_group": "sparse_10hz",
+      "full": 69.30108158979787,
+      "macro": 19.735085774575563,
+      "pairs": 56
+    },
+    {
+      "window_id": "284731a01071468a9862d0cdce9238e8a2ce7375911acd40c46a49640e67111d:1:3041:h500000:f2000000",
+      "flight_id": "284731a01071468a9862d0cdce9238e8a2ce7375911acd40c46a49640e67111d:1",
+      "horizon_us": 2000000,
+      "sampling_group": "main_50hz",
+      "full": 69.19784501323272,
+      "macro": 3.294526214508927,
+      "pairs": 301
+    },
+    {
+      "window_id": "f7e3cd760c51d9f48201912e3b7b89bc1528ad83b9ee264cdb13592ff95c3d52:1:1085:h500000:f2000000",
+      "flight_id": "f7e3cd760c51d9f48201912e3b7b89bc1528ad83b9ee264cdb13592ff95c3d52:1",
+      "horizon_us": 2000000,
+      "sampling_group": "sparse_10hz",
+      "full": 209.4861007753749,
+      "macro": 9.818373038585177,
+      "pairs": 132
+    },
+    {
+      "window_id": "f359c4988644892a1e16716684f44505f6fe58721ff2266673b42d2e4b3b5f15:1:269:h500000:f200000",
+      "flight_id": "f359c4988644892a1e16716684f44505f6fe58721ff2266673b42d2e4b3b5f15:1",
+      "horizon_us": 200000,
+      "sampling_group": "main_50hz",
+      "full": 77.27241563564998,
+      "macro": 0.7214176931511895,
+      "pairs": 1
+    },
+    {
+      "window_id": "960410f28c48aa5625a9f635a20c64f4b169dd4fab906ca1855cbc468ba74a66:1:896:h500000:f200000",
+      "flight_id": "960410f28c48aa5625a9f635a20c64f4b169dd4fab906ca1855cbc468ba74a66:1",
+      "horizon_us": 200000,
+      "sampling_group": "sparse_10hz",
+      "full": 40.49111837521701,
+      "macro": 0.36902916289663396,
+      "pairs": 1
+    },
+    {
+      "window_id": "603a941c5ebbfcdf27b80b0d1c4b2de65dd4e114fdefb64bb70896e409c135a8:1:2722:h500000:f500000",
+      "flight_id": "603a941c5ebbfcdf27b80b0d1c4b2de65dd4e114fdefb64bb70896e409c135a8:1",
+      "horizon_us": 500000,
+      "sampling_group": "main_50hz",
+      "full": 51.359210274991916,
+      "macro": 3.067251589605189,
+      "pairs": 43
+    },
+    {
+      "window_id": "13697091192ed665925a923321e2700320e12e8e3dc732caf95eaf328cc84733:1:1185:h500000:f500000",
+      "flight_id": "13697091192ed665925a923321e2700320e12e8e3dc732caf95eaf328cc84733:1",
+      "horizon_us": 500000,
+      "sampling_group": "sparse_10hz",
+      "full": 42.39650279128516,
+      "macro": 6.785689114983202,
+      "pairs": 16
+    },
+    {
+      "window_id": "277584f21d30a39f3b2fb9cb6884e2c263b97f12ae17a4eaa1c64c023cfea8a5:1:1413:h500000:f1000000",
+      "flight_id": "277584f21d30a39f3b2fb9cb6884e2c263b97f12ae17a4eaa1c64c023cfea8a5:1",
+      "horizon_us": 1000000,
+      "sampling_group": "main_50hz",
+      "full": 50.88956040791595,
+      "macro": 2.8038760031186842,
+      "pairs": 132
+    },
+    {
+      "window_id": "960410f28c48aa5625a9f635a20c64f4b169dd4fab906ca1855cbc468ba74a66:1:288:h500000:f1000000",
+      "flight_id": "960410f28c48aa5625a9f635a20c64f4b169dd4fab906ca1855cbc468ba74a66:1",
+      "horizon_us": 1000000,
+      "sampling_group": "sparse_10hz",
+      "full": 58.18916491939541,
+      "macro": 9.752187427411785,
+      "pairs": 61
+    },
+    {
+      "window_id": "9723ebfeb4a7b483ef81b580da6f4b6cf723d75a3ef49e5cccc3ce5378762373:1:4185:h500000:f2000000",
+      "flight_id": "9723ebfeb4a7b483ef81b580da6f4b6cf723d75a3ef49e5cccc3ce5378762373:1",
+      "horizon_us": 2000000,
+      "sampling_group": "main_50hz",
+      "full": 106.77539872569639,
+      "macro": 8.038418035008318,
+      "pairs": 323
+    },
+    {
+      "window_id": "5a65e381f2befd7d8f8ca5a5812b5639a5534563eb094a72b6a05adfb09647a0:1:1232:h500000:f2000000",
+      "flight_id": "5a65e381f2befd7d8f8ca5a5812b5639a5534563eb094a72b6a05adfb09647a0:1",
+      "horizon_us": 2000000,
+      "sampling_group": "sparse_10hz",
+      "full": 65.43914990190612,
+      "macro": 4.501213275633879,
+      "pairs": 133
+    },
+    {
+      "window_id": "158acd45674d2b5008263b6098f986c758a966ac27bab4b2ef465b1c430ccd42:1:305:h500000:f200000",
+      "flight_id": "158acd45674d2b5008263b6098f986c758a966ac27bab4b2ef465b1c430ccd42:1",
+      "horizon_us": 200000,
+      "sampling_group": "main_50hz",
+      "full": 104.46048555302067,
+      "macro": 9.864973282506737,
+      "pairs": 2
+    },
+    {
+      "window_id": "960410f28c48aa5625a9f635a20c64f4b169dd4fab906ca1855cbc468ba74a66:1:1123:h500000:f200000",
+      "flight_id": "960410f28c48aa5625a9f635a20c64f4b169dd4fab906ca1855cbc468ba74a66:1",
+      "horizon_us": 200000,
+      "sampling_group": "sparse_10hz",
+      "full": 41.04739217081266,
+      "macro": 0.185307705295456,
+      "pairs": 1
+    },
+    {
+      "window_id": "580c4b33bc9eba1241a9579b19705bc1d9e30678168e8e8919bbab8635bc09da:1:134:h500000:f500000",
+      "flight_id": "580c4b33bc9eba1241a9579b19705bc1d9e30678168e8e8919bbab8635bc09da:1",
+      "horizon_us": 500000,
+      "sampling_group": "main_50hz",
+      "full": 104.32052267050213,
+      "macro": 5.891503416546544,
+      "pairs": 54
+    },
+    {
+      "window_id": "00d803ef294b0e2907520c488d89345a9ef54f2936940828ab3e1df104d715b2:1:249:h500000:f500000",
+      "flight_id": "00d803ef294b0e2907520c488d89345a9ef54f2936940828ab3e1df104d715b2:1",
+      "horizon_us": 500000,
+      "sampling_group": "sparse_10hz",
+      "full": 20.476731716550432,
+      "macro": 3.6291037961012353,
+      "pairs": 16
+    },
+    {
+      "window_id": "c9a36248efd5b8452c1fb26edf2dd5fc817ef7202d5950f3d0860f83c8ed4f1c:1:6258:h500000:f1000000",
+      "flight_id": "c9a36248efd5b8452c1fb26edf2dd5fc817ef7202d5950f3d0860f83c8ed4f1c:1",
+      "horizon_us": 1000000,
+      "sampling_group": "main_50hz",
+      "full": 77.69222994979435,
+      "macro": 12.877748668665937,
+      "pairs": 120
+    },
+    {
+      "window_id": "0b07f8b083babb22c7578d32e14ede2886903dfe05c51c1cd53f5568120aa490:1:370:h500000:f1000000",
+      "flight_id": "0b07f8b083babb22c7578d32e14ede2886903dfe05c51c1cd53f5568120aa490:1",
+      "horizon_us": 1000000,
+      "sampling_group": "sparse_10hz",
+      "full": 41.304851638152094,
+      "macro": 8.222378394557287,
+      "pairs": 49
+    },
+    {
+      "window_id": "fc53971260c2cf62f71d76af1379ae29bedabca21e3f49aaa4cb9d63c6510dbb:1:202:h500000:f2000000",
+      "flight_id": "fc53971260c2cf62f71d76af1379ae29bedabca21e3f49aaa4cb9d63c6510dbb:1",
+      "horizon_us": 2000000,
+      "sampling_group": "main_50hz",
+      "full": 138.6199355869812,
+      "macro": 5.451912965287055,
+      "pairs": 322
+    },
+    {
+      "window_id": "b02d93738477786af358a1559f101aab17a1bdd4185726bf8b788285ef941a9d:1:653:h500000:f2000000",
+      "flight_id": "b02d93738477786af358a1559f101aab17a1bdd4185726bf8b788285ef941a9d:1",
+      "horizon_us": 2000000,
+      "sampling_group": "sparse_10hz",
+      "full": 111.89856600046984,
+      "macro": 10.633236614406142,
+      "pairs": 131
+    },
+    {
+      "window_id": "070c1cac4a1db7a1e12839c0ee7251c2840ddd609744f90254ec5fa4557be958:2:2543:h500000:f200000",
+      "flight_id": "070c1cac4a1db7a1e12839c0ee7251c2840ddd609744f90254ec5fa4557be958:2",
+      "horizon_us": 200000,
+      "sampling_group": "main_50hz",
+      "full": 209.44433684689074,
+      "macro": 234.70508973532995,
+      "pairs": 1
+    },
+    {
+      "window_id": "960410f28c48aa5625a9f635a20c64f4b169dd4fab906ca1855cbc468ba74a66:1:889:h500000:f200000",
+      "flight_id": "960410f28c48aa5625a9f635a20c64f4b169dd4fab906ca1855cbc468ba74a66:1",
+      "horizon_us": 200000,
+      "sampling_group": "sparse_10hz",
+      "full": 88.4553740744605,
+      "macro": 1.0403874072094847,
+      "pairs": 1
+    },
+    {
+      "window_id": "67563cdadab0ebdd58c7d2692bb50e39bee80a8afd230c00639fe975df6e73b4:1:1000:h500000:f500000",
+      "flight_id": "67563cdadab0ebdd58c7d2692bb50e39bee80a8afd230c00639fe975df6e73b4:1",
+      "horizon_us": 500000,
+      "sampling_group": "main_50hz",
+      "full": 79.77071151103047,
+      "macro": 8.37135118944825,
+      "pairs": 40
+    },
+    {
+      "window_id": "577bb3e13672746298c2b07ddae4468a522e1e1e0ca2a776b7bf47aa2835beb1:1:1144:h500000:f500000",
+      "flight_id": "577bb3e13672746298c2b07ddae4468a522e1e1e0ca2a776b7bf47aa2835beb1:1",
+      "horizon_us": 500000,
+      "sampling_group": "sparse_10hz",
+      "full": 36.05725983713317,
+      "macro": 3.6809069535443295,
+      "pairs": 11
+    },
+    {
+      "window_id": "fc53971260c2cf62f71d76af1379ae29bedabca21e3f49aaa4cb9d63c6510dbb:1:2133:h500000:f1000000",
+      "flight_id": "fc53971260c2cf62f71d76af1379ae29bedabca21e3f49aaa4cb9d63c6510dbb:1",
+      "horizon_us": 1000000,
+      "sampling_group": "main_50hz",
+      "full": 136.02253363646795,
+      "macro": 31.566275714538296,
+      "pairs": 132
+    },
+    {
+      "window_id": "7cc9ef8d0a059873cb975aa9e410f2ee5f026c6c3184593f5c5518d5a81e21d3:1:344:h500000:f1000000",
+      "flight_id": "7cc9ef8d0a059873cb975aa9e410f2ee5f026c6c3184593f5c5518d5a81e21d3:1",
+      "horizon_us": 1000000,
+      "sampling_group": "sparse_10hz",
+      "full": 29.19137344749298,
+      "macro": 2.8375743423264606,
+      "pairs": 48
+    },
+    {
+      "window_id": "bfa039195c11191d289e8734be1ee330bf4dbdf3648ae474932471f408425a18:1:4004:h500000:f2000000",
+      "flight_id": "bfa039195c11191d289e8734be1ee330bf4dbdf3648ae474932471f408425a18:1",
+      "horizon_us": 2000000,
+      "sampling_group": "main_50hz",
+      "full": 151.44386986912605,
+      "macro": 10.693693726790217,
+      "pairs": 309
+    },
+    {
+      "window_id": "0b07f8b083babb22c7578d32e14ede2886903dfe05c51c1cd53f5568120aa490:1:181:h500000:f2000000",
+      "flight_id": "0b07f8b083babb22c7578d32e14ede2886903dfe05c51c1cd53f5568120aa490:1",
+      "horizon_us": 2000000,
+      "sampling_group": "sparse_10hz",
+      "full": 93.79254243415262,
+      "macro": 6.289463115920838,
+      "pairs": 128
+    },
+    {
+      "window_id": "e4e166c6cda3c88bd0030f598b72b425c082fcdf1eac351c5083943b804c0d02:1:1201:h500000:f200000",
+      "flight_id": "e4e166c6cda3c88bd0030f598b72b425c082fcdf1eac351c5083943b804c0d02:1",
+      "horizon_us": 200000,
+      "sampling_group": "main_50hz",
+      "full": 98.23424242371969,
+      "macro": 10.221932412323019,
+      "pairs": 1
+    },
+    {
+      "window_id": "960410f28c48aa5625a9f635a20c64f4b169dd4fab906ca1855cbc468ba74a66:1:882:h500000:f200000",
+      "flight_id": "960410f28c48aa5625a9f635a20c64f4b169dd4fab906ca1855cbc468ba74a66:1",
+      "horizon_us": 200000,
+      "sampling_group": "sparse_10hz",
+      "full": 74.96812962837093,
+      "macro": 0.908069919892565,
+      "pairs": 1
+    },
+    {
+      "window_id": "7e4d29d0fbb4e521eb4f3753cf8441194be4952c0c554cf7bd7e72c214cb7964:1:3878:h500000:f500000",
+      "flight_id": "7e4d29d0fbb4e521eb4f3753cf8441194be4952c0c554cf7bd7e72c214cb7964:1",
+      "horizon_us": 500000,
+      "sampling_group": "main_50hz",
+      "full": 37.556402779850515,
+      "macro": 2.6782485126705744,
+      "pairs": 31
+    },
+    {
+      "window_id": "e4e89ed905aeed5e9ce20c8c47ba544199a59913480abd8edefeba435862000b:1:1360:h500000:f500000",
+      "flight_id": "e4e89ed905aeed5e9ce20c8c47ba544199a59913480abd8edefeba435862000b:1",
+      "horizon_us": 500000,
+      "sampling_group": "sparse_10hz",
+      "full": 37.495292818211745,
+      "macro": 7.5755280172178106,
+      "pairs": 14
+    },
+    {
+      "window_id": "05eed2dc698464ca4a4508a2906176f8a91e65b148601f45c03f3279286d800a:1:7698:h500000:f1000000",
+      "flight_id": "05eed2dc698464ca4a4508a2906176f8a91e65b148601f45c03f3279286d800a:1",
+      "horizon_us": 1000000,
+      "sampling_group": "main_50hz",
+      "full": 74.58946319459585,
+      "macro": 18.817179599683318,
+      "pairs": 123
+    },
+    {
+      "window_id": "5a65e381f2befd7d8f8ca5a5812b5639a5534563eb094a72b6a05adfb09647a0:1:1520:h500000:f1000000",
+      "flight_id": "5a65e381f2befd7d8f8ca5a5812b5639a5534563eb094a72b6a05adfb09647a0:1",
+      "horizon_us": 1000000,
+      "sampling_group": "sparse_10hz",
+      "full": 36.06475989630802,
+      "macro": 4.350582249873403,
+      "pairs": 53
+    },
+    {
+      "window_id": "367cfee45a6abc8c3f3ac970d8cd6515ece9f9d5bbde708d3ee53dd72a8b4098:1:4900:h500000:f2000000",
+      "flight_id": "367cfee45a6abc8c3f3ac970d8cd6515ece9f9d5bbde708d3ee53dd72a8b4098:1",
+      "horizon_us": 2000000,
+      "sampling_group": "main_50hz",
+      "full": 120.0689878174068,
+      "macro": 10.0879244121966,
+      "pairs": 313
+    },
+    {
+      "window_id": "e4e89ed905aeed5e9ce20c8c47ba544199a59913480abd8edefeba435862000b:1:1251:h500000:f2000000",
+      "flight_id": "e4e89ed905aeed5e9ce20c8c47ba544199a59913480abd8edefeba435862000b:1",
+      "horizon_us": 2000000,
+      "sampling_group": "sparse_10hz",
+      "full": 147.5028581225208,
+      "macro": 11.761907431771156,
+      "pairs": 137
+    },
+    {
+      "window_id": "7776c02279408943be82a7ab8ac9f7fad67cf642d73f2d6446c4f2eb949c0922:1:77:h500000:f200000",
+      "flight_id": "7776c02279408943be82a7ab8ac9f7fad67cf642d73f2d6446c4f2eb949c0922:1",
+      "horizon_us": 200000,
+      "sampling_group": "main_50hz",
+      "full": 88.26336709911803,
+      "macro": 10.5755916841451,
+      "pairs": 1
+    },
+    {
+      "window_id": "961d925ce5f1fc9e02845864340a0864eec811ac584cc4b1546208856dd5a138:1:5330:h500000:f500000",
+      "flight_id": "961d925ce5f1fc9e02845864340a0864eec811ac584cc4b1546208856dd5a138:1",
+      "horizon_us": 500000,
+      "sampling_group": "main_50hz",
+      "full": 17.75589789850186,
+      "macro": 2.9611428435834277,
+      "pairs": 36
+    },
+    {
+      "window_id": "e09b2ec1b35d10ce5dc571a850fd0d5c3cbcf241fc691a2c625574aba4646262:1:1098:h500000:f500000",
+      "flight_id": "e09b2ec1b35d10ce5dc571a850fd0d5c3cbcf241fc691a2c625574aba4646262:1",
+      "horizon_us": 500000,
+      "sampling_group": "sparse_10hz",
+      "full": 30.540076129847677,
+      "macro": 3.7401363078880223,
+      "pairs": 8
+    },
+    {
+      "window_id": "367cfee45a6abc8c3f3ac970d8cd6515ece9f9d5bbde708d3ee53dd72a8b4098:1:90:h500000:f1000000",
+      "flight_id": "367cfee45a6abc8c3f3ac970d8cd6515ece9f9d5bbde708d3ee53dd72a8b4098:1",
+      "horizon_us": 1000000,
+      "sampling_group": "main_50hz",
+      "full": 76.03922730444901,
+      "macro": 4.780510498903793,
+      "pairs": 144
+    },
+    {
+      "window_id": "1ac6c9e0f63f76b943e5ebe7b87c3743fa64291fcf1afb316f7269e060833f9d:1:459:h500000:f1000000",
+      "flight_id": "1ac6c9e0f63f76b943e5ebe7b87c3743fa64291fcf1afb316f7269e060833f9d:1",
+      "horizon_us": 1000000,
+      "sampling_group": "sparse_10hz",
+      "full": 133.34154059518275,
+      "macro": 7.620560434377102,
+      "pairs": 57
+    },
+    {
+      "window_id": "5d6e94cb4e4936623ae1bd9dae58a98bcfc1ef9787e8ee2a35f0f881b1896b82:1:1217:h500000:f2000000",
+      "flight_id": "5d6e94cb4e4936623ae1bd9dae58a98bcfc1ef9787e8ee2a35f0f881b1896b82:1",
+      "horizon_us": 2000000,
+      "sampling_group": "main_50hz",
+      "full": 98.30936205080977,
+      "macro": 10.498213524970991,
+      "pairs": 293
+    },
+    {
+      "window_id": "e43e4b5a13b89de35ff12ba50e7c0bb98c608db8142c9405a26688e709225c05:1:258:h500000:f2000000",
+      "flight_id": "e43e4b5a13b89de35ff12ba50e7c0bb98c608db8142c9405a26688e709225c05:1",
+      "horizon_us": 2000000,
+      "sampling_group": "sparse_10hz",
+      "full": 67.26103804849897,
+      "macro": 5.437675119320187,
+      "pairs": 121
+    },
+    {
+      "window_id": "b0b2f37ee0122605e0f5fb5e5da6dcca85e52c539cf27cb832d14fd461028425:1:365:h500000:f200000",
+      "flight_id": "b0b2f37ee0122605e0f5fb5e5da6dcca85e52c539cf27cb832d14fd461028425:1",
+      "horizon_us": 200000,
+      "sampling_group": "main_50hz",
+      "full": 44.376453986899975,
+      "macro": 0.3296208369935924,
+      "pairs": 1
+    }
+  ],
+  "git_revision": "31e5342a060bd628bde609532142cf4c3fea688f"
+}
