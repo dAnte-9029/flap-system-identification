@@ -1,0 +1,14 @@
+{
+  "first_change_quantiles_s": {
+    "0.05": 0.0020959999999999,
+    "0.5": 0.007005,
+    "0.95": 0.0969876999999999
+  },
+  "windows_with_post_change_gyro": 10704,
+  "native_differential_events_by_time": {
+    "diff_events_0_50": 24509,
+    "diff_events_50_100": 19590,
+    "diff_events_100_150": 24988,
+    "diff_events_150_200": 19104
+  }
+}

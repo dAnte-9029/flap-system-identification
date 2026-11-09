@@ -1,0 +1,19 @@
+{
+  "checkpoint_sha256": "9d82640692c0baec476e276696be4f89fd89a58854361bbcfdf3dbb84cb466c9",
+  "amplitude": 0.036001536295864944,
+  "train_windows": 3,
+  "validation_windows": 306,
+  "step_equivalence_max": 0.0,
+  "train_CIR_gain_error": 9.771896264387792e-08,
+  "validation_CIR_gain_error": 2.380763578502254e-07,
+  "validation_CIR_p_all_branches_max_error": 1.1109772768413961e-08,
+  "shapley_sum_error": 1.1102230246251565e-16,
+  "jacobian_directional_fd_max": 6.464354640405012e-06,
+  "initial_fields_exact": true,
+  "history_reencoded": false,
+  "future_observation_updates": false,
+  "precision": "mixed",
+  "jacobian_coordinates": "a_d,c[6],z_s[12],position_NED_m[3],velocity_NED_m/s[3],right_body_rotation_rad[3],omega_FRD_rad/s[3]",
+  "tau_selection": "earliest flight/time per date x natural phase bin, fixed before analysis",
+  "baseline": "7962138c6655734def4c490649d39d58eec4233f"
+}

@@ -1,0 +1,32 @@
+column,coordinate,coordinate_unit,jacobian_unit,delta_column
+J_0,a_d,normalized differential actuator,(rad/s^2)/(normalized differential actuator),delta_0
+J_1,c0,dimensionless latent,(rad/s^2)/(dimensionless latent),delta_1
+J_2,c1,dimensionless latent,(rad/s^2)/(dimensionless latent),delta_2
+J_3,c2,dimensionless latent,(rad/s^2)/(dimensionless latent),delta_3
+J_4,c3,dimensionless latent,(rad/s^2)/(dimensionless latent),delta_4
+J_5,c4,dimensionless latent,(rad/s^2)/(dimensionless latent),delta_5
+J_6,c5,dimensionless latent,(rad/s^2)/(dimensionless latent),delta_6
+J_7,z_s0,dimensionless latent,(rad/s^2)/(dimensionless latent),delta_7
+J_8,z_s1,dimensionless latent,(rad/s^2)/(dimensionless latent),delta_8
+J_9,z_s2,dimensionless latent,(rad/s^2)/(dimensionless latent),delta_9
+J_10,z_s3,dimensionless latent,(rad/s^2)/(dimensionless latent),delta_10
+J_11,z_s4,dimensionless latent,(rad/s^2)/(dimensionless latent),delta_11
+J_12,z_s5,dimensionless latent,(rad/s^2)/(dimensionless latent),delta_12
+J_13,z_s6,dimensionless latent,(rad/s^2)/(dimensionless latent),delta_13
+J_14,z_s7,dimensionless latent,(rad/s^2)/(dimensionless latent),delta_14
+J_15,z_s8,dimensionless latent,(rad/s^2)/(dimensionless latent),delta_15
+J_16,z_s9,dimensionless latent,(rad/s^2)/(dimensionless latent),delta_16
+J_17,z_s10,dimensionless latent,(rad/s^2)/(dimensionless latent),delta_17
+J_18,z_s11,dimensionless latent,(rad/s^2)/(dimensionless latent),delta_18
+J_19,position_NED_x,m,(rad/s^2)/(m),delta_19
+J_20,position_NED_y,m,(rad/s^2)/(m),delta_20
+J_21,position_NED_z,m,(rad/s^2)/(m),delta_21
+J_22,velocity_NED_x,m/s,(rad/s^2)/(m/s),delta_22
+J_23,velocity_NED_y,m/s,(rad/s^2)/(m/s),delta_23
+J_24,velocity_NED_z,m/s,(rad/s^2)/(m/s),delta_24
+J_25,right_body_rotation_x,rad,(rad/s^2)/(rad),delta_25
+J_26,right_body_rotation_y,rad,(rad/s^2)/(rad),delta_26
+J_27,right_body_rotation_z,rad,(rad/s^2)/(rad),delta_27
+J_28,omega_FRD_p,rad/s,(rad/s^2)/(rad/s),delta_28
+J_29,omega_FRD_q,rad/s,(rad/s^2)/(rad/s),delta_29
+J_30,omega_FRD_r,rad/s,(rad/s^2)/(rad/s),delta_30

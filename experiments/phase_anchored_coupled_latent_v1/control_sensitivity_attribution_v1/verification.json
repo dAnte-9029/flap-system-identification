@@ -1,0 +1,11 @@
+{
+  "actuator_analytic_max_error": 1.214306433183765e-16,
+  "symmetric_rudder_actuator_error": 1.6653345369377348e-16,
+  "phase_contract_error": 0.0,
+  "jacobian_all_31_coordinates_train_fd_max_error": 0.0001288251832336912,
+  "fd_epsilon": 0.001,
+  "zero_equal_entry_original_exact": true,
+  "split_identity_verified": true,
+  "all_10944_draw_indices_reproduced": true,
+  "commands_and_pulse_interval_verified": true
+}
