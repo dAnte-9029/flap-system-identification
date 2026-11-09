@@ -1,0 +1,13 @@
+{
+  "batch3_vs64_max_physical_state_error": 3.464649456219604e-08,
+  "batch3_vs64_gain_max_error": 2.594148311731991e-07,
+  "all_amplitudes_denominator_pass": true,
+  "source_tapes_unchanged": true,
+  "near_phase_boundary_pass": true,
+  "actual_gain_denominators_pass": true,
+  "initial_zero_response_pass": true,
+  "actuator_closed_form_pass": true,
+  "motor_equal_phase_frequency_pass": true,
+  "selected_windows": 306,
+  "longer_support_same_raw_initial_and_history": true
+}

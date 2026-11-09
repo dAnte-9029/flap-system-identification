@@ -1,0 +1,4 @@
+quantity,value,object
+A2 G_obs,2.465742482788177,实飞闭环条件关联；validation残差回归
+A2 G_PACLD,0.2270381617491808,模型factual闭环条件关联；validation残差回归
+CIR G_CF(0.2s),0.1273332024070615,同Belief下100ms差动脉冲的模型有限时长敏感性

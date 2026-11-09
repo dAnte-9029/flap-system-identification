@@ -1,0 +1,14 @@
+{
+  "train_windows": 3,
+  "zero_amplitude_all_fields_error": 0.0,
+  "batch_vs_single_state_max_error": 0.0,
+  "branch_initial_equal_all_fields": true,
+  "predecision_controls_unchanged": true,
+  "pulse_end_grid_boundary": true,
+  "no_future_observations_in_encoding": true,
+  "phase_boundary_pass": true,
+  "actual_differential_denominator_pass": true,
+  "decoder_immediate_tail_command_effect": 0.0,
+  "actuator_100ms_expected": 0.029201724424905092,
+  "actuator_100ms_max_error": 1.0755285551056204e-16
+}

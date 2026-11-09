@@ -1,0 +1,40 @@
+{
+  "baseline": "ee1faa2ee42c2a7c2aac85c79cfcfaa205bdc581",
+  "checkpoint_sha256": "9d82640692c0baec476e276696be4f89fd89a58854361bbcfdf3dbb84cb466c9",
+  "amplitude": 0.036001536295864944,
+  "amplitude_source": "A2-v2 train leave-date-out 100ms differential residual RMS, 11221 decisions",
+  "multipliers": [
+    0.5,
+    1.0,
+    2.0
+  ],
+  "speed_boundary_mps": 6.8720722754508845,
+  "speed_boundary_source": "train predecision body-forward velocity median",
+  "times": [
+    0.0,
+    0.02,
+    0.05,
+    0.1,
+    0.15,
+    0.2,
+    0.3,
+    0.5
+  ],
+  "pulse_interval": "[0,0.1) seconds",
+  "range_servo": [
+    -1,
+    1
+  ],
+  "range_motor": [
+    0,
+    1
+  ],
+  "slew": "CA_SV0_SLEW=CA_SV1_SLEW=0 in frozen train/validation metadata; no measured physical rate limit claimed",
+  "selection": "A2-v2 identities, known nav_state 3/15, same decision/history with shortest frozen horizon supporting >=0.5s (may use 1s/2s window), primary-amplitude bidirectionally feasible; encode all candidates once; one earliest decision per causal-belief phase quadrant x train-speed-half per flight, at most 8; missing cells not backfilled",
+  "phase": "causal encoded belief modulo 2pi; 2pi maps to 0",
+  "continuation": "validation previously used; frozen-model continuing mechanism analysis, not untouched test",
+  "branch_contract": "one encoded belief, all FIELDS exact copies, original future ZOH plus symmetric differential pulse; no future observation update",
+  "inference": "original mixed precision, original max_step=.005 and tau=.06",
+  "mechanism": "decoder alpha and all state traces; no channel ablation or modified dynamics",
+  "interpretation": "model conditional open-loop intervention; no PX4 feedback rerun"
+}
