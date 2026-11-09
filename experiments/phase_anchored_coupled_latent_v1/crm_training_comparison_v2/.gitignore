@@ -1,0 +1,15 @@
+# Public outputs are an explicit aggregate-only allowlist.
+*
+!.gitignore
+!training_contract.json
+!preflight.json
+!loss_calibration.json
+!sampling_summary.json
+!training_progress.csv
+!training_comparison.csv
+!moment_comparison.csv
+!state_prediction_comparison.csv
+!cir_comparison.csv
+!a2_comparison.csv
+!result_summary.json
+!*.png

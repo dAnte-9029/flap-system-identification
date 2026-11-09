@@ -1,0 +1,69 @@
+{
+  "schema": "pacld_crm_training_comparison_v2",
+  "baseline": "9c15fffd24bfcacc7c57cd980cc149098cb83f82",
+  "checkpoint": "/home/zn/flap-system-identification/.worktrees/pacld-gpu-batched-v1/runs/pacld_frozen_eval_seed17/model.pt",
+  "checkpoint_sha256": "9d82640692c0baec476e276696be4f89fd89a58854361bbcfdf3dbb84cb466c9",
+  "seed": 17,
+  "groups": {
+    "B0": "FULL+Macro",
+    "B1": "FULL+Macro+lambda_normal*M_normal^2",
+    "B2": "FULL+Macro+lambda_future100*M_future100^2"
+  },
+  "updates": 64,
+  "effective_batch": 512,
+  "microbatch": 32,
+  "draws_per_group": 32768,
+  "lambda_macro": 1.0,
+  "optimizer": "Adam restore identical complete frozen optimizer state for all groups",
+  "lr": 0.0003,
+  "max_grad_norm": 10.0,
+  "precision": "mixed",
+  "scales": {
+    "s_u": [
+      0.03600153629586494,
+      0.096511773175574,
+      0.10007971131468153
+    ],
+    "s_p": 0.7076565381905123,
+    "scale_reduction": "window RMS over common train cohort"
+  },
+  "cohort": {
+    "windows": 11221,
+    "flights": 114,
+    "dates": 17,
+    "support_s": 0.5,
+    "target": "same native rate observation near .2s",
+    "training_distribution": "CRM common-support .5s windows; NOT original .2/.5/1/2s mixed distribution"
+  },
+  "sampling": "seed17 IID date -> flight -> window, with replacement; shared order all groups; no adaptive probabilities",
+  "sampling_sha256": "33ee12488b2833cd4fd503f68e3713ef162d67bfdd5e9a519622d2df45ba82b8",
+  "calibration_sha256": "9134816f567285e7eabe6a9a90135eb10f27c8380d029593f7a535274b1de419",
+  "calibration": {
+    "batches": 3,
+    "effective_batch": 512,
+    "independent_rng": "SeedSequence(17,spawn_key=(1,)); independent draws, not necessarily disjoint identities",
+    "fit_batch": 0,
+    "stability_batches": [
+      1,
+      2
+    ],
+    "target_gradient_ratio": 0.25,
+    "parameters": "flow.dynamics.* (Slow, coupling, equilibrium, relaxation, Decoder)",
+    "stop_rules": {
+      "nonfinite": true,
+      "min_moment_to_base_norm": 1e-08,
+      "max_lambda": 10000.0,
+      "weighted_ratio_range": [
+        0.0625,
+        1.0
+      ],
+      "minimum_pairwise_cosine": 0.0
+    },
+    "rule_origin": "premeasurement operational stability gates; ratio must stay within factor four of 25%; any pairwise opposite Dynamics squared-moment direction stops; not performance acceptance thresholds"
+  },
+  "moment": "two pass, no-grad exact MB then backprop 2*MB*mean(m_i); all belief fields detached only on CRM branch",
+  "full_macro": "original model(batch,1).total: window-mean FULL+Macro, invalid Macro=0; never divide by microbatch valid-pair counts",
+  "evaluation": "only after all groups complete update64; initial plus B0/B1/B2; frozen PACLD156, A2 fixed feature identities, CIR306; no sealed test",
+  "publication": "aggregate allowlist only; no new raw/window/checkpoint data published",
+  "status": "prepared"
+}

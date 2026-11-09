@@ -1,0 +1,36 @@
+{
+  "draws": 32768,
+  "unique_windows": 9686,
+  "repeated_draws": 23082,
+  "dates": 17,
+  "flights": 114,
+  "unique_per_update_min": 485,
+  "unique_per_update_max": 501,
+  "same_sequence_all_groups": true,
+  "calibration_draws": 1536,
+  "calibration_unique": 1392,
+  "calibration_formal_identity_overlap": 1283,
+  "calibration_batch_coverage": [
+    {
+      "batch": 0,
+      "draws": 512,
+      "unique_windows": 493,
+      "dates": 17,
+      "flights": 105
+    },
+    {
+      "batch": 1,
+      "draws": 512,
+      "unique_windows": 492,
+      "dates": 17,
+      "flights": 106
+    },
+    {
+      "batch": 2,
+      "draws": 512,
+      "unique_windows": 496,
+      "dates": 17,
+      "flights": 106
+    }
+  ]
+}
