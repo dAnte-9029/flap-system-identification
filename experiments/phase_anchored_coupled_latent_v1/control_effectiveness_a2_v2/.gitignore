@@ -1,0 +1,7 @@
+*.npz
+*.npy
+*.pkl
+*.tmp.csv
+validation_features/*.npz
+validation_features/*.npy
+validation_features/*.pkl

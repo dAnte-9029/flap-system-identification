@@ -6,8 +6,11 @@ import pandas as pd
 from pyulog import ULog
 ROOT=Path('/home/zn/flap-system-identification/dataset/velocity_rate_multistep_v1')
 OUT=Path('experiments/phase_anchored_coupled_latent_v1/control_identifiability')
-def attach(df):
- meta={x['flight_id']:x for x in json.load(open(ROOT/'flight_provenance.json')) if x['split']=='train'}
+def attach(df, split='train', output=None):
+ global OUT
+ if split not in ('train','validation'):raise ValueError('sealed split forbidden')
+ if output is not None:OUT=Path(output);OUT.mkdir(exist_ok=True)
+ meta={x['flight_id']:x for x in json.load(open(ROOT/'flight_provenance.json')) if x['split']==split}
  fields={'vehicle_rates_setpoint':['roll','pitch','yaw'],'vehicle_attitude_setpoint':['q_d[0]','q_d[1]','q_d[2]','q_d[3]'],'airspeed_validated':['calibrated_airspeed_m_s'],'vehicle_control_mode':['flag_control_auto_enabled','flag_control_manual_enabled','flag_control_rates_enabled','flag_control_attitude_enabled']}
  extras=np.zeros((len(df),24));coverage=[];cache={}
  for fid,g in df.groupby('flight',sort=False):

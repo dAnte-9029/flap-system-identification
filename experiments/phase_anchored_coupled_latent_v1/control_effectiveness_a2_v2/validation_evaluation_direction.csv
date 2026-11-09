@@ -1,0 +1,4 @@
+width,axis,channel,same_direction_rate,eligible_localizations,query_dates
+0.5,p,differential,0.9772727272727273,44,4
+1.0,p,differential,1.0,71,4
+2.0,p,differential,1.0,73,4

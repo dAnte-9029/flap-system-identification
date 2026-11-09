@@ -1,0 +1,24 @@
+{
+  "stage_one_decision": "proceed differential-roll primary; rudder-yaw auxiliary feedback-confounded",
+  "selected_without_validation": true,
+  "primary_width": 1,
+  "widths": [
+    0.5,
+    1,
+    2
+  ],
+  "local_alpha": 10,
+  "control": "100ms four channels",
+  "response": "delta p/r from model causal belief; observed native target minus last causal measured rate",
+  "m0": "train-only Ridge X->Y",
+  "pacld_baseline": "train-only Ridge X->Y_PACLD",
+  "zero_response_score": "1-MSE(Y_res-predicted_res)/MSE(Y_res)",
+  "gain_fit": "train-only conditional residual local linear model; query state defines neighborhood; no validation fit",
+  "gain_direction_evidence": "train leave-date-out sign stability; rudder primary scoring excluded by negative-control evidence",
+  "validation_selection": "same v1 Hall QC, 0.5s support, mode stable, unique decision, spacing >=1s",
+  "bootstrap": "4 validation dates clustered; descriptive intervals only",
+  "seed": 17,
+  "user_clarification": "validation residual regression explicitly authorized for final A/B/D statistics; no nuisance refit; not used for score C",
+  "validation_gain_alpha": 10,
+  "validation_gain_uncertainty": "4000 date-cluster bootstrap draws"
+}

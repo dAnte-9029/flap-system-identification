@@ -45,13 +45,16 @@ def fit(x,y,g):
   scores.append(np.mean(errors))
  return ScaledRidge([1.,10.,100.,1000.][np.argmin(scores)]).fit(x,y)
 
-def extract():
- w=open_windows(json.load(open('configs/pacld/default.json')),'train');d=w.dataset
+def extract(split='train', output=None):
+ global OUT
+ if split not in ('train', 'validation'):raise ValueError('sealed split forbidden')
+ if output is not None:OUT=Path(output);OUT.mkdir(exist_ok=True)
+ w=open_windows(json.load(open('configs/pacld/default.json')),split);d=w.dataset
  idx=w.index; audit={'raw_hall_windows':len(idx),'unique_decisions':len(idx.drop_duplicates(['flight_id','decision_us'])),'flights':idx.flight_id.nunique()}
  rows=[];coverage=[]
  for fid,gg in idx.groupby('flight_id',sort=True):
   d._load(fid);meta=d.provenance[fid]; assert all(meta['parameters'].get(k)==v for k,v in d.contract['required_mapping_parameters'].items())
-  status=pd.read_parquet(d.root/'native_vehicle_status_train.parquet',filters=[('flight_id','==',fid)]).sort_values('timestamp_us')
+  status=pd.read_parquet(d.root/f'native_vehicle_status_{split}.parquet',filters=[('flight_id','==',fid)]).sort_values('timestamp_us')
   g=gg[(gg.horizon_us==500000)&~gg.mode_change].drop_duplicates('decision_us').sort_values('decision_us');last=-1e20;n0=len(rows)
   def before(name,t,age,fields):
    tab=d.tables[name];av=tab.get('availability_us',tab.timestamp_us).to_numpy();j=np.searchsorted(av,t,side='right')-1

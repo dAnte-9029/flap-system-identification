@@ -1,0 +1,40 @@
+{
+  "baseline": "73b29d4763830233233461e91710a167700478cc",
+  "dataset": "velocity_rate_multistep_v1",
+  "split": "train",
+  "source_feature_sha256": "4ef15bda633bc33210e00d34038e16e3d15e5e794e743ce4f9a31e9ad994b414",
+  "source_context_sha256": "9b74933a17b62d7047e47405d14cb64e1432a7b4a36738ac64c5205fe2869ea9",
+  "source": "/home/zn/flap-system-identification/.worktrees/pacld-control-identifiability-v1/experiments/phase_anchored_coupled_latent_v1/control_identifiability",
+  "raw_zoh_parity_max_error": 2.220446049250313e-16,
+  "raw_zoh_parity_decisions": 228,
+  "outer": "leave-one-date-out (17)",
+  "inner": "3 grouped date folds",
+  "alphas": [
+    1,
+    10,
+    100,
+    1000
+  ],
+  "local_alpha": 10,
+  "bandwidths": [
+    0.5,
+    1,
+    2
+  ],
+  "negative_intervals_s": [
+    [
+      0.25,
+      0.3
+    ],
+    [
+      0.25,
+      0.35
+    ]
+  ],
+  "target_axes": [
+    "p",
+    "r"
+  ],
+  "horizon_s": 0.2,
+  "seed": 17
+}

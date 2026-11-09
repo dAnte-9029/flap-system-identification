@@ -1,0 +1,456 @@
+{
+  "samples": 11221,
+  "flights": 114,
+  "dates": 17,
+  "date_bootstrap_replicates": 4000,
+  "seed": 17,
+  "negative_normal_100ms_same_channel_correlation": [
+    0.7232951798410991,
+    0.5192329647890199,
+    0.5379472436612277,
+    0.5503296361610195
+  ],
+  "prediction": [
+    {
+      "axis": "p",
+      "model": "M1",
+      "baseline": "M0",
+      "rmse": 0.47753081951816206,
+      "baseline_rmse": 0.5007361514490705,
+      "gain": 0.0232053319309084,
+      "low": 0.018353374734991747,
+      "high": 0.0283116372654026,
+      "positive_dates": 17,
+      "dates": 17
+    },
+    {
+      "axis": "p",
+      "model": "negative",
+      "baseline": "M0",
+      "rmse": 0.4853184984063687,
+      "baseline_rmse": 0.5007361514490705,
+      "gain": 0.015417653042701762,
+      "low": 0.011457799391181429,
+      "high": 0.01964218125068739,
+      "positive_dates": 16,
+      "dates": 17
+    },
+    {
+      "axis": "p",
+      "model": "M1",
+      "baseline": "negative",
+      "rmse": 0.47753081951816206,
+      "baseline_rmse": 0.4853184984063687,
+      "gain": 0.0077876788882066394,
+      "low": 0.002290259085934275,
+      "high": 0.012719521485820793,
+      "positive_dates": 13,
+      "dates": 17
+    },
+    {
+      "axis": "p",
+      "model": "M1",
+      "baseline": "without_differential",
+      "rmse": 0.47753081951816206,
+      "baseline_rmse": 0.5018615683234126,
+      "gain": 0.02433074880525049,
+      "low": 0.019278980812884768,
+      "high": 0.02993140459664889,
+      "positive_dates": 17,
+      "dates": 17
+    },
+    {
+      "axis": "p",
+      "model": "M1",
+      "baseline": "without_rudder",
+      "rmse": 0.47753081951816206,
+      "baseline_rmse": 0.4772108746857335,
+      "gain": -0.00031994483242858696,
+      "low": -0.0016248852903237327,
+      "high": 0.000803041627809098,
+      "positive_dates": 9,
+      "dates": 17
+    },
+    {
+      "axis": "r",
+      "model": "M1",
+      "baseline": "M0",
+      "rmse": 0.17337400478983286,
+      "baseline_rmse": 0.18071723605923506,
+      "gain": 0.007343231269402201,
+      "low": 0.005357194117369244,
+      "high": 0.009114038243630843,
+      "positive_dates": 16,
+      "dates": 17
+    },
+    {
+      "axis": "r",
+      "model": "negative",
+      "baseline": "M0",
+      "rmse": 0.16939521190697623,
+      "baseline_rmse": 0.18071723605923506,
+      "gain": 0.01132202415225883,
+      "low": 0.00880968133132366,
+      "high": 0.014205825967450915,
+      "positive_dates": 17,
+      "dates": 17
+    },
+    {
+      "axis": "r",
+      "model": "M1",
+      "baseline": "negative",
+      "rmse": 0.17337400478983286,
+      "baseline_rmse": 0.16939521190697623,
+      "gain": -0.00397879288285663,
+      "low": -0.006801753527566074,
+      "high": -0.0014650093402842413,
+      "positive_dates": 5,
+      "dates": 17
+    },
+    {
+      "axis": "r",
+      "model": "M1",
+      "baseline": "without_differential",
+      "rmse": 0.17337400478983286,
+      "baseline_rmse": 0.17615949578575485,
+      "gain": 0.0027854909959219853,
+      "low": 0.0019716584389111217,
+      "high": 0.0036724513765953337,
+      "positive_dates": 17,
+      "dates": 17
+    },
+    {
+      "axis": "r",
+      "model": "M1",
+      "baseline": "without_rudder",
+      "rmse": 0.17337400478983286,
+      "baseline_rmse": 0.17726786453743013,
+      "gain": 0.0038938597475972614,
+      "low": 0.002506595526750044,
+      "high": 0.0051689349131122525,
+      "positive_dates": 15,
+      "dates": 17
+    }
+  ],
+  "local_prediction": [
+    {
+      "width": 0.5,
+      "axis": "p",
+      "state_rmse": 0.6322030187374691,
+      "full_rmse": 0.6211157188189851,
+      "gain": 0.011087299918484006,
+      "low": 0.0052617711922733545,
+      "high": 0.016866503576554757,
+      "positive_dates": 14,
+      "dates": 17
+    },
+    {
+      "width": 0.5,
+      "axis": "r",
+      "state_rmse": 0.23998251037388485,
+      "full_rmse": 0.23748692355994822,
+      "gain": 0.0024955868139366344,
+      "low": -0.00048033612254184954,
+      "high": 0.005277893905825784,
+      "positive_dates": 12,
+      "dates": 17
+    },
+    {
+      "width": 1.0,
+      "axis": "p",
+      "state_rmse": 0.6268756975567671,
+      "full_rmse": 0.6160814861297064,
+      "gain": 0.010794211427060718,
+      "low": 0.004681536075215253,
+      "high": 0.01654691648476725,
+      "positive_dates": 13,
+      "dates": 17
+    },
+    {
+      "width": 1.0,
+      "axis": "r",
+      "state_rmse": 0.23802984215269096,
+      "full_rmse": 0.23574156614753555,
+      "gain": 0.0022882760051554096,
+      "low": -0.0011644486065176957,
+      "high": 0.005083495376969192,
+      "positive_dates": 14,
+      "dates": 17
+    },
+    {
+      "width": 2.0,
+      "axis": "p",
+      "state_rmse": 0.6275163968917935,
+      "full_rmse": 0.6167409759112998,
+      "gain": 0.010775420980493666,
+      "low": 0.004514317072371201,
+      "high": 0.016381614443888096,
+      "positive_dates": 13,
+      "dates": 17
+    },
+    {
+      "width": 2.0,
+      "axis": "r",
+      "state_rmse": 0.23797701470678365,
+      "full_rmse": 0.23572213750931226,
+      "gain": 0.002254877197471389,
+      "low": -0.0013488043606201842,
+      "high": 0.005091461307281586,
+      "positive_dates": 14,
+      "dates": 17
+    }
+  ],
+  "gain": [
+    {
+      "width": 0.5,
+      "axis": "p",
+      "channel": "differential",
+      "median": 2.71995681010302,
+      "min": 1.221897493404151,
+      "max": 3.9928566584243246,
+      "positive_dates": 17,
+      "dates": 17
+    },
+    {
+      "width": 0.5,
+      "axis": "p",
+      "channel": "motor",
+      "median": -1.0809946438861036,
+      "min": -8.948317602398106,
+      "max": 2.113886942733768,
+      "positive_dates": 4,
+      "dates": 17
+    },
+    {
+      "width": 0.5,
+      "axis": "p",
+      "channel": "rudder",
+      "median": 1.4394048371221522,
+      "min": -1.8359632863198616,
+      "max": 3.1853623035009706,
+      "positive_dates": 13,
+      "dates": 17
+    },
+    {
+      "width": 0.5,
+      "axis": "p",
+      "channel": "symmetric",
+      "median": -0.3449618979843466,
+      "min": -2.702203670416937,
+      "max": 3.0399707989448066,
+      "positive_dates": 6,
+      "dates": 17
+    },
+    {
+      "width": 0.5,
+      "axis": "r",
+      "channel": "differential",
+      "median": 0.44271081238723453,
+      "min": 0.21960018001919418,
+      "max": 0.7062349399640104,
+      "positive_dates": 17,
+      "dates": 17
+    },
+    {
+      "width": 0.5,
+      "axis": "r",
+      "channel": "motor",
+      "median": -0.8756468659670457,
+      "min": -2.0199270134935716,
+      "max": 0.7094189316952855,
+      "positive_dates": 4,
+      "dates": 17
+    },
+    {
+      "width": 0.5,
+      "axis": "r",
+      "channel": "rudder",
+      "median": -3.169035489264859,
+      "min": -4.960532767127665,
+      "max": -1.69702839046026,
+      "positive_dates": 0,
+      "dates": 17
+    },
+    {
+      "width": 0.5,
+      "axis": "r",
+      "channel": "symmetric",
+      "median": 0.3717028469855332,
+      "min": -1.2030048865154161,
+      "max": 1.6269918978199962,
+      "positive_dates": 12,
+      "dates": 17
+    },
+    {
+      "width": 1.0,
+      "axis": "p",
+      "channel": "differential",
+      "median": 2.825552423148793,
+      "min": 1.0720055319899564,
+      "max": 4.111020558004208,
+      "positive_dates": 17,
+      "dates": 17
+    },
+    {
+      "width": 1.0,
+      "axis": "p",
+      "channel": "motor",
+      "median": -2.4011958731043603,
+      "min": -8.821235581793587,
+      "max": 1.1155663024362887,
+      "positive_dates": 3,
+      "dates": 17
+    },
+    {
+      "width": 1.0,
+      "axis": "p",
+      "channel": "rudder",
+      "median": 1.9721400003698295,
+      "min": -1.1609431812647977,
+      "max": 3.553145886845874,
+      "positive_dates": 15,
+      "dates": 17
+    },
+    {
+      "width": 1.0,
+      "axis": "p",
+      "channel": "symmetric",
+      "median": -0.25824986707895853,
+      "min": -3.064384807907138,
+      "max": 2.237411245958432,
+      "positive_dates": 8,
+      "dates": 17
+    },
+    {
+      "width": 1.0,
+      "axis": "r",
+      "channel": "differential",
+      "median": 0.4686833914589504,
+      "min": 0.16781051902773775,
+      "max": 0.7151260050551211,
+      "positive_dates": 17,
+      "dates": 17
+    },
+    {
+      "width": 1.0,
+      "axis": "r",
+      "channel": "motor",
+      "median": -0.7162143837805377,
+      "min": -2.4747669337581715,
+      "max": 0.5001173508461363,
+      "positive_dates": 3,
+      "dates": 17
+    },
+    {
+      "width": 1.0,
+      "axis": "r",
+      "channel": "rudder",
+      "median": -3.1788902063290974,
+      "min": -4.4450901871835535,
+      "max": -1.6800003265972918,
+      "positive_dates": 0,
+      "dates": 17
+    },
+    {
+      "width": 1.0,
+      "axis": "r",
+      "channel": "symmetric",
+      "median": 0.29503495999283746,
+      "min": -1.1948428049157382,
+      "max": 1.3670955737767505,
+      "positive_dates": 12,
+      "dates": 17
+    },
+    {
+      "width": 2.0,
+      "axis": "p",
+      "channel": "differential",
+      "median": 2.6950247872851367,
+      "min": 0.9884260658456252,
+      "max": 4.083992762403393,
+      "positive_dates": 17,
+      "dates": 17
+    },
+    {
+      "width": 2.0,
+      "axis": "p",
+      "channel": "motor",
+      "median": -2.608273649006459,
+      "min": -7.796563870277648,
+      "max": 1.0174868031854603,
+      "positive_dates": 2,
+      "dates": 17
+    },
+    {
+      "width": 2.0,
+      "axis": "p",
+      "channel": "rudder",
+      "median": 1.5725340687152762,
+      "min": -1.00839516527385,
+      "max": 3.655499201773682,
+      "positive_dates": 15,
+      "dates": 17
+    },
+    {
+      "width": 2.0,
+      "axis": "p",
+      "channel": "symmetric",
+      "median": -0.1455513903106949,
+      "min": -2.8651819488374004,
+      "max": 2.29393156080683,
+      "positive_dates": 8,
+      "dates": 17
+    },
+    {
+      "width": 2.0,
+      "axis": "r",
+      "channel": "differential",
+      "median": 0.4851832316636543,
+      "min": 0.1516796390454866,
+      "max": 0.7887947554574807,
+      "positive_dates": 17,
+      "dates": 17
+    },
+    {
+      "width": 2.0,
+      "axis": "r",
+      "channel": "motor",
+      "median": -0.837342997074085,
+      "min": -2.3139929480226917,
+      "max": 0.6106602371241305,
+      "positive_dates": 3,
+      "dates": 17
+    },
+    {
+      "width": 2.0,
+      "axis": "r",
+      "channel": "rudder",
+      "median": -3.1250781591187273,
+      "min": -4.302167223783788,
+      "max": -1.6759676336725,
+      "positive_dates": 0,
+      "dates": 17
+    },
+    {
+      "width": 2.0,
+      "axis": "r",
+      "channel": "symmetric",
+      "median": 0.33298174747976483,
+      "min": -1.1274639525004437,
+      "max": 1.3408692586451645,
+      "positive_dates": 11,
+      "dates": 17
+    }
+  ],
+  "local_evaluation_pairs": 66120,
+  "local_fit_rows": 678,
+  "local_fit_identified": 678,
+  "overlap_min": 0.0238095238095238,
+  "overlap_median": 1.0,
+  "local_condition_quantiles": {
+    "0.0": 1.4866226045718478,
+    "0.5": 2.324172413032192,
+    "0.95": 4.1750958037861405,
+    "1.0": 8.364019546024426
+  }
+}

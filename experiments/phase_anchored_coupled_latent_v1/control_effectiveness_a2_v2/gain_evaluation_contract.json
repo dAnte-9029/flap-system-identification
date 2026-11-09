@@ -1,0 +1,12 @@
+{
+  "user_authorized_validation_residual_regression": true,
+  "nuisance_fitting": "train only",
+  "normalization": "train crossfit control residual scale",
+  "bandwidth": "train-only local pair bandwidth at validation X",
+  "regularization": 10,
+  "bootstrap": "4000 draws of 4 validation date clusters; nuisance fits held fixed",
+  "direction_gate": "primary differential-roll only, stage-one sign stable and local observed bootstrap interval excludes zero; cross terms and rudder auxiliary",
+  "use_for_score_C": false,
+  "units": "rad/s per normalized control command",
+  "notes": "descriptive validation association, not independent local-gain generalization or causal derivative"
+}
