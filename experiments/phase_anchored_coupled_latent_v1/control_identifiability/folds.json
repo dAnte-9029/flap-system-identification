@@ -1,0 +1,27 @@
+[
+  {
+    "fold": 0,
+    "train_flights": 91,
+    "evaluation_flights": 23
+  },
+  {
+    "fold": 1,
+    "train_flights": 92,
+    "evaluation_flights": 22
+  },
+  {
+    "fold": 2,
+    "train_flights": 91,
+    "evaluation_flights": 23
+  },
+  {
+    "fold": 3,
+    "train_flights": 91,
+    "evaluation_flights": 23
+  },
+  {
+    "fold": 4,
+    "train_flights": 91,
+    "evaluation_flights": 23
+  }
+]
