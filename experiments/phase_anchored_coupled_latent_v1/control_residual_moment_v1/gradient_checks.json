@@ -1,0 +1,42 @@
+{
+  "device": "NVIDIA GeForce RTX 4090",
+  "precision": "mixed",
+  "batches": [
+    {
+      "batch": 0,
+      "M": -0.04320756186956648,
+      "FULL": 35.814793424503435,
+      "factual_parity_max": 1.7593081326830462e-08,
+      "autograd_M2_chain_max": 3.5242530813106576e-07
+    },
+    {
+      "batch": 1,
+      "M": -0.22410837004205478,
+      "FULL": 32.78093540669604,
+      "factual_parity_max": 1.1747562228547892e-08,
+      "autograd_M2_chain_max": 2.189070200664389e-06
+    },
+    {
+      "batch": 2,
+      "M": 0.4671563468383984,
+      "FULL": 40.56519437753874,
+      "factual_parity_max": 2.3305985721172595e-08,
+      "autograd_M2_chain_max": 8.345431152800842e-07
+    },
+    {
+      "batch": 3,
+      "M": 0.4791630220007604,
+      "FULL": 43.68630808858753,
+      "factual_parity_max": 1.838221258543271e-08,
+      "autograd_M2_chain_max": 2.3212456867760523e-06
+    }
+  ],
+  "parameters_unchanged": true,
+  "optimizer_created": false,
+  "microbatch": 4,
+  "cohort_reduction": "equal windows within each fixed diagnostic batch; exact accumulated gradients; M2=2*M*grad(M), additionally checked by autograd per microbatch",
+  "full": "original native physical FULL loss on same 0.5s windows; Macro untouched, not included in FULL comparator",
+  "moment": "exact native .2s target; logged ZOH; no future assimilation",
+  "stop": "detach every initial belief state field on Moment branch only",
+  "elapsed_s": 669.4929369268939
+}

@@ -1,0 +1,5 @@
+{
+  "weighted_normalized_residual_mean": 0.024176645736870388,
+  "constant_increment_shift_to_cancel_global_moment": 4.045106121011598,
+  "derivative_M_wrt_constant_increment_bias": -0.03416437838430831
+}

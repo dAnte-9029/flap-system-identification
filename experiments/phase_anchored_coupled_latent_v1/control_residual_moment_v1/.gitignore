@@ -1,0 +1,2 @@
+# Large local per-parameter autograd vectors; summary CSVs and reproduction code are published.
+gradient_vectors_batch*.npz

@@ -1,0 +1,26 @@
+{
+  "baseline": "7746e96d456f25a33e60b074e7f8f47aedb62d26",
+  "split": "train",
+  "windows": 11221,
+  "flights": 114,
+  "dates": 17,
+  "checkpoint_sha256": "9d82640692c0baec476e276696be4f89fd89a58854361bbcfdf3dbb84cb466c9",
+  "source": "/home/zn/flap-system-identification/.worktrees/pacld-control-identifiability-v1/experiments/phase_anchored_coupled_latent_v1/control_identifiability",
+  "a2": "/home/zn/flap-system-identification/.worktrees/pacld-control-effectiveness-v2/experiments/phase_anchored_coupled_latent_v1/control_effectiveness_a2_v2",
+  "source_feature_sha256": "4ef15bda633bc33210e00d34038e16e3d15e5e794e743ce4f9a31e9ad994b414",
+  "source_context_sha256": "9b74933a17b62d7047e47405d14cb64e1432a7b4a36738ac64c5205fe2869ea9",
+  "identity_join": [
+    "flight",
+    "t"
+  ],
+  "minimum_spacing_us": 1000416,
+  "endpoint_identity_max_error": 4.440892098500626e-16,
+  "speed_tertiles": [
+    6.2470621365817225,
+    7.536860680811678
+  ],
+  "gradient_windows": 136,
+  "seed": 17,
+  "nuisance": "refit original A2 LODO with inner 3 date folds and original 8-control/2-response alpha criterion",
+  "no_parameter_updates": true
+}

@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "checks": [
+    "train cohort/unique key/spacing",
+    "three error and moment identities",
+    "explicit hierarchy and permutation/flight duplication invariance",
+    "M_batch square variance identity",
+    "17 leave-one-date-out folds",
+    "finite module gradients",
+    "stopped Belief zero gradient; future dynamics reachable",
+    "factual inference parity",
+    "M2 autograd chain",
+    "parameters and checkpoint unchanged",
+    "three figures"
+  ],
+  "validation_test_data_opened": false
+}

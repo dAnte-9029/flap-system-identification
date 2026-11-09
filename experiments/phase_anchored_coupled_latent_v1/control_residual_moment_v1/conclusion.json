@@ -1,0 +1,10 @@
+{
+  "verdict": "CONDITIONAL GO",
+  "A": "VERIFIED: positive observational error moment on 16/17 dates",
+  "B": "SUPPORTED: date/flight persistence with tail sensitivity; no independent-window inference",
+  "C": "Reachability VERIFIED; stable useful full-train optimization direction UNRESOLVED; coverage batches do not identify it",
+  "D": "Strong future-control negative moments preclude causal/control-gain supervision",
+  "route_A": "significant confounding risk; no formal control-gain training recommendation",
+  "minimum_batch": "B=512 is the strongest tested conservative candidate; not a proved universal minimum; B=32 unreliable",
+  "no_training": true
+}
