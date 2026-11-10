@@ -1,0 +1,21 @@
+{
+  "logs": 114,
+  "dates": 17,
+  "firmware_count": 15,
+  "dt_us": 100000,
+  "match_tolerance_us": 30000,
+  "match_rule": "last published native rate; sample <= grid; no interpolation",
+  "offset_quantiles_us": [
+    -24713.0,
+    -19593.04,
+    -5992.0,
+    -250.0,
+    -79.0
+  ],
+  "retained_rows": 157800,
+  "segments": 515,
+  "phase": "relative encoder phase diagnostic only; causal Hall phase not established; M2 NO-GO",
+  "input": "exact recorded publication-clock ZOH integral [t_k-100000us,t_k); factual replay; unlogged commands unknown",
+  "base_commit": "c7683865f053ac7aa165a13e7e68641a7198a814",
+  "gap_threshold_us": 160000
+}

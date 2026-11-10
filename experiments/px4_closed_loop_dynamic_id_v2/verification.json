@@ -1,0 +1,24 @@
+{
+  "px4_closed_loop_dynamic_id_v2": {
+    "sequence_rows": 580401,
+    "sequences": 2610,
+    "retained_flights": 90,
+    "retained_dates": 15,
+    "retained_firmware": 13,
+    "evaluated_dates": 15,
+    "model_checks": 195,
+    "max_relative_profile_gradient": 1.7286025251122885e-05
+  },
+  "coarse100": {
+    "sequence_rows": 157800,
+    "sequences": 515,
+    "retained_flights": 114,
+    "retained_dates": 17,
+    "retained_firmware": 15,
+    "evaluated_dates": 2,
+    "model_checks": 8,
+    "max_relative_profile_gradient": 9.627290026606387e-08
+  },
+  "passed": true,
+  "holdout_data_access": "none: explicit train parquet and enumerated train ULogs only"
+}
