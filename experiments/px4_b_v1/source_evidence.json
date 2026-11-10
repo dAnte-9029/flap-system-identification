@@ -1,0 +1,5516 @@
+[
+  {
+    "sha": "0369024bbc9caaec19a12a6f5ce2eb68fab55c93",
+    "path": "src/modules/fw_rate_control/FixedwingRateControl.cpp",
+    "content_sha256": "0bfb77fd59c79791562f024acfd87a50efba4e18b45140dd77bea158a031066e",
+    "anchors": [
+      {
+        "line": 114,
+        "text": "_bumpless_roll_i_transfer.synchronizeReset(_rate_control.rollIntegralResetEpoch());"
+      },
+      {
+        "line": 121,
+        "text": "_bumpless_roll_i_transfer.synchronizeReset(_rate_control.rollIntegralResetEpoch());"
+      },
+      {
+        "line": 197,
+        "text": "_airspeed_filter_for_torque_scaling.reset(airspeed);"
+      },
+      {
+        "line": 200,
+        "text": "airspeed = _airspeed_filter_for_torque_scaling.update(airspeed, dt);"
+      },
+      {
+        "line": 264,
+        "text": "static constexpr float DT_MIN = 0.002f;"
+      },
+      {
+        "line": 265,
+        "text": "static constexpr float DT_MAX = 0.04f;"
+      },
+      {
+        "line": 270,
+        "text": "dt = math::constrain((vehicle_angular_velocity.timestamp_sample - _last_run) * 1e-6f, DT_MIN, DT_MAX);"
+      },
+      {
+        "line": 274,
+        "text": "if (dt < DT_MIN || dt > DT_MAX) {"
+      },
+      {
+        "line": 276,
+        "text": "dt = math::constrain((time_now_us - _last_run) * 1e-6f, DT_MIN, DT_MAX);"
+      },
+      {
+        "line": 336,
+        "text": "_gain_compression.reset();"
+      },
+      {
+        "line": 384,
+        "text": "_b2b_g_current = _gain_compression.getGains()(0) * airspeed_scale_squared;"
+      },
+      {
+        "line": 401,
+        "text": "transfer_inputs.cap_raw = _param_flap_b2b_cap.get();"
+      },
+      {
+        "line": 402,
+        "text": "transfer_inputs.slew_raw_per_s = _param_flap_b2b_slew.get();"
+      },
+      {
+        "line": 403,
+        "text": "transfer_inputs.safety_slew_raw_per_s = _param_flap_b2b_safe.get();"
+      },
+      {
+        "line": 405,
+        "text": "transfer_inputs.headroom_release_ratio = _param_flap_b2b_hr.get();"
+      },
+      {
+        "line": 406,
+        "text": "transfer_inputs.adapt_enabled = _param_flap_b2b_adapt.get();"
+      },
+      {
+        "line": 407,
+        "text": "transfer_inputs.hold_cap_raw = _param_flap_b2b_hcap.get();"
+      },
+      {
+        "line": 408,
+        "text": "transfer_inputs.residual_reserve_raw = _param_flap_b2b_rsvd.get();"
+      },
+      {
+        "line": 409,
+        "text": "transfer_inputs.adapt_tau_s = _param_flap_b2b_tau.get();"
+      },
+      {
+        "line": 410,
+        "text": "transfer_inputs.adapt_slew_raw_per_s = _param_flap_b2b_aslw.get();"
+      },
+      {
+        "line": 411,
+        "text": "transfer_inputs.entry_window_s = _param_flap_b2b_ewin.get();"
+      },
+      {
+        "line": 412,
+        "text": "transfer_inputs.gate_window_s = _param_flap_b2b_gwin.get();"
+      },
+      {
+        "line": 413,
+        "text": "transfer_inputs.gate_std_raw = _param_flap_b2b_gstd.get();"
+      },
+      {
+        "line": 414,
+        "text": "transfer_inputs.gate_same_sign_fraction = _param_flap_b2b_gsign.get();"
+      },
+      {
+        "line": 415,
+        "text": "_bumpless_roll_i_result = _bumpless_roll_i_transfer.update(transfer_inputs, _rate_control);"
+      },
+      {
+        "line": 417,
+        "text": "if (_bumpless_roll_i_result.reset_required) {"
+      },
+      {
+        "line": 421,
+        "text": "const float transferred_roll_i_raw = _bumpless_roll_i_transfer.transferredRaw();"
+      },
+      {
+        "line": 423,
+        "text": "_bumpless_roll_i_result.headroom_release_ratio_effective,"
+      },
+      {
+        "line": 466,
+        "text": "Vector3f angular_acceleration_setpoint = _rate_control.update(rates, body_rates_setpoint, angular_accel, dt,"
+      },
+      {
+        "line": 472,
+        "text": "const Vector3f gains_before_update = _gain_compression.getGains();"
+      },
+      {
+        "line": 485,
+        "text": "control_u = _gain_compression.getGains().emult("
+      },
+      {
+        "line": 492,
+        "text": "_gain_compression.update(control_u, dt);"
+      },
+      {
+        "line": 529,
+        "text": "_gain_compression.reset();"
+      },
+      {
+        "line": 531,
+        "text": "_bumpless_roll_i_result = {};"
+      },
+      {
+        "line": 552,
+        "text": "const float transferred_roll_i_raw = _bumpless_roll_i_transfer.transferredRaw();"
+      },
+      {
+        "line": 555,
+        "text": "rate_ctrl_status.flap_slow_gate_valid = _bumpless_roll_i_result.state == BumplessRollITransfer::State::Eligible"
+      },
+      {
+        "line": 556,
+        "text": "|| _bumpless_roll_i_result.state == BumplessRollITransfer::State::TransferIn"
+      },
+      {
+        "line": 557,
+        "text": "|| _bumpless_roll_i_result.state == BumplessRollITransfer::State::TransferHold;"
+      },
+      {
+        "line": 567,
+        "text": "rate_ctrl_status.flap_slow_exit_reason = static_cast<uint8_t>(_bumpless_roll_i_result.reason);"
+      },
+      {
+        "line": 568,
+        "text": "rate_ctrl_status.flap_b2b_state = static_cast<uint8_t>(_bumpless_roll_i_result.state);"
+      },
+      {
+        "line": 569,
+        "text": "rate_ctrl_status.flap_b2b_reason = static_cast<uint8_t>(_bumpless_roll_i_result.reason);"
+      },
+      {
+        "line": 570,
+        "text": "rate_ctrl_status.flap_b2b_normal_exit = _bumpless_roll_i_result.normal_exit;"
+      },
+      {
+        "line": 571,
+        "text": "rate_ctrl_status.flap_b2b_safety_exit = _bumpless_roll_i_result.safety_exit;"
+      },
+      {
+        "line": 572,
+        "text": "rate_ctrl_status.flap_b2b_recovery = _bumpless_roll_i_result.recovery;"
+      },
+      {
+        "line": 573,
+        "text": "rate_ctrl_status.flap_b2b_reset_mismatch = _bumpless_roll_i_result.reset_mismatch;"
+      },
+      {
+        "line": 574,
+        "text": "rate_ctrl_status.flap_b2b_reset_this_cycle = _roll_i_reset_this_cycle;"
+      },
+      {
+        "line": 575,
+        "text": "rate_ctrl_status.flap_b2b_transfer_limited = _bumpless_roll_i_result.transfer_limited;"
+      },
+      {
+        "line": 576,
+        "text": "rate_ctrl_status.flap_b2b_i_before_raw = _bumpless_roll_i_result.residual_i_before_raw;"
+      },
+      {
+        "line": 577,
+        "text": "rate_ctrl_status.flap_b2b_requested_delta_i_raw = _bumpless_roll_i_result.requested_delta_i_raw;"
+      },
+      {
+        "line": 578,
+        "text": "rate_ctrl_status.flap_b2b_accepted_delta_i_raw = _bumpless_roll_i_result.accepted_delta_i_raw;"
+      },
+      {
+        "line": 579,
+        "text": "rate_ctrl_status.flap_b2b_i_after_transfer_raw = _bumpless_roll_i_result.residual_i_raw;"
+      },
+      {
+        "line": 580,
+        "text": "rate_ctrl_status.flap_b2b_transferred_before_raw = _bumpless_roll_i_result.transferred_i_before_raw;"
+      },
+      {
+        "line": 581,
+        "text": "rate_ctrl_status.flap_b2b_requested_delta_s_raw = _bumpless_roll_i_result.requested_delta_s_raw;"
+      },
+      {
+        "line": 582,
+        "text": "rate_ctrl_status.flap_b2b_accepted_delta_s_raw = _bumpless_roll_i_result.accepted_delta_s_raw;"
+      },
+      {
+        "line": 583,
+        "text": "rate_ctrl_status.flap_b2b_transferred_raw = transferred_roll_i_raw;"
+      },
+      {
+        "line": 584,
+        "text": "rate_ctrl_status.flap_b2b_total_equivalent_raw = rate_ctrl_status.rollspeed_integ + transferred_roll_i_raw;"
+      },
+      {
+        "line": 585,
+        "text": "rate_ctrl_status.flap_b2b_natural_delta_pre_imax_raw = rate_ctrl_status.rollspeed_integ_delta_pre_imax;"
+      },
+      {
+        "line": 586,
+        "text": "rate_ctrl_status.flap_b2b_natural_delta_accepted_raw = rate_ctrl_status.rollspeed_integ_delta_accepted;"
+      },
+      {
+        "line": 587,
+        "text": "rate_ctrl_status.flap_b2b_unmatched_delta_raw = _bumpless_roll_i_result.unmatched_delta_raw;"
+      },
+      {
+        "line": 588,
+        "text": "rate_ctrl_status.b2b_hr_param = _param_flap_b2b_hr.get();"
+      },
+      {
+        "line": 589,
+        "text": "rate_ctrl_status.b2b_hr_latched = _bumpless_roll_i_result.headroom_release_ratio_latched;"
+      },
+      {
+        "line": 590,
+        "text": "rate_ctrl_status.b2b_hr_effective = _bumpless_roll_i_result.headroom_release_ratio_effective;"
+      },
+      {
+        "line": 591,
+        "text": "rate_ctrl_status.b2b_total_limit = _bumpless_roll_i_result.total_limit_raw;"
+      },
+      {
+        "line": 592,
+        "text": "rate_ctrl_status.b2b_i_lower = _bumpless_roll_i_result.residual_lower_raw;"
+      },
+      {
+        "line": 593,
+        "text": "rate_ctrl_status.b2b_i_upper = _bumpless_roll_i_result.residual_upper_raw;"
+      },
+      {
+        "line": 594,
+        "text": "rate_ctrl_status.b2b_hr_pos = _bumpless_roll_i_result.headroom_positive_raw;"
+      },
+      {
+        "line": 595,
+        "text": "rate_ctrl_status.b2b_hr_neg = _bumpless_roll_i_result.headroom_negative_raw;"
+      },
+      {
+        "line": 596,
+        "text": "rate_ctrl_status.b2b_exit_decay = _bumpless_roll_i_result.exit_authority_decay_raw;"
+      },
+      {
+        "line": 597,
+        "text": "rate_ctrl_status.flap_b2b_g_current = _b2b_g_current;"
+      },
+      {
+        "line": 598,
+        "text": "rate_ctrl_status.flap_b2b_effective_slow_torque = effective_slow_torque;"
+      },
+      {
+        "line": 599,
+        "text": "rate_ctrl_status.flap_b2b_effective_slow_tail = effective_slow_torque / 1.1f;"
+      },
+      {
+        "line": 600,
+        "text": "rate_ctrl_status.flap_b2b_reset_epoch = _rate_control.rollIntegralResetEpoch();"
+      },
+      {
+        "line": 601,
+        "text": "flap_b2b_adaptive_s adaptive_status{};"
+      },
+      {
+        "line": 603,
+        "text": "adaptive_status.enabled = _bumpless_roll_i_result.adapt_enabled;"
+      },
+      {
+        "line": 604,
+        "text": "adaptive_status.entry_est_valid = _bumpless_roll_i_result.entry_est_valid;"
+      },
+      {
+        "line": 605,
+        "text": "adaptive_status.gate = _bumpless_roll_i_result.adapt_gate;"
+      },
+      {
+        "line": 606,
+        "text": "adaptive_status.limited = _bumpless_roll_i_result.adapt_limited;"
+      },
+      {
+        "line": 607,
+        "text": "adaptive_status.releasing = _bumpless_roll_i_result.adapt_releasing;"
+      },
+      {
+        "line": 608,
+        "text": "adaptive_status.reversal = _bumpless_roll_i_result.adapt_reversal;"
+      },
+      {
+        "line": 609,
+        "text": "adaptive_status.entry_est_raw = _bumpless_roll_i_result.entry_est_raw;"
+      },
+      {
+        "line": 610,
+        "text": "adaptive_status.t_hat_raw = _bumpless_roll_i_result.adapt_t_hat_raw;"
+      },
+      {
+        "line": 611,
+        "text": "adaptive_status.target_raw = _bumpless_roll_i_result.adapt_target_raw;"
+      },
+      {
+        "line": 612,
+        "text": "adaptive_status.std_raw = _bumpless_roll_i_result.adapt_std_raw;"
+      },
+      {
+        "line": 613,
+        "text": "adaptive_status.sign_fraction = _bumpless_roll_i_result.adapt_sign_fraction;"
+      },
+      {
+        "line": 614,
+        "text": "adaptive_status.hold_cap_raw = _bumpless_roll_i_result.adapt_hold_cap_raw;"
+      },
+      {
+        "line": 615,
+        "text": "adaptive_status.reserve_raw = _bumpless_roll_i_result.adapt_reserve_raw;"
+      },
+      {
+        "line": 617,
+        "text": "adaptive_status.residual_i_raw = _bumpless_roll_i_result.residual_i_raw;"
+      },
+      {
+        "line": 618,
+        "text": "adaptive_status.total_equivalent_i_raw = _bumpless_roll_i_result.total_equivalent_i_raw;"
+      },
+      {
+        "line": 619,
+        "text": "_flap_b2b_adaptive_pub.publish(adaptive_status);"
+      },
+      {
+        "line": 633,
+        "text": "fast_shadow.flap_b2b_transferred_raw = transferred_roll_i_raw;"
+      },
+      {
+        "line": 634,
+        "text": "fast_shadow.flap_b2b_total_equivalent_raw = rate_ctrl_status.flap_b2b_total_equivalent_raw;"
+      },
+      {
+        "line": 635,
+        "text": "_fast_v1_shadow.update(rate_ctrl_status.timestamp, rate_ctrl_status.flap_b2b_total_equivalent_raw,"
+      }
+    ]
+  },
+  {
+    "sha": "0369024bbc9caaec19a12a6f5ce2eb68fab55c93",
+    "path": "src/modules/fw_att_control/FixedwingAttitudeControl.cpp",
+    "content_sha256": "40f9f25c116e6e59c8620b1e0b09642f8f77085f465077d3a19dd5408412d8f8",
+    "anchors": [
+      {
+        "line": 199,
+        "text": "static constexpr float DT_MIN = 0.002f;"
+      },
+      {
+        "line": 200,
+        "text": "static constexpr float DT_MAX = 0.04f;"
+      },
+      {
+        "line": 205,
+        "text": "dt = math::constrain((att.timestamp_sample - _last_run) * 1e-6f, DT_MIN, DT_MAX);"
+      },
+      {
+        "line": 212,
+        "text": "if (dt < DT_MIN || dt > DT_MAX) {"
+      },
+      {
+        "line": 214,
+        "text": "dt = math::constrain((time_now_us - _last_run) * 1e-6f, DT_MIN, DT_MAX);"
+      },
+      {
+        "line": 304,
+        "text": "_roll_ctrl.control_roll(roll_sp, _yaw_ctrl.get_euler_rate_setpoint(), euler_angles.phi(),"
+      }
+    ]
+  },
+  {
+    "sha": "0369024bbc9caaec19a12a6f5ce2eb68fab55c93",
+    "path": "src/modules/fw_att_control/fw_roll_controller.cpp",
+    "content_sha256": "51fab211b67ec194cb72e4adb085f89d9312e962cf89b4db2b4f3981515cf510",
+    "anchors": [
+      {
+        "line": 44,
+        "text": "float RollController::control_roll(float roll_setpoint, float euler_yaw_rate_setpoint, float roll, float pitch)"
+      },
+      {
+        "line": 61,
+        "text": "_body_rate_setpoint = math::constrain(roll_body_rate_setpoint_raw, -_max_rate, _max_rate);"
+      }
+    ]
+  },
+  {
+    "sha": "0369024bbc9caaec19a12a6f5ce2eb68fab55c93",
+    "path": "src/lib/rate_control/rate_control.cpp",
+    "content_sha256": "1dae7e64e7501f30b370f351b9cab44cd024c36b656e6906eabf8ce9ecd09ab5",
+    "anchors": [
+      {
+        "line": 175,
+        "text": "Vector3f rate_error = rate_sp - rate;"
+      },
+      {
+        "line": 176,
+        "text": "_roll_rate_error = PX4_ISFINITE(rate_error(0)) ? rate_error(0) : 0.f;"
+      },
+      {
+        "line": 183,
+        "text": "const Vector3f torque = _gain_p.emult(rate_error) + _rate_int - _gain_d.emult(angular_accel) + _gain_ff.emult(rate_sp);"
+      },
+      {
+        "line": 294,
+        "text": "_roll_rate_error = 0.f;"
+      }
+    ]
+  },
+  {
+    "sha": "0369024bbc9caaec19a12a6f5ce2eb68fab55c93",
+    "path": "src/lib/rate_control/gain_compression.cpp",
+    "content_sha256": "e7c7b4325f8d6fa5824a19f4e96dd311cffe6e8b9d463a9ef8aaf2b8da1994b0",
+    "anchors": [
+      {
+        "line": 42,
+        "text": "_gain_compression_pub.advertise();"
+      },
+      {
+        "line": 91,
+        "text": "_gain_compression_pub.publish(msg);"
+      }
+    ]
+  },
+  {
+    "sha": "0369024bbc9caaec19a12a6f5ce2eb68fab55c93",
+    "path": "src/modules/control_allocator/VehicleActuatorEffectiveness/ActuatorEffectivenessControlSurfaces.cpp",
+    "content_sha256": "044e4aaa558c811134c5fde6f3c3df62959231273cc0056df29c50fe294df78d",
+    "anchors": []
+  },
+  {
+    "sha": "0369024bbc9caaec19a12a6f5ce2eb68fab55c93",
+    "path": "src/lib/control_allocation/control_allocation/ControlAllocationPseudoInverse.cpp",
+    "content_sha256": "3200e76a8a150c0dd514c8e4008d7392729bca53bf42e71151a74d364c803499",
+    "anchors": [
+      {
+        "line": 73,
+        "text": "normalizeControlAllocationMatrix();"
+      },
+      {
+        "line": 151,
+        "text": "ControlAllocationPseudoInverse::normalizeControlAllocationMatrix()"
+      },
+      {
+        "line": 185,
+        "text": "_prev_actuator_sp = _actuator_sp;"
+      },
+      {
+        "line": 188,
+        "text": "_actuator_sp = _actuator_trim + _mix * (_control_sp - _control_trim);"
+      }
+    ]
+  },
+  {
+    "sha": "0369024bbc9caaec19a12a6f5ce2eb68fab55c93",
+    "path": "src/modules/control_allocator/ControlAllocator.cpp",
+    "content_sha256": "de9f231d5b94f648ea07f44618493e2429ee3084bdfa2902bccbfa313e83690f",
+    "anchors": []
+  },
+  {
+    "sha": "19a108f17666942d199fb3856be5e85bc9aa6f83",
+    "path": "src/modules/fw_rate_control/FixedwingRateControl.cpp",
+    "content_sha256": "5d6cc2ea404c7f9ded61dd3714069a3b467fb287501a9e481372b79bcea9b1f3",
+    "anchors": [
+      {
+        "line": 114,
+        "text": "_bumpless_roll_i_transfer.synchronizeReset(_rate_control.rollIntegralResetEpoch());"
+      },
+      {
+        "line": 121,
+        "text": "_bumpless_roll_i_transfer.synchronizeReset(_rate_control.rollIntegralResetEpoch());"
+      },
+      {
+        "line": 197,
+        "text": "_airspeed_filter_for_torque_scaling.reset(airspeed);"
+      },
+      {
+        "line": 200,
+        "text": "airspeed = _airspeed_filter_for_torque_scaling.update(airspeed, dt);"
+      },
+      {
+        "line": 264,
+        "text": "static constexpr float DT_MIN = 0.002f;"
+      },
+      {
+        "line": 265,
+        "text": "static constexpr float DT_MAX = 0.04f;"
+      },
+      {
+        "line": 270,
+        "text": "dt = math::constrain((vehicle_angular_velocity.timestamp_sample - _last_run) * 1e-6f, DT_MIN, DT_MAX);"
+      },
+      {
+        "line": 274,
+        "text": "if (dt < DT_MIN || dt > DT_MAX) {"
+      },
+      {
+        "line": 276,
+        "text": "dt = math::constrain((time_now_us - _last_run) * 1e-6f, DT_MIN, DT_MAX);"
+      },
+      {
+        "line": 336,
+        "text": "_gain_compression.reset();"
+      },
+      {
+        "line": 384,
+        "text": "_b2b_g_current = _gain_compression.getGains()(0) * airspeed_scale_squared;"
+      },
+      {
+        "line": 401,
+        "text": "transfer_inputs.cap_raw = _param_flap_b2b_cap.get();"
+      },
+      {
+        "line": 402,
+        "text": "transfer_inputs.slew_raw_per_s = _param_flap_b2b_slew.get();"
+      },
+      {
+        "line": 403,
+        "text": "transfer_inputs.safety_slew_raw_per_s = _param_flap_b2b_safe.get();"
+      },
+      {
+        "line": 405,
+        "text": "transfer_inputs.headroom_release_ratio = _param_flap_b2b_hr.get();"
+      },
+      {
+        "line": 406,
+        "text": "transfer_inputs.adapt_enabled = _param_flap_b2b_adapt.get();"
+      },
+      {
+        "line": 407,
+        "text": "transfer_inputs.hold_cap_raw = _param_flap_b2b_hcap.get();"
+      },
+      {
+        "line": 408,
+        "text": "transfer_inputs.residual_reserve_raw = _param_flap_b2b_rsvd.get();"
+      },
+      {
+        "line": 409,
+        "text": "transfer_inputs.adapt_tau_s = _param_flap_b2b_tau.get();"
+      },
+      {
+        "line": 410,
+        "text": "transfer_inputs.adapt_slew_raw_per_s = _param_flap_b2b_aslw.get();"
+      },
+      {
+        "line": 411,
+        "text": "transfer_inputs.entry_window_s = _param_flap_b2b_ewin.get();"
+      },
+      {
+        "line": 412,
+        "text": "transfer_inputs.gate_window_s = _param_flap_b2b_gwin.get();"
+      },
+      {
+        "line": 413,
+        "text": "transfer_inputs.gate_std_raw = _param_flap_b2b_gstd.get();"
+      },
+      {
+        "line": 414,
+        "text": "transfer_inputs.gate_same_sign_fraction = _param_flap_b2b_gsign.get();"
+      },
+      {
+        "line": 415,
+        "text": "_bumpless_roll_i_result = _bumpless_roll_i_transfer.update(transfer_inputs, _rate_control);"
+      },
+      {
+        "line": 417,
+        "text": "if (_bumpless_roll_i_result.reset_required) {"
+      },
+      {
+        "line": 421,
+        "text": "const float transferred_roll_i_raw = _bumpless_roll_i_transfer.transferredRaw();"
+      },
+      {
+        "line": 423,
+        "text": "_bumpless_roll_i_result.headroom_release_ratio_effective,"
+      },
+      {
+        "line": 466,
+        "text": "Vector3f angular_acceleration_setpoint = _rate_control.update(rates, body_rates_setpoint, angular_accel, dt,"
+      },
+      {
+        "line": 472,
+        "text": "const Vector3f gains_before_update = _gain_compression.getGains();"
+      },
+      {
+        "line": 485,
+        "text": "control_u = _gain_compression.getGains().emult("
+      },
+      {
+        "line": 492,
+        "text": "_gain_compression.update(control_u, dt);"
+      },
+      {
+        "line": 529,
+        "text": "_gain_compression.reset();"
+      },
+      {
+        "line": 531,
+        "text": "_bumpless_roll_i_result = {};"
+      },
+      {
+        "line": 552,
+        "text": "const float transferred_roll_i_raw = _bumpless_roll_i_transfer.transferredRaw();"
+      },
+      {
+        "line": 555,
+        "text": "rate_ctrl_status.flap_slow_gate_valid = _bumpless_roll_i_result.state == BumplessRollITransfer::State::Eligible"
+      },
+      {
+        "line": 556,
+        "text": "|| _bumpless_roll_i_result.state == BumplessRollITransfer::State::TransferIn"
+      },
+      {
+        "line": 557,
+        "text": "|| _bumpless_roll_i_result.state == BumplessRollITransfer::State::TransferHold;"
+      },
+      {
+        "line": 567,
+        "text": "rate_ctrl_status.flap_slow_exit_reason = static_cast<uint8_t>(_bumpless_roll_i_result.reason);"
+      },
+      {
+        "line": 568,
+        "text": "rate_ctrl_status.flap_b2b_state = static_cast<uint8_t>(_bumpless_roll_i_result.state);"
+      },
+      {
+        "line": 569,
+        "text": "rate_ctrl_status.flap_b2b_reason = static_cast<uint8_t>(_bumpless_roll_i_result.reason);"
+      },
+      {
+        "line": 570,
+        "text": "rate_ctrl_status.flap_b2b_normal_exit = _bumpless_roll_i_result.normal_exit;"
+      },
+      {
+        "line": 571,
+        "text": "rate_ctrl_status.flap_b2b_safety_exit = _bumpless_roll_i_result.safety_exit;"
+      },
+      {
+        "line": 572,
+        "text": "rate_ctrl_status.flap_b2b_recovery = _bumpless_roll_i_result.recovery;"
+      },
+      {
+        "line": 573,
+        "text": "rate_ctrl_status.flap_b2b_reset_mismatch = _bumpless_roll_i_result.reset_mismatch;"
+      },
+      {
+        "line": 574,
+        "text": "rate_ctrl_status.flap_b2b_reset_this_cycle = _roll_i_reset_this_cycle;"
+      },
+      {
+        "line": 575,
+        "text": "rate_ctrl_status.flap_b2b_transfer_limited = _bumpless_roll_i_result.transfer_limited;"
+      },
+      {
+        "line": 576,
+        "text": "rate_ctrl_status.flap_b2b_i_before_raw = _bumpless_roll_i_result.residual_i_before_raw;"
+      },
+      {
+        "line": 577,
+        "text": "rate_ctrl_status.flap_b2b_requested_delta_i_raw = _bumpless_roll_i_result.requested_delta_i_raw;"
+      },
+      {
+        "line": 578,
+        "text": "rate_ctrl_status.flap_b2b_accepted_delta_i_raw = _bumpless_roll_i_result.accepted_delta_i_raw;"
+      },
+      {
+        "line": 579,
+        "text": "rate_ctrl_status.flap_b2b_i_after_transfer_raw = _bumpless_roll_i_result.residual_i_raw;"
+      },
+      {
+        "line": 580,
+        "text": "rate_ctrl_status.flap_b2b_transferred_before_raw = _bumpless_roll_i_result.transferred_i_before_raw;"
+      },
+      {
+        "line": 581,
+        "text": "rate_ctrl_status.flap_b2b_requested_delta_s_raw = _bumpless_roll_i_result.requested_delta_s_raw;"
+      },
+      {
+        "line": 582,
+        "text": "rate_ctrl_status.flap_b2b_accepted_delta_s_raw = _bumpless_roll_i_result.accepted_delta_s_raw;"
+      },
+      {
+        "line": 583,
+        "text": "rate_ctrl_status.flap_b2b_transferred_raw = transferred_roll_i_raw;"
+      },
+      {
+        "line": 584,
+        "text": "rate_ctrl_status.flap_b2b_total_equivalent_raw = rate_ctrl_status.rollspeed_integ + transferred_roll_i_raw;"
+      },
+      {
+        "line": 585,
+        "text": "rate_ctrl_status.flap_b2b_natural_delta_pre_imax_raw = rate_ctrl_status.rollspeed_integ_delta_pre_imax;"
+      },
+      {
+        "line": 586,
+        "text": "rate_ctrl_status.flap_b2b_natural_delta_accepted_raw = rate_ctrl_status.rollspeed_integ_delta_accepted;"
+      },
+      {
+        "line": 587,
+        "text": "rate_ctrl_status.flap_b2b_unmatched_delta_raw = _bumpless_roll_i_result.unmatched_delta_raw;"
+      },
+      {
+        "line": 588,
+        "text": "rate_ctrl_status.b2b_hr_param = _param_flap_b2b_hr.get();"
+      },
+      {
+        "line": 589,
+        "text": "rate_ctrl_status.b2b_hr_latched = _bumpless_roll_i_result.headroom_release_ratio_latched;"
+      },
+      {
+        "line": 590,
+        "text": "rate_ctrl_status.b2b_hr_effective = _bumpless_roll_i_result.headroom_release_ratio_effective;"
+      },
+      {
+        "line": 591,
+        "text": "rate_ctrl_status.b2b_total_limit = _bumpless_roll_i_result.total_limit_raw;"
+      },
+      {
+        "line": 592,
+        "text": "rate_ctrl_status.b2b_i_lower = _bumpless_roll_i_result.residual_lower_raw;"
+      },
+      {
+        "line": 593,
+        "text": "rate_ctrl_status.b2b_i_upper = _bumpless_roll_i_result.residual_upper_raw;"
+      },
+      {
+        "line": 594,
+        "text": "rate_ctrl_status.b2b_hr_pos = _bumpless_roll_i_result.headroom_positive_raw;"
+      },
+      {
+        "line": 595,
+        "text": "rate_ctrl_status.b2b_hr_neg = _bumpless_roll_i_result.headroom_negative_raw;"
+      },
+      {
+        "line": 596,
+        "text": "rate_ctrl_status.b2b_exit_decay = _bumpless_roll_i_result.exit_authority_decay_raw;"
+      },
+      {
+        "line": 597,
+        "text": "rate_ctrl_status.flap_b2b_g_current = _b2b_g_current;"
+      },
+      {
+        "line": 598,
+        "text": "rate_ctrl_status.flap_b2b_effective_slow_torque = effective_slow_torque;"
+      },
+      {
+        "line": 599,
+        "text": "rate_ctrl_status.flap_b2b_effective_slow_tail = effective_slow_torque / 1.1f;"
+      },
+      {
+        "line": 600,
+        "text": "rate_ctrl_status.flap_b2b_reset_epoch = _rate_control.rollIntegralResetEpoch();"
+      },
+      {
+        "line": 601,
+        "text": "flap_b2b_adaptive_s adaptive_status{};"
+      },
+      {
+        "line": 603,
+        "text": "adaptive_status.enabled = _bumpless_roll_i_result.adapt_enabled;"
+      },
+      {
+        "line": 604,
+        "text": "adaptive_status.entry_est_valid = _bumpless_roll_i_result.entry_est_valid;"
+      },
+      {
+        "line": 605,
+        "text": "adaptive_status.gate = _bumpless_roll_i_result.adapt_gate;"
+      },
+      {
+        "line": 606,
+        "text": "adaptive_status.limited = _bumpless_roll_i_result.adapt_limited;"
+      },
+      {
+        "line": 607,
+        "text": "adaptive_status.releasing = _bumpless_roll_i_result.adapt_releasing;"
+      },
+      {
+        "line": 608,
+        "text": "adaptive_status.reversal = _bumpless_roll_i_result.adapt_reversal;"
+      },
+      {
+        "line": 609,
+        "text": "adaptive_status.entry_est_raw = _bumpless_roll_i_result.entry_est_raw;"
+      },
+      {
+        "line": 610,
+        "text": "adaptive_status.t_hat_raw = _bumpless_roll_i_result.adapt_t_hat_raw;"
+      },
+      {
+        "line": 611,
+        "text": "adaptive_status.target_raw = _bumpless_roll_i_result.adapt_target_raw;"
+      },
+      {
+        "line": 612,
+        "text": "adaptive_status.std_raw = _bumpless_roll_i_result.adapt_std_raw;"
+      },
+      {
+        "line": 613,
+        "text": "adaptive_status.sign_fraction = _bumpless_roll_i_result.adapt_sign_fraction;"
+      },
+      {
+        "line": 614,
+        "text": "adaptive_status.hold_cap_raw = _bumpless_roll_i_result.adapt_hold_cap_raw;"
+      },
+      {
+        "line": 615,
+        "text": "adaptive_status.reserve_raw = _bumpless_roll_i_result.adapt_reserve_raw;"
+      },
+      {
+        "line": 617,
+        "text": "adaptive_status.residual_i_raw = _bumpless_roll_i_result.residual_i_raw;"
+      },
+      {
+        "line": 618,
+        "text": "adaptive_status.total_equivalent_i_raw = _bumpless_roll_i_result.total_equivalent_i_raw;"
+      },
+      {
+        "line": 619,
+        "text": "_flap_b2b_adaptive_pub.publish(adaptive_status);"
+      },
+      {
+        "line": 633,
+        "text": "fast_shadow.flap_b2b_transferred_raw = transferred_roll_i_raw;"
+      },
+      {
+        "line": 634,
+        "text": "fast_shadow.flap_b2b_total_equivalent_raw = rate_ctrl_status.flap_b2b_total_equivalent_raw;"
+      },
+      {
+        "line": 635,
+        "text": "_fast_v1_shadow.update(rate_ctrl_status.timestamp, rate_ctrl_status.flap_b2b_total_equivalent_raw,"
+      }
+    ]
+  },
+  {
+    "sha": "19a108f17666942d199fb3856be5e85bc9aa6f83",
+    "path": "src/modules/fw_att_control/FixedwingAttitudeControl.cpp",
+    "content_sha256": "40f9f25c116e6e59c8620b1e0b09642f8f77085f465077d3a19dd5408412d8f8",
+    "anchors": [
+      {
+        "line": 199,
+        "text": "static constexpr float DT_MIN = 0.002f;"
+      },
+      {
+        "line": 200,
+        "text": "static constexpr float DT_MAX = 0.04f;"
+      },
+      {
+        "line": 205,
+        "text": "dt = math::constrain((att.timestamp_sample - _last_run) * 1e-6f, DT_MIN, DT_MAX);"
+      },
+      {
+        "line": 212,
+        "text": "if (dt < DT_MIN || dt > DT_MAX) {"
+      },
+      {
+        "line": 214,
+        "text": "dt = math::constrain((time_now_us - _last_run) * 1e-6f, DT_MIN, DT_MAX);"
+      },
+      {
+        "line": 304,
+        "text": "_roll_ctrl.control_roll(roll_sp, _yaw_ctrl.get_euler_rate_setpoint(), euler_angles.phi(),"
+      }
+    ]
+  },
+  {
+    "sha": "19a108f17666942d199fb3856be5e85bc9aa6f83",
+    "path": "src/modules/fw_att_control/fw_roll_controller.cpp",
+    "content_sha256": "51fab211b67ec194cb72e4adb085f89d9312e962cf89b4db2b4f3981515cf510",
+    "anchors": [
+      {
+        "line": 44,
+        "text": "float RollController::control_roll(float roll_setpoint, float euler_yaw_rate_setpoint, float roll, float pitch)"
+      },
+      {
+        "line": 61,
+        "text": "_body_rate_setpoint = math::constrain(roll_body_rate_setpoint_raw, -_max_rate, _max_rate);"
+      }
+    ]
+  },
+  {
+    "sha": "19a108f17666942d199fb3856be5e85bc9aa6f83",
+    "path": "src/lib/rate_control/rate_control.cpp",
+    "content_sha256": "1dae7e64e7501f30b370f351b9cab44cd024c36b656e6906eabf8ce9ecd09ab5",
+    "anchors": [
+      {
+        "line": 175,
+        "text": "Vector3f rate_error = rate_sp - rate;"
+      },
+      {
+        "line": 176,
+        "text": "_roll_rate_error = PX4_ISFINITE(rate_error(0)) ? rate_error(0) : 0.f;"
+      },
+      {
+        "line": 183,
+        "text": "const Vector3f torque = _gain_p.emult(rate_error) + _rate_int - _gain_d.emult(angular_accel) + _gain_ff.emult(rate_sp);"
+      },
+      {
+        "line": 294,
+        "text": "_roll_rate_error = 0.f;"
+      }
+    ]
+  },
+  {
+    "sha": "19a108f17666942d199fb3856be5e85bc9aa6f83",
+    "path": "src/lib/rate_control/gain_compression.cpp",
+    "content_sha256": "e7c7b4325f8d6fa5824a19f4e96dd311cffe6e8b9d463a9ef8aaf2b8da1994b0",
+    "anchors": [
+      {
+        "line": 42,
+        "text": "_gain_compression_pub.advertise();"
+      },
+      {
+        "line": 91,
+        "text": "_gain_compression_pub.publish(msg);"
+      }
+    ]
+  },
+  {
+    "sha": "19a108f17666942d199fb3856be5e85bc9aa6f83",
+    "path": "src/modules/control_allocator/VehicleActuatorEffectiveness/ActuatorEffectivenessControlSurfaces.cpp",
+    "content_sha256": "044e4aaa558c811134c5fde6f3c3df62959231273cc0056df29c50fe294df78d",
+    "anchors": []
+  },
+  {
+    "sha": "19a108f17666942d199fb3856be5e85bc9aa6f83",
+    "path": "src/lib/control_allocation/control_allocation/ControlAllocationPseudoInverse.cpp",
+    "content_sha256": "3200e76a8a150c0dd514c8e4008d7392729bca53bf42e71151a74d364c803499",
+    "anchors": [
+      {
+        "line": 73,
+        "text": "normalizeControlAllocationMatrix();"
+      },
+      {
+        "line": 151,
+        "text": "ControlAllocationPseudoInverse::normalizeControlAllocationMatrix()"
+      },
+      {
+        "line": 185,
+        "text": "_prev_actuator_sp = _actuator_sp;"
+      },
+      {
+        "line": 188,
+        "text": "_actuator_sp = _actuator_trim + _mix * (_control_sp - _control_trim);"
+      }
+    ]
+  },
+  {
+    "sha": "19a108f17666942d199fb3856be5e85bc9aa6f83",
+    "path": "src/modules/control_allocator/ControlAllocator.cpp",
+    "content_sha256": "de9f231d5b94f648ea07f44618493e2429ee3084bdfa2902bccbfa313e83690f",
+    "anchors": []
+  },
+  {
+    "sha": "229adb4c62d9883a7a0d7e9cbc65ac319f5de97d",
+    "path": "src/modules/fw_rate_control/FixedwingRateControl.cpp",
+    "content_sha256": "cb071b37c5322f80118e6d061711e077f7c3e11ede3613b6c10a2f42be646c81",
+    "anchors": [
+      {
+        "line": 170,
+        "text": "_airspeed_filter_for_torque_scaling.reset(airspeed);"
+      },
+      {
+        "line": 173,
+        "text": "airspeed = _airspeed_filter_for_torque_scaling.update(airspeed, dt);"
+      },
+      {
+        "line": 240,
+        "text": "static constexpr float DT_MIN = 0.002f;"
+      },
+      {
+        "line": 241,
+        "text": "static constexpr float DT_MAX = 0.04f;"
+      },
+      {
+        "line": 267,
+        "text": "dt = math::constrain((vehicle_angular_velocity.timestamp_sample - _last_run) * 1e-6f, DT_MIN, DT_MAX);"
+      },
+      {
+        "line": 271,
+        "text": "if (dt < DT_MIN || dt > DT_MAX) {"
+      },
+      {
+        "line": 273,
+        "text": "dt = math::constrain((time_now_us - _last_run) * 1e-6f, DT_MIN, DT_MAX);"
+      },
+      {
+        "line": 333,
+        "text": "_gain_compression.reset();"
+      },
+      {
+        "line": 462,
+        "text": "const Vector3f angular_acceleration_setpoint = _rate_control.update(rates, body_rates_setpoint, angular_accel, dt, _landed);"
+      },
+      {
+        "line": 473,
+        "text": "Vector3f control_u = _gain_compression.getGains().emult(angular_acceleration_setpoint * _airspeed_scaling * _airspeed_scaling);"
+      },
+      {
+        "line": 475,
+        "text": "_pitch_diag_inner.gain_compression_pitch = _gain_compression.getGains()(1);"
+      },
+      {
+        "line": 481,
+        "text": "_pitch_ff_status.gain_compression_pitch = _gain_compression.getGains()(1);"
+      },
+      {
+        "line": 486,
+        "text": "_gain_compression.update(control_u, dt);"
+      },
+      {
+        "line": 664,
+        "text": "_gain_compression.reset();"
+      }
+    ]
+  },
+  {
+    "sha": "229adb4c62d9883a7a0d7e9cbc65ac319f5de97d",
+    "path": "src/modules/fw_att_control/FixedwingAttitudeControl.cpp",
+    "content_sha256": "63b44363671dc88a60f233ef954e0717601a484fd3675543f4fa3597ee1240e0",
+    "anchors": [
+      {
+        "line": 202,
+        "text": "static constexpr float DT_MIN = 0.002f;"
+      },
+      {
+        "line": 203,
+        "text": "static constexpr float DT_MAX = 0.04f;"
+      },
+      {
+        "line": 211,
+        "text": "dt = math::constrain((att.timestamp_sample - _last_run) * 1e-6f, DT_MIN, DT_MAX);"
+      },
+      {
+        "line": 218,
+        "text": "if (dt < DT_MIN || dt > DT_MAX) {"
+      },
+      {
+        "line": 220,
+        "text": "dt = math::constrain((time_now_us - _last_run) * 1e-6f, DT_MIN, DT_MAX);"
+      },
+      {
+        "line": 335,
+        "text": "_roll_ctrl.control_roll(roll_sp, _yaw_ctrl.get_euler_rate_setpoint(), euler_angles.phi(),"
+      }
+    ]
+  },
+  {
+    "sha": "229adb4c62d9883a7a0d7e9cbc65ac319f5de97d",
+    "path": "src/modules/fw_att_control/fw_roll_controller.cpp",
+    "content_sha256": "51fab211b67ec194cb72e4adb085f89d9312e962cf89b4db2b4f3981515cf510",
+    "anchors": [
+      {
+        "line": 44,
+        "text": "float RollController::control_roll(float roll_setpoint, float euler_yaw_rate_setpoint, float roll, float pitch)"
+      },
+      {
+        "line": 61,
+        "text": "_body_rate_setpoint = math::constrain(roll_body_rate_setpoint_raw, -_max_rate, _max_rate);"
+      }
+    ]
+  },
+  {
+    "sha": "229adb4c62d9883a7a0d7e9cbc65ac319f5de97d",
+    "path": "src/lib/rate_control/rate_control.cpp",
+    "content_sha256": "446012432c15e5ca49038e73796ba847eb611abbe02f003bd8b198275f8dc960",
+    "anchors": [
+      {
+        "line": 75,
+        "text": "Vector3f rate_error = rate_sp - rate;"
+      },
+      {
+        "line": 78,
+        "text": "const Vector3f torque = _gain_p.emult(rate_error) + _rate_int - _gain_d.emult(angular_accel) + _gain_ff.emult(rate_sp);"
+      }
+    ]
+  },
+  {
+    "sha": "229adb4c62d9883a7a0d7e9cbc65ac319f5de97d",
+    "path": "src/lib/rate_control/gain_compression.cpp",
+    "content_sha256": "e7c7b4325f8d6fa5824a19f4e96dd311cffe6e8b9d463a9ef8aaf2b8da1994b0",
+    "anchors": [
+      {
+        "line": 42,
+        "text": "_gain_compression_pub.advertise();"
+      },
+      {
+        "line": 91,
+        "text": "_gain_compression_pub.publish(msg);"
+      }
+    ]
+  },
+  {
+    "sha": "229adb4c62d9883a7a0d7e9cbc65ac319f5de97d",
+    "path": "src/modules/control_allocator/VehicleActuatorEffectiveness/ActuatorEffectivenessControlSurfaces.cpp",
+    "content_sha256": "044e4aaa558c811134c5fde6f3c3df62959231273cc0056df29c50fe294df78d",
+    "anchors": []
+  },
+  {
+    "sha": "229adb4c62d9883a7a0d7e9cbc65ac319f5de97d",
+    "path": "src/lib/control_allocation/control_allocation/ControlAllocationPseudoInverse.cpp",
+    "content_sha256": "3200e76a8a150c0dd514c8e4008d7392729bca53bf42e71151a74d364c803499",
+    "anchors": [
+      {
+        "line": 73,
+        "text": "normalizeControlAllocationMatrix();"
+      },
+      {
+        "line": 151,
+        "text": "ControlAllocationPseudoInverse::normalizeControlAllocationMatrix()"
+      },
+      {
+        "line": 185,
+        "text": "_prev_actuator_sp = _actuator_sp;"
+      },
+      {
+        "line": 188,
+        "text": "_actuator_sp = _actuator_trim + _mix * (_control_sp - _control_trim);"
+      }
+    ]
+  },
+  {
+    "sha": "229adb4c62d9883a7a0d7e9cbc65ac319f5de97d",
+    "path": "src/modules/control_allocator/ControlAllocator.cpp",
+    "content_sha256": "de9f231d5b94f648ea07f44618493e2429ee3084bdfa2902bccbfa313e83690f",
+    "anchors": []
+  },
+  {
+    "sha": "3f42d7052c958c7f65e2f26a763d909bb84fa7f6",
+    "path": "src/modules/fw_rate_control/FixedwingRateControl.cpp",
+    "content_sha256": "f629723bb627cd166c9fd0f7d13d7b57c34e902abf4ada7dd82d4d7f60071e75",
+    "anchors": [
+      {
+        "line": 167,
+        "text": "_airspeed_filter_for_torque_scaling.reset(airspeed);"
+      },
+      {
+        "line": 170,
+        "text": "airspeed = _airspeed_filter_for_torque_scaling.update(airspeed, dt);"
+      },
+      {
+        "line": 233,
+        "text": "static constexpr float DT_MIN = 0.002f;"
+      },
+      {
+        "line": 234,
+        "text": "static constexpr float DT_MAX = 0.04f;"
+      },
+      {
+        "line": 239,
+        "text": "dt = math::constrain((vehicle_angular_velocity.timestamp_sample - _last_run) * 1e-6f, DT_MIN, DT_MAX);"
+      },
+      {
+        "line": 243,
+        "text": "if (dt < DT_MIN || dt > DT_MAX) {"
+      },
+      {
+        "line": 245,
+        "text": "dt = math::constrain((time_now_us - _last_run) * 1e-6f, DT_MIN, DT_MAX);"
+      },
+      {
+        "line": 294,
+        "text": "_gain_compression.reset();"
+      },
+      {
+        "line": 375,
+        "text": "const Vector3f angular_acceleration_setpoint = _rate_control.update(rates, body_rates_setpoint, angular_accel, dt,"
+      },
+      {
+        "line": 381,
+        "text": "Vector3f control_u = _gain_compression.getGains().emult(angular_acceleration_setpoint * _airspeed_scaling * _airspeed_scaling);"
+      },
+      {
+        "line": 383,
+        "text": "_gain_compression.update(control_u, dt);"
+      },
+      {
+        "line": 427,
+        "text": "_gain_compression.reset();"
+      }
+    ]
+  },
+  {
+    "sha": "3f42d7052c958c7f65e2f26a763d909bb84fa7f6",
+    "path": "src/modules/fw_att_control/FixedwingAttitudeControl.cpp",
+    "content_sha256": "40f9f25c116e6e59c8620b1e0b09642f8f77085f465077d3a19dd5408412d8f8",
+    "anchors": [
+      {
+        "line": 199,
+        "text": "static constexpr float DT_MIN = 0.002f;"
+      },
+      {
+        "line": 200,
+        "text": "static constexpr float DT_MAX = 0.04f;"
+      },
+      {
+        "line": 205,
+        "text": "dt = math::constrain((att.timestamp_sample - _last_run) * 1e-6f, DT_MIN, DT_MAX);"
+      },
+      {
+        "line": 212,
+        "text": "if (dt < DT_MIN || dt > DT_MAX) {"
+      },
+      {
+        "line": 214,
+        "text": "dt = math::constrain((time_now_us - _last_run) * 1e-6f, DT_MIN, DT_MAX);"
+      },
+      {
+        "line": 304,
+        "text": "_roll_ctrl.control_roll(roll_sp, _yaw_ctrl.get_euler_rate_setpoint(), euler_angles.phi(),"
+      }
+    ]
+  },
+  {
+    "sha": "3f42d7052c958c7f65e2f26a763d909bb84fa7f6",
+    "path": "src/modules/fw_att_control/fw_roll_controller.cpp",
+    "content_sha256": "51fab211b67ec194cb72e4adb085f89d9312e962cf89b4db2b4f3981515cf510",
+    "anchors": [
+      {
+        "line": 44,
+        "text": "float RollController::control_roll(float roll_setpoint, float euler_yaw_rate_setpoint, float roll, float pitch)"
+      },
+      {
+        "line": 61,
+        "text": "_body_rate_setpoint = math::constrain(roll_body_rate_setpoint_raw, -_max_rate, _max_rate);"
+      }
+    ]
+  },
+  {
+    "sha": "3f42d7052c958c7f65e2f26a763d909bb84fa7f6",
+    "path": "src/lib/rate_control/rate_control.cpp",
+    "content_sha256": "a2c1ceb5efdb16e89003df9709b4f2ec21cc8490ba3114098764325903e9a39b",
+    "anchors": [
+      {
+        "line": 75,
+        "text": "Vector3f rate_error = rate_sp - rate;"
+      },
+      {
+        "line": 76,
+        "text": "_roll_rate_error = PX4_ISFINITE(rate_error(0)) ? rate_error(0) : 0.f;"
+      },
+      {
+        "line": 82,
+        "text": "const Vector3f torque = _gain_p.emult(rate_error) + _rate_int - _gain_d.emult(angular_accel) + _gain_ff.emult(rate_sp);"
+      },
+      {
+        "line": 160,
+        "text": "_roll_rate_error = 0.f;"
+      }
+    ]
+  },
+  {
+    "sha": "3f42d7052c958c7f65e2f26a763d909bb84fa7f6",
+    "path": "src/lib/rate_control/gain_compression.cpp",
+    "content_sha256": "e7c7b4325f8d6fa5824a19f4e96dd311cffe6e8b9d463a9ef8aaf2b8da1994b0",
+    "anchors": [
+      {
+        "line": 42,
+        "text": "_gain_compression_pub.advertise();"
+      },
+      {
+        "line": 91,
+        "text": "_gain_compression_pub.publish(msg);"
+      }
+    ]
+  },
+  {
+    "sha": "3f42d7052c958c7f65e2f26a763d909bb84fa7f6",
+    "path": "src/modules/control_allocator/VehicleActuatorEffectiveness/ActuatorEffectivenessControlSurfaces.cpp",
+    "content_sha256": "044e4aaa558c811134c5fde6f3c3df62959231273cc0056df29c50fe294df78d",
+    "anchors": []
+  },
+  {
+    "sha": "3f42d7052c958c7f65e2f26a763d909bb84fa7f6",
+    "path": "src/lib/control_allocation/control_allocation/ControlAllocationPseudoInverse.cpp",
+    "content_sha256": "3200e76a8a150c0dd514c8e4008d7392729bca53bf42e71151a74d364c803499",
+    "anchors": [
+      {
+        "line": 73,
+        "text": "normalizeControlAllocationMatrix();"
+      },
+      {
+        "line": 151,
+        "text": "ControlAllocationPseudoInverse::normalizeControlAllocationMatrix()"
+      },
+      {
+        "line": 185,
+        "text": "_prev_actuator_sp = _actuator_sp;"
+      },
+      {
+        "line": 188,
+        "text": "_actuator_sp = _actuator_trim + _mix * (_control_sp - _control_trim);"
+      }
+    ]
+  },
+  {
+    "sha": "3f42d7052c958c7f65e2f26a763d909bb84fa7f6",
+    "path": "src/modules/control_allocator/ControlAllocator.cpp",
+    "content_sha256": "de9f231d5b94f648ea07f44618493e2429ee3084bdfa2902bccbfa313e83690f",
+    "anchors": []
+  },
+  {
+    "sha": "49d49b63c62c9eb0a8df018337f50995aec75455",
+    "path": "src/modules/fw_rate_control/FixedwingRateControl.cpp",
+    "content_sha256": "e1036a0549281a5f11b9a3767a9a921003c2a6dc28511d8e8d7dbcd8afd23c1d",
+    "anchors": [
+      {
+        "line": 170,
+        "text": "_airspeed_filter_for_torque_scaling.reset(airspeed);"
+      },
+      {
+        "line": 173,
+        "text": "airspeed = _airspeed_filter_for_torque_scaling.update(airspeed, dt);"
+      },
+      {
+        "line": 236,
+        "text": "static constexpr float DT_MIN = 0.002f;"
+      },
+      {
+        "line": 237,
+        "text": "static constexpr float DT_MAX = 0.04f;"
+      },
+      {
+        "line": 258,
+        "text": "dt = math::constrain((vehicle_angular_velocity.timestamp_sample - _last_run) * 1e-6f, DT_MIN, DT_MAX);"
+      },
+      {
+        "line": 262,
+        "text": "if (dt < DT_MIN || dt > DT_MAX) {"
+      },
+      {
+        "line": 264,
+        "text": "dt = math::constrain((time_now_us - _last_run) * 1e-6f, DT_MIN, DT_MAX);"
+      },
+      {
+        "line": 316,
+        "text": "_gain_compression.reset();"
+      },
+      {
+        "line": 445,
+        "text": "const Vector3f angular_acceleration_setpoint = _rate_control.update(rates, body_rates_setpoint, angular_accel, dt, _landed);"
+      },
+      {
+        "line": 456,
+        "text": "Vector3f control_u = _gain_compression.getGains().emult(angular_acceleration_setpoint * _airspeed_scaling * _airspeed_scaling);"
+      },
+      {
+        "line": 458,
+        "text": "pitch_diag_inner.gain_compression_pitch = _gain_compression.getGains()(1);"
+      },
+      {
+        "line": 462,
+        "text": "_gain_compression.update(control_u, dt);"
+      },
+      {
+        "line": 547,
+        "text": "_gain_compression.reset();"
+      }
+    ]
+  },
+  {
+    "sha": "49d49b63c62c9eb0a8df018337f50995aec75455",
+    "path": "src/modules/fw_att_control/FixedwingAttitudeControl.cpp",
+    "content_sha256": "63b44363671dc88a60f233ef954e0717601a484fd3675543f4fa3597ee1240e0",
+    "anchors": [
+      {
+        "line": 202,
+        "text": "static constexpr float DT_MIN = 0.002f;"
+      },
+      {
+        "line": 203,
+        "text": "static constexpr float DT_MAX = 0.04f;"
+      },
+      {
+        "line": 211,
+        "text": "dt = math::constrain((att.timestamp_sample - _last_run) * 1e-6f, DT_MIN, DT_MAX);"
+      },
+      {
+        "line": 218,
+        "text": "if (dt < DT_MIN || dt > DT_MAX) {"
+      },
+      {
+        "line": 220,
+        "text": "dt = math::constrain((time_now_us - _last_run) * 1e-6f, DT_MIN, DT_MAX);"
+      },
+      {
+        "line": 335,
+        "text": "_roll_ctrl.control_roll(roll_sp, _yaw_ctrl.get_euler_rate_setpoint(), euler_angles.phi(),"
+      }
+    ]
+  },
+  {
+    "sha": "49d49b63c62c9eb0a8df018337f50995aec75455",
+    "path": "src/modules/fw_att_control/fw_roll_controller.cpp",
+    "content_sha256": "51fab211b67ec194cb72e4adb085f89d9312e962cf89b4db2b4f3981515cf510",
+    "anchors": [
+      {
+        "line": 44,
+        "text": "float RollController::control_roll(float roll_setpoint, float euler_yaw_rate_setpoint, float roll, float pitch)"
+      },
+      {
+        "line": 61,
+        "text": "_body_rate_setpoint = math::constrain(roll_body_rate_setpoint_raw, -_max_rate, _max_rate);"
+      }
+    ]
+  },
+  {
+    "sha": "49d49b63c62c9eb0a8df018337f50995aec75455",
+    "path": "src/lib/rate_control/rate_control.cpp",
+    "content_sha256": "446012432c15e5ca49038e73796ba847eb611abbe02f003bd8b198275f8dc960",
+    "anchors": [
+      {
+        "line": 75,
+        "text": "Vector3f rate_error = rate_sp - rate;"
+      },
+      {
+        "line": 78,
+        "text": "const Vector3f torque = _gain_p.emult(rate_error) + _rate_int - _gain_d.emult(angular_accel) + _gain_ff.emult(rate_sp);"
+      }
+    ]
+  },
+  {
+    "sha": "49d49b63c62c9eb0a8df018337f50995aec75455",
+    "path": "src/lib/rate_control/gain_compression.cpp",
+    "content_sha256": "e7c7b4325f8d6fa5824a19f4e96dd311cffe6e8b9d463a9ef8aaf2b8da1994b0",
+    "anchors": [
+      {
+        "line": 42,
+        "text": "_gain_compression_pub.advertise();"
+      },
+      {
+        "line": 91,
+        "text": "_gain_compression_pub.publish(msg);"
+      }
+    ]
+  },
+  {
+    "sha": "49d49b63c62c9eb0a8df018337f50995aec75455",
+    "path": "src/modules/control_allocator/VehicleActuatorEffectiveness/ActuatorEffectivenessControlSurfaces.cpp",
+    "content_sha256": "044e4aaa558c811134c5fde6f3c3df62959231273cc0056df29c50fe294df78d",
+    "anchors": []
+  },
+  {
+    "sha": "49d49b63c62c9eb0a8df018337f50995aec75455",
+    "path": "src/lib/control_allocation/control_allocation/ControlAllocationPseudoInverse.cpp",
+    "content_sha256": "3200e76a8a150c0dd514c8e4008d7392729bca53bf42e71151a74d364c803499",
+    "anchors": [
+      {
+        "line": 73,
+        "text": "normalizeControlAllocationMatrix();"
+      },
+      {
+        "line": 151,
+        "text": "ControlAllocationPseudoInverse::normalizeControlAllocationMatrix()"
+      },
+      {
+        "line": 185,
+        "text": "_prev_actuator_sp = _actuator_sp;"
+      },
+      {
+        "line": 188,
+        "text": "_actuator_sp = _actuator_trim + _mix * (_control_sp - _control_trim);"
+      }
+    ]
+  },
+  {
+    "sha": "49d49b63c62c9eb0a8df018337f50995aec75455",
+    "path": "src/modules/control_allocator/ControlAllocator.cpp",
+    "content_sha256": "de9f231d5b94f648ea07f44618493e2429ee3084bdfa2902bccbfa313e83690f",
+    "anchors": []
+  },
+  {
+    "sha": "4cd4d0ac56bc193bcab2abd3ba9eb4f6e1c9a7da",
+    "path": "src/modules/fw_rate_control/FixedwingRateControl.cpp",
+    "content_sha256": "14639808ab4c55f05314d9956738f4f4660e32d038ede280f6acb2491e54909c",
+    "anchors": [
+      {
+        "line": 114,
+        "text": "_bumpless_roll_i_transfer.synchronizeReset(_rate_control.rollIntegralResetEpoch());"
+      },
+      {
+        "line": 121,
+        "text": "_bumpless_roll_i_transfer.synchronizeReset(_rate_control.rollIntegralResetEpoch());"
+      },
+      {
+        "line": 197,
+        "text": "_airspeed_filter_for_torque_scaling.reset(airspeed);"
+      },
+      {
+        "line": 200,
+        "text": "airspeed = _airspeed_filter_for_torque_scaling.update(airspeed, dt);"
+      },
+      {
+        "line": 264,
+        "text": "static constexpr float DT_MIN = 0.002f;"
+      },
+      {
+        "line": 265,
+        "text": "static constexpr float DT_MAX = 0.04f;"
+      },
+      {
+        "line": 270,
+        "text": "dt = math::constrain((vehicle_angular_velocity.timestamp_sample - _last_run) * 1e-6f, DT_MIN, DT_MAX);"
+      },
+      {
+        "line": 274,
+        "text": "if (dt < DT_MIN || dt > DT_MAX) {"
+      },
+      {
+        "line": 276,
+        "text": "dt = math::constrain((time_now_us - _last_run) * 1e-6f, DT_MIN, DT_MAX);"
+      },
+      {
+        "line": 330,
+        "text": "_gain_compression.reset();"
+      },
+      {
+        "line": 372,
+        "text": "_b2b_g_current = _gain_compression.getGains()(0) * airspeed_scale_squared;"
+      },
+      {
+        "line": 389,
+        "text": "transfer_inputs.cap_raw = _param_flap_b2b_cap.get();"
+      },
+      {
+        "line": 390,
+        "text": "transfer_inputs.slew_raw_per_s = _param_flap_b2b_slew.get();"
+      },
+      {
+        "line": 391,
+        "text": "transfer_inputs.safety_slew_raw_per_s = _param_flap_b2b_safe.get();"
+      },
+      {
+        "line": 393,
+        "text": "_bumpless_roll_i_result = _bumpless_roll_i_transfer.update(transfer_inputs, _rate_control);"
+      },
+      {
+        "line": 395,
+        "text": "if (_bumpless_roll_i_result.reset_required) {"
+      },
+      {
+        "line": 399,
+        "text": "const float transferred_roll_i_raw = _bumpless_roll_i_transfer.transferredRaw();"
+      },
+      {
+        "line": 443,
+        "text": "Vector3f angular_acceleration_setpoint = _rate_control.update(rates, body_rates_setpoint, angular_accel, dt,"
+      },
+      {
+        "line": 449,
+        "text": "const Vector3f gains_before_update = _gain_compression.getGains();"
+      },
+      {
+        "line": 462,
+        "text": "control_u = _gain_compression.getGains().emult("
+      },
+      {
+        "line": 469,
+        "text": "_gain_compression.update(control_u, dt);"
+      },
+      {
+        "line": 506,
+        "text": "_gain_compression.reset();"
+      },
+      {
+        "line": 508,
+        "text": "_bumpless_roll_i_result = {};"
+      },
+      {
+        "line": 529,
+        "text": "const float transferred_roll_i_raw = _bumpless_roll_i_transfer.transferredRaw();"
+      },
+      {
+        "line": 532,
+        "text": "rate_ctrl_status.flap_slow_gate_valid = _bumpless_roll_i_result.state == BumplessRollITransfer::State::Eligible"
+      },
+      {
+        "line": 533,
+        "text": "|| _bumpless_roll_i_result.state == BumplessRollITransfer::State::TransferIn"
+      },
+      {
+        "line": 534,
+        "text": "|| _bumpless_roll_i_result.state == BumplessRollITransfer::State::TransferHold;"
+      },
+      {
+        "line": 544,
+        "text": "rate_ctrl_status.flap_slow_exit_reason = static_cast<uint8_t>(_bumpless_roll_i_result.reason);"
+      },
+      {
+        "line": 545,
+        "text": "rate_ctrl_status.flap_b2b_state = static_cast<uint8_t>(_bumpless_roll_i_result.state);"
+      },
+      {
+        "line": 546,
+        "text": "rate_ctrl_status.flap_b2b_reason = static_cast<uint8_t>(_bumpless_roll_i_result.reason);"
+      },
+      {
+        "line": 547,
+        "text": "rate_ctrl_status.flap_b2b_normal_exit = _bumpless_roll_i_result.normal_exit;"
+      },
+      {
+        "line": 548,
+        "text": "rate_ctrl_status.flap_b2b_safety_exit = _bumpless_roll_i_result.safety_exit;"
+      },
+      {
+        "line": 549,
+        "text": "rate_ctrl_status.flap_b2b_recovery = _bumpless_roll_i_result.recovery;"
+      },
+      {
+        "line": 550,
+        "text": "rate_ctrl_status.flap_b2b_reset_mismatch = _bumpless_roll_i_result.reset_mismatch;"
+      },
+      {
+        "line": 551,
+        "text": "rate_ctrl_status.flap_b2b_reset_this_cycle = _roll_i_reset_this_cycle;"
+      },
+      {
+        "line": 552,
+        "text": "rate_ctrl_status.flap_b2b_transfer_limited = _bumpless_roll_i_result.transfer_limited;"
+      },
+      {
+        "line": 553,
+        "text": "rate_ctrl_status.flap_b2b_i_before_raw = _bumpless_roll_i_result.residual_i_before_raw;"
+      },
+      {
+        "line": 554,
+        "text": "rate_ctrl_status.flap_b2b_requested_delta_i_raw = _bumpless_roll_i_result.requested_delta_i_raw;"
+      },
+      {
+        "line": 555,
+        "text": "rate_ctrl_status.flap_b2b_accepted_delta_i_raw = _bumpless_roll_i_result.accepted_delta_i_raw;"
+      },
+      {
+        "line": 556,
+        "text": "rate_ctrl_status.flap_b2b_i_after_transfer_raw = _bumpless_roll_i_result.residual_i_raw;"
+      },
+      {
+        "line": 557,
+        "text": "rate_ctrl_status.flap_b2b_transferred_before_raw = _bumpless_roll_i_result.transferred_i_before_raw;"
+      },
+      {
+        "line": 558,
+        "text": "rate_ctrl_status.flap_b2b_requested_delta_s_raw = _bumpless_roll_i_result.requested_delta_s_raw;"
+      },
+      {
+        "line": 559,
+        "text": "rate_ctrl_status.flap_b2b_accepted_delta_s_raw = _bumpless_roll_i_result.accepted_delta_s_raw;"
+      },
+      {
+        "line": 560,
+        "text": "rate_ctrl_status.flap_b2b_transferred_raw = transferred_roll_i_raw;"
+      },
+      {
+        "line": 561,
+        "text": "rate_ctrl_status.flap_b2b_total_equivalent_raw = rate_ctrl_status.rollspeed_integ + transferred_roll_i_raw;"
+      },
+      {
+        "line": 562,
+        "text": "rate_ctrl_status.flap_b2b_natural_delta_pre_imax_raw = rate_ctrl_status.rollspeed_integ_delta_pre_imax;"
+      },
+      {
+        "line": 563,
+        "text": "rate_ctrl_status.flap_b2b_natural_delta_accepted_raw = rate_ctrl_status.rollspeed_integ_delta_accepted;"
+      },
+      {
+        "line": 564,
+        "text": "rate_ctrl_status.flap_b2b_unmatched_delta_raw = _bumpless_roll_i_result.unmatched_delta_raw;"
+      },
+      {
+        "line": 565,
+        "text": "rate_ctrl_status.flap_b2b_g_current = _b2b_g_current;"
+      },
+      {
+        "line": 566,
+        "text": "rate_ctrl_status.flap_b2b_effective_slow_torque = effective_slow_torque;"
+      },
+      {
+        "line": 567,
+        "text": "rate_ctrl_status.flap_b2b_effective_slow_tail = effective_slow_torque / 1.1f;"
+      },
+      {
+        "line": 568,
+        "text": "rate_ctrl_status.flap_b2b_reset_epoch = _rate_control.rollIntegralResetEpoch();"
+      }
+    ]
+  },
+  {
+    "sha": "4cd4d0ac56bc193bcab2abd3ba9eb4f6e1c9a7da",
+    "path": "src/modules/fw_att_control/FixedwingAttitudeControl.cpp",
+    "content_sha256": "40f9f25c116e6e59c8620b1e0b09642f8f77085f465077d3a19dd5408412d8f8",
+    "anchors": [
+      {
+        "line": 199,
+        "text": "static constexpr float DT_MIN = 0.002f;"
+      },
+      {
+        "line": 200,
+        "text": "static constexpr float DT_MAX = 0.04f;"
+      },
+      {
+        "line": 205,
+        "text": "dt = math::constrain((att.timestamp_sample - _last_run) * 1e-6f, DT_MIN, DT_MAX);"
+      },
+      {
+        "line": 212,
+        "text": "if (dt < DT_MIN || dt > DT_MAX) {"
+      },
+      {
+        "line": 214,
+        "text": "dt = math::constrain((time_now_us - _last_run) * 1e-6f, DT_MIN, DT_MAX);"
+      },
+      {
+        "line": 304,
+        "text": "_roll_ctrl.control_roll(roll_sp, _yaw_ctrl.get_euler_rate_setpoint(), euler_angles.phi(),"
+      }
+    ]
+  },
+  {
+    "sha": "4cd4d0ac56bc193bcab2abd3ba9eb4f6e1c9a7da",
+    "path": "src/modules/fw_att_control/fw_roll_controller.cpp",
+    "content_sha256": "51fab211b67ec194cb72e4adb085f89d9312e962cf89b4db2b4f3981515cf510",
+    "anchors": [
+      {
+        "line": 44,
+        "text": "float RollController::control_roll(float roll_setpoint, float euler_yaw_rate_setpoint, float roll, float pitch)"
+      },
+      {
+        "line": 61,
+        "text": "_body_rate_setpoint = math::constrain(roll_body_rate_setpoint_raw, -_max_rate, _max_rate);"
+      }
+    ]
+  },
+  {
+    "sha": "4cd4d0ac56bc193bcab2abd3ba9eb4f6e1c9a7da",
+    "path": "src/lib/rate_control/rate_control.cpp",
+    "content_sha256": "1f44f638c9ded3f4676826f01b62ffb97094c15e15a87ece9fd7de4005d6de31",
+    "anchors": [
+      {
+        "line": 139,
+        "text": "Vector3f rate_error = rate_sp - rate;"
+      },
+      {
+        "line": 140,
+        "text": "_roll_rate_error = PX4_ISFINITE(rate_error(0)) ? rate_error(0) : 0.f;"
+      },
+      {
+        "line": 147,
+        "text": "const Vector3f torque = _gain_p.emult(rate_error) + _rate_int - _gain_d.emult(angular_accel) + _gain_ff.emult(rate_sp);"
+      },
+      {
+        "line": 238,
+        "text": "_roll_rate_error = 0.f;"
+      }
+    ]
+  },
+  {
+    "sha": "4cd4d0ac56bc193bcab2abd3ba9eb4f6e1c9a7da",
+    "path": "src/lib/rate_control/gain_compression.cpp",
+    "content_sha256": "e7c7b4325f8d6fa5824a19f4e96dd311cffe6e8b9d463a9ef8aaf2b8da1994b0",
+    "anchors": [
+      {
+        "line": 42,
+        "text": "_gain_compression_pub.advertise();"
+      },
+      {
+        "line": 91,
+        "text": "_gain_compression_pub.publish(msg);"
+      }
+    ]
+  },
+  {
+    "sha": "4cd4d0ac56bc193bcab2abd3ba9eb4f6e1c9a7da",
+    "path": "src/modules/control_allocator/VehicleActuatorEffectiveness/ActuatorEffectivenessControlSurfaces.cpp",
+    "content_sha256": "044e4aaa558c811134c5fde6f3c3df62959231273cc0056df29c50fe294df78d",
+    "anchors": []
+  },
+  {
+    "sha": "4cd4d0ac56bc193bcab2abd3ba9eb4f6e1c9a7da",
+    "path": "src/lib/control_allocation/control_allocation/ControlAllocationPseudoInverse.cpp",
+    "content_sha256": "3200e76a8a150c0dd514c8e4008d7392729bca53bf42e71151a74d364c803499",
+    "anchors": [
+      {
+        "line": 73,
+        "text": "normalizeControlAllocationMatrix();"
+      },
+      {
+        "line": 151,
+        "text": "ControlAllocationPseudoInverse::normalizeControlAllocationMatrix()"
+      },
+      {
+        "line": 185,
+        "text": "_prev_actuator_sp = _actuator_sp;"
+      },
+      {
+        "line": 188,
+        "text": "_actuator_sp = _actuator_trim + _mix * (_control_sp - _control_trim);"
+      }
+    ]
+  },
+  {
+    "sha": "4cd4d0ac56bc193bcab2abd3ba9eb4f6e1c9a7da",
+    "path": "src/modules/control_allocator/ControlAllocator.cpp",
+    "content_sha256": "de9f231d5b94f648ea07f44618493e2429ee3084bdfa2902bccbfa313e83690f",
+    "anchors": []
+  },
+  {
+    "sha": "74be66f2be14340838aed6732a379d124124b5f2",
+    "path": "src/modules/fw_rate_control/FixedwingRateControl.cpp",
+    "content_sha256": "cacb8e807400f59715a77b4a8eecea29f240010f26c2e57f76f6efe037889aea",
+    "anchors": [
+      {
+        "line": 183,
+        "text": "_airspeed_filter_for_torque_scaling.reset(airspeed);"
+      },
+      {
+        "line": 186,
+        "text": "airspeed = _airspeed_filter_for_torque_scaling.update(airspeed, dt);"
+      },
+      {
+        "line": 249,
+        "text": "static constexpr float DT_MIN = 0.002f;"
+      },
+      {
+        "line": 250,
+        "text": "static constexpr float DT_MAX = 0.04f;"
+      },
+      {
+        "line": 255,
+        "text": "dt = math::constrain((vehicle_angular_velocity.timestamp_sample - _last_run) * 1e-6f, DT_MIN, DT_MAX);"
+      },
+      {
+        "line": 259,
+        "text": "if (dt < DT_MIN || dt > DT_MAX) {"
+      },
+      {
+        "line": 261,
+        "text": "dt = math::constrain((time_now_us - _last_run) * 1e-6f, DT_MIN, DT_MAX);"
+      },
+      {
+        "line": 310,
+        "text": "_gain_compression.reset();"
+      },
+      {
+        "line": 391,
+        "text": "const Vector3f angular_acceleration_setpoint = _rate_control.update(rates, body_rates_setpoint, angular_accel, dt,"
+      },
+      {
+        "line": 397,
+        "text": "Vector3f control_u = _gain_compression.getGains().emult(angular_acceleration_setpoint * _airspeed_scaling * _airspeed_scaling);"
+      },
+      {
+        "line": 399,
+        "text": "_gain_compression.update(control_u, dt);"
+      },
+      {
+        "line": 436,
+        "text": "_gain_compression.reset();"
+      }
+    ]
+  },
+  {
+    "sha": "74be66f2be14340838aed6732a379d124124b5f2",
+    "path": "src/modules/fw_att_control/FixedwingAttitudeControl.cpp",
+    "content_sha256": "40f9f25c116e6e59c8620b1e0b09642f8f77085f465077d3a19dd5408412d8f8",
+    "anchors": [
+      {
+        "line": 199,
+        "text": "static constexpr float DT_MIN = 0.002f;"
+      },
+      {
+        "line": 200,
+        "text": "static constexpr float DT_MAX = 0.04f;"
+      },
+      {
+        "line": 205,
+        "text": "dt = math::constrain((att.timestamp_sample - _last_run) * 1e-6f, DT_MIN, DT_MAX);"
+      },
+      {
+        "line": 212,
+        "text": "if (dt < DT_MIN || dt > DT_MAX) {"
+      },
+      {
+        "line": 214,
+        "text": "dt = math::constrain((time_now_us - _last_run) * 1e-6f, DT_MIN, DT_MAX);"
+      },
+      {
+        "line": 304,
+        "text": "_roll_ctrl.control_roll(roll_sp, _yaw_ctrl.get_euler_rate_setpoint(), euler_angles.phi(),"
+      }
+    ]
+  },
+  {
+    "sha": "74be66f2be14340838aed6732a379d124124b5f2",
+    "path": "src/modules/fw_att_control/fw_roll_controller.cpp",
+    "content_sha256": "51fab211b67ec194cb72e4adb085f89d9312e962cf89b4db2b4f3981515cf510",
+    "anchors": [
+      {
+        "line": 44,
+        "text": "float RollController::control_roll(float roll_setpoint, float euler_yaw_rate_setpoint, float roll, float pitch)"
+      },
+      {
+        "line": 61,
+        "text": "_body_rate_setpoint = math::constrain(roll_body_rate_setpoint_raw, -_max_rate, _max_rate);"
+      }
+    ]
+  },
+  {
+    "sha": "74be66f2be14340838aed6732a379d124124b5f2",
+    "path": "src/lib/rate_control/rate_control.cpp",
+    "content_sha256": "a2c1ceb5efdb16e89003df9709b4f2ec21cc8490ba3114098764325903e9a39b",
+    "anchors": [
+      {
+        "line": 75,
+        "text": "Vector3f rate_error = rate_sp - rate;"
+      },
+      {
+        "line": 76,
+        "text": "_roll_rate_error = PX4_ISFINITE(rate_error(0)) ? rate_error(0) : 0.f;"
+      },
+      {
+        "line": 82,
+        "text": "const Vector3f torque = _gain_p.emult(rate_error) + _rate_int - _gain_d.emult(angular_accel) + _gain_ff.emult(rate_sp);"
+      },
+      {
+        "line": 160,
+        "text": "_roll_rate_error = 0.f;"
+      }
+    ]
+  },
+  {
+    "sha": "74be66f2be14340838aed6732a379d124124b5f2",
+    "path": "src/lib/rate_control/gain_compression.cpp",
+    "content_sha256": "e7c7b4325f8d6fa5824a19f4e96dd311cffe6e8b9d463a9ef8aaf2b8da1994b0",
+    "anchors": [
+      {
+        "line": 42,
+        "text": "_gain_compression_pub.advertise();"
+      },
+      {
+        "line": 91,
+        "text": "_gain_compression_pub.publish(msg);"
+      }
+    ]
+  },
+  {
+    "sha": "74be66f2be14340838aed6732a379d124124b5f2",
+    "path": "src/modules/control_allocator/VehicleActuatorEffectiveness/ActuatorEffectivenessControlSurfaces.cpp",
+    "content_sha256": "044e4aaa558c811134c5fde6f3c3df62959231273cc0056df29c50fe294df78d",
+    "anchors": []
+  },
+  {
+    "sha": "74be66f2be14340838aed6732a379d124124b5f2",
+    "path": "src/lib/control_allocation/control_allocation/ControlAllocationPseudoInverse.cpp",
+    "content_sha256": "3200e76a8a150c0dd514c8e4008d7392729bca53bf42e71151a74d364c803499",
+    "anchors": [
+      {
+        "line": 73,
+        "text": "normalizeControlAllocationMatrix();"
+      },
+      {
+        "line": 151,
+        "text": "ControlAllocationPseudoInverse::normalizeControlAllocationMatrix()"
+      },
+      {
+        "line": 185,
+        "text": "_prev_actuator_sp = _actuator_sp;"
+      },
+      {
+        "line": 188,
+        "text": "_actuator_sp = _actuator_trim + _mix * (_control_sp - _control_trim);"
+      }
+    ]
+  },
+  {
+    "sha": "74be66f2be14340838aed6732a379d124124b5f2",
+    "path": "src/modules/control_allocator/ControlAllocator.cpp",
+    "content_sha256": "de9f231d5b94f648ea07f44618493e2429ee3084bdfa2902bccbfa313e83690f",
+    "anchors": []
+  },
+  {
+    "sha": "926693950a4b2fe448d4b18d859c54bf9aa8a260",
+    "path": "src/modules/fw_rate_control/FixedwingRateControl.cpp",
+    "content_sha256": "06156c7e6bec37d2c14d300fc43621df6e461d6618994fbe1669ca69f20d2707",
+    "anchors": [
+      {
+        "line": 138,
+        "text": "_bumpless_roll_i_transfer.synchronizeReset(_rate_control.rollIntegralResetEpoch());"
+      },
+      {
+        "line": 146,
+        "text": "_bumpless_roll_i_transfer.synchronizeReset(_rate_control.rollIntegralResetEpoch());"
+      },
+      {
+        "line": 222,
+        "text": "_airspeed_filter_for_torque_scaling.reset(airspeed);"
+      },
+      {
+        "line": 225,
+        "text": "airspeed = _airspeed_filter_for_torque_scaling.update(airspeed, dt);"
+      },
+      {
+        "line": 297,
+        "text": "static constexpr float DT_MIN = 0.002f;"
+      },
+      {
+        "line": 298,
+        "text": "static constexpr float DT_MAX = 0.04f;"
+      },
+      {
+        "line": 303,
+        "text": "dt = math::constrain((vehicle_angular_velocity.timestamp_sample - _last_run) * 1e-6f, DT_MIN, DT_MAX);"
+      },
+      {
+        "line": 307,
+        "text": "if (dt < DT_MIN || dt > DT_MAX) {"
+      },
+      {
+        "line": 309,
+        "text": "dt = math::constrain((time_now_us - _last_run) * 1e-6f, DT_MIN, DT_MAX);"
+      },
+      {
+        "line": 380,
+        "text": "_gain_compression.reset();"
+      },
+      {
+        "line": 428,
+        "text": "_b2b_g_current = _gain_compression.getGains()(0) * airspeed_scale_squared;"
+      },
+      {
+        "line": 445,
+        "text": "transfer_inputs.cap_raw = _param_flap_b2b_cap.get();"
+      },
+      {
+        "line": 446,
+        "text": "transfer_inputs.slew_raw_per_s = _param_flap_b2b_slew.get();"
+      },
+      {
+        "line": 447,
+        "text": "transfer_inputs.safety_slew_raw_per_s = _param_flap_b2b_safe.get();"
+      },
+      {
+        "line": 449,
+        "text": "transfer_inputs.headroom_release_ratio = _param_flap_b2b_hr.get();"
+      },
+      {
+        "line": 450,
+        "text": "transfer_inputs.adapt_enabled = _param_flap_b2b_adapt.get();"
+      },
+      {
+        "line": 451,
+        "text": "transfer_inputs.hold_cap_raw = _param_flap_b2b_hcap.get();"
+      },
+      {
+        "line": 452,
+        "text": "transfer_inputs.residual_reserve_raw = _param_flap_b2b_rsvd.get();"
+      },
+      {
+        "line": 453,
+        "text": "transfer_inputs.adapt_tau_s = _param_flap_b2b_tau.get();"
+      },
+      {
+        "line": 454,
+        "text": "transfer_inputs.adapt_slew_raw_per_s = _param_flap_b2b_aslw.get();"
+      },
+      {
+        "line": 455,
+        "text": "transfer_inputs.entry_window_s = _param_flap_b2b_ewin.get();"
+      },
+      {
+        "line": 456,
+        "text": "transfer_inputs.gate_window_s = _param_flap_b2b_gwin.get();"
+      },
+      {
+        "line": 457,
+        "text": "transfer_inputs.gate_std_raw = _param_flap_b2b_gstd.get();"
+      },
+      {
+        "line": 458,
+        "text": "transfer_inputs.gate_same_sign_fraction = _param_flap_b2b_gsign.get();"
+      },
+      {
+        "line": 459,
+        "text": "_bumpless_roll_i_result = _bumpless_roll_i_transfer.update(transfer_inputs, _rate_control);"
+      },
+      {
+        "line": 461,
+        "text": "if (_bumpless_roll_i_result.reset_required) {"
+      },
+      {
+        "line": 465,
+        "text": "const float transferred_roll_i_raw = _bumpless_roll_i_transfer.transferredRaw();"
+      },
+      {
+        "line": 467,
+        "text": "_bumpless_roll_i_result.headroom_release_ratio_effective,"
+      },
+      {
+        "line": 523,
+        "text": "Vector3f angular_acceleration_setpoint = _rate_control.update(rates, body_rates_setpoint, angular_accel, dt,"
+      },
+      {
+        "line": 535,
+        "text": "const Vector3f gains_before_update = _gain_compression.getGains();"
+      },
+      {
+        "line": 548,
+        "text": "control_u = _gain_compression.getGains().emult("
+      },
+      {
+        "line": 555,
+        "text": "_gain_compression.update(control_u, dt);"
+      },
+      {
+        "line": 638,
+        "text": "_gain_compression.reset();"
+      },
+      {
+        "line": 640,
+        "text": "_bumpless_roll_i_result = {};"
+      },
+      {
+        "line": 668,
+        "text": "const float transferred_roll_i_raw = _bumpless_roll_i_transfer.transferredRaw();"
+      },
+      {
+        "line": 671,
+        "text": "rate_ctrl_status.flap_slow_gate_valid = _bumpless_roll_i_result.state == BumplessRollITransfer::State::Eligible"
+      },
+      {
+        "line": 672,
+        "text": "|| _bumpless_roll_i_result.state == BumplessRollITransfer::State::TransferIn"
+      },
+      {
+        "line": 673,
+        "text": "|| _bumpless_roll_i_result.state == BumplessRollITransfer::State::TransferHold;"
+      },
+      {
+        "line": 683,
+        "text": "rate_ctrl_status.flap_slow_exit_reason = static_cast<uint8_t>(_bumpless_roll_i_result.reason);"
+      },
+      {
+        "line": 684,
+        "text": "rate_ctrl_status.flap_b2b_state = static_cast<uint8_t>(_bumpless_roll_i_result.state);"
+      },
+      {
+        "line": 685,
+        "text": "rate_ctrl_status.flap_b2b_reason = static_cast<uint8_t>(_bumpless_roll_i_result.reason);"
+      },
+      {
+        "line": 686,
+        "text": "rate_ctrl_status.flap_b2b_normal_exit = _bumpless_roll_i_result.normal_exit;"
+      },
+      {
+        "line": 687,
+        "text": "rate_ctrl_status.flap_b2b_safety_exit = _bumpless_roll_i_result.safety_exit;"
+      },
+      {
+        "line": 688,
+        "text": "rate_ctrl_status.flap_b2b_recovery = _bumpless_roll_i_result.recovery;"
+      },
+      {
+        "line": 689,
+        "text": "rate_ctrl_status.flap_b2b_reset_mismatch = _bumpless_roll_i_result.reset_mismatch;"
+      },
+      {
+        "line": 690,
+        "text": "rate_ctrl_status.flap_b2b_reset_this_cycle = _roll_i_reset_this_cycle;"
+      },
+      {
+        "line": 691,
+        "text": "rate_ctrl_status.flap_b2b_transfer_limited = _bumpless_roll_i_result.transfer_limited;"
+      },
+      {
+        "line": 692,
+        "text": "rate_ctrl_status.flap_b2b_i_before_raw = _bumpless_roll_i_result.residual_i_before_raw;"
+      },
+      {
+        "line": 693,
+        "text": "rate_ctrl_status.flap_b2b_requested_delta_i_raw = _bumpless_roll_i_result.requested_delta_i_raw;"
+      },
+      {
+        "line": 694,
+        "text": "rate_ctrl_status.flap_b2b_accepted_delta_i_raw = _bumpless_roll_i_result.accepted_delta_i_raw;"
+      },
+      {
+        "line": 695,
+        "text": "rate_ctrl_status.flap_b2b_i_after_transfer_raw = _bumpless_roll_i_result.residual_i_raw;"
+      },
+      {
+        "line": 696,
+        "text": "rate_ctrl_status.flap_b2b_transferred_before_raw = _bumpless_roll_i_result.transferred_i_before_raw;"
+      },
+      {
+        "line": 697,
+        "text": "rate_ctrl_status.flap_b2b_requested_delta_s_raw = _bumpless_roll_i_result.requested_delta_s_raw;"
+      },
+      {
+        "line": 698,
+        "text": "rate_ctrl_status.flap_b2b_accepted_delta_s_raw = _bumpless_roll_i_result.accepted_delta_s_raw;"
+      },
+      {
+        "line": 699,
+        "text": "rate_ctrl_status.flap_b2b_transferred_raw = transferred_roll_i_raw;"
+      },
+      {
+        "line": 700,
+        "text": "rate_ctrl_status.flap_b2b_total_equivalent_raw = rate_ctrl_status.rollspeed_integ + transferred_roll_i_raw;"
+      },
+      {
+        "line": 701,
+        "text": "rate_ctrl_status.flap_b2b_natural_delta_pre_imax_raw = rate_ctrl_status.rollspeed_integ_delta_pre_imax;"
+      },
+      {
+        "line": 702,
+        "text": "rate_ctrl_status.flap_b2b_natural_delta_accepted_raw = rate_ctrl_status.rollspeed_integ_delta_accepted;"
+      },
+      {
+        "line": 703,
+        "text": "rate_ctrl_status.flap_b2b_unmatched_delta_raw = _bumpless_roll_i_result.unmatched_delta_raw;"
+      },
+      {
+        "line": 704,
+        "text": "rate_ctrl_status.b2b_hr_param = _param_flap_b2b_hr.get();"
+      },
+      {
+        "line": 705,
+        "text": "rate_ctrl_status.b2b_hr_latched = _bumpless_roll_i_result.headroom_release_ratio_latched;"
+      },
+      {
+        "line": 706,
+        "text": "rate_ctrl_status.b2b_hr_effective = _bumpless_roll_i_result.headroom_release_ratio_effective;"
+      },
+      {
+        "line": 707,
+        "text": "rate_ctrl_status.b2b_total_limit = _bumpless_roll_i_result.total_limit_raw;"
+      },
+      {
+        "line": 708,
+        "text": "rate_ctrl_status.b2b_i_lower = _bumpless_roll_i_result.residual_lower_raw;"
+      },
+      {
+        "line": 709,
+        "text": "rate_ctrl_status.b2b_i_upper = _bumpless_roll_i_result.residual_upper_raw;"
+      },
+      {
+        "line": 710,
+        "text": "rate_ctrl_status.b2b_hr_pos = _bumpless_roll_i_result.headroom_positive_raw;"
+      },
+      {
+        "line": 711,
+        "text": "rate_ctrl_status.b2b_hr_neg = _bumpless_roll_i_result.headroom_negative_raw;"
+      },
+      {
+        "line": 712,
+        "text": "rate_ctrl_status.b2b_exit_decay = _bumpless_roll_i_result.exit_authority_decay_raw;"
+      },
+      {
+        "line": 713,
+        "text": "rate_ctrl_status.flap_b2b_g_current = _b2b_g_current;"
+      },
+      {
+        "line": 714,
+        "text": "rate_ctrl_status.flap_b2b_effective_slow_torque = effective_slow_torque;"
+      },
+      {
+        "line": 715,
+        "text": "rate_ctrl_status.flap_b2b_effective_slow_tail = effective_slow_torque / 1.1f;"
+      },
+      {
+        "line": 716,
+        "text": "rate_ctrl_status.flap_b2b_reset_epoch = _rate_control.rollIntegralResetEpoch();"
+      },
+      {
+        "line": 717,
+        "text": "flap_b2b_adaptive_s adaptive_status{};"
+      },
+      {
+        "line": 719,
+        "text": "adaptive_status.enabled = _bumpless_roll_i_result.adapt_enabled;"
+      },
+      {
+        "line": 720,
+        "text": "adaptive_status.entry_est_valid = _bumpless_roll_i_result.entry_est_valid;"
+      },
+      {
+        "line": 721,
+        "text": "adaptive_status.gate = _bumpless_roll_i_result.adapt_gate;"
+      },
+      {
+        "line": 722,
+        "text": "adaptive_status.limited = _bumpless_roll_i_result.adapt_limited;"
+      },
+      {
+        "line": 723,
+        "text": "adaptive_status.releasing = _bumpless_roll_i_result.adapt_releasing;"
+      },
+      {
+        "line": 724,
+        "text": "adaptive_status.reversal = _bumpless_roll_i_result.adapt_reversal;"
+      },
+      {
+        "line": 725,
+        "text": "adaptive_status.entry_est_raw = _bumpless_roll_i_result.entry_est_raw;"
+      },
+      {
+        "line": 726,
+        "text": "adaptive_status.t_hat_raw = _bumpless_roll_i_result.adapt_t_hat_raw;"
+      },
+      {
+        "line": 727,
+        "text": "adaptive_status.target_raw = _bumpless_roll_i_result.adapt_target_raw;"
+      },
+      {
+        "line": 728,
+        "text": "adaptive_status.std_raw = _bumpless_roll_i_result.adapt_std_raw;"
+      },
+      {
+        "line": 729,
+        "text": "adaptive_status.sign_fraction = _bumpless_roll_i_result.adapt_sign_fraction;"
+      },
+      {
+        "line": 730,
+        "text": "adaptive_status.hold_cap_raw = _bumpless_roll_i_result.adapt_hold_cap_raw;"
+      },
+      {
+        "line": 731,
+        "text": "adaptive_status.reserve_raw = _bumpless_roll_i_result.adapt_reserve_raw;"
+      },
+      {
+        "line": 733,
+        "text": "adaptive_status.residual_i_raw = _bumpless_roll_i_result.residual_i_raw;"
+      },
+      {
+        "line": 734,
+        "text": "adaptive_status.total_equivalent_i_raw = _bumpless_roll_i_result.total_equivalent_i_raw;"
+      },
+      {
+        "line": 735,
+        "text": "_flap_b2b_adaptive_pub.publish(adaptive_status);"
+      },
+      {
+        "line": 749,
+        "text": "fast_shadow.flap_b2b_transferred_raw = transferred_roll_i_raw;"
+      },
+      {
+        "line": 750,
+        "text": "fast_shadow.flap_b2b_total_equivalent_raw = rate_ctrl_status.flap_b2b_total_equivalent_raw;"
+      },
+      {
+        "line": 751,
+        "text": "const bool fast_new_frame = _fast_v1_shadow.update(rate_ctrl_status.timestamp, rate_ctrl_status.flap_b2b_total_equivalent_raw,"
+      },
+      {
+        "line": 755,
+        "text": "rate_ctrl_status.flap_b2b_total_equivalent_raw, rate_ctrl_status.timestamp, fast_new_frame);"
+      }
+    ]
+  },
+  {
+    "sha": "926693950a4b2fe448d4b18d859c54bf9aa8a260",
+    "path": "src/modules/fw_att_control/FixedwingAttitudeControl.cpp",
+    "content_sha256": "40f9f25c116e6e59c8620b1e0b09642f8f77085f465077d3a19dd5408412d8f8",
+    "anchors": [
+      {
+        "line": 199,
+        "text": "static constexpr float DT_MIN = 0.002f;"
+      },
+      {
+        "line": 200,
+        "text": "static constexpr float DT_MAX = 0.04f;"
+      },
+      {
+        "line": 205,
+        "text": "dt = math::constrain((att.timestamp_sample - _last_run) * 1e-6f, DT_MIN, DT_MAX);"
+      },
+      {
+        "line": 212,
+        "text": "if (dt < DT_MIN || dt > DT_MAX) {"
+      },
+      {
+        "line": 214,
+        "text": "dt = math::constrain((time_now_us - _last_run) * 1e-6f, DT_MIN, DT_MAX);"
+      },
+      {
+        "line": 304,
+        "text": "_roll_ctrl.control_roll(roll_sp, _yaw_ctrl.get_euler_rate_setpoint(), euler_angles.phi(),"
+      }
+    ]
+  },
+  {
+    "sha": "926693950a4b2fe448d4b18d859c54bf9aa8a260",
+    "path": "src/modules/fw_att_control/fw_roll_controller.cpp",
+    "content_sha256": "51fab211b67ec194cb72e4adb085f89d9312e962cf89b4db2b4f3981515cf510",
+    "anchors": [
+      {
+        "line": 44,
+        "text": "float RollController::control_roll(float roll_setpoint, float euler_yaw_rate_setpoint, float roll, float pitch)"
+      },
+      {
+        "line": 61,
+        "text": "_body_rate_setpoint = math::constrain(roll_body_rate_setpoint_raw, -_max_rate, _max_rate);"
+      }
+    ]
+  },
+  {
+    "sha": "926693950a4b2fe448d4b18d859c54bf9aa8a260",
+    "path": "src/lib/rate_control/rate_control.cpp",
+    "content_sha256": "1dae7e64e7501f30b370f351b9cab44cd024c36b656e6906eabf8ce9ecd09ab5",
+    "anchors": [
+      {
+        "line": 175,
+        "text": "Vector3f rate_error = rate_sp - rate;"
+      },
+      {
+        "line": 176,
+        "text": "_roll_rate_error = PX4_ISFINITE(rate_error(0)) ? rate_error(0) : 0.f;"
+      },
+      {
+        "line": 183,
+        "text": "const Vector3f torque = _gain_p.emult(rate_error) + _rate_int - _gain_d.emult(angular_accel) + _gain_ff.emult(rate_sp);"
+      },
+      {
+        "line": 294,
+        "text": "_roll_rate_error = 0.f;"
+      }
+    ]
+  },
+  {
+    "sha": "926693950a4b2fe448d4b18d859c54bf9aa8a260",
+    "path": "src/lib/rate_control/gain_compression.cpp",
+    "content_sha256": "e7c7b4325f8d6fa5824a19f4e96dd311cffe6e8b9d463a9ef8aaf2b8da1994b0",
+    "anchors": [
+      {
+        "line": 42,
+        "text": "_gain_compression_pub.advertise();"
+      },
+      {
+        "line": 91,
+        "text": "_gain_compression_pub.publish(msg);"
+      }
+    ]
+  },
+  {
+    "sha": "926693950a4b2fe448d4b18d859c54bf9aa8a260",
+    "path": "src/modules/control_allocator/VehicleActuatorEffectiveness/ActuatorEffectivenessControlSurfaces.cpp",
+    "content_sha256": "044e4aaa558c811134c5fde6f3c3df62959231273cc0056df29c50fe294df78d",
+    "anchors": []
+  },
+  {
+    "sha": "926693950a4b2fe448d4b18d859c54bf9aa8a260",
+    "path": "src/lib/control_allocation/control_allocation/ControlAllocationPseudoInverse.cpp",
+    "content_sha256": "3200e76a8a150c0dd514c8e4008d7392729bca53bf42e71151a74d364c803499",
+    "anchors": [
+      {
+        "line": 73,
+        "text": "normalizeControlAllocationMatrix();"
+      },
+      {
+        "line": 151,
+        "text": "ControlAllocationPseudoInverse::normalizeControlAllocationMatrix()"
+      },
+      {
+        "line": 185,
+        "text": "_prev_actuator_sp = _actuator_sp;"
+      },
+      {
+        "line": 188,
+        "text": "_actuator_sp = _actuator_trim + _mix * (_control_sp - _control_trim);"
+      }
+    ]
+  },
+  {
+    "sha": "926693950a4b2fe448d4b18d859c54bf9aa8a260",
+    "path": "src/modules/control_allocator/ControlAllocator.cpp",
+    "content_sha256": "de9f231d5b94f648ea07f44618493e2429ee3084bdfa2902bccbfa313e83690f",
+    "anchors": []
+  },
+  {
+    "sha": "a644ca7868f07004e45658d4ae9a7a8c880c6bb5",
+    "path": "src/modules/fw_rate_control/FixedwingRateControl.cpp",
+    "content_sha256": "e3e75ef76a5c42e3c184d5b73861a44172b89e0028c63623c698d9e58b7473e8",
+    "anchors": [
+      {
+        "line": 114,
+        "text": "_bumpless_roll_i_transfer.synchronizeReset(_rate_control.rollIntegralResetEpoch());"
+      },
+      {
+        "line": 121,
+        "text": "_bumpless_roll_i_transfer.synchronizeReset(_rate_control.rollIntegralResetEpoch());"
+      },
+      {
+        "line": 197,
+        "text": "_airspeed_filter_for_torque_scaling.reset(airspeed);"
+      },
+      {
+        "line": 200,
+        "text": "airspeed = _airspeed_filter_for_torque_scaling.update(airspeed, dt);"
+      },
+      {
+        "line": 264,
+        "text": "static constexpr float DT_MIN = 0.002f;"
+      },
+      {
+        "line": 265,
+        "text": "static constexpr float DT_MAX = 0.04f;"
+      },
+      {
+        "line": 270,
+        "text": "dt = math::constrain((vehicle_angular_velocity.timestamp_sample - _last_run) * 1e-6f, DT_MIN, DT_MAX);"
+      },
+      {
+        "line": 274,
+        "text": "if (dt < DT_MIN || dt > DT_MAX) {"
+      },
+      {
+        "line": 276,
+        "text": "dt = math::constrain((time_now_us - _last_run) * 1e-6f, DT_MIN, DT_MAX);"
+      },
+      {
+        "line": 330,
+        "text": "_gain_compression.reset();"
+      },
+      {
+        "line": 372,
+        "text": "_b2b_g_current = _gain_compression.getGains()(0) * airspeed_scale_squared;"
+      },
+      {
+        "line": 389,
+        "text": "transfer_inputs.cap_raw = _param_flap_b2b_cap.get();"
+      },
+      {
+        "line": 390,
+        "text": "transfer_inputs.slew_raw_per_s = _param_flap_b2b_slew.get();"
+      },
+      {
+        "line": 391,
+        "text": "transfer_inputs.safety_slew_raw_per_s = _param_flap_b2b_safe.get();"
+      },
+      {
+        "line": 393,
+        "text": "transfer_inputs.headroom_release_ratio = _param_flap_b2b_hr.get();"
+      },
+      {
+        "line": 394,
+        "text": "transfer_inputs.adapt_enabled = _param_flap_b2b_adapt.get();"
+      },
+      {
+        "line": 395,
+        "text": "transfer_inputs.hold_cap_raw = _param_flap_b2b_hcap.get();"
+      },
+      {
+        "line": 396,
+        "text": "transfer_inputs.residual_reserve_raw = _param_flap_b2b_rsvd.get();"
+      },
+      {
+        "line": 397,
+        "text": "transfer_inputs.adapt_tau_s = _param_flap_b2b_tau.get();"
+      },
+      {
+        "line": 398,
+        "text": "transfer_inputs.adapt_slew_raw_per_s = _param_flap_b2b_aslw.get();"
+      },
+      {
+        "line": 399,
+        "text": "transfer_inputs.entry_window_s = _param_flap_b2b_ewin.get();"
+      },
+      {
+        "line": 400,
+        "text": "transfer_inputs.gate_window_s = _param_flap_b2b_gwin.get();"
+      },
+      {
+        "line": 401,
+        "text": "transfer_inputs.gate_std_raw = _param_flap_b2b_gstd.get();"
+      },
+      {
+        "line": 402,
+        "text": "transfer_inputs.gate_same_sign_fraction = _param_flap_b2b_gsign.get();"
+      },
+      {
+        "line": 403,
+        "text": "_bumpless_roll_i_result = _bumpless_roll_i_transfer.update(transfer_inputs, _rate_control);"
+      },
+      {
+        "line": 405,
+        "text": "if (_bumpless_roll_i_result.reset_required) {"
+      },
+      {
+        "line": 409,
+        "text": "const float transferred_roll_i_raw = _bumpless_roll_i_transfer.transferredRaw();"
+      },
+      {
+        "line": 411,
+        "text": "_bumpless_roll_i_result.headroom_release_ratio_effective,"
+      },
+      {
+        "line": 454,
+        "text": "Vector3f angular_acceleration_setpoint = _rate_control.update(rates, body_rates_setpoint, angular_accel, dt,"
+      },
+      {
+        "line": 460,
+        "text": "const Vector3f gains_before_update = _gain_compression.getGains();"
+      },
+      {
+        "line": 473,
+        "text": "control_u = _gain_compression.getGains().emult("
+      },
+      {
+        "line": 480,
+        "text": "_gain_compression.update(control_u, dt);"
+      },
+      {
+        "line": 517,
+        "text": "_gain_compression.reset();"
+      },
+      {
+        "line": 519,
+        "text": "_bumpless_roll_i_result = {};"
+      },
+      {
+        "line": 540,
+        "text": "const float transferred_roll_i_raw = _bumpless_roll_i_transfer.transferredRaw();"
+      },
+      {
+        "line": 543,
+        "text": "rate_ctrl_status.flap_slow_gate_valid = _bumpless_roll_i_result.state == BumplessRollITransfer::State::Eligible"
+      },
+      {
+        "line": 544,
+        "text": "|| _bumpless_roll_i_result.state == BumplessRollITransfer::State::TransferIn"
+      },
+      {
+        "line": 545,
+        "text": "|| _bumpless_roll_i_result.state == BumplessRollITransfer::State::TransferHold;"
+      },
+      {
+        "line": 555,
+        "text": "rate_ctrl_status.flap_slow_exit_reason = static_cast<uint8_t>(_bumpless_roll_i_result.reason);"
+      },
+      {
+        "line": 556,
+        "text": "rate_ctrl_status.flap_b2b_state = static_cast<uint8_t>(_bumpless_roll_i_result.state);"
+      },
+      {
+        "line": 557,
+        "text": "rate_ctrl_status.flap_b2b_reason = static_cast<uint8_t>(_bumpless_roll_i_result.reason);"
+      },
+      {
+        "line": 558,
+        "text": "rate_ctrl_status.flap_b2b_normal_exit = _bumpless_roll_i_result.normal_exit;"
+      },
+      {
+        "line": 559,
+        "text": "rate_ctrl_status.flap_b2b_safety_exit = _bumpless_roll_i_result.safety_exit;"
+      },
+      {
+        "line": 560,
+        "text": "rate_ctrl_status.flap_b2b_recovery = _bumpless_roll_i_result.recovery;"
+      },
+      {
+        "line": 561,
+        "text": "rate_ctrl_status.flap_b2b_reset_mismatch = _bumpless_roll_i_result.reset_mismatch;"
+      },
+      {
+        "line": 562,
+        "text": "rate_ctrl_status.flap_b2b_reset_this_cycle = _roll_i_reset_this_cycle;"
+      },
+      {
+        "line": 563,
+        "text": "rate_ctrl_status.flap_b2b_transfer_limited = _bumpless_roll_i_result.transfer_limited;"
+      },
+      {
+        "line": 564,
+        "text": "rate_ctrl_status.flap_b2b_i_before_raw = _bumpless_roll_i_result.residual_i_before_raw;"
+      },
+      {
+        "line": 565,
+        "text": "rate_ctrl_status.flap_b2b_requested_delta_i_raw = _bumpless_roll_i_result.requested_delta_i_raw;"
+      },
+      {
+        "line": 566,
+        "text": "rate_ctrl_status.flap_b2b_accepted_delta_i_raw = _bumpless_roll_i_result.accepted_delta_i_raw;"
+      },
+      {
+        "line": 567,
+        "text": "rate_ctrl_status.flap_b2b_i_after_transfer_raw = _bumpless_roll_i_result.residual_i_raw;"
+      },
+      {
+        "line": 568,
+        "text": "rate_ctrl_status.flap_b2b_transferred_before_raw = _bumpless_roll_i_result.transferred_i_before_raw;"
+      },
+      {
+        "line": 569,
+        "text": "rate_ctrl_status.flap_b2b_requested_delta_s_raw = _bumpless_roll_i_result.requested_delta_s_raw;"
+      },
+      {
+        "line": 570,
+        "text": "rate_ctrl_status.flap_b2b_accepted_delta_s_raw = _bumpless_roll_i_result.accepted_delta_s_raw;"
+      },
+      {
+        "line": 571,
+        "text": "rate_ctrl_status.flap_b2b_transferred_raw = transferred_roll_i_raw;"
+      },
+      {
+        "line": 572,
+        "text": "rate_ctrl_status.flap_b2b_total_equivalent_raw = rate_ctrl_status.rollspeed_integ + transferred_roll_i_raw;"
+      },
+      {
+        "line": 573,
+        "text": "rate_ctrl_status.flap_b2b_natural_delta_pre_imax_raw = rate_ctrl_status.rollspeed_integ_delta_pre_imax;"
+      },
+      {
+        "line": 574,
+        "text": "rate_ctrl_status.flap_b2b_natural_delta_accepted_raw = rate_ctrl_status.rollspeed_integ_delta_accepted;"
+      },
+      {
+        "line": 575,
+        "text": "rate_ctrl_status.flap_b2b_unmatched_delta_raw = _bumpless_roll_i_result.unmatched_delta_raw;"
+      },
+      {
+        "line": 576,
+        "text": "rate_ctrl_status.b2b_hr_param = _param_flap_b2b_hr.get();"
+      },
+      {
+        "line": 577,
+        "text": "rate_ctrl_status.b2b_hr_latched = _bumpless_roll_i_result.headroom_release_ratio_latched;"
+      },
+      {
+        "line": 578,
+        "text": "rate_ctrl_status.b2b_hr_effective = _bumpless_roll_i_result.headroom_release_ratio_effective;"
+      },
+      {
+        "line": 579,
+        "text": "rate_ctrl_status.b2b_total_limit = _bumpless_roll_i_result.total_limit_raw;"
+      },
+      {
+        "line": 580,
+        "text": "rate_ctrl_status.b2b_i_lower = _bumpless_roll_i_result.residual_lower_raw;"
+      },
+      {
+        "line": 581,
+        "text": "rate_ctrl_status.b2b_i_upper = _bumpless_roll_i_result.residual_upper_raw;"
+      },
+      {
+        "line": 582,
+        "text": "rate_ctrl_status.b2b_hr_pos = _bumpless_roll_i_result.headroom_positive_raw;"
+      },
+      {
+        "line": 583,
+        "text": "rate_ctrl_status.b2b_hr_neg = _bumpless_roll_i_result.headroom_negative_raw;"
+      },
+      {
+        "line": 584,
+        "text": "rate_ctrl_status.b2b_exit_decay = _bumpless_roll_i_result.exit_authority_decay_raw;"
+      },
+      {
+        "line": 585,
+        "text": "rate_ctrl_status.flap_b2b_g_current = _b2b_g_current;"
+      },
+      {
+        "line": 586,
+        "text": "rate_ctrl_status.flap_b2b_effective_slow_torque = effective_slow_torque;"
+      },
+      {
+        "line": 587,
+        "text": "rate_ctrl_status.flap_b2b_effective_slow_tail = effective_slow_torque / 1.1f;"
+      },
+      {
+        "line": 588,
+        "text": "rate_ctrl_status.flap_b2b_reset_epoch = _rate_control.rollIntegralResetEpoch();"
+      },
+      {
+        "line": 589,
+        "text": "flap_b2b_adaptive_s adaptive_status{};"
+      },
+      {
+        "line": 591,
+        "text": "adaptive_status.enabled = _bumpless_roll_i_result.adapt_enabled;"
+      },
+      {
+        "line": 592,
+        "text": "adaptive_status.entry_est_valid = _bumpless_roll_i_result.entry_est_valid;"
+      },
+      {
+        "line": 593,
+        "text": "adaptive_status.gate = _bumpless_roll_i_result.adapt_gate;"
+      },
+      {
+        "line": 594,
+        "text": "adaptive_status.limited = _bumpless_roll_i_result.adapt_limited;"
+      },
+      {
+        "line": 595,
+        "text": "adaptive_status.releasing = _bumpless_roll_i_result.adapt_releasing;"
+      },
+      {
+        "line": 596,
+        "text": "adaptive_status.reversal = _bumpless_roll_i_result.adapt_reversal;"
+      },
+      {
+        "line": 597,
+        "text": "adaptive_status.entry_est_raw = _bumpless_roll_i_result.entry_est_raw;"
+      },
+      {
+        "line": 598,
+        "text": "adaptive_status.t_hat_raw = _bumpless_roll_i_result.adapt_t_hat_raw;"
+      },
+      {
+        "line": 599,
+        "text": "adaptive_status.target_raw = _bumpless_roll_i_result.adapt_target_raw;"
+      },
+      {
+        "line": 600,
+        "text": "adaptive_status.std_raw = _bumpless_roll_i_result.adapt_std_raw;"
+      },
+      {
+        "line": 601,
+        "text": "adaptive_status.sign_fraction = _bumpless_roll_i_result.adapt_sign_fraction;"
+      },
+      {
+        "line": 602,
+        "text": "adaptive_status.hold_cap_raw = _bumpless_roll_i_result.adapt_hold_cap_raw;"
+      },
+      {
+        "line": 603,
+        "text": "adaptive_status.reserve_raw = _bumpless_roll_i_result.adapt_reserve_raw;"
+      },
+      {
+        "line": 605,
+        "text": "adaptive_status.residual_i_raw = _bumpless_roll_i_result.residual_i_raw;"
+      },
+      {
+        "line": 606,
+        "text": "adaptive_status.total_equivalent_i_raw = _bumpless_roll_i_result.total_equivalent_i_raw;"
+      },
+      {
+        "line": 607,
+        "text": "_flap_b2b_adaptive_pub.publish(adaptive_status);"
+      }
+    ]
+  },
+  {
+    "sha": "a644ca7868f07004e45658d4ae9a7a8c880c6bb5",
+    "path": "src/modules/fw_att_control/FixedwingAttitudeControl.cpp",
+    "content_sha256": "40f9f25c116e6e59c8620b1e0b09642f8f77085f465077d3a19dd5408412d8f8",
+    "anchors": [
+      {
+        "line": 199,
+        "text": "static constexpr float DT_MIN = 0.002f;"
+      },
+      {
+        "line": 200,
+        "text": "static constexpr float DT_MAX = 0.04f;"
+      },
+      {
+        "line": 205,
+        "text": "dt = math::constrain((att.timestamp_sample - _last_run) * 1e-6f, DT_MIN, DT_MAX);"
+      },
+      {
+        "line": 212,
+        "text": "if (dt < DT_MIN || dt > DT_MAX) {"
+      },
+      {
+        "line": 214,
+        "text": "dt = math::constrain((time_now_us - _last_run) * 1e-6f, DT_MIN, DT_MAX);"
+      },
+      {
+        "line": 304,
+        "text": "_roll_ctrl.control_roll(roll_sp, _yaw_ctrl.get_euler_rate_setpoint(), euler_angles.phi(),"
+      }
+    ]
+  },
+  {
+    "sha": "a644ca7868f07004e45658d4ae9a7a8c880c6bb5",
+    "path": "src/modules/fw_att_control/fw_roll_controller.cpp",
+    "content_sha256": "51fab211b67ec194cb72e4adb085f89d9312e962cf89b4db2b4f3981515cf510",
+    "anchors": [
+      {
+        "line": 44,
+        "text": "float RollController::control_roll(float roll_setpoint, float euler_yaw_rate_setpoint, float roll, float pitch)"
+      },
+      {
+        "line": 61,
+        "text": "_body_rate_setpoint = math::constrain(roll_body_rate_setpoint_raw, -_max_rate, _max_rate);"
+      }
+    ]
+  },
+  {
+    "sha": "a644ca7868f07004e45658d4ae9a7a8c880c6bb5",
+    "path": "src/lib/rate_control/rate_control.cpp",
+    "content_sha256": "51dbeca652a082ed5f06c918f3f33243a2e5fca3cb4fcbbaa3f12d60dfab6e08",
+    "anchors": [
+      {
+        "line": 175,
+        "text": "Vector3f rate_error = rate_sp - rate;"
+      },
+      {
+        "line": 176,
+        "text": "_roll_rate_error = PX4_ISFINITE(rate_error(0)) ? rate_error(0) : 0.f;"
+      },
+      {
+        "line": 183,
+        "text": "const Vector3f torque = _gain_p.emult(rate_error) + _rate_int - _gain_d.emult(angular_accel) + _gain_ff.emult(rate_sp);"
+      },
+      {
+        "line": 275,
+        "text": "_roll_rate_error = 0.f;"
+      }
+    ]
+  },
+  {
+    "sha": "a644ca7868f07004e45658d4ae9a7a8c880c6bb5",
+    "path": "src/lib/rate_control/gain_compression.cpp",
+    "content_sha256": "e7c7b4325f8d6fa5824a19f4e96dd311cffe6e8b9d463a9ef8aaf2b8da1994b0",
+    "anchors": [
+      {
+        "line": 42,
+        "text": "_gain_compression_pub.advertise();"
+      },
+      {
+        "line": 91,
+        "text": "_gain_compression_pub.publish(msg);"
+      }
+    ]
+  },
+  {
+    "sha": "a644ca7868f07004e45658d4ae9a7a8c880c6bb5",
+    "path": "src/modules/control_allocator/VehicleActuatorEffectiveness/ActuatorEffectivenessControlSurfaces.cpp",
+    "content_sha256": "044e4aaa558c811134c5fde6f3c3df62959231273cc0056df29c50fe294df78d",
+    "anchors": []
+  },
+  {
+    "sha": "a644ca7868f07004e45658d4ae9a7a8c880c6bb5",
+    "path": "src/lib/control_allocation/control_allocation/ControlAllocationPseudoInverse.cpp",
+    "content_sha256": "3200e76a8a150c0dd514c8e4008d7392729bca53bf42e71151a74d364c803499",
+    "anchors": [
+      {
+        "line": 73,
+        "text": "normalizeControlAllocationMatrix();"
+      },
+      {
+        "line": 151,
+        "text": "ControlAllocationPseudoInverse::normalizeControlAllocationMatrix()"
+      },
+      {
+        "line": 185,
+        "text": "_prev_actuator_sp = _actuator_sp;"
+      },
+      {
+        "line": 188,
+        "text": "_actuator_sp = _actuator_trim + _mix * (_control_sp - _control_trim);"
+      }
+    ]
+  },
+  {
+    "sha": "a644ca7868f07004e45658d4ae9a7a8c880c6bb5",
+    "path": "src/modules/control_allocator/ControlAllocator.cpp",
+    "content_sha256": "de9f231d5b94f648ea07f44618493e2429ee3084bdfa2902bccbfa313e83690f",
+    "anchors": []
+  },
+  {
+    "sha": "b984e3352d86f2db51dc608c5c9f8e8092543249",
+    "path": "src/modules/fw_rate_control/FixedwingRateControl.cpp",
+    "content_sha256": "57fee4eed4a119f2b6cf7abe4cfe50beb29cf1100ca5dd415fe224f8984f5e5e",
+    "anchors": [
+      {
+        "line": 138,
+        "text": "_bumpless_roll_i_transfer.synchronizeReset(_rate_control.rollIntegralResetEpoch());"
+      },
+      {
+        "line": 146,
+        "text": "_bumpless_roll_i_transfer.synchronizeReset(_rate_control.rollIntegralResetEpoch());"
+      },
+      {
+        "line": 222,
+        "text": "_airspeed_filter_for_torque_scaling.reset(airspeed);"
+      },
+      {
+        "line": 225,
+        "text": "airspeed = _airspeed_filter_for_torque_scaling.update(airspeed, dt);"
+      },
+      {
+        "line": 297,
+        "text": "static constexpr float DT_MIN = 0.002f;"
+      },
+      {
+        "line": 298,
+        "text": "static constexpr float DT_MAX = 0.04f;"
+      },
+      {
+        "line": 303,
+        "text": "dt = math::constrain((vehicle_angular_velocity.timestamp_sample - _last_run) * 1e-6f, DT_MIN, DT_MAX);"
+      },
+      {
+        "line": 307,
+        "text": "if (dt < DT_MIN || dt > DT_MAX) {"
+      },
+      {
+        "line": 309,
+        "text": "dt = math::constrain((time_now_us - _last_run) * 1e-6f, DT_MIN, DT_MAX);"
+      },
+      {
+        "line": 380,
+        "text": "_gain_compression.reset();"
+      },
+      {
+        "line": 428,
+        "text": "_b2b_g_current = _gain_compression.getGains()(0) * airspeed_scale_squared;"
+      },
+      {
+        "line": 445,
+        "text": "transfer_inputs.cap_raw = _param_flap_b2b_cap.get();"
+      },
+      {
+        "line": 446,
+        "text": "transfer_inputs.slew_raw_per_s = _param_flap_b2b_slew.get();"
+      },
+      {
+        "line": 447,
+        "text": "transfer_inputs.safety_slew_raw_per_s = _param_flap_b2b_safe.get();"
+      },
+      {
+        "line": 449,
+        "text": "transfer_inputs.headroom_release_ratio = _param_flap_b2b_hr.get();"
+      },
+      {
+        "line": 450,
+        "text": "transfer_inputs.adapt_enabled = _param_flap_b2b_adapt.get();"
+      },
+      {
+        "line": 451,
+        "text": "transfer_inputs.hold_cap_raw = _param_flap_b2b_hcap.get();"
+      },
+      {
+        "line": 452,
+        "text": "transfer_inputs.residual_reserve_raw = _param_flap_b2b_rsvd.get();"
+      },
+      {
+        "line": 453,
+        "text": "transfer_inputs.adapt_tau_s = _param_flap_b2b_tau.get();"
+      },
+      {
+        "line": 454,
+        "text": "transfer_inputs.adapt_slew_raw_per_s = _param_flap_b2b_aslw.get();"
+      },
+      {
+        "line": 455,
+        "text": "transfer_inputs.entry_window_s = _param_flap_b2b_ewin.get();"
+      },
+      {
+        "line": 456,
+        "text": "transfer_inputs.gate_window_s = _param_flap_b2b_gwin.get();"
+      },
+      {
+        "line": 457,
+        "text": "transfer_inputs.gate_std_raw = _param_flap_b2b_gstd.get();"
+      },
+      {
+        "line": 458,
+        "text": "transfer_inputs.gate_same_sign_fraction = _param_flap_b2b_gsign.get();"
+      },
+      {
+        "line": 459,
+        "text": "_bumpless_roll_i_result = _bumpless_roll_i_transfer.update(transfer_inputs, _rate_control);"
+      },
+      {
+        "line": 461,
+        "text": "if (_bumpless_roll_i_result.reset_required) {"
+      },
+      {
+        "line": 465,
+        "text": "const float transferred_roll_i_raw = _bumpless_roll_i_transfer.transferredRaw();"
+      },
+      {
+        "line": 467,
+        "text": "_bumpless_roll_i_result.headroom_release_ratio_effective,"
+      },
+      {
+        "line": 510,
+        "text": "Vector3f angular_acceleration_setpoint = _rate_control.update(rates, body_rates_setpoint, angular_accel, dt,"
+      },
+      {
+        "line": 522,
+        "text": "const Vector3f gains_before_update = _gain_compression.getGains();"
+      },
+      {
+        "line": 535,
+        "text": "control_u = _gain_compression.getGains().emult("
+      },
+      {
+        "line": 542,
+        "text": "_gain_compression.update(control_u, dt);"
+      },
+      {
+        "line": 625,
+        "text": "_gain_compression.reset();"
+      },
+      {
+        "line": 627,
+        "text": "_bumpless_roll_i_result = {};"
+      },
+      {
+        "line": 655,
+        "text": "const float transferred_roll_i_raw = _bumpless_roll_i_transfer.transferredRaw();"
+      },
+      {
+        "line": 658,
+        "text": "rate_ctrl_status.flap_slow_gate_valid = _bumpless_roll_i_result.state == BumplessRollITransfer::State::Eligible"
+      },
+      {
+        "line": 659,
+        "text": "|| _bumpless_roll_i_result.state == BumplessRollITransfer::State::TransferIn"
+      },
+      {
+        "line": 660,
+        "text": "|| _bumpless_roll_i_result.state == BumplessRollITransfer::State::TransferHold;"
+      },
+      {
+        "line": 670,
+        "text": "rate_ctrl_status.flap_slow_exit_reason = static_cast<uint8_t>(_bumpless_roll_i_result.reason);"
+      },
+      {
+        "line": 671,
+        "text": "rate_ctrl_status.flap_b2b_state = static_cast<uint8_t>(_bumpless_roll_i_result.state);"
+      },
+      {
+        "line": 672,
+        "text": "rate_ctrl_status.flap_b2b_reason = static_cast<uint8_t>(_bumpless_roll_i_result.reason);"
+      },
+      {
+        "line": 673,
+        "text": "rate_ctrl_status.flap_b2b_normal_exit = _bumpless_roll_i_result.normal_exit;"
+      },
+      {
+        "line": 674,
+        "text": "rate_ctrl_status.flap_b2b_safety_exit = _bumpless_roll_i_result.safety_exit;"
+      },
+      {
+        "line": 675,
+        "text": "rate_ctrl_status.flap_b2b_recovery = _bumpless_roll_i_result.recovery;"
+      },
+      {
+        "line": 676,
+        "text": "rate_ctrl_status.flap_b2b_reset_mismatch = _bumpless_roll_i_result.reset_mismatch;"
+      },
+      {
+        "line": 677,
+        "text": "rate_ctrl_status.flap_b2b_reset_this_cycle = _roll_i_reset_this_cycle;"
+      },
+      {
+        "line": 678,
+        "text": "rate_ctrl_status.flap_b2b_transfer_limited = _bumpless_roll_i_result.transfer_limited;"
+      },
+      {
+        "line": 679,
+        "text": "rate_ctrl_status.flap_b2b_i_before_raw = _bumpless_roll_i_result.residual_i_before_raw;"
+      },
+      {
+        "line": 680,
+        "text": "rate_ctrl_status.flap_b2b_requested_delta_i_raw = _bumpless_roll_i_result.requested_delta_i_raw;"
+      },
+      {
+        "line": 681,
+        "text": "rate_ctrl_status.flap_b2b_accepted_delta_i_raw = _bumpless_roll_i_result.accepted_delta_i_raw;"
+      },
+      {
+        "line": 682,
+        "text": "rate_ctrl_status.flap_b2b_i_after_transfer_raw = _bumpless_roll_i_result.residual_i_raw;"
+      },
+      {
+        "line": 683,
+        "text": "rate_ctrl_status.flap_b2b_transferred_before_raw = _bumpless_roll_i_result.transferred_i_before_raw;"
+      },
+      {
+        "line": 684,
+        "text": "rate_ctrl_status.flap_b2b_requested_delta_s_raw = _bumpless_roll_i_result.requested_delta_s_raw;"
+      },
+      {
+        "line": 685,
+        "text": "rate_ctrl_status.flap_b2b_accepted_delta_s_raw = _bumpless_roll_i_result.accepted_delta_s_raw;"
+      },
+      {
+        "line": 686,
+        "text": "rate_ctrl_status.flap_b2b_transferred_raw = transferred_roll_i_raw;"
+      },
+      {
+        "line": 687,
+        "text": "rate_ctrl_status.flap_b2b_total_equivalent_raw = rate_ctrl_status.rollspeed_integ + transferred_roll_i_raw;"
+      },
+      {
+        "line": 688,
+        "text": "rate_ctrl_status.flap_b2b_natural_delta_pre_imax_raw = rate_ctrl_status.rollspeed_integ_delta_pre_imax;"
+      },
+      {
+        "line": 689,
+        "text": "rate_ctrl_status.flap_b2b_natural_delta_accepted_raw = rate_ctrl_status.rollspeed_integ_delta_accepted;"
+      },
+      {
+        "line": 690,
+        "text": "rate_ctrl_status.flap_b2b_unmatched_delta_raw = _bumpless_roll_i_result.unmatched_delta_raw;"
+      },
+      {
+        "line": 691,
+        "text": "rate_ctrl_status.b2b_hr_param = _param_flap_b2b_hr.get();"
+      },
+      {
+        "line": 692,
+        "text": "rate_ctrl_status.b2b_hr_latched = _bumpless_roll_i_result.headroom_release_ratio_latched;"
+      },
+      {
+        "line": 693,
+        "text": "rate_ctrl_status.b2b_hr_effective = _bumpless_roll_i_result.headroom_release_ratio_effective;"
+      },
+      {
+        "line": 694,
+        "text": "rate_ctrl_status.b2b_total_limit = _bumpless_roll_i_result.total_limit_raw;"
+      },
+      {
+        "line": 695,
+        "text": "rate_ctrl_status.b2b_i_lower = _bumpless_roll_i_result.residual_lower_raw;"
+      },
+      {
+        "line": 696,
+        "text": "rate_ctrl_status.b2b_i_upper = _bumpless_roll_i_result.residual_upper_raw;"
+      },
+      {
+        "line": 697,
+        "text": "rate_ctrl_status.b2b_hr_pos = _bumpless_roll_i_result.headroom_positive_raw;"
+      },
+      {
+        "line": 698,
+        "text": "rate_ctrl_status.b2b_hr_neg = _bumpless_roll_i_result.headroom_negative_raw;"
+      },
+      {
+        "line": 699,
+        "text": "rate_ctrl_status.b2b_exit_decay = _bumpless_roll_i_result.exit_authority_decay_raw;"
+      },
+      {
+        "line": 700,
+        "text": "rate_ctrl_status.flap_b2b_g_current = _b2b_g_current;"
+      },
+      {
+        "line": 701,
+        "text": "rate_ctrl_status.flap_b2b_effective_slow_torque = effective_slow_torque;"
+      },
+      {
+        "line": 702,
+        "text": "rate_ctrl_status.flap_b2b_effective_slow_tail = effective_slow_torque / 1.1f;"
+      },
+      {
+        "line": 703,
+        "text": "rate_ctrl_status.flap_b2b_reset_epoch = _rate_control.rollIntegralResetEpoch();"
+      },
+      {
+        "line": 704,
+        "text": "flap_b2b_adaptive_s adaptive_status{};"
+      },
+      {
+        "line": 706,
+        "text": "adaptive_status.enabled = _bumpless_roll_i_result.adapt_enabled;"
+      },
+      {
+        "line": 707,
+        "text": "adaptive_status.entry_est_valid = _bumpless_roll_i_result.entry_est_valid;"
+      },
+      {
+        "line": 708,
+        "text": "adaptive_status.gate = _bumpless_roll_i_result.adapt_gate;"
+      },
+      {
+        "line": 709,
+        "text": "adaptive_status.limited = _bumpless_roll_i_result.adapt_limited;"
+      },
+      {
+        "line": 710,
+        "text": "adaptive_status.releasing = _bumpless_roll_i_result.adapt_releasing;"
+      },
+      {
+        "line": 711,
+        "text": "adaptive_status.reversal = _bumpless_roll_i_result.adapt_reversal;"
+      },
+      {
+        "line": 712,
+        "text": "adaptive_status.entry_est_raw = _bumpless_roll_i_result.entry_est_raw;"
+      },
+      {
+        "line": 713,
+        "text": "adaptive_status.t_hat_raw = _bumpless_roll_i_result.adapt_t_hat_raw;"
+      },
+      {
+        "line": 714,
+        "text": "adaptive_status.target_raw = _bumpless_roll_i_result.adapt_target_raw;"
+      },
+      {
+        "line": 715,
+        "text": "adaptive_status.std_raw = _bumpless_roll_i_result.adapt_std_raw;"
+      },
+      {
+        "line": 716,
+        "text": "adaptive_status.sign_fraction = _bumpless_roll_i_result.adapt_sign_fraction;"
+      },
+      {
+        "line": 717,
+        "text": "adaptive_status.hold_cap_raw = _bumpless_roll_i_result.adapt_hold_cap_raw;"
+      },
+      {
+        "line": 718,
+        "text": "adaptive_status.reserve_raw = _bumpless_roll_i_result.adapt_reserve_raw;"
+      },
+      {
+        "line": 720,
+        "text": "adaptive_status.residual_i_raw = _bumpless_roll_i_result.residual_i_raw;"
+      },
+      {
+        "line": 721,
+        "text": "adaptive_status.total_equivalent_i_raw = _bumpless_roll_i_result.total_equivalent_i_raw;"
+      },
+      {
+        "line": 722,
+        "text": "_flap_b2b_adaptive_pub.publish(adaptive_status);"
+      },
+      {
+        "line": 736,
+        "text": "fast_shadow.flap_b2b_transferred_raw = transferred_roll_i_raw;"
+      },
+      {
+        "line": 737,
+        "text": "fast_shadow.flap_b2b_total_equivalent_raw = rate_ctrl_status.flap_b2b_total_equivalent_raw;"
+      },
+      {
+        "line": 738,
+        "text": "const bool fast_new_frame = _fast_v1_shadow.update(rate_ctrl_status.timestamp, rate_ctrl_status.flap_b2b_total_equivalent_raw,"
+      },
+      {
+        "line": 742,
+        "text": "rate_ctrl_status.flap_b2b_total_equivalent_raw, rate_ctrl_status.timestamp, fast_new_frame);"
+      }
+    ]
+  },
+  {
+    "sha": "b984e3352d86f2db51dc608c5c9f8e8092543249",
+    "path": "src/modules/fw_att_control/FixedwingAttitudeControl.cpp",
+    "content_sha256": "40f9f25c116e6e59c8620b1e0b09642f8f77085f465077d3a19dd5408412d8f8",
+    "anchors": [
+      {
+        "line": 199,
+        "text": "static constexpr float DT_MIN = 0.002f;"
+      },
+      {
+        "line": 200,
+        "text": "static constexpr float DT_MAX = 0.04f;"
+      },
+      {
+        "line": 205,
+        "text": "dt = math::constrain((att.timestamp_sample - _last_run) * 1e-6f, DT_MIN, DT_MAX);"
+      },
+      {
+        "line": 212,
+        "text": "if (dt < DT_MIN || dt > DT_MAX) {"
+      },
+      {
+        "line": 214,
+        "text": "dt = math::constrain((time_now_us - _last_run) * 1e-6f, DT_MIN, DT_MAX);"
+      },
+      {
+        "line": 304,
+        "text": "_roll_ctrl.control_roll(roll_sp, _yaw_ctrl.get_euler_rate_setpoint(), euler_angles.phi(),"
+      }
+    ]
+  },
+  {
+    "sha": "b984e3352d86f2db51dc608c5c9f8e8092543249",
+    "path": "src/modules/fw_att_control/fw_roll_controller.cpp",
+    "content_sha256": "51fab211b67ec194cb72e4adb085f89d9312e962cf89b4db2b4f3981515cf510",
+    "anchors": [
+      {
+        "line": 44,
+        "text": "float RollController::control_roll(float roll_setpoint, float euler_yaw_rate_setpoint, float roll, float pitch)"
+      },
+      {
+        "line": 61,
+        "text": "_body_rate_setpoint = math::constrain(roll_body_rate_setpoint_raw, -_max_rate, _max_rate);"
+      }
+    ]
+  },
+  {
+    "sha": "b984e3352d86f2db51dc608c5c9f8e8092543249",
+    "path": "src/lib/rate_control/rate_control.cpp",
+    "content_sha256": "1dae7e64e7501f30b370f351b9cab44cd024c36b656e6906eabf8ce9ecd09ab5",
+    "anchors": [
+      {
+        "line": 175,
+        "text": "Vector3f rate_error = rate_sp - rate;"
+      },
+      {
+        "line": 176,
+        "text": "_roll_rate_error = PX4_ISFINITE(rate_error(0)) ? rate_error(0) : 0.f;"
+      },
+      {
+        "line": 183,
+        "text": "const Vector3f torque = _gain_p.emult(rate_error) + _rate_int - _gain_d.emult(angular_accel) + _gain_ff.emult(rate_sp);"
+      },
+      {
+        "line": 294,
+        "text": "_roll_rate_error = 0.f;"
+      }
+    ]
+  },
+  {
+    "sha": "b984e3352d86f2db51dc608c5c9f8e8092543249",
+    "path": "src/lib/rate_control/gain_compression.cpp",
+    "content_sha256": "e7c7b4325f8d6fa5824a19f4e96dd311cffe6e8b9d463a9ef8aaf2b8da1994b0",
+    "anchors": [
+      {
+        "line": 42,
+        "text": "_gain_compression_pub.advertise();"
+      },
+      {
+        "line": 91,
+        "text": "_gain_compression_pub.publish(msg);"
+      }
+    ]
+  },
+  {
+    "sha": "b984e3352d86f2db51dc608c5c9f8e8092543249",
+    "path": "src/modules/control_allocator/VehicleActuatorEffectiveness/ActuatorEffectivenessControlSurfaces.cpp",
+    "content_sha256": "044e4aaa558c811134c5fde6f3c3df62959231273cc0056df29c50fe294df78d",
+    "anchors": []
+  },
+  {
+    "sha": "b984e3352d86f2db51dc608c5c9f8e8092543249",
+    "path": "src/lib/control_allocation/control_allocation/ControlAllocationPseudoInverse.cpp",
+    "content_sha256": "3200e76a8a150c0dd514c8e4008d7392729bca53bf42e71151a74d364c803499",
+    "anchors": [
+      {
+        "line": 73,
+        "text": "normalizeControlAllocationMatrix();"
+      },
+      {
+        "line": 151,
+        "text": "ControlAllocationPseudoInverse::normalizeControlAllocationMatrix()"
+      },
+      {
+        "line": 185,
+        "text": "_prev_actuator_sp = _actuator_sp;"
+      },
+      {
+        "line": 188,
+        "text": "_actuator_sp = _actuator_trim + _mix * (_control_sp - _control_trim);"
+      }
+    ]
+  },
+  {
+    "sha": "b984e3352d86f2db51dc608c5c9f8e8092543249",
+    "path": "src/modules/control_allocator/ControlAllocator.cpp",
+    "content_sha256": "de9f231d5b94f648ea07f44618493e2429ee3084bdfa2902bccbfa313e83690f",
+    "anchors": []
+  },
+  {
+    "sha": "c9af571575af33d5403fbb479256848797c801e2",
+    "path": "src/modules/fw_rate_control/FixedwingRateControl.cpp",
+    "content_sha256": "f629723bb627cd166c9fd0f7d13d7b57c34e902abf4ada7dd82d4d7f60071e75",
+    "anchors": [
+      {
+        "line": 167,
+        "text": "_airspeed_filter_for_torque_scaling.reset(airspeed);"
+      },
+      {
+        "line": 170,
+        "text": "airspeed = _airspeed_filter_for_torque_scaling.update(airspeed, dt);"
+      },
+      {
+        "line": 233,
+        "text": "static constexpr float DT_MIN = 0.002f;"
+      },
+      {
+        "line": 234,
+        "text": "static constexpr float DT_MAX = 0.04f;"
+      },
+      {
+        "line": 239,
+        "text": "dt = math::constrain((vehicle_angular_velocity.timestamp_sample - _last_run) * 1e-6f, DT_MIN, DT_MAX);"
+      },
+      {
+        "line": 243,
+        "text": "if (dt < DT_MIN || dt > DT_MAX) {"
+      },
+      {
+        "line": 245,
+        "text": "dt = math::constrain((time_now_us - _last_run) * 1e-6f, DT_MIN, DT_MAX);"
+      },
+      {
+        "line": 294,
+        "text": "_gain_compression.reset();"
+      },
+      {
+        "line": 375,
+        "text": "const Vector3f angular_acceleration_setpoint = _rate_control.update(rates, body_rates_setpoint, angular_accel, dt,"
+      },
+      {
+        "line": 381,
+        "text": "Vector3f control_u = _gain_compression.getGains().emult(angular_acceleration_setpoint * _airspeed_scaling * _airspeed_scaling);"
+      },
+      {
+        "line": 383,
+        "text": "_gain_compression.update(control_u, dt);"
+      },
+      {
+        "line": 427,
+        "text": "_gain_compression.reset();"
+      }
+    ]
+  },
+  {
+    "sha": "c9af571575af33d5403fbb479256848797c801e2",
+    "path": "src/modules/fw_att_control/FixedwingAttitudeControl.cpp",
+    "content_sha256": "40f9f25c116e6e59c8620b1e0b09642f8f77085f465077d3a19dd5408412d8f8",
+    "anchors": [
+      {
+        "line": 199,
+        "text": "static constexpr float DT_MIN = 0.002f;"
+      },
+      {
+        "line": 200,
+        "text": "static constexpr float DT_MAX = 0.04f;"
+      },
+      {
+        "line": 205,
+        "text": "dt = math::constrain((att.timestamp_sample - _last_run) * 1e-6f, DT_MIN, DT_MAX);"
+      },
+      {
+        "line": 212,
+        "text": "if (dt < DT_MIN || dt > DT_MAX) {"
+      },
+      {
+        "line": 214,
+        "text": "dt = math::constrain((time_now_us - _last_run) * 1e-6f, DT_MIN, DT_MAX);"
+      },
+      {
+        "line": 304,
+        "text": "_roll_ctrl.control_roll(roll_sp, _yaw_ctrl.get_euler_rate_setpoint(), euler_angles.phi(),"
+      }
+    ]
+  },
+  {
+    "sha": "c9af571575af33d5403fbb479256848797c801e2",
+    "path": "src/modules/fw_att_control/fw_roll_controller.cpp",
+    "content_sha256": "51fab211b67ec194cb72e4adb085f89d9312e962cf89b4db2b4f3981515cf510",
+    "anchors": [
+      {
+        "line": 44,
+        "text": "float RollController::control_roll(float roll_setpoint, float euler_yaw_rate_setpoint, float roll, float pitch)"
+      },
+      {
+        "line": 61,
+        "text": "_body_rate_setpoint = math::constrain(roll_body_rate_setpoint_raw, -_max_rate, _max_rate);"
+      }
+    ]
+  },
+  {
+    "sha": "c9af571575af33d5403fbb479256848797c801e2",
+    "path": "src/lib/rate_control/rate_control.cpp",
+    "content_sha256": "6889ca65e148ffbdc1da24db60204515fcf26ba97717d3e51c877a1c2792ec78",
+    "anchors": [
+      {
+        "line": 75,
+        "text": "Vector3f rate_error = rate_sp - rate;"
+      },
+      {
+        "line": 78,
+        "text": "const Vector3f torque = _gain_p.emult(rate_error) + _rate_int - _gain_d.emult(angular_accel) + _gain_ff.emult(rate_sp);"
+      }
+    ]
+  },
+  {
+    "sha": "c9af571575af33d5403fbb479256848797c801e2",
+    "path": "src/lib/rate_control/gain_compression.cpp",
+    "content_sha256": "e7c7b4325f8d6fa5824a19f4e96dd311cffe6e8b9d463a9ef8aaf2b8da1994b0",
+    "anchors": [
+      {
+        "line": 42,
+        "text": "_gain_compression_pub.advertise();"
+      },
+      {
+        "line": 91,
+        "text": "_gain_compression_pub.publish(msg);"
+      }
+    ]
+  },
+  {
+    "sha": "c9af571575af33d5403fbb479256848797c801e2",
+    "path": "src/modules/control_allocator/VehicleActuatorEffectiveness/ActuatorEffectivenessControlSurfaces.cpp",
+    "content_sha256": "044e4aaa558c811134c5fde6f3c3df62959231273cc0056df29c50fe294df78d",
+    "anchors": []
+  },
+  {
+    "sha": "c9af571575af33d5403fbb479256848797c801e2",
+    "path": "src/lib/control_allocation/control_allocation/ControlAllocationPseudoInverse.cpp",
+    "content_sha256": "3200e76a8a150c0dd514c8e4008d7392729bca53bf42e71151a74d364c803499",
+    "anchors": [
+      {
+        "line": 73,
+        "text": "normalizeControlAllocationMatrix();"
+      },
+      {
+        "line": 151,
+        "text": "ControlAllocationPseudoInverse::normalizeControlAllocationMatrix()"
+      },
+      {
+        "line": 185,
+        "text": "_prev_actuator_sp = _actuator_sp;"
+      },
+      {
+        "line": 188,
+        "text": "_actuator_sp = _actuator_trim + _mix * (_control_sp - _control_trim);"
+      }
+    ]
+  },
+  {
+    "sha": "c9af571575af33d5403fbb479256848797c801e2",
+    "path": "src/modules/control_allocator/ControlAllocator.cpp",
+    "content_sha256": "de9f231d5b94f648ea07f44618493e2429ee3084bdfa2902bccbfa313e83690f",
+    "anchors": []
+  },
+  {
+    "sha": "d0dd2354fdeadfbe505211a17b54d728309fedff",
+    "path": "src/modules/fw_rate_control/FixedwingRateControl.cpp",
+    "content_sha256": "0b198233e55e934cba3209c314d602f0e705c82665c7f5d7ffe5b249ad49c322",
+    "anchors": [
+      {
+        "line": 114,
+        "text": "_bumpless_roll_i_transfer.synchronizeReset(_rate_control.rollIntegralResetEpoch());"
+      },
+      {
+        "line": 121,
+        "text": "_bumpless_roll_i_transfer.synchronizeReset(_rate_control.rollIntegralResetEpoch());"
+      },
+      {
+        "line": 197,
+        "text": "_airspeed_filter_for_torque_scaling.reset(airspeed);"
+      },
+      {
+        "line": 200,
+        "text": "airspeed = _airspeed_filter_for_torque_scaling.update(airspeed, dt);"
+      },
+      {
+        "line": 264,
+        "text": "static constexpr float DT_MIN = 0.002f;"
+      },
+      {
+        "line": 265,
+        "text": "static constexpr float DT_MAX = 0.04f;"
+      },
+      {
+        "line": 270,
+        "text": "dt = math::constrain((vehicle_angular_velocity.timestamp_sample - _last_run) * 1e-6f, DT_MIN, DT_MAX);"
+      },
+      {
+        "line": 274,
+        "text": "if (dt < DT_MIN || dt > DT_MAX) {"
+      },
+      {
+        "line": 276,
+        "text": "dt = math::constrain((time_now_us - _last_run) * 1e-6f, DT_MIN, DT_MAX);"
+      },
+      {
+        "line": 330,
+        "text": "_gain_compression.reset();"
+      },
+      {
+        "line": 372,
+        "text": "_b2b_g_current = _gain_compression.getGains()(0) * airspeed_scale_squared;"
+      },
+      {
+        "line": 389,
+        "text": "transfer_inputs.cap_raw = _param_flap_b2b_cap.get();"
+      },
+      {
+        "line": 390,
+        "text": "transfer_inputs.slew_raw_per_s = _param_flap_b2b_slew.get();"
+      },
+      {
+        "line": 391,
+        "text": "transfer_inputs.safety_slew_raw_per_s = _param_flap_b2b_safe.get();"
+      },
+      {
+        "line": 393,
+        "text": "transfer_inputs.headroom_release_ratio = _param_flap_b2b_hr.get();"
+      },
+      {
+        "line": 394,
+        "text": "_bumpless_roll_i_result = _bumpless_roll_i_transfer.update(transfer_inputs, _rate_control);"
+      },
+      {
+        "line": 396,
+        "text": "if (_bumpless_roll_i_result.reset_required) {"
+      },
+      {
+        "line": 400,
+        "text": "const float transferred_roll_i_raw = _bumpless_roll_i_transfer.transferredRaw();"
+      },
+      {
+        "line": 402,
+        "text": "_bumpless_roll_i_result.headroom_release_ratio_effective,"
+      },
+      {
+        "line": 445,
+        "text": "Vector3f angular_acceleration_setpoint = _rate_control.update(rates, body_rates_setpoint, angular_accel, dt,"
+      },
+      {
+        "line": 451,
+        "text": "const Vector3f gains_before_update = _gain_compression.getGains();"
+      },
+      {
+        "line": 464,
+        "text": "control_u = _gain_compression.getGains().emult("
+      },
+      {
+        "line": 471,
+        "text": "_gain_compression.update(control_u, dt);"
+      },
+      {
+        "line": 508,
+        "text": "_gain_compression.reset();"
+      },
+      {
+        "line": 510,
+        "text": "_bumpless_roll_i_result = {};"
+      },
+      {
+        "line": 531,
+        "text": "const float transferred_roll_i_raw = _bumpless_roll_i_transfer.transferredRaw();"
+      },
+      {
+        "line": 534,
+        "text": "rate_ctrl_status.flap_slow_gate_valid = _bumpless_roll_i_result.state == BumplessRollITransfer::State::Eligible"
+      },
+      {
+        "line": 535,
+        "text": "|| _bumpless_roll_i_result.state == BumplessRollITransfer::State::TransferIn"
+      },
+      {
+        "line": 536,
+        "text": "|| _bumpless_roll_i_result.state == BumplessRollITransfer::State::TransferHold;"
+      },
+      {
+        "line": 546,
+        "text": "rate_ctrl_status.flap_slow_exit_reason = static_cast<uint8_t>(_bumpless_roll_i_result.reason);"
+      },
+      {
+        "line": 547,
+        "text": "rate_ctrl_status.flap_b2b_state = static_cast<uint8_t>(_bumpless_roll_i_result.state);"
+      },
+      {
+        "line": 548,
+        "text": "rate_ctrl_status.flap_b2b_reason = static_cast<uint8_t>(_bumpless_roll_i_result.reason);"
+      },
+      {
+        "line": 549,
+        "text": "rate_ctrl_status.flap_b2b_normal_exit = _bumpless_roll_i_result.normal_exit;"
+      },
+      {
+        "line": 550,
+        "text": "rate_ctrl_status.flap_b2b_safety_exit = _bumpless_roll_i_result.safety_exit;"
+      },
+      {
+        "line": 551,
+        "text": "rate_ctrl_status.flap_b2b_recovery = _bumpless_roll_i_result.recovery;"
+      },
+      {
+        "line": 552,
+        "text": "rate_ctrl_status.flap_b2b_reset_mismatch = _bumpless_roll_i_result.reset_mismatch;"
+      },
+      {
+        "line": 553,
+        "text": "rate_ctrl_status.flap_b2b_reset_this_cycle = _roll_i_reset_this_cycle;"
+      },
+      {
+        "line": 554,
+        "text": "rate_ctrl_status.flap_b2b_transfer_limited = _bumpless_roll_i_result.transfer_limited;"
+      },
+      {
+        "line": 555,
+        "text": "rate_ctrl_status.flap_b2b_i_before_raw = _bumpless_roll_i_result.residual_i_before_raw;"
+      },
+      {
+        "line": 556,
+        "text": "rate_ctrl_status.flap_b2b_requested_delta_i_raw = _bumpless_roll_i_result.requested_delta_i_raw;"
+      },
+      {
+        "line": 557,
+        "text": "rate_ctrl_status.flap_b2b_accepted_delta_i_raw = _bumpless_roll_i_result.accepted_delta_i_raw;"
+      },
+      {
+        "line": 558,
+        "text": "rate_ctrl_status.flap_b2b_i_after_transfer_raw = _bumpless_roll_i_result.residual_i_raw;"
+      },
+      {
+        "line": 559,
+        "text": "rate_ctrl_status.flap_b2b_transferred_before_raw = _bumpless_roll_i_result.transferred_i_before_raw;"
+      },
+      {
+        "line": 560,
+        "text": "rate_ctrl_status.flap_b2b_requested_delta_s_raw = _bumpless_roll_i_result.requested_delta_s_raw;"
+      },
+      {
+        "line": 561,
+        "text": "rate_ctrl_status.flap_b2b_accepted_delta_s_raw = _bumpless_roll_i_result.accepted_delta_s_raw;"
+      },
+      {
+        "line": 562,
+        "text": "rate_ctrl_status.flap_b2b_transferred_raw = transferred_roll_i_raw;"
+      },
+      {
+        "line": 563,
+        "text": "rate_ctrl_status.flap_b2b_total_equivalent_raw = rate_ctrl_status.rollspeed_integ + transferred_roll_i_raw;"
+      },
+      {
+        "line": 564,
+        "text": "rate_ctrl_status.flap_b2b_natural_delta_pre_imax_raw = rate_ctrl_status.rollspeed_integ_delta_pre_imax;"
+      },
+      {
+        "line": 565,
+        "text": "rate_ctrl_status.flap_b2b_natural_delta_accepted_raw = rate_ctrl_status.rollspeed_integ_delta_accepted;"
+      },
+      {
+        "line": 566,
+        "text": "rate_ctrl_status.flap_b2b_unmatched_delta_raw = _bumpless_roll_i_result.unmatched_delta_raw;"
+      },
+      {
+        "line": 567,
+        "text": "rate_ctrl_status.b2b_hr_param = _param_flap_b2b_hr.get();"
+      },
+      {
+        "line": 568,
+        "text": "rate_ctrl_status.b2b_hr_latched = _bumpless_roll_i_result.headroom_release_ratio_latched;"
+      },
+      {
+        "line": 569,
+        "text": "rate_ctrl_status.b2b_hr_effective = _bumpless_roll_i_result.headroom_release_ratio_effective;"
+      },
+      {
+        "line": 570,
+        "text": "rate_ctrl_status.b2b_total_limit = _bumpless_roll_i_result.total_limit_raw;"
+      },
+      {
+        "line": 571,
+        "text": "rate_ctrl_status.b2b_i_lower = _bumpless_roll_i_result.residual_lower_raw;"
+      },
+      {
+        "line": 572,
+        "text": "rate_ctrl_status.b2b_i_upper = _bumpless_roll_i_result.residual_upper_raw;"
+      },
+      {
+        "line": 573,
+        "text": "rate_ctrl_status.b2b_hr_pos = _bumpless_roll_i_result.headroom_positive_raw;"
+      },
+      {
+        "line": 574,
+        "text": "rate_ctrl_status.b2b_hr_neg = _bumpless_roll_i_result.headroom_negative_raw;"
+      },
+      {
+        "line": 575,
+        "text": "rate_ctrl_status.b2b_exit_decay = _bumpless_roll_i_result.exit_authority_decay_raw;"
+      },
+      {
+        "line": 576,
+        "text": "rate_ctrl_status.flap_b2b_g_current = _b2b_g_current;"
+      },
+      {
+        "line": 577,
+        "text": "rate_ctrl_status.flap_b2b_effective_slow_torque = effective_slow_torque;"
+      },
+      {
+        "line": 578,
+        "text": "rate_ctrl_status.flap_b2b_effective_slow_tail = effective_slow_torque / 1.1f;"
+      },
+      {
+        "line": 579,
+        "text": "rate_ctrl_status.flap_b2b_reset_epoch = _rate_control.rollIntegralResetEpoch();"
+      }
+    ]
+  },
+  {
+    "sha": "d0dd2354fdeadfbe505211a17b54d728309fedff",
+    "path": "src/modules/fw_att_control/FixedwingAttitudeControl.cpp",
+    "content_sha256": "40f9f25c116e6e59c8620b1e0b09642f8f77085f465077d3a19dd5408412d8f8",
+    "anchors": [
+      {
+        "line": 199,
+        "text": "static constexpr float DT_MIN = 0.002f;"
+      },
+      {
+        "line": 200,
+        "text": "static constexpr float DT_MAX = 0.04f;"
+      },
+      {
+        "line": 205,
+        "text": "dt = math::constrain((att.timestamp_sample - _last_run) * 1e-6f, DT_MIN, DT_MAX);"
+      },
+      {
+        "line": 212,
+        "text": "if (dt < DT_MIN || dt > DT_MAX) {"
+      },
+      {
+        "line": 214,
+        "text": "dt = math::constrain((time_now_us - _last_run) * 1e-6f, DT_MIN, DT_MAX);"
+      },
+      {
+        "line": 304,
+        "text": "_roll_ctrl.control_roll(roll_sp, _yaw_ctrl.get_euler_rate_setpoint(), euler_angles.phi(),"
+      }
+    ]
+  },
+  {
+    "sha": "d0dd2354fdeadfbe505211a17b54d728309fedff",
+    "path": "src/modules/fw_att_control/fw_roll_controller.cpp",
+    "content_sha256": "51fab211b67ec194cb72e4adb085f89d9312e962cf89b4db2b4f3981515cf510",
+    "anchors": [
+      {
+        "line": 44,
+        "text": "float RollController::control_roll(float roll_setpoint, float euler_yaw_rate_setpoint, float roll, float pitch)"
+      },
+      {
+        "line": 61,
+        "text": "_body_rate_setpoint = math::constrain(roll_body_rate_setpoint_raw, -_max_rate, _max_rate);"
+      }
+    ]
+  },
+  {
+    "sha": "d0dd2354fdeadfbe505211a17b54d728309fedff",
+    "path": "src/lib/rate_control/rate_control.cpp",
+    "content_sha256": "51dbeca652a082ed5f06c918f3f33243a2e5fca3cb4fcbbaa3f12d60dfab6e08",
+    "anchors": [
+      {
+        "line": 175,
+        "text": "Vector3f rate_error = rate_sp - rate;"
+      },
+      {
+        "line": 176,
+        "text": "_roll_rate_error = PX4_ISFINITE(rate_error(0)) ? rate_error(0) : 0.f;"
+      },
+      {
+        "line": 183,
+        "text": "const Vector3f torque = _gain_p.emult(rate_error) + _rate_int - _gain_d.emult(angular_accel) + _gain_ff.emult(rate_sp);"
+      },
+      {
+        "line": 275,
+        "text": "_roll_rate_error = 0.f;"
+      }
+    ]
+  },
+  {
+    "sha": "d0dd2354fdeadfbe505211a17b54d728309fedff",
+    "path": "src/lib/rate_control/gain_compression.cpp",
+    "content_sha256": "e7c7b4325f8d6fa5824a19f4e96dd311cffe6e8b9d463a9ef8aaf2b8da1994b0",
+    "anchors": [
+      {
+        "line": 42,
+        "text": "_gain_compression_pub.advertise();"
+      },
+      {
+        "line": 91,
+        "text": "_gain_compression_pub.publish(msg);"
+      }
+    ]
+  },
+  {
+    "sha": "d0dd2354fdeadfbe505211a17b54d728309fedff",
+    "path": "src/modules/control_allocator/VehicleActuatorEffectiveness/ActuatorEffectivenessControlSurfaces.cpp",
+    "content_sha256": "044e4aaa558c811134c5fde6f3c3df62959231273cc0056df29c50fe294df78d",
+    "anchors": []
+  },
+  {
+    "sha": "d0dd2354fdeadfbe505211a17b54d728309fedff",
+    "path": "src/lib/control_allocation/control_allocation/ControlAllocationPseudoInverse.cpp",
+    "content_sha256": "3200e76a8a150c0dd514c8e4008d7392729bca53bf42e71151a74d364c803499",
+    "anchors": [
+      {
+        "line": 73,
+        "text": "normalizeControlAllocationMatrix();"
+      },
+      {
+        "line": 151,
+        "text": "ControlAllocationPseudoInverse::normalizeControlAllocationMatrix()"
+      },
+      {
+        "line": 185,
+        "text": "_prev_actuator_sp = _actuator_sp;"
+      },
+      {
+        "line": 188,
+        "text": "_actuator_sp = _actuator_trim + _mix * (_control_sp - _control_trim);"
+      }
+    ]
+  },
+  {
+    "sha": "d0dd2354fdeadfbe505211a17b54d728309fedff",
+    "path": "src/modules/control_allocator/ControlAllocator.cpp",
+    "content_sha256": "de9f231d5b94f648ea07f44618493e2429ee3084bdfa2902bccbfa313e83690f",
+    "anchors": []
+  },
+  {
+    "sha": "e35acd7c27875be19aa04cab652e3dcfc3afef84",
+    "path": "src/modules/fw_rate_control/FixedwingRateControl.cpp",
+    "content_sha256": "f844a8aba4ccc489f91f82a9bcd027e75411d1cbfbb25566ebd7c166dba93e1c",
+    "anchors": [
+      {
+        "line": 114,
+        "text": "_bumpless_roll_i_transfer.synchronizeReset(_rate_control.rollIntegralResetEpoch());"
+      },
+      {
+        "line": 121,
+        "text": "_bumpless_roll_i_transfer.synchronizeReset(_rate_control.rollIntegralResetEpoch());"
+      },
+      {
+        "line": 197,
+        "text": "_airspeed_filter_for_torque_scaling.reset(airspeed);"
+      },
+      {
+        "line": 200,
+        "text": "airspeed = _airspeed_filter_for_torque_scaling.update(airspeed, dt);"
+      },
+      {
+        "line": 264,
+        "text": "static constexpr float DT_MIN = 0.002f;"
+      },
+      {
+        "line": 265,
+        "text": "static constexpr float DT_MAX = 0.04f;"
+      },
+      {
+        "line": 270,
+        "text": "dt = math::constrain((vehicle_angular_velocity.timestamp_sample - _last_run) * 1e-6f, DT_MIN, DT_MAX);"
+      },
+      {
+        "line": 274,
+        "text": "if (dt < DT_MIN || dt > DT_MAX) {"
+      },
+      {
+        "line": 276,
+        "text": "dt = math::constrain((time_now_us - _last_run) * 1e-6f, DT_MIN, DT_MAX);"
+      },
+      {
+        "line": 330,
+        "text": "_gain_compression.reset();"
+      },
+      {
+        "line": 378,
+        "text": "_b2b_g_current = _gain_compression.getGains()(0) * airspeed_scale_squared;"
+      },
+      {
+        "line": 396,
+        "text": "transfer_inputs.cap_raw = _param_flap_b2b_cap.get();"
+      },
+      {
+        "line": 397,
+        "text": "transfer_inputs.slew_raw_per_s = _param_flap_b2b_slew.get();"
+      },
+      {
+        "line": 398,
+        "text": "transfer_inputs.safety_slew_raw_per_s = _param_flap_b2b_safe.get();"
+      },
+      {
+        "line": 400,
+        "text": "transfer_inputs.headroom_release_ratio = _param_flap_b2b_hr.get();"
+      },
+      {
+        "line": 401,
+        "text": "transfer_inputs.adapt_enabled = _param_flap_b2b_adapt.get();"
+      },
+      {
+        "line": 402,
+        "text": "transfer_inputs.hold_cap_raw = _param_flap_b2b_hcap.get();"
+      },
+      {
+        "line": 403,
+        "text": "transfer_inputs.residual_reserve_raw = _param_flap_b2b_rsvd.get();"
+      },
+      {
+        "line": 404,
+        "text": "transfer_inputs.adapt_tau_s = _param_flap_b2b_tau.get();"
+      },
+      {
+        "line": 405,
+        "text": "transfer_inputs.adapt_slew_raw_per_s = _param_flap_b2b_aslw.get();"
+      },
+      {
+        "line": 406,
+        "text": "transfer_inputs.entry_window_s = _param_flap_b2b_ewin.get();"
+      },
+      {
+        "line": 407,
+        "text": "transfer_inputs.gate_window_s = _param_flap_b2b_gwin.get();"
+      },
+      {
+        "line": 408,
+        "text": "transfer_inputs.gate_std_raw = _param_flap_b2b_gstd.get();"
+      },
+      {
+        "line": 409,
+        "text": "transfer_inputs.gate_same_sign_fraction = _param_flap_b2b_gsign.get();"
+      },
+      {
+        "line": 410,
+        "text": "_bumpless_roll_i_result = _bumpless_roll_i_transfer.update(transfer_inputs, _rate_control);"
+      },
+      {
+        "line": 412,
+        "text": "if (_bumpless_roll_i_result.reset_required) {"
+      },
+      {
+        "line": 416,
+        "text": "const float transferred_roll_i_raw = _bumpless_roll_i_transfer.transferredRaw();"
+      },
+      {
+        "line": 418,
+        "text": "_bumpless_roll_i_result.headroom_release_ratio_effective,"
+      },
+      {
+        "line": 461,
+        "text": "Vector3f angular_acceleration_setpoint = _rate_control.update(rates, body_rates_setpoint, angular_accel, dt,"
+      },
+      {
+        "line": 467,
+        "text": "const Vector3f gains_before_update = _gain_compression.getGains();"
+      },
+      {
+        "line": 480,
+        "text": "control_u = _gain_compression.getGains().emult("
+      },
+      {
+        "line": 487,
+        "text": "_gain_compression.update(control_u, dt);"
+      },
+      {
+        "line": 524,
+        "text": "_gain_compression.reset();"
+      },
+      {
+        "line": 526,
+        "text": "_bumpless_roll_i_result = {};"
+      },
+      {
+        "line": 548,
+        "text": "const float transferred_roll_i_raw = _bumpless_roll_i_transfer.transferredRaw();"
+      },
+      {
+        "line": 551,
+        "text": "rate_ctrl_status.flap_slow_gate_valid = _bumpless_roll_i_result.state == BumplessRollITransfer::State::Eligible"
+      },
+      {
+        "line": 552,
+        "text": "|| _bumpless_roll_i_result.state == BumplessRollITransfer::State::TransferIn"
+      },
+      {
+        "line": 553,
+        "text": "|| _bumpless_roll_i_result.state == BumplessRollITransfer::State::TransferHold;"
+      },
+      {
+        "line": 563,
+        "text": "rate_ctrl_status.flap_slow_exit_reason = static_cast<uint8_t>(_bumpless_roll_i_result.reason);"
+      },
+      {
+        "line": 564,
+        "text": "rate_ctrl_status.flap_b2b_state = static_cast<uint8_t>(_bumpless_roll_i_result.state);"
+      },
+      {
+        "line": 565,
+        "text": "rate_ctrl_status.flap_b2b_reason = static_cast<uint8_t>(_bumpless_roll_i_result.reason);"
+      },
+      {
+        "line": 566,
+        "text": "rate_ctrl_status.flap_b2b_normal_exit = _bumpless_roll_i_result.normal_exit;"
+      },
+      {
+        "line": 567,
+        "text": "rate_ctrl_status.flap_b2b_safety_exit = _bumpless_roll_i_result.safety_exit;"
+      },
+      {
+        "line": 568,
+        "text": "rate_ctrl_status.flap_b2b_recovery = _bumpless_roll_i_result.recovery;"
+      },
+      {
+        "line": 569,
+        "text": "rate_ctrl_status.flap_b2b_reset_mismatch = _bumpless_roll_i_result.reset_mismatch;"
+      },
+      {
+        "line": 570,
+        "text": "rate_ctrl_status.flap_b2b_reset_this_cycle = _roll_i_reset_this_cycle;"
+      },
+      {
+        "line": 571,
+        "text": "rate_ctrl_status.flap_b2b_transfer_limited = _bumpless_roll_i_result.transfer_limited;"
+      },
+      {
+        "line": 572,
+        "text": "rate_ctrl_status.flap_b2b_i_before_raw = _bumpless_roll_i_result.residual_i_before_raw;"
+      },
+      {
+        "line": 573,
+        "text": "rate_ctrl_status.flap_b2b_requested_delta_i_raw = _bumpless_roll_i_result.requested_delta_i_raw;"
+      },
+      {
+        "line": 574,
+        "text": "rate_ctrl_status.flap_b2b_accepted_delta_i_raw = _bumpless_roll_i_result.accepted_delta_i_raw;"
+      },
+      {
+        "line": 575,
+        "text": "rate_ctrl_status.flap_b2b_i_after_transfer_raw = _bumpless_roll_i_result.residual_i_raw;"
+      },
+      {
+        "line": 576,
+        "text": "rate_ctrl_status.flap_b2b_transferred_before_raw = _bumpless_roll_i_result.transferred_i_before_raw;"
+      },
+      {
+        "line": 577,
+        "text": "rate_ctrl_status.flap_b2b_requested_delta_s_raw = _bumpless_roll_i_result.requested_delta_s_raw;"
+      },
+      {
+        "line": 578,
+        "text": "rate_ctrl_status.flap_b2b_accepted_delta_s_raw = _bumpless_roll_i_result.accepted_delta_s_raw;"
+      },
+      {
+        "line": 579,
+        "text": "rate_ctrl_status.flap_b2b_transferred_raw = transferred_roll_i_raw;"
+      },
+      {
+        "line": 580,
+        "text": "rate_ctrl_status.flap_b2b_total_equivalent_raw = rate_ctrl_status.rollspeed_integ + transferred_roll_i_raw;"
+      },
+      {
+        "line": 581,
+        "text": "rate_ctrl_status.flap_b2b_natural_delta_pre_imax_raw = rate_ctrl_status.rollspeed_integ_delta_pre_imax;"
+      },
+      {
+        "line": 582,
+        "text": "rate_ctrl_status.flap_b2b_natural_delta_accepted_raw = rate_ctrl_status.rollspeed_integ_delta_accepted;"
+      },
+      {
+        "line": 583,
+        "text": "rate_ctrl_status.flap_b2b_unmatched_delta_raw = _bumpless_roll_i_result.unmatched_delta_raw;"
+      },
+      {
+        "line": 584,
+        "text": "rate_ctrl_status.b2b_hr_param = _param_flap_b2b_hr.get();"
+      },
+      {
+        "line": 585,
+        "text": "rate_ctrl_status.b2b_hr_latched = _bumpless_roll_i_result.headroom_release_ratio_latched;"
+      },
+      {
+        "line": 586,
+        "text": "rate_ctrl_status.b2b_hr_effective = _bumpless_roll_i_result.headroom_release_ratio_effective;"
+      },
+      {
+        "line": 587,
+        "text": "rate_ctrl_status.b2b_total_limit = _bumpless_roll_i_result.total_limit_raw;"
+      },
+      {
+        "line": 588,
+        "text": "rate_ctrl_status.b2b_i_lower = _bumpless_roll_i_result.residual_lower_raw;"
+      },
+      {
+        "line": 589,
+        "text": "rate_ctrl_status.b2b_i_upper = _bumpless_roll_i_result.residual_upper_raw;"
+      },
+      {
+        "line": 590,
+        "text": "rate_ctrl_status.b2b_hr_pos = _bumpless_roll_i_result.headroom_positive_raw;"
+      },
+      {
+        "line": 591,
+        "text": "rate_ctrl_status.b2b_hr_neg = _bumpless_roll_i_result.headroom_negative_raw;"
+      },
+      {
+        "line": 592,
+        "text": "rate_ctrl_status.b2b_exit_decay = _bumpless_roll_i_result.exit_authority_decay_raw;"
+      },
+      {
+        "line": 593,
+        "text": "rate_ctrl_status.flap_b2b_g_current = _b2b_g_current;"
+      },
+      {
+        "line": 594,
+        "text": "rate_ctrl_status.flap_b2b_effective_slow_torque = effective_slow_torque;"
+      },
+      {
+        "line": 595,
+        "text": "rate_ctrl_status.flap_b2b_effective_slow_tail = effective_slow_torque / 1.1f;"
+      },
+      {
+        "line": 596,
+        "text": "rate_ctrl_status.flap_b2b_reset_epoch = _rate_control.rollIntegralResetEpoch();"
+      },
+      {
+        "line": 597,
+        "text": "flap_b2b_adaptive_s adaptive_status{};"
+      },
+      {
+        "line": 600,
+        "text": "adaptive_status.comparator_mode = _bumpless_roll_i_result.comparator_mode;"
+      },
+      {
+        "line": 601,
+        "text": "adaptive_status.comparator_active = _bumpless_roll_i_result.comparator_active;"
+      },
+      {
+        "line": 602,
+        "text": "adaptive_status.original_slow_gate_active = _bumpless_roll_i_result.original_slow_gate_active;"
+      },
+      {
+        "line": 603,
+        "text": "adaptive_status.reversal_logic_active = _bumpless_roll_i_result.reversal_logic_active;"
+      },
+      {
+        "line": 604,
+        "text": "adaptive_status.enabled = _bumpless_roll_i_result.adapt_enabled;"
+      },
+      {
+        "line": 605,
+        "text": "adaptive_status.entry_est_valid = _bumpless_roll_i_result.entry_est_valid;"
+      },
+      {
+        "line": 606,
+        "text": "adaptive_status.gate = _bumpless_roll_i_result.adapt_gate;"
+      },
+      {
+        "line": 607,
+        "text": "adaptive_status.limited = _bumpless_roll_i_result.adapt_limited;"
+      },
+      {
+        "line": 608,
+        "text": "adaptive_status.releasing = _bumpless_roll_i_result.adapt_releasing;"
+      },
+      {
+        "line": 609,
+        "text": "adaptive_status.reversal = _bumpless_roll_i_result.adapt_reversal;"
+      },
+      {
+        "line": 610,
+        "text": "adaptive_status.entry_est_raw = _bumpless_roll_i_result.entry_est_raw;"
+      },
+      {
+        "line": 611,
+        "text": "adaptive_status.t_hat_raw = _bumpless_roll_i_result.adapt_t_hat_raw;"
+      },
+      {
+        "line": 612,
+        "text": "adaptive_status.target_raw = _bumpless_roll_i_result.adapt_target_raw;"
+      },
+      {
+        "line": 613,
+        "text": "adaptive_status.std_raw = _bumpless_roll_i_result.adapt_std_raw;"
+      },
+      {
+        "line": 614,
+        "text": "adaptive_status.sign_fraction = _bumpless_roll_i_result.adapt_sign_fraction;"
+      },
+      {
+        "line": 615,
+        "text": "adaptive_status.hold_cap_raw = _bumpless_roll_i_result.adapt_hold_cap_raw;"
+      },
+      {
+        "line": 616,
+        "text": "adaptive_status.reserve_raw = _bumpless_roll_i_result.adapt_reserve_raw;"
+      },
+      {
+        "line": 618,
+        "text": "adaptive_status.residual_i_raw = _bumpless_roll_i_result.residual_i_raw;"
+      },
+      {
+        "line": 619,
+        "text": "adaptive_status.total_equivalent_i_raw = _bumpless_roll_i_result.total_equivalent_i_raw;"
+      },
+      {
+        "line": 620,
+        "text": "_flap_b2b_adaptive_pub.publish(adaptive_status);"
+      }
+    ]
+  },
+  {
+    "sha": "e35acd7c27875be19aa04cab652e3dcfc3afef84",
+    "path": "src/modules/fw_att_control/FixedwingAttitudeControl.cpp",
+    "content_sha256": "40f9f25c116e6e59c8620b1e0b09642f8f77085f465077d3a19dd5408412d8f8",
+    "anchors": [
+      {
+        "line": 199,
+        "text": "static constexpr float DT_MIN = 0.002f;"
+      },
+      {
+        "line": 200,
+        "text": "static constexpr float DT_MAX = 0.04f;"
+      },
+      {
+        "line": 205,
+        "text": "dt = math::constrain((att.timestamp_sample - _last_run) * 1e-6f, DT_MIN, DT_MAX);"
+      },
+      {
+        "line": 212,
+        "text": "if (dt < DT_MIN || dt > DT_MAX) {"
+      },
+      {
+        "line": 214,
+        "text": "dt = math::constrain((time_now_us - _last_run) * 1e-6f, DT_MIN, DT_MAX);"
+      },
+      {
+        "line": 304,
+        "text": "_roll_ctrl.control_roll(roll_sp, _yaw_ctrl.get_euler_rate_setpoint(), euler_angles.phi(),"
+      }
+    ]
+  },
+  {
+    "sha": "e35acd7c27875be19aa04cab652e3dcfc3afef84",
+    "path": "src/modules/fw_att_control/fw_roll_controller.cpp",
+    "content_sha256": "51fab211b67ec194cb72e4adb085f89d9312e962cf89b4db2b4f3981515cf510",
+    "anchors": [
+      {
+        "line": 44,
+        "text": "float RollController::control_roll(float roll_setpoint, float euler_yaw_rate_setpoint, float roll, float pitch)"
+      },
+      {
+        "line": 61,
+        "text": "_body_rate_setpoint = math::constrain(roll_body_rate_setpoint_raw, -_max_rate, _max_rate);"
+      }
+    ]
+  },
+  {
+    "sha": "e35acd7c27875be19aa04cab652e3dcfc3afef84",
+    "path": "src/lib/rate_control/rate_control.cpp",
+    "content_sha256": "1dae7e64e7501f30b370f351b9cab44cd024c36b656e6906eabf8ce9ecd09ab5",
+    "anchors": [
+      {
+        "line": 175,
+        "text": "Vector3f rate_error = rate_sp - rate;"
+      },
+      {
+        "line": 176,
+        "text": "_roll_rate_error = PX4_ISFINITE(rate_error(0)) ? rate_error(0) : 0.f;"
+      },
+      {
+        "line": 183,
+        "text": "const Vector3f torque = _gain_p.emult(rate_error) + _rate_int - _gain_d.emult(angular_accel) + _gain_ff.emult(rate_sp);"
+      },
+      {
+        "line": 294,
+        "text": "_roll_rate_error = 0.f;"
+      }
+    ]
+  },
+  {
+    "sha": "e35acd7c27875be19aa04cab652e3dcfc3afef84",
+    "path": "src/lib/rate_control/gain_compression.cpp",
+    "content_sha256": "e7c7b4325f8d6fa5824a19f4e96dd311cffe6e8b9d463a9ef8aaf2b8da1994b0",
+    "anchors": [
+      {
+        "line": 42,
+        "text": "_gain_compression_pub.advertise();"
+      },
+      {
+        "line": 91,
+        "text": "_gain_compression_pub.publish(msg);"
+      }
+    ]
+  },
+  {
+    "sha": "e35acd7c27875be19aa04cab652e3dcfc3afef84",
+    "path": "src/modules/control_allocator/VehicleActuatorEffectiveness/ActuatorEffectivenessControlSurfaces.cpp",
+    "content_sha256": "044e4aaa558c811134c5fde6f3c3df62959231273cc0056df29c50fe294df78d",
+    "anchors": []
+  },
+  {
+    "sha": "e35acd7c27875be19aa04cab652e3dcfc3afef84",
+    "path": "src/lib/control_allocation/control_allocation/ControlAllocationPseudoInverse.cpp",
+    "content_sha256": "3200e76a8a150c0dd514c8e4008d7392729bca53bf42e71151a74d364c803499",
+    "anchors": [
+      {
+        "line": 73,
+        "text": "normalizeControlAllocationMatrix();"
+      },
+      {
+        "line": 151,
+        "text": "ControlAllocationPseudoInverse::normalizeControlAllocationMatrix()"
+      },
+      {
+        "line": 185,
+        "text": "_prev_actuator_sp = _actuator_sp;"
+      },
+      {
+        "line": 188,
+        "text": "_actuator_sp = _actuator_trim + _mix * (_control_sp - _control_trim);"
+      }
+    ]
+  },
+  {
+    "sha": "e35acd7c27875be19aa04cab652e3dcfc3afef84",
+    "path": "src/modules/control_allocator/ControlAllocator.cpp",
+    "content_sha256": "de9f231d5b94f648ea07f44618493e2429ee3084bdfa2902bccbfa313e83690f",
+    "anchors": []
+  },
+  {
+    "sha": "e624a99f2955addbf76681e636c44162a0c03055",
+    "path": "src/modules/fw_rate_control/FixedwingRateControl.cpp",
+    "content_sha256": "318826128dfcfe07ad75c8f5ae9918daa6207a06292319ffdf425ae3ab23a460",
+    "anchors": [
+      {
+        "line": 114,
+        "text": "_bumpless_roll_i_transfer.synchronizeReset(_rate_control.rollIntegralResetEpoch());"
+      },
+      {
+        "line": 121,
+        "text": "_bumpless_roll_i_transfer.synchronizeReset(_rate_control.rollIntegralResetEpoch());"
+      },
+      {
+        "line": 197,
+        "text": "_airspeed_filter_for_torque_scaling.reset(airspeed);"
+      },
+      {
+        "line": 200,
+        "text": "airspeed = _airspeed_filter_for_torque_scaling.update(airspeed, dt);"
+      },
+      {
+        "line": 264,
+        "text": "static constexpr float DT_MIN = 0.002f;"
+      },
+      {
+        "line": 265,
+        "text": "static constexpr float DT_MAX = 0.04f;"
+      },
+      {
+        "line": 270,
+        "text": "dt = math::constrain((vehicle_angular_velocity.timestamp_sample - _last_run) * 1e-6f, DT_MIN, DT_MAX);"
+      },
+      {
+        "line": 274,
+        "text": "if (dt < DT_MIN || dt > DT_MAX) {"
+      },
+      {
+        "line": 276,
+        "text": "dt = math::constrain((time_now_us - _last_run) * 1e-6f, DT_MIN, DT_MAX);"
+      },
+      {
+        "line": 330,
+        "text": "_gain_compression.reset();"
+      },
+      {
+        "line": 378,
+        "text": "_b2b_g_current = _gain_compression.getGains()(0) * airspeed_scale_squared;"
+      },
+      {
+        "line": 395,
+        "text": "transfer_inputs.cap_raw = _param_flap_b2b_cap.get();"
+      },
+      {
+        "line": 396,
+        "text": "transfer_inputs.slew_raw_per_s = _param_flap_b2b_slew.get();"
+      },
+      {
+        "line": 397,
+        "text": "transfer_inputs.safety_slew_raw_per_s = _param_flap_b2b_safe.get();"
+      },
+      {
+        "line": 399,
+        "text": "transfer_inputs.headroom_release_ratio = _param_flap_b2b_hr.get();"
+      },
+      {
+        "line": 400,
+        "text": "transfer_inputs.adapt_enabled = _param_flap_b2b_adapt.get();"
+      },
+      {
+        "line": 401,
+        "text": "transfer_inputs.hold_cap_raw = _param_flap_b2b_hcap.get();"
+      },
+      {
+        "line": 402,
+        "text": "transfer_inputs.residual_reserve_raw = _param_flap_b2b_rsvd.get();"
+      },
+      {
+        "line": 403,
+        "text": "transfer_inputs.adapt_tau_s = _param_flap_b2b_tau.get();"
+      },
+      {
+        "line": 404,
+        "text": "transfer_inputs.adapt_slew_raw_per_s = _param_flap_b2b_aslw.get();"
+      },
+      {
+        "line": 405,
+        "text": "transfer_inputs.entry_window_s = _param_flap_b2b_ewin.get();"
+      },
+      {
+        "line": 406,
+        "text": "transfer_inputs.gate_window_s = _param_flap_b2b_gwin.get();"
+      },
+      {
+        "line": 407,
+        "text": "transfer_inputs.gate_std_raw = _param_flap_b2b_gstd.get();"
+      },
+      {
+        "line": 408,
+        "text": "transfer_inputs.gate_same_sign_fraction = _param_flap_b2b_gsign.get();"
+      },
+      {
+        "line": 409,
+        "text": "_bumpless_roll_i_result = _bumpless_roll_i_transfer.update(transfer_inputs, _rate_control);"
+      },
+      {
+        "line": 411,
+        "text": "if (_bumpless_roll_i_result.reset_required) {"
+      },
+      {
+        "line": 415,
+        "text": "const float transferred_roll_i_raw = _bumpless_roll_i_transfer.transferredRaw();"
+      },
+      {
+        "line": 417,
+        "text": "_bumpless_roll_i_result.headroom_release_ratio_effective,"
+      },
+      {
+        "line": 460,
+        "text": "Vector3f angular_acceleration_setpoint = _rate_control.update(rates, body_rates_setpoint, angular_accel, dt,"
+      },
+      {
+        "line": 466,
+        "text": "const Vector3f gains_before_update = _gain_compression.getGains();"
+      },
+      {
+        "line": 479,
+        "text": "control_u = _gain_compression.getGains().emult("
+      },
+      {
+        "line": 486,
+        "text": "_gain_compression.update(control_u, dt);"
+      },
+      {
+        "line": 523,
+        "text": "_gain_compression.reset();"
+      },
+      {
+        "line": 525,
+        "text": "_bumpless_roll_i_result = {};"
+      },
+      {
+        "line": 546,
+        "text": "const float transferred_roll_i_raw = _bumpless_roll_i_transfer.transferredRaw();"
+      },
+      {
+        "line": 549,
+        "text": "rate_ctrl_status.flap_slow_gate_valid = _bumpless_roll_i_result.state == BumplessRollITransfer::State::Eligible"
+      },
+      {
+        "line": 550,
+        "text": "|| _bumpless_roll_i_result.state == BumplessRollITransfer::State::TransferIn"
+      },
+      {
+        "line": 551,
+        "text": "|| _bumpless_roll_i_result.state == BumplessRollITransfer::State::TransferHold;"
+      },
+      {
+        "line": 561,
+        "text": "rate_ctrl_status.flap_slow_exit_reason = static_cast<uint8_t>(_bumpless_roll_i_result.reason);"
+      },
+      {
+        "line": 562,
+        "text": "rate_ctrl_status.flap_b2b_state = static_cast<uint8_t>(_bumpless_roll_i_result.state);"
+      },
+      {
+        "line": 563,
+        "text": "rate_ctrl_status.flap_b2b_reason = static_cast<uint8_t>(_bumpless_roll_i_result.reason);"
+      },
+      {
+        "line": 564,
+        "text": "rate_ctrl_status.flap_b2b_normal_exit = _bumpless_roll_i_result.normal_exit;"
+      },
+      {
+        "line": 565,
+        "text": "rate_ctrl_status.flap_b2b_safety_exit = _bumpless_roll_i_result.safety_exit;"
+      },
+      {
+        "line": 566,
+        "text": "rate_ctrl_status.flap_b2b_recovery = _bumpless_roll_i_result.recovery;"
+      },
+      {
+        "line": 567,
+        "text": "rate_ctrl_status.flap_b2b_reset_mismatch = _bumpless_roll_i_result.reset_mismatch;"
+      },
+      {
+        "line": 568,
+        "text": "rate_ctrl_status.flap_b2b_reset_this_cycle = _roll_i_reset_this_cycle;"
+      },
+      {
+        "line": 569,
+        "text": "rate_ctrl_status.flap_b2b_transfer_limited = _bumpless_roll_i_result.transfer_limited;"
+      },
+      {
+        "line": 570,
+        "text": "rate_ctrl_status.flap_b2b_i_before_raw = _bumpless_roll_i_result.residual_i_before_raw;"
+      },
+      {
+        "line": 571,
+        "text": "rate_ctrl_status.flap_b2b_requested_delta_i_raw = _bumpless_roll_i_result.requested_delta_i_raw;"
+      },
+      {
+        "line": 572,
+        "text": "rate_ctrl_status.flap_b2b_accepted_delta_i_raw = _bumpless_roll_i_result.accepted_delta_i_raw;"
+      },
+      {
+        "line": 573,
+        "text": "rate_ctrl_status.flap_b2b_i_after_transfer_raw = _bumpless_roll_i_result.residual_i_raw;"
+      },
+      {
+        "line": 574,
+        "text": "rate_ctrl_status.flap_b2b_transferred_before_raw = _bumpless_roll_i_result.transferred_i_before_raw;"
+      },
+      {
+        "line": 575,
+        "text": "rate_ctrl_status.flap_b2b_requested_delta_s_raw = _bumpless_roll_i_result.requested_delta_s_raw;"
+      },
+      {
+        "line": 576,
+        "text": "rate_ctrl_status.flap_b2b_accepted_delta_s_raw = _bumpless_roll_i_result.accepted_delta_s_raw;"
+      },
+      {
+        "line": 577,
+        "text": "rate_ctrl_status.flap_b2b_transferred_raw = transferred_roll_i_raw;"
+      },
+      {
+        "line": 578,
+        "text": "rate_ctrl_status.flap_b2b_total_equivalent_raw = rate_ctrl_status.rollspeed_integ + transferred_roll_i_raw;"
+      },
+      {
+        "line": 579,
+        "text": "rate_ctrl_status.flap_b2b_natural_delta_pre_imax_raw = rate_ctrl_status.rollspeed_integ_delta_pre_imax;"
+      },
+      {
+        "line": 580,
+        "text": "rate_ctrl_status.flap_b2b_natural_delta_accepted_raw = rate_ctrl_status.rollspeed_integ_delta_accepted;"
+      },
+      {
+        "line": 581,
+        "text": "rate_ctrl_status.flap_b2b_unmatched_delta_raw = _bumpless_roll_i_result.unmatched_delta_raw;"
+      },
+      {
+        "line": 582,
+        "text": "rate_ctrl_status.b2b_hr_param = _param_flap_b2b_hr.get();"
+      },
+      {
+        "line": 583,
+        "text": "rate_ctrl_status.b2b_hr_latched = _bumpless_roll_i_result.headroom_release_ratio_latched;"
+      },
+      {
+        "line": 584,
+        "text": "rate_ctrl_status.b2b_hr_effective = _bumpless_roll_i_result.headroom_release_ratio_effective;"
+      },
+      {
+        "line": 585,
+        "text": "rate_ctrl_status.b2b_total_limit = _bumpless_roll_i_result.total_limit_raw;"
+      },
+      {
+        "line": 586,
+        "text": "rate_ctrl_status.b2b_i_lower = _bumpless_roll_i_result.residual_lower_raw;"
+      },
+      {
+        "line": 587,
+        "text": "rate_ctrl_status.b2b_i_upper = _bumpless_roll_i_result.residual_upper_raw;"
+      },
+      {
+        "line": 588,
+        "text": "rate_ctrl_status.b2b_hr_pos = _bumpless_roll_i_result.headroom_positive_raw;"
+      },
+      {
+        "line": 589,
+        "text": "rate_ctrl_status.b2b_hr_neg = _bumpless_roll_i_result.headroom_negative_raw;"
+      },
+      {
+        "line": 590,
+        "text": "rate_ctrl_status.b2b_exit_decay = _bumpless_roll_i_result.exit_authority_decay_raw;"
+      },
+      {
+        "line": 591,
+        "text": "rate_ctrl_status.flap_b2b_g_current = _b2b_g_current;"
+      },
+      {
+        "line": 592,
+        "text": "rate_ctrl_status.flap_b2b_effective_slow_torque = effective_slow_torque;"
+      },
+      {
+        "line": 593,
+        "text": "rate_ctrl_status.flap_b2b_effective_slow_tail = effective_slow_torque / 1.1f;"
+      },
+      {
+        "line": 594,
+        "text": "rate_ctrl_status.flap_b2b_reset_epoch = _rate_control.rollIntegralResetEpoch();"
+      },
+      {
+        "line": 595,
+        "text": "flap_b2b_adaptive_s adaptive_status{};"
+      },
+      {
+        "line": 597,
+        "text": "adaptive_status.enabled = _bumpless_roll_i_result.adapt_enabled;"
+      },
+      {
+        "line": 598,
+        "text": "adaptive_status.entry_est_valid = _bumpless_roll_i_result.entry_est_valid;"
+      },
+      {
+        "line": 599,
+        "text": "adaptive_status.gate = _bumpless_roll_i_result.adapt_gate;"
+      },
+      {
+        "line": 600,
+        "text": "adaptive_status.limited = _bumpless_roll_i_result.adapt_limited;"
+      },
+      {
+        "line": 601,
+        "text": "adaptive_status.releasing = _bumpless_roll_i_result.adapt_releasing;"
+      },
+      {
+        "line": 602,
+        "text": "adaptive_status.reversal = _bumpless_roll_i_result.adapt_reversal;"
+      },
+      {
+        "line": 603,
+        "text": "adaptive_status.entry_est_raw = _bumpless_roll_i_result.entry_est_raw;"
+      },
+      {
+        "line": 604,
+        "text": "adaptive_status.t_hat_raw = _bumpless_roll_i_result.adapt_t_hat_raw;"
+      },
+      {
+        "line": 605,
+        "text": "adaptive_status.target_raw = _bumpless_roll_i_result.adapt_target_raw;"
+      },
+      {
+        "line": 606,
+        "text": "adaptive_status.std_raw = _bumpless_roll_i_result.adapt_std_raw;"
+      },
+      {
+        "line": 607,
+        "text": "adaptive_status.sign_fraction = _bumpless_roll_i_result.adapt_sign_fraction;"
+      },
+      {
+        "line": 608,
+        "text": "adaptive_status.hold_cap_raw = _bumpless_roll_i_result.adapt_hold_cap_raw;"
+      },
+      {
+        "line": 609,
+        "text": "adaptive_status.reserve_raw = _bumpless_roll_i_result.adapt_reserve_raw;"
+      },
+      {
+        "line": 611,
+        "text": "adaptive_status.residual_i_raw = _bumpless_roll_i_result.residual_i_raw;"
+      },
+      {
+        "line": 612,
+        "text": "adaptive_status.total_equivalent_i_raw = _bumpless_roll_i_result.total_equivalent_i_raw;"
+      },
+      {
+        "line": 613,
+        "text": "_flap_b2b_adaptive_pub.publish(adaptive_status);"
+      }
+    ]
+  },
+  {
+    "sha": "e624a99f2955addbf76681e636c44162a0c03055",
+    "path": "src/modules/fw_att_control/FixedwingAttitudeControl.cpp",
+    "content_sha256": "40f9f25c116e6e59c8620b1e0b09642f8f77085f465077d3a19dd5408412d8f8",
+    "anchors": [
+      {
+        "line": 199,
+        "text": "static constexpr float DT_MIN = 0.002f;"
+      },
+      {
+        "line": 200,
+        "text": "static constexpr float DT_MAX = 0.04f;"
+      },
+      {
+        "line": 205,
+        "text": "dt = math::constrain((att.timestamp_sample - _last_run) * 1e-6f, DT_MIN, DT_MAX);"
+      },
+      {
+        "line": 212,
+        "text": "if (dt < DT_MIN || dt > DT_MAX) {"
+      },
+      {
+        "line": 214,
+        "text": "dt = math::constrain((time_now_us - _last_run) * 1e-6f, DT_MIN, DT_MAX);"
+      },
+      {
+        "line": 304,
+        "text": "_roll_ctrl.control_roll(roll_sp, _yaw_ctrl.get_euler_rate_setpoint(), euler_angles.phi(),"
+      }
+    ]
+  },
+  {
+    "sha": "e624a99f2955addbf76681e636c44162a0c03055",
+    "path": "src/modules/fw_att_control/fw_roll_controller.cpp",
+    "content_sha256": "51fab211b67ec194cb72e4adb085f89d9312e962cf89b4db2b4f3981515cf510",
+    "anchors": [
+      {
+        "line": 44,
+        "text": "float RollController::control_roll(float roll_setpoint, float euler_yaw_rate_setpoint, float roll, float pitch)"
+      },
+      {
+        "line": 61,
+        "text": "_body_rate_setpoint = math::constrain(roll_body_rate_setpoint_raw, -_max_rate, _max_rate);"
+      }
+    ]
+  },
+  {
+    "sha": "e624a99f2955addbf76681e636c44162a0c03055",
+    "path": "src/lib/rate_control/rate_control.cpp",
+    "content_sha256": "51dbeca652a082ed5f06c918f3f33243a2e5fca3cb4fcbbaa3f12d60dfab6e08",
+    "anchors": [
+      {
+        "line": 175,
+        "text": "Vector3f rate_error = rate_sp - rate;"
+      },
+      {
+        "line": 176,
+        "text": "_roll_rate_error = PX4_ISFINITE(rate_error(0)) ? rate_error(0) : 0.f;"
+      },
+      {
+        "line": 183,
+        "text": "const Vector3f torque = _gain_p.emult(rate_error) + _rate_int - _gain_d.emult(angular_accel) + _gain_ff.emult(rate_sp);"
+      },
+      {
+        "line": 275,
+        "text": "_roll_rate_error = 0.f;"
+      }
+    ]
+  },
+  {
+    "sha": "e624a99f2955addbf76681e636c44162a0c03055",
+    "path": "src/lib/rate_control/gain_compression.cpp",
+    "content_sha256": "e7c7b4325f8d6fa5824a19f4e96dd311cffe6e8b9d463a9ef8aaf2b8da1994b0",
+    "anchors": [
+      {
+        "line": 42,
+        "text": "_gain_compression_pub.advertise();"
+      },
+      {
+        "line": 91,
+        "text": "_gain_compression_pub.publish(msg);"
+      }
+    ]
+  },
+  {
+    "sha": "e624a99f2955addbf76681e636c44162a0c03055",
+    "path": "src/modules/control_allocator/VehicleActuatorEffectiveness/ActuatorEffectivenessControlSurfaces.cpp",
+    "content_sha256": "044e4aaa558c811134c5fde6f3c3df62959231273cc0056df29c50fe294df78d",
+    "anchors": []
+  },
+  {
+    "sha": "e624a99f2955addbf76681e636c44162a0c03055",
+    "path": "src/lib/control_allocation/control_allocation/ControlAllocationPseudoInverse.cpp",
+    "content_sha256": "3200e76a8a150c0dd514c8e4008d7392729bca53bf42e71151a74d364c803499",
+    "anchors": [
+      {
+        "line": 73,
+        "text": "normalizeControlAllocationMatrix();"
+      },
+      {
+        "line": 151,
+        "text": "ControlAllocationPseudoInverse::normalizeControlAllocationMatrix()"
+      },
+      {
+        "line": 185,
+        "text": "_prev_actuator_sp = _actuator_sp;"
+      },
+      {
+        "line": 188,
+        "text": "_actuator_sp = _actuator_trim + _mix * (_control_sp - _control_trim);"
+      }
+    ]
+  },
+  {
+    "sha": "e624a99f2955addbf76681e636c44162a0c03055",
+    "path": "src/modules/control_allocator/ControlAllocator.cpp",
+    "content_sha256": "de9f231d5b94f648ea07f44618493e2429ee3084bdfa2902bccbfa313e83690f",
+    "anchors": []
+  },
+  {
+    "sha": "e7b2f6de69dda341bc398d49ec719d5957af78e7",
+    "path": "src/modules/fw_rate_control/FixedwingRateControl.cpp",
+    "content_sha256": "2d808fbf52685422fd4eacaed776daf649265c0d03240b3d73c1ad98c51a0c6c",
+    "anchors": [
+      {
+        "line": 115,
+        "text": "_bumpless_roll_i_transfer.synchronizeReset(_rate_control.rollIntegralResetEpoch());"
+      },
+      {
+        "line": 123,
+        "text": "_bumpless_roll_i_transfer.synchronizeReset(_rate_control.rollIntegralResetEpoch());"
+      },
+      {
+        "line": 199,
+        "text": "_airspeed_filter_for_torque_scaling.reset(airspeed);"
+      },
+      {
+        "line": 202,
+        "text": "airspeed = _airspeed_filter_for_torque_scaling.update(airspeed, dt);"
+      },
+      {
+        "line": 271,
+        "text": "static constexpr float DT_MIN = 0.002f;"
+      },
+      {
+        "line": 272,
+        "text": "static constexpr float DT_MAX = 0.04f;"
+      },
+      {
+        "line": 277,
+        "text": "dt = math::constrain((vehicle_angular_velocity.timestamp_sample - _last_run) * 1e-6f, DT_MIN, DT_MAX);"
+      },
+      {
+        "line": 281,
+        "text": "if (dt < DT_MIN || dt > DT_MAX) {"
+      },
+      {
+        "line": 283,
+        "text": "dt = math::constrain((time_now_us - _last_run) * 1e-6f, DT_MIN, DT_MAX);"
+      },
+      {
+        "line": 354,
+        "text": "_gain_compression.reset();"
+      },
+      {
+        "line": 402,
+        "text": "_b2b_g_current = _gain_compression.getGains()(0) * airspeed_scale_squared;"
+      },
+      {
+        "line": 419,
+        "text": "transfer_inputs.cap_raw = _param_flap_b2b_cap.get();"
+      },
+      {
+        "line": 420,
+        "text": "transfer_inputs.slew_raw_per_s = _param_flap_b2b_slew.get();"
+      },
+      {
+        "line": 421,
+        "text": "transfer_inputs.safety_slew_raw_per_s = _param_flap_b2b_safe.get();"
+      },
+      {
+        "line": 423,
+        "text": "transfer_inputs.headroom_release_ratio = _param_flap_b2b_hr.get();"
+      },
+      {
+        "line": 424,
+        "text": "transfer_inputs.adapt_enabled = _param_flap_b2b_adapt.get();"
+      },
+      {
+        "line": 425,
+        "text": "transfer_inputs.hold_cap_raw = _param_flap_b2b_hcap.get();"
+      },
+      {
+        "line": 426,
+        "text": "transfer_inputs.residual_reserve_raw = _param_flap_b2b_rsvd.get();"
+      },
+      {
+        "line": 427,
+        "text": "transfer_inputs.adapt_tau_s = _param_flap_b2b_tau.get();"
+      },
+      {
+        "line": 428,
+        "text": "transfer_inputs.adapt_slew_raw_per_s = _param_flap_b2b_aslw.get();"
+      },
+      {
+        "line": 429,
+        "text": "transfer_inputs.entry_window_s = _param_flap_b2b_ewin.get();"
+      },
+      {
+        "line": 430,
+        "text": "transfer_inputs.gate_window_s = _param_flap_b2b_gwin.get();"
+      },
+      {
+        "line": 431,
+        "text": "transfer_inputs.gate_std_raw = _param_flap_b2b_gstd.get();"
+      },
+      {
+        "line": 432,
+        "text": "transfer_inputs.gate_same_sign_fraction = _param_flap_b2b_gsign.get();"
+      },
+      {
+        "line": 433,
+        "text": "_bumpless_roll_i_result = _bumpless_roll_i_transfer.update(transfer_inputs, _rate_control);"
+      },
+      {
+        "line": 435,
+        "text": "if (_bumpless_roll_i_result.reset_required) {"
+      },
+      {
+        "line": 439,
+        "text": "const float transferred_roll_i_raw = _bumpless_roll_i_transfer.transferredRaw();"
+      },
+      {
+        "line": 441,
+        "text": "_bumpless_roll_i_result.headroom_release_ratio_effective,"
+      },
+      {
+        "line": 484,
+        "text": "Vector3f angular_acceleration_setpoint = _rate_control.update(rates, body_rates_setpoint, angular_accel, dt,"
+      },
+      {
+        "line": 490,
+        "text": "const Vector3f gains_before_update = _gain_compression.getGains();"
+      },
+      {
+        "line": 503,
+        "text": "control_u = _gain_compression.getGains().emult("
+      },
+      {
+        "line": 510,
+        "text": "_gain_compression.update(control_u, dt);"
+      },
+      {
+        "line": 583,
+        "text": "_gain_compression.reset();"
+      },
+      {
+        "line": 585,
+        "text": "_bumpless_roll_i_result = {};"
+      },
+      {
+        "line": 609,
+        "text": "const float transferred_roll_i_raw = _bumpless_roll_i_transfer.transferredRaw();"
+      },
+      {
+        "line": 612,
+        "text": "rate_ctrl_status.flap_slow_gate_valid = _bumpless_roll_i_result.state == BumplessRollITransfer::State::Eligible"
+      },
+      {
+        "line": 613,
+        "text": "|| _bumpless_roll_i_result.state == BumplessRollITransfer::State::TransferIn"
+      },
+      {
+        "line": 614,
+        "text": "|| _bumpless_roll_i_result.state == BumplessRollITransfer::State::TransferHold;"
+      },
+      {
+        "line": 624,
+        "text": "rate_ctrl_status.flap_slow_exit_reason = static_cast<uint8_t>(_bumpless_roll_i_result.reason);"
+      },
+      {
+        "line": 625,
+        "text": "rate_ctrl_status.flap_b2b_state = static_cast<uint8_t>(_bumpless_roll_i_result.state);"
+      },
+      {
+        "line": 626,
+        "text": "rate_ctrl_status.flap_b2b_reason = static_cast<uint8_t>(_bumpless_roll_i_result.reason);"
+      },
+      {
+        "line": 627,
+        "text": "rate_ctrl_status.flap_b2b_normal_exit = _bumpless_roll_i_result.normal_exit;"
+      },
+      {
+        "line": 628,
+        "text": "rate_ctrl_status.flap_b2b_safety_exit = _bumpless_roll_i_result.safety_exit;"
+      },
+      {
+        "line": 629,
+        "text": "rate_ctrl_status.flap_b2b_recovery = _bumpless_roll_i_result.recovery;"
+      },
+      {
+        "line": 630,
+        "text": "rate_ctrl_status.flap_b2b_reset_mismatch = _bumpless_roll_i_result.reset_mismatch;"
+      },
+      {
+        "line": 631,
+        "text": "rate_ctrl_status.flap_b2b_reset_this_cycle = _roll_i_reset_this_cycle;"
+      },
+      {
+        "line": 632,
+        "text": "rate_ctrl_status.flap_b2b_transfer_limited = _bumpless_roll_i_result.transfer_limited;"
+      },
+      {
+        "line": 633,
+        "text": "rate_ctrl_status.flap_b2b_i_before_raw = _bumpless_roll_i_result.residual_i_before_raw;"
+      },
+      {
+        "line": 634,
+        "text": "rate_ctrl_status.flap_b2b_requested_delta_i_raw = _bumpless_roll_i_result.requested_delta_i_raw;"
+      },
+      {
+        "line": 635,
+        "text": "rate_ctrl_status.flap_b2b_accepted_delta_i_raw = _bumpless_roll_i_result.accepted_delta_i_raw;"
+      },
+      {
+        "line": 636,
+        "text": "rate_ctrl_status.flap_b2b_i_after_transfer_raw = _bumpless_roll_i_result.residual_i_raw;"
+      },
+      {
+        "line": 637,
+        "text": "rate_ctrl_status.flap_b2b_transferred_before_raw = _bumpless_roll_i_result.transferred_i_before_raw;"
+      },
+      {
+        "line": 638,
+        "text": "rate_ctrl_status.flap_b2b_requested_delta_s_raw = _bumpless_roll_i_result.requested_delta_s_raw;"
+      },
+      {
+        "line": 639,
+        "text": "rate_ctrl_status.flap_b2b_accepted_delta_s_raw = _bumpless_roll_i_result.accepted_delta_s_raw;"
+      },
+      {
+        "line": 640,
+        "text": "rate_ctrl_status.flap_b2b_transferred_raw = transferred_roll_i_raw;"
+      },
+      {
+        "line": 641,
+        "text": "rate_ctrl_status.flap_b2b_total_equivalent_raw = rate_ctrl_status.rollspeed_integ + transferred_roll_i_raw;"
+      },
+      {
+        "line": 642,
+        "text": "rate_ctrl_status.flap_b2b_natural_delta_pre_imax_raw = rate_ctrl_status.rollspeed_integ_delta_pre_imax;"
+      },
+      {
+        "line": 643,
+        "text": "rate_ctrl_status.flap_b2b_natural_delta_accepted_raw = rate_ctrl_status.rollspeed_integ_delta_accepted;"
+      },
+      {
+        "line": 644,
+        "text": "rate_ctrl_status.flap_b2b_unmatched_delta_raw = _bumpless_roll_i_result.unmatched_delta_raw;"
+      },
+      {
+        "line": 645,
+        "text": "rate_ctrl_status.b2b_hr_param = _param_flap_b2b_hr.get();"
+      },
+      {
+        "line": 646,
+        "text": "rate_ctrl_status.b2b_hr_latched = _bumpless_roll_i_result.headroom_release_ratio_latched;"
+      },
+      {
+        "line": 647,
+        "text": "rate_ctrl_status.b2b_hr_effective = _bumpless_roll_i_result.headroom_release_ratio_effective;"
+      },
+      {
+        "line": 648,
+        "text": "rate_ctrl_status.b2b_total_limit = _bumpless_roll_i_result.total_limit_raw;"
+      },
+      {
+        "line": 649,
+        "text": "rate_ctrl_status.b2b_i_lower = _bumpless_roll_i_result.residual_lower_raw;"
+      },
+      {
+        "line": 650,
+        "text": "rate_ctrl_status.b2b_i_upper = _bumpless_roll_i_result.residual_upper_raw;"
+      },
+      {
+        "line": 651,
+        "text": "rate_ctrl_status.b2b_hr_pos = _bumpless_roll_i_result.headroom_positive_raw;"
+      },
+      {
+        "line": 652,
+        "text": "rate_ctrl_status.b2b_hr_neg = _bumpless_roll_i_result.headroom_negative_raw;"
+      },
+      {
+        "line": 653,
+        "text": "rate_ctrl_status.b2b_exit_decay = _bumpless_roll_i_result.exit_authority_decay_raw;"
+      },
+      {
+        "line": 654,
+        "text": "rate_ctrl_status.flap_b2b_g_current = _b2b_g_current;"
+      },
+      {
+        "line": 655,
+        "text": "rate_ctrl_status.flap_b2b_effective_slow_torque = effective_slow_torque;"
+      },
+      {
+        "line": 656,
+        "text": "rate_ctrl_status.flap_b2b_effective_slow_tail = effective_slow_torque / 1.1f;"
+      },
+      {
+        "line": 657,
+        "text": "rate_ctrl_status.flap_b2b_reset_epoch = _rate_control.rollIntegralResetEpoch();"
+      },
+      {
+        "line": 658,
+        "text": "flap_b2b_adaptive_s adaptive_status{};"
+      },
+      {
+        "line": 660,
+        "text": "adaptive_status.enabled = _bumpless_roll_i_result.adapt_enabled;"
+      },
+      {
+        "line": 661,
+        "text": "adaptive_status.entry_est_valid = _bumpless_roll_i_result.entry_est_valid;"
+      },
+      {
+        "line": 662,
+        "text": "adaptive_status.gate = _bumpless_roll_i_result.adapt_gate;"
+      },
+      {
+        "line": 663,
+        "text": "adaptive_status.limited = _bumpless_roll_i_result.adapt_limited;"
+      },
+      {
+        "line": 664,
+        "text": "adaptive_status.releasing = _bumpless_roll_i_result.adapt_releasing;"
+      },
+      {
+        "line": 665,
+        "text": "adaptive_status.reversal = _bumpless_roll_i_result.adapt_reversal;"
+      },
+      {
+        "line": 666,
+        "text": "adaptive_status.entry_est_raw = _bumpless_roll_i_result.entry_est_raw;"
+      },
+      {
+        "line": 667,
+        "text": "adaptive_status.t_hat_raw = _bumpless_roll_i_result.adapt_t_hat_raw;"
+      },
+      {
+        "line": 668,
+        "text": "adaptive_status.target_raw = _bumpless_roll_i_result.adapt_target_raw;"
+      },
+      {
+        "line": 669,
+        "text": "adaptive_status.std_raw = _bumpless_roll_i_result.adapt_std_raw;"
+      },
+      {
+        "line": 670,
+        "text": "adaptive_status.sign_fraction = _bumpless_roll_i_result.adapt_sign_fraction;"
+      },
+      {
+        "line": 671,
+        "text": "adaptive_status.hold_cap_raw = _bumpless_roll_i_result.adapt_hold_cap_raw;"
+      },
+      {
+        "line": 672,
+        "text": "adaptive_status.reserve_raw = _bumpless_roll_i_result.adapt_reserve_raw;"
+      },
+      {
+        "line": 674,
+        "text": "adaptive_status.residual_i_raw = _bumpless_roll_i_result.residual_i_raw;"
+      },
+      {
+        "line": 675,
+        "text": "adaptive_status.total_equivalent_i_raw = _bumpless_roll_i_result.total_equivalent_i_raw;"
+      },
+      {
+        "line": 676,
+        "text": "_flap_b2b_adaptive_pub.publish(adaptive_status);"
+      },
+      {
+        "line": 690,
+        "text": "fast_shadow.flap_b2b_transferred_raw = transferred_roll_i_raw;"
+      },
+      {
+        "line": 691,
+        "text": "fast_shadow.flap_b2b_total_equivalent_raw = rate_ctrl_status.flap_b2b_total_equivalent_raw;"
+      },
+      {
+        "line": 692,
+        "text": "const bool fast_new_frame = _fast_v1_shadow.update(rate_ctrl_status.timestamp, rate_ctrl_status.flap_b2b_total_equivalent_raw,"
+      },
+      {
+        "line": 696,
+        "text": "rate_ctrl_status.flap_b2b_total_equivalent_raw, rate_ctrl_status.timestamp, fast_new_frame);"
+      }
+    ]
+  },
+  {
+    "sha": "e7b2f6de69dda341bc398d49ec719d5957af78e7",
+    "path": "src/modules/fw_att_control/FixedwingAttitudeControl.cpp",
+    "content_sha256": "40f9f25c116e6e59c8620b1e0b09642f8f77085f465077d3a19dd5408412d8f8",
+    "anchors": [
+      {
+        "line": 199,
+        "text": "static constexpr float DT_MIN = 0.002f;"
+      },
+      {
+        "line": 200,
+        "text": "static constexpr float DT_MAX = 0.04f;"
+      },
+      {
+        "line": 205,
+        "text": "dt = math::constrain((att.timestamp_sample - _last_run) * 1e-6f, DT_MIN, DT_MAX);"
+      },
+      {
+        "line": 212,
+        "text": "if (dt < DT_MIN || dt > DT_MAX) {"
+      },
+      {
+        "line": 214,
+        "text": "dt = math::constrain((time_now_us - _last_run) * 1e-6f, DT_MIN, DT_MAX);"
+      },
+      {
+        "line": 304,
+        "text": "_roll_ctrl.control_roll(roll_sp, _yaw_ctrl.get_euler_rate_setpoint(), euler_angles.phi(),"
+      }
+    ]
+  },
+  {
+    "sha": "e7b2f6de69dda341bc398d49ec719d5957af78e7",
+    "path": "src/modules/fw_att_control/fw_roll_controller.cpp",
+    "content_sha256": "51fab211b67ec194cb72e4adb085f89d9312e962cf89b4db2b4f3981515cf510",
+    "anchors": [
+      {
+        "line": 44,
+        "text": "float RollController::control_roll(float roll_setpoint, float euler_yaw_rate_setpoint, float roll, float pitch)"
+      },
+      {
+        "line": 61,
+        "text": "_body_rate_setpoint = math::constrain(roll_body_rate_setpoint_raw, -_max_rate, _max_rate);"
+      }
+    ]
+  },
+  {
+    "sha": "e7b2f6de69dda341bc398d49ec719d5957af78e7",
+    "path": "src/lib/rate_control/rate_control.cpp",
+    "content_sha256": "1dae7e64e7501f30b370f351b9cab44cd024c36b656e6906eabf8ce9ecd09ab5",
+    "anchors": [
+      {
+        "line": 175,
+        "text": "Vector3f rate_error = rate_sp - rate;"
+      },
+      {
+        "line": 176,
+        "text": "_roll_rate_error = PX4_ISFINITE(rate_error(0)) ? rate_error(0) : 0.f;"
+      },
+      {
+        "line": 183,
+        "text": "const Vector3f torque = _gain_p.emult(rate_error) + _rate_int - _gain_d.emult(angular_accel) + _gain_ff.emult(rate_sp);"
+      },
+      {
+        "line": 294,
+        "text": "_roll_rate_error = 0.f;"
+      }
+    ]
+  },
+  {
+    "sha": "e7b2f6de69dda341bc398d49ec719d5957af78e7",
+    "path": "src/lib/rate_control/gain_compression.cpp",
+    "content_sha256": "e7c7b4325f8d6fa5824a19f4e96dd311cffe6e8b9d463a9ef8aaf2b8da1994b0",
+    "anchors": [
+      {
+        "line": 42,
+        "text": "_gain_compression_pub.advertise();"
+      },
+      {
+        "line": 91,
+        "text": "_gain_compression_pub.publish(msg);"
+      }
+    ]
+  },
+  {
+    "sha": "e7b2f6de69dda341bc398d49ec719d5957af78e7",
+    "path": "src/modules/control_allocator/VehicleActuatorEffectiveness/ActuatorEffectivenessControlSurfaces.cpp",
+    "content_sha256": "044e4aaa558c811134c5fde6f3c3df62959231273cc0056df29c50fe294df78d",
+    "anchors": []
+  },
+  {
+    "sha": "e7b2f6de69dda341bc398d49ec719d5957af78e7",
+    "path": "src/lib/control_allocation/control_allocation/ControlAllocationPseudoInverse.cpp",
+    "content_sha256": "3200e76a8a150c0dd514c8e4008d7392729bca53bf42e71151a74d364c803499",
+    "anchors": [
+      {
+        "line": 73,
+        "text": "normalizeControlAllocationMatrix();"
+      },
+      {
+        "line": 151,
+        "text": "ControlAllocationPseudoInverse::normalizeControlAllocationMatrix()"
+      },
+      {
+        "line": 185,
+        "text": "_prev_actuator_sp = _actuator_sp;"
+      },
+      {
+        "line": 188,
+        "text": "_actuator_sp = _actuator_trim + _mix * (_control_sp - _control_trim);"
+      }
+    ]
+  },
+  {
+    "sha": "e7b2f6de69dda341bc398d49ec719d5957af78e7",
+    "path": "src/modules/control_allocator/ControlAllocator.cpp",
+    "content_sha256": "de9f231d5b94f648ea07f44618493e2429ee3084bdfa2902bccbfa313e83690f",
+    "anchors": []
+  }
+]

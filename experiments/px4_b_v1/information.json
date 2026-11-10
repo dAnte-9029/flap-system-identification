@@ -1,0 +1,16 @@
+{
+  "model": "Delta_p=X theta + innovation_i; X=[1,p,q,r,delta_motor,delta_d,delta_s,delta_rudder]",
+  "n": 11221,
+  "parameter_count": 8,
+  "design_rank": 8,
+  "gram_condition": 2.61749532583531,
+  "ols_rmse": 0.5079144640482625,
+  "innovation_profile_information": "Exactly zero Schur complement X^T(I-I)X when each innovation is unrestricted; independent of full-rank X",
+  "compensation_max_errors": [
+    1.4210854715202004e-14,
+    8.881784197001252e-16,
+    1.7763568394002505e-15,
+    1.4210854715202004e-14
+  ],
+  "interpretation": "Unrestricted innovation demonstrates missing assumptions, not impossibility under an independently justified innovation model"
+}

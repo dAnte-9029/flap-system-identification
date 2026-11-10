@@ -1,0 +1,49 @@
+{
+  "split": "train",
+  "cohort_windows": 11221,
+  "flights": 114,
+  "metrics": [
+    {
+      "metric": "D_from_logged_derivative",
+      "n": 88025,
+      "flights": 90,
+      "dates": 15,
+      "rmse": 0.0,
+      "r2": null
+    },
+    {
+      "metric": "PID_sum_identity",
+      "n": 88025,
+      "flights": 90,
+      "dates": 15,
+      "rmse": 1.797283434300976e-08,
+      "r2": 0.9999999999999983
+    },
+    {
+      "metric": "P_from_reference_rate",
+      "n": 88025,
+      "flights": 90,
+      "dates": 15,
+      "rmse": 0.0025010978286717496,
+      "r2": 0.9911957457190106
+    },
+    {
+      "metric": "allocation_differential",
+      "n": 92766,
+      "flights": 114,
+      "dates": 17,
+      "rmse": 0.0014143946718613754,
+      "r2": 0.9999747663031286
+    },
+    {
+      "metric": "approx_PID_to_torque_oracle_terms",
+      "n": 86740,
+      "flights": 89,
+      "dates": 15,
+      "rmse": 0.06772466439461744,
+      "r2": 0.9501071546724991
+    }
+  ],
+  "plant_identification": "NO-GO: controller likelihood does not identify plant when innovation model/exogeneity remain unconstrained",
+  "parameter_change_logs": 0
+}
