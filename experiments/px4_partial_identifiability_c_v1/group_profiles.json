@@ -1,0 +1,834 @@
+[
+  {
+    "group_type": "date",
+    "group": "2026-09-06",
+    "n": 632,
+    "dates": 1,
+    "flights": 6,
+    "b_observational": [
+      -6.06444463845339,
+      5.459793039892992,
+      3.770762659892449,
+      -3.687144408761904
+    ],
+    "constant_waveform_gain": -0.5210333474298521,
+    "gram_eigenvalues": [
+      8.860947545892592e-05,
+      0.00023651490427491377,
+      0.00151933749357555,
+      0.019130189893775084
+    ],
+    "rank": 4,
+    "condition_number": 215.893275461752,
+    "minimum_rms": 0.5849210199880434,
+    "zero_gain_rms": 0.6390801978421105,
+    "sign_reversed_rms": 0.779292113539002,
+    "conditional_sigma_equals_zero_gain_rms_interval": [
+      -13.887306069961195,
+      12.845239375101489
+    ],
+    "data_only_gain_set": "R",
+    "data_only_kernel_set": "R^4",
+    "robust_signed_action_pairs": 0
+  },
+  {
+    "group_type": "date",
+    "group": "2026-09-11",
+    "n": 244,
+    "dates": 1,
+    "flights": 3,
+    "b_observational": [
+      3.831409955908604,
+      -1.8118562031235,
+      5.697724390311093,
+      -3.307552839563364
+    ],
+    "constant_waveform_gain": 4.4097253035328325,
+    "gram_eigenvalues": [
+      0.00014292569569736155,
+      0.000339114289567744,
+      0.002373683719035547,
+      0.02545594120833005
+    ],
+    "rank": 4,
+    "condition_number": 178.10612069527318,
+    "minimum_rms": 0.4133043526469984,
+    "zero_gain_rms": 0.47085601082744233,
+    "sign_reversed_rms": 0.6118497102871479,
+    "conditional_sigma_equals_zero_gain_rms_interval": [
+      -5.579883760884837,
+      14.399334367950502
+    ],
+    "data_only_gain_set": "R",
+    "data_only_kernel_set": "R^4",
+    "robust_signed_action_pairs": 0
+  },
+  {
+    "group_type": "date",
+    "group": "2026-09-12",
+    "n": 1093,
+    "dates": 1,
+    "flights": 8,
+    "b_observational": [
+      -3.60023187331696,
+      4.367316245058492,
+      1.6754557614070555,
+      -1.7961870758714746
+    ],
+    "constant_waveform_gain": 0.6463530572771132,
+    "gram_eigenvalues": [
+      0.00014921314334033776,
+      0.00032776628695449164,
+      0.0016349689081337903,
+      0.014890834367814163
+    ],
+    "rank": 4,
+    "condition_number": 99.79572867686196,
+    "minimum_rms": 0.5221372117360913,
+    "zero_gain_rms": 0.5551841973673192,
+    "sign_reversed_rms": 0.6442330078371945,
+    "conditional_sigma_equals_zero_gain_rms_interval": [
+      -7.309529861047169,
+      8.602235975601396
+    ],
+    "data_only_gain_set": "R",
+    "data_only_kernel_set": "R^4",
+    "robust_signed_action_pairs": 0
+  },
+  {
+    "group_type": "date",
+    "group": "2026-09-13",
+    "n": 724,
+    "dates": 1,
+    "flights": 6,
+    "b_observational": [
+      -0.9574463717275615,
+      0.2258894492759742,
+      4.908859718041393,
+      -2.4310541883194743
+    ],
+    "constant_waveform_gain": 1.7462486072703314,
+    "gram_eigenvalues": [
+      9.80318598648678e-05,
+      0.0003089385630839371,
+      0.0018093260407846588,
+      0.014401028483724796
+    ],
+    "rank": 4,
+    "condition_number": 146.90151246315145,
+    "minimum_rms": 0.4709542414612609,
+    "zero_gain_rms": 0.5147714478218604,
+    "sign_reversed_rms": 0.6281439972804026,
+    "conditional_sigma_equals_zero_gain_rms_interval": [
+      -8.412125427571471,
+      11.904622642112134
+    ],
+    "data_only_gain_set": "R",
+    "data_only_kernel_set": "R^4",
+    "robust_signed_action_pairs": 0
+  },
+  {
+    "group_type": "date",
+    "group": "2026-09-14",
+    "n": 565,
+    "dates": 1,
+    "flights": 4,
+    "b_observational": [
+      1.3067509983153198,
+      -3.033638795678887,
+      7.887837790452104,
+      -2.8524324888997343
+    ],
+    "constant_waveform_gain": 3.308517504188802,
+    "gram_eigenvalues": [
+      0.00014122088519612263,
+      0.0003814713827680354,
+      0.0020960860992557382,
+      0.01451185827638566
+    ],
+    "rank": 4,
+    "condition_number": 102.76000080464021,
+    "minimum_rms": 0.641379022535856,
+    "zero_gain_rms": 0.6970986331031855,
+    "sign_reversed_rms": 0.8424279586113989,
+    "conditional_sigma_equals_zero_gain_rms_interval": [
+      -8.89191443195325,
+      15.508949440330856
+    ],
+    "data_only_gain_set": "R",
+    "data_only_kernel_set": "R^4",
+    "robust_signed_action_pairs": 0
+  },
+  {
+    "group_type": "date",
+    "group": "2026-09-15",
+    "n": 317,
+    "dates": 1,
+    "flights": 4,
+    "b_observational": [
+      -5.613413249775264,
+      -2.00762682876224,
+      11.279057789799847,
+      -6.384000623757085
+    ],
+    "constant_waveform_gain": -2.725982912494743,
+    "gram_eigenvalues": [
+      3.436722335674039e-05,
+      0.00014507685435430953,
+      0.0013076587393126456,
+      0.011698540207579294
+    ],
+    "rank": 4,
+    "condition_number": 340.39817782615916,
+    "minimum_rms": 0.31631981590365793,
+    "zero_gain_rms": 0.3815588453897318,
+    "sign_reversed_rms": 0.5312004632722078,
+    "conditional_sigma_equals_zero_gain_rms_interval": [
+      -18.458822991551372,
+      13.006857166561886
+    ],
+    "data_only_gain_set": "R",
+    "data_only_kernel_set": "R^4",
+    "robust_signed_action_pairs": 0
+  },
+  {
+    "group_type": "date",
+    "group": "2026-09-16",
+    "n": 354,
+    "dates": 1,
+    "flights": 5,
+    "b_observational": [
+      1.0919550297424636,
+      -5.325427218927181,
+      10.903852872137143,
+      -5.76424160278377
+    ],
+    "constant_waveform_gain": 0.9061390801686571,
+    "gram_eigenvalues": [
+      5.4997128515965335e-05,
+      0.00015848481753812942,
+      0.0016320200843444239,
+      0.017228399619258254
+    ],
+    "rank": 4,
+    "condition_number": 313.2599843691267,
+    "minimum_rms": 0.3090993001276306,
+    "zero_gain_rms": 0.360900704075465,
+    "sign_reversed_rms": 0.484117899679915,
+    "conditional_sigma_equals_zero_gain_rms_interval": [
+      -11.372287271509961,
+      13.184565431847275
+    ],
+    "data_only_gain_set": "R",
+    "data_only_kernel_set": "R^4",
+    "robust_signed_action_pairs": 0
+  },
+  {
+    "group_type": "date",
+    "group": "2026-09-18",
+    "n": 186,
+    "dates": 1,
+    "flights": 3,
+    "b_observational": [
+      3.513574051516886,
+      -6.643671780032468,
+      14.36927725814375,
+      -7.979440026746915
+    ],
+    "constant_waveform_gain": 3.259739502881252,
+    "gram_eigenvalues": [
+      5.45211169639514e-05,
+      0.00022591810572612247,
+      0.0021997421734335715,
+      0.01835060633148418
+    ],
+    "rank": 4,
+    "condition_number": 336.5779601253852,
+    "minimum_rms": 0.4044533965171028,
+    "zero_gain_rms": 0.5048817223022447,
+    "sign_reversed_rms": 0.7272376256746216,
+    "conditional_sigma_equals_zero_gain_rms_interval": [
+      -13.613352967391446,
+      20.13283197315395
+    ],
+    "data_only_gain_set": "R",
+    "data_only_kernel_set": "R^4",
+    "robust_signed_action_pairs": 0
+  },
+  {
+    "group_type": "date",
+    "group": "2026-09-22",
+    "n": 339,
+    "dates": 1,
+    "flights": 6,
+    "b_observational": [
+      -1.356824866376569,
+      1.514274920347864,
+      8.412430521901346,
+      -6.802393072366037
+    ],
+    "constant_waveform_gain": 1.7674875035066044,
+    "gram_eigenvalues": [
+      6.391423119806076e-05,
+      0.00022318782093471093,
+      0.0014320266378653667,
+      0.019756702730189347
+    ],
+    "rank": 4,
+    "condition_number": 309.1127337347797,
+    "minimum_rms": 0.41335942923510227,
+    "zero_gain_rms": 0.49772302318965356,
+    "sign_reversed_rms": 0.6916030494723721,
+    "conditional_sigma_equals_zero_gain_rms_interval": [
+      -13.636712803971793,
+      17.171687810985002
+    ],
+    "data_only_gain_set": "R",
+    "data_only_kernel_set": "R^4",
+    "robust_signed_action_pairs": 0
+  },
+  {
+    "group_type": "date",
+    "group": "2026-09-23",
+    "n": 489,
+    "dates": 1,
+    "flights": 9,
+    "b_observational": [
+      -2.1711703745152406,
+      1.4170055246027835,
+      8.274051435879668,
+      -6.193543784297753
+    ],
+    "constant_waveform_gain": 1.3263428016694583,
+    "gram_eigenvalues": [
+      6.591357439207492e-05,
+      0.00024188356139595707,
+      0.0016534770645130993,
+      0.014861946167813361
+    ],
+    "rank": 4,
+    "condition_number": 225.4762589479634,
+    "minimum_rms": 0.4181557676521204,
+    "zero_gain_rms": 0.5199067415683976,
+    "sign_reversed_rms": 0.7460893657269698,
+    "conditional_sigma_equals_zero_gain_rms_interval": [
+      -17.879221411120497,
+      20.531907014459414
+    ],
+    "data_only_gain_set": "R",
+    "data_only_kernel_set": "R^4",
+    "robust_signed_action_pairs": 0
+  },
+  {
+    "group_type": "date",
+    "group": "2026-09-24",
+    "n": 858,
+    "dates": 1,
+    "flights": 12,
+    "b_observational": [
+      -1.985441634865687,
+      2.850322595349472,
+      7.367219732867582,
+      -6.5330383680332895
+    ],
+    "constant_waveform_gain": 1.699062325318077,
+    "gram_eigenvalues": [
+      4.3559576086684725e-05,
+      0.00015347832762084527,
+      0.001117100260176622,
+      0.010512415041165367
+    ],
+    "rank": 4,
+    "condition_number": 241.334190678191,
+    "minimum_rms": 0.33694158303468036,
+    "zero_gain_rms": 0.4214938431924385,
+    "sign_reversed_rms": 0.6083085962427107,
+    "conditional_sigma_equals_zero_gain_rms_interval": [
+      -16.42198854312236,
+      19.820113193758516
+    ],
+    "data_only_gain_set": "R",
+    "data_only_kernel_set": "R^4",
+    "robust_signed_action_pairs": 0
+  },
+  {
+    "group_type": "date",
+    "group": "2026-09-25",
+    "n": 316,
+    "dates": 1,
+    "flights": 4,
+    "b_observational": [
+      3.163587367570772,
+      -1.5795750479041475,
+      7.265424452841313,
+      -4.949942302983118
+    ],
+    "constant_waveform_gain": 3.8994944695248197,
+    "gram_eigenvalues": [
+      4.372322357396467e-05,
+      0.00011674940520841763,
+      0.0008333791686475173,
+      0.010325018567249494
+    ],
+    "rank": 4,
+    "condition_number": 236.14495280256097,
+    "minimum_rms": 0.3383096801194015,
+    "zero_gain_rms": 0.37520813801791614,
+    "sign_reversed_rms": 0.4687902178501715,
+    "conditional_sigma_equals_zero_gain_rms_interval": [
+      -8.175471500093504,
+      15.974460439143144
+    ],
+    "data_only_gain_set": "R",
+    "data_only_kernel_set": "R^4",
+    "robust_signed_action_pairs": 0
+  },
+  {
+    "group_type": "date",
+    "group": "2026-09-27",
+    "n": 417,
+    "dates": 1,
+    "flights": 3,
+    "b_observational": [
+      2.443035653979223,
+      -1.898897566042049,
+      8.003318499457453,
+      -5.084510201278461
+    ],
+    "constant_waveform_gain": 3.4629463861161662,
+    "gram_eigenvalues": [
+      5.990088194222707e-05,
+      0.00015819810685586372,
+      0.0014270370288363883,
+      0.012169373383886139
+    ],
+    "rank": 4,
+    "condition_number": 203.15850099875232,
+    "minimum_rms": 0.38156535553421955,
+    "zero_gain_rms": 0.43104578574071645,
+    "sign_reversed_rms": 0.5535571478966381,
+    "conditional_sigma_equals_zero_gain_rms_interval": [
+      -10.330567249315436,
+      17.25646002154777
+    ],
+    "data_only_gain_set": "R",
+    "data_only_kernel_set": "R^4",
+    "robust_signed_action_pairs": 0
+  },
+  {
+    "group_type": "date",
+    "group": "2026-09-28",
+    "n": 1085,
+    "dates": 1,
+    "flights": 8,
+    "b_observational": [
+      -4.477197631558944,
+      2.4322274837378,
+      6.643202211723846,
+      -5.179467096958866
+    ],
+    "constant_waveform_gain": -0.5812350330561635,
+    "gram_eigenvalues": [
+      4.011068803018058e-05,
+      0.00012737743582024466,
+      0.0009990845229604388,
+      0.011079751637229502
+    ],
+    "rank": 4,
+    "condition_number": 276.2294087025627,
+    "minimum_rms": 0.31617011293955494,
+    "zero_gain_rms": 0.3676570721701031,
+    "sign_reversed_rms": 0.4907099651710129,
+    "conditional_sigma_equals_zero_gain_rms_interval": [
+      -14.63328626525586,
+      13.470816199143533
+    ],
+    "data_only_gain_set": "R",
+    "data_only_kernel_set": "R^4",
+    "robust_signed_action_pairs": 0
+  },
+  {
+    "group_type": "date",
+    "group": "2026-09-29",
+    "n": 1203,
+    "dates": 1,
+    "flights": 9,
+    "b_observational": [
+      -4.876675105199717,
+      -0.04399482557092549,
+      8.90660365467323,
+      -5.629037963388134
+    ],
+    "constant_waveform_gain": -1.643104239485547,
+    "gram_eigenvalues": [
+      5.6628660617942024e-05,
+      0.00013907845928024247,
+      0.001000995113522453,
+      0.012451321096280034
+    ],
+    "rank": 4,
+    "condition_number": 219.8766659922555,
+    "minimum_rms": 0.3948544389367641,
+    "zero_gain_rms": 0.436429502448756,
+    "sign_reversed_rms": 0.5423585148095996,
+    "conditional_sigma_equals_zero_gain_rms_interval": [
+      -13.472395574998622,
+      10.186187096027528
+    ],
+    "data_only_gain_set": "R",
+    "data_only_kernel_set": "R^4",
+    "robust_signed_action_pairs": 0
+  },
+  {
+    "group_type": "date",
+    "group": "2026-10-10",
+    "n": 664,
+    "dates": 1,
+    "flights": 6,
+    "b_observational": [
+      2.8233794241700103,
+      -7.5920278620235075,
+      0.03874376864629081,
+      3.8026449734545538
+    ],
+    "constant_waveform_gain": -0.9272596957526527,
+    "gram_eigenvalues": [
+      3.4488614121029195e-06,
+      9.113625287819231e-06,
+      0.0026918408566809424,
+      0.01831490170295717
+    ],
+    "rank": 4,
+    "condition_number": 5310.4197340855635,
+    "minimum_rms": 0.5045698085006338,
+    "zero_gain_rms": 0.5669389701365525,
+    "sign_reversed_rms": 0.7224313866983355,
+    "conditional_sigma_equals_zero_gain_rms_interval": [
+      -10.615751297172146,
+      8.76123190566684
+    ],
+    "data_only_gain_set": "R",
+    "data_only_kernel_set": "R^4",
+    "robust_signed_action_pairs": 0
+  },
+  {
+    "group_type": "date",
+    "group": "2026-10-12",
+    "n": 1735,
+    "dates": 1,
+    "flights": 18,
+    "b_observational": [
+      -2.575142166129383,
+      -3.72008849965419,
+      5.478653938365281,
+      -1.2408296893827866
+    ],
+    "constant_waveform_gain": -2.057406416801079,
+    "gram_eigenvalues": [
+      3.3115195458406468e-06,
+      9.504338458299375e-06,
+      0.0031116376190644893,
+      0.016522939213833465
+    ],
+    "rank": 4,
+    "condition_number": 4989.533954159844,
+    "minimum_rms": 0.5334997893604612,
+    "zero_gain_rms": 0.610864229637541,
+    "sign_reversed_rms": 0.7992210911003889,
+    "conditional_sigma_equals_zero_gain_rms_interval": [
+      -13.691841540366145,
+      9.577028706763986
+    ],
+    "data_only_gain_set": "R",
+    "data_only_kernel_set": "R^4",
+    "robust_signed_action_pairs": 0
+  },
+  {
+    "group_type": "mode",
+    "group": "3",
+    "n": 6929,
+    "dates": 17,
+    "flights": 113,
+    "b_observational": [
+      -3.4027494400716045,
+      -0.8871114605424133,
+      9.25853046402917,
+      -5.592238794049365
+    ],
+    "constant_waveform_gain": -0.6235692306342138,
+    "gram_eigenvalues": [
+      9.67985851964232e-05,
+      0.00026416938098828126,
+      0.001492100811477632,
+      0.011779617059473446
+    ],
+    "rank": 4,
+    "condition_number": 121.69203749796745,
+    "minimum_rms": 0.45763697452508323,
+    "zero_gain_rms": 0.5090191376856739,
+    "sign_reversed_rms": 0.6388326296954882,
+    "conditional_sigma_equals_zero_gain_rms_interval": [
+      -10.540988705202832,
+      9.293850243934404
+    ],
+    "data_only_gain_set": "R",
+    "data_only_kernel_set": "R^4",
+    "robust_signed_action_pairs": 0
+  },
+  {
+    "group_type": "mode",
+    "group": "15",
+    "n": 4292,
+    "dates": 17,
+    "flights": 113,
+    "b_observational": [
+      -1.4411677159753453,
+      -0.2914664520680492,
+      6.958461103947741,
+      -4.43872952010993
+    ],
+    "constant_waveform_gain": 0.7870974157944168,
+    "gram_eigenvalues": [
+      0.0001583583450345384,
+      0.00032554570576693947,
+      0.0018806812555003367,
+      0.02065256330853647
+    ],
+    "rank": 4,
+    "condition_number": 130.41664020947093,
+    "minimum_rms": 0.4539645584033127,
+    "zero_gain_rms": 0.49977463522306154,
+    "sign_reversed_rms": 0.6171282550575956,
+    "conditional_sigma_equals_zero_gain_rms_interval": [
+      -7.261873236128796,
+      8.83606806771763
+    ],
+    "data_only_gain_set": "R",
+    "data_only_kernel_set": "R^4",
+    "robust_signed_action_pairs": 0
+  },
+  {
+    "group_type": "speed_group",
+    "group": "0",
+    "n": 3740,
+    "dates": 17,
+    "flights": 114,
+    "b_observational": [
+      -0.8865121562097031,
+      -0.8529421367280284,
+      6.937196506771357,
+      -4.234851149959183
+    ],
+    "constant_waveform_gain": 0.9628910638744417,
+    "gram_eigenvalues": [
+      0.0001179621736527679,
+      0.00030325920226820105,
+      0.0016277837794959418,
+      0.017334857364124635
+    ],
+    "rank": 4,
+    "condition_number": 146.95267836579177,
+    "minimum_rms": 0.44414587714544046,
+    "zero_gain_rms": 0.479931173137716,
+    "sign_reversed_rms": 0.5740549130888953,
+    "conditional_sigma_equals_zero_gain_rms_interval": [
+      -6.8460874098001705,
+      8.771869537549055
+    ],
+    "data_only_gain_set": "R",
+    "data_only_kernel_set": "R^4",
+    "robust_signed_action_pairs": 0
+  },
+  {
+    "group_type": "speed_group",
+    "group": "1",
+    "n": 3740,
+    "dates": 17,
+    "flights": 114,
+    "b_observational": [
+      -3.798201974962184,
+      0.658413966340051,
+      7.744048879126418,
+      -5.030013588373364
+    ],
+    "constant_waveform_gain": -0.4257527178690781,
+    "gram_eigenvalues": [
+      0.000122868336256254,
+      0.0003136393467448155,
+      0.001739836186290046,
+      0.01518061450515007
+    ],
+    "rank": 4,
+    "condition_number": 123.55188462460696,
+    "minimum_rms": 0.4561593087926162,
+    "zero_gain_rms": 0.510403706049361,
+    "sign_reversed_rms": 0.6463774652640808,
+    "conditional_sigma_equals_zero_gain_rms_interval": [
+      -9.47061916441774,
+      8.619113728679586
+    ],
+    "data_only_gain_set": "R",
+    "data_only_kernel_set": "R^4",
+    "robust_signed_action_pairs": 0
+  },
+  {
+    "group_type": "speed_group",
+    "group": "2",
+    "n": 3741,
+    "dates": 17,
+    "flights": 114,
+    "b_observational": [
+      -2.7229403840488153,
+      -1.8791191152707432,
+      9.711327710269414,
+      -5.558571028612712
+    ],
+    "constant_waveform_gain": -0.44930281766285685,
+    "gram_eigenvalues": [
+      0.00011846778107726414,
+      0.0002991387658050215,
+      0.0016326935003529981,
+      0.014906611230266306
+    ],
+    "rank": 4,
+    "condition_number": 125.82839903571912,
+    "minimum_rms": 0.4610360180299092,
+    "zero_gain_rms": 0.5175444035019637,
+    "sign_reversed_rms": 0.6585941152350121,
+    "conditional_sigma_equals_zero_gain_rms_interval": [
+      -10.17587173703334,
+      9.277266101707625
+    ],
+    "data_only_gain_set": "R",
+    "data_only_kernel_set": "R^4",
+    "robust_signed_action_pairs": 0
+  },
+  {
+    "group_type": "phase_group",
+    "group": "0",
+    "n": 2796,
+    "dates": 17,
+    "flights": 114,
+    "b_observational": [
+      -5.776938267274354,
+      1.3235058139376652,
+      8.17882581929236,
+      -5.789535303303508
+    ],
+    "constant_waveform_gain": -2.064141937347837,
+    "gram_eigenvalues": [
+      0.0001277958185472509,
+      0.0002996003173784677,
+      0.0015026167090530917,
+      0.01959035696376126
+    ],
+    "rank": 4,
+    "condition_number": 153.29419371039887,
+    "minimum_rms": 0.46213599153688095,
+    "zero_gain_rms": 0.5294595288814319,
+    "sign_reversed_rms": 0.6932535949218456,
+    "conditional_sigma_equals_zero_gain_rms_interval": [
+      -12.626659647285756,
+      8.49837577259008
+    ],
+    "data_only_gain_set": "R",
+    "data_only_kernel_set": "R^4",
+    "robust_signed_action_pairs": 0
+  },
+  {
+    "group_type": "phase_group",
+    "group": "1",
+    "n": 2770,
+    "dates": 17,
+    "flights": 114,
+    "b_observational": [
+      -2.1509584813048024,
+      -1.1011383115182998,
+      9.303639037336973,
+      -5.894084622225644
+    ],
+    "constant_waveform_gain": 0.15745762228822713,
+    "gram_eigenvalues": [
+      0.00011217771104764366,
+      0.000197731747776553,
+      0.0016481998832443407,
+      0.013979273196567537
+    ],
+    "rank": 4,
+    "condition_number": 124.61720840987951,
+    "minimum_rms": 0.48121089479082113,
+    "zero_gain_rms": 0.5183376359771491,
+    "sign_reversed_rms": 0.616444517929529,
+    "conditional_sigma_equals_zero_gain_rms_interval": [
+      -7.404731448339365,
+      7.719646692915819
+    ],
+    "data_only_gain_set": "R",
+    "data_only_kernel_set": "R^4",
+    "robust_signed_action_pairs": 0
+  },
+  {
+    "group_type": "phase_group",
+    "group": "2",
+    "n": 3065,
+    "dates": 17,
+    "flights": 114,
+    "b_observational": [
+      -2.4597469231060836,
+      -1.7572648516489104,
+      9.83797333226438,
+      -5.2343024904167335
+    ],
+    "constant_waveform_gain": 0.3866590670926522,
+    "gram_eigenvalues": [
+      0.00010170834378058809,
+      0.000329760279662663,
+      0.0014285898764109576,
+      0.01430170808797776
+    ],
+    "rank": 4,
+    "condition_number": 140.61489506534824,
+    "minimum_rms": 0.4236098671691832,
+    "zero_gain_rms": 0.5079503304527225,
+    "sign_reversed_rms": 0.7026508337281334,
+    "conditional_sigma_equals_zero_gain_rms_interval": [
+      -12.660181847521752,
+      13.433499981707055
+    ],
+    "data_only_gain_set": "R",
+    "data_only_kernel_set": "R^4",
+    "robust_signed_action_pairs": 0
+  },
+  {
+    "group_type": "phase_group",
+    "group": "3",
+    "n": 2590,
+    "dates": 17,
+    "flights": 114,
+    "b_observational": [
+      0.5269669836736465,
+      -1.6754069073457312,
+      5.390419818610709,
+      -3.2282503767510486
+    ],
+    "constant_waveform_gain": 1.0137295181875747,
+    "gram_eigenvalues": [
+      0.00010716715546171232,
+      0.0002924949197148756,
+      0.0019210123547304327,
+      0.013652601201674925
+    ],
+    "rank": 4,
+    "condition_number": 127.39538660753882,
+    "minimum_rms": 0.42479070009968306,
+    "zero_gain_rms": 0.44003921851114713,
+    "sign_reversed_rms": 0.4829043783587673,
+    "conditional_sigma_equals_zero_gain_rms_interval": [
+      -3.876057677509286,
+      5.903516713884436
+    ],
+    "data_only_gain_set": "R",
+    "data_only_kernel_set": "R^4",
+    "robust_signed_action_pairs": 0
+  }
+]

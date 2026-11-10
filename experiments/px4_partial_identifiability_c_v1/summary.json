@@ -1,0 +1,144 @@
+{
+  "mpc_signed_response_witnesses": [
+    {
+      "direction": 0,
+      "positive_response": 1.0,
+      "negative_response": -1.0,
+      "positive_exact_fit_error": 2.220446049250313e-16,
+      "negative_exact_fit_error": 2.220446049250313e-16
+    },
+    {
+      "direction": 1,
+      "positive_response": 1.0,
+      "negative_response": -1.0,
+      "positive_exact_fit_error": 2.220446049250313e-16,
+      "negative_exact_fit_error": 2.220446049250313e-16
+    },
+    {
+      "direction": 2,
+      "positive_response": 1.0,
+      "negative_response": -1.0,
+      "positive_exact_fit_error": 2.220446049250313e-16,
+      "negative_exact_fit_error": 2.220446049250313e-16
+    },
+    {
+      "direction": 3,
+      "positive_response": 1.0,
+      "negative_response": -1.0,
+      "positive_exact_fit_error": 2.220446049250313e-16,
+      "negative_exact_fit_error": 2.220446049250313e-16
+    },
+    {
+      "direction": 4,
+      "positive_response": 1.0,
+      "negative_response": -1.0,
+      "positive_exact_fit_error": 2.220446049250313e-16,
+      "negative_exact_fit_error": 2.220446049250313e-16
+    }
+  ],
+  "baseline": "9c15fffd24bfcacc7c57cd980cc149098cb83f82",
+  "split": "train",
+  "profile": {
+    "n": 11221,
+    "dates": 17,
+    "flights": 114,
+    "b_observational": [
+      -2.645734746775241,
+      -0.6995040990930184,
+      8.425193272270375,
+      -5.180115683931574
+    ],
+    "constant_waveform_gain": -0.10016125752945815,
+    "gram_eigenvalues": [
+      0.00011666353433476834,
+      0.00028860349046238605,
+      0.0016373100207945387,
+      0.015307271394962543
+    ],
+    "rank": 4,
+    "condition_number": 131.20870615009832,
+    "minimum_rms": 0.4511814156863601,
+    "zero_gain_rms": 0.5007361514490704,
+    "sign_reversed_rms": 0.6263008573280582,
+    "conditional_sigma_equals_zero_gain_rms_interval": [
+      -9.170339337646347,
+      8.970016822587429
+    ],
+    "data_only_gain_set": "R",
+    "data_only_kernel_set": "R^4",
+    "robust_signed_action_pairs": 0
+  },
+  "firmware_versions": 15,
+  "raw_control_parity_max_error": 1.457167719820518e-16,
+  "largest_bin_hold_us": 59147,
+  "native_horizon_range_s": [
+    0.1890609999999999,
+    0.209147
+  ],
+  "measurement_discrepancies": {
+    "E_initial": {
+      "rms": 0.49171283996509907,
+      "q95_abs": 1.001714038966747,
+      "meaning": "prediction/belief discrepancy, NOT independently measured sensor error or hard bound"
+    },
+    "E_increment": {
+      "rms": 0.7014689831410557,
+      "q95_abs": 1.4122661383632324,
+      "meaning": "prediction/belief discrepancy, NOT independently measured sensor error or hard bound"
+    },
+    "E_endpoint": {
+      "rms": 0.4954566938637722,
+      "q95_abs": 1.0270935931950562,
+      "meaning": "prediction/belief discrepancy, NOT independently measured sensor error or hard bound"
+    }
+  },
+  "observational_equivalence": [
+    {
+      "kernel": "zero",
+      "b": [
+        -0.0,
+        -0.0,
+        0.0,
+        -0.0
+      ],
+      "gain": 0.0,
+      "residual_rms": 0.5007361514490704,
+      "endpoint_reconstruction_max_error": 2.220446049250313e-16
+    },
+    {
+      "kernel": "observational",
+      "b": [
+        -2.645734746775241,
+        -0.6995040990930184,
+        8.425193272270375,
+        -5.180115683931574
+      ],
+      "gain": -0.10016125752945815,
+      "residual_rms": 0.4511814156863601,
+      "endpoint_reconstruction_max_error": 4.440892098500626e-16
+    },
+    {
+      "kernel": "opposite",
+      "b": [
+        2.645734746775241,
+        0.6995040990930184,
+        -8.425193272270375,
+        5.180115683931574
+      ],
+      "gain": 0.10016125752945815,
+      "residual_rms": 0.6263008573280582,
+      "endpoint_reconstruction_max_error": 4.440892098500626e-16
+    }
+  ],
+  "augmented_design_null_error": 0.0,
+  "verdict": "NO-GO for data-proven finite plant response bounds or robust MPC ranking; GO for conditional sensitivity profiling",
+  "physical_constraints_used": [
+    "normalized command limits; no torque/actual servo position bound inferred",
+    "causal horizon and native sample timing; no future measured states used as predictors"
+  ],
+  "extra_assumptions_for_finite_set": [
+    "fixed nuisance m(H) and local four-bin linear kernel",
+    "known finite RMS bound on combined omitted dynamics, disturbances, measurement and nuisance error"
+  ],
+  "no_neural_training": true
+}
