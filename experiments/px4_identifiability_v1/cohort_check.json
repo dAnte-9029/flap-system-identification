@@ -1,0 +1,15 @@
+{
+  "windows": 11221,
+  "flights": 114,
+  "dates": 17,
+  "logs": 114,
+  "firmwares": 15,
+  "keyed_identity_verified": true,
+  "feature_and_context_identity_verified": true,
+  "native_target_horizon_s": [
+    0.1890609999999999,
+    0.209147
+  ],
+  "split": "train",
+  "other_splits_opened": false
+}

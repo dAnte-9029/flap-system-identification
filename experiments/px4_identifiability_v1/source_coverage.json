@@ -1,0 +1,362 @@
+[
+  {
+    "firmware": "0369024bbc9caaec19a12a6f5ce2eb68fab55c93",
+    "path": "src/modules/fw_att_control/FixedwingAttitudeControl.cpp",
+    "exists": true,
+    "blob": "ec856e942d5b5f06f433db1e00821d410b1d44f1"
+  },
+  {
+    "firmware": "0369024bbc9caaec19a12a6f5ce2eb68fab55c93",
+    "path": "src/modules/fw_rate_control/FixedwingRateControl.cpp",
+    "exists": true,
+    "blob": "f285be8105e88a808be1c70f96d5f9a935fb57ce"
+  },
+  {
+    "firmware": "0369024bbc9caaec19a12a6f5ce2eb68fab55c93",
+    "path": "src/lib/rate_control/rate_control.cpp",
+    "exists": true,
+    "blob": "37507ad0718cca3acb21a5afff2fea762726b8da"
+  },
+  {
+    "firmware": "0369024bbc9caaec19a12a6f5ce2eb68fab55c93",
+    "path": "src/modules/control_allocator/VehicleActuatorEffectiveness/ActuatorEffectivenessControlSurfaces.cpp",
+    "exists": true,
+    "blob": "093185e24050f9b1a57db2ffe3b9d986aa3451b6"
+  },
+  {
+    "firmware": "19a108f17666942d199fb3856be5e85bc9aa6f83",
+    "path": "src/modules/fw_att_control/FixedwingAttitudeControl.cpp",
+    "exists": true,
+    "blob": "ec856e942d5b5f06f433db1e00821d410b1d44f1"
+  },
+  {
+    "firmware": "19a108f17666942d199fb3856be5e85bc9aa6f83",
+    "path": "src/modules/fw_rate_control/FixedwingRateControl.cpp",
+    "exists": true,
+    "blob": "32d87493fc85f3cee8fef1b3a51988dfe3023f02"
+  },
+  {
+    "firmware": "19a108f17666942d199fb3856be5e85bc9aa6f83",
+    "path": "src/lib/rate_control/rate_control.cpp",
+    "exists": true,
+    "blob": "37507ad0718cca3acb21a5afff2fea762726b8da"
+  },
+  {
+    "firmware": "19a108f17666942d199fb3856be5e85bc9aa6f83",
+    "path": "src/modules/control_allocator/VehicleActuatorEffectiveness/ActuatorEffectivenessControlSurfaces.cpp",
+    "exists": true,
+    "blob": "093185e24050f9b1a57db2ffe3b9d986aa3451b6"
+  },
+  {
+    "firmware": "229adb4c62d9883a7a0d7e9cbc65ac319f5de97d",
+    "path": "src/modules/fw_att_control/FixedwingAttitudeControl.cpp",
+    "exists": true,
+    "blob": "66ec244d2573fed140084c1c4af3b24267aad27c"
+  },
+  {
+    "firmware": "229adb4c62d9883a7a0d7e9cbc65ac319f5de97d",
+    "path": "src/modules/fw_rate_control/FixedwingRateControl.cpp",
+    "exists": true,
+    "blob": "10c17eec4e2ceaddcf5a4c12e70c091467f11b9a"
+  },
+  {
+    "firmware": "229adb4c62d9883a7a0d7e9cbc65ac319f5de97d",
+    "path": "src/lib/rate_control/rate_control.cpp",
+    "exists": true,
+    "blob": "7d6367a886c9a9d0303ec826b68f98b0feb829d4"
+  },
+  {
+    "firmware": "229adb4c62d9883a7a0d7e9cbc65ac319f5de97d",
+    "path": "src/modules/control_allocator/VehicleActuatorEffectiveness/ActuatorEffectivenessControlSurfaces.cpp",
+    "exists": true,
+    "blob": "093185e24050f9b1a57db2ffe3b9d986aa3451b6"
+  },
+  {
+    "firmware": "3f42d7052c958c7f65e2f26a763d909bb84fa7f6",
+    "path": "src/modules/fw_att_control/FixedwingAttitudeControl.cpp",
+    "exists": true,
+    "blob": "ec856e942d5b5f06f433db1e00821d410b1d44f1"
+  },
+  {
+    "firmware": "3f42d7052c958c7f65e2f26a763d909bb84fa7f6",
+    "path": "src/modules/fw_rate_control/FixedwingRateControl.cpp",
+    "exists": true,
+    "blob": "7f15661b546c86ff42b4e241b0f5b1408cc9c7bc"
+  },
+  {
+    "firmware": "3f42d7052c958c7f65e2f26a763d909bb84fa7f6",
+    "path": "src/lib/rate_control/rate_control.cpp",
+    "exists": true,
+    "blob": "5da858bfe8b81c68fb052db0fda28e1ea1103954"
+  },
+  {
+    "firmware": "3f42d7052c958c7f65e2f26a763d909bb84fa7f6",
+    "path": "src/modules/control_allocator/VehicleActuatorEffectiveness/ActuatorEffectivenessControlSurfaces.cpp",
+    "exists": true,
+    "blob": "093185e24050f9b1a57db2ffe3b9d986aa3451b6"
+  },
+  {
+    "firmware": "49d49b63c62c9eb0a8df018337f50995aec75455",
+    "path": "src/modules/fw_att_control/FixedwingAttitudeControl.cpp",
+    "exists": true,
+    "blob": "66ec244d2573fed140084c1c4af3b24267aad27c"
+  },
+  {
+    "firmware": "49d49b63c62c9eb0a8df018337f50995aec75455",
+    "path": "src/modules/fw_rate_control/FixedwingRateControl.cpp",
+    "exists": true,
+    "blob": "8180e14ebd0e4f5207d8b495f5f074558262087a"
+  },
+  {
+    "firmware": "49d49b63c62c9eb0a8df018337f50995aec75455",
+    "path": "src/lib/rate_control/rate_control.cpp",
+    "exists": true,
+    "blob": "7d6367a886c9a9d0303ec826b68f98b0feb829d4"
+  },
+  {
+    "firmware": "49d49b63c62c9eb0a8df018337f50995aec75455",
+    "path": "src/modules/control_allocator/VehicleActuatorEffectiveness/ActuatorEffectivenessControlSurfaces.cpp",
+    "exists": true,
+    "blob": "093185e24050f9b1a57db2ffe3b9d986aa3451b6"
+  },
+  {
+    "firmware": "4cd4d0ac56bc193bcab2abd3ba9eb4f6e1c9a7da",
+    "path": "src/modules/fw_att_control/FixedwingAttitudeControl.cpp",
+    "exists": true,
+    "blob": "ec856e942d5b5f06f433db1e00821d410b1d44f1"
+  },
+  {
+    "firmware": "4cd4d0ac56bc193bcab2abd3ba9eb4f6e1c9a7da",
+    "path": "src/modules/fw_rate_control/FixedwingRateControl.cpp",
+    "exists": true,
+    "blob": "3eeb0b5c004cc514a98a5ff66f22708281c5320b"
+  },
+  {
+    "firmware": "4cd4d0ac56bc193bcab2abd3ba9eb4f6e1c9a7da",
+    "path": "src/lib/rate_control/rate_control.cpp",
+    "exists": true,
+    "blob": "ac459f9b8937d5fe0ad0714efa56f59985ad1e10"
+  },
+  {
+    "firmware": "4cd4d0ac56bc193bcab2abd3ba9eb4f6e1c9a7da",
+    "path": "src/modules/control_allocator/VehicleActuatorEffectiveness/ActuatorEffectivenessControlSurfaces.cpp",
+    "exists": true,
+    "blob": "093185e24050f9b1a57db2ffe3b9d986aa3451b6"
+  },
+  {
+    "firmware": "74be66f2be14340838aed6732a379d124124b5f2",
+    "path": "src/modules/fw_att_control/FixedwingAttitudeControl.cpp",
+    "exists": true,
+    "blob": "ec856e942d5b5f06f433db1e00821d410b1d44f1"
+  },
+  {
+    "firmware": "74be66f2be14340838aed6732a379d124124b5f2",
+    "path": "src/modules/fw_rate_control/FixedwingRateControl.cpp",
+    "exists": true,
+    "blob": "5e25774f9813cc87d87331dcee392989d57b204f"
+  },
+  {
+    "firmware": "74be66f2be14340838aed6732a379d124124b5f2",
+    "path": "src/lib/rate_control/rate_control.cpp",
+    "exists": true,
+    "blob": "5da858bfe8b81c68fb052db0fda28e1ea1103954"
+  },
+  {
+    "firmware": "74be66f2be14340838aed6732a379d124124b5f2",
+    "path": "src/modules/control_allocator/VehicleActuatorEffectiveness/ActuatorEffectivenessControlSurfaces.cpp",
+    "exists": true,
+    "blob": "093185e24050f9b1a57db2ffe3b9d986aa3451b6"
+  },
+  {
+    "firmware": "926693950a4b2fe448d4b18d859c54bf9aa8a260",
+    "path": "src/modules/fw_att_control/FixedwingAttitudeControl.cpp",
+    "exists": true,
+    "blob": "ec856e942d5b5f06f433db1e00821d410b1d44f1"
+  },
+  {
+    "firmware": "926693950a4b2fe448d4b18d859c54bf9aa8a260",
+    "path": "src/modules/fw_rate_control/FixedwingRateControl.cpp",
+    "exists": true,
+    "blob": "a1d8c2939bc99543e3148026ff1d7c9dab29c697"
+  },
+  {
+    "firmware": "926693950a4b2fe448d4b18d859c54bf9aa8a260",
+    "path": "src/lib/rate_control/rate_control.cpp",
+    "exists": true,
+    "blob": "37507ad0718cca3acb21a5afff2fea762726b8da"
+  },
+  {
+    "firmware": "926693950a4b2fe448d4b18d859c54bf9aa8a260",
+    "path": "src/modules/control_allocator/VehicleActuatorEffectiveness/ActuatorEffectivenessControlSurfaces.cpp",
+    "exists": true,
+    "blob": "093185e24050f9b1a57db2ffe3b9d986aa3451b6"
+  },
+  {
+    "firmware": "a644ca7868f07004e45658d4ae9a7a8c880c6bb5",
+    "path": "src/modules/fw_att_control/FixedwingAttitudeControl.cpp",
+    "exists": true,
+    "blob": "ec856e942d5b5f06f433db1e00821d410b1d44f1"
+  },
+  {
+    "firmware": "a644ca7868f07004e45658d4ae9a7a8c880c6bb5",
+    "path": "src/modules/fw_rate_control/FixedwingRateControl.cpp",
+    "exists": true,
+    "blob": "4ea1889c99a43d0cf0bc0c5e91942a4bad8cd3ce"
+  },
+  {
+    "firmware": "a644ca7868f07004e45658d4ae9a7a8c880c6bb5",
+    "path": "src/lib/rate_control/rate_control.cpp",
+    "exists": true,
+    "blob": "4943efdbe74187a064cd6b9e7755a2504a258752"
+  },
+  {
+    "firmware": "a644ca7868f07004e45658d4ae9a7a8c880c6bb5",
+    "path": "src/modules/control_allocator/VehicleActuatorEffectiveness/ActuatorEffectivenessControlSurfaces.cpp",
+    "exists": true,
+    "blob": "093185e24050f9b1a57db2ffe3b9d986aa3451b6"
+  },
+  {
+    "firmware": "b984e3352d86f2db51dc608c5c9f8e8092543249",
+    "path": "src/modules/fw_att_control/FixedwingAttitudeControl.cpp",
+    "exists": true,
+    "blob": "ec856e942d5b5f06f433db1e00821d410b1d44f1"
+  },
+  {
+    "firmware": "b984e3352d86f2db51dc608c5c9f8e8092543249",
+    "path": "src/modules/fw_rate_control/FixedwingRateControl.cpp",
+    "exists": true,
+    "blob": "901b619288f5b830d6f479ee11832f8ed0c6dc70"
+  },
+  {
+    "firmware": "b984e3352d86f2db51dc608c5c9f8e8092543249",
+    "path": "src/lib/rate_control/rate_control.cpp",
+    "exists": true,
+    "blob": "37507ad0718cca3acb21a5afff2fea762726b8da"
+  },
+  {
+    "firmware": "b984e3352d86f2db51dc608c5c9f8e8092543249",
+    "path": "src/modules/control_allocator/VehicleActuatorEffectiveness/ActuatorEffectivenessControlSurfaces.cpp",
+    "exists": true,
+    "blob": "093185e24050f9b1a57db2ffe3b9d986aa3451b6"
+  },
+  {
+    "firmware": "c9af571575af33d5403fbb479256848797c801e2",
+    "path": "src/modules/fw_att_control/FixedwingAttitudeControl.cpp",
+    "exists": true,
+    "blob": "ec856e942d5b5f06f433db1e00821d410b1d44f1"
+  },
+  {
+    "firmware": "c9af571575af33d5403fbb479256848797c801e2",
+    "path": "src/modules/fw_rate_control/FixedwingRateControl.cpp",
+    "exists": true,
+    "blob": "7f15661b546c86ff42b4e241b0f5b1408cc9c7bc"
+  },
+  {
+    "firmware": "c9af571575af33d5403fbb479256848797c801e2",
+    "path": "src/lib/rate_control/rate_control.cpp",
+    "exists": true,
+    "blob": "b990aac9b83cbff24500b71a08d37e0198602e88"
+  },
+  {
+    "firmware": "c9af571575af33d5403fbb479256848797c801e2",
+    "path": "src/modules/control_allocator/VehicleActuatorEffectiveness/ActuatorEffectivenessControlSurfaces.cpp",
+    "exists": true,
+    "blob": "093185e24050f9b1a57db2ffe3b9d986aa3451b6"
+  },
+  {
+    "firmware": "d0dd2354fdeadfbe505211a17b54d728309fedff",
+    "path": "src/modules/fw_att_control/FixedwingAttitudeControl.cpp",
+    "exists": true,
+    "blob": "ec856e942d5b5f06f433db1e00821d410b1d44f1"
+  },
+  {
+    "firmware": "d0dd2354fdeadfbe505211a17b54d728309fedff",
+    "path": "src/modules/fw_rate_control/FixedwingRateControl.cpp",
+    "exists": true,
+    "blob": "f527b7448b381bec5593d717f900e2d24b7ea60a"
+  },
+  {
+    "firmware": "d0dd2354fdeadfbe505211a17b54d728309fedff",
+    "path": "src/lib/rate_control/rate_control.cpp",
+    "exists": true,
+    "blob": "4943efdbe74187a064cd6b9e7755a2504a258752"
+  },
+  {
+    "firmware": "d0dd2354fdeadfbe505211a17b54d728309fedff",
+    "path": "src/modules/control_allocator/VehicleActuatorEffectiveness/ActuatorEffectivenessControlSurfaces.cpp",
+    "exists": true,
+    "blob": "093185e24050f9b1a57db2ffe3b9d986aa3451b6"
+  },
+  {
+    "firmware": "e35acd7c27875be19aa04cab652e3dcfc3afef84",
+    "path": "src/modules/fw_att_control/FixedwingAttitudeControl.cpp",
+    "exists": true,
+    "blob": "ec856e942d5b5f06f433db1e00821d410b1d44f1"
+  },
+  {
+    "firmware": "e35acd7c27875be19aa04cab652e3dcfc3afef84",
+    "path": "src/modules/fw_rate_control/FixedwingRateControl.cpp",
+    "exists": true,
+    "blob": "5a6d8eb6de0b046645c7ba465b238493d9cd74f8"
+  },
+  {
+    "firmware": "e35acd7c27875be19aa04cab652e3dcfc3afef84",
+    "path": "src/lib/rate_control/rate_control.cpp",
+    "exists": true,
+    "blob": "37507ad0718cca3acb21a5afff2fea762726b8da"
+  },
+  {
+    "firmware": "e35acd7c27875be19aa04cab652e3dcfc3afef84",
+    "path": "src/modules/control_allocator/VehicleActuatorEffectiveness/ActuatorEffectivenessControlSurfaces.cpp",
+    "exists": true,
+    "blob": "093185e24050f9b1a57db2ffe3b9d986aa3451b6"
+  },
+  {
+    "firmware": "e624a99f2955addbf76681e636c44162a0c03055",
+    "path": "src/modules/fw_att_control/FixedwingAttitudeControl.cpp",
+    "exists": true,
+    "blob": "ec856e942d5b5f06f433db1e00821d410b1d44f1"
+  },
+  {
+    "firmware": "e624a99f2955addbf76681e636c44162a0c03055",
+    "path": "src/modules/fw_rate_control/FixedwingRateControl.cpp",
+    "exists": true,
+    "blob": "61f832e424fd5420e1e41028fa4a0eebb7b4a526"
+  },
+  {
+    "firmware": "e624a99f2955addbf76681e636c44162a0c03055",
+    "path": "src/lib/rate_control/rate_control.cpp",
+    "exists": true,
+    "blob": "4943efdbe74187a064cd6b9e7755a2504a258752"
+  },
+  {
+    "firmware": "e624a99f2955addbf76681e636c44162a0c03055",
+    "path": "src/modules/control_allocator/VehicleActuatorEffectiveness/ActuatorEffectivenessControlSurfaces.cpp",
+    "exists": true,
+    "blob": "093185e24050f9b1a57db2ffe3b9d986aa3451b6"
+  },
+  {
+    "firmware": "e7b2f6de69dda341bc398d49ec719d5957af78e7",
+    "path": "src/modules/fw_att_control/FixedwingAttitudeControl.cpp",
+    "exists": true,
+    "blob": "ec856e942d5b5f06f433db1e00821d410b1d44f1"
+  },
+  {
+    "firmware": "e7b2f6de69dda341bc398d49ec719d5957af78e7",
+    "path": "src/modules/fw_rate_control/FixedwingRateControl.cpp",
+    "exists": true,
+    "blob": "7a0be5b5995f41c43219ea70a3c3ea089c0ad6e6"
+  },
+  {
+    "firmware": "e7b2f6de69dda341bc398d49ec719d5957af78e7",
+    "path": "src/lib/rate_control/rate_control.cpp",
+    "exists": true,
+    "blob": "37507ad0718cca3acb21a5afff2fea762726b8da"
+  },
+  {
+    "firmware": "e7b2f6de69dda341bc398d49ec719d5957af78e7",
+    "path": "src/modules/control_allocator/VehicleActuatorEffectiveness/ActuatorEffectivenessControlSurfaces.cpp",
+    "exists": true,
+    "blob": "093185e24050f9b1a57db2ffe3b9d986aa3451b6"
+  }
+]
