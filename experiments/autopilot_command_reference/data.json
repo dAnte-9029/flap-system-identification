@@ -1,0 +1,34 @@
+{
+  "dataset": "velocity_rate_multistep_v1",
+  "manifest_sha256": "8afb8623bf7174e4da5b2044f644331b8b251433fed3576f6dcdab470935bcb5",
+  "split": {
+    "train": {
+      "file": "/home/zn/flap-system-identification/outputs/autopilot_command_reference_20261124/train.npz",
+      "sha256": "5e82e5e9535edcac629c4ff02f7bae227f2cd277ee649f2540db60663646ab69",
+      "windows": 126237,
+      "flights": 121,
+      "native_endpoint_counts": [
+        126237,
+        126237,
+        126237,
+        126237,
+        126237,
+        126237
+      ]
+    },
+    "validation": {
+      "file": "/home/zn/flap-system-identification/outputs/autopilot_command_reference_20261124/validation.npz",
+      "sha256": "e34bc132d1e7363d953a27895b136852b7d7825d93ebe6314f3fcf5b1f20ce5d",
+      "windows": 44524,
+      "flights": 39,
+      "native_endpoint_counts": [
+        44524,
+        44524,
+        44524,
+        44524,
+        44524,
+        44524
+      ]
+    }
+  }
+}
