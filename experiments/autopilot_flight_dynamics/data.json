@@ -1,0 +1,86 @@
+{
+  "dataset": "velocity_rate_multistep_v1",
+  "manifest_sha256": "8afb8623bf7174e4da5b2044f644331b8b251433fed3576f6dcdab470935bcb5",
+  "split": {
+    "train": {
+      "file": "/home/zn/flap-system-identification/outputs/autopilot_flight_dynamics_20261124/train.npz",
+      "sha256": "41ddd8342859be1338af2a51cba37d21f282be670b4d5a53af7b3c6d179f6f54",
+      "windows": 126237,
+      "flights": 121,
+      "native_counts": [
+        [
+          126237,
+          126237
+        ],
+        [
+          126237,
+          126237
+        ],
+        [
+          126237,
+          126237
+        ],
+        [
+          126237,
+          126237
+        ],
+        [
+          126237,
+          126237
+        ],
+        [
+          126237,
+          126237
+        ],
+        [
+          126237,
+          126237
+        ],
+        [
+          126237,
+          126237
+        ]
+      ]
+    },
+    "validation": {
+      "file": "/home/zn/flap-system-identification/outputs/autopilot_flight_dynamics_20261124/validation.npz",
+      "sha256": "453da1677d385f7b02b17a19edf4497e8aa4b87535cbe5568da630cb3c11e3ec",
+      "windows": 44524,
+      "flights": 39,
+      "native_counts": [
+        [
+          44524,
+          44524
+        ],
+        [
+          44524,
+          44524
+        ],
+        [
+          44524,
+          44524
+        ],
+        [
+          44524,
+          44524
+        ],
+        [
+          44524,
+          44524
+        ],
+        [
+          44524,
+          44524
+        ],
+        [
+          44524,
+          44524
+        ],
+        [
+          44524,
+          44524
+        ]
+      ]
+    }
+  }
+}

@@ -1,0 +1,67 @@
+schema_version: 1
+research_goal: 复现实飞条件预测中隐状态推进与多步长流映射的验证表现
+editable_paths:
+- experiments/autopilot_flight_dynamics/model.py
+data_version: velocity_rate_multistep_v1
+training:
+  preflight:
+  - /home/zn/anaconda3/envs/flap-train-gpu/bin/python
+  - experiments/autopilot_flight_dynamics/runner.py
+  - preflight
+  command:
+  - /home/zn/anaconda3/envs/flap-train-gpu/bin/python
+  - experiments/autopilot_flight_dynamics/runner.py
+  - train
+  budget:
+    steps: 1024
+    seconds: 900
+evaluation:
+  command:
+  - /home/zn/anaconda3/envs/flap-train-gpu/bin/python
+  - experiments/autopilot_flight_dynamics/runner.py
+  - evaluate
+  files:
+  - experiments/autopilot_flight_dynamics/runner.py
+  - experiments/autopilot_flight_dynamics/prepare.py
+  - experiments/autopilot_flight_dynamics/intervals.py
+  - experiments/autopilot_command_reference/prepare.py
+  protocol_version: native-eight-supervised-flight-equal-v1
+  primary: v2
+  min_gain: 0
+  seconds: 90
+  metrics:
+  - name: v05
+    direction: minimize
+    unit: m/s
+  - name: w05
+    direction: minimize
+    unit: rad/s
+  - name: v1
+    direction: minimize
+    unit: m/s
+  - name: w1
+    direction: minimize
+    unit: rad/s
+  - name: v2
+    direction: minimize
+    unit: m/s
+  - name: w2
+    direction: minimize
+    unit: rad/s
+experiment:
+  baseline: HEAD
+  split: validation
+  seeds:
+  - 17
+  data_files:
+  - experiments/autopilot_flight_dynamics/data.json
+  - configs/data/velocity_rate_dataset_registry.yaml
+  protected_paths: []
+  device: cuda:0
+  preflight_seconds: 60
+  environment_version: flap-train-gpu torch GPU FP32
+  limits:
+    max_experiments: 1
+    max_retries: 1
+    total_seconds: 4500
+    gpu_seconds: 4500
