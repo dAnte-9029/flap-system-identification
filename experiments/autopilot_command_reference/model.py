@@ -14,7 +14,11 @@ class FlightPredictor(nn.Module):
         self.register_buffer('tau',torch.tensor([.2,1.]))
 
     def command_state(self, pooled, u0, time):
-        return pooled
+        # The held command has a closed-form response under each exponential kernel.
+        reference = torch.cat((u0, torch.tanh(2*u0)), dim=-1)
+        mass = -torch.expm1(-time.unsqueeze(-1) / self.tau)
+        held = (mass.unsqueeze(-1) * reference[:, None, None, :]).flatten(-2)
+        return pooled - held
 
     def forward(self,hist,pooled,u0,time):
         context = self.encoder((hist-self.mean)/self.std)
