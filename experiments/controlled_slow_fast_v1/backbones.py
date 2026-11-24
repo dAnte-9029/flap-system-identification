@@ -115,7 +115,7 @@ class TransformerBackbone(nn.Module):
         self.final_norm = nn.LayerNorm(self.width)
         self.register_buffer('frequencies', torch.exp(-math.log(10000.)*torch.arange(0,self.width,2)/self.width))
 
-    def initialize(self, history, steps):
+    def encode_history(self, history, steps):
         length = history.size(1)
         angle = torch.arange(length + steps, device=history.device)[:, None] * self.frequencies
         pos = torch.stack([angle.sin(), angle.cos()], -1).flatten(-2)
@@ -124,7 +124,11 @@ class TransformerBackbone(nn.Module):
         for layer in self.layers:
             x, cache = layer(x)
             caches.append(cache)
-        return caches, pos, length
+        return x[:, -1], (caches, pos, length)
+
+    def initialize(self, history, steps):
+        _, memory = self.encode_history(history, steps)
+        return memory
 
     def step(self, context, memory):
         caches, pos, index = memory

@@ -9,6 +9,10 @@ from fit import make_model
 
 @pytest.mark.parametrize('name',['gru','slowfast','lstm','tcn','transformer'])
 def test_within_step_causality_and_control_gradient(name):
+    check_control_event(lambda mean, scale: make_model(name, mean, scale), query)
+
+
+def check_control_event(build, native_query):
     torch.manual_seed(17)
     torch.set_num_threads(1)
     h = torch.zeros(1,26,30)
@@ -22,14 +26,14 @@ def test_within_step_causality_and_control_gradient(name):
     plan = torch.from_numpy(pack(times,u,origins,stops)[:,:10]).requires_grad_()
     held = torch.from_numpy(pack(times[:1],u[:1],origins,stops)[:,:10])
     assert plan[0,3,0,-1]==7000 and plan[0,3,1,-1]==13000
-    m = make_model(name,torch.zeros(30),torch.ones(30))
+    m = build(torch.zeros(30),torch.ones(30))
     a,b = m(h,s,plan),m(h,s,held)
     t = torch.tensor([[0.,.06,.064,.067,.079,.18]])
     for component in ('pv','q','w'):
-        x,y = query(a,t,component),query(b,t,component)
+        x,y = native_query(a,t,component),native_query(b,t,component)
         torch.testing.assert_close(x[:,:4],y[:,:4],rtol=0,atol=1e-7)
-    w = query(a,t,'w')
-    assert not torch.equal(w[:,-1],query(b,t,'w')[:,-1])
+    w = native_query(a,t,'w')
+    assert not torch.equal(w[:,-1],native_query(b,t,'w')[:,-1])
     before = torch.autograd.grad(w[:,:4].sum(),plan,retain_graph=True)[0]
     assert before[0,3,1,:4].abs().max()==0
     after = torch.autograd.grad(w[:,-1].sum(),plan)[0][0,3,1,:4]

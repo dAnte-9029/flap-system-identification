@@ -8,12 +8,14 @@ from stage_query import query
 
 class SegmentHarmonics(ControlledGRU):
 
-    def partial_acceleration(self, dt, motor, freq, basis, coeff, rate, orientation, base):
+    def partial_acceleration(self, dt, motor, freq, basis, coeff, rate, orientation, base, slow_jerk=None):
         # A dense query uses only time elapsed; a later event may shorten this segment.
         end, chord = self.interval_bases(motor, dt, freq, basis)
         shape = (*coeff.shape[:2], 6, 4)
         periodic = (rate.reshape(shape) * end[..., None, :] +
                     coeff.reshape(shape) * chord[..., None, :]).sum(-1) * self.axis_scale
+        if slow_jerk is not None:
+            base = base + .5 * dt * slow_jerk
         return base + torch.cat([rotate(orientation, periodic[..., :3]), periodic[..., 3:]], -1)
 
     def interval_bases(self, motor, dt, frequency, basis):
@@ -53,6 +55,17 @@ class SegmentHarmonics(ControlledGRU):
         path = torch.cat([query(roll,times,'pv'),query(roll,times,'q'),query(roll,times,'w')], -1)
         return torch.cat([initial[:,None],path],1)
 
+    def initialize_dynamics(self, normalized_history, steps):
+        _, encoded = self.encoder(normalized_history)
+        return encoded[0], torch.tanh(self.init_hidden(encoded[0]))
+
+    def step_dynamics(self, context, phase_basis, memory):
+        hidden = self.cell(context, memory)
+        return hidden, hidden
+
+    def segment_slow_rates(self, hidden, body, commands, change, dt, memory):
+        return self.trend(hidden)[:, None] + self.control_rate(change), None, memory
+
     def forward(self,history,initial,tape):
         """tape[B,20ms steps,segments,5] holds motor/left/right/rudder/duration_us.
 
@@ -62,8 +75,7 @@ class SegmentHarmonics(ControlledGRU):
         if tape.ndim!=4 or tape.shape[-1]!=5 or tape.shape[1]==0:
             raise ValueError('expected a positive-length batched four-channel control tape')
         normalized = (history-self.mean)/self.scale
-        _,encoded = self.encoder(normalized)
-        hidden = torch.tanh(self.init_hidden(encoded[0]))
+        encoded, memory = self.initialize_dynamics(normalized, tape.size(1))
         end,all_dt,freq,basis,_ = clock(history,tape)
         u = tape[...,:4].flatten(1,2)
         width = self.block*tape.shape[2]
@@ -71,11 +83,12 @@ class SegmentHarmonics(ControlledGRU):
         motion = torch.cat([initial[:,3:6],initial[:,10:13]],-1)
         prev_command = history[:,-1,9:13]
         coefficient_basis, coefficient_slope = self.interval_bases(u[...,0:1], all_dt, freq, basis)
-        coeff = self.initial_amplitude(encoded[0])
+        coeff = self.initial_amplitude(encoded)
         r0 = (coeff.reshape(-1,6,4)*basis[:,0,None]).sum(-1)*self.axis_scale
         slow = motion-torch.cat([rotate(q,r0[:,:3]),r0[:,3:]],-1)
         positions,quats,motions,trends,slopes,slow_slopes = [],[],[],[],[],[]
         coeff_starts, coeff_rates, orientations = [], [], []
+        slow_jerks = []
         p = initial[:,:3]
         for start in range(0,u.size(1),width):
             sl = slice(start,start+width)
@@ -83,16 +96,17 @@ class SegmentHarmonics(ControlledGRU):
             body = torch.cat([rotate(inverse(q),slow[:,:3]),slow[:,3:]],-1)/self.axis_scale
             context = [body,rotate(inverse(q),self.down),prev_command,cmd[:,0],freq[:,start]/5.]
             inputs = torch.cat(context,-1)
-            hidden = self.cell(inputs,hidden)
+            hidden, memory = self.step_dynamics(inputs, basis[:, start], memory)
             # A changed command has a direct differentiable entry within this block.
             change = cmd-cmd[:,:1]
-            base = self.trend(hidden)[:,None]+self.control_rate(change)
+            base, jerk, memory = self.segment_slow_rates(hidden, body, cmd, change, dt, memory)
             target = self.amplitude(torch.cat([hidden,coeff],-1))[:,None]+self.control_amplitude(change)
             dc = 2.*(target-coeff[:,None])
             c = coeff[:,None]+prefix_start(dc*dt)
             form = (*c.shape[:2],6,4)
             harmonic = (dc.reshape(form)*coefficient_basis[:,sl,None]+c.reshape(form)*coefficient_slope[:,sl,None]).sum(-1)
-            accel = base+harmonic
+            mean_base = base if jerk is None else base + .5 * dt * jerk
+            accel = mean_base+harmonic
             coeff_starts.append(c)
             coeff_rates.append(dc.expand_as(c))
             orientations.append(q[:,None].expand(-1,c.shape[1],-1))
@@ -104,7 +118,12 @@ class SegmentHarmonics(ControlledGRU):
             dv = dt*acc
             path = motion[:,None]+prefix_start(dv)
             slow_acc = physical(base)
-            ds = dt*slow_acc
+            if jerk is None:
+                ds = dt*slow_acc
+            else:
+                physical_jerk = physical(jerk)
+                slow_jerks.append(physical_jerk)
+                ds = dt * (slow_acc + .5 * dt * physical_jerk)
             trends.append(slow[:,None]+prefix_start(ds))
             slow_slopes.append(slow_acc)
             slow = slow+ds.sum(1)
@@ -122,9 +141,11 @@ class SegmentHarmonics(ControlledGRU):
         state = torch.cat([torch.cat(positions,1),torch.cat(motions,1)[...,:3],torch.cat(quats,1),
                            torch.cat(motions,1)[...,3:]],-1)
         trend = (torch.cat(trends,1),torch.cat(slow_slopes,1))
+        if slow_jerks:
+            trend = (*trend, torch.cat(slow_jerks, 1))
         result = end,state,torch.cat(slopes,1),trend
         terms = (u[...,0:1],freq,basis,torch.cat(coeff_starts,1),torch.cat(coeff_rates,1),
-                 torch.cat(orientations,1),trend[1])
+                 torch.cat(orientations,1),*trend[1:])
         return (*result,self.partial_acceleration,terms)
 
 

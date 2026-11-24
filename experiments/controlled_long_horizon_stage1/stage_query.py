@@ -17,7 +17,10 @@ def query(roll,t,component):
         return x.gather(1,ix[...,None].expand(-1,-1,x.size(-1)))
     if component in ('slow_v','slow_w'):
         sl = slice(0,3) if component=='slow_v' else slice(3,6)
-        return take(trend[0][...,sl])+dt*take(trend[1][...,sl])
+        acceleration = take(trend[1][...,sl])
+        if len(trend) == 3:
+            acceleration = acceleration + .5 * dt * take(trend[2][...,sl])
+        return take(trend[0][...,sl])+dt*acceleration
     acceleration = roll[4](dt,*(take(x) for x in roll[5]))
     if component=='pv':
         v,a = take(state[...,3:6]),acceleration[...,:3]
