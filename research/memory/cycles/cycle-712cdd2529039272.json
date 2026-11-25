@@ -1,0 +1,77 @@
+{
+  "id": "cycle-712cdd2529039272",
+  "created_at": "2026-11-25T06:55:42.798238+00:00",
+  "parents": [
+    "cycle-e6bd782009166d68"
+  ],
+  "decision": {
+    "studies": [
+      "study-ad32ba4afa95",
+      "study-2074852903a4",
+      "study-fc047226bd1e"
+    ],
+    "next_action": "search",
+    "reason": "三种子强基线、同容量消融、联合训练与冻结主干、恒频与响应时钟以及独立整拍分量检验均已完成。保留采用原八目标的修正时钟读出。慢角速度持续性仍优于模型且振荡幅值偏低，新路线应追问带测量噪声的逐拍趋势以及幅值可辨识性。",
+    "limits": "开发39个架次，训练121个，种子17/29/43；速度分量诊断27架，角速度38架。八目标工程结果是选择后的适应性验证，测试封存、实录命令条件预测。CLI study原始归档为从头训练，冻结读出与实际选择见 readout/results.json，独立分量参照有泄漏与幅值限制。",
+    "evidence_files": [
+      "research/rounds/periodic-motion-20261125/report_zh.md",
+      "research/rounds/periodic-motion-20261125/readout/results.json",
+      "research/rounds/periodic-motion-20261125/readout/model.py",
+      "research/rounds/periodic-motion-20261125/readout/original_runs/incumbent17/corrected.pt",
+      "research/rounds/periodic-motion-20261125/diagnostics/original_three_seed_scores.json",
+      "research/rounds/periodic-motion-20261125/interventions/results.json",
+      "research/rounds/periodic-motion-20261125/accuracy.json",
+      "research/rounds/periodic-motion-20261125/clock/clock_fit.json",
+      "research/rounds/periodic-motion-20261125/readout/path_protocol.md",
+      "research/rounds/periodic-motion-20261125/literature/report_zh.md"
+    ],
+    "findings": [
+      {
+        "status": "supported",
+        "finding": "冻结原递推网络、对原八目标拟合随命令修正相位的读出，三种子2秒角速度比原强基线低0.00365 rad/s、比同容量慢时基低0.00327 [0.00209,0.00445]。三种子同向。证据 research/rounds/periodic-motion-20261125/readout/results.json",
+        "refs": [
+          "study-ad32ba4afa95/exp-1c5b32fe2557",
+          "study-2074852903a4/exp-b35bd28e635a",
+          "study-fc047226bd1e/exp-b61f617fb26d",
+          "study-ad32ba4afa95/exp-8ddfa23f5ca8"
+        ]
+      },
+      {
+        "status": "contradicted",
+        "finding": "从头联合训练并仅按起点拍频推进的原方案未达成净收益。49,152步角速度全模型0.65099、同容量慢时基0.56322 rad/s；各自持续平台后的均值分别0.62653、0.56175。",
+        "refs": [
+          "study-ad32ba4afa95/exp-1c5b32fe2557",
+          "study-2074852903a4/exp-b35bd28e635a",
+          "study-fc047226bd1e/exp-b61f617fb26d",
+          "study-2074852903a4/exp-a947c45700f0"
+        ]
+      },
+      {
+        "status": "supported",
+        "finding": "工程模型在原生留出翼拍上预测到同步周期速度与角速度；只移除未来振荡但保留起点，在27和38架上分别使实际RMSE增加0.00578 m/s与0.01959 rad/s。慢速度通过，慢角速率比保持首拍值差0.40672 rad/s。详见 diagnostics/original_three_seed_scores.json。",
+        "refs": [
+          "study-ad32ba4afa95/exp-1c5b32fe2557",
+          "study-2074852903a4/exp-b35bd28e635a",
+          "study-fc047226bd1e/exp-b61f617fb26d"
+        ]
+      },
+      {
+        "status": "unresolved",
+        "finding": "周期速度/角速度输出的RMS只有独立参考约13%与16%–21%。测量噪声、不同时间尺度下的可预测性以及慢角速率趋势估计尚未区分。独立测试集与闭环行为未评价。",
+        "refs": [
+          "study-ad32ba4afa95/exp-1c5b32fe2557",
+          "study-fc047226bd1e/exp-8112c6510745"
+        ]
+      }
+    ],
+    "search": {
+      "topic": "cycle resolved angular-rate prediction with trend persistence and calibrated phase-locked amplitude",
+      "question": "Which open-source methods can distinguish uncertainty in phase or amplitude from weakly predictable rotational trends, with held-out native cycles and an explicit constant-angular-rate persistence control?",
+      "routes": [
+        "phase conditioned oscillatory state space models uncertainty amplitude estimation irregular sampling",
+        "cycle to cycle angular velocity trend forecasting errors in variables local linear smoothing persistence baseline"
+      ],
+      "require_open_source": true
+    }
+  }
+}

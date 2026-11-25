@@ -1,0 +1,87 @@
+schema_version: 1
+research_goal: 显式区分扑翼周期运动和慢变运动能否改善实飞预测，并在同容量消融和独立翼拍留出上得到验证？
+editable_paths:
+- experiments/autopilot_flight_dynamics/model.py
+data_version: velocity_rate_multistep_v1
+training:
+  preflight:
+  - /home/zn/anaconda3/envs/flap-train-gpu/bin/python
+  - experiments/periodic_motion/runner.py
+  - preflight
+  command:
+  - /home/zn/anaconda3/envs/flap-train-gpu/bin/python
+  - experiments/periodic_motion/runner.py
+  - train
+  budget:
+    steps: 131072
+    seconds: 6800
+  completion:
+    mode: validation_plateau
+    metric: dev_mse
+    eval_every: 512
+    min_steps: 49152
+    window: 16
+    max_range: 0.002
+evaluation:
+  command:
+  - /home/zn/anaconda3/envs/flap-train-gpu/bin/python
+  - experiments/periodic_motion/runner.py
+  - evaluate
+  files:
+  - experiments/autopilot_flight_dynamics/runner.py
+  - experiments/autopilot_flight_dynamics/prepare.py
+  - experiments/autopilot_flight_dynamics/intervals.py
+  - experiments/autopilot_command_reference/prepare.py
+  - experiments/periodic_motion/prepare_native.py
+  - experiments/periodic_motion/runner.py
+  protocol_version: periodic-motion-native-augmented-paired-v1
+  primary: w2
+  min_gain: 0
+  seconds: 180
+  metrics:
+  - name: v05
+    direction: minimize
+    unit: m/s
+  - name: w05
+    direction: minimize
+    unit: rad/s
+  - name: v1
+    direction: minimize
+    unit: m/s
+  - name: w1
+    direction: minimize
+    unit: rad/s
+  - name: v2
+    direction: minimize
+    unit: m/s
+    max_regression_pct_vs_baseline: 2
+  - name: w2
+    direction: minimize
+    unit: rad/s
+experiment:
+  baseline: ad7f6cfda32425eea6c52a6c9284dc6eb6f92151
+  split: validation
+  seeds:
+  - 17
+  data_files:
+  - experiments/autopilot_flight_dynamics/data.json
+  - configs/data/velocity_rate_dataset_registry.yaml
+  protected_paths: []
+  device: cuda:0
+  preflight_seconds: 60
+  environment_version: flap-train-gpu torch GPU FP32
+  limits:
+    max_experiments: 2
+    max_retries: 1
+    total_seconds: 30000
+    gpu_seconds: 30000
+  reproduction_id: rep-bc7ae8dfcdef4cb6
+  hypotheses:
+  - id: actual-phase-carrier
+    prediction: 完整周期模型相对共同强基线降低2秒角速度误差，并在被留出的原生翼拍上选择性预测慢变与周期。
+    falsifier: 同预算速度或角速度门槛失败，或独立周期、慢变检验失败，将限制相应结论。
+    max_rounds: 1
+  - id: matched-slow-basis
+    prediction: 只替换时间基的等容量对照将区分真实扑翼拍频贡献与附加容量/起点去偏。
+    falsifier: 真实拍频模型相对等容量慢时基没有独立改善，则无法将整体收益归因于拍频。
+    max_rounds: 1

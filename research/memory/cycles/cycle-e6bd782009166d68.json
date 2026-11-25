@@ -1,0 +1,68 @@
+{
+  "id": "cycle-e6bd782009166d68",
+  "created_at": "2026-11-25T03:04:44.293270+00:00",
+  "parents": [
+    "cycle-44beb185fc6c7553"
+  ],
+  "decision": {
+    "studies": [
+      "study-f408239b1b1e",
+      "study-c636b4ae2d87"
+    ],
+    "next_action": "search",
+    "reason": "两条假设各完成两轮候选和一次五模型同预算复验。历史带来的速度收益尚无法区分运动趋势估计与额外动力学记忆。角速度更偏好低阶命令表示，原因可能与命令编码、操纵与反馈相关性或执行机构动态有关。再增加滤波阶数不能区分这些解释。已写入下轮检索问题，本次在交接处结束。",
+    "limits": "两条研究的原报告是各自短平台终点。最终结论取本轮 extended/paired_results.json 的 49,152 步，五组均已到最低学习率持续平台。121个训练架次、同39个开发架次、单种子17；整架次配对区间，实录控制条件预测。跨种子、封存泛化、独立激励、隐态物理含义与闭环效果尚未验证。",
+    "evidence_files": [
+      "research/rounds/history-identification-20261125/report_zh.md",
+      "research/rounds/history-identification-20261125/extended/paired_results.json",
+      "research/rounds/history-identification-20261125/extended/protocol.md",
+      "research/rounds/history-identification-20261125/paired_results.json",
+      "research/rounds/history-identification-20261125/reproduction_metric_audit.md",
+      "research/rounds/history-identification-20261125/scout_zh.md"
+    ],
+    "findings": [
+      {
+        "status": "supported",
+        "finding": "同结构下加入过去半秒运动，2秒速度 RMSE 降0.03136 m/s，95%架次区间[0.01433,0.05037]。对强基线角速度退化2.86%，未过2%门槛。均取49,152步，详见 research/rounds/history-identification-20261125/extended/paired_results.json。",
+        "refs": [
+          "study-f408239b1b1e/exp-ee674dbe15d9",
+          "study-f408239b1b1e/exp-254c0229bb0f",
+          "study-f408239b1b1e/baseline"
+        ]
+      },
+      {
+        "status": "contradicted",
+        "finding": "相同更新49,152步，在当前混合编码中显式增加命令二、三阶形状，相对仅低阶的2秒角速度收益−3.27%，速度收益−1.73%，角减速为−1.54个百分点，配对95%区间[−2.89,−0.22]。两项必要方向均与原预测相反。",
+        "refs": [
+          "study-c636b4ae2d87/exp-36d39396fd30",
+          "study-c636b4ae2d87/exp-7c2120e6fa14"
+        ]
+      },
+      {
+        "status": "supported",
+        "finding": "49,152步，仅低阶命令模型相对强基线的2秒角速度从0.54468降至0.53783 rad/s，27/39架改善，收益区间[0.00380,0.01005]；速度收益0.00099 m/s，区间跨零。符合本线工程保留条件，保留同预算权重。",
+        "refs": [
+          "study-c636b4ae2d87/baseline",
+          "study-c636b4ae2d87/exp-7c2120e6fa14"
+        ]
+      },
+      {
+        "status": "unresolved",
+        "finding": "历史运动对短时速度的预测收益可来自局部趋势、降噪或额外隐态。低阶命令通道的角速度收益也可能受到编码混合和闭环反馈的影响。下一轮寻找可区分上述解释的开源匹配对照，并核实是否需要执行机构实测或独立激励。",
+        "refs": [
+          "study-f408239b1b1e/exp-ee674dbe15d9",
+          "study-c636b4ae2d87/exp-7c2120e6fa14"
+        ]
+      }
+    ],
+    "search": {
+      "topic": "prediction with noisy motion history and latent actuator dynamics in closed-loop system identification",
+      "question": "Which open-source controlled identification benchmarks can distinguish denoising or local velocity trend estimation from additional predictive-state memory, and separate command encoding effects from actuator dynamics when only recorded closed-loop commands and kinematics are available?",
+      "routes": [
+        "errors in variables nonlinear state space identification noisy observations initial state estimation local polynomial derivative delay embedding",
+        "closed loop identification unmeasured actuator dynamics command to response joint input state estimation instrumental variables identifiability"
+      ],
+      "require_open_source": true
+    }
+  }
+}

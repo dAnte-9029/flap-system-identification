@@ -1,0 +1,13 @@
+{
+  "model": "low",
+  "model_commit": "505a14493a150fec7b61938a9871a80f65ba5452",
+  "runner_commit": "8c3a3e585f96e31e893a7287a0006b73daf999f3",
+  "seed": 29,
+  "cuda_visible": "0",
+  "common_updates": 49152,
+  "cap_updates": 131072,
+  "monitor_interval": 512,
+  "tail_length": 16,
+  "lr_floor": 0.000125,
+  "min_gain": 0.001
+}

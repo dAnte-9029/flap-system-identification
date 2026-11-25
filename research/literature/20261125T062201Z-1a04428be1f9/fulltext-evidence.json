@@ -1,0 +1,95 @@
+{
+  "W2946709941": {
+    "id": "W2946709941",
+    "verdict": "exclude",
+    "reason": "作者版代码的 LICENSE 限制商业使用；趋势多项式和周期傅里叶模板可以审阅，不满足本轮开放许可证要求。",
+    "fulltext": {
+      "version": "arXiv 作者 ICLR 2020 版本",
+      "source": "https://arxiv.org/abs/1905.10437",
+      "locator": "§3.3 pp.5–6 trend/seasonality stacks; Appendix B.2",
+      "identity_note": "核对作者原文首页的完整标题、作者，及会议版或 arXiv 信息。"
+    },
+    "implementation": {
+      "status": "unverified",
+      "repository": "https://github.com/ServiceNow/N-BEATS",
+      "revision": "c746a4f13ffc957487e0c3279b182c3030836053",
+      "license": "CC BY-NC 4.0",
+      "license_source": "https://github.com/ServiceNow/N-BEATS/blob/c746a4f13ffc957487e0c3279b182c3030836053/LICENSE",
+      "attribution": "https://github.com/ServiceNow/N-BEATS/blob/c746a4f13ffc957487e0c3279b182c3030836053/README.md",
+      "locator": "models/nbeats.py 58–139",
+      "finding": "作者版代码的 LICENSE 限制商业使用；趋势多项式和周期傅里叶模板可以审阅，不满足本轮开放许可证要求。"
+    }
+  },
+  "W3215624848": {
+    "id": "W3215624848",
+    "verdict": "eligible",
+    "reason": "趋势用分段线性斜率，季节量等于按特征维求和的傅里叶项；单预测相加，可在同一动力学头替换相位并重训。论文每个季节的波形随日历固定，本地幅值时变必须另验。",
+    "fulltext": {
+      "version": "arXiv:2111.15397 作者全文，40页",
+      "source": "https://arxiv.org/abs/2111.15397",
+      "locator": "§2.1.1–2.1.2 pp.5–7 Eqs.1,3,4; §3.1 pp.19–20; §4.1 pp.27–29 Fig.5",
+      "pdf": "/home/zn/papers/NeuralProphet - periodic motion literature.pdf",
+      "identity_note": "核对作者原文首页的完整标题、作者，及会议版或 arXiv 信息。",
+      "excerpt": "before computing any component-wise metrics, we zero-center all components",
+      "version_id": "W3215624848",
+      "sha256": "3ccb2074989b449e3b0356202fb76fa076a9bc34301b7121686c136ed955353f",
+      "identity_basis": "title"
+    },
+    "implementation": {
+      "status": "open_source",
+      "repository": "https://github.com/ourownstory/neural_prophet",
+      "revision": "596849107945533c7b94d53ad881d88a7a924875",
+      "license": "MIT",
+      "license_source": "https://github.com/ourownstory/neural_prophet/blob/596849107945533c7b94d53ad881d88a7a924875/LICENSE",
+      "attribution": "https://github.com/ourownstory/neural_prophet/blob/596849107945533c7b94d53ad881d88a7a924875/README.md",
+      "locator": "neuralprophet/components/seasonality/fourier.py:114–136; components/trend/piecewise_linear.py:67–95,195–268; time_net.py:644–651",
+      "finding": "趋势用分段线性斜率，季节量等于按特征维求和的傅里叶项；单预测相加，可在同一动力学头替换相位并重训。论文每个季节的波形随日历固定，本地幅值时变必须另验。"
+    }
+  },
+  "W4415795980": {
+    "id": "W4415795980",
+    "verdict": "eligible",
+    "reason": "作者程序查整型序号模固定周期的共享表，去/加周期后预测剩余。余项没有限制在低频，变拍频还需修改索引；可作固定模板的替代设计。",
+    "fulltext": {
+      "version": "NeurIPS 2024 正式版",
+      "source": "https://proceedings.neurips.cc/paper_files/paper/2024/hash/bfe7998398779dde03cad7a73b1f81b6-Abstract-Conference.html",
+      "locator": "§3 Residual Cycle Forecasting, Appendix C ablations",
+      "pdf": "/home/zn/papers/CycleNet - periodic motion literature.pdf",
+      "identity_note": "核对作者原文首页的完整标题、作者，及会议版或 arXiv 信息。",
+      "version_id": "W4415795980",
+      "sha256": "efd55678d156958df2fe07628238fadf15298e4a4d8c795277f430fcd212e098",
+      "identity_basis": "title"
+    },
+    "implementation": {
+      "status": "open_source",
+      "repository": "https://github.com/ACAT-SCUT/CycleNet",
+      "revision": "d807e51fc2dcd143885ee639d97965a7ab0926f4",
+      "license": "Apache-2.0",
+      "license_source": "https://github.com/ACAT-SCUT/CycleNet/blob/d807e51fc2dcd143885ee639d97965a7ab0926f4/LICENSE",
+      "attribution": "https://github.com/ACAT-SCUT/CycleNet/blob/d807e51fc2dcd143885ee639d97965a7ab0926f4/README.md",
+      "locator": "models/CycleNet.py:4–19,45–62",
+      "finding": "作者程序查整型序号模固定周期的共享表，去/加周期后预测剩余。余项没有限制在低频，变拍频还需修改索引；可作固定模板的替代设计。"
+    }
+  },
+  "W4226362568": {
+    "id": "W4226362568",
+    "verdict": "eligible",
+    "reason": "趋势和季节表示分别从时域卷积和频域得到，最终用于下游回归；未提供两条相加后有原物理单位的分量轨迹。",
+    "fulltext": {
+      "version": "arXiv ICLR 2022 作者全文",
+      "source": "https://arxiv.org/abs/2202.01575",
+      "locator": "§3.1–3.2 pp.4–6, Fig.2",
+      "identity_note": "核对作者原文首页的完整标题、作者，及会议版或 arXiv 信息。"
+    },
+    "implementation": {
+      "status": "open_source",
+      "repository": "https://github.com/salesforce/CoST",
+      "revision": "7bb5271c2b66cd5a1d634c27f5df308f190b50ec",
+      "license": "BSD-3-Clause",
+      "license_source": "https://github.com/salesforce/CoST/blob/7bb5271c2b66cd5a1d634c27f5df308f190b50ec/LICENSE.txt",
+      "attribution": "https://github.com/salesforce/CoST/blob/7bb5271c2b66cd5a1d634c27f5df308f190b50ec/README.md",
+      "locator": "models/encoder.py:79–167",
+      "finding": "趋势和季节表示分别从时域卷积和频域得到，最终用于下游回归；未提供两条相加后有原物理单位的分量轨迹。"
+    }
+  }
+}

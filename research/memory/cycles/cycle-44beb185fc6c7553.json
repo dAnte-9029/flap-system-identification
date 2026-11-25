@@ -1,0 +1,57 @@
+{
+  "id": "cycle-44beb185fc6c7553",
+  "created_at": "2026-11-25T02:18:22.098967+00:00",
+  "parents": [],
+  "decision": {
+    "studies": [
+      "study-77bc87ad5c71",
+      "study-8c3d21c9f25d"
+    ],
+    "next_action": "search",
+    "reason": "两条已登记的机制都完成了两轮匹配比较。下一步需要文献给出能检验历史可观测性、区分线速度与角速度输入响应的对照设计，继续微调现有架构不能回答这两个问题。",
+    "limits": "velocity_rate_multistep_v1，121 个训练架次、39 个开发验证架次，单种子 17。验证数据用于停止及选择，输入为实录命令。独立泛化、反事实操纵、物理隐变量与闭环效果仍未检验。",
+    "findings": [
+      {
+        "status": "supported",
+        "finding": "同参数同初始化下，用当前预测隐状态计算下一段增量，2 秒速度 RMSE 从 1.2100 降至 1.0124 m/s，39/39 架次改善。两模型均从同一段历史初始化，尚不能判断哪种历史信息是必需的。",
+        "refs": [
+          "study-77bc87ad5c71/exp-f616df20fa01",
+          "study-77bc87ad5c71/exp-8df27d85c34a"
+        ]
+      },
+      {
+        "status": "contradicted",
+        "finding": "预期细段命令对高变化窗的速度收益更大。39 架次粗减细的 2 秒速度收益，高组减低组为 −0.0211 m/s，配对区间 −0.0411 至 −0.0009，方向相反。",
+        "refs": [
+          "study-8c3d21c9f25d/exp-3f7e53591890",
+          "study-8c3d21c9f25d/exp-f8fc5cfa6576"
+        ]
+      },
+      {
+        "status": "supported",
+        "finding": "相同细段模型在 2 秒角速度上优于粗段模型 0.0294 rad/s，35/39 架次改善。这是既有对照的分项观察。",
+        "refs": [
+          "study-8c3d21c9f25d/exp-3f7e53591890",
+          "study-8c3d21c9f25d/exp-f8fc5cfa6576"
+        ]
+      },
+      {
+        "status": "unresolved",
+        "finding": "有待检验的两种解释是，历史有助于恢复对预测有用但不可直接观测的状态，以及不同输出对输入时间分辨率的需求不同。希望找到可在同一外部输入和整架次验证口径下区分这些解释的开源方法。",
+        "refs": [
+          "study-77bc87ad5c71/exp-8df27d85c34a",
+          "study-8c3d21c9f25d/exp-f8fc5cfa6576"
+        ]
+      }
+    ],
+    "search": {
+      "topic": "nonlinear state space identification with control inputs and partial observations",
+      "question": "In controlled nonlinear system identification, how can we test which hidden states can be inferred from past inputs and outputs, and whether different measured outputs benefit from distinct time resolutions of control inputs?",
+      "routes": [
+        "nonlinear system identification state initialization observability history encoder",
+        "multirate system identification input sampling multiple output dynamics"
+      ],
+      "require_open_source": true
+    }
+  }
+}

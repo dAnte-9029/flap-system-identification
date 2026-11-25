@@ -1,0 +1,240 @@
+{
+  "pdf_sha256": "3ccb2074989b449e3b0356202fb76fa076a9bc34301b7121686c136ed955353f",
+  "sections": {
+    "problem": [
+      {
+        "id": "decomp",
+        "text": "从混合序列预测总运动并分别估计有意义的趋势、季节变化。",
+        "source": "paper",
+        "location": "§3.1, components of known synthetic series",
+        "page": 19
+      }
+    ],
+    "architecture": [
+      {
+        "id": "additive",
+        "text": "可加配置下，总预测由趋势、季节及其他使能的分量直接求和。",
+        "source": "paper",
+        "location": "§2.1 Eq.1",
+        "page": 5
+      }
+    ],
+    "equations": [
+      {
+        "id": "trend_model",
+        "text": "连续分段线性趋势；斜率每次改变δ，常数补偿−cδ保持连续。",
+        "source": "paper",
+        "location": "§2.1.1 Eq.3",
+        "page": 6
+      },
+      {
+        "id": "fourier_model",
+        "text": "每个周期的五个正余弦谐波以独立权重线性组合。",
+        "source": "paper",
+        "location": "§2.1.2 Eq.4 and §3.1.2 S",
+        "page": 7
+      }
+    ],
+    "objective": [
+      {
+        "id": "loss",
+        "text": "原框架用可配置的总预测损失；核心模型仅凭加总后的带噪训练目标学习参数。",
+        "source": "paper",
+        "location": "§2.3 estimation and §3.1",
+        "page": 17
+      }
+    ],
+    "data": [
+      {
+        "id": "synthetic",
+        "text": "S-TS 包含一段带随机变点的趋势、30和365天季节量；五个独立6000天序列、每个周期5阶，系数均匀抽样。",
+        "source": "paper",
+        "location": "§3.1.2 Generated Component Time Series",
+        "page": 20
+      }
+    ],
+    "training": [
+      {
+        "id": "fit",
+        "text": "固定本地合成种子700到704，前4800天拟合、后1200天评价；按训练部分分别缩放。均匀随机转折日1450–3200，0.02高斯噪声；八个固定候选趋势结点不接收实际转折日。训练凸子模型用全批双精度LBFGS最多450步并对照独立最小二乘最优解。",
+        "source": "inference",
+        "location": "CPU operator and component validation setup; paper did not disclose numerical realizations for Fig.7"
+      }
+    ],
+    "evaluation": [
+      {
+        "id": "joint",
+        "text": "在未参与拟合时间段逐条分别去除分量均值比较真实趋势、月周期和年周期RMSE。原论文分量比较也去均值，本文测试沿未来段延拓变化，与作者原图整体拟合范围不同。",
+        "source": "paper",
+        "location": "§3.1.1 zero centering, Fig.5 and Fig.7",
+        "page": 20
+      }
+    ],
+    "intermediate": [
+      {
+        "id": "core",
+        "text": "固定仓库实现单独运行分段线性和傅里叶两个类及来源于数据加载器的特征函数，与独立的复数单位圆和铰链基底核对。",
+        "source": "official_code",
+        "location": "neuralprophet/components/trend/piecewise_linear.py:15–97,195–267; components/seasonality/fourier.py:114–137; time_dataset.py:144–168"
+      }
+    ]
+  },
+  "implementation": {
+    "mode": "official",
+    "repository": "https://github.com/ourownstory/neural_prophet.git",
+    "commit": "596849107945533c7b94d53ad881d88a7a924875",
+    "directory": "neural_prophet",
+    "evidence": "作者仓库README引用同文同作者，LICENSE为Oskar Triebe署名MIT；仅以语法树抽取未经改写的两个模块、基类和数据特征函数并执行，避开未安装的前端依赖。"
+  },
+  "discrepancies": [
+    {
+      "paper": "§3.1.2、附录B图7给出构成和曲线，未提供可精确复算的S-TS浮点结果或种子。",
+      "code": "固定提交为当前MIT版本。time_dataset.py先排全部sin再cos；plot_utils.py交错排列并使用不同日期原点。",
+      "decision": "使用训练路径的特征顺序，与独立公式按实际列对应。采用五条同长度新数据、标准化的未来段分量与独立解核验核心机制。只登记核心协议。",
+      "status": "resolved"
+    }
+  ],
+  "protocol": {
+    "scope": "core",
+    "scope_basis": "核对Eq.3–4数值、周期不变性及Fig.5/7来源可查的分量评价设计。论文未给逐项数字；训练切分、噪声、种子和容差为本地预注册。未复现现实数据基准、传统Prophet对照或原优化器。",
+    "attempts_per_stage": 3,
+    "stages": {
+      "preflight": {
+        "argv": [
+          "/home/zn/anaconda3/envs/flap-train-gpu/bin/python",
+          "core.py"
+        ],
+        "inputs": [
+          "core.py",
+          "neural_prophet/neuralprophet/utils_torch.py",
+          "neural_prophet/neuralprophet/utils.py",
+          "neural_prophet/neuralprophet/components/base.py",
+          "neural_prophet/neuralprophet/components/trend/base.py",
+          "neural_prophet/neuralprophet/components/seasonality/base.py",
+          "neural_prophet/neuralprophet/components/trend/piecewise_linear.py",
+          "neural_prophet/neuralprophet/components/seasonality/fourier.py",
+          "neural_prophet/neuralprophet/time_dataset.py"
+        ],
+        "outputs": [],
+        "device": "cpu",
+        "seconds": 180
+      },
+      "modules": {
+        "argv": [
+          "/home/zn/anaconda3/envs/flap-train-gpu/bin/python",
+          "core.py"
+        ],
+        "inputs": [
+          "core.py",
+          "neural_prophet/neuralprophet/utils_torch.py",
+          "neural_prophet/neuralprophet/utils.py",
+          "neural_prophet/neuralprophet/components/base.py",
+          "neural_prophet/neuralprophet/components/trend/base.py",
+          "neural_prophet/neuralprophet/components/seasonality/base.py",
+          "neural_prophet/neuralprophet/components/trend/piecewise_linear.py",
+          "neural_prophet/neuralprophet/components/seasonality/fourier.py",
+          "neural_prophet/neuralprophet/time_dataset.py"
+        ],
+        "outputs": [],
+        "device": "cpu",
+        "seconds": 180
+      },
+      "small": {
+        "argv": [
+          "/home/zn/anaconda3/envs/flap-train-gpu/bin/python",
+          "core.py"
+        ],
+        "inputs": [
+          "core.py",
+          "neural_prophet/neuralprophet/utils_torch.py",
+          "neural_prophet/neuralprophet/utils.py",
+          "neural_prophet/neuralprophet/components/base.py",
+          "neural_prophet/neuralprophet/components/trend/base.py",
+          "neural_prophet/neuralprophet/components/seasonality/base.py",
+          "neural_prophet/neuralprophet/components/trend/piecewise_linear.py",
+          "neural_prophet/neuralprophet/components/seasonality/fourier.py",
+          "neural_prophet/neuralprophet/time_dataset.py"
+        ],
+        "outputs": [
+          "synthetic_runs.json"
+        ],
+        "device": "cpu",
+        "seconds": 180
+      }
+    },
+    "checks": [
+      {
+        "id": "rows",
+        "stage": "preflight",
+        "claim": "synthetic",
+        "meaning": "单条序列天数",
+        "expected": 6000,
+        "atol": 0,
+        "unit": "days"
+      },
+      {
+        "id": "rank",
+        "stage": "preflight",
+        "claim": "fit",
+        "meaning": "两种5阶季节基、趋势截距与斜率加8变点的训练设计满秩",
+        "expected": 30,
+        "atol": 0,
+        "unit": "columns"
+      },
+      {
+        "id": "trend_formula",
+        "stage": "modules",
+        "claim": "trend_model",
+        "meaning": "作者趋势相对独立铰链展开最大误差",
+        "expected": 0,
+        "atol": 5e-08,
+        "unit": "normalized_y"
+      },
+      {
+        "id": "season_formula",
+        "stage": "modules",
+        "claim": "fourier_model",
+        "meaning": "作者季节相对独立复指数最大误差",
+        "expected": 0,
+        "atol": 2e-09,
+        "unit": "normalized_y"
+      },
+      {
+        "id": "period_invariance",
+        "stage": "modules",
+        "claim": "fourier_model",
+        "meaning": "单独把查询时间平移该季节一整周期的最大输出差",
+        "expected": 0,
+        "atol": 2e-09,
+        "unit": "normalized_y"
+      },
+      {
+        "id": "slow",
+        "stage": "small",
+        "claim": "joint",
+        "meaning": "五条序列中最差的未来慢分量去均值RMSE；容差设为归一化幅域的5%，容许未知变点近似误差",
+        "expected": 0,
+        "atol": 0.05,
+        "unit": "normalized_y"
+      },
+      {
+        "id": "season",
+        "stage": "small",
+        "claim": "joint",
+        "meaning": "五条序列十个季节分量中最差的未来去均值RMSE；容差设为归一化幅域的1%",
+        "expected": 0,
+        "atol": 0.01,
+        "unit": "normalized_y"
+      },
+      {
+        "id": "solved",
+        "stage": "small",
+        "claim": "core",
+        "meaning": "官方模块训练所得总预测与独立最小二乘解在五条未来段上的最差点误差；核对优化充分性",
+        "expected": 0,
+        "atol": 0.001,
+        "unit": "normalized_y"
+      }
+    ]
+  }
+}

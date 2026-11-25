@@ -1,0 +1,827 @@
+{
+  "model_file": "/home/zn/flap-system-identification/research/rounds/periodic-motion-20261125/readout/model.py",
+  "checkpoint": "/home/zn/flap-system-identification/research/rounds/periodic-motion-20261125/readout/original_runs/incumbent29/corrected.pt",
+  "eight_endpoint_max_error": 1.2461096048355103e-06,
+  "results": {
+    "velocity": {
+      "all": {
+        "windows": 172,
+        "beat_window_pairs": 919,
+        "reference_skill": {
+          "reference_rmse": 0.4959638699888803,
+          "model_rmse": 0.27246901102929477,
+          "gain": 0.22349485895958554,
+          "interval95": [
+            0.2067312649500423,
+            0.23982679172423227
+          ],
+          "percent": 45.06272986469687,
+          "improved": 27,
+          "flights": 27
+        },
+        "wave_beats_zero": {
+          "reference_rmse": 0.4219312690194908,
+          "model_rmse": 0.4081556018779652,
+          "gain": 0.013775667141525616,
+          "interval95": [
+            0.00867535515062614,
+            0.01892941835298901
+          ],
+          "percent": 3.2649078541958643,
+          "improved": 23,
+          "flights": 27
+        },
+        "centered_wave_beats_zero": {
+          "reference_rmse": 0.42164078882032746,
+          "model_rmse": 0.4078474372503853,
+          "gain": 0.013793351569942158,
+          "interval95": [
+            0.00869020606772396,
+            0.018953350914967908
+          ],
+          "percent": 3.271351334042749,
+          "improved": 23,
+          "flights": 27
+        },
+        "centered_wave_beats_swapped_slow": {
+          "reference_rmse": 0.4465849482125144,
+          "model_rmse": 0.4078474372503853,
+          "gain": 0.038737510962129074,
+          "interval95": [
+            0.02634159947064147,
+            0.05370889749506085
+          ],
+          "percent": 8.674164034676613,
+          "improved": 25,
+          "flights": 27
+        },
+        "slow_beats_persistence": {
+          "reference_rmse": 1.6535827281565494,
+          "model_rmse": 0.639794346227753,
+          "gain": 1.0137883819287965,
+          "interval95": [
+            0.7502844515915412,
+            1.275189020448941
+          ],
+          "percent": 61.30859766895305,
+          "improved": 26,
+          "flights": 27
+        },
+        "slow_beats_swapped_wave": {
+          "reference_rmse": 1.6534520022029038,
+          "model_rmse": 0.639794346227753,
+          "gain": 1.013657655975151,
+          "interval95": [
+            0.750063552137257,
+            1.2749906017802963
+          ],
+          "percent": 61.305538632185794,
+          "improved": 26,
+          "flights": 27
+        },
+        "future_wave_beats_drop": {
+          "reference_rmse": 0.8494650372976329,
+          "model_rmse": 0.8423618180002788,
+          "gain": 0.007103219297354135,
+          "interval95": [
+            0.004644328164425215,
+            0.009569195075074333
+          ],
+          "percent": 0.8361991353936449,
+          "improved": 23,
+          "flights": 27
+        },
+        "future_wave_beats_flip": {
+          "reference_rmse": 0.860281123888041,
+          "model_rmse": 0.8423618180002788,
+          "gain": 0.01791930588776225,
+          "interval95": [
+            0.012883965549492527,
+            0.02295558039164705
+          ],
+          "percent": 2.082959324595657,
+          "improved": 25,
+          "flights": 27
+        },
+        "slow_absolute_rmse": 0.7479096924276541,
+        "wave_rms": 0.05690055079113027
+      },
+      "0-0.5": {
+        "windows": 141,
+        "beat_window_pairs": 180,
+        "reference_skill": {
+          "reference_rmse": 0.4834027509359421,
+          "model_rmse": 0.2601800763195028,
+          "gain": 0.2232226746164393,
+          "interval95": [
+            0.20457574764449268,
+            0.2414915190508197
+          ],
+          "percent": 46.177369529702894,
+          "improved": 27,
+          "flights": 27
+        },
+        "wave_beats_zero": {
+          "reference_rmse": 0.41608321820379746,
+          "model_rmse": 0.399263504523593,
+          "gain": 0.016819713680204462,
+          "interval95": [
+            0.008646182689307889,
+            0.02570240037026463
+          ],
+          "percent": 4.042391748654028,
+          "improved": 21,
+          "flights": 27
+        },
+        "centered_wave_beats_zero": {
+          "reference_rmse": 0.4157774586254582,
+          "model_rmse": 0.39893017770224676,
+          "gain": 0.016847280923211416,
+          "interval95": [
+            0.00866728289174887,
+            0.0257483129994393
+          ],
+          "percent": 4.0519947807915795,
+          "improved": 21,
+          "flights": 27
+        },
+        "centered_wave_beats_swapped_slow": {
+          "reference_rmse": 0.4423469387410459,
+          "model_rmse": 0.39893017770224676,
+          "gain": 0.043416761038799156,
+          "interval95": [
+            0.02341257692041934,
+            0.06514194051512406
+          ],
+          "percent": 9.815092461669717,
+          "improved": 19,
+          "flights": 27
+        },
+        "slow_beats_persistence": {
+          "reference_rmse": 0.5669191263963914,
+          "model_rmse": 0.2797558593125471,
+          "gain": 0.2871632670838443,
+          "interval95": [
+            0.10767306357367022,
+            0.46122816817919304
+          ],
+          "percent": 50.65330374531393,
+          "improved": 16,
+          "flights": 19
+        },
+        "slow_beats_swapped_wave": {
+          "reference_rmse": 0.566919866180444,
+          "model_rmse": 0.2797558593125471,
+          "gain": 0.2871640068678969,
+          "interval95": [
+            0.10758320257422346,
+            0.46123221393869546
+          ],
+          "percent": 50.65336813871608,
+          "improved": 16,
+          "flights": 19
+        },
+        "future_wave_beats_drop": {
+          "reference_rmse": 0.5938149083119418,
+          "model_rmse": 0.5808978026520273,
+          "gain": 0.012917105659914552,
+          "interval95": [
+            0.007133439580003085,
+            0.01913312303551229
+          ],
+          "percent": 2.1752747327672295,
+          "improved": 21,
+          "flights": 27
+        },
+        "future_wave_beats_flip": {
+          "reference_rmse": 0.6122616506646417,
+          "model_rmse": 0.5808978026520273,
+          "gain": 0.03136384801261438,
+          "interval95": [
+            0.019584837065574536,
+            0.04423568067507445
+          ],
+          "percent": 5.122621673032645,
+          "improved": 22,
+          "flights": 27
+        },
+        "slow_absolute_rmse": 0.45711035388592536,
+        "wave_rms": 0.05947392425889482
+      },
+      "0.5-1": {
+        "windows": 152,
+        "beat_window_pairs": 279,
+        "reference_skill": {
+          "reference_rmse": 0.5074500683333381,
+          "model_rmse": 0.2937213800635789,
+          "gain": 0.21372868826975916,
+          "interval95": [
+            0.18254110163431708,
+            0.24522626939084227
+          ],
+          "percent": 42.118171147700636,
+          "improved": 27,
+          "flights": 27
+        },
+        "wave_beats_zero": {
+          "reference_rmse": 0.423054074238113,
+          "model_rmse": 0.4061023770565002,
+          "gain": 0.016951697181612768,
+          "interval95": [
+            0.010622380024674244,
+            0.02396645264999921
+          ],
+          "percent": 4.006981190794923,
+          "improved": 24,
+          "flights": 27
+        },
+        "centered_wave_beats_zero": {
+          "reference_rmse": 0.4227612018998046,
+          "model_rmse": 0.4057873522115532,
+          "gain": 0.016973849688251386,
+          "interval95": [
+            0.010636171951282627,
+            0.02399725791592734
+          ],
+          "percent": 4.014997027157241,
+          "improved": 24,
+          "flights": 27
+        },
+        "centered_wave_beats_swapped_slow": {
+          "reference_rmse": 0.45857948228057177,
+          "model_rmse": 0.4057873522115532,
+          "gain": 0.05279213006901856,
+          "interval95": [
+            0.028236555899712808,
+            0.08667829108366379
+          ],
+          "percent": 11.51210032478489,
+          "improved": 25,
+          "flights": 27
+        },
+        "slow_beats_persistence": {
+          "reference_rmse": 0.9328247700203588,
+          "model_rmse": 0.4325797271638957,
+          "gain": 0.5002450428564631,
+          "interval95": [
+            0.3336755775594414,
+            0.6722602195491134
+          ],
+          "percent": 53.62690388737696,
+          "improved": 23,
+          "flights": 27
+        },
+        "slow_beats_swapped_wave": {
+          "reference_rmse": 0.9327255280262838,
+          "model_rmse": 0.4325797271638957,
+          "gain": 0.5001458008623881,
+          "interval95": [
+            0.3335811398891385,
+            0.6720737203616802
+          ],
+          "percent": 53.621969790055346,
+          "improved": 23,
+          "flights": 27
+        },
+        "future_wave_beats_drop": {
+          "reference_rmse": 0.6837328400780603,
+          "model_rmse": 0.6734578451596454,
+          "gain": 0.010274994918414992,
+          "interval95": [
+            0.0061577032075407125,
+            0.015068345494519502
+          ],
+          "percent": 1.5027792020699038,
+          "improved": 22,
+          "flights": 27
+        },
+        "future_wave_beats_flip": {
+          "reference_rmse": 0.6989606713943929,
+          "model_rmse": 0.6734578451596454,
+          "gain": 0.025502826234747533,
+          "interval95": [
+            0.016981510218181464,
+            0.03537344427217702
+          ],
+          "percent": 3.6486782845550736,
+          "improved": 24,
+          "flights": 27
+        },
+        "slow_absolute_rmse": 0.5429475778683387,
+        "wave_rms": 0.05962506251884468
+      },
+      "1-2": {
+        "windows": 152,
+        "beat_window_pairs": 460,
+        "reference_skill": {
+          "reference_rmse": 0.49510438067303203,
+          "model_rmse": 0.2688250853861327,
+          "gain": 0.22627929528689933,
+          "interval95": [
+            0.20371648451239346,
+            0.24579559051502836
+          ],
+          "percent": 45.70335147899542,
+          "improved": 27,
+          "flights": 27
+        },
+        "wave_beats_zero": {
+          "reference_rmse": 0.4280219752696964,
+          "model_rmse": 0.41496388347782803,
+          "gain": 0.013058091791868343,
+          "interval95": [
+            0.008545065145633177,
+            0.017594393898864566
+          ],
+          "percent": 3.0507993856251026,
+          "improved": 23,
+          "flights": 27
+        },
+        "centered_wave_beats_zero": {
+          "reference_rmse": 0.42778146756213997,
+          "model_rmse": 0.41470969692503784,
+          "gain": 0.013071770637102131,
+          "interval95": [
+            0.008555916815371583,
+            0.017607905071468283
+          ],
+          "percent": 3.0557122335374,
+          "improved": 23,
+          "flights": 27
+        },
+        "centered_wave_beats_swapped_slow": {
+          "reference_rmse": 0.4446698924240436,
+          "model_rmse": 0.41470969692503784,
+          "gain": 0.02996019549900575,
+          "interval95": [
+            0.017428199951992525,
+            0.0449853027542288
+          ],
+          "percent": 6.737626272757701,
+          "improved": 23,
+          "flights": 27
+        },
+        "slow_beats_persistence": {
+          "reference_rmse": 2.186082631703853,
+          "model_rmse": 0.7648789283583594,
+          "gain": 1.4212037033454936,
+          "interval95": [
+            1.0369469056176217,
+            1.8229223829501258
+          ],
+          "percent": 65.01143564906302,
+          "improved": 26,
+          "flights": 26
+        },
+        "slow_beats_swapped_wave": {
+          "reference_rmse": 2.185907722601892,
+          "model_rmse": 0.7648789283583594,
+          "gain": 1.4210287942435325,
+          "interval95": [
+            1.0368438627003436,
+            1.822681965958225
+          ],
+          "percent": 65.00863597993414,
+          "improved": 26,
+          "flights": 26
+        },
+        "future_wave_beats_drop": {
+          "reference_rmse": 0.9597651748790782,
+          "model_rmse": 0.9539195659569208,
+          "gain": 0.005845608922157353,
+          "interval95": [
+            0.004027820977631336,
+            0.007667508348626877
+          ],
+          "percent": 0.6090665795301264,
+          "improved": 23,
+          "flights": 27
+        },
+        "future_wave_beats_flip": {
+          "reference_rmse": 0.9678811622888104,
+          "model_rmse": 0.9539195659569208,
+          "gain": 0.013961596331889536,
+          "interval95": [
+            0.01012814587191047,
+            0.017805291671610192
+          ],
+          "percent": 1.4424907598029502,
+          "improved": 25,
+          "flights": 27
+        },
+        "slow_absolute_rmse": 0.8655403985575415,
+        "wave_rms": 0.047212820333272454
+      }
+    },
+    "angular_rate": {
+      "all": {
+        "windows": 199,
+        "beat_window_pairs": 997,
+        "reference_skill": {
+          "reference_rmse": 0.7449204602533965,
+          "model_rmse": 0.625537199623116,
+          "gain": 0.11938326063028049,
+          "interval95": [
+            0.09479558322914222,
+            0.14521997317075083
+          ],
+          "percent": 16.026309787446348,
+          "improved": 36,
+          "flights": 38
+        },
+        "wave_beats_zero": {
+          "reference_rmse": 0.45379533100572517,
+          "model_rmse": 0.4069744063905774,
+          "gain": 0.04682092461514775,
+          "interval95": [
+            0.03936805230515456,
+            0.05431610997820715
+          ],
+          "percent": 10.317630309545223,
+          "improved": 38,
+          "flights": 38
+        },
+        "centered_wave_beats_zero": {
+          "reference_rmse": 0.45338151211140293,
+          "model_rmse": 0.40647682396605145,
+          "gain": 0.04690468814535148,
+          "interval95": [
+            0.03943478142362931,
+            0.054446649858456625
+          ],
+          "percent": 10.345522896801818,
+          "improved": 38,
+          "flights": 38
+        },
+        "centered_wave_beats_swapped_slow": {
+          "reference_rmse": 0.469541589811052,
+          "model_rmse": 0.40647682396605145,
+          "gain": 0.06306476584500054,
+          "interval95": [
+            0.04633044440923458,
+            0.08089086852099729
+          ],
+          "percent": 13.431135220711422,
+          "improved": 33,
+          "flights": 38
+        },
+        "slow_beats_persistence": {
+          "reference_rmse": 0.18061839091161586,
+          "model_rmse": 0.5787144999337617,
+          "gain": -0.3980961090221458,
+          "interval95": [
+            -0.4400211061581078,
+            -0.35636692588804164
+          ],
+          "percent": -220.40729463532367,
+          "improved": 0,
+          "flights": 38
+        },
+        "slow_beats_swapped_wave": {
+          "reference_rmse": 0.18088169166823376,
+          "model_rmse": 0.5787144999337617,
+          "gain": -0.3978328082655279,
+          "interval95": [
+            -0.43977175582844413,
+            -0.35595749203106325
+          ],
+          "percent": -219.94089318625876,
+          "improved": 0,
+          "flights": 38
+        },
+        "future_wave_beats_drop": {
+          "reference_rmse": 0.8344521845023097,
+          "model_rmse": 0.8135766727076175,
+          "gain": 0.02087551179469227,
+          "interval95": [
+            0.01632512000992801,
+            0.025798275540627583
+          ],
+          "percent": 2.501702575941245,
+          "improved": 37,
+          "flights": 38
+        },
+        "future_wave_beats_flip": {
+          "reference_rmse": 0.8644664207452034,
+          "model_rmse": 0.8135766727076175,
+          "gain": 0.05088974803758595,
+          "interval95": [
+            0.041121399901123006,
+            0.06144405105469645
+          ],
+          "percent": 5.886839189626015,
+          "improved": 38,
+          "flights": 38
+        },
+        "slow_absolute_rmse": 0.47916929121375285,
+        "wave_rms": 0.09107222004724323
+      },
+      "0-0.5": {
+        "windows": 152,
+        "beat_window_pairs": 193,
+        "reference_skill": {
+          "reference_rmse": 0.7524659418488884,
+          "model_rmse": 0.6288159237280071,
+          "gain": 0.12365001812088128,
+          "interval95": [
+            0.08151047998590513,
+            0.1591708383985463
+          ],
+          "percent": 16.432639837101483,
+          "improved": 34,
+          "flights": 35
+        },
+        "wave_beats_zero": {
+          "reference_rmse": 0.4537857945879251,
+          "model_rmse": 0.3831804648952962,
+          "gain": 0.0706053296926289,
+          "interval95": [
+            0.057033369801899186,
+            0.08461191434704607
+          ],
+          "percent": 15.559175834656603,
+          "improved": 35,
+          "flights": 35
+        },
+        "centered_wave_beats_zero": {
+          "reference_rmse": 0.4534220972059204,
+          "model_rmse": 0.3827221807823655,
+          "gain": 0.07069991642355494,
+          "interval95": [
+            0.0571060354386912,
+            0.0847293079425197
+          ],
+          "percent": 15.592516743057361,
+          "improved": 35,
+          "flights": 35
+        },
+        "centered_wave_beats_swapped_slow": {
+          "reference_rmse": 0.4730506468801545,
+          "model_rmse": 0.3827221807823655,
+          "gain": 0.09032846609778905,
+          "interval95": [
+            0.05853713870109231,
+            0.1263761391767063
+          ],
+          "percent": 19.094882692481217,
+          "improved": 33,
+          "flights": 35
+        },
+        "slow_beats_persistence": {
+          "reference_rmse": 0.08975419962708582,
+          "model_rmse": 0.36584564882636,
+          "gain": -0.2760914491992742,
+          "interval95": [
+            -0.3458394357621525,
+            -0.20509554239539424
+          ],
+          "percent": -307.60839085679504,
+          "improved": 0,
+          "flights": 21
+        },
+        "slow_beats_swapped_wave": {
+          "reference_rmse": 0.09013897179117994,
+          "model_rmse": 0.36584564882636,
+          "gain": -0.27570667703518004,
+          "interval95": [
+            -0.34546513269879503,
+            -0.2046566881484986
+          ],
+          "percent": -305.86845129972716,
+          "improved": 0,
+          "flights": 21
+        },
+        "future_wave_beats_drop": {
+          "reference_rmse": 0.8526793939373716,
+          "model_rmse": 0.8244214048863764,
+          "gain": 0.02825798905099519,
+          "interval95": [
+            0.019635152539314644,
+            0.037374537797447836
+          ],
+          "percent": 3.314022744294287,
+          "improved": 32,
+          "flights": 35
+        },
+        "future_wave_beats_flip": {
+          "reference_rmse": 0.8930654938192668,
+          "model_rmse": 0.8244214048863764,
+          "gain": 0.06864408893289042,
+          "interval95": [
+            0.050526453450377026,
+            0.08799423061837441
+          ],
+          "percent": 7.686344328379368,
+          "improved": 33,
+          "flights": 35
+        },
+        "slow_absolute_rmse": 0.4950805104767027,
+        "wave_rms": 0.10749960789386781
+      },
+      "0.5-1": {
+        "windows": 169,
+        "beat_window_pairs": 305,
+        "reference_skill": {
+          "reference_rmse": 0.7585332855084117,
+          "model_rmse": 0.6286541264979633,
+          "gain": 0.12987915901044844,
+          "interval95": [
+            0.10637973472579283,
+            0.15604648906461138
+          ],
+          "percent": 17.12240734741075,
+          "improved": 36,
+          "flights": 36
+        },
+        "wave_beats_zero": {
+          "reference_rmse": 0.43742707196461816,
+          "model_rmse": 0.38807225595274564,
+          "gain": 0.04935481601187253,
+          "interval95": [
+            0.038479099835010216,
+            0.06004882771938218
+          ],
+          "percent": 11.2829815928413,
+          "improved": 35,
+          "flights": 36
+        },
+        "centered_wave_beats_zero": {
+          "reference_rmse": 0.43701773747673395,
+          "model_rmse": 0.38755862373632755,
+          "gain": 0.0494591137404064,
+          "interval95": [
+            0.038548316942265314,
+            0.06019314764740808
+          ],
+          "percent": 11.317415633052995,
+          "improved": 35,
+          "flights": 36
+        },
+        "centered_wave_beats_swapped_slow": {
+          "reference_rmse": 0.45588071604472835,
+          "model_rmse": 0.38755862373632755,
+          "gain": 0.0683220923084008,
+          "interval95": [
+            0.04961298298956839,
+            0.08747400448846525
+          ],
+          "percent": 14.986835350521266,
+          "improved": 31,
+          "flights": 36
+        },
+        "slow_beats_persistence": {
+          "reference_rmse": 0.1441526170165572,
+          "model_rmse": 0.4801741080503239,
+          "gain": -0.33602149103376666,
+          "interval95": [
+            -0.3768339384546627,
+            -0.2949900179535516
+          ],
+          "percent": -233.10120758693657,
+          "improved": 0,
+          "flights": 34
+        },
+        "slow_beats_swapped_wave": {
+          "reference_rmse": 0.1444415224068492,
+          "model_rmse": 0.4801741080503239,
+          "gain": -0.3357325856434747,
+          "interval95": [
+            -0.3766232323336116,
+            -0.2946911972993195
+          ],
+          "percent": -232.4349536401416,
+          "improved": 0,
+          "flights": 34
+        },
+        "future_wave_beats_drop": {
+          "reference_rmse": 0.8562254884537581,
+          "model_rmse": 0.8322644139096095,
+          "gain": 0.02396107454414864,
+          "interval95": [
+            0.01753814453414294,
+            0.030548201109363786
+          ],
+          "percent": 2.7984537796719278,
+          "improved": 33,
+          "flights": 36
+        },
+        "future_wave_beats_flip": {
+          "reference_rmse": 0.8896836230531563,
+          "model_rmse": 0.8322644139096095,
+          "gain": 0.05741920914354681,
+          "interval95": [
+            0.04354598067686417,
+            0.07161378354072215
+          ],
+          "percent": 6.45389076023446,
+          "improved": 35,
+          "flights": 36
+        },
+        "slow_absolute_rmse": 0.4956916249175293,
+        "wave_rms": 0.09475449760708793
+      },
+      "1-2": {
+        "windows": 171,
+        "beat_window_pairs": 499,
+        "reference_skill": {
+          "reference_rmse": 0.7438051345692883,
+          "model_rmse": 0.626749972865737,
+          "gain": 0.11705516170355135,
+          "interval95": [
+            0.08178266144938942,
+            0.1515465184939098
+          ],
+          "percent": 15.737342519332554,
+          "improved": 34,
+          "flights": 37
+        },
+        "wave_beats_zero": {
+          "reference_rmse": 0.4584665667352207,
+          "model_rmse": 0.4252166369121773,
+          "gain": 0.03324992982304337,
+          "interval95": [
+            0.027532753451090276,
+            0.03919964313220045
+          ],
+          "percent": 7.252421929001052,
+          "improved": 37,
+          "flights": 37
+        },
+        "centered_wave_beats_zero": {
+          "reference_rmse": 0.45819509121329827,
+          "model_rmse": 0.4249079944040478,
+          "gain": 0.03328709680925046,
+          "interval95": [
+            0.027556044022515134,
+            0.03926232282525034
+          ],
+          "percent": 7.264830515994047,
+          "improved": 37,
+          "flights": 37
+        },
+        "centered_wave_beats_swapped_slow": {
+          "reference_rmse": 0.46687158317849753,
+          "model_rmse": 0.4249079944040478,
+          "gain": 0.04196358877444972,
+          "interval95": [
+            0.02753967466910242,
+            0.057961280121406826
+          ],
+          "percent": 8.988250792382434,
+          "improved": 32,
+          "flights": 37
+        },
+        "slow_beats_persistence": {
+          "reference_rmse": 0.21352260602109457,
+          "model_rmse": 0.6525660664347508,
+          "gain": -0.4390434604136562,
+          "interval95": [
+            -0.5099118182973613,
+            -0.3750636970146223
+          ],
+          "percent": -205.61919348730774,
+          "improved": 0,
+          "flights": 36
+        },
+        "slow_beats_swapped_wave": {
+          "reference_rmse": 0.21381399059842926,
+          "model_rmse": 0.6525660664347508,
+          "gain": -0.43875207583632153,
+          "interval95": [
+            -0.5095273771741029,
+            -0.3747116349709409
+          ],
+          "percent": -205.20269726425693,
+          "improved": 0,
+          "flights": 36
+        },
+        "future_wave_beats_drop": {
+          "reference_rmse": 0.8277651953713433,
+          "model_rmse": 0.8125140659109861,
+          "gain": 0.015251129460357227,
+          "interval95": [
+            0.011795973090612009,
+            0.018915048915826613
+          ],
+          "percent": 1.8424463296642268,
+          "improved": 36,
+          "flights": 37
+        },
+        "future_wave_beats_flip": {
+          "reference_rmse": 0.8493107768889043,
+          "model_rmse": 0.8125140659109861,
+          "gain": 0.03679671097791826,
+          "interval95": [
+            0.02931771567597439,
+            0.04464657533758014
+          ],
+          "percent": 4.332537862372076,
+          "improved": 37,
+          "flights": 37
+        },
+        "slow_absolute_rmse": 0.4792562343796108,
+        "wave_rms": 0.07455691016438529
+      }
+    }
+  }
+}

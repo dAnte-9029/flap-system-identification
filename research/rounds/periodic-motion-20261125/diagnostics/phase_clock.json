@@ -1,0 +1,90 @@
+{
+  "exclusions": {
+    "intervening_phase_qc_or_reset": 254,
+    "missing_offline_origin": 1237
+  },
+  "results": {
+    "velocity": {
+      "0-0.5": {
+        "windows": 151,
+        "flights": 27,
+        "native_points": 2552,
+        "mean_cosine": 0.9111653368173767,
+        "cosine_interval95": [
+          0.8916044715252454,
+          0.9299480653411761
+        ],
+        "circular_rms_deg": 24.80680473436964,
+        "circular_bias_deg": 1.3774008173191414,
+        "within45_fraction": 0.9337717777705614
+      },
+      "0.5-1": {
+        "windows": 156,
+        "flights": 27,
+        "native_points": 3732,
+        "mean_cosine": 0.6082311637546057,
+        "cosine_interval95": [
+          0.5173348487757139,
+          0.6903298231629832
+        ],
+        "circular_rms_deg": 57.2486155652731,
+        "circular_bias_deg": 6.590625394445479,
+        "within45_fraction": 0.5509655247992001
+      },
+      "1-2": {
+        "windows": 145,
+        "flights": 26,
+        "native_points": 5701,
+        "mean_cosine": 0.19228937806504656,
+        "cosine_interval95": [
+          0.022703027838791676,
+          0.35870398937017245
+        ],
+        "circular_rms_deg": 92.27400736768001,
+        "circular_bias_deg": 7.985861120160143,
+        "within45_fraction": 0.376676782860743
+      }
+    },
+    "angular_rate": {
+      "0-0.5": {
+        "windows": 163,
+        "flights": 35,
+        "native_points": 5309,
+        "mean_cosine": 0.8914315828196417,
+        "cosine_interval95": [
+          0.8629744779027932,
+          0.9160427658733673
+        ],
+        "circular_rms_deg": 27.594433623851696,
+        "circular_bias_deg": 2.1812943987103846,
+        "within45_fraction": 0.8956075102189434
+      },
+      "0.5-1": {
+        "windows": 171,
+        "flights": 37,
+        "native_points": 7737,
+        "mean_cosine": 0.5177536515152652,
+        "cosine_interval95": [
+          0.3969189766793094,
+          0.625831768870647
+        ],
+        "circular_rms_deg": 64.81674490096387,
+        "circular_bias_deg": 4.337645605823099,
+        "within45_fraction": 0.5204701220065397
+      },
+      "1-2": {
+        "windows": 154,
+        "flights": 33,
+        "native_points": 11754,
+        "mean_cosine": 0.09563349206723774,
+        "cosine_interval95": [
+          -0.06944637815999367,
+          0.255341994707687
+        ],
+        "circular_rms_deg": 98.51502989249148,
+        "circular_bias_deg": 45.92376165334316,
+        "within45_fraction": 0.3239868493867199
+      }
+    }
+  }
+}

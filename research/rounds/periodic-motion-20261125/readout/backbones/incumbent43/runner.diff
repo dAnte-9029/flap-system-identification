@@ -1,0 +1,13 @@
+--- runner.py
++++ extended_runner.py
+@@ -111,8 +111,8 @@
+             history.append(row)
+             print(json.dumps(row), flush=True)
+             scheduler.step(score)
+-            tail = [v["dev_mse"] for v in history[-rule["window"]:]]
+-            if step >= rule["min_steps"] and len(tail) == rule["window"] and max(tail) - min(tail) <= rule["max_range"]:
++            from policy import on_monitor
++            if on_monitor(history, model):
+                 break
+     delta = sum((p.detach() - prev).square().sum() for p, prev in zip(model.parameters(), initial)).sqrt().item()
+     info = dict(steps=step, samples=step * BATCH, validation_history=history, first50=float(np.mean(losses[:50])),

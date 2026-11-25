@@ -1,0 +1,214 @@
+{
+  "run_id": "20261125T062201Z-1a04428be1f9",
+  "screening_sha256": "bc4f09b1afc502ea937cc60f541e893f587066f73e693804a4f7563a3021e65d",
+  "trace": [
+    {
+      "id": "q1",
+      "kind": "repository",
+      "label": "公开实现查询",
+      "basis": "W2946709941",
+      "endpoint": "https://api.github.com/search/repositories",
+      "params": {
+        "q": "\"N-BEATS: Neural basis expansion analysis for interpretable time series forecasting\" in:description",
+        "per_page": 4
+      },
+      "status": "ok",
+      "attempted": true,
+      "total": 3,
+      "hits": [
+        "https://github.com/philipperemy/n-beats",
+        "https://github.com/forecasts-and-nn/n-beats",
+        "https://github.com/Sahilvohra58/tensorflow-time-series-forecasting"
+      ],
+      "incomplete": false
+    },
+    {
+      "id": "q2",
+      "kind": "readme",
+      "label": "README 归属核查",
+      "basis": "W2946709941",
+      "endpoint": "https://api.github.com/repos/philipperemy/n-beats/readme",
+      "params": {},
+      "hits": [],
+      "status": "error",
+      "attempted": true,
+      "error": "HTTP 403，请检查 API 访问权限或额度"
+    },
+    {
+      "id": "q3",
+      "kind": "repository",
+      "label": "公开实现查询",
+      "basis": "W3215624848",
+      "endpoint": "https://api.github.com/search/repositories",
+      "params": {
+        "q": "\"NeuralProphet: Explainable Forecasting at Scale\" in:description",
+        "per_page": 4
+      },
+      "status": "error",
+      "error": "HTTP 403，请检查 API 访问权限或额度",
+      "hits": [],
+      "attempted": true
+    },
+    {
+      "id": "q4",
+      "kind": "repository",
+      "label": "公开实现查询",
+      "basis": "W3215624848",
+      "endpoint": "https://api.github.com/search/repositories",
+      "params": {
+        "q": "\"NeuralProphet\" in:name,description",
+        "per_page": 4
+      },
+      "status": "error",
+      "error": "HTTP 403，请检查 API 访问权限或额度",
+      "hits": [],
+      "attempted": true
+    },
+    {
+      "id": "q5",
+      "kind": "repository",
+      "label": "公开实现查询",
+      "basis": "W4415795980",
+      "endpoint": "https://api.github.com/search/repositories",
+      "params": {
+        "q": "\"CycleNet: Enhancing Time Series Forecasting through Modeling Periodic Patterns\" in:description",
+        "per_page": 4
+      },
+      "status": "error",
+      "error": "HTTP 403，请检查 API 访问权限或额度",
+      "hits": [],
+      "attempted": true
+    },
+    {
+      "id": "q6",
+      "kind": "readme",
+      "label": "README 归属核查",
+      "basis": "W4415795980",
+      "endpoint": "https://api.github.com/repos/ACAT-SCUT/CycleNet/readme",
+      "params": {},
+      "hits": [],
+      "status": "error",
+      "attempted": true,
+      "error": "HTTP 403，请检查 API 访问权限或额度"
+    },
+    {
+      "id": "q7",
+      "kind": "repository",
+      "label": "公开实现查询",
+      "basis": "W4226362568",
+      "endpoint": "https://api.github.com/search/repositories",
+      "params": {
+        "q": "\"CoST: Contrastive Learning of Disentangled Seasonal-Trend Representations for Time Series Forecasting\" in:description",
+        "per_page": 4
+      },
+      "status": "error",
+      "error": "HTTP 403，请检查 API 访问权限或额度",
+      "hits": [],
+      "attempted": true
+    },
+    {
+      "id": "q8",
+      "kind": "readme",
+      "label": "README 归属核查",
+      "basis": "W4226362568",
+      "endpoint": "https://api.github.com/repos/salesforce/CoST/readme",
+      "params": {},
+      "hits": [],
+      "status": "error",
+      "attempted": true,
+      "error": "HTTP 403，请检查 API 访问权限或额度"
+    }
+  ],
+  "papers": {
+    "W2946709941": {
+      "lookup_status": "query_failed",
+      "code_status": "unverified",
+      "code": [
+        {
+          "url": "https://github.com/philipperemy/n-beats",
+          "status": "unverified",
+          "evidence": [
+            {
+              "kind": "search",
+              "source": "https://github.com/philipperemy/n-beats",
+              "path": "q1",
+              "text": "Keras/Pytorch implementation of N-BEATS: Neural basis expansion analysis for interpretable time series forecasting."
+            }
+          ],
+          "full_name": "philipperemy/n-beats",
+          "fork": false,
+          "license": "MIT"
+        },
+        {
+          "url": "https://github.com/forecasts-and-nn/n-beats",
+          "status": "unverified",
+          "evidence": [
+            {
+              "kind": "search",
+              "source": "https://github.com/forecasts-and-nn/n-beats",
+              "path": "q1",
+              "text": "N-BEATS: Neural basis expansion analysis for interpretable time series forecasting."
+            }
+          ],
+          "full_name": "forecasts-and-nn/n-beats",
+          "fork": false,
+          "license": "MIT"
+        },
+        {
+          "url": "https://github.com/Sahilvohra58/tensorflow-time-series-forecasting",
+          "status": "unverified",
+          "evidence": [
+            {
+              "kind": "search",
+              "source": "https://github.com/Sahilvohra58/tensorflow-time-series-forecasting",
+              "path": "q1",
+              "text": "Bitcoin price prediction using N-BEATS (Neural Basis Expansion Analysis for Interpretable Time Series Forecasting) algorithm. The algorithm consisted of 120 dense layers with each layer of 512 neurons. The model used residual connection for overcoming problems of vanishing gradient and overfit. Designed a series of 10 deep learning experiments for improving results and forecasting horizons. Also made the use of ensemble learning method by combining 5 deep learning models. Introduced outliers on purpose to evaluate the effects of on training and overall model testing."
+            }
+          ],
+          "full_name": "Sahilvohra58/tensorflow-time-series-forecasting",
+          "fork": false,
+          "license": null
+        }
+      ]
+    },
+    "W3215624848": {
+      "lookup_status": "query_failed",
+      "code_status": "query_failed",
+      "code": []
+    },
+    "W4415795980": {
+      "lookup_status": "query_failed",
+      "code_status": "unverified",
+      "code": [
+        {
+          "url": "https://github.com/ACAT-SCUT/CycleNet",
+          "status": "unverified",
+          "evidence": [
+            {
+              "source": "https://openalex.org/W4415795980",
+              "kind": "abstract",
+              "text": "nique, the RCF can also significantly improve the prediction accuracy of existing models, including PatchTST and iTransformer. The source code is available at: https://github.com/ACAT-SCUT/CycleNet"
+            }
+          ]
+        }
+      ]
+    },
+    "W4226362568": {
+      "lookup_status": "query_failed",
+      "code_status": "unverified",
+      "code": [
+        {
+          "url": "https://github.com/salesforce/CoST",
+          "status": "unverified",
+          "evidence": [
+            {
+              "source": "https://openalex.org/W4226362568",
+              "kind": "abstract",
+              "text": "mprovement in MSE on multivariate benchmarks. It is also robust to various choices of backbone encoders, as well as downstream regressors. Code is available at https://github.com/salesforce/CoST"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,564 @@
+{
+  "down_velocity": {
+    "flights": 27,
+    "windows": 432,
+    "arms": {
+      "full": {
+        "17": {
+          "RMS": {
+            "phase": {
+              "slow_delta": 0.01716012381516067,
+              "future_wave": 0.016073187663763158,
+              "origin_wave": 0.015658653753530996,
+              "wave_delta": 0.02106545551972189,
+              "absolute_slow": 0.016650008823286728,
+              "output": 0.02313073577353806,
+              "future_wave_energy_share": 0.48237818897534923
+            },
+            "ramp": {
+              "slow_delta": 0.017312549726777628,
+              "future_wave": 0.0017446208060964633,
+              "origin_wave": 0.0035555098477035568,
+              "wave_delta": 0.003748921733226214,
+              "absolute_slow": 0.014199094399052618,
+              "output": 0.0144471633076283,
+              "future_wave_energy_share": 0.014872137919368806
+            }
+          },
+          "contrast": {
+            "share_difference": 0.4675060510559804,
+            "phase_advantage_future_wave_rms": 0.014328566857666696,
+            "ramp_advantage_absolute_slow_rms": -0.00245091442423411
+          }
+        },
+        "29": {
+          "RMS": {
+            "phase": {
+              "slow_delta": 0.01518702305755296,
+              "future_wave": 0.017687368795875943,
+              "origin_wave": 0.010896915487665082,
+              "wave_delta": 0.020683936880556836,
+              "absolute_slow": 0.013837862792562172,
+              "output": 0.022417567529803333,
+              "future_wave_energy_share": 0.6203147718890403
+            },
+            "ramp": {
+              "slow_delta": 0.016931253037362703,
+              "future_wave": 0.0022457158380488093,
+              "origin_wave": 0.004119577425368736,
+              "wave_delta": 0.00415506687390152,
+              "absolute_slow": 0.01344062448412234,
+              "output": 0.013978883739015603,
+              "future_wave_energy_share": 0.02715892693716619
+            }
+          },
+          "contrast": {
+            "share_difference": 0.5931558449518741,
+            "phase_advantage_future_wave_rms": 0.015441652957827134,
+            "ramp_advantage_absolute_slow_rms": -0.0003972383084398321
+          }
+        },
+        "43": {
+          "RMS": {
+            "phase": {
+              "slow_delta": 0.031203453220753734,
+              "future_wave": 0.0071658207586534255,
+              "origin_wave": 0.015875196065211754,
+              "wave_delta": 0.015182219886893403,
+              "absolute_slow": 0.023864922705978998,
+              "output": 0.026567218669434418,
+              "future_wave_energy_share": 0.08270309204645838
+            },
+            "ramp": {
+              "slow_delta": 0.012654327058076193,
+              "future_wave": 0.0004075394605465866,
+              "origin_wave": 0.0008906945853222426,
+              "wave_delta": 0.0009014765972714797,
+              "absolute_slow": 0.012913828137812954,
+              "output": 0.012873776888418929,
+              "future_wave_energy_share": 0.0009949402847152875
+            }
+          },
+          "contrast": {
+            "share_difference": 0.08170815176174309,
+            "phase_advantage_future_wave_rms": 0.006758281298106839,
+            "ramp_advantage_absolute_slow_rms": -0.010951094568166043
+          }
+        },
+        "average": {
+          "share_difference": {
+            "mean": 0.3807900159231992,
+            "ci95": [
+              0.35079102687103253,
+              0.4115271743141517
+            ]
+          },
+          "phase_advantage_future_wave_rms": {
+            "mean": 0.01217616703786689,
+            "ci95": [
+              0.011736176619470115,
+              0.012643341133658248
+            ]
+          },
+          "ramp_advantage_absolute_slow_rms": {
+            "mean": -0.0045997491002799954,
+            "ci95": [
+              -0.005825711322093566,
+              -0.003411006171547948
+            ]
+          }
+        },
+        "mean_component_responses": {
+          "phase": {
+            "slow_delta": 0.02118353336448912,
+            "future_wave": 0.013642125739430843,
+            "origin_wave": 0.014143588435469277,
+            "wave_delta": 0.01897720409572404,
+            "absolute_slow": 0.018117598107275965,
+            "output": 0.024038507324258603,
+            "future_wave_energy_share": 0.39513201763694933
+          },
+          "ramp": {
+            "slow_delta": 0.015632709940738843,
+            "future_wave": 0.0014659587015639528,
+            "origin_wave": 0.0028552606194648454,
+            "wave_delta": 0.0029351550681330717,
+            "absolute_slow": 0.013517849006995972,
+            "output": 0.013766607978354278,
+            "future_wave_energy_share": 0.014342001713750094
+          }
+        }
+      },
+      "matched": {
+        "17": {
+          "RMS": {
+            "phase": {
+              "slow_delta": 0.03907989106759951,
+              "future_wave": 0.0031727754478235153,
+              "origin_wave": 0.031174865125282863,
+              "wave_delta": 0.031916596788741376,
+              "absolute_slow": 0.028217819165489832,
+              "output": 0.027365968841568267,
+              "future_wave_energy_share": 0.012484629099344783
+            },
+            "ramp": {
+              "slow_delta": 0.011322968221403428,
+              "future_wave": 8.701436742578473e-05,
+              "origin_wave": 0.001926619975972568,
+              "wave_delta": 0.0019084674302862637,
+              "absolute_slow": 0.012116141719078986,
+              "output": 0.012107062864278074,
+              "future_wave_energy_share": 5.1574003657924005e-05
+            }
+          },
+          "contrast": {
+            "share_difference": 0.01243305509568686,
+            "phase_advantage_future_wave_rms": 0.0030857610803977304,
+            "ramp_advantage_absolute_slow_rms": -0.016101677446410848
+          }
+        },
+        "29": {
+          "RMS": {
+            "phase": {
+              "slow_delta": 0.04412975642083737,
+              "future_wave": 0.0033025201534737808,
+              "origin_wave": 0.028900869573620674,
+              "wave_delta": 0.02923475967263513,
+              "absolute_slow": 0.02885066949794188,
+              "output": 0.02848879763347568,
+              "future_wave_energy_share": 0.012933779463815697
+            },
+            "ramp": {
+              "slow_delta": 0.01897517739161252,
+              "future_wave": 0.0002356390932715143,
+              "origin_wave": 0.006941359864330109,
+              "wave_delta": 0.006865889969891002,
+              "absolute_slow": 0.012418007863518335,
+              "output": 0.0124685641515833,
+              "future_wave_energy_share": 0.0003599436158864252
+            }
+          },
+          "contrast": {
+            "share_difference": 0.012573835847929272,
+            "phase_advantage_future_wave_rms": 0.0030668810602022664,
+            "ramp_advantage_absolute_slow_rms": -0.016432661634423546
+          }
+        },
+        "43": {
+          "RMS": {
+            "phase": {
+              "slow_delta": 0.04869324445480582,
+              "future_wave": 0.005225579826840587,
+              "origin_wave": 0.036602433987587286,
+              "wave_delta": 0.03848648571080056,
+              "absolute_slow": 0.028971018739324585,
+              "output": 0.027268217404708372,
+              "future_wave_energy_share": 0.03150916919693975
+            },
+            "ramp": {
+              "slow_delta": 0.017800275563119906,
+              "future_wave": 0.0005126577930032073,
+              "origin_wave": 0.004946779730438615,
+              "wave_delta": 0.004790871308887648,
+              "absolute_slow": 0.013301682427715286,
+              "output": 0.01341010688024657,
+              "future_wave_energy_share": 0.001483191940237311
+            }
+          },
+          "contrast": {
+            "share_difference": 0.030025977256702443,
+            "phase_advantage_future_wave_rms": 0.0047129220338373795,
+            "ramp_advantage_absolute_slow_rms": -0.0156693363116093
+          }
+        },
+        "average": {
+          "share_difference": {
+            "mean": 0.018344289400106194,
+            "ci95": [
+              0.01697095989914084,
+              0.019969150491253338
+            ]
+          },
+          "phase_advantage_future_wave_rms": {
+            "mean": 0.0036218547248124586,
+            "ci95": [
+              0.0035713035165710894,
+              0.003671049375289117
+            ]
+          },
+          "ramp_advantage_absolute_slow_rms": {
+            "mean": -0.01606789179748123,
+            "ci95": [
+              -0.01699423986269347,
+              -0.01508617194644372
+            ]
+          }
+        },
+        "mean_component_responses": {
+          "phase": {
+            "slow_delta": 0.043967630647747565,
+            "future_wave": 0.0039002918093792942,
+            "origin_wave": 0.03222605622883027,
+            "wave_delta": 0.033212614057392356,
+            "absolute_slow": 0.028679835800918766,
+            "output": 0.027707661293250776,
+            "future_wave_energy_share": 0.018975859253366745
+          },
+          "ramp": {
+            "slow_delta": 0.01603280705871195,
+            "future_wave": 0.00027843708456683544,
+            "origin_wave": 0.004604919856913764,
+            "wave_delta": 0.004521742903021638,
+            "absolute_slow": 0.012611944003437537,
+            "output": 0.012661911298702649,
+            "future_wave_energy_share": 0.0006315698532605534
+          }
+        }
+      }
+    },
+    "full_minus_matched": {
+      "share_difference": {
+        "mean": 0.36244572652309304,
+        "ci95": [
+          0.3325753801352578,
+          0.392714667811306
+        ]
+      },
+      "phase_advantage_future_wave_rms": {
+        "mean": 0.008554312313054431,
+        "ci95": [
+          0.008115982811128583,
+          0.009018488848810666
+        ]
+      },
+      "ramp_advantage_absolute_slow_rms": {
+        "mean": 0.011468142697201235,
+        "ci95": [
+          0.010048438115997082,
+          0.012928187508036976
+        ]
+      }
+    }
+  },
+  "pitch_rate": {
+    "flights": 39,
+    "windows": 624,
+    "arms": {
+      "full": {
+        "17": {
+          "RMS": {
+            "phase": {
+              "slow_delta": 0.011885029527724782,
+              "future_wave": 0.014673461511732298,
+              "origin_wave": 0.010046789831708371,
+              "wave_delta": 0.01788877718571884,
+              "absolute_slow": 0.005366645202694268,
+              "output": 0.015912726201569468,
+              "future_wave_energy_share": 0.8820174468641018
+            },
+            "ramp": {
+              "slow_delta": 0.005249469314536335,
+              "future_wave": 0.0011561661588988656,
+              "origin_wave": 0.004226326977444675,
+              "wave_delta": 0.003956925941109395,
+              "absolute_slow": 0.0022439802850137227,
+              "output": 0.0027973399603426715,
+              "future_wave_energy_share": 0.20977479698417956
+            }
+          },
+          "contrast": {
+            "share_difference": 0.6722426498799222,
+            "phase_advantage_future_wave_rms": 0.013517295352833431,
+            "ramp_advantage_absolute_slow_rms": -0.0031226649176805455
+          }
+        },
+        "29": {
+          "RMS": {
+            "phase": {
+              "slow_delta": 0.015688332283747906,
+              "future_wave": 0.01600609477312138,
+              "origin_wave": 0.013900753177723239,
+              "wave_delta": 0.020810578782660714,
+              "absolute_slow": 0.004754149423931229,
+              "output": 0.016537187130375715,
+              "future_wave_energy_share": 0.9189304898995442
+            },
+            "ramp": {
+              "slow_delta": 0.004459896513486283,
+              "future_wave": 0.0015077630376914774,
+              "origin_wave": 0.004593055974031668,
+              "wave_delta": 0.0044282615592887275,
+              "absolute_slow": 0.0019375509271555291,
+              "output": 0.002674167097924655,
+              "future_wave_energy_share": 0.3771658423476017
+            }
+          },
+          "contrast": {
+            "share_difference": 0.5417646475519424,
+            "phase_advantage_future_wave_rms": 0.014498331735429904,
+            "ramp_advantage_absolute_slow_rms": -0.0028165984967756996
+          }
+        },
+        "43": {
+          "RMS": {
+            "phase": {
+              "slow_delta": 0.02233954180837905,
+              "future_wave": 0.008909349602714604,
+              "origin_wave": 0.008126919316081392,
+              "wave_delta": 0.01238142193577164,
+              "absolute_slow": 0.021241389833243203,
+              "output": 0.02402467705781538,
+              "future_wave_energy_share": 0.14960521463563528
+            },
+            "ramp": {
+              "slow_delta": 0.006164245855220203,
+              "future_wave": 0.00039829002999656294,
+              "origin_wave": 0.002199852019095809,
+              "wave_delta": 0.002130642954819556,
+              "absolute_slow": 0.006057376586020346,
+              "output": 0.006044354879465416,
+              "future_wave_energy_share": 0.004304831148233602
+            }
+          },
+          "contrast": {
+            "share_difference": 0.14530038348740168,
+            "phase_advantage_future_wave_rms": 0.008511059572718041,
+            "ramp_advantage_absolute_slow_rms": -0.015184013247222856
+          }
+        },
+        "average": {
+          "share_difference": {
+            "mean": 0.45310256030642204,
+            "ci95": [
+              0.42067900034365135,
+              0.4882749588105712
+            ]
+          },
+          "phase_advantage_future_wave_rms": {
+            "mean": 0.012175562220327125,
+            "ci95": [
+              0.011289596596271847,
+              0.013051668438227054
+            ]
+          },
+          "ramp_advantage_absolute_slow_rms": {
+            "mean": -0.007041092220559701,
+            "ci95": [
+              -0.007621870789617339,
+              -0.0064510957147950075
+            ]
+          }
+        },
+        "mean_component_responses": {
+          "phase": {
+            "slow_delta": 0.01663763453995058,
+            "future_wave": 0.013196301962522762,
+            "origin_wave": 0.010691487441837668,
+            "wave_delta": 0.0170269259680504,
+            "absolute_slow": 0.0104540614866229,
+            "output": 0.01882486346325352,
+            "future_wave_energy_share": 0.6501843837997604
+          },
+          "ramp": {
+            "slow_delta": 0.005291203894414273,
+            "future_wave": 0.0010207397421956351,
+            "origin_wave": 0.0036730783235240506,
+            "wave_delta": 0.0035052768184058933,
+            "absolute_slow": 0.003412969266063199,
+            "output": 0.0038386206459109142,
+            "future_wave_energy_share": 0.19708182349333833
+          }
+        }
+      },
+      "matched": {
+        "17": {
+          "RMS": {
+            "phase": {
+              "slow_delta": 0.03398843507223201,
+              "future_wave": 0.004590028628255453,
+              "origin_wave": 0.017827997834037584,
+              "wave_delta": 0.019935273923148488,
+              "absolute_slow": 0.02689077974851236,
+              "output": 0.02585022277214979,
+              "future_wave_energy_share": 0.02831075131121328
+            },
+            "ramp": {
+              "slow_delta": 0.005797567425320575,
+              "future_wave": 0.00026592364516381484,
+              "origin_wave": 0.002687189497264084,
+              "wave_delta": 0.0026870127978132477,
+              "absolute_slow": 0.005080531282466282,
+              "output": 0.00507003755403564,
+              "future_wave_energy_share": 0.00273216838329581
+            }
+          },
+          "contrast": {
+            "share_difference": 0.025578582927917468,
+            "phase_advantage_future_wave_rms": 0.004324104983091638,
+            "ramp_advantage_absolute_slow_rms": -0.021810248466046078
+          }
+        },
+        "29": {
+          "RMS": {
+            "phase": {
+              "slow_delta": 0.03212527521926678,
+              "future_wave": 0.0019704046795095105,
+              "origin_wave": 0.01641305280759774,
+              "wave_delta": 0.016758442381820726,
+              "absolute_slow": 0.02703479698962536,
+              "output": 0.026848277902259843,
+              "future_wave_energy_share": 0.0052840112522051005
+            },
+            "ramp": {
+              "slow_delta": 0.0073292171892589695,
+              "future_wave": 0.0003504089778698936,
+              "origin_wave": 0.0028502964703579817,
+              "wave_delta": 0.0028062244559991087,
+              "absolute_slow": 0.006563495448714126,
+              "output": 0.006570502528175662,
+              "future_wave_energy_share": 0.002842130359291085
+            }
+          },
+          "contrast": {
+            "share_difference": 0.0024418808929140153,
+            "phase_advantage_future_wave_rms": 0.001619995701639617,
+            "ramp_advantage_absolute_slow_rms": -0.020471301540911237
+          }
+        },
+        "43": {
+          "RMS": {
+            "phase": {
+              "slow_delta": 0.045891246861059824,
+              "future_wave": 0.002966469063104113,
+              "origin_wave": 0.03519102128642821,
+              "wave_delta": 0.035866236373887334,
+              "absolute_slow": 0.026889345066487744,
+              "output": 0.02652020510120234,
+              "future_wave_energy_share": 0.012024454769504284
+            },
+            "ramp": {
+              "slow_delta": 0.007354645036579581,
+              "future_wave": 0.0003246099185873563,
+              "origin_wave": 0.003008046273628144,
+              "wave_delta": 0.00301113034214426,
+              "absolute_slow": 0.0065615519915854514,
+              "output": 0.006569683909822385,
+              "future_wave_energy_share": 0.0024414555151990903
+            }
+          },
+          "contrast": {
+            "share_difference": 0.009582999254305193,
+            "phase_advantage_future_wave_rms": 0.0026418591445167565,
+            "ramp_advantage_absolute_slow_rms": -0.020327793074902293
+          }
+        },
+        "average": {
+          "share_difference": {
+            "mean": 0.012534487691712226,
+            "ci95": [
+              0.01140053607995988,
+              0.013712952214879545
+            ]
+          },
+          "phase_advantage_future_wave_rms": {
+            "mean": 0.002861986609749337,
+            "ci95": [
+              0.0027418067122777575,
+              0.0029801118896275866
+            ]
+          },
+          "ramp_advantage_absolute_slow_rms": {
+            "mean": -0.020869781027286535,
+            "ci95": [
+              -0.021696457637476362,
+              -0.020038802649634643
+            ]
+          }
+        },
+        "mean_component_responses": {
+          "phase": {
+            "slow_delta": 0.03733498571751954,
+            "future_wave": 0.0031756341236230255,
+            "origin_wave": 0.023144023976021177,
+            "wave_delta": 0.024186650892952185,
+            "absolute_slow": 0.02693830726820849,
+            "output": 0.026406235258537327,
+            "future_wave_energy_share": 0.015206405777640888
+          },
+          "ramp": {
+            "slow_delta": 0.006827143217053042,
+            "future_wave": 0.00031364751387368824,
+            "origin_wave": 0.002848510747083403,
+            "wave_delta": 0.0028347891986522052,
+            "absolute_slow": 0.006068526240921954,
+            "output": 0.006070074664011229,
+            "future_wave_energy_share": 0.002671918085928662
+          }
+        }
+      }
+    },
+    "full_minus_matched": {
+      "share_difference": {
+        "mean": 0.4405680726147098,
+        "ci95": [
+          0.40836340059111015,
+          0.4757251641617585
+        ]
+      },
+      "phase_advantage_future_wave_rms": {
+        "mean": 0.009313575610577789,
+        "ci95": [
+          0.008412772558693524,
+          0.010206679939963131
+        ]
+      },
+      "ramp_advantage_absolute_slow_rms": {
+        "mean": 0.013828688806726833,
+        "ci95": [
+          0.013241747456635347,
+          0.014429440007205445
+        ]
+      }
+    }
+  }
+}

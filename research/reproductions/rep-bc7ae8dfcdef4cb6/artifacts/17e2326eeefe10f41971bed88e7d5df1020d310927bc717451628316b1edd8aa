@@ -1,0 +1,62 @@
+[
+  {
+    "seed": 700,
+    "changepoint": 1861,
+    "centered_component_rmse": [
+      0.00012726650446363383,
+      0.0002702426444973734,
+      0.00045629014491618754
+    ],
+    "max_held_disagreement_ols": 8.579111489470659e-05,
+    "iterations": 450,
+    "uncentered_total_held_rmse": 0.007126436796067342
+  },
+  {
+    "seed": 701,
+    "changepoint": 1585,
+    "centered_component_rmse": [
+      0.00036339166577961646,
+      0.0004908899535194911,
+      0.0006028268371627959
+    ],
+    "max_held_disagreement_ols": 1.4533896607493713e-05,
+    "iterations": 450,
+    "uncentered_total_held_rmse": 0.008062912004659702
+  },
+  {
+    "seed": 702,
+    "changepoint": 1666,
+    "centered_component_rmse": [
+      0.00010671630484675892,
+      0.0004241692867343151,
+      0.0007765673373083831
+    ],
+    "max_held_disagreement_ols": 0.0001623008332264364,
+    "iterations": 394,
+    "uncentered_total_held_rmse": 0.007252145677344637
+  },
+  {
+    "seed": 703,
+    "changepoint": 3150,
+    "centered_component_rmse": [
+      0.0007342396121144229,
+      0.0004075210144946685,
+      0.0005654401452156161
+    ],
+    "max_held_disagreement_ols": 2.6452808319199494e-05,
+    "iterations": 450,
+    "uncentered_total_held_rmse": 0.007385584116544732
+  },
+  {
+    "seed": 704,
+    "changepoint": 2607,
+    "centered_component_rmse": [
+      0.00043880584426050814,
+      0.0003807799121491453,
+      0.000711624088432668
+    ],
+    "max_held_disagreement_ols": 0.00024165306017252808,
+    "iterations": 450,
+    "uncentered_total_held_rmse": 0.00737239656864692
+  }
+]

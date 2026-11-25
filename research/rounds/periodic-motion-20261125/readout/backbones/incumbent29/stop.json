@@ -1,0 +1,8 @@
+{
+  "step": 49152,
+  "reason": "validation_plateau",
+  "earlier_best": 0.16306315447633185,
+  "recent_best": 0.16278132113611993,
+  "improvement": 0.0002818333402119233,
+  "last_16_at_min_lr": true
+}

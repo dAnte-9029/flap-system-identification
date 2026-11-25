@@ -1,0 +1,313 @@
+{
+  "run_id": "20261125T062201Z-1a04428be1f9",
+  "snapshot_sha256": "41c240a6a80c97b6588bf90c875e339a432ddbaf476ea987e48937634bd9a2c8",
+  "prior_refs": [
+    "study-f408239b1b1e/exp-ee674dbe15d9",
+    "study-c636b4ae2d87/exp-7c2120e6fa14"
+  ],
+  "prior_relation": "前轮历史运动对速度有增量预测信息、低阶命令记忆对角速度有益；本轮要求不改变所给控制，优先可显式读出慢变与按相位重复分支、能分别干预的方案。",
+  "provisional_order": [
+    "W2946709941",
+    "W3215624848",
+    "W4415795980",
+    "W4226362568"
+  ],
+  "decisions": [
+    {
+      "id": "W1488564375",
+      "decision": "defer",
+      "basis": "abstract",
+      "reason": "在线人群行为的异常发现依赖规律偏移，当前需显式预测分支。"
+    },
+    {
+      "id": "W2001645924",
+      "decision": "defer",
+      "basis": "abstract",
+      "reason": "研究单个离群点影响传统外推，未提出可学习周期头。"
+    },
+    {
+      "id": "W2040057016",
+      "decision": "defer",
+      "basis": "title",
+      "reason": "聚合与拆分影响预测的题名未说明如何识别载波。"
+    },
+    {
+      "id": "W2071142960",
+      "decision": "defer",
+      "basis": "title",
+      "reason": "计划不连续的水平修正只能解释慢变水平。"
+    },
+    {
+      "id": "W2080942961",
+      "decision": "defer",
+      "basis": "title",
+      "reason": "季节序列的指数平滑比较缺少条件动力学网络。"
+    },
+    {
+      "id": "W2137643484",
+      "decision": "defer",
+      "basis": "abstract",
+      "reason": "指数平滑描述趋势与循环，可作统计背景，缺少神经模块对照。"
+    },
+    {
+      "id": "W2237663125",
+      "decision": "defer",
+      "basis": "abstract",
+      "reason": "回归STR提供离线多季节估计，适合作分量评价参照。"
+    },
+    {
+      "id": "W2288789415",
+      "decision": "defer",
+      "basis": "title",
+      "reason": "focus forecasting与指数平滑比较未提出预测分量。"
+    },
+    {
+      "id": "W2591318697",
+      "decision": "defer",
+      "basis": "abstract",
+      "reason": "趋势滤波能提供平滑参考，但未明确振荡驱动。"
+    },
+    {
+      "id": "W2946709941",
+      "decision": "shortlist",
+      "basis": "abstract",
+      "reason": "同文提供可解释与通用网络，可核对两个输出头的加法约束及容量对照。"
+    },
+    {
+      "id": "W2964758013",
+      "decision": "defer",
+      "basis": "abstract",
+      "reason": "RobustSTL离线趋势季节余项有潜力提供诊断参考，主问题是建模预测。"
+    },
+    {
+      "id": "W2990255447",
+      "decision": "defer",
+      "basis": "title",
+      "reason": "奇异谱和Laguerre混合改变两个环节，不便识别单一分支增益。"
+    },
+    {
+      "id": "W3019616708",
+      "decision": "defer",
+      "basis": "abstract",
+      "reason": "月径流时间序列的网络拟合不说明如何单独检验周期分量。"
+    },
+    {
+      "id": "W3040864798",
+      "decision": "defer",
+      "basis": "abstract",
+      "reason": "奇异谱前处理在网络外部，优先可干预的网络分支。"
+    },
+    {
+      "id": "W3176622143",
+      "decision": "defer",
+      "basis": "abstract",
+      "reason": "STR回归提供季节分解参考，未呈现明显的神经预测器。"
+    },
+    {
+      "id": "W3186391497",
+      "decision": "defer",
+      "basis": "abstract",
+      "reason": "MSTL多季节分解可作描述基准，当前聚焦已知扑翼相位。"
+    },
+    {
+      "id": "W3215624848",
+      "decision": "shortlist",
+      "basis": "abstract",
+      "reason": "可解释可加预测适合将可知时间特征替换成扑翼相位，并单独读取分量。"
+    },
+    {
+      "id": "W4226362568",
+      "decision": "shortlist",
+      "basis": "abstract",
+      "reason": "CoST的时域频域对比目标是判别性证据，但要核对有无物理量纲的可加输出。"
+    },
+    {
+      "id": "W4318473773",
+      "decision": "defer",
+      "basis": "abstract",
+      "reason": "电价集成多个预测方法，提升包含集成效应。"
+    },
+    {
+      "id": "W4362655576",
+      "decision": "defer",
+      "basis": "abstract",
+      "reason": "在线STL可作因果背景，优先可学习的周期预测分支。"
+    },
+    {
+      "id": "W4372353049",
+      "decision": "defer",
+      "basis": "abstract",
+      "reason": "作物产量神经预测主要针对聚合序列，报告缺少分量归因设计。"
+    },
+    {
+      "id": "W4379381218",
+      "decision": "defer",
+      "basis": "abstract",
+      "reason": "都市负荷日程的功率预测未提出物理慢变头。"
+    },
+    {
+      "id": "W4382895992",
+      "decision": "defer",
+      "basis": "abstract",
+      "reason": "研究加法建模解释，摘要缺少可干预网络分支。"
+    },
+    {
+      "id": "W4386187721",
+      "decision": "defer",
+      "basis": "title",
+      "reason": "LSTM同时引入季节分解与搜索优化，单分支归因困难。"
+    },
+    {
+      "id": "W4386928809",
+      "decision": "defer",
+      "basis": "abstract",
+      "reason": "油价模型集成情绪和注意力，任务主要是金融因子预测。"
+    },
+    {
+      "id": "W4396917366",
+      "decision": "defer",
+      "basis": "abstract",
+      "reason": "地表形变共享季节特征值得后续借鉴，但多测站背景缺少可用的扑翼相位控制。"
+    },
+    {
+      "id": "W4399522163",
+      "decision": "defer",
+      "basis": "abstract",
+      "reason": "Prophet是公开软件条目，可加统计方法优先比较有原文的神经扩展。"
+    },
+    {
+      "id": "W4400644360",
+      "decision": "defer",
+      "basis": "abstract",
+      "reason": "房地产估价目标缺少连续受控谐振运动。"
+    },
+    {
+      "id": "W4400721985",
+      "decision": "defer",
+      "basis": "title",
+      "reason": "风电预测引入融合Transformer，与周期分支的收益尚难分开。"
+    },
+    {
+      "id": "W4402640700",
+      "decision": "defer",
+      "basis": "abstract",
+      "reason": "温度与栖息地研究以趋势关联为主，缺少独立快慢分量验证。"
+    },
+    {
+      "id": "W4407406765",
+      "decision": "defer",
+      "basis": "abstract",
+      "reason": "能耗预测将傅里叶变换作为网络输入，不直接评价网络分支预测。"
+    },
+    {
+      "id": "W4409158573",
+      "decision": "defer",
+      "basis": "abstract",
+      "reason": "社会兴趣张量的扩散规律偏离本轮输入条件。"
+    },
+    {
+      "id": "W4409347736",
+      "decision": "defer",
+      "basis": "abstract",
+      "reason": "xPatch同时改变双流、patch、优化和损失，作为备选；优先单模块有对照的架构。"
+    },
+    {
+      "id": "W4411995730",
+      "decision": "defer",
+      "basis": "abstract",
+      "reason": "海平面调和与网络作为不同算法比较，未显示同网络的分量消融。"
+    },
+    {
+      "id": "W4412642765",
+      "decision": "defer",
+      "basis": "title",
+      "reason": "多尺度周期状态空间题名相关，现有元数据未给相位和趋势分量定义。"
+    },
+    {
+      "id": "W4415795980",
+      "decision": "shortlist",
+      "basis": "abstract",
+      "reason": "模型从历史减去可学习周期并预测其余项，可在参数匹配或相位交换下直接检验。"
+    },
+    {
+      "id": "W4417289390",
+      "decision": "defer",
+      "basis": "abstract",
+      "reason": "空气质量轻量和深网络成本对比未单独处理周期可控性。"
+    },
+    {
+      "id": "W7124997453",
+      "decision": "defer",
+      "basis": "abstract",
+      "reason": "CS-Mamba涵盖周期建模，题名尚未说明剩余慢运动的识别。"
+    },
+    {
+      "id": "W7133222734",
+      "decision": "defer",
+      "basis": "abstract",
+      "reason": "加法模型共曲率正则化能解释分量歧义，优先直接可用于预测的分支方法。"
+    },
+    {
+      "id": "W7135246424",
+      "decision": "defer",
+      "basis": "title",
+      "reason": "频率增强LLM的专家混合引入过多变化，难以归因。"
+    },
+    {
+      "id": "W7141736135",
+      "decision": "defer",
+      "basis": "abstract",
+      "reason": "PM2.5应用比较方法，缺少已知相位的网络对照。"
+    },
+    {
+      "id": "W7160600450",
+      "decision": "defer",
+      "basis": "abstract",
+      "reason": "医院病床应用Prophet依赖日历复现，缺少受控运动和网络拆分。"
+    },
+    {
+      "id": "W7160705014",
+      "decision": "defer",
+      "basis": "abstract",
+      "reason": "病床占用Prophet应用与另一记录重叠，未引入可识别动态分支。"
+    },
+    {
+      "id": "W7161235189",
+      "decision": "defer",
+      "basis": "abstract",
+      "reason": "港口吞吐量预测侧重单港应用，优先通用加法网络设计。"
+    },
+    {
+      "id": "W7167581812",
+      "decision": "defer",
+      "basis": "abstract",
+      "reason": "股价同时混合多个波动处理模块，收益难单独归于周期头。"
+    },
+    {
+      "id": "W7170071151",
+      "decision": "defer",
+      "basis": "abstract",
+      "reason": "污染预测同时使用注意力、BiGRU与贝叶斯优化，控制变量不足。"
+    },
+    {
+      "id": "W7213976852",
+      "decision": "defer",
+      "basis": "title",
+      "reason": "金融预测模型系统比较主要为性能排序。"
+    },
+    {
+      "id": "W7214204540",
+      "decision": "defer",
+      "basis": "abstract",
+      "reason": "燃料电池的老化和周期偏移可类比，优先跨任务且可运行的已知相位算子。"
+    },
+    {
+      "id": "W7221196173",
+      "decision": "defer",
+      "basis": "title",
+      "reason": "双谱融合把多个频带与置信度门同时引入，现有元数据未说明每一分量的目标。"
+    }
+  ],
+  "created_at": "2026-11-25T06:22:53.883208+00:00",
+  "source": "Codex Agent"
+}

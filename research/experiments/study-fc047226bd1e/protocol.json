@@ -1,0 +1,122 @@
+{
+  "schema_version": 1,
+  "baseline_commit": "ad7f6cfda32425eea6c52a6c9284dc6eb6f92151",
+  "data_version": "velocity_rate_multistep_v1",
+  "split": "validation",
+  "fixed_files": {
+    "experiments/autopilot_flight_dynamics/data.json": "2b109322c3c41c5741dc95575c7f4344e4b4e029",
+    "configs/data/velocity_rate_dataset_registry.yaml": "4827d2af21294ffd228a1d0ec89c5b44e4ceae2e",
+    "experiments/autopilot_flight_dynamics/runner.py": "f247241388d07e85c54b6c07694631d7d3eef84a",
+    "experiments/autopilot_flight_dynamics/prepare.py": "53e608ed02d531e3deb0882ed4cf87b660732a10",
+    "experiments/autopilot_flight_dynamics/intervals.py": "2930f4d4e53726a0bc688dca528ab22d7c1c0931",
+    "experiments/autopilot_command_reference/prepare.py": "b7352c9a9544f9c69d5e21ebd45b60fbbed4bb8d",
+    "experiments/periodic_motion/prepare_native.py": "cd64417f750b8bb4797cb5734d30ea4c0682f33e",
+    "experiments/periodic_motion/runner.py": "8bc11990b96047e31194f1aad7b4d88bfc981e47"
+  },
+  "eval_version": "periodic-motion-native-augmented-paired-v1",
+  "seeds": [
+    43
+  ],
+  "device": "cuda:1",
+  "editable": [
+    "experiments/autopilot_flight_dynamics/model.py"
+  ],
+  "protected": [
+    "experiments/autopilot_flight_dynamics/data.json",
+    "configs/data/velocity_rate_dataset_registry.yaml",
+    "experiments/autopilot_flight_dynamics/runner.py",
+    "experiments/autopilot_flight_dynamics/prepare.py",
+    "experiments/autopilot_flight_dynamics/intervals.py",
+    "experiments/autopilot_command_reference/prepare.py",
+    "experiments/periodic_motion/prepare_native.py",
+    "experiments/periodic_motion/runner.py",
+    "program.md",
+    "research.yaml",
+    "research"
+  ],
+  "preflight": [
+    "/home/zn/anaconda3/envs/flap-train-gpu/bin/python",
+    "experiments/periodic_motion/runner.py",
+    "preflight"
+  ],
+  "train": [
+    "/home/zn/anaconda3/envs/flap-train-gpu/bin/python",
+    "experiments/periodic_motion/runner.py",
+    "train"
+  ],
+  "evaluate": [
+    "/home/zn/anaconda3/envs/flap-train-gpu/bin/python",
+    "experiments/periodic_motion/runner.py",
+    "evaluate"
+  ],
+  "seconds": {
+    "preflight": 60,
+    "train": 6800,
+    "evaluate": 180
+  },
+  "steps": 131072,
+  "metrics": {
+    "v05": {
+      "name": "v05",
+      "direction": "minimize",
+      "unit": "m/s"
+    },
+    "w05": {
+      "name": "w05",
+      "direction": "minimize",
+      "unit": "rad/s"
+    },
+    "v1": {
+      "name": "v1",
+      "direction": "minimize",
+      "unit": "m/s"
+    },
+    "w1": {
+      "name": "w1",
+      "direction": "minimize",
+      "unit": "rad/s"
+    },
+    "v2": {
+      "name": "v2",
+      "direction": "minimize",
+      "unit": "m/s",
+      "max_regression_pct_vs_baseline": 2
+    },
+    "w2": {
+      "name": "w2",
+      "direction": "minimize",
+      "unit": "rad/s"
+    }
+  },
+  "primary": "w2",
+  "min_gain": 0,
+  "training_completion": {
+    "mode": "validation_plateau",
+    "metric": "dev_mse",
+    "eval_every": 512,
+    "min_steps": 49152,
+    "window": 16,
+    "max_range": 0.002
+  },
+  "hypotheses": [
+    {
+      "id": "actual-phase-carrier",
+      "prediction": "完整周期模型相对共同强基线降低2秒角速度误差，并在被留出的原生翼拍上选择性预测慢变与周期。",
+      "falsifier": "同预算速度或角速度门槛失败，或独立周期、慢变检验失败，将限制相应结论。",
+      "max_rounds": 1
+    },
+    {
+      "id": "matched-slow-basis",
+      "prediction": "只替换时间基的等容量对照将区分真实扑翼拍频贡献与附加容量/起点去偏。",
+      "falsifier": "真实拍频模型相对等容量慢时基没有独立改善，则无法将整体收益归因于拍频。",
+      "max_rounds": 1
+    }
+  ],
+  "environment": {
+    "python": "3.11.7 (main, Dec 15 2023, 18:12:31) [GCC 11.2.0]",
+    "executable": "/home/zn/research-autopilot/.venv/bin/python",
+    "platform": "Linux-5.15.0-186-generic-x86_64-with-glibc2.35",
+    "project_revision": "flap-train-gpu torch GPU FP32"
+  },
+  "program_sha256": "ef97d9a190370d9c92ca89e368210cf3aecca7ccbabbe994f7214fc58c4a6163"
+}

@@ -1,0 +1,8 @@
+{
+  "flight": "0581f71024f354537f8c836f497c26695a9ee69216cbb7d38ca0a58a24dbf088:1",
+  "cache_window_index": 609,
+  "channels": [
+    "origin FRD downward velocity",
+    "body FRD pitch angular rate"
+  ]
+}

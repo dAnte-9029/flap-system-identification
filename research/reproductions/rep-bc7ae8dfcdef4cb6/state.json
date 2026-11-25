@@ -1,0 +1,1026 @@
+{
+  "schema_version": 1,
+  "reproduction_id": "rep-bc7ae8dfcdef4cb6",
+  "created_at": "2026-11-25T06:25:41.102907+00:00",
+  "scout_run_id": "20261125T062201Z-1a04428be1f9",
+  "paper": {
+    "id": "W3215624848",
+    "doi": "10.48550/arxiv.2111.15397",
+    "title": "NeuralProphet: Explainable Forecasting at Scale",
+    "canonical_id": "W3215624848",
+    "versions": [
+      {
+        "id": "W3215624848",
+        "doi": "10.48550/arxiv.2111.15397",
+        "title": "NeuralProphet: Explainable Forecasting at Scale",
+        "paths": [
+          "q10"
+        ]
+      }
+    ],
+    "code_leads": []
+  },
+  "pdf": {
+    "path": "/home/zn/papers/NeuralProphet - periodic motion literature.pdf",
+    "sha256": "3ccb2074989b449e3b0356202fb76fa076a9bc34301b7121686c136ed955353f",
+    "pages": 40,
+    "version": "arXiv:2111.15397 作者全文，40页",
+    "source": "scout_local_file",
+    "identity_basis": "title",
+    "first_page_dois": [],
+    "identity_note": "核对作者原文首页的完整标题、作者，及会议版或 arXiv 信息。"
+  },
+  "official_hint": null,
+  "tags": [
+    "trend",
+    "phase",
+    "identification"
+  ],
+  "memory_hits": [],
+  "attempts": [
+    {
+      "id": "preflight-1",
+      "number": 1,
+      "stage": "preflight",
+      "started_at": "2026-11-25T06:28:20.276462+00:00",
+      "argv": [
+        "/home/zn/anaconda3/envs/flap-train-gpu/bin/python",
+        "core.py"
+      ],
+      "inputs": [
+        {
+          "path": "core.py",
+          "sha256": "89b28fa3daac2a60d07162b44ee82131cf617319201ebb77a1535fee6ce6babc",
+          "artifact": "artifacts/89b28fa3daac2a60d07162b44ee82131cf617319201ebb77a1535fee6ce6babc"
+        },
+        {
+          "path": "neural_prophet/neuralprophet/utils_torch.py",
+          "sha256": "b0f831040c43db70fc306c788da78cb313ecf047662becb274a58fbaf801732e",
+          "artifact": "artifacts/b0f831040c43db70fc306c788da78cb313ecf047662becb274a58fbaf801732e"
+        },
+        {
+          "path": "neural_prophet/neuralprophet/utils.py",
+          "sha256": "808dddedddb166a7f174d0f7fdd5d31977a4160d3a061cba9d3d3a1df7c34ece",
+          "artifact": "artifacts/808dddedddb166a7f174d0f7fdd5d31977a4160d3a061cba9d3d3a1df7c34ece"
+        },
+        {
+          "path": "neural_prophet/neuralprophet/components/base.py",
+          "sha256": "cc0f8d6f947652cfd29ac2d162e86ef8f67d486cbd1fb42d41d9587dbd2842af",
+          "artifact": "artifacts/cc0f8d6f947652cfd29ac2d162e86ef8f67d486cbd1fb42d41d9587dbd2842af"
+        },
+        {
+          "path": "neural_prophet/neuralprophet/components/trend/base.py",
+          "sha256": "762225d166f940768bf9d62a42377e14c340f46271f9cba799130a0ef793035d",
+          "artifact": "artifacts/762225d166f940768bf9d62a42377e14c340f46271f9cba799130a0ef793035d"
+        },
+        {
+          "path": "neural_prophet/neuralprophet/components/seasonality/base.py",
+          "sha256": "b776fc37a40f12130e9222eb1f49e3f544aeb30de160731010c991534f087ee8",
+          "artifact": "artifacts/b776fc37a40f12130e9222eb1f49e3f544aeb30de160731010c991534f087ee8"
+        },
+        {
+          "path": "neural_prophet/neuralprophet/components/trend/piecewise_linear.py",
+          "sha256": "3980125b6b884d85544f391b48fd3a27e7e1b38d3d6c18380d386b9eee90fbe8",
+          "artifact": "artifacts/3980125b6b884d85544f391b48fd3a27e7e1b38d3d6c18380d386b9eee90fbe8"
+        },
+        {
+          "path": "neural_prophet/neuralprophet/components/seasonality/fourier.py",
+          "sha256": "f4899d30b3e40bd3ef0bee7283ab3d63f6400cf3be5037185082d7714e212d65",
+          "artifact": "artifacts/f4899d30b3e40bd3ef0bee7283ab3d63f6400cf3be5037185082d7714e212d65"
+        },
+        {
+          "path": "neural_prophet/neuralprophet/time_dataset.py",
+          "sha256": "ce02e8de0b93eaf17934f43d9c2e444555ea7f0f6cff4524916287416e928725",
+          "artifact": "artifacts/ce02e8de0b93eaf17934f43d9c2e444555ea7f0f6cff4524916287416e928725"
+        }
+      ],
+      "commit": "596849107945533c7b94d53ad881d88a7a924875",
+      "project_commit": "596849107945533c7b94d53ad881d88a7a924875",
+      "change": null,
+      "device": "cpu",
+      "timeout": 180,
+      "gpu_seconds": 0,
+      "status": "passed",
+      "log": "runs/preflight-1/run.log",
+      "checks": [
+        {
+          "id": "rows",
+          "stage": "preflight",
+          "claim": "synthetic",
+          "meaning": "单条序列天数",
+          "expected": 6000,
+          "atol": 0,
+          "unit": "days",
+          "actual": 6000.0,
+          "actual_unit": "days",
+          "delta": 0.0,
+          "pass": true
+        },
+        {
+          "id": "rank",
+          "stage": "preflight",
+          "claim": "fit",
+          "meaning": "两种5阶季节基、趋势截距与斜率加8变点的训练设计满秩",
+          "expected": 30,
+          "atol": 0,
+          "unit": "columns",
+          "actual": 30.0,
+          "actual_unit": "columns",
+          "delta": 0.0,
+          "pass": true
+        }
+      ],
+      "returncode": 0,
+      "metrics_sha256": "ba83a415d0cf76f7c46d0bfe7ddc7a12f7a3b98d7d75fd29edcac93cdf78be55",
+      "outputs": [],
+      "seconds": 0.8704,
+      "finished_at": "2026-11-25T06:28:21.153816+00:00",
+      "log_sha256": "9d086f83c636615bdd51d87935ca05b2ad39b9504b6f65f5b6ec9d57bd23bb58"
+    },
+    {
+      "id": "modules-1",
+      "number": 1,
+      "stage": "modules",
+      "started_at": "2026-11-25T06:28:26.646812+00:00",
+      "argv": [
+        "/home/zn/anaconda3/envs/flap-train-gpu/bin/python",
+        "core.py"
+      ],
+      "inputs": [
+        {
+          "path": "core.py",
+          "sha256": "89b28fa3daac2a60d07162b44ee82131cf617319201ebb77a1535fee6ce6babc",
+          "artifact": "artifacts/89b28fa3daac2a60d07162b44ee82131cf617319201ebb77a1535fee6ce6babc",
+          "source_attempt": "preflight-1"
+        },
+        {
+          "path": "neural_prophet/neuralprophet/utils_torch.py",
+          "sha256": "b0f831040c43db70fc306c788da78cb313ecf047662becb274a58fbaf801732e",
+          "artifact": "artifacts/b0f831040c43db70fc306c788da78cb313ecf047662becb274a58fbaf801732e",
+          "source_attempt": "preflight-1"
+        },
+        {
+          "path": "neural_prophet/neuralprophet/utils.py",
+          "sha256": "808dddedddb166a7f174d0f7fdd5d31977a4160d3a061cba9d3d3a1df7c34ece",
+          "artifact": "artifacts/808dddedddb166a7f174d0f7fdd5d31977a4160d3a061cba9d3d3a1df7c34ece",
+          "source_attempt": "preflight-1"
+        },
+        {
+          "path": "neural_prophet/neuralprophet/components/base.py",
+          "sha256": "cc0f8d6f947652cfd29ac2d162e86ef8f67d486cbd1fb42d41d9587dbd2842af",
+          "artifact": "artifacts/cc0f8d6f947652cfd29ac2d162e86ef8f67d486cbd1fb42d41d9587dbd2842af",
+          "source_attempt": "preflight-1"
+        },
+        {
+          "path": "neural_prophet/neuralprophet/components/trend/base.py",
+          "sha256": "762225d166f940768bf9d62a42377e14c340f46271f9cba799130a0ef793035d",
+          "artifact": "artifacts/762225d166f940768bf9d62a42377e14c340f46271f9cba799130a0ef793035d",
+          "source_attempt": "preflight-1"
+        },
+        {
+          "path": "neural_prophet/neuralprophet/components/seasonality/base.py",
+          "sha256": "b776fc37a40f12130e9222eb1f49e3f544aeb30de160731010c991534f087ee8",
+          "artifact": "artifacts/b776fc37a40f12130e9222eb1f49e3f544aeb30de160731010c991534f087ee8",
+          "source_attempt": "preflight-1"
+        },
+        {
+          "path": "neural_prophet/neuralprophet/components/trend/piecewise_linear.py",
+          "sha256": "3980125b6b884d85544f391b48fd3a27e7e1b38d3d6c18380d386b9eee90fbe8",
+          "artifact": "artifacts/3980125b6b884d85544f391b48fd3a27e7e1b38d3d6c18380d386b9eee90fbe8",
+          "source_attempt": "preflight-1"
+        },
+        {
+          "path": "neural_prophet/neuralprophet/components/seasonality/fourier.py",
+          "sha256": "f4899d30b3e40bd3ef0bee7283ab3d63f6400cf3be5037185082d7714e212d65",
+          "artifact": "artifacts/f4899d30b3e40bd3ef0bee7283ab3d63f6400cf3be5037185082d7714e212d65",
+          "source_attempt": "preflight-1"
+        },
+        {
+          "path": "neural_prophet/neuralprophet/time_dataset.py",
+          "sha256": "ce02e8de0b93eaf17934f43d9c2e444555ea7f0f6cff4524916287416e928725",
+          "artifact": "artifacts/ce02e8de0b93eaf17934f43d9c2e444555ea7f0f6cff4524916287416e928725",
+          "source_attempt": "preflight-1"
+        }
+      ],
+      "commit": "596849107945533c7b94d53ad881d88a7a924875",
+      "project_commit": "596849107945533c7b94d53ad881d88a7a924875",
+      "change": null,
+      "device": "cpu",
+      "timeout": 180,
+      "gpu_seconds": 0,
+      "status": "passed",
+      "log": "runs/modules-1/run.log",
+      "checks": [
+        {
+          "id": "trend_formula",
+          "stage": "modules",
+          "claim": "trend_model",
+          "meaning": "作者趋势相对独立铰链展开最大误差",
+          "expected": 0,
+          "atol": 5e-08,
+          "unit": "normalized_y",
+          "actual": 2.7755575615628914e-16,
+          "actual_unit": "normalized_y",
+          "delta": 2.7755575615628914e-16,
+          "pass": true
+        },
+        {
+          "id": "season_formula",
+          "stage": "modules",
+          "claim": "fourier_model",
+          "meaning": "作者季节相对独立复指数最大误差",
+          "expected": 0,
+          "atol": 2e-09,
+          "unit": "normalized_y",
+          "actual": 7.146505609512133e-13,
+          "actual_unit": "normalized_y",
+          "delta": 7.146505609512133e-13,
+          "pass": true
+        },
+        {
+          "id": "period_invariance",
+          "stage": "modules",
+          "claim": "fourier_model",
+          "meaning": "单独把查询时间平移该季节一整周期的最大输出差",
+          "expected": 0,
+          "atol": 2e-09,
+          "unit": "normalized_y",
+          "actual": 5.012656956182582e-13,
+          "actual_unit": "normalized_y",
+          "delta": 5.012656956182582e-13,
+          "pass": true
+        }
+      ],
+      "returncode": 0,
+      "metrics_sha256": "dfb9ab27802e87874df89152054eeb1cf325c208c52bc88607930099e53fdb4d",
+      "outputs": [],
+      "seconds": 0.8167,
+      "finished_at": "2026-11-25T06:28:27.468577+00:00",
+      "log_sha256": "d277188805e87988feb5d81f09f8c9fe0a6dcb18e3516966fc150ed9f84c9018"
+    },
+    {
+      "id": "small-1",
+      "number": 1,
+      "stage": "small",
+      "started_at": "2026-11-25T06:28:33.458082+00:00",
+      "argv": [
+        "/home/zn/anaconda3/envs/flap-train-gpu/bin/python",
+        "core.py"
+      ],
+      "inputs": [
+        {
+          "path": "core.py",
+          "sha256": "89b28fa3daac2a60d07162b44ee82131cf617319201ebb77a1535fee6ce6babc",
+          "artifact": "artifacts/89b28fa3daac2a60d07162b44ee82131cf617319201ebb77a1535fee6ce6babc",
+          "source_attempt": "preflight-1"
+        },
+        {
+          "path": "neural_prophet/neuralprophet/utils_torch.py",
+          "sha256": "b0f831040c43db70fc306c788da78cb313ecf047662becb274a58fbaf801732e",
+          "artifact": "artifacts/b0f831040c43db70fc306c788da78cb313ecf047662becb274a58fbaf801732e",
+          "source_attempt": "preflight-1"
+        },
+        {
+          "path": "neural_prophet/neuralprophet/utils.py",
+          "sha256": "808dddedddb166a7f174d0f7fdd5d31977a4160d3a061cba9d3d3a1df7c34ece",
+          "artifact": "artifacts/808dddedddb166a7f174d0f7fdd5d31977a4160d3a061cba9d3d3a1df7c34ece",
+          "source_attempt": "preflight-1"
+        },
+        {
+          "path": "neural_prophet/neuralprophet/components/base.py",
+          "sha256": "cc0f8d6f947652cfd29ac2d162e86ef8f67d486cbd1fb42d41d9587dbd2842af",
+          "artifact": "artifacts/cc0f8d6f947652cfd29ac2d162e86ef8f67d486cbd1fb42d41d9587dbd2842af",
+          "source_attempt": "preflight-1"
+        },
+        {
+          "path": "neural_prophet/neuralprophet/components/trend/base.py",
+          "sha256": "762225d166f940768bf9d62a42377e14c340f46271f9cba799130a0ef793035d",
+          "artifact": "artifacts/762225d166f940768bf9d62a42377e14c340f46271f9cba799130a0ef793035d",
+          "source_attempt": "preflight-1"
+        },
+        {
+          "path": "neural_prophet/neuralprophet/components/seasonality/base.py",
+          "sha256": "b776fc37a40f12130e9222eb1f49e3f544aeb30de160731010c991534f087ee8",
+          "artifact": "artifacts/b776fc37a40f12130e9222eb1f49e3f544aeb30de160731010c991534f087ee8",
+          "source_attempt": "preflight-1"
+        },
+        {
+          "path": "neural_prophet/neuralprophet/components/trend/piecewise_linear.py",
+          "sha256": "3980125b6b884d85544f391b48fd3a27e7e1b38d3d6c18380d386b9eee90fbe8",
+          "artifact": "artifacts/3980125b6b884d85544f391b48fd3a27e7e1b38d3d6c18380d386b9eee90fbe8",
+          "source_attempt": "preflight-1"
+        },
+        {
+          "path": "neural_prophet/neuralprophet/components/seasonality/fourier.py",
+          "sha256": "f4899d30b3e40bd3ef0bee7283ab3d63f6400cf3be5037185082d7714e212d65",
+          "artifact": "artifacts/f4899d30b3e40bd3ef0bee7283ab3d63f6400cf3be5037185082d7714e212d65",
+          "source_attempt": "preflight-1"
+        },
+        {
+          "path": "neural_prophet/neuralprophet/time_dataset.py",
+          "sha256": "ce02e8de0b93eaf17934f43d9c2e444555ea7f0f6cff4524916287416e928725",
+          "artifact": "artifacts/ce02e8de0b93eaf17934f43d9c2e444555ea7f0f6cff4524916287416e928725",
+          "source_attempt": "preflight-1"
+        }
+      ],
+      "commit": "596849107945533c7b94d53ad881d88a7a924875",
+      "project_commit": "596849107945533c7b94d53ad881d88a7a924875",
+      "change": null,
+      "device": "cpu",
+      "timeout": 180,
+      "gpu_seconds": 0,
+      "status": "passed",
+      "log": "runs/small-1/run.log",
+      "checks": [
+        {
+          "id": "slow",
+          "stage": "small",
+          "claim": "joint",
+          "meaning": "五条序列中最差的未来慢分量去均值RMSE；容差设为归一化幅域的5%，容许未知变点近似误差",
+          "expected": 0,
+          "atol": 0.05,
+          "unit": "normalized_y",
+          "actual": 0.0007342396121144229,
+          "actual_unit": "normalized_y",
+          "delta": 0.0007342396121144229,
+          "pass": true
+        },
+        {
+          "id": "season",
+          "stage": "small",
+          "claim": "joint",
+          "meaning": "五条序列十个季节分量中最差的未来去均值RMSE；容差设为归一化幅域的1%",
+          "expected": 0,
+          "atol": 0.01,
+          "unit": "normalized_y",
+          "actual": 0.0007765673373083831,
+          "actual_unit": "normalized_y",
+          "delta": 0.0007765673373083831,
+          "pass": true
+        },
+        {
+          "id": "solved",
+          "stage": "small",
+          "claim": "core",
+          "meaning": "官方模块训练所得总预测与独立最小二乘解在五条未来段上的最差点误差；核对优化充分性",
+          "expected": 0,
+          "atol": 0.001,
+          "unit": "normalized_y",
+          "actual": 0.00024165306017252808,
+          "actual_unit": "normalized_y",
+          "delta": 0.00024165306017252808,
+          "pass": true
+        }
+      ],
+      "returncode": 0,
+      "metrics_sha256": "b4c8089412bcfc9b11ab2e52d5be543ccd5f0cdfdb632a51d7a34814dcd73486",
+      "outputs": [
+        {
+          "path": "synthetic_runs.json",
+          "sha256": "17e2326eeefe10f41971bed88e7d5df1020d310927bc717451628316b1edd8aa",
+          "artifact": "artifacts/17e2326eeefe10f41971bed88e7d5df1020d310927bc717451628316b1edd8aa"
+        }
+      ],
+      "seconds": 3.9275,
+      "finished_at": "2026-11-25T06:28:37.393373+00:00",
+      "log_sha256": "2b3e8a1445aa8c18b1017e168036f0a72dccdfd4a7335eabaec771db432a1656"
+    }
+  ],
+  "status": "VERIFIED_CORE",
+  "spec_sha256": "ec0349f6124d052d3bd0b92c56d7394f06a6b2589d7ab56312a1c9f74eb928d5",
+  "summary": {
+    "schema_version": 1,
+    "reproduction_id": "rep-bc7ae8dfcdef4cb6",
+    "scout_run_id": "20261125T062201Z-1a04428be1f9",
+    "paper": {
+      "id": "W3215624848",
+      "doi": "10.48550/arxiv.2111.15397",
+      "title": "NeuralProphet: Explainable Forecasting at Scale",
+      "canonical_id": "W3215624848",
+      "versions": [
+        {
+          "id": "W3215624848",
+          "doi": "10.48550/arxiv.2111.15397",
+          "title": "NeuralProphet: Explainable Forecasting at Scale",
+          "paths": [
+            "q10"
+          ]
+        }
+      ],
+      "code_leads": []
+    },
+    "pdf_sha256": "3ccb2074989b449e3b0356202fb76fa076a9bc34301b7121686c136ed955353f",
+    "status": "VERIFIED_CORE",
+    "finished_at": "2026-11-25T06:29:04.933934+00:00",
+    "spec_sha256": "ec0349f6124d052d3bd0b92c56d7394f06a6b2589d7ab56312a1c9f74eb928d5",
+    "conclusion": "已运行MIT作者提交中的实际连续分段线性、傅里叶模块和训练数据特征函数。趋势/谐波对独立数值公式最大差2.78e−16/7.15e−13；整周期时间平移最大差5.01e−13。五条6000日、带噪且转折未知的合成趋势与月/年谐波相加，只在前4800天训练且不使用分量监督。在后1200天逐分量居中，最差趋势RMSE 0.000734，最差季节RMSE 0.000777（归一化总序列单位）。各次总预测对独立最小二乘解最大点差0.000242。",
+    "limitations": [
+      "验证范围是论文公式和按已知真分量计分的S-TS型核心试验。日历周期固定、生成机制已知；没有验证机体物理运动分离。",
+      "使用当前固定提交未安装的绘图/Lightning前端以外的原始模型类，通过AST从作者文件提取，作者类与方法原样执行。训练使用本地预注册划分、噪声、训练数据归一化和LBFGS，未执行作者完整拟合器、Prophet 对照、原论文业务数据或图5/7发布数值。",
+      "分量按论文先居中，常数偏移归属未验证。部分LBFGS达到450次上限，已用同一训练样本的独立最小二乘解验证未来总预测误差。"
+    ],
+    "implementation": {
+      "mode": "official",
+      "repository": "https://github.com/ourownstory/neural_prophet.git",
+      "commit": "596849107945533c7b94d53ad881d88a7a924875",
+      "directory": "neural_prophet",
+      "evidence": "作者仓库README引用同文同作者，LICENSE为Oskar Triebe署名MIT；仅以语法树抽取未经改写的两个模块、基类和数据特征函数并执行，避开未安装的前端依赖。"
+    },
+    "working_directory": "work",
+    "mechanisms": [
+      {
+        "id": "trend_formula",
+        "source": {
+          "id": "trend_model",
+          "text": "连续分段线性趋势；斜率每次改变δ，常数补偿−cδ保持连续。",
+          "source": "paper",
+          "location": "§2.1.1 Eq.3",
+          "page": 6
+        },
+        "behavior": "作者趋势相对独立铰链展开最大误差",
+        "claim": "trend_model",
+        "actual": 2.7755575615628914e-16,
+        "unit": "normalized_y",
+        "attempt": "modules-1",
+        "metrics_sha256": "dfb9ab27802e87874df89152054eeb1cf325c208c52bc88607930099e53fdb4d"
+      },
+      {
+        "id": "season_formula",
+        "source": {
+          "id": "fourier_model",
+          "text": "每个周期的五个正余弦谐波以独立权重线性组合。",
+          "source": "paper",
+          "location": "§2.1.2 Eq.4 and §3.1.2 S",
+          "page": 7
+        },
+        "behavior": "作者季节相对独立复指数最大误差",
+        "claim": "fourier_model",
+        "actual": 7.146505609512133e-13,
+        "unit": "normalized_y",
+        "attempt": "modules-1",
+        "metrics_sha256": "dfb9ab27802e87874df89152054eeb1cf325c208c52bc88607930099e53fdb4d"
+      },
+      {
+        "id": "period_invariance",
+        "source": {
+          "id": "fourier_model",
+          "text": "每个周期的五个正余弦谐波以独立权重线性组合。",
+          "source": "paper",
+          "location": "§2.1.2 Eq.4 and §3.1.2 S",
+          "page": 7
+        },
+        "behavior": "单独把查询时间平移该季节一整周期的最大输出差",
+        "claim": "fourier_model",
+        "actual": 5.012656956182582e-13,
+        "unit": "normalized_y",
+        "attempt": "modules-1",
+        "metrics_sha256": "dfb9ab27802e87874df89152054eeb1cf325c208c52bc88607930099e53fdb4d"
+      }
+    ],
+    "transfer_hypotheses": [
+      {
+        "check": "season_formula",
+        "idea": "以观测起点可用的机械相位及拍频推进为载波，训练同容量非相位与真实相位对照，检验周期编码的增量预测收益。"
+      },
+      {
+        "check": "trend_formula",
+        "idea": "在已知趋势瞬态与相位锁定波形的可控输入上，分别检查交叉泄漏；实飞上以独立原生时间参考和支路删除再检验。"
+      }
+    ],
+    "issues": [],
+    "archived_attempts": {
+      "preflight": "preflight-1",
+      "modules": "modules-1",
+      "small": "small-1"
+    },
+    "valid_attempts": {
+      "preflight": "preflight-1",
+      "modules": "modules-1",
+      "small": "small-1"
+    },
+    "implementation_inputs": {
+      "preflight": [
+        {
+          "path": "core.py",
+          "sha256": "89b28fa3daac2a60d07162b44ee82131cf617319201ebb77a1535fee6ce6babc",
+          "artifact": "artifacts/89b28fa3daac2a60d07162b44ee82131cf617319201ebb77a1535fee6ce6babc"
+        },
+        {
+          "path": "neural_prophet/neuralprophet/utils_torch.py",
+          "sha256": "b0f831040c43db70fc306c788da78cb313ecf047662becb274a58fbaf801732e",
+          "artifact": "artifacts/b0f831040c43db70fc306c788da78cb313ecf047662becb274a58fbaf801732e"
+        },
+        {
+          "path": "neural_prophet/neuralprophet/utils.py",
+          "sha256": "808dddedddb166a7f174d0f7fdd5d31977a4160d3a061cba9d3d3a1df7c34ece",
+          "artifact": "artifacts/808dddedddb166a7f174d0f7fdd5d31977a4160d3a061cba9d3d3a1df7c34ece"
+        },
+        {
+          "path": "neural_prophet/neuralprophet/components/base.py",
+          "sha256": "cc0f8d6f947652cfd29ac2d162e86ef8f67d486cbd1fb42d41d9587dbd2842af",
+          "artifact": "artifacts/cc0f8d6f947652cfd29ac2d162e86ef8f67d486cbd1fb42d41d9587dbd2842af"
+        },
+        {
+          "path": "neural_prophet/neuralprophet/components/trend/base.py",
+          "sha256": "762225d166f940768bf9d62a42377e14c340f46271f9cba799130a0ef793035d",
+          "artifact": "artifacts/762225d166f940768bf9d62a42377e14c340f46271f9cba799130a0ef793035d"
+        },
+        {
+          "path": "neural_prophet/neuralprophet/components/seasonality/base.py",
+          "sha256": "b776fc37a40f12130e9222eb1f49e3f544aeb30de160731010c991534f087ee8",
+          "artifact": "artifacts/b776fc37a40f12130e9222eb1f49e3f544aeb30de160731010c991534f087ee8"
+        },
+        {
+          "path": "neural_prophet/neuralprophet/components/trend/piecewise_linear.py",
+          "sha256": "3980125b6b884d85544f391b48fd3a27e7e1b38d3d6c18380d386b9eee90fbe8",
+          "artifact": "artifacts/3980125b6b884d85544f391b48fd3a27e7e1b38d3d6c18380d386b9eee90fbe8"
+        },
+        {
+          "path": "neural_prophet/neuralprophet/components/seasonality/fourier.py",
+          "sha256": "f4899d30b3e40bd3ef0bee7283ab3d63f6400cf3be5037185082d7714e212d65",
+          "artifact": "artifacts/f4899d30b3e40bd3ef0bee7283ab3d63f6400cf3be5037185082d7714e212d65"
+        },
+        {
+          "path": "neural_prophet/neuralprophet/time_dataset.py",
+          "sha256": "ce02e8de0b93eaf17934f43d9c2e444555ea7f0f6cff4524916287416e928725",
+          "artifact": "artifacts/ce02e8de0b93eaf17934f43d9c2e444555ea7f0f6cff4524916287416e928725"
+        }
+      ],
+      "modules": [
+        {
+          "path": "core.py",
+          "sha256": "89b28fa3daac2a60d07162b44ee82131cf617319201ebb77a1535fee6ce6babc",
+          "artifact": "artifacts/89b28fa3daac2a60d07162b44ee82131cf617319201ebb77a1535fee6ce6babc",
+          "source_attempt": "preflight-1"
+        },
+        {
+          "path": "neural_prophet/neuralprophet/utils_torch.py",
+          "sha256": "b0f831040c43db70fc306c788da78cb313ecf047662becb274a58fbaf801732e",
+          "artifact": "artifacts/b0f831040c43db70fc306c788da78cb313ecf047662becb274a58fbaf801732e",
+          "source_attempt": "preflight-1"
+        },
+        {
+          "path": "neural_prophet/neuralprophet/utils.py",
+          "sha256": "808dddedddb166a7f174d0f7fdd5d31977a4160d3a061cba9d3d3a1df7c34ece",
+          "artifact": "artifacts/808dddedddb166a7f174d0f7fdd5d31977a4160d3a061cba9d3d3a1df7c34ece",
+          "source_attempt": "preflight-1"
+        },
+        {
+          "path": "neural_prophet/neuralprophet/components/base.py",
+          "sha256": "cc0f8d6f947652cfd29ac2d162e86ef8f67d486cbd1fb42d41d9587dbd2842af",
+          "artifact": "artifacts/cc0f8d6f947652cfd29ac2d162e86ef8f67d486cbd1fb42d41d9587dbd2842af",
+          "source_attempt": "preflight-1"
+        },
+        {
+          "path": "neural_prophet/neuralprophet/components/trend/base.py",
+          "sha256": "762225d166f940768bf9d62a42377e14c340f46271f9cba799130a0ef793035d",
+          "artifact": "artifacts/762225d166f940768bf9d62a42377e14c340f46271f9cba799130a0ef793035d",
+          "source_attempt": "preflight-1"
+        },
+        {
+          "path": "neural_prophet/neuralprophet/components/seasonality/base.py",
+          "sha256": "b776fc37a40f12130e9222eb1f49e3f544aeb30de160731010c991534f087ee8",
+          "artifact": "artifacts/b776fc37a40f12130e9222eb1f49e3f544aeb30de160731010c991534f087ee8",
+          "source_attempt": "preflight-1"
+        },
+        {
+          "path": "neural_prophet/neuralprophet/components/trend/piecewise_linear.py",
+          "sha256": "3980125b6b884d85544f391b48fd3a27e7e1b38d3d6c18380d386b9eee90fbe8",
+          "artifact": "artifacts/3980125b6b884d85544f391b48fd3a27e7e1b38d3d6c18380d386b9eee90fbe8",
+          "source_attempt": "preflight-1"
+        },
+        {
+          "path": "neural_prophet/neuralprophet/components/seasonality/fourier.py",
+          "sha256": "f4899d30b3e40bd3ef0bee7283ab3d63f6400cf3be5037185082d7714e212d65",
+          "artifact": "artifacts/f4899d30b3e40bd3ef0bee7283ab3d63f6400cf3be5037185082d7714e212d65",
+          "source_attempt": "preflight-1"
+        },
+        {
+          "path": "neural_prophet/neuralprophet/time_dataset.py",
+          "sha256": "ce02e8de0b93eaf17934f43d9c2e444555ea7f0f6cff4524916287416e928725",
+          "artifact": "artifacts/ce02e8de0b93eaf17934f43d9c2e444555ea7f0f6cff4524916287416e928725",
+          "source_attempt": "preflight-1"
+        }
+      ],
+      "small": [
+        {
+          "path": "core.py",
+          "sha256": "89b28fa3daac2a60d07162b44ee82131cf617319201ebb77a1535fee6ce6babc",
+          "artifact": "artifacts/89b28fa3daac2a60d07162b44ee82131cf617319201ebb77a1535fee6ce6babc",
+          "source_attempt": "preflight-1"
+        },
+        {
+          "path": "neural_prophet/neuralprophet/utils_torch.py",
+          "sha256": "b0f831040c43db70fc306c788da78cb313ecf047662becb274a58fbaf801732e",
+          "artifact": "artifacts/b0f831040c43db70fc306c788da78cb313ecf047662becb274a58fbaf801732e",
+          "source_attempt": "preflight-1"
+        },
+        {
+          "path": "neural_prophet/neuralprophet/utils.py",
+          "sha256": "808dddedddb166a7f174d0f7fdd5d31977a4160d3a061cba9d3d3a1df7c34ece",
+          "artifact": "artifacts/808dddedddb166a7f174d0f7fdd5d31977a4160d3a061cba9d3d3a1df7c34ece",
+          "source_attempt": "preflight-1"
+        },
+        {
+          "path": "neural_prophet/neuralprophet/components/base.py",
+          "sha256": "cc0f8d6f947652cfd29ac2d162e86ef8f67d486cbd1fb42d41d9587dbd2842af",
+          "artifact": "artifacts/cc0f8d6f947652cfd29ac2d162e86ef8f67d486cbd1fb42d41d9587dbd2842af",
+          "source_attempt": "preflight-1"
+        },
+        {
+          "path": "neural_prophet/neuralprophet/components/trend/base.py",
+          "sha256": "762225d166f940768bf9d62a42377e14c340f46271f9cba799130a0ef793035d",
+          "artifact": "artifacts/762225d166f940768bf9d62a42377e14c340f46271f9cba799130a0ef793035d",
+          "source_attempt": "preflight-1"
+        },
+        {
+          "path": "neural_prophet/neuralprophet/components/seasonality/base.py",
+          "sha256": "b776fc37a40f12130e9222eb1f49e3f544aeb30de160731010c991534f087ee8",
+          "artifact": "artifacts/b776fc37a40f12130e9222eb1f49e3f544aeb30de160731010c991534f087ee8",
+          "source_attempt": "preflight-1"
+        },
+        {
+          "path": "neural_prophet/neuralprophet/components/trend/piecewise_linear.py",
+          "sha256": "3980125b6b884d85544f391b48fd3a27e7e1b38d3d6c18380d386b9eee90fbe8",
+          "artifact": "artifacts/3980125b6b884d85544f391b48fd3a27e7e1b38d3d6c18380d386b9eee90fbe8",
+          "source_attempt": "preflight-1"
+        },
+        {
+          "path": "neural_prophet/neuralprophet/components/seasonality/fourier.py",
+          "sha256": "f4899d30b3e40bd3ef0bee7283ab3d63f6400cf3be5037185082d7714e212d65",
+          "artifact": "artifacts/f4899d30b3e40bd3ef0bee7283ab3d63f6400cf3be5037185082d7714e212d65",
+          "source_attempt": "preflight-1"
+        },
+        {
+          "path": "neural_prophet/neuralprophet/time_dataset.py",
+          "sha256": "ce02e8de0b93eaf17934f43d9c2e444555ea7f0f6cff4524916287416e928725",
+          "artifact": "artifacts/ce02e8de0b93eaf17934f43d9c2e444555ea7f0f6cff4524916287416e928725",
+          "source_attempt": "preflight-1"
+        }
+      ]
+    },
+    "commands": {
+      "preflight": [
+        "/home/zn/anaconda3/envs/flap-train-gpu/bin/python",
+        "core.py"
+      ],
+      "modules": [
+        "/home/zn/anaconda3/envs/flap-train-gpu/bin/python",
+        "core.py"
+      ],
+      "small": [
+        "/home/zn/anaconda3/envs/flap-train-gpu/bin/python",
+        "core.py"
+      ]
+    },
+    "results": [
+      {
+        "id": "preflight-1",
+        "number": 1,
+        "stage": "preflight",
+        "started_at": "2026-11-25T06:28:20.276462+00:00",
+        "argv": [
+          "/home/zn/anaconda3/envs/flap-train-gpu/bin/python",
+          "core.py"
+        ],
+        "inputs": [
+          {
+            "path": "core.py",
+            "sha256": "89b28fa3daac2a60d07162b44ee82131cf617319201ebb77a1535fee6ce6babc",
+            "artifact": "artifacts/89b28fa3daac2a60d07162b44ee82131cf617319201ebb77a1535fee6ce6babc"
+          },
+          {
+            "path": "neural_prophet/neuralprophet/utils_torch.py",
+            "sha256": "b0f831040c43db70fc306c788da78cb313ecf047662becb274a58fbaf801732e",
+            "artifact": "artifacts/b0f831040c43db70fc306c788da78cb313ecf047662becb274a58fbaf801732e"
+          },
+          {
+            "path": "neural_prophet/neuralprophet/utils.py",
+            "sha256": "808dddedddb166a7f174d0f7fdd5d31977a4160d3a061cba9d3d3a1df7c34ece",
+            "artifact": "artifacts/808dddedddb166a7f174d0f7fdd5d31977a4160d3a061cba9d3d3a1df7c34ece"
+          },
+          {
+            "path": "neural_prophet/neuralprophet/components/base.py",
+            "sha256": "cc0f8d6f947652cfd29ac2d162e86ef8f67d486cbd1fb42d41d9587dbd2842af",
+            "artifact": "artifacts/cc0f8d6f947652cfd29ac2d162e86ef8f67d486cbd1fb42d41d9587dbd2842af"
+          },
+          {
+            "path": "neural_prophet/neuralprophet/components/trend/base.py",
+            "sha256": "762225d166f940768bf9d62a42377e14c340f46271f9cba799130a0ef793035d",
+            "artifact": "artifacts/762225d166f940768bf9d62a42377e14c340f46271f9cba799130a0ef793035d"
+          },
+          {
+            "path": "neural_prophet/neuralprophet/components/seasonality/base.py",
+            "sha256": "b776fc37a40f12130e9222eb1f49e3f544aeb30de160731010c991534f087ee8",
+            "artifact": "artifacts/b776fc37a40f12130e9222eb1f49e3f544aeb30de160731010c991534f087ee8"
+          },
+          {
+            "path": "neural_prophet/neuralprophet/components/trend/piecewise_linear.py",
+            "sha256": "3980125b6b884d85544f391b48fd3a27e7e1b38d3d6c18380d386b9eee90fbe8",
+            "artifact": "artifacts/3980125b6b884d85544f391b48fd3a27e7e1b38d3d6c18380d386b9eee90fbe8"
+          },
+          {
+            "path": "neural_prophet/neuralprophet/components/seasonality/fourier.py",
+            "sha256": "f4899d30b3e40bd3ef0bee7283ab3d63f6400cf3be5037185082d7714e212d65",
+            "artifact": "artifacts/f4899d30b3e40bd3ef0bee7283ab3d63f6400cf3be5037185082d7714e212d65"
+          },
+          {
+            "path": "neural_prophet/neuralprophet/time_dataset.py",
+            "sha256": "ce02e8de0b93eaf17934f43d9c2e444555ea7f0f6cff4524916287416e928725",
+            "artifact": "artifacts/ce02e8de0b93eaf17934f43d9c2e444555ea7f0f6cff4524916287416e928725"
+          }
+        ],
+        "commit": "596849107945533c7b94d53ad881d88a7a924875",
+        "project_commit": "596849107945533c7b94d53ad881d88a7a924875",
+        "change": null,
+        "device": "cpu",
+        "timeout": 180,
+        "gpu_seconds": 0,
+        "status": "passed",
+        "log": "runs/preflight-1/run.log",
+        "checks": [
+          {
+            "id": "rows",
+            "stage": "preflight",
+            "claim": "synthetic",
+            "meaning": "单条序列天数",
+            "expected": 6000,
+            "atol": 0,
+            "unit": "days",
+            "actual": 6000.0,
+            "actual_unit": "days",
+            "delta": 0.0,
+            "pass": true
+          },
+          {
+            "id": "rank",
+            "stage": "preflight",
+            "claim": "fit",
+            "meaning": "两种5阶季节基、趋势截距与斜率加8变点的训练设计满秩",
+            "expected": 30,
+            "atol": 0,
+            "unit": "columns",
+            "actual": 30.0,
+            "actual_unit": "columns",
+            "delta": 0.0,
+            "pass": true
+          }
+        ],
+        "returncode": 0,
+        "metrics_sha256": "ba83a415d0cf76f7c46d0bfe7ddc7a12f7a3b98d7d75fd29edcac93cdf78be55",
+        "outputs": [],
+        "seconds": 0.8704,
+        "finished_at": "2026-11-25T06:28:21.153816+00:00",
+        "log_sha256": "9d086f83c636615bdd51d87935ca05b2ad39b9504b6f65f5b6ec9d57bd23bb58"
+      },
+      {
+        "id": "modules-1",
+        "number": 1,
+        "stage": "modules",
+        "started_at": "2026-11-25T06:28:26.646812+00:00",
+        "argv": [
+          "/home/zn/anaconda3/envs/flap-train-gpu/bin/python",
+          "core.py"
+        ],
+        "inputs": [
+          {
+            "path": "core.py",
+            "sha256": "89b28fa3daac2a60d07162b44ee82131cf617319201ebb77a1535fee6ce6babc",
+            "artifact": "artifacts/89b28fa3daac2a60d07162b44ee82131cf617319201ebb77a1535fee6ce6babc",
+            "source_attempt": "preflight-1"
+          },
+          {
+            "path": "neural_prophet/neuralprophet/utils_torch.py",
+            "sha256": "b0f831040c43db70fc306c788da78cb313ecf047662becb274a58fbaf801732e",
+            "artifact": "artifacts/b0f831040c43db70fc306c788da78cb313ecf047662becb274a58fbaf801732e",
+            "source_attempt": "preflight-1"
+          },
+          {
+            "path": "neural_prophet/neuralprophet/utils.py",
+            "sha256": "808dddedddb166a7f174d0f7fdd5d31977a4160d3a061cba9d3d3a1df7c34ece",
+            "artifact": "artifacts/808dddedddb166a7f174d0f7fdd5d31977a4160d3a061cba9d3d3a1df7c34ece",
+            "source_attempt": "preflight-1"
+          },
+          {
+            "path": "neural_prophet/neuralprophet/components/base.py",
+            "sha256": "cc0f8d6f947652cfd29ac2d162e86ef8f67d486cbd1fb42d41d9587dbd2842af",
+            "artifact": "artifacts/cc0f8d6f947652cfd29ac2d162e86ef8f67d486cbd1fb42d41d9587dbd2842af",
+            "source_attempt": "preflight-1"
+          },
+          {
+            "path": "neural_prophet/neuralprophet/components/trend/base.py",
+            "sha256": "762225d166f940768bf9d62a42377e14c340f46271f9cba799130a0ef793035d",
+            "artifact": "artifacts/762225d166f940768bf9d62a42377e14c340f46271f9cba799130a0ef793035d",
+            "source_attempt": "preflight-1"
+          },
+          {
+            "path": "neural_prophet/neuralprophet/components/seasonality/base.py",
+            "sha256": "b776fc37a40f12130e9222eb1f49e3f544aeb30de160731010c991534f087ee8",
+            "artifact": "artifacts/b776fc37a40f12130e9222eb1f49e3f544aeb30de160731010c991534f087ee8",
+            "source_attempt": "preflight-1"
+          },
+          {
+            "path": "neural_prophet/neuralprophet/components/trend/piecewise_linear.py",
+            "sha256": "3980125b6b884d85544f391b48fd3a27e7e1b38d3d6c18380d386b9eee90fbe8",
+            "artifact": "artifacts/3980125b6b884d85544f391b48fd3a27e7e1b38d3d6c18380d386b9eee90fbe8",
+            "source_attempt": "preflight-1"
+          },
+          {
+            "path": "neural_prophet/neuralprophet/components/seasonality/fourier.py",
+            "sha256": "f4899d30b3e40bd3ef0bee7283ab3d63f6400cf3be5037185082d7714e212d65",
+            "artifact": "artifacts/f4899d30b3e40bd3ef0bee7283ab3d63f6400cf3be5037185082d7714e212d65",
+            "source_attempt": "preflight-1"
+          },
+          {
+            "path": "neural_prophet/neuralprophet/time_dataset.py",
+            "sha256": "ce02e8de0b93eaf17934f43d9c2e444555ea7f0f6cff4524916287416e928725",
+            "artifact": "artifacts/ce02e8de0b93eaf17934f43d9c2e444555ea7f0f6cff4524916287416e928725",
+            "source_attempt": "preflight-1"
+          }
+        ],
+        "commit": "596849107945533c7b94d53ad881d88a7a924875",
+        "project_commit": "596849107945533c7b94d53ad881d88a7a924875",
+        "change": null,
+        "device": "cpu",
+        "timeout": 180,
+        "gpu_seconds": 0,
+        "status": "passed",
+        "log": "runs/modules-1/run.log",
+        "checks": [
+          {
+            "id": "trend_formula",
+            "stage": "modules",
+            "claim": "trend_model",
+            "meaning": "作者趋势相对独立铰链展开最大误差",
+            "expected": 0,
+            "atol": 5e-08,
+            "unit": "normalized_y",
+            "actual": 2.7755575615628914e-16,
+            "actual_unit": "normalized_y",
+            "delta": 2.7755575615628914e-16,
+            "pass": true
+          },
+          {
+            "id": "season_formula",
+            "stage": "modules",
+            "claim": "fourier_model",
+            "meaning": "作者季节相对独立复指数最大误差",
+            "expected": 0,
+            "atol": 2e-09,
+            "unit": "normalized_y",
+            "actual": 7.146505609512133e-13,
+            "actual_unit": "normalized_y",
+            "delta": 7.146505609512133e-13,
+            "pass": true
+          },
+          {
+            "id": "period_invariance",
+            "stage": "modules",
+            "claim": "fourier_model",
+            "meaning": "单独把查询时间平移该季节一整周期的最大输出差",
+            "expected": 0,
+            "atol": 2e-09,
+            "unit": "normalized_y",
+            "actual": 5.012656956182582e-13,
+            "actual_unit": "normalized_y",
+            "delta": 5.012656956182582e-13,
+            "pass": true
+          }
+        ],
+        "returncode": 0,
+        "metrics_sha256": "dfb9ab27802e87874df89152054eeb1cf325c208c52bc88607930099e53fdb4d",
+        "outputs": [],
+        "seconds": 0.8167,
+        "finished_at": "2026-11-25T06:28:27.468577+00:00",
+        "log_sha256": "d277188805e87988feb5d81f09f8c9fe0a6dcb18e3516966fc150ed9f84c9018"
+      },
+      {
+        "id": "small-1",
+        "number": 1,
+        "stage": "small",
+        "started_at": "2026-11-25T06:28:33.458082+00:00",
+        "argv": [
+          "/home/zn/anaconda3/envs/flap-train-gpu/bin/python",
+          "core.py"
+        ],
+        "inputs": [
+          {
+            "path": "core.py",
+            "sha256": "89b28fa3daac2a60d07162b44ee82131cf617319201ebb77a1535fee6ce6babc",
+            "artifact": "artifacts/89b28fa3daac2a60d07162b44ee82131cf617319201ebb77a1535fee6ce6babc",
+            "source_attempt": "preflight-1"
+          },
+          {
+            "path": "neural_prophet/neuralprophet/utils_torch.py",
+            "sha256": "b0f831040c43db70fc306c788da78cb313ecf047662becb274a58fbaf801732e",
+            "artifact": "artifacts/b0f831040c43db70fc306c788da78cb313ecf047662becb274a58fbaf801732e",
+            "source_attempt": "preflight-1"
+          },
+          {
+            "path": "neural_prophet/neuralprophet/utils.py",
+            "sha256": "808dddedddb166a7f174d0f7fdd5d31977a4160d3a061cba9d3d3a1df7c34ece",
+            "artifact": "artifacts/808dddedddb166a7f174d0f7fdd5d31977a4160d3a061cba9d3d3a1df7c34ece",
+            "source_attempt": "preflight-1"
+          },
+          {
+            "path": "neural_prophet/neuralprophet/components/base.py",
+            "sha256": "cc0f8d6f947652cfd29ac2d162e86ef8f67d486cbd1fb42d41d9587dbd2842af",
+            "artifact": "artifacts/cc0f8d6f947652cfd29ac2d162e86ef8f67d486cbd1fb42d41d9587dbd2842af",
+            "source_attempt": "preflight-1"
+          },
+          {
+            "path": "neural_prophet/neuralprophet/components/trend/base.py",
+            "sha256": "762225d166f940768bf9d62a42377e14c340f46271f9cba799130a0ef793035d",
+            "artifact": "artifacts/762225d166f940768bf9d62a42377e14c340f46271f9cba799130a0ef793035d",
+            "source_attempt": "preflight-1"
+          },
+          {
+            "path": "neural_prophet/neuralprophet/components/seasonality/base.py",
+            "sha256": "b776fc37a40f12130e9222eb1f49e3f544aeb30de160731010c991534f087ee8",
+            "artifact": "artifacts/b776fc37a40f12130e9222eb1f49e3f544aeb30de160731010c991534f087ee8",
+            "source_attempt": "preflight-1"
+          },
+          {
+            "path": "neural_prophet/neuralprophet/components/trend/piecewise_linear.py",
+            "sha256": "3980125b6b884d85544f391b48fd3a27e7e1b38d3d6c18380d386b9eee90fbe8",
+            "artifact": "artifacts/3980125b6b884d85544f391b48fd3a27e7e1b38d3d6c18380d386b9eee90fbe8",
+            "source_attempt": "preflight-1"
+          },
+          {
+            "path": "neural_prophet/neuralprophet/components/seasonality/fourier.py",
+            "sha256": "f4899d30b3e40bd3ef0bee7283ab3d63f6400cf3be5037185082d7714e212d65",
+            "artifact": "artifacts/f4899d30b3e40bd3ef0bee7283ab3d63f6400cf3be5037185082d7714e212d65",
+            "source_attempt": "preflight-1"
+          },
+          {
+            "path": "neural_prophet/neuralprophet/time_dataset.py",
+            "sha256": "ce02e8de0b93eaf17934f43d9c2e444555ea7f0f6cff4524916287416e928725",
+            "artifact": "artifacts/ce02e8de0b93eaf17934f43d9c2e444555ea7f0f6cff4524916287416e928725",
+            "source_attempt": "preflight-1"
+          }
+        ],
+        "commit": "596849107945533c7b94d53ad881d88a7a924875",
+        "project_commit": "596849107945533c7b94d53ad881d88a7a924875",
+        "change": null,
+        "device": "cpu",
+        "timeout": 180,
+        "gpu_seconds": 0,
+        "status": "passed",
+        "log": "runs/small-1/run.log",
+        "checks": [
+          {
+            "id": "slow",
+            "stage": "small",
+            "claim": "joint",
+            "meaning": "五条序列中最差的未来慢分量去均值RMSE；容差设为归一化幅域的5%，容许未知变点近似误差",
+            "expected": 0,
+            "atol": 0.05,
+            "unit": "normalized_y",
+            "actual": 0.0007342396121144229,
+            "actual_unit": "normalized_y",
+            "delta": 0.0007342396121144229,
+            "pass": true
+          },
+          {
+            "id": "season",
+            "stage": "small",
+            "claim": "joint",
+            "meaning": "五条序列十个季节分量中最差的未来去均值RMSE；容差设为归一化幅域的1%",
+            "expected": 0,
+            "atol": 0.01,
+            "unit": "normalized_y",
+            "actual": 0.0007765673373083831,
+            "actual_unit": "normalized_y",
+            "delta": 0.0007765673373083831,
+            "pass": true
+          },
+          {
+            "id": "solved",
+            "stage": "small",
+            "claim": "core",
+            "meaning": "官方模块训练所得总预测与独立最小二乘解在五条未来段上的最差点误差；核对优化充分性",
+            "expected": 0,
+            "atol": 0.001,
+            "unit": "normalized_y",
+            "actual": 0.00024165306017252808,
+            "actual_unit": "normalized_y",
+            "delta": 0.00024165306017252808,
+            "pass": true
+          }
+        ],
+        "returncode": 0,
+        "metrics_sha256": "b4c8089412bcfc9b11ab2e52d5be543ccd5f0cdfdb632a51d7a34814dcd73486",
+        "outputs": [
+          {
+            "path": "synthetic_runs.json",
+            "sha256": "17e2326eeefe10f41971bed88e7d5df1020d310927bc717451628316b1edd8aa",
+            "artifact": "artifacts/17e2326eeefe10f41971bed88e7d5df1020d310927bc717451628316b1edd8aa"
+          }
+        ],
+        "seconds": 3.9275,
+        "finished_at": "2026-11-25T06:28:37.393373+00:00",
+        "log_sha256": "2b3e8a1445aa8c18b1017e168036f0a72dccdfd4a7335eabaec771db432a1656"
+      }
+    ]
+  }
+}

@@ -1,0 +1,4404 @@
+{
+  "coverage_status": "PARTIAL",
+  "coverage_issues": [
+    {
+      "severity": "partial",
+      "kind": "topic",
+      "path": "q1",
+      "reason": "\"trend\" AND \"seasonality\" AND \"interpretable forecasting\" 实取 9/67，检查单路上限或调整检索式"
+    },
+    {
+      "severity": "partial",
+      "kind": "topic",
+      "path": "q2",
+      "reason": "\"seasonal-trend decomposition\" AND \"forecasting\" 实取 9/795，检查单路上限或调整检索式"
+    },
+    {
+      "severity": "partial",
+      "kind": "alternative",
+      "path": "q5",
+      "reason": "\"harmonic\" AND \"trend\" AND \"forecasting\" AND \"neural network\" 实取 9/29，检查单路上限或调整检索式"
+    },
+    {
+      "severity": "partial",
+      "kind": "semantic",
+      "path": "q7",
+      "reason": "How can an additive forecast model distinguish periodic motion from slow trend and attribute forecast gains with matched ablations? 实取 9/50，检查单路上限或调整检索式"
+    },
+    {
+      "severity": "partial",
+      "kind": "repository",
+      "path": "q12",
+      "reason": "W4396917366：HTTP 403，请检查 API 访问权限或额度"
+    },
+    {
+      "severity": "partial",
+      "kind": "repository",
+      "path": "q13",
+      "reason": "W4396917366：HTTP 403，请检查 API 访问权限或额度"
+    },
+    {
+      "severity": "partial",
+      "kind": "repository",
+      "path": "q14",
+      "reason": "W7167581812：HTTP 403，请检查 API 访问权限或额度"
+    },
+    {
+      "severity": "partial",
+      "kind": "repository",
+      "path": "q15",
+      "reason": "W7167581812：HTTP 403，请检查 API 访问权限或额度"
+    },
+    {
+      "severity": "partial",
+      "kind": "repository",
+      "path": "q16",
+      "reason": "W4409158573：HTTP 403，请检查 API 访问权限或额度"
+    },
+    {
+      "severity": "partial",
+      "kind": "readme",
+      "path": "q17",
+      "reason": "W4409158573：HTTP 403，请检查 API 访问权限或额度"
+    },
+    {
+      "severity": "partial",
+      "kind": "repository",
+      "path": "q18",
+      "reason": "W7160600450：HTTP 403，请检查 API 访问权限或额度"
+    },
+    {
+      "severity": "partial",
+      "kind": "repository",
+      "path": "q19",
+      "reason": "W7160600450：HTTP 403，请检查 API 访问权限或额度"
+    },
+    {
+      "severity": "partial",
+      "kind": "repository",
+      "path": "q20",
+      "reason": "W7160705014：HTTP 403，请检查 API 访问权限或额度"
+    },
+    {
+      "severity": "partial",
+      "kind": "repository",
+      "path": "q21",
+      "reason": "W7160705014：HTTP 403，请检查 API 访问权限或额度"
+    },
+    {
+      "severity": "partial",
+      "kind": "repository",
+      "path": "q22",
+      "reason": "W4402640700：HTTP 403，请检查 API 访问权限或额度"
+    }
+  ],
+  "schema_version": 2,
+  "status": "READY_FOR_SCREENING",
+  "plan": {
+    "topic": "\"trend\" AND \"seasonality\" AND \"interpretable forecasting\"",
+    "limit": 9,
+    "question": "How can an additive forecast model distinguish periodic motion from slow trend and attribute forecast gains with matched ablations?",
+    "require_open_source": true,
+    "seeds": [],
+    "keywords": [
+      "\"seasonal-trend decomposition\" AND \"forecasting\"",
+      "\"additive\" AND \"neuralprophet\"",
+      "\"periodic patterns\" AND \"residual cycle forecasting\""
+    ],
+    "routes": [
+      "\"harmonic\" AND \"trend\" AND \"forecasting\" AND \"neural network\"",
+      "\"time series forecasting\" AND \"periodic residual\""
+    ],
+    "expect": [],
+    "lookups": [
+      "N-BEATS: Neural basis expansion analysis for interpretable time series forecasting",
+      "CoST: Contrastive Learning of Disentangled Seasonal-Trend Representations for Time Series Forecasting",
+      "NeuralProphet: Explainable Forecasting at Scale",
+      "CycleNet: Enhancing Time Series Forecasting through Modeling Periodic Patterns"
+    ],
+    "from_cycle": "cycle-e6bd782009166d68"
+  },
+  "seeds": [],
+  "trace": [
+    {
+      "id": "q1",
+      "kind": "topic",
+      "label": "主题与关键词",
+      "basis": "\"trend\" AND \"seasonality\" AND \"interpretable forecasting\"",
+      "endpoint": "https://api.openalex.org/works",
+      "params": {
+        "per_page": 9,
+        "search.title_abstract_keywords": "\"trend\" AND \"seasonality\" AND \"interpretable forecasting\""
+      },
+      "status": "ok",
+      "attempted": true,
+      "total": 67,
+      "hits": [
+        "W4396917366",
+        "W7213976852",
+        "W4400721985",
+        "W4409158573",
+        "W7160600450",
+        "W7160705014",
+        "W7170071151",
+        "W7161235189",
+        "W7167581812"
+      ],
+      "incomplete": true,
+      "cost_usd": 0.001
+    },
+    {
+      "id": "q2",
+      "kind": "topic",
+      "label": "主题与关键词",
+      "basis": "\"seasonal-trend decomposition\" AND \"forecasting\"",
+      "endpoint": "https://api.openalex.org/works",
+      "params": {
+        "per_page": 9,
+        "search.title_abstract_keywords": "\"seasonal-trend decomposition\" AND \"forecasting\""
+      },
+      "status": "ok",
+      "attempted": true,
+      "total": 795,
+      "hits": [
+        "W3176622143",
+        "W2237663125",
+        "W4409347736",
+        "W2964758013",
+        "W1488564375",
+        "W4318473773",
+        "W3186391497",
+        "W4362655576",
+        "W4386187721"
+      ],
+      "incomplete": true,
+      "cost_usd": 0.001
+    },
+    {
+      "id": "q3",
+      "kind": "topic",
+      "label": "主题与关键词",
+      "basis": "\"additive\" AND \"neuralprophet\"",
+      "endpoint": "https://api.openalex.org/works",
+      "params": {
+        "per_page": 9,
+        "search.title_abstract_keywords": "\"additive\" AND \"neuralprophet\""
+      },
+      "status": "ok",
+      "attempted": true,
+      "total": 4,
+      "hits": [
+        "W7133222734",
+        "W7141736135",
+        "W4417289390",
+        "W4386928809"
+      ],
+      "incomplete": false,
+      "cost_usd": 0.001
+    },
+    {
+      "id": "q4",
+      "kind": "topic",
+      "label": "主题与关键词",
+      "basis": "\"periodic patterns\" AND \"residual cycle forecasting\"",
+      "endpoint": "https://api.openalex.org/works",
+      "params": {
+        "per_page": 9,
+        "search.title_abstract_keywords": "\"periodic patterns\" AND \"residual cycle forecasting\""
+      },
+      "status": "ok",
+      "attempted": true,
+      "total": 3,
+      "hits": [
+        "W4415795980",
+        "W7124997453",
+        "W7214204540"
+      ],
+      "incomplete": false,
+      "cost_usd": 0.001
+    },
+    {
+      "id": "q5",
+      "kind": "alternative",
+      "label": "替代方法路线",
+      "basis": "\"harmonic\" AND \"trend\" AND \"forecasting\" AND \"neural network\"",
+      "endpoint": "https://api.openalex.org/works",
+      "params": {
+        "per_page": 9,
+        "search.title_and_abstract": "\"harmonic\" AND \"trend\" AND \"forecasting\" AND \"neural network\""
+      },
+      "status": "ok",
+      "attempted": true,
+      "total": 29,
+      "hits": [
+        "W2990255447",
+        "W4372353049",
+        "W4411995730",
+        "W4379381218",
+        "W4400644360",
+        "W3040864798",
+        "W3019616708",
+        "W4402640700",
+        "W4407406765"
+      ],
+      "incomplete": true,
+      "cost_usd": 0.001
+    },
+    {
+      "id": "q6",
+      "kind": "alternative",
+      "label": "替代方法路线",
+      "basis": "\"time series forecasting\" AND \"periodic residual\"",
+      "endpoint": "https://api.openalex.org/works",
+      "params": {
+        "per_page": 9,
+        "search.title_and_abstract": "\"time series forecasting\" AND \"periodic residual\""
+      },
+      "status": "ok",
+      "attempted": true,
+      "total": 3,
+      "hits": [
+        "W4412642765",
+        "W7135246424",
+        "W7221196173"
+      ],
+      "incomplete": false,
+      "cost_usd": 0.001
+    },
+    {
+      "id": "q7",
+      "kind": "semantic",
+      "label": "研究问题语义检索",
+      "basis": "How can an additive forecast model distinguish periodic motion from slow trend and attribute forecast gains with matched ablations?",
+      "endpoint": "https://api.openalex.org/works",
+      "params": {
+        "per_page": 9,
+        "search.semantic": "How can an additive forecast model distinguish periodic motion from slow trend and attribute forecast gains with matched ablations?"
+      },
+      "status": "ok",
+      "attempted": true,
+      "total": 50,
+      "hits": [
+        "W2040057016",
+        "W2137643484",
+        "W2001645924",
+        "W4399522163",
+        "W2591318697",
+        "W2071142960",
+        "W2080942961",
+        "W2288789415",
+        "W4382895992"
+      ],
+      "incomplete": true,
+      "cost_usd": 0.001,
+      "api_limits": {
+        "max_chars": 2000,
+        "max_results": 50,
+        "requests_per_second": 1,
+        "input_truncated": false
+      }
+    },
+    {
+      "id": "q8",
+      "kind": "known_lookup",
+      "label": "已知论文回查",
+      "basis": "N-BEATS: Neural basis expansion analysis for interpretable time series forecasting",
+      "endpoint": "https://api.openalex.org/works",
+      "params": {
+        "search.title": "N-BEATS: Neural basis expansion analysis for interpretable time series forecasting",
+        "per_page": 10
+      },
+      "status": "ok",
+      "attempted": true,
+      "total": 1,
+      "hits": [
+        "W2946709941"
+      ],
+      "incomplete": false,
+      "cost_usd": 0.001,
+      "matched_ids": [
+        "W2946709941"
+      ]
+    },
+    {
+      "id": "q9",
+      "kind": "known_lookup",
+      "label": "已知论文回查",
+      "basis": "CoST: Contrastive Learning of Disentangled Seasonal-Trend Representations for Time Series Forecasting",
+      "endpoint": "https://api.openalex.org/works",
+      "params": {
+        "search.title": "CoST: Contrastive Learning of Disentangled Seasonal-Trend Representations for Time Series Forecasting",
+        "per_page": 10
+      },
+      "status": "ok",
+      "attempted": true,
+      "total": 1,
+      "hits": [
+        "W4226362568"
+      ],
+      "incomplete": false,
+      "cost_usd": 0.001,
+      "matched_ids": [
+        "W4226362568"
+      ]
+    },
+    {
+      "id": "q10",
+      "kind": "known_lookup",
+      "label": "已知论文回查",
+      "basis": "NeuralProphet: Explainable Forecasting at Scale",
+      "endpoint": "https://api.openalex.org/works",
+      "params": {
+        "search.title": "NeuralProphet: Explainable Forecasting at Scale",
+        "per_page": 10
+      },
+      "status": "ok",
+      "attempted": true,
+      "total": 1,
+      "hits": [
+        "W3215624848"
+      ],
+      "incomplete": false,
+      "cost_usd": 0.001,
+      "matched_ids": [
+        "W3215624848"
+      ]
+    },
+    {
+      "id": "q11",
+      "kind": "known_lookup",
+      "label": "已知论文回查",
+      "basis": "CycleNet: Enhancing Time Series Forecasting through Modeling Periodic Patterns",
+      "endpoint": "https://api.openalex.org/works",
+      "params": {
+        "search.title": "CycleNet: Enhancing Time Series Forecasting through Modeling Periodic Patterns",
+        "per_page": 10
+      },
+      "status": "ok",
+      "attempted": true,
+      "total": 1,
+      "hits": [
+        "W4415795980"
+      ],
+      "incomplete": false,
+      "cost_usd": 0.001,
+      "matched_ids": [
+        "W4415795980"
+      ]
+    },
+    {
+      "id": "q12",
+      "kind": "repository",
+      "label": "公开实现查询",
+      "basis": "W4396917366",
+      "endpoint": "https://api.github.com/search/repositories",
+      "params": {
+        "q": "\"Characterizing Seasonality and Trend From In Situ Time‐Series Observations Using Explainable Deep Learning for Ground Deformation Forecasting\" in:description",
+        "per_page": 4
+      },
+      "status": "error",
+      "error": "HTTP 403，请检查 API 访问权限或额度",
+      "hits": [],
+      "attempted": true
+    },
+    {
+      "id": "q13",
+      "kind": "repository",
+      "label": "公开实现查询",
+      "basis": "W4396917366",
+      "endpoint": "https://api.github.com/search/repositories",
+      "params": {
+        "q": "\"Characterizing Seasonality and Trend From\" Ma in:readme",
+        "per_page": 4
+      },
+      "status": "error",
+      "error": "HTTP 403，请检查 API 访问权限或额度",
+      "hits": [],
+      "attempted": true
+    },
+    {
+      "id": "q14",
+      "kind": "repository",
+      "label": "公开实现查询",
+      "basis": "W7167581812",
+      "endpoint": "https://api.github.com/search/repositories",
+      "params": {
+        "q": "\"An Adaptive Prophet-based Hybrid Framework for Volatility-Aware Trend and Seasonality Modeling in Stock Market Price Forecasting\" in:description",
+        "per_page": 4
+      },
+      "status": "error",
+      "error": "HTTP 403，请检查 API 访问权限或额度",
+      "hits": [],
+      "attempted": true
+    },
+    {
+      "id": "q15",
+      "kind": "repository",
+      "label": "公开实现查询",
+      "basis": "W7167581812",
+      "endpoint": "https://api.github.com/search/repositories",
+      "params": {
+        "q": "\"An Adaptive Prophet-based Hybrid Framework\" SriRaghavendra in:readme",
+        "per_page": 4
+      },
+      "status": "error",
+      "error": "HTTP 403，请检查 API 访问权限或额度",
+      "hits": [],
+      "attempted": true
+    },
+    {
+      "id": "q16",
+      "kind": "repository",
+      "label": "公开实现查询",
+      "basis": "W4409158573",
+      "endpoint": "https://api.github.com/search/repositories",
+      "params": {
+        "q": "\"D-Tracker: Modeling Interest Diffusion in Social Activity Tensor Data Streams\" in:description",
+        "per_page": 4
+      },
+      "status": "error",
+      "error": "HTTP 403，请检查 API 访问权限或额度",
+      "hits": [],
+      "attempted": true
+    },
+    {
+      "id": "q17",
+      "kind": "readme",
+      "label": "README 归属核查",
+      "basis": "W4409158573",
+      "endpoint": "https://api.github.com/repos/Higashiguchi-Shingo/D-Tracker/readme",
+      "params": {},
+      "hits": [],
+      "status": "error",
+      "attempted": true,
+      "error": "HTTP 403，请检查 API 访问权限或额度"
+    },
+    {
+      "id": "q18",
+      "kind": "repository",
+      "label": "公开实现查询",
+      "basis": "W7160600450",
+      "endpoint": "https://api.github.com/search/repositories",
+      "params": {
+        "q": "\"Forecasting hospital bed occupancy: a time series approach with prophet\" in:description",
+        "per_page": 4
+      },
+      "status": "error",
+      "error": "HTTP 403，请检查 API 访问权限或额度",
+      "hits": [],
+      "attempted": true
+    },
+    {
+      "id": "q19",
+      "kind": "repository",
+      "label": "公开实现查询",
+      "basis": "W7160600450",
+      "endpoint": "https://api.github.com/search/repositories",
+      "params": {
+        "q": "\"Forecasting hospital bed occupancy: a\" Fattouh in:readme",
+        "per_page": 4
+      },
+      "status": "error",
+      "error": "HTTP 403，请检查 API 访问权限或额度",
+      "hits": [],
+      "attempted": true
+    },
+    {
+      "id": "q20",
+      "kind": "repository",
+      "label": "公开实现查询",
+      "basis": "W7160705014",
+      "endpoint": "https://api.github.com/search/repositories",
+      "params": {
+        "q": "\"Forecasting hospital bed occupancy: a time series approach with prophet\" in:description",
+        "per_page": 4
+      },
+      "status": "error",
+      "error": "HTTP 403，请检查 API 访问权限或额度",
+      "hits": [],
+      "attempted": true
+    },
+    {
+      "id": "q21",
+      "kind": "repository",
+      "label": "公开实现查询",
+      "basis": "W7160705014",
+      "endpoint": "https://api.github.com/search/repositories",
+      "params": {
+        "q": "\"Forecasting hospital bed occupancy: a\" Fattouh in:readme",
+        "per_page": 4
+      },
+      "status": "error",
+      "error": "HTTP 403，请检查 API 访问权限或额度",
+      "hits": [],
+      "attempted": true
+    },
+    {
+      "id": "q22",
+      "kind": "repository",
+      "label": "公开实现查询",
+      "basis": "W4402640700",
+      "endpoint": "https://api.github.com/search/repositories",
+      "params": {
+        "q": "\"Time Series Decomposition of Land Surface Temperature for Long-Term Trend Forecasting and Impact on Nesting Sea Turtle Habitats in the Arabian Gulf\" in:description",
+        "per_page": 4
+      },
+      "status": "error",
+      "error": "HTTP 403，请检查 API 访问权限或额度",
+      "hits": [],
+      "attempted": true
+    }
+  ],
+  "limitations": [
+    "q12 公开实现查询失败（HTTP 403，请检查 API 访问权限或额度），此路径覆盖未知。",
+    "q13 公开实现查询失败（HTTP 403，请检查 API 访问权限或额度），此路径覆盖未知。",
+    "q14 公开实现查询失败（HTTP 403，请检查 API 访问权限或额度），此路径覆盖未知。",
+    "q15 公开实现查询失败（HTTP 403，请检查 API 访问权限或额度），此路径覆盖未知。",
+    "q16 公开实现查询失败（HTTP 403，请检查 API 访问权限或额度），此路径覆盖未知。",
+    "q17 README 核查失败（HTTP 403，请检查 API 访问权限或额度）",
+    "q18 公开实现查询失败（HTTP 403，请检查 API 访问权限或额度），此路径覆盖未知。",
+    "q19 公开实现查询失败（HTTP 403，请检查 API 访问权限或额度），此路径覆盖未知。",
+    "q20 公开实现查询失败（HTTP 403，请检查 API 访问权限或额度），此路径覆盖未知。",
+    "q21 公开实现查询失败（HTTP 403，请检查 API 访问权限或额度），此路径覆盖未知。",
+    "q22 公开实现查询失败（HTTP 403，请检查 API 访问权限或额度），此路径覆盖未知。",
+    "未提供种子，施引、参考文献和同作者路径未执行。"
+  ],
+  "checks": [],
+  "candidates": [
+    {
+      "id": "W4396917366",
+      "title": "Characterizing Seasonality and Trend From In Situ Time‐Series Observations Using Explainable Deep Learning for Ground Deformation Forecasting",
+      "doi": "10.1029/2024jh000122",
+      "url": "https://doi.org/10.1029/2024jh000122",
+      "date": "2024-05-15",
+      "year": 2024,
+      "type": "article",
+      "abstract": "Ground deformation, a critical indicator of geohazard evolution, exhibits both seasonal fluctuations and long‐term trend changes. This study explores interpretable deformation forecasting using an explainable deep learning approach, utilizing field observation data to extract and characterize these critical features from time series. We demonstrate that extracting and utilizing shared, similar seasonal and trend features across multi‐point observations significantly enhances ground deformation forecasting accuracy. Notably, the extracted seasonal features reveal the dominant role of the hydrological response in deformation at seasonal timescales, providing insights into the underlying source of predictability. This proof‐of‐concept study highlights the promise of interpretable ground deformation forecasting, with applications expected to encompass landslide behavior, volcanism, or seismic activity.",
+      "authors": [
+        {
+          "id": "A5073211491",
+          "name": "Zhengjing Ma"
+        },
+        {
+          "id": "A5032883585",
+          "name": "Gang Mei"
+        },
+        {
+          "id": "A5000783213",
+          "name": "Nengxiong Xu"
+        }
+      ],
+      "institutions": [
+        "China University of Geosciences (Beijing)"
+      ],
+      "keywords": [
+        "ground deformation",
+        "deformation prediction",
+        "seasonal variation",
+        "long-term trends",
+        "explainable deep learning",
+        "interpretable forecasting",
+        "hydrological response",
+        "multipoint observations",
+        "geohazards",
+        "volcanic activity",
+        "seismicity"
+      ],
+      "versions": [
+        {
+          "id": "W4396917366",
+          "doi": "10.1029/2024jh000122",
+          "title": "Characterizing Seasonality and Trend From In Situ Time‐Series Observations Using Explainable Deep Learning for Ground Deformation Forecasting",
+          "paths": [
+            "q1"
+          ]
+        }
+      ],
+      "paths": [
+        "q1"
+      ],
+      "code": [],
+      "code_scope": "abstract_and_github",
+      "code_status": "query_failed",
+      "lookup_status": "query_failed",
+      "scores": {
+        "relevance": 51,
+        "mechanism": 12,
+        "value": 2,
+        "code": 0,
+        "cost": 0
+      },
+      "score": 65,
+      "reasons": [
+        "主题匹配词：forecasting、interpretable、seasonality、trend",
+        "可核查的机制线索：ground deformation、long-term trends、explainable deep learning",
+        "比较价值：由主题与关键词发现，可作主题对照",
+        "公开实现线索（query_failed）：查询失败，覆盖不完整",
+        "复现成本：实现工作量待核实，数据获取条件待核实，算力预算未知"
+      ],
+      "repo_checked": false
+    },
+    {
+      "id": "W7167581812",
+      "title": "An Adaptive Prophet-based Hybrid Framework for Volatility-Aware Trend and Seasonality Modeling in Stock Market Price Forecasting",
+      "doi": "10.1109/iccnct68477.2026.11590099",
+      "url": "https://doi.org/10.1109/iccnct68477.2026.11590099",
+      "date": "2026-05-11",
+      "year": 2026,
+      "type": "conference-paper",
+      "abstract": "Accurate stock market price forecasting remains one of the most challenging problems in quantitative finance due to inherent non-stationarity, volatility, and multi-scale seasonality of financial time series. Classical ARIMA models fail under nonlinear regime shifts, while deep learning architectures sacrifice interpretability. This paper proposes AdaProphet—an adaptive hybrid framework enhancing Facebook Prophet via: (i) a Bayesian changepoint sensitivity scheduler driven by rolling-window variance; (ii) an ATR-based volatility-regime switching module; and (iii) a lightweight LSTM residual-correction layer. Evaluated on ten years of daily NASDAQ data (2014–2024) for AAPL, AMZN, GOOG, and MSFT, AdaProphet achieves mean RMSE of 4.52 USD and MAPE of 2.79%, outperforming vanilla Prophet by 51.5% in RMSE. Calibrated 95% prediction intervals achieve 93–96% empirical coverage, providing actionable risk quantification without sacrificing interpretability",
+      "authors": [
+        {
+          "id": "A5139763043",
+          "name": "M. SriRaghavendra"
+        },
+        {
+          "id": "A5009224220",
+          "name": "K. Samunnisa"
+        },
+        {
+          "id": "A5140202737",
+          "name": "Bobburi Divya Sree"
+        },
+        {
+          "id": "A5140214210",
+          "name": "Danduvari Diwakar"
+        },
+        {
+          "id": "A5140162331",
+          "name": "Polepalli Akhila"
+        }
+      ],
+      "institutions": [],
+      "keywords": [
+        "stock price prediction",
+        "Facebook Prophet",
+        "average true range",
+        "hybrid forecasting model",
+        "trend models",
+        "prediction intervals",
+        "NASDAQ",
+        "interpretable forecasting"
+      ],
+      "versions": [
+        {
+          "id": "W7167581812",
+          "doi": "10.1109/iccnct68477.2026.11590099",
+          "title": "An Adaptive Prophet-based Hybrid Framework for Volatility-Aware Trend and Seasonality Modeling in Stock Market Price Forecasting",
+          "paths": [
+            "q1"
+          ]
+        }
+      ],
+      "paths": [
+        "q1"
+      ],
+      "code": [],
+      "code_scope": "abstract_and_github",
+      "code_status": "query_failed",
+      "lookup_status": "query_failed",
+      "scores": {
+        "relevance": 50,
+        "mechanism": 12,
+        "value": 2,
+        "code": 0,
+        "cost": 0
+      },
+      "score": 64,
+      "reasons": [
+        "主题匹配词：forecasting、interpretable、seasonality、trend",
+        "可核查的机制线索：stock price prediction、Facebook Prophet、hybrid forecasting model",
+        "比较价值：由主题与关键词发现，可作主题对照",
+        "公开实现线索（query_failed）：查询失败，覆盖不完整",
+        "复现成本：实现工作量待核实，数据获取条件待核实，算力预算未知"
+      ],
+      "repo_checked": false
+    },
+    {
+      "id": "W4409158573",
+      "title": "D-Tracker: Modeling Interest Diffusion in Social Activity Tensor Data Streams",
+      "doi": "10.1145/3690624.3709192",
+      "url": "https://doi.org/10.1145/3690624.3709192",
+      "date": "2025-07-20",
+      "year": 2025,
+      "type": "conference-paper",
+      "abstract": "Large quantities of social activity data, such as weekly web search volumes and the number of new infections with infectious diseases, reflect peoples' interests and activities. It is important to discover temporal patterns from such data and to forecast future activities accurately. However, modeling and forecasting social activity data streams is difficult because they are high-dimensional and composed of multiple time-varying dynamics such as trends, seasonality, and interest diffusion. In this paper, we propose D-Tracker, a method for continuously capturing time-varying temporal patterns within social activity tensor data streams and forecasting future activities. Our proposed method has the following properties: (a) Interpretable: it incorporates the partial differential equation into a tensor decomposition framework and captures time-varying temporal patterns such as trends, seasonality, and interest diffusion between locations in an interpretable manner; (b) Automatic: it has no hyperparameters and continuously models tensor data streams fully automatically; (c) Scalable: the computation time of D-Tracker is independent of the time series length. Experiments using web search volume data obtained from GoogleTrends, and COVID-19 infection data obtained from COVID-19 Open Data Repository show that our method can achieve higher forecasting accuracy in less computation time than existing methods while extracting the interest diffusion between locations. Our source code and datasets are available at https://github.com/Higashiguchi-Shingo/D-Tracker.",
+      "authors": [
+        {
+          "id": "A5097686949",
+          "name": "Shingo Higashiguchi"
+        },
+        {
+          "id": "A5005415598",
+          "name": "Yasuko Matsubara"
+        },
+        {
+          "id": "A5053658476",
+          "name": "Koki Kawabata"
+        },
+        {
+          "id": "A5008840028",
+          "name": "Taichi Murayama"
+        },
+        {
+          "id": "A5089668362",
+          "name": "Yasushi Sakurai"
+        }
+      ],
+      "institutions": [
+        "The University of Osaka",
+        "Yokohama National University"
+      ],
+      "keywords": [
+        "tensor decomposition",
+        "partial differential equations",
+        "Google Trends",
+        "seasonal variation",
+        "interpretable forecasting"
+      ],
+      "versions": [
+        {
+          "id": "W4409158573",
+          "doi": "10.1145/3690624.3709192",
+          "title": "D-Tracker: Modeling Interest Diffusion in Social Activity Tensor Data Streams",
+          "paths": [
+            "q1"
+          ]
+        }
+      ],
+      "paths": [
+        "q1"
+      ],
+      "code": [
+        {
+          "url": "https://github.com/Higashiguchi-Shingo/D-Tracker",
+          "status": "unverified",
+          "evidence": [
+            {
+              "source": "https://openalex.org/W4409158573",
+              "kind": "abstract",
+              "text": "ccuracy in less computation time than existing methods while extracting the interest diffusion between locations. Our source code and datasets are available at https://github.com/Higashiguchi-Shingo/D-Tracker"
+            }
+          ]
+        }
+      ],
+      "code_scope": "abstract_and_github",
+      "code_status": "unverified",
+      "lookup_status": "query_failed",
+      "scores": {
+        "relevance": 43,
+        "mechanism": 12,
+        "value": 2,
+        "code": 6,
+        "cost": 1
+      },
+      "score": 64,
+      "reasons": [
+        "主题匹配词：forecasting、interpretable、seasonality、trend",
+        "可核查的机制线索：tensor decomposition、partial differential equations、interpretable forecasting",
+        "比较价值：由主题与关键词发现，可作主题对照",
+        "公开实现线索（unverified）：https://github.com/Higashiguchi-Shingo/D-Tracker",
+        "复现成本：有仓库线索，需核对归属与实现范围，数据获取条件待核实，算力预算未知"
+      ],
+      "repo_checked": false
+    },
+    {
+      "id": "W7160600450",
+      "title": "Forecasting hospital bed occupancy: a time series approach with prophet",
+      "doi": "10.1186/s12911-026-03542-w",
+      "url": "https://doi.org/10.1186/s12911-026-03542-w",
+      "date": "2026-05-08",
+      "year": 2026,
+      "type": "article",
+      "abstract": "BACKGROUND: Accurate hospital bed occupancy forecasting is essential for effective resource planning and patient flow management. While complex machine learning models have gained popularity in healthcare forecasting, their operational utility often falls short due to high maintenance costs and limited interpretability. This study evaluates the performance and practicality of Prophet, a parsimonious time-series model, for mid-term hospital bed occupancy forecasting. METHODS: We applied the Prophet model to daily bed occupancy data from the Medical Center - University of Freiburg (2010-2023), incorporating public holidays and a COVID-19 pandemic indicator as exogenous regressors. Prophet decomposes time series into trend, seasonality, and holiday effects, offering interpretable components. Forecast accuracy was assessed via rolling cross-validation over 2022-2023 for horizons of 30, 60, 90, and 180 days. A production-ready forecasting pipeline and dashboard were also implemented using cloud-native tools. RESULTS: Prophet achieved low MAPE values across all horizons (3.21%-3.53%) with coverage above 80%, demonstrating reliable accuracy comparable to or better than more complex models that often require higher computational resources and operational costs, such as deep neural networks. Component analysis revealed patterns aligned with hospital operations; weekly and yearly cycles, and holiday effects, highlighting the model's interpretability. CONCLUSIONS: This study shows that mid-term hospital bed occupancy can be accurately forecasted using a simple, interpretable model like Prophet. In contrast to more complex architectures, Prophet offers robust performance with minimal tuning, faster deployment, and clearer insights that are critical in operational settings. These findings reinforce the argument that, for structured forecasting tasks like bed occupancy, simple models can rival complex ones, not only in accuracy, but also in reproducibility, scalability, and operational value.",
+      "authors": [
+        {
+          "id": "A5135745013",
+          "name": "Mohammad Fattouh"
+        },
+        {
+          "id": "A5087991294",
+          "name": "Lisa Lyssenko"
+        },
+        {
+          "id": "A5039560982",
+          "name": "Felix Heilmeyer"
+        },
+        {
+          "id": "A5135754269",
+          "name": "T. Ball"
+        },
+        {
+          "id": "A5135790214",
+          "name": "Ch. Haverkamp"
+        }
+      ],
+      "institutions": [
+        "University Medical Center Freiburg",
+        "University of Freiburg"
+      ],
+      "keywords": [
+        "hospital bed occupancy",
+        "prophets",
+        "medium-term forecasting",
+        "interpretable forecasting",
+        "time series decomposition",
+        "seasonal variation",
+        "national holidays",
+        "hospital resource planning",
+        "patient flow management",
+        "cloud-native deployment"
+      ],
+      "versions": [
+        {
+          "id": "W7160600450",
+          "doi": "10.1186/s12911-026-03542-w",
+          "title": "Forecasting hospital bed occupancy: a time series approach with prophet",
+          "paths": [
+            "q1"
+          ]
+        }
+      ],
+      "paths": [
+        "q1"
+      ],
+      "code": [],
+      "code_scope": "abstract_and_github",
+      "code_status": "query_failed",
+      "lookup_status": "query_failed",
+      "scores": {
+        "relevance": 46,
+        "mechanism": 12,
+        "value": 2,
+        "code": 0,
+        "cost": 0
+      },
+      "score": 60,
+      "reasons": [
+        "主题匹配词：forecasting、interpretable、seasonality、trend",
+        "可核查的机制线索：hospital bed occupancy、prophets、interpretable forecasting",
+        "比较价值：由主题与关键词发现，可作主题对照",
+        "公开实现线索（query_failed）：查询失败，覆盖不完整",
+        "复现成本：实现工作量待核实，数据获取条件待核实，算力预算未知"
+      ],
+      "repo_checked": false
+    },
+    {
+      "id": "W7160705014",
+      "title": "Forecasting hospital bed occupancy: a time series approach with prophet",
+      "doi": "10.6084/m9.figshare.c.8467281",
+      "url": "https://doi.org/10.6084/m9.figshare.c.8467281",
+      "date": "2026-05-08",
+      "year": 2026,
+      "type": "supplementary-materials",
+      "abstract": "Abstract Background Accurate hospital bed occupancy forecasting is essential for effective resource planning and patient flow management. While complex machine learning models have gained popularity in healthcare forecasting, their operational utility often falls short due to high maintenance costs and limited interpretability. This study evaluates the performance and practicality of Prophet, a parsimonious time-series model, for mid-term hospital bed occupancy forecasting. Methods We applied the Prophet model to daily bed occupancy data from the Medical Center – University of Freiburg (2010–2023), incorporating public holidays and a COVID-19 pandemic indicator as exogenous regressors. Prophet decomposes time series into trend, seasonality, and holiday effects, offering interpretable components. Forecast accuracy was assessed via rolling cross-validation over 2022–2023 for horizons of 30, 60, 90, and 180 days. A production-ready forecasting pipeline and dashboard were also implemented using cloud-native tools. Results Prophet achieved low MAPE values across all horizons (3.21%–3.53%) with coverage above 80%, demonstrating reliable accuracy comparable to or better than more complex models that often require higher computational resources and operational costs, such as deep neural networks. Component analysis revealed patterns aligned with hospital operations; weekly and yearly cycles, and holiday effects, highlighting the model’s interpretability. Conclusions This study shows that mid-term hospital bed occupancy can be accurately forecasted using a simple, interpretable model like Prophet. In contrast to more complex architectures, Prophet offers robust performance with minimal tuning, faster deployment, and clearer insights that are critical in operational settings. These findings reinforce the argument that, for structured forecasting tasks like bed occupancy, simple models can rival complex ones, not only in accuracy, but also in reproducibility, scalability, and operational value.",
+      "authors": [
+        {
+          "id": "A5135745013",
+          "name": "Mohammad Fattouh"
+        },
+        {
+          "id": "A5087991294",
+          "name": "Lisa Lyssenko"
+        },
+        {
+          "id": "A5039560982",
+          "name": "Felix Heilmeyer"
+        },
+        {
+          "id": "A5135754269",
+          "name": "T. Ball"
+        },
+        {
+          "id": "A5135790214",
+          "name": "Ch. Haverkamp"
+        }
+      ],
+      "institutions": [
+        "University of Freiburg"
+      ],
+      "keywords": [
+        "hospital bed occupancy",
+        "prophets",
+        "medium-term forecasting",
+        "interpretable forecasting",
+        "time series decomposition",
+        "seasonal variation",
+        "national holidays",
+        "hospital resource planning",
+        "patient flow management",
+        "forecast coverage"
+      ],
+      "versions": [
+        {
+          "id": "W7160705014",
+          "doi": "10.6084/m9.figshare.c.8467281",
+          "title": "Forecasting hospital bed occupancy: a time series approach with prophet",
+          "paths": [
+            "q1"
+          ]
+        }
+      ],
+      "paths": [
+        "q1"
+      ],
+      "code": [],
+      "code_scope": "abstract_and_github",
+      "code_status": "query_failed",
+      "lookup_status": "query_failed",
+      "scores": {
+        "relevance": 46,
+        "mechanism": 12,
+        "value": 2,
+        "code": 0,
+        "cost": 0
+      },
+      "score": 60,
+      "reasons": [
+        "主题匹配词：forecasting、interpretable、seasonality、trend",
+        "可核查的机制线索：hospital bed occupancy、prophets、interpretable forecasting",
+        "比较价值：由主题与关键词发现，可作主题对照",
+        "公开实现线索（query_failed）：查询失败，覆盖不完整",
+        "复现成本：实现工作量待核实，数据获取条件待核实，算力预算未知"
+      ],
+      "repo_checked": false
+    },
+    {
+      "id": "W4402640700",
+      "title": "Time Series Decomposition of Land Surface Temperature for Long-Term Trend Forecasting and Impact on Nesting Sea Turtle Habitats in the Arabian Gulf",
+      "doi": "10.1175/jamc-d-24-0092.1",
+      "url": "https://doi.org/10.1175/jamc-d-24-0092.1",
+      "date": "2024-09-19",
+      "year": 2024,
+      "type": "article",
+      "abstract": "Improving land surface temperature (LST) modeling is vital for mitigating climate change effects on various ecosystems and marine habitats such as important sea turtle habitats. Over the past decade, extreme temperatures have likely significantly affected nesting sea turtle habitats in the Arabian Gulf, with predominantly female hatchlings creating an imbalance in the sex ratio. Such shifts have profound implications for these habitats’ long-term survival and conservation management. This study leverages statistical machine learning models to measure ongoing temporal variations in LST. We break down the LST time series into trend, seasonal, and noise components using classical decomposition methods like X11, Seasonal Extraction in autogressive integrated moving average (ARIMA) Time Series (SEATS), and the seasonal and trend decomposition using local regression (Loess) (STL) approach. The long-term trends in LST data are driven by climate change rather than seasonal fluctuations. We employed neural network autoregression (NNAR), bagged error, trend, and seasonal (BaggedETS), exponential smoothing models, and the STL method to project future LST values. We also explored advanced forecasting models like dynamic harmonic regression; trigonometric seasonality, Box–Cox transformation, autoregressive moving average (ARMA) errors, and trend and seasonal components (TBATS); and seasonal autoregressive integrated moving average (SARIMA) for comparative performance analysis. Extended warm periods were identified for Abu Ali Island between 2017 and 2018 through several decomposition methods, likely linked to the 2015/16 El Niño event. We also conducted a marine heatwave (MHW) analysis from 2010 to 2020, establishing a pronounced impact of the 2015/16 El Niño on the Arabian Gulf. In nesting beach environments with high LST, marine heatwaves could have a significant impact on sea turtle populations without human intervention such as artificially cooling the nest temperature. The SARIMA model showed higher forecasting precision for in situ weather data, while the NNAR model demonstrated superior performance with remotely sensed data.",
+      "authors": [
+        {
+          "id": "A5057896049",
+          "name": "Sachi Perera"
+        },
+        {
+          "id": "A5052803345",
+          "name": "Rommel Hilot Maneja"
+        },
+        {
+          "id": "A5085733296",
+          "name": "Mohamed Allali"
+        },
+        {
+          "id": "A5000208219",
+          "name": "Cyril S. Rakovski"
+        },
+        {
+          "id": "A5059418584",
+          "name": "Erik J. Linstead"
+        },
+        {
+          "id": "A5010344210",
+          "name": "Daniele Carlo Struppa"
+        },
+        {
+          "id": "A5042323550",
+          "name": "Ali M. Qasem"
+        },
+        {
+          "id": "A5049078582",
+          "name": "Hesham Mohamed El-Askary"
+        }
+      ],
+      "institutions": [
+        "Alexandria University",
+        "Chapman University",
+        "King Fahd University of Petroleum and Minerals",
+        "Saudi Aramco (Saudi Arabia)"
+      ],
+      "keywords": [
+        "land surface temperature",
+        "time series decomposition",
+        "sea turtle nesting habitat",
+        "Persian Gulf",
+        "climate change impacts",
+        "sex ratio imbalance",
+        "marine heatwaves",
+        "2015-2016 El Niño",
+        "temperature prediction",
+        "SARIMA",
+        "neural network autoregression",
+        "nest temperature"
+      ],
+      "versions": [
+        {
+          "id": "W4402640700",
+          "doi": "10.1175/jamc-d-24-0092.1",
+          "title": "Time Series Decomposition of Land Surface Temperature for Long-Term Trend Forecasting and Impact on Nesting Sea Turtle Habitats in the Arabian Gulf",
+          "paths": [
+            "q5"
+          ]
+        }
+      ],
+      "paths": [
+        "q5"
+      ],
+      "code": [],
+      "code_scope": "abstract_and_github",
+      "code_status": "query_failed",
+      "lookup_status": "query_failed",
+      "scores": {
+        "relevance": 39,
+        "mechanism": 16,
+        "value": 2,
+        "code": 0,
+        "cost": 0
+      },
+      "score": 57,
+      "reasons": [
+        "主题匹配词：forecasting、seasonality、trend",
+        "可核查的机制线索：land surface temperature、time series decomposition、sea turtle nesting habitat；可与该检索路线对照：\"harmonic\" AND \"trend\" AND \"forecasting\" AND \"neural network\"",
+        "比较价值：由替代方法路线发现，可作主题对照",
+        "公开实现线索（query_failed）：查询失败，覆盖不完整",
+        "复现成本：实现工作量待核实，数据获取条件待核实，算力预算未知"
+      ],
+      "repo_checked": false
+    },
+    {
+      "id": "W4400721985",
+      "title": "Interpretable wind power forecasting combining seasonal-trend representations learning with temporal fusion transformers architecture",
+      "doi": "10.1016/j.energy.2024.132482",
+      "url": "https://doi.org/10.1016/j.energy.2024.132482",
+      "date": "2024-07-17",
+      "year": 2024,
+      "type": "article",
+      "abstract": "",
+      "authors": [
+        {
+          "id": "A5001091807",
+          "name": "Zhewen Niu"
+        },
+        {
+          "id": "A5100662359",
+          "name": "Xiaoqing Han"
+        },
+        {
+          "id": "A5103954849",
+          "name": "Dongxia Zhang"
+        },
+        {
+          "id": "A5102557441",
+          "name": "Yuxiang Wu"
+        },
+        {
+          "id": "A5111259640",
+          "name": "Songyan Lan"
+        }
+      ],
+      "institutions": [
+        "China Electric Power Research Institute",
+        "Taiyuan University of Technology"
+      ],
+      "keywords": [
+        "wind power forecasting",
+        "interpretable forecasting",
+        "disentangled latent representations",
+        "Temporal Fusion Transformer",
+        "self-supervised learning",
+        "multi-horizon forecasting",
+        "feature entanglement",
+        "missing data robustness",
+        "wind power integration"
+      ],
+      "versions": [
+        {
+          "id": "W4400721985",
+          "doi": "10.1016/j.energy.2024.132482",
+          "title": "Interpretable wind power forecasting combining seasonal-trend representations learning with temporal fusion transformers architecture",
+          "paths": [
+            "q1"
+          ]
+        }
+      ],
+      "paths": [
+        "q1"
+      ],
+      "code": [],
+      "code_scope": "abstract",
+      "code_status": "not_checked",
+      "lookup_status": "not_checked",
+      "scores": {
+        "relevance": 41,
+        "mechanism": 12,
+        "value": 2,
+        "code": 0,
+        "cost": 0
+      },
+      "score": 55,
+      "reasons": [
+        "主题匹配词：forecasting、interpretable、trend",
+        "可核查的机制线索：wind power forecasting、interpretable forecasting、Temporal Fusion Transformer",
+        "比较价值：由主题与关键词发现，可作主题对照",
+        "公开实现线索（not_checked）：尚未查仓",
+        "复现成本：实现工作量待核实，数据获取条件待核实，算力预算未知"
+      ]
+    },
+    {
+      "id": "W7161235189",
+      "title": "Interpretable Forecasting of Container Throughput for Integrated Port Operations: A Data-Driven Analysis from a Single-Port System",
+      "doi": "10.56578/ijtdi100205",
+      "url": "https://doi.org/10.56578/ijtdi100205",
+      "date": "2026-04-30",
+      "year": 2026,
+      "type": "article",
+      "abstract": "This study develops an interpretable forecasting framework for container throughput with a specific focus on supporting integrated port operations and transport system coordination. Using monthly operational data from Mwani, Qatar (2017–2023), the proposed approach captures trend evolution, seasonal patterns, and calendar-related variations to generate short- and medium-term forecasts of container flows. Beyond predictive accuracy, the framework is designed to provide transparent insights into the operational drivers of throughput dynamics. The analysis identifies vessel call frequency as the dominant factor influencing throughput fluctuations, while trade-related indicators contribute consistent explanatory signals across time. The resulting forecasts show strong agreement with observed values, achieving a mean absolute error (MAE) of 3.84%, which demonstrates the reliability of the approach for operational planning. From a transport integration perspective, the forecasting outputs are directly linked to key decision-making processes within port systems, including quay crane deployment, yard allocation, automated vehicle scheduling, and truck gate coordination. Scenario-based analysis under simulated trade disruptions reveals temporary degradation in forecasting performance, followed by gradual recovery as system conditions stabilize, highlighting the sensitivity of port operations to external shocks. By combining predictive modelling with interpretable analysis, this study provides a practical tool for enhancing coordination between maritime flows and landside logistics. The findings contribute to the development of data-informed strategies for port operation management and offer a scalable approach for improving decision support in integrated transport systems.",
+      "authors": [
+        {
+          "id": "A5133173448",
+          "name": "Adem Chaiter"
+        },
+        {
+          "id": "A5119675288",
+          "name": "BOUZIDI LAMDJAD"
+        }
+      ],
+      "institutions": [
+        "Lusail University"
+      ],
+      "keywords": [
+        "container throughput forecasting",
+        "interpretable forecasting",
+        "trade indices",
+        "seasonal patterns",
+        "calendar anomalies"
+      ],
+      "versions": [
+        {
+          "id": "W7161235189",
+          "doi": "10.56578/ijtdi100205",
+          "title": "Interpretable Forecasting of Container Throughput for Integrated Port Operations: A Data-Driven Analysis from a Single-Port System",
+          "paths": [
+            "q1"
+          ]
+        }
+      ],
+      "paths": [
+        "q1"
+      ],
+      "code": [],
+      "code_scope": "abstract",
+      "code_status": "not_checked",
+      "lookup_status": "not_checked",
+      "scores": {
+        "relevance": 38,
+        "mechanism": 12,
+        "value": 2,
+        "code": 0,
+        "cost": 0
+      },
+      "score": 52,
+      "reasons": [
+        "主题匹配词：forecasting、interpretable、trend",
+        "可核查的机制线索：container throughput forecasting、interpretable forecasting、seasonal patterns",
+        "比较价值：由主题与关键词发现，可作主题对照",
+        "公开实现线索（not_checked）：尚未查仓",
+        "复现成本：实现工作量待核实，数据获取条件待核实，算力预算未知"
+      ]
+    },
+    {
+      "id": "W2964758013",
+      "title": "RobustSTL: A Robust Seasonal-Trend Decomposition Algorithm for Long Time Series",
+      "doi": "10.1609/aaai.v33i01.33015409",
+      "url": "https://doi.org/10.1609/aaai.v33i01.33015409",
+      "date": "2019-07-17",
+      "year": 2019,
+      "type": "conference-paper",
+      "abstract": "Decomposing complex time series into trend, seasonality, and remainder components is an important task to facilitate time series anomaly detection and forecasting. Although numerous methods have been proposed, there are still many time series characteristics exhibiting in real-world data which are not addressed properly, including 1) ability to handle seasonality fluctuation and shift, and abrupt change in trend and reminder; 2) robustness on data with anomalies; 3) applicability on time series with long seasonality period. In the paper, we propose a novel and generic time series decomposition algorithm to address these challenges. Specifically, we extract the trend component robustly by solving a regression problem using the least absolute deviations loss with sparse regularization. Based on the extracted trend, we apply the the non-local seasonal filtering to extract the seasonality component. This process is repeated until accurate decomposition is obtained. Experiments on different synthetic and real-world time series datasets demonstrate that our method outperforms existing solutions.",
+      "authors": [
+        {
+          "id": "A5048346353",
+          "name": "Qingsong Wen"
+        },
+        {
+          "id": "A5058361059",
+          "name": "Jingkun Gao"
+        },
+        {
+          "id": "A5061712374",
+          "name": "Xiaomin Song"
+        },
+        {
+          "id": "",
+          "name": "Liang Sun"
+        },
+        {
+          "id": "A5101817120",
+          "name": "Huan Xu"
+        },
+        {
+          "id": "A5103861122",
+          "name": "Shenghuo Zhu"
+        }
+      ],
+      "institutions": [
+        "Alibaba Group (China)",
+        "Alibaba Group (United States)"
+      ],
+      "keywords": [
+        "seasonal-trend decomposition",
+        "STL",
+        "long-term time series",
+        "least absolute deviation",
+        "sparse regularization",
+        "time series anomaly detection",
+        "time series forecasting"
+      ],
+      "versions": [
+        {
+          "id": "W2964758013",
+          "doi": "10.1609/aaai.v33i01.33015409",
+          "title": "RobustSTL: A Robust Seasonal-Trend Decomposition Algorithm for Long Time Series",
+          "paths": [
+            "q2"
+          ]
+        }
+      ],
+      "paths": [
+        "q2"
+      ],
+      "code": [],
+      "code_scope": "abstract",
+      "code_status": "not_checked",
+      "lookup_status": "not_checked",
+      "scores": {
+        "relevance": 36,
+        "mechanism": 12,
+        "value": 2,
+        "code": 0,
+        "cost": 0
+      },
+      "score": 50,
+      "reasons": [
+        "主题匹配词：forecasting、seasonality、trend",
+        "可核查的机制线索：seasonal-trend decomposition、least absolute deviation、sparse regularization",
+        "比较价值：由主题与关键词发现，可作主题对照",
+        "公开实现线索（not_checked）：尚未查仓",
+        "复现成本：实现工作量待核实，数据获取条件待核实，算力预算未知"
+      ]
+    },
+    {
+      "id": "W4226362568",
+      "title": "CoST: Contrastive Learning of Disentangled Seasonal-Trend Representations for Time Series Forecasting",
+      "doi": "10.48550/arxiv.2202.01575",
+      "url": "https://doi.org/10.48550/arxiv.2202.01575",
+      "date": "2022-02-03",
+      "year": 2022,
+      "type": "preprint",
+      "abstract": "Deep learning has been actively studied for time series forecasting, and the mainstream paradigm is based on the end-to-end training of neural network architectures, ranging from classical LSTM/RNNs to more recent TCNs and Transformers. Motivated by the recent success of representation learning in computer vision and natural language processing, we argue that a more promising paradigm for time series forecasting, is to first learn disentangled feature representations, followed by a simple regression fine-tuning step -- we justify such a paradigm from a causal perspective. Following this principle, we propose a new time series representation learning framework for time series forecasting named CoST, which applies contrastive learning methods to learn disentangled seasonal-trend representations. CoST comprises both time domain and frequency domain contrastive losses to learn discriminative trend and seasonal representations, respectively. Extensive experiments on real-world datasets show that CoST consistently outperforms the state-of-the-art methods by a considerable margin, achieving a 21.3% improvement in MSE on multivariate benchmarks. It is also robust to various choices of backbone encoders, as well as downstream regressors. Code is available at https://github.com/salesforce/CoST.",
+      "authors": [
+        {
+          "id": "A5036756962",
+          "name": "Gerald Woo"
+        },
+        {
+          "id": "A5047329586",
+          "name": "Chenghao Liu"
+        },
+        {
+          "id": "A5101521933",
+          "name": "Doyen Sahoo"
+        },
+        {
+          "id": "",
+          "name": "Kumar, Akshat"
+        },
+        {
+          "id": "A5074834854",
+          "name": "Steven C. H. Hoi"
+        }
+      ],
+      "institutions": [
+        "Salesforce (United States)",
+        "Singapore Management University"
+      ],
+      "keywords": [
+        "time series forecasting",
+        "contrastive learning",
+        "disentangled representations",
+        "seasonal-trend decomposition",
+        "representation learning",
+        "causal representation learning",
+        "multivariate time series"
+      ],
+      "versions": [
+        {
+          "id": "W4226362568",
+          "doi": "10.48550/arxiv.2202.01575",
+          "title": "CoST: Contrastive Learning of Disentangled Seasonal-Trend Representations for Time Series Forecasting",
+          "paths": [
+            "q9"
+          ]
+        }
+      ],
+      "paths": [
+        "q9"
+      ],
+      "code": [
+        {
+          "url": "https://github.com/salesforce/CoST",
+          "status": "unverified",
+          "evidence": [
+            {
+              "source": "https://openalex.org/W4226362568",
+              "kind": "abstract",
+              "text": "mprovement in MSE on multivariate benchmarks. It is also robust to various choices of backbone encoders, as well as downstream regressors. Code is available at https://github.com/salesforce/CoST"
+            }
+          ]
+        }
+      ],
+      "code_scope": "abstract",
+      "code_status": "unverified",
+      "lookup_status": "not_checked",
+      "scores": {
+        "relevance": 29,
+        "mechanism": 12,
+        "value": 2,
+        "code": 6,
+        "cost": 1
+      },
+      "score": 50,
+      "reasons": [
+        "主题匹配词：forecasting、trend",
+        "可核查的机制线索：time series forecasting、contrastive learning、disentangled representations",
+        "比较价值：由已知论文回查发现，可作主题对照",
+        "公开实现线索（unverified）：https://github.com/salesforce/CoST",
+        "复现成本：有仓库线索，需核对归属与实现范围，数据获取条件待核实，算力预算未知"
+      ]
+    },
+    {
+      "id": "W7170071151",
+      "title": "A Hybrid Framework for Air Pollution Forecasting using DSES, DLA, Self-Attention Transformer, and BiGRU with Bayesian Optimization",
+      "doi": "10.1038/s41598-026-61520-8",
+      "url": "https://doi.org/10.1038/s41598-026-61520-8",
+      "date": "2026-07-22",
+      "year": 2026,
+      "type": "article",
+      "abstract": "This paper presents a novel hybrid forecasting framework, DSES-DLA-Transformers-BiGRU-BO, for accurate and interpretable air pollution prediction by synergistically capturing temporal dynamics and seasonal variations within multivariate time series. To be specific, this study first incorporates Dual Seasonal Exponential Smoothing (DSES) to extract and smooth the underlying trend along with dual seasonal components, inspired by the seasonal nature of environmental signals. Second, the proposed Dual-Level Attention Mechanism (DLA) simultaneously performs feature-level attention to identify influential environmental variables and temporal-level attention to capture critical historical dependencies in air pollution sequences. These enriched representations are then processed using a Bidirectional Gated Recurrent Unit (BiGRU) architecture to learn bidirectional sequence patterns, thereby enabling the model to understand both historical context and future trend. Third, Bayesian Optimization (BO) is employed to adaptively fine-tune the model’s hyperparameters, enhancing predictive robustness and performance across different time scales. Extensive experiments conducted on real-world air pollution dataset confirm the superior forecasting accuracy of the proposed DSES-DLA-Transformers-BiGRU-BO model, outperforming state-of-the-art statistical and deep learning counterparts by notable margins across various metrics, including MAE, MSE, RMSE, MAPE, DA, WLR, and TUS. Additionally, the proposed framework demonstrates computationally feasible hybrid forecasting architecture and generalization capability, offering a scalable and effective solution for environmental monitoring systems.",
+      "authors": [
+        {
+          "id": "A5022482962",
+          "name": "Talabathula Jayanth"
+        },
+        {
+          "id": "A5101407837",
+          "name": "A Manimaran"
+        },
+        {
+          "id": "A5139421978",
+          "name": "S. Srinivas"
+        }
+      ],
+      "institutions": [
+        "VIT-AP University"
+      ],
+      "keywords": [
+        "air quality forecasting",
+        "hybrid forecasting model",
+        "transformer self-attention",
+        "bidirectional gated recurrent unit",
+        "Bayesian optimization",
+        "hyperparameter optimization",
+        "multivariate time series",
+        "seasonal variation",
+        "temporal dynamics",
+        "environmental monitoring",
+        "interpretable forecasting"
+      ],
+      "versions": [
+        {
+          "id": "W7170071151",
+          "doi": "10.1038/s41598-026-61520-8",
+          "title": "A Hybrid Framework for Air Pollution Forecasting using DSES, DLA, Self-Attention Transformer, and BiGRU with Bayesian Optimization",
+          "paths": [
+            "q1"
+          ]
+        }
+      ],
+      "paths": [
+        "q1"
+      ],
+      "code": [],
+      "code_scope": "abstract",
+      "code_status": "not_checked",
+      "lookup_status": "not_checked",
+      "scores": {
+        "relevance": 35,
+        "mechanism": 12,
+        "value": 2,
+        "code": 0,
+        "cost": 0
+      },
+      "score": 49,
+      "reasons": [
+        "主题匹配词：forecasting、interpretable、trend",
+        "可核查的机制线索：hybrid forecasting model、transformer self-attention、bidirectional gated recurrent unit",
+        "比较价值：由主题与关键词发现，可作主题对照",
+        "公开实现线索（not_checked）：尚未查仓",
+        "复现成本：实现工作量待核实，数据获取条件待核实，算力预算未知"
+      ]
+    },
+    {
+      "id": "W4399522163",
+      "title": "prophet: Automatic Forecasting Procedure",
+      "doi": "10.32614/cran.package.prophet",
+      "url": "https://doi.org/10.32614/cran.package.prophet",
+      "date": "2017-02-01",
+      "year": 2017,
+      "type": "dataset",
+      "abstract": "Implements a procedure for forecasting time series data based on an additive model where non-linear trends are fit with yearly, weekly, and daily seasonality, plus holiday effects. It works best with time series that have strong seasonal effects and several seasons of historical data. Prophet is robust to missing data and shifts in the trend, and typically handles outliers well.",
+      "authors": [
+        {
+          "id": "",
+          "name": "Cuong Duong"
+        },
+        {
+          "id": "",
+          "name": "Sean Taylor"
+        },
+        {
+          "id": "A5057098494",
+          "name": "Ben Letham"
+        }
+      ],
+      "institutions": [],
+      "keywords": [
+        "time series forecasting",
+        "prophets",
+        "additive models",
+        "seasonal variation",
+        "holiday effects",
+        "nonlinear trends",
+        "missing data",
+        "trend shifts",
+        "outliers"
+      ],
+      "versions": [
+        {
+          "id": "W4399522163",
+          "doi": "10.32614/cran.package.prophet",
+          "title": "prophet: Automatic Forecasting Procedure",
+          "paths": [
+            "q7"
+          ]
+        }
+      ],
+      "paths": [
+        "q7"
+      ],
+      "code": [],
+      "code_scope": "abstract",
+      "code_status": "not_checked",
+      "lookup_status": "not_checked",
+      "scores": {
+        "relevance": 35,
+        "mechanism": 12,
+        "value": 2,
+        "code": 0,
+        "cost": 0
+      },
+      "score": 49,
+      "reasons": [
+        "主题匹配词：forecasting、seasonality、trend",
+        "可核查的机制线索：time series forecasting、prophets、additive models",
+        "比较价值：由研究问题语义检索发现，可作主题对照",
+        "公开实现线索（not_checked）：尚未查仓",
+        "复现成本：实现工作量待核实，数据获取条件待核实，算力预算未知"
+      ]
+    },
+    {
+      "id": "W7124997453",
+      "title": "Periodic Modeling Prediction Model Based on CS-Mamba",
+      "doi": "10.1109/icmlca66850.2025.11336258",
+      "url": "https://doi.org/10.1109/icmlca66850.2025.11336258",
+      "date": "2025-10-17",
+      "year": 2025,
+      "type": "conference-paper",
+      "abstract": "In time series forecasting (TSF), models need to identify hidden patterns in past data to predict future values. Mamba, a selective state space model, has become popular because of its near-linear complexity and ability to handle long-range dependencies efficiently. However, current Mamba models do not explicitly model periodic patterns, which are essential in areas like weather and energy forecasting. To address this, CS-Mamba processes the time series through a pooling-based decomposition to extract trend and periodicity, followed by Residual Cycle Forecasting (RCF) integrated with Mamba2. Experiments on public datasets show that CS-Mamba maintains the efficiency of Mamba while greatly improving long-term forecasting accuracy. It performs especially well on time series with strong seasonality, offering a balanced and effective solution for real-world TSF tasks.",
+      "authors": [
+        {
+          "id": "A5039639303",
+          "name": "Wei‐Wen Wu"
+        },
+        {
+          "id": "A5123411921",
+          "name": "Guoying Zhao"
+        },
+        {
+          "id": "A5025384190",
+          "name": "Lei Wang"
+        }
+      ],
+      "institutions": [
+        "Shenzhen Technology University"
+      ],
+      "keywords": [
+        "Mamba",
+        "selective state space models",
+        "seasonal decomposition",
+        "long-term forecasting",
+        "seasonal variation",
+        "weather forecasting",
+        "energy forecasting"
+      ],
+      "versions": [
+        {
+          "id": "W7124997453",
+          "doi": "10.1109/icmlca66850.2025.11336258",
+          "title": "Periodic Modeling Prediction Model Based on CS-Mamba",
+          "paths": [
+            "q4"
+          ]
+        }
+      ],
+      "paths": [
+        "q4"
+      ],
+      "code": [],
+      "code_scope": "abstract",
+      "code_status": "not_checked",
+      "lookup_status": "not_checked",
+      "scores": {
+        "relevance": 33,
+        "mechanism": 12,
+        "value": 2,
+        "code": 0,
+        "cost": 2
+      },
+      "score": 49,
+      "reasons": [
+        "主题匹配词：forecasting、seasonality、trend",
+        "可核查的机制线索：Mamba、selective state space models、long-term forecasting",
+        "比较价值：由主题与关键词发现，可作主题对照",
+        "公开实现线索（not_checked）：尚未查仓",
+        "复现成本：实现工作量待核实，摘要提及 public datasets，算力预算未知"
+      ]
+    },
+    {
+      "id": "W4362655576",
+      "title": "OneShotSTL: One-Shot Seasonal-Trend Decomposition For Online Time Series Anomaly Detection And Forecasting",
+      "doi": "10.14778/3583140.3583155",
+      "url": "https://doi.org/10.14778/3583140.3583155",
+      "date": "2023-02-01",
+      "year": 2023,
+      "type": "article",
+      "abstract": "Seasonal-trend decomposition is one of the most fundamental concepts in time series analysis that supports various downstream tasks, including time series anomaly detection and forecasting. However, existing decomposition methods rely on batch processing with a time complexity of O ( W ), where W is the number of data points within a time window. Therefore, they cannot always efficiently support real-time analysis that demands low processing delay. To address this challenge, we propose OneShotSTL, an efficient and accurate algorithm that can decompose time series online with an update time complexity of O (1). OneShotSTL is more than 1, 000 times faster than the batch methods, with accuracy comparable to the best counterparts. Extensive experiments on real-world benchmark datasets for downstream time series anomaly detection and forecasting tasks demonstrate that OneShotSTL is from 10 to over 1, 000 times faster than the state-of-the-art methods, while still providing comparable or even better accuracy.",
+      "authors": [
+        {
+          "id": "A5101661867",
+          "name": "Xiao He"
+        },
+        {
+          "id": "A5100339233",
+          "name": "Ye Li"
+        },
+        {
+          "id": "A5101812238",
+          "name": "Jian Rong Tan"
+        },
+        {
+          "id": "A5047062688",
+          "name": "Bin Wu"
+        },
+        {
+          "id": "A5100450470",
+          "name": "Feifei Li"
+        }
+      ],
+      "institutions": [
+        "Alibaba Group (China)"
+      ],
+      "keywords": [
+        "seasonal-trend decomposition",
+        "time series anomaly detection",
+        "time series forecasting",
+        "real-time processing"
+      ],
+      "versions": [
+        {
+          "id": "W4362655576",
+          "doi": "10.14778/3583140.3583155",
+          "title": "OneShotSTL: One-Shot Seasonal-Trend Decomposition For Online Time Series Anomaly Detection And Forecasting",
+          "paths": [
+            "q2"
+          ]
+        }
+      ],
+      "paths": [
+        "q2"
+      ],
+      "code": [],
+      "code_scope": "abstract",
+      "code_status": "not_checked",
+      "lookup_status": "not_checked",
+      "scores": {
+        "relevance": 29,
+        "mechanism": 12,
+        "value": 2,
+        "code": 0,
+        "cost": 2
+      },
+      "score": 45,
+      "reasons": [
+        "主题匹配词：forecasting、trend",
+        "可核查的机制线索：seasonal-trend decomposition、time series anomaly detection、time series forecasting",
+        "比较价值：由主题与关键词发现，可作主题对照",
+        "公开实现线索（not_checked）：尚未查仓",
+        "复现成本：实现工作量待核实，摘要提及 benchmark datasets，算力预算未知"
+      ]
+    },
+    {
+      "id": "W7213976852",
+      "title": "A Systematic Comparative Examination of Time Series Forecasting Models for Financial Market Trend Prediction",
+      "doi": "10.1007/978-3-032-30957-0_22",
+      "url": "https://doi.org/10.1007/978-3-032-30957-0_22",
+      "date": "2026-09-02",
+      "year": 2026,
+      "type": "conference-paper",
+      "abstract": "",
+      "authors": [
+        {
+          "id": "A5152438027",
+          "name": "Anshika Chhabra"
+        },
+        {
+          "id": "A5121237272",
+          "name": "Bhoomi Agarwal"
+        },
+        {
+          "id": "A5152424554",
+          "name": "Devansh Yadav"
+        },
+        {
+          "id": "A5152410700",
+          "name": "Aditi"
+        },
+        {
+          "id": "A5000227014",
+          "name": "Bharti Chugh"
+        }
+      ],
+      "institutions": [],
+      "keywords": [
+        "stock market prediction",
+        "financial time series forecasting",
+        "SARIMA",
+        "ARIMA",
+        "vector autoregression",
+        "Holt-Winters",
+        "prophets",
+        "model comparison",
+        "seasonal variation",
+        "interpretable forecasting"
+      ],
+      "versions": [
+        {
+          "id": "W7213976852",
+          "doi": "10.1007/978-3-032-30957-0_22",
+          "title": "A Systematic Comparative Examination of Time Series Forecasting Models for Financial Market Trend Prediction",
+          "paths": [
+            "q1"
+          ]
+        }
+      ],
+      "paths": [
+        "q1"
+      ],
+      "code": [],
+      "code_scope": "abstract",
+      "code_status": "not_checked",
+      "lookup_status": "not_checked",
+      "scores": {
+        "relevance": 38,
+        "mechanism": 4,
+        "value": 2,
+        "code": 0,
+        "cost": 0
+      },
+      "score": 44,
+      "reasons": [
+        "主题匹配词：forecasting、interpretable、trend",
+        "可核查的机制线索：financial time series forecasting",
+        "比较价值：由主题与关键词发现，可作主题对照",
+        "公开实现线索（not_checked）：尚未查仓",
+        "复现成本：实现工作量待核实，数据获取条件待核实，算力预算未知"
+      ]
+    },
+    {
+      "id": "W3040864798",
+      "title": "SSA-based hybrid forecasting models and applications",
+      "doi": "10.11591/eei.v9i5.1950",
+      "url": "https://doi.org/10.11591/eei.v9i5.1950",
+      "date": "2020-10-01",
+      "year": 2020,
+      "type": "article",
+      "abstract": "This study attempted to combine SSA (Singular Spectrum Analysis) with other methods to improve the performance of forecasting model for time series with a complex pattern. This work discussed two modifications of TLSAR (Two-Level Seasonal Autoregressive) modeling by considering the SSA decomposition results, namely TLSNN (Two-Level Seasonal Neural Network) and TLCSNN (Two-Level Complex Seasonal Neural Network). TLSAR consisted of a linear trend, harmonic, and autoregressive component. In contrast, the two proposed hybrid approaches consisted of flexible trend function, harmonic, and neural networks. Trend and harmonic function were considered as the deterministic part identified based on SSA decomposition. Meanwhile, NN was intended to handle the nonlinearity relationship in the stochastic part. These two SSA-based hybrid models were contemplated to be more flexible than TLSAR and more applicable to the series with an intricate pattern. The experimental studies to the monthly accidental deaths in USA and daily electricity load Jawa-Bali showed that the proposed SSA-based hybrid model reduced RMSE for the testing data from that obtained by TLSAR model up to 95%.",
+      "authors": [
+        {
+          "id": "A5066188499",
+          "name": "Winita Sulandari"
+        },
+        {
+          "id": "A5054867870",
+          "name": "Subanar Subanar"
+        },
+        {
+          "id": "A5113018141",
+          "name": "Suhartono Suhartono"
+        },
+        {
+          "id": "A5111431422",
+          "name": "Herni Utami"
+        },
+        {
+          "id": "A5060684447",
+          "name": "Muhammad Hisyam Lee"
+        },
+        {
+          "id": "A5024974930",
+          "name": "Paulo Canas Rodrigues"
+        }
+      ],
+      "institutions": [
+        "Institut Teknologi Sepuluh Nopember",
+        "Universidade Federal da Bahia",
+        "Universitas Gadjah Mada",
+        "Universitas Sebelas Maret",
+        "University of Technology Malaysia"
+      ],
+      "keywords": [
+        "singular spectrum analysis",
+        "hybrid forecasting model",
+        "time series forecasting"
+      ],
+      "versions": [
+        {
+          "id": "W3040864798",
+          "doi": "10.11591/eei.v9i5.1950",
+          "title": "SSA-based hybrid forecasting models and applications",
+          "paths": [
+            "q5"
+          ]
+        }
+      ],
+      "paths": [
+        "q5"
+      ],
+      "code": [],
+      "code_scope": "abstract",
+      "code_status": "not_checked",
+      "lookup_status": "not_checked",
+      "scores": {
+        "relevance": 26,
+        "mechanism": 16,
+        "value": 2,
+        "code": 0,
+        "cost": 0
+      },
+      "score": 44,
+      "reasons": [
+        "主题匹配词：forecasting、trend",
+        "可核查的机制线索：singular spectrum analysis、hybrid forecasting model、time series forecasting；可与该检索路线对照：\"harmonic\" AND \"trend\" AND \"forecasting\" AND \"neural network\"",
+        "比较价值：由替代方法路线发现，可作主题对照",
+        "公开实现线索（not_checked）：尚未查仓",
+        "复现成本：实现工作量待核实，数据获取条件待核实，算力预算未知"
+      ]
+    },
+    {
+      "id": "W4318473773",
+      "title": "Aggregating Prophet and Seasonal Trend Decomposition for Time Series Forecasting of Italian Electricity Spot Prices",
+      "doi": "10.3390/en16031371",
+      "url": "https://doi.org/10.3390/en16031371",
+      "date": "2023-01-29",
+      "year": 2023,
+      "type": "article",
+      "abstract": "The cost of electricity and gas has a direct influence on the everyday routines of people who rely on these resources to keep their businesses running. However, the value of electricity is strongly related to spot market prices, and the arrival of winter and increased energy use owing to the demand for heating can lead to an increase in energy prices. Approaches to forecasting energy costs have been used in recent years; however, existing models are not yet robust enough due to competition, seasonal changes, and other variables. More effective modeling and forecasting approaches are required to assist investors in planning their bidding strategies and regulators in ensuring the security and stability of energy markets. In the literature, there is considerable interest in building better pricing modeling and forecasting frameworks to meet these difficulties. In this context, this work proposes combining seasonal and trend decomposition utilizing LOESS (locally estimated scatterplot smoothing) and Facebook Prophet methodologies to perform a more accurate and resilient time series analysis of Italian electricity spot prices. This can assist in enhancing projections and better understanding the variables driving the data, while also including additional information such as holidays and special events. The combination of approaches improves forecast accuracy while lowering the mean absolute percentage error (MAPE) performance metric by 18% compared to the baseline model.",
+      "authors": [
+        {
+          "id": "A5016492093",
+          "name": "Stéfano Frizzo Stefenon"
+        },
+        {
+          "id": "A5064834287",
+          "name": "Laio Oriel Seman"
+        },
+        {
+          "id": "A5044574416",
+          "name": "Viviana Cocco Mariani"
+        },
+        {
+          "id": "A5006394687",
+          "name": "Leandro dos Santos Coelho"
+        }
+      ],
+      "institutions": [
+        "Fondazione Bruno Kessler",
+        "Pontifícia Universidade Católica do Paraná",
+        "Universidade Federal do Paraná",
+        "Universidade do Vale do Itajaí",
+        "University of Udine"
+      ],
+      "keywords": [
+        "electricity spot prices",
+        "time series forecasting",
+        "prophets",
+        "seasonal-trend decomposition",
+        "loess",
+        "hybrid forecasting model",
+        "Italian electricity market",
+        "forecast accuracy"
+      ],
+      "versions": [
+        {
+          "id": "W4318473773",
+          "doi": "10.3390/en16031371",
+          "title": "Aggregating Prophet and Seasonal Trend Decomposition for Time Series Forecasting of Italian Electricity Spot Prices",
+          "paths": [
+            "q2"
+          ]
+        }
+      ],
+      "paths": [
+        "q2"
+      ],
+      "code": [],
+      "code_scope": "abstract",
+      "code_status": "not_checked",
+      "lookup_status": "not_checked",
+      "scores": {
+        "relevance": 29,
+        "mechanism": 12,
+        "value": 2,
+        "code": 0,
+        "cost": 0
+      },
+      "score": 43,
+      "reasons": [
+        "主题匹配词：forecasting、trend",
+        "可核查的机制线索：electricity spot prices、time series forecasting、prophets",
+        "比较价值：由主题与关键词发现，可作主题对照",
+        "公开实现线索（not_checked）：尚未查仓",
+        "复现成本：实现工作量待核实，数据获取条件待核实，算力预算未知"
+      ]
+    },
+    {
+      "id": "W4386187721",
+      "title": "Effective LSTMs with seasonal-trend decomposition and adaptive learning and niching-based backtracking search algorithm for time series forecasting",
+      "doi": "10.1016/j.eswa.2023.121202",
+      "url": "https://doi.org/10.1016/j.eswa.2023.121202",
+      "date": "2023-08-26",
+      "year": 2023,
+      "type": "article",
+      "abstract": "",
+      "authors": [
+        {
+          "id": "A5101467838",
+          "name": "Yuhan Wu"
+        },
+        {
+          "id": "A5039902709",
+          "name": "Xiyu Meng"
+        },
+        {
+          "id": "A5014272798",
+          "name": "Junru Zhang"
+        },
+        {
+          "id": "A5100457899",
+          "name": "Yang He"
+        },
+        {
+          "id": "A5010446083",
+          "name": "Joseph A. Romo"
+        },
+        {
+          "id": "A5100432279",
+          "name": "Yabo Dong"
+        },
+        {
+          "id": "A5050960677",
+          "name": "Dongming Lu"
+        }
+      ],
+      "institutions": [
+        "Purdue University West Lafayette",
+        "Zhejiang University"
+      ],
+      "keywords": [
+        "long short-term memory",
+        "time series forecasting",
+        "seasonal-trend decomposition",
+        "backtracking",
+        "niching",
+        "adaptive learning",
+        "hybrid forecasting model",
+        "precipitation forecasting",
+        "power output prediction",
+        "exploration-exploitation balance"
+      ],
+      "versions": [
+        {
+          "id": "W4386187721",
+          "doi": "10.1016/j.eswa.2023.121202",
+          "title": "Effective LSTMs with seasonal-trend decomposition and adaptive learning and niching-based backtracking search algorithm for time series forecasting",
+          "paths": [
+            "q2"
+          ]
+        }
+      ],
+      "paths": [
+        "q2"
+      ],
+      "code": [],
+      "code_scope": "abstract",
+      "code_status": "not_checked",
+      "lookup_status": "not_checked",
+      "scores": {
+        "relevance": 29,
+        "mechanism": 12,
+        "value": 2,
+        "code": 0,
+        "cost": 0
+      },
+      "score": 43,
+      "reasons": [
+        "主题匹配词：forecasting、trend",
+        "可核查的机制线索：time series forecasting、seasonal-trend decomposition、backtracking",
+        "比较价值：由主题与关键词发现，可作主题对照",
+        "公开实现线索（not_checked）：尚未查仓",
+        "复现成本：实现工作量待核实，数据获取条件待核实，算力预算未知"
+      ]
+    },
+    {
+      "id": "W7141736135",
+      "title": "Interpretable PM2.5 Forecasting for Urban Air Quality: A Comparative Study of Adaptive Time-Series Models",
+      "doi": "10.48550/arxiv.2603.25495",
+      "url": "https://doi.org/10.48550/arxiv.2603.25495",
+      "date": "2026-03-26",
+      "year": 2026,
+      "type": "preprint",
+      "abstract": "Accurate short-term air-quality forecasting is essential for public health protection and urban management, yet many recent forecasting frameworks rely on complex, data-intensive, and computationally demanding models. This study investigates whether lightweight and interpretable forecasting approaches can provide competitive performance for hourly PM2.5 prediction in Beijing, China. Using multi-year pollutant and meteorological time-series data, we developed a leakage-aware forecasting workflow that combined chronological data partitioning, preprocessing, feature selection, and exogenous-driver modeling under the Perfect Prognosis setting. Three forecasting families were evaluated: SARIMAX, Facebook Prophet, and NeuralProphet. To assess practical deployment behavior, the models were tested under two adaptive regimes: weekly walk-forward refitting and frozen forecasting with online residual correction. Results showed clear differences in both predictive accuracy and computational efficiency. Under walk-forward refitting, Facebook Prophet achieved the strongest completed performance, with an MAE of $37.61$ and an RMSE of $50.10$, while also requiring substantially less execution time than NeuralProphet. In the frozen-model regime, online residual correction improved Facebook Prophet and SARIMAX, with corrected SARIMAX yielding the lowest overall error (MAE $32.50$; RMSE $46.85$). NeuralProphet remained less accurate and less stable across both regimes, and residual correction did not improve its forecasts. Notably, corrected Facebook Prophet reached nearly the same error as its walk-forward counterpart while reducing runtime from $15$ min $21.91$ sec to $46.60$ sec. These findings show that lightweight additive forecasting strategies can remain highly competitive for urban air-quality prediction, offering a practical balance between accuracy, interpretability, ...",
+      "authors": [
+        {
+          "id": "A5120789515",
+          "name": "Moazzam Umer Gondal"
+        },
+        {
+          "id": "A5093953984",
+          "name": "Hamad ul Qudous"
+        },
+        {
+          "id": "A5067561067",
+          "name": "Asma Ahmad Farhan"
+        },
+        {
+          "id": "A5093856524",
+          "name": "Sultan ALAMRI"
+        }
+      ],
+      "institutions": [
+        "National University of Computer and Emerging Sciences",
+        "Saudi Electronic University"
+      ],
+      "keywords": [
+        "PM2.5 forecasting",
+        "short-term air quality prediction",
+        "interpretable forecasting",
+        "SARIMAX",
+        "Facebook Prophet",
+        "NeuralProphet",
+        "lightweight forecasting model",
+        "Beijing air pollution"
+      ],
+      "versions": [
+        {
+          "id": "W7141736135",
+          "doi": "10.48550/arxiv.2603.25495",
+          "title": "Interpretable PM2.5 Forecasting for Urban Air Quality: A Comparative Study of Adaptive Time-Series Models",
+          "paths": [
+            "q3"
+          ]
+        }
+      ],
+      "paths": [
+        "q3"
+      ],
+      "code": [],
+      "code_scope": "abstract",
+      "code_status": "not_checked",
+      "lookup_status": "not_checked",
+      "scores": {
+        "relevance": 29,
+        "mechanism": 12,
+        "value": 2,
+        "code": 0,
+        "cost": 0
+      },
+      "score": 43,
+      "reasons": [
+        "主题匹配词：forecasting、interpretable",
+        "可核查的机制线索：PM2.5 forecasting、short-term air quality prediction、interpretable forecasting",
+        "比较价值：由主题与关键词发现，可作主题对照",
+        "公开实现线索（not_checked）：尚未查仓",
+        "复现成本：实现工作量待核实，数据获取条件待核实，算力预算未知"
+      ]
+    },
+    {
+      "id": "W4409347736",
+      "title": "xPatch: Dual-Stream Time Series Forecasting with Exponential Seasonal-Trend Decomposition",
+      "doi": "10.1609/aaai.v39i19.34270",
+      "url": "https://doi.org/10.1609/aaai.v39i19.34270",
+      "date": "2025-04-11",
+      "year": 2025,
+      "type": "conference-paper",
+      "abstract": "In recent years, the application of transformer-based models in time-series forecasting has received significant attention. While often demonstrating promising results, the transformer architecture encounters challenges in fully exploiting the temporal relations within time series data due to its attention mechanism. In this work, we design eXponential Patch (xPatch for short), a novel dual-stream architecture that utilizes exponential decomposition. Inspired by the classical exponential smoothing approaches, xPatch introduces the innovative seasonal-trend exponential decomposition module. Additionally, we propose a dual-flow architecture that consists of an MLP-based linear stream and a CNN-based non-linear stream. This model investigates the benefits of employing patching and channel-independence techniques within a non-transformer model. Finally, we develop a robust arctangent loss function and a sigmoid learning rate adjustment scheme, which prevent overfitting and boost forecasting performance.",
+      "authors": [
+        {
+          "id": "A5093337397",
+          "name": "Artyom Stitsyuk"
+        },
+        {
+          "id": "A5052985764",
+          "name": "Jaesik Choi"
+        }
+      ],
+      "institutions": [
+        "Korea Advanced Institute of Science and Technology"
+      ],
+      "keywords": [
+        "time series forecasting",
+        "dual-stream architecture",
+        "exponential smoothing",
+        "seasonal-trend decomposition",
+        "channel independence",
+        "overfitting reduction"
+      ],
+      "versions": [
+        {
+          "id": "W4409347736",
+          "doi": "10.1609/aaai.v39i19.34270",
+          "title": "xPatch: Dual-Stream Time Series Forecasting with Exponential Seasonal-Trend Decomposition",
+          "paths": [
+            "q2"
+          ]
+        }
+      ],
+      "paths": [
+        "q2"
+      ],
+      "code": [],
+      "code_scope": "abstract",
+      "code_status": "not_checked",
+      "lookup_status": "not_checked",
+      "scores": {
+        "relevance": 29,
+        "mechanism": 12,
+        "value": 2,
+        "code": 0,
+        "cost": 0
+      },
+      "score": 43,
+      "reasons": [
+        "主题匹配词：forecasting、trend",
+        "可核查的机制线索：time series forecasting、dual-stream architecture、exponential smoothing",
+        "比较价值：由主题与关键词发现，可作主题对照",
+        "公开实现线索（not_checked）：尚未查仓",
+        "复现成本：实现工作量待核实，数据获取条件待核实，算力预算未知"
+      ]
+    },
+    {
+      "id": "W2946709941",
+      "title": "N-BEATS: Neural basis expansion analysis for interpretable time series forecasting",
+      "doi": "10.48550/arxiv.1905.10437",
+      "url": "https://doi.org/10.48550/arxiv.1905.10437",
+      "date": "2019-05-24",
+      "year": 2019,
+      "type": "preprint",
+      "abstract": "We focus on solving the univariate times series point forecasting problem using deep learning. We propose a deep neural architecture based on backward and forward residual links and a very deep stack of fully-connected layers. The architecture has a number of desirable properties, being interpretable, applicable without modification to a wide array of target domains, and fast to train. We test the proposed architecture on several well-known datasets, including M3, M4 and TOURISM competition datasets containing time series from diverse domains. We demonstrate state-of-the-art performance for two configurations of N-BEATS for all the datasets, improving forecast accuracy by 11% over a statistical benchmark and by 3% over last year's winner of the M4 competition, a domain-adjusted hand-crafted hybrid between neural network and statistical time series models. The first configuration of our model does not employ any time-series-specific components and its performance on heterogeneous datasets strongly suggests that, contrarily to received wisdom, deep learning primitives such as residual blocks are by themselves sufficient to solve a wide range of forecasting problems. Finally, we demonstrate how the proposed architecture can be augmented to provide outputs that are interpretable without considerable loss in accuracy.",
+      "authors": [
+        {
+          "id": "A5012459174",
+          "name": "Boris N. Oreshkin"
+        },
+        {
+          "id": "A5045849243",
+          "name": "Dmitri Carpov"
+        },
+        {
+          "id": "A5039831068",
+          "name": "Nicolas Chapados"
+        },
+        {
+          "id": "A5086198262",
+          "name": "Yoshua Bengio"
+        }
+      ],
+      "institutions": [
+        "McGill University",
+        "Université de Montréal"
+      ],
+      "keywords": [
+        "N-BEATS",
+        "residual blocks",
+        "deep learning architectures",
+        "forecast uncertainty quantification"
+      ],
+      "versions": [
+        {
+          "id": "W2946709941",
+          "doi": "10.48550/arxiv.1905.10437",
+          "title": "N-BEATS: Neural basis expansion analysis for interpretable time series forecasting",
+          "paths": [
+            "q8"
+          ]
+        }
+      ],
+      "paths": [
+        "q8"
+      ],
+      "code": [],
+      "code_scope": "abstract",
+      "code_status": "not_checked",
+      "lookup_status": "not_checked",
+      "scores": {
+        "relevance": 27,
+        "mechanism": 12,
+        "value": 2,
+        "code": 0,
+        "cost": 0
+      },
+      "score": 41,
+      "reasons": [
+        "主题匹配词：forecasting、interpretable",
+        "可核查的机制线索：N-BEATS、residual blocks、deep learning architectures",
+        "比较价值：由已知论文回查发现，可作主题对照",
+        "公开实现线索（not_checked）：尚未查仓",
+        "复现成本：实现工作量待核实，数据获取条件待核实，算力预算未知"
+      ]
+    },
+    {
+      "id": "W4417289390",
+      "title": "Beyond the Hype: Comparing Lightweight and Deep Learning Models for Air Quality Forecasting",
+      "doi": "10.48550/arxiv.2512.09076",
+      "url": "https://doi.org/10.48550/arxiv.2512.09076",
+      "date": "2025-12-09",
+      "year": 2025,
+      "type": "preprint",
+      "abstract": "Accurate forecasting of urban air pollution is essential for protecting public health and guiding mitigation policies. While Deep Learning (DL) and hybrid pipelines dominate recent research, their complexity and limited interpretability hinder operational use. This study investigates whether lightweight additive models -- Facebook Prophet (FBP) and NeuralProphet (NP) -- can deliver competitive forecasts for particulate matter (PM$_{2.5}$, PM$_{10}$) in Beijing, China. Using multi-year pollutant and meteorological data, we applied systematic feature selection (correlation, mutual information, mRMR), leakage-safe scaling, and chronological data splits. Both models were trained with pollutant and precursor regressors, with NP additionally leveraging lagged dependencies. For context, two machine learning baselines (LSTM, LightGBM) and one traditional statistical model (SARIMAX) were also implemented. Performance was evaluated on a 7-day holdout using MAE, RMSE, and $R^2$. Results show that FBP consistently outperformed NP, SARIMAX, and the learning-based baselines, achieving test $R^2$ above 0.94 for both pollutants. These findings demonstrate that interpretable additive models remain competitive with both traditional and complex approaches, offering a practical balance of accuracy, transparency, and ease of deployment.",
+      "authors": [
+        {
+          "id": "A5120789515",
+          "name": "Moazzam Umer Gondal"
+        },
+        {
+          "id": "A5093953984",
+          "name": "Hamad ul Qudous"
+        },
+        {
+          "id": "A5067561067",
+          "name": "Asma Ahmad Farhan"
+        }
+      ],
+      "institutions": [
+        "National University of Computer and Emerging Sciences"
+      ],
+      "keywords": [
+        "air quality forecasting",
+        "particulate matter",
+        "PM2.5",
+        "PM10",
+        "Facebook Prophet",
+        "NeuralProphet",
+        "model interpretability",
+        "lightweight models",
+        "feature selection",
+        "meteorological predictors",
+        "Beijing air pollution"
+      ],
+      "versions": [
+        {
+          "id": "W4417289390",
+          "doi": "10.48550/arxiv.2512.09076",
+          "title": "Beyond the Hype: Comparing Lightweight and Deep Learning Models for Air Quality Forecasting",
+          "paths": [
+            "q3"
+          ]
+        }
+      ],
+      "paths": [
+        "q3"
+      ],
+      "code": [],
+      "code_scope": "abstract",
+      "code_status": "not_checked",
+      "lookup_status": "not_checked",
+      "scores": {
+        "relevance": 26,
+        "mechanism": 12,
+        "value": 2,
+        "code": 0,
+        "cost": 0
+      },
+      "score": 40,
+      "reasons": [
+        "主题匹配词：forecasting、interpretable",
+        "可核查的机制线索：air quality forecasting、particulate matter、Facebook Prophet",
+        "比较价值：由主题与关键词发现，可作主题对照",
+        "公开实现线索（not_checked）：尚未查仓",
+        "复现成本：实现工作量待核实，数据获取条件待核实，算力预算未知"
+      ]
+    },
+    {
+      "id": "W7214204540",
+      "title": "CycleDegrade: An Explicit Periodicity Modeling Approach for Long-Term Fuel Cell Voltage Degradation Forecasting",
+      "doi": "10.1109/tii.2026.3731609",
+      "url": "https://doi.org/10.1109/tii.2026.3731609",
+      "date": "2026-01-01",
+      "year": 2026,
+      "type": "article",
+      "abstract": "Proton exchange membrane fuel cells are pivotal for decarbonizing heavy-duty transportation. Stack durability bottlenecks and complex voltage degradation mechanisms constrain large-scale commercialization. Accurate prediction of voltage degradation trends is essential for health management and remaining useful life assessment. Under dynamic load conditions, the coupling of periodic fluctuations with long-term nonlinear degradation trends poses significant challenges for conventional deep learning models. To address this, this article proposes CycleDegrade, a voltage degradation prediction method combining residual cycle forecasting with a convolutional neural network-long short-term memory (LSTM) backbone. To enhance modeling efficiency, a hybrid periodicity analysis method integrating fast fourier transform with time-domain peak detection is introduced to identify the optimal cycle length. Then, periodic patterns are modeled through a learnable cycle template, decoupling periodic components from residual degradation trends to reduce modeling complexity. Furthermore, a patchwise structural loss is adopted to capture temporal structural features, and a simplified dynamic weighting strategy based on loss value reciprocals reduces training time by 34% with comparable prediction accuracy. Experimental results demonstrate that CycleDegrade achieves an average R$^{2}$of 0.9972 for 102-step prediction, outperforming existing models. Even for ultra-long-term predictions (up to 6800 steps), the model maintains high accuracy, demonstrating its superiority for long-term health prognostic tasks.",
+      "authors": [
+        {
+          "id": "A5039401667",
+          "name": "Duo Yang"
+        },
+        {
+          "id": "A5128138767",
+          "name": "Haoran Lv"
+        },
+        {
+          "id": "A5076176131",
+          "name": "Mince Li"
+        },
+        {
+          "id": "A5015462366",
+          "name": "Yuefeng Liao"
+        },
+        {
+          "id": "A5073380309",
+          "name": "Yu Yan"
+        }
+      ],
+      "institutions": [
+        "Anhui University",
+        "Zhengzhou University"
+      ],
+      "keywords": [
+        "degradation prediction",
+        "periodicity modeling",
+        "long-term degradation",
+        "fuel cell degradation"
+      ],
+      "versions": [
+        {
+          "id": "W7214204540",
+          "doi": "10.1109/tii.2026.3731609",
+          "title": "CycleDegrade: An Explicit Periodicity Modeling Approach for Long-Term Fuel Cell Voltage Degradation Forecasting",
+          "paths": [
+            "q4"
+          ]
+        }
+      ],
+      "paths": [
+        "q4"
+      ],
+      "code": [],
+      "code_scope": "abstract",
+      "code_status": "not_checked",
+      "lookup_status": "not_checked",
+      "scores": {
+        "relevance": 26,
+        "mechanism": 12,
+        "value": 2,
+        "code": 0,
+        "cost": 0
+      },
+      "score": 40,
+      "reasons": [
+        "主题匹配词：forecasting、trend",
+        "可核查的机制线索：degradation prediction、periodicity modeling、long-term degradation",
+        "比较价值：由主题与关键词发现，可作主题对照",
+        "公开实现线索（not_checked）：尚未查仓",
+        "复现成本：实现工作量待核实，数据获取条件待核实，算力预算未知"
+      ]
+    },
+    {
+      "id": "W1488564375",
+      "title": "Forecasting the pulse: How deviations from regular patterns in online data can identify offline phenomena",
+      "doi": "10.1108/intr-06-2012-0115",
+      "url": "https://doi.org/10.1108/intr-06-2012-0115",
+      "date": "2013-10-08",
+      "year": 2013,
+      "type": "article",
+      "abstract": "– The steady increase of data on human behavior collected online holds significant research potential for social scientists. The purpose of this paper is to add a systematic discussion of different online services, their data generating processes, the offline phenomena connected to these data, and by demonstrating, in a proof of concept, a new approach for the detection of extraordinary offline phenomena by the analysis of online data. , – To detect traces of extraordinary offline phenomena in online data, the paper determines the normal state of the respective communication environment by measuring the regular dynamics of specific variables in data documenting user behavior online. In its proof of concept, the paper does so by concentrating on the diversity of hashtags used on Twitter during a given time span. The paper then uses the seasonal trend decomposition procedure based on loess (STL) to determine large deviations between the state of the system as forecasted by the model and the empirical data. The paper takes these deviations as indicators for extraordinary events, which led users to deviate from their regular usage patterns. , – The paper shows in the proof of concept that this method is able to detect deviations in the data and that these deviations are clearly linked to changes in user behavior triggered by offline events. , – The paper adds to the literature on the link between online data and offline phenomena. The paper proposes a new theoretical approach to the empirical analysis of online data as indicators of offline phenomena. The paper will be of interest to social scientists and computer scientists working in the field.",
+      "authors": [
+        {
+          "id": "A5042192372",
+          "name": "Andreas Martin Jungherr"
+        },
+        {
+          "id": "A5035826384",
+          "name": "Pascal Jürgens"
+        }
+      ],
+      "institutions": [
+        "Johannes Gutenberg University Mainz",
+        "University of Bamberg"
+      ],
+      "keywords": [
+        "online data",
+        "Twitter",
+        "hashtags",
+        "user behavior",
+        "seasonal-trend decomposition",
+        "STL",
+        "forecasting",
+        "social media indicators",
+        "data generating process"
+      ],
+      "versions": [
+        {
+          "id": "W1488564375",
+          "doi": "10.1108/intr-06-2012-0115",
+          "title": "Forecasting the pulse: How deviations from regular patterns in online data can identify offline phenomena",
+          "paths": [
+            "q2"
+          ]
+        }
+      ],
+      "paths": [
+        "q2"
+      ],
+      "code": [],
+      "code_scope": "abstract",
+      "code_status": "not_checked",
+      "lookup_status": "not_checked",
+      "scores": {
+        "relevance": 26,
+        "mechanism": 12,
+        "value": 2,
+        "code": 0,
+        "cost": 0
+      },
+      "score": 40,
+      "reasons": [
+        "主题匹配词：forecasting、trend",
+        "可核查的机制线索：online data、Twitter、hashtags",
+        "比较价值：由主题与关键词发现，可作主题对照",
+        "公开实现线索（not_checked）：尚未查仓",
+        "复现成本：实现工作量待核实，数据获取条件待核实，算力预算未知"
+      ]
+    },
+    {
+      "id": "W3186391497",
+      "title": "MSTL: A Seasonal-Trend Decomposition Algorithm for Time Series with Multiple Seasonal Patterns",
+      "doi": "10.1504/ijor.2025.143957",
+      "url": "https://doi.org/10.1504/ijor.2025.143957",
+      "date": "2022-01-01",
+      "year": 2022,
+      "type": "article",
+      "abstract": "The decomposition of time series into components is an important task that helps to understand time series and can enable better forecasting. Nowadays, with high sampling rates leading to high-frequency data (such as daily, hourly, or minutely data), many datasets contain time series data that can exhibit multiple seasonal patterns. Although several methods have been proposed to decompose time series better under these circumstances, they are often computationally inefficient or inaccurate. We propose a procedure to decompose time series with multiple seasonal patterns that is suited to a wide range of high-frequency data. The procedure for multiple seasonal trend decomposition (MSTL) introduced in this paper extends the traditional seasonal-trend decomposition using Loess (STL) algorithm, allowing the decomposition of time series with multiple seasonal patterns. In our evaluation on synthetic and a perturbed real-world time series dataset, compared to other decomposition benchmarks, MSTL demonstrates competitive results with lower computational cost. The implementation of MSTL is available in the R package forecast.",
+      "authors": [
+        {
+          "id": "A5040800662",
+          "name": "Kasun Bandara"
+        },
+        {
+          "id": "A5009379140",
+          "name": "Rob J. Hyndman"
+        },
+        {
+          "id": "A5010495833",
+          "name": "Christoph Bergmeir"
+        }
+      ],
+      "institutions": [
+        "Monash University",
+        "The University of Melbourne"
+      ],
+      "keywords": [
+        "seasonal-trend decomposition",
+        "high-frequency time series",
+        "time series decomposition",
+        "loess",
+        "time series forecasting"
+      ],
+      "versions": [
+        {
+          "id": "W3186391497",
+          "doi": "10.1504/ijor.2025.143957",
+          "title": "MSTL: A Seasonal-Trend Decomposition Algorithm for Time Series with Multiple Seasonal Patterns",
+          "paths": [
+            "q2"
+          ]
+        }
+      ],
+      "paths": [
+        "q2"
+      ],
+      "code": [],
+      "code_scope": "abstract",
+      "code_status": "not_checked",
+      "lookup_status": "not_checked",
+      "scores": {
+        "relevance": 26,
+        "mechanism": 12,
+        "value": 2,
+        "code": 0,
+        "cost": 0
+      },
+      "score": 40,
+      "reasons": [
+        "主题匹配词：forecasting、trend",
+        "可核查的机制线索：seasonal-trend decomposition、high-frequency time series、time series decomposition",
+        "比较价值：由主题与关键词发现，可作主题对照",
+        "公开实现线索（not_checked）：尚未查仓",
+        "复现成本：实现工作量待核实，数据获取条件待核实，算力预算未知"
+      ]
+    },
+    {
+      "id": "W2237663125",
+      "title": "STR: A Seasonal-Trend Decomposition Procedure Based on Regression",
+      "doi": "10.26180/21521289",
+      "url": "https://doi.org/10.26180/21521289",
+      "date": "2022-01-01",
+      "year": 2022,
+      "type": "preprint",
+      "abstract": "We propose new generic methods for decomposing seasonal data: STR (a Seasonal-Trend decomposition procedure based on Regression) and Robust STR. In some ways, STR is similar to Ridge Regression and Robust STR can be related to LASSO. Our new methods are much more general than any alternative time series decomposition methods. They allow for multiple seasonal and cyclic components, and multiple linear regressors with constant, flexible, seasonal and cyclic influence. Seasonal patterns (for both seasonal components and seasonal regressors) can be fractional and flexible over time; moreover they can be either strictly periodic or have a more complex topology. We also provide confidence intervals for the estimated components, and discuss how STR can be used for forecasting.",
+      "authors": [
+        {
+          "id": "A5045218396",
+          "name": "Alexander Dokumentov"
+        },
+        {
+          "id": "A5009379140",
+          "name": "Rob J. Hyndman"
+        }
+      ],
+      "institutions": [
+        "Monash University"
+      ],
+      "keywords": [
+        "seasonal-trend decomposition",
+        "STR",
+        "time series decomposition",
+        "cyclic components",
+        "forecasting",
+        "ridge regression",
+        "LASSO"
+      ],
+      "versions": [
+        {
+          "id": "W2237663125",
+          "doi": "10.26180/21521289",
+          "title": "STR: A Seasonal-Trend Decomposition Procedure Based on Regression",
+          "paths": [
+            "q2"
+          ]
+        }
+      ],
+      "paths": [
+        "q2"
+      ],
+      "code": [],
+      "code_scope": "abstract",
+      "code_status": "not_checked",
+      "lookup_status": "not_checked",
+      "scores": {
+        "relevance": 26,
+        "mechanism": 12,
+        "value": 2,
+        "code": 0,
+        "cost": 0
+      },
+      "score": 40,
+      "reasons": [
+        "主题匹配词：forecasting、trend",
+        "可核查的机制线索：seasonal-trend decomposition、STR、time series decomposition",
+        "比较价值：由主题与关键词发现，可作主题对照",
+        "公开实现线索（not_checked）：尚未查仓",
+        "复现成本：实现工作量待核实，数据获取条件待核实，算力预算未知"
+      ]
+    },
+    {
+      "id": "W3176622143",
+      "title": "STR: Seasonal-Trend Decomposition Using Regression",
+      "doi": "10.32614/cran.package.str",
+      "url": "https://doi.org/10.32614/cran.package.str",
+      "date": "2016-08-27",
+      "year": 2016,
+      "type": "article",
+      "abstract": "Methods for decomposing seasonal data: STR (a Seasonal-Trend time series decomposition procedure based on Regression) and Robust STR. In some ways, STR is similar to Ridge Regression and Robust STR can be related to LASSO. They allow for multiple seasonal components, multiple linear covariates with constant, flexible and seasonal influence. Seasonal patterns (for both seasonal components and seasonal covariates) can be fractional and flexible over time; moreover they can be either strictly periodic or have a more complex topology. The methods provide confidence intervals for the estimated components. The methods can also be used for forecasting.",
+      "authors": [
+        {
+          "id": "A5045218396",
+          "name": "Alexander Dokumentov"
+        },
+        {
+          "id": "A5009379140",
+          "name": "Rob J. Hyndman"
+        }
+      ],
+      "institutions": [
+        "Monash University"
+      ],
+      "keywords": [
+        "seasonal-trend decomposition",
+        "time series decomposition",
+        "seasonal component",
+        "robust regression",
+        "ridge regression",
+        "LASSO",
+        "confidence intervals",
+        "forecasting"
+      ],
+      "versions": [
+        {
+          "id": "W3176622143",
+          "doi": "10.32614/cran.package.str",
+          "title": "STR: Seasonal-Trend Decomposition Using Regression",
+          "paths": [
+            "q2"
+          ]
+        }
+      ],
+      "paths": [
+        "q2"
+      ],
+      "code": [],
+      "code_scope": "abstract",
+      "code_status": "not_checked",
+      "lookup_status": "not_checked",
+      "scores": {
+        "relevance": 26,
+        "mechanism": 12,
+        "value": 2,
+        "code": 0,
+        "cost": 0
+      },
+      "score": 40,
+      "reasons": [
+        "主题匹配词：forecasting、trend",
+        "可核查的机制线索：seasonal-trend decomposition、time series decomposition、seasonal component",
+        "比较价值：由主题与关键词发现，可作主题对照",
+        "公开实现线索（not_checked）：尚未查仓",
+        "复现成本：实现工作量待核实，数据获取条件待核实，算力预算未知"
+      ]
+    },
+    {
+      "id": "W4411995730",
+      "title": "A Comparative Evaluation of Harmonic Analysis and Neural Networks for Sea Level Prediction in the Northern South China Sea",
+      "doi": "10.3390/su17136081",
+      "url": "https://doi.org/10.3390/su17136081",
+      "date": "2025-07-02",
+      "year": 2025,
+      "type": "article",
+      "abstract": "Long-term sea level variations in the northern South China Sea (SCS) are known to significantly impact coastal ecosystems and socio-economic activities. To improve sea level prediction accuracy, four models—harmonic analysis and three artificial neural networks (ANNs), namely genetic algorithm-optimized back propagation (GA-BP), radial basis function (RBF), and long short-term memory (LSTM)—are developed and compared using 52 years of observational data (1960–2004). Key evaluation metrics are presented to demonstrate the models’ effectiveness: for harmonic analysis, the root mean square error (RMSE) is reported as 14.73, the mean absolute error (MAE) is 12.61, the mean bias error (MBE) is 0.0, and the coefficient of determination (R2) is 0.84; for GA-BP, the RMSE is measured as 29.1371, the MAE is 24.9411, the MBE is 5.6809, and the R2 is 0.4003; for the RBF neural network, the RMSE is calculated as 27.1433, the MAE is 22.7533, the MBE is 2.1322, and the R2 is 0.4690; for LSTM, the RMSE is determined as 23.7929, the MAE is 19.7899, the MBE is 1.3700, and the R2 is 0.5872. The key findings include the following: (1) A significant sea level rise trend at 1.4 mm/year is observed in the northern SCS. (2) Harmonic analysis is shown to outperform all ANN models in both accuracy and robustness, with sea level variations effectively characterized by four principal and six secondary tidal constituents. (3) Despite their complexity, ANN models (including LSTM) are found to fail in surpassing the predictive capability of the traditional harmonic method. These results highlight the continued effectiveness of harmonic analysis for long-term sea level forecasting, offering critical insights for coastal hazard mitigation and sustainable development planning.",
+      "authors": [
+        {
+          "id": "A5115603641",
+          "name": "Huiling Zhang"
+        },
+        {
+          "id": "A5034883914",
+          "name": "Na Cui"
+        },
+        {
+          "id": "A5101185838",
+          "name": "Kaining Yang"
+        },
+        {
+          "id": "",
+          "name": "Qixian Qiu"
+        },
+        {
+          "id": "",
+          "name": "Jun Zheng"
+        },
+        {
+          "id": "A5100624122",
+          "name": "Changqing Li"
+        }
+      ],
+      "institutions": [
+        "Guangdong Ocean University"
+      ],
+      "keywords": [
+        "sea level prediction",
+        "harmonic analysis",
+        "artificial neural networks",
+        "long short-term memory",
+        "radial basis function neural network",
+        "tidal constituents",
+        "sea level rise",
+        "northern South China Sea",
+        "coastal hazard mitigation"
+      ],
+      "versions": [
+        {
+          "id": "W4411995730",
+          "doi": "10.3390/su17136081",
+          "title": "A Comparative Evaluation of Harmonic Analysis and Neural Networks for Sea Level Prediction in the Northern South China Sea",
+          "paths": [
+            "q5"
+          ]
+        }
+      ],
+      "paths": [
+        "q5"
+      ],
+      "code": [],
+      "code_scope": "abstract",
+      "code_status": "not_checked",
+      "lookup_status": "not_checked",
+      "scores": {
+        "relevance": 22,
+        "mechanism": 16,
+        "value": 2,
+        "code": 0,
+        "cost": 0
+      },
+      "score": 40,
+      "reasons": [
+        "主题匹配词：forecasting、trend",
+        "可核查的机制线索：sea level prediction、harmonic analysis、artificial neural networks；可与该检索路线对照：\"harmonic\" AND \"trend\" AND \"forecasting\" AND \"neural network\"",
+        "比较价值：由替代方法路线发现，可作主题对照",
+        "公开实现线索（not_checked）：尚未查仓",
+        "复现成本：实现工作量待核实，数据获取条件待核实，算力预算未知"
+      ]
+    },
+    {
+      "id": "W3019616708",
+      "title": "APPLICABILITY OF ARTIFICIAL NEURAL NETWORK MODEL FOR SIMULATION OF MONTHLY RUNOFF IN COMPARISON WITH SOM OTHER TRADITIONAL MODELS",
+      "doi": "10.32508/stdj.v12i4.2237",
+      "url": "https://doi.org/10.32508/stdj.v12i4.2237",
+      "date": "2009-02-28",
+      "year": 2009,
+      "type": "article",
+      "abstract": "Artificial Neural Network (ANN) model along with Back Propagation Algorithm (BPA) has been applied in many fields, especially in hydrology and water resources management to simulate or forecast rainfall runoff process, discharge and water level - time series, and other hydrological variables. Several researches have recently been focusing to compare the applicability of ANN model with other theory-driven and data-driven approaches. The comparison of ANN with M5 model trees for rainfall-runoff forecasting, with ARMAX models for deriving flow series, with AR models and regression models for forecasting and estimating daily river flows have been carried out. The better results that were implemented by ANN model have been concluded. So, this research trend is continued for the comparison of ANN model with Tank, Harmonic, Thomas and Fiering models in simulation of the monthly runoffs at Dong Nai river basin, Viet Nam. The results proved ANN being the best choice among these models, if suitable and enough data sources were available.",
+      "authors": [
+        {
+          "id": "",
+          "name": "Duc Van Le"
+        }
+      ],
+      "institutions": [
+        "Ho Chi Minh City University of Technology"
+      ],
+      "keywords": [
+        "artificial neural networks",
+        "rainfall-runoff modeling",
+        "back-propagation algorithm",
+        "M5 model tree",
+        "ARMAX model",
+        "autoregressive models",
+        "regression models",
+        "tank model",
+        "harmonic model",
+        "Thomas-Fiering model",
+        "model comparison"
+      ],
+      "versions": [
+        {
+          "id": "W3019616708",
+          "doi": "10.32508/stdj.v12i4.2237",
+          "title": "APPLICABILITY OF ARTIFICIAL NEURAL NETWORK MODEL FOR SIMULATION OF MONTHLY RUNOFF IN COMPARISON WITH SOM OTHER TRADITIONAL MODELS",
+          "paths": [
+            "q5"
+          ]
+        }
+      ],
+      "paths": [
+        "q5"
+      ],
+      "code": [],
+      "code_scope": "abstract",
+      "code_status": "not_checked",
+      "lookup_status": "not_checked",
+      "scores": {
+        "relevance": 22,
+        "mechanism": 16,
+        "value": 2,
+        "code": 0,
+        "cost": 0
+      },
+      "score": 40,
+      "reasons": [
+        "主题匹配词：forecasting、trend",
+        "可核查的机制线索：artificial neural networks、back-propagation algorithm、M5 model tree；可与该检索路线对照：\"harmonic\" AND \"trend\" AND \"forecasting\" AND \"neural network\"",
+        "比较价值：由替代方法路线发现，可作主题对照",
+        "公开实现线索（not_checked）：尚未查仓",
+        "复现成本：实现工作量待核实，数据获取条件待核实，算力预算未知"
+      ]
+    },
+    {
+      "id": "W4379381218",
+      "title": "Application of Neural Networks to Predict Power Consumption of a Megapolis",
+      "doi": "10.1109/icieam57311.2023.10139236",
+      "url": "https://doi.org/10.1109/icieam57311.2023.10139236",
+      "date": "2023-05-15",
+      "year": 2023,
+      "type": "conference-paper",
+      "abstract": "A model for daily schedules short-term forecasting of active power in Moscow is proposed in the article. It is formed on the basis of neural network algorithms, taking into account actual and forecast data on air temperature, cloudiness, precipitation and natural light. To predict daily active power curves, a hybrid model based on multivariate singular spectral analysis and fuzzy neural networks is proposed. Time series of power consumption and meteorological factors are decomposed into independent components in this model, with the help of which additive trend, harmonic and random components, used in the fuzzy neural network module, are formed. The initial data were archives of power consumption time series, air temperature, cloudiness, precipitation and natural light for the territory of Moscow in the period from 2017 to 2019. Predictive data on natural light were obtained using a neural network with long-term memory LSTM. Short-term forecasts of daily active power schedules for August 2019 were made. The results of short-term forecasting of daily active power schedules show that in most test cases the outcomes were obtained within acceptable errors.",
+      "authors": [
+        {
+          "id": "A5029950086",
+          "name": "Светлана Александровна Вялкова"
+        },
+        {
+          "id": "A5083280678",
+          "name": "Иван Иванович Надтока"
+        },
+        {
+          "id": "A5092088318",
+          "name": "Olga Kornyukova"
+        }
+      ],
+      "institutions": [
+        "Platov South-Russian State Polytechnic University"
+      ],
+      "keywords": [
+        "load forecasting",
+        "short-term load forecasting",
+        "Moscow",
+        "singular spectrum analysis",
+        "fuzzy neural network",
+        "meteorological factors",
+        "air temperature",
+        "cloud cover",
+        "precipitation",
+        "daylighting",
+        "LSTM",
+        "hybrid forecasting model"
+      ],
+      "versions": [
+        {
+          "id": "W4379381218",
+          "doi": "10.1109/icieam57311.2023.10139236",
+          "title": "Application of Neural Networks to Predict Power Consumption of a Megapolis",
+          "paths": [
+            "q5"
+          ]
+        }
+      ],
+      "paths": [
+        "q5"
+      ],
+      "code": [],
+      "code_scope": "abstract",
+      "code_status": "not_checked",
+      "lookup_status": "not_checked",
+      "scores": {
+        "relevance": 22,
+        "mechanism": 16,
+        "value": 2,
+        "code": 0,
+        "cost": 0
+      },
+      "score": 40,
+      "reasons": [
+        "主题匹配词：forecasting、trend",
+        "可核查的机制线索：Moscow、fuzzy neural network、meteorological factors；可与该检索路线对照：\"harmonic\" AND \"trend\" AND \"forecasting\" AND \"neural network\"",
+        "比较价值：由替代方法路线发现，可作主题对照",
+        "公开实现线索（not_checked）：尚未查仓",
+        "复现成本：实现工作量待核实，数据获取条件待核实，算力预算未知"
+      ]
+    },
+    {
+      "id": "W4407406765",
+      "title": "Harmonics and Neurons: a Fourier-Neural approach to energy pattern analysis",
+      "doi": "10.1007/s42452-025-06540-1",
+      "url": "https://doi.org/10.1007/s42452-025-06540-1",
+      "date": "2025-02-12",
+      "year": 2025,
+      "type": "article",
+      "abstract": "This paper integrates Fourier regression with Neural networks to enhance the analysis and prediction of energy consumption patterns. The Fourier-Neural model leverages the strength of Fourier analysis in identifying periodic trends and harmonics in time-series data, combined with the adaptive learning capabilities of deep neural networks to model complex, nonlinear relationships. The methodology begins with decomposing energy consumption data into its frequency components using Fourier transforms, which are then used as inputs to a neural network model to predict future energy usage. The paper explores the implications of integrating harmonics and neural computation in energy pattern analysis, emphasizing the potential for enhancing predictive analytics in the energy sector. The findings indicate that Fourier regression can significantly improve the accuracy of energy consumption forecasts, compared to traditional linear and polynomial regression models. In addition, the study presents a comprehensive evaluation of a neural network model developed to predict per-capita consumption over time. Initial results exhibit high accuracy, with the model achieving near-perfect performance across training, validation, and test datasets, as evidenced by error histograms and regression plots that demonstrate small error margins. The Fourier-Neural approach presents a scalable and efficient solution for energy consumption forecasting, providing a robust tool for energy analysts, policymakers, and utility companies to make informed decisions. By bridging the gap between traditional Fourier analysis and modern machine learning, this research paves the way for advanced analytical frameworks in energy pattern analysis and beyond.",
+      "authors": [
+        {
+          "id": "A5088571535",
+          "name": "P Kiran"
+        },
+        {
+          "id": "",
+          "name": "Aparna S. Menon"
+        }
+      ],
+      "institutions": [
+        "Amrita Vishwa Vidyapeetham"
+      ],
+      "keywords": [
+        "load forecasting",
+        "artificial neural networks",
+        "harmonic analysis",
+        "frequency decomposition",
+        "time series forecasting",
+        "per capita energy consumption",
+        "periodic trends"
+      ],
+      "versions": [
+        {
+          "id": "W4407406765",
+          "doi": "10.1007/s42452-025-06540-1",
+          "title": "Harmonics and Neurons: a Fourier-Neural approach to energy pattern analysis",
+          "paths": [
+            "q5"
+          ]
+        }
+      ],
+      "paths": [
+        "q5"
+      ],
+      "code": [],
+      "code_scope": "abstract",
+      "code_status": "not_checked",
+      "lookup_status": "not_checked",
+      "scores": {
+        "relevance": 22,
+        "mechanism": 16,
+        "value": 2,
+        "code": 0,
+        "cost": 0
+      },
+      "score": 40,
+      "reasons": [
+        "主题匹配词：forecasting、trend",
+        "可核查的机制线索：time series forecasting、per capita energy consumption、periodic trends；可与该检索路线对照：\"harmonic\" AND \"trend\" AND \"forecasting\" AND \"neural network\"",
+        "比较价值：由替代方法路线发现，可作主题对照",
+        "公开实现线索（not_checked）：尚未查仓",
+        "复现成本：实现工作量待核实，数据获取条件待核实，算力预算未知"
+      ]
+    },
+    {
+      "id": "W4372353049",
+      "title": "System Analysis and Forecast of Yield Time Series Based on Neural Network Technologies",
+      "doi": "10.18280/ijdne.180224",
+      "url": "https://doi.org/10.18280/ijdne.180224",
+      "date": "2023-04-30",
+      "year": 2023,
+      "type": "article",
+      "abstract": "With the help of neural networks, it is possible to automate the processes of pattern recognition, adaptive control, forecasting, creating expert systems, etc. Neural networks can successfully solve problems that traditional methods cannot cope with, relying on incomplete, noisy or modified information. In its pure form, neural network modelling is based solely on data without using a priori theories. The North Kazakhstan region is the object of the study. The paper uses the theory of random processes and high-order Markov chains, allowing to build a model of a series; statistics and econometrics, which are used to select a plurality of lagged variables that affect predictive indicators, and to estimate the probability matrices of transitions between states; nonlinear optimisation methods to construct a nonlinear trend model with harmonic components aimed at predicting the low-frequency component of a time series. The artificial neural network will be implemented using Matlab. Studies have shown that the yield time series are persistent, that is, they have the effect of “long-term memory”. Autoregressive models cannot act as an adequate tool for modelling and forecasting such series. The practical significance of the study lies in the possibility to use the results to enhance plant yield at agricultural enterprises.",
+      "authors": [
+        {
+          "id": "A5036242196",
+          "name": "G. R. Aubakirova"
+        },
+        {
+          "id": "A5101543153",
+          "name": "Yuliya Gerasimova"
+        },
+        {
+          "id": "A5004676684",
+          "name": "Victor Ivel"
+        },
+        {
+          "id": "A5047916806",
+          "name": "Tetiana Arestenko"
+        },
+        {
+          "id": "A5070175981",
+          "name": "Світлана Олексіївна Примиська"
+        }
+      ],
+      "institutions": [
+        "Dmytro Motornyi Tavria State Agrotechnological University",
+        "Manash Kozybayev North Kazakhstan University",
+        "National Technical University of Ukraine “Igor Sikorsky Kyiv Polytechnic Institute”"
+      ],
+      "keywords": [
+        "crop yield prediction",
+        "high-order Markov chains",
+        "stochastic processes",
+        "transition probability matrices",
+        "harmonics",
+        "long-term memory",
+        "autoregressive models",
+        "North Kazakhstan region",
+        "agricultural enterprises"
+      ],
+      "versions": [
+        {
+          "id": "W4372353049",
+          "doi": "10.18280/ijdne.180224",
+          "title": "System Analysis and Forecast of Yield Time Series Based on Neural Network Technologies",
+          "paths": [
+            "q5"
+          ]
+        }
+      ],
+      "paths": [
+        "q5"
+      ],
+      "code": [],
+      "code_scope": "abstract",
+      "code_status": "not_checked",
+      "lookup_status": "not_checked",
+      "scores": {
+        "relevance": 22,
+        "mechanism": 16,
+        "value": 2,
+        "code": 0,
+        "cost": 0
+      },
+      "score": 40,
+      "reasons": [
+        "主题匹配词：forecasting、trend",
+        "可核查的机制线索：high-order Markov chains、transition probability matrices、long-term memory；可与该检索路线对照：\"harmonic\" AND \"trend\" AND \"forecasting\" AND \"neural network\"",
+        "比较价值：由替代方法路线发现，可作主题对照",
+        "公开实现线索（not_checked）：尚未查仓",
+        "复现成本：实现工作量待核实，数据获取条件待核实，算力预算未知"
+      ]
+    },
+    {
+      "id": "W4400644360",
+      "title": "TIME SERIES AND NEURAL NETWORK ALGORITHMS IN REAL ESTATE VALUATION",
+      "doi": "10.26102/2310-6018/2018.22.3.007",
+      "url": "https://doi.org/10.26102/2310-6018/2018.22.3.007",
+      "date": "2018-09-27",
+      "year": 2018,
+      "type": "article",
+      "abstract": "В данной статье рассмотрена проблема прогнозирования цен на объекты недвижимости в долгосрочной и среднесрочной перспективе для принятия управленческих решений. Рынок недвижимости является одной из самых динамичных сфер российской экономики. По этой причине требуется проводить прогнозирование стоимости недвижимости, поскольку без планирования невозможно оценивать будущие расходы или строить экономические планы развития. Ценовая ситуация, описываемая средними ценами на жилом рынке недвижимости, является основополагающим объектом для оценки и прогнозирования в исследовании рынка жилой недвижимости. Стоимость на рынке недвижимости зависит как от средних цен, так и признаков объектов недвижимости. Данные показатели учитываются при прогнозировании рыночной цены недвижимости, которая важна в разработке субъектами рынка недвижимости вспомогательных техник выбора стратегических действий для развития и совершенствования жилищной сферы. В соответствии с вышесказанным, параметры объектов и динамика цен требуют пристального изучения новыми прогрессивными методами с использованием инновационных технологий. Массовая оценка недвижимости является сложной системой и требует не только определения параметров, характеризующих цену недвижимости, но и выявление зависимостей, связывающих эти параметры, с целью анализа и прогнозирования стоимости недвижимости в будущем. Рыночные условия постоянно меняются, в этой связи фактор времени непосредственно влияет на все рыночные процессы и на принятие решений. В работе была выполнена сезонная калибровка цен на объекты недвижимости. Проанализирована и предложена идея использования искусственных нейронных сетей, отвечающих современным требованиям оценки недвижимости. Построены и проанализированы математическая модель на основе гармонических рядов (ряды Фурье) и нейросетевая модель. Проведен сравнительный анализ тенденций роста стоимости недвижимости. This article deals with the problem of forecasting prices for real estate in the long and medium term for management decisions. The real estate market is one of the most dynamic areas of the Russian economy. Rapidly changing factors and price dynamics require a thorough study of new advanced methods using innovative technologies. Forecasting is an integral part of the mass valuation of real estate, it is impossible to plan future expenses or to build economic development plans. The price situation described by the average prices in the residential real estate market is a fundamental object for evaluation and forecasting in the study of the residential real estate market. Based on average prices, prices are managed in the residential real estate market. These indicators are considered when forecasting the market price of real estate, which is important in the development of the subjects of the real estate market auxiliary techniques for the selection of strategic actions for the development and improvement of the housing sector. Mass valuation of real estate as a complex system requires not only the definition of the parameters characterizing the price of real estate, and the identification of dependencies that link these parameters, but also the construction of a forecast of real estate prices in the future. Market conditions are constantly changing, and time has a direct impact on all market processes and decision-making. Seasonal calibration of prices for real estate objects is executed. The idea of using artificial neural networks that meet the modern requirements of real estate valuation is analyzed and proposed. A mathematical model based on harmonic series (Fourier series) and a neural network model are constructed and analyzed. A comparative analysis of the growth trends in the value of real estate.",
+      "authors": [
+        {
+          "id": "A5072765676",
+          "name": "Fedor Surkov"
+        },
+        {
+          "id": "",
+          "name": "Н.В. Петкова"
+        },
+        {
+          "id": "A5053008571",
+          "name": "Суховский Сергей Федорович"
+        }
+      ],
+      "institutions": [],
+      "keywords": [
+        "property valuation",
+        "housing prices",
+        "price forecasting",
+        "time series analysis",
+        "artificial neural networks",
+        "Fourier series",
+        "housing market",
+        "forecasting model comparison",
+        "Russian housing market",
+        "management decision-making"
+      ],
+      "versions": [
+        {
+          "id": "W4400644360",
+          "doi": "10.26102/2310-6018/2018.22.3.007",
+          "title": "TIME SERIES AND NEURAL NETWORK ALGORITHMS IN REAL ESTATE VALUATION",
+          "paths": [
+            "q5"
+          ]
+        }
+      ],
+      "paths": [
+        "q5"
+      ],
+      "code": [],
+      "code_scope": "abstract",
+      "code_status": "not_checked",
+      "lookup_status": "not_checked",
+      "scores": {
+        "relevance": 22,
+        "mechanism": 16,
+        "value": 2,
+        "code": 0,
+        "cost": 0
+      },
+      "score": 40,
+      "reasons": [
+        "主题匹配词：forecasting、trend",
+        "可核查的机制线索：housing prices、price forecasting、time series analysis；可与该检索路线对照：\"harmonic\" AND \"trend\" AND \"forecasting\" AND \"neural network\"",
+        "比较价值：由替代方法路线发现，可作主题对照",
+        "公开实现线索（not_checked）：尚未查仓",
+        "复现成本：实现工作量待核实，数据获取条件待核实，算力预算未知"
+      ]
+    },
+    {
+      "id": "W4415795980",
+      "title": "CycleNet: Enhancing Time Series Forecasting through Modeling Periodic Patterns",
+      "doi": "10.52202/079017-3373",
+      "url": "https://doi.org/10.52202/079017-3373",
+      "date": "2024-01-01",
+      "year": 2024,
+      "type": "conference-paper",
+      "abstract": "The stable periodic patterns present in time series data serve as the foundation for conducting long-horizon forecasts. In this paper, we pioneer the exploration of explicitly modeling this periodicity to enhance the performance of models in long-term time series forecasting (LTSF) tasks. Specifically, we introduce the Residual Cycle Forecasting (RCF) technique, which utilizes learnable recurrent cycles to model the inherent periodic patterns within sequences, and then performs predictions on the residual components of the modeled cycles. Combining RCF with a Linear layer or a shallow MLP forms the simple yet powerful method proposed in this paper, called CycleNet. CycleNet achieves state-of-the-art prediction accuracy in multiple domains including electricity, weather, and energy, while offering significant efficiency advantages by reducing over 90% of the required parameter quantity. Furthermore, as a novel plug-and-play technique, the RCF can also significantly improve the prediction accuracy of existing models, including PatchTST and iTransformer. The source code is available at: https://github.com/ACAT-SCUT/CycleNet.",
+      "authors": [
+        {
+          "id": "A5015148071",
+          "name": "Shengsheng Lin"
+        },
+        {
+          "id": "A5007440245",
+          "name": "Weiwei Lin"
+        },
+        {
+          "id": "A5078423656",
+          "name": "Xinyi Hu"
+        },
+        {
+          "id": "A5030234311",
+          "name": "Wentai Wu"
+        },
+        {
+          "id": "A5114419902",
+          "name": "Ruichao Mo"
+        },
+        {
+          "id": "A5101720286",
+          "name": "Hao Zhong"
+        }
+      ],
+      "institutions": [],
+      "keywords": [
+        "periodic patterns",
+        "electricity load forecasting",
+        "weather forecasting",
+        "energy forecasting",
+        "PatchTST",
+        "iTransformer"
+      ],
+      "versions": [
+        {
+          "id": "W4415795980",
+          "doi": "10.52202/079017-3373",
+          "title": "CycleNet: Enhancing Time Series Forecasting through Modeling Periodic Patterns",
+          "paths": [
+            "q4",
+            "q11"
+          ]
+        }
+      ],
+      "paths": [
+        "q11",
+        "q4"
+      ],
+      "code": [
+        {
+          "url": "https://github.com/ACAT-SCUT/CycleNet",
+          "status": "unverified",
+          "evidence": [
+            {
+              "source": "https://openalex.org/W4415795980",
+              "kind": "abstract",
+              "text": "nique, the RCF can also significantly improve the prediction accuracy of existing models, including PatchTST and iTransformer. The source code is available at: https://github.com/ACAT-SCUT/CycleNet"
+            }
+          ]
+        }
+      ],
+      "code_scope": "abstract",
+      "code_status": "unverified",
+      "lookup_status": "not_checked",
+      "scores": {
+        "relevance": 16,
+        "mechanism": 12,
+        "value": 4,
+        "code": 6,
+        "cost": 1
+      },
+      "score": 39,
+      "reasons": [
+        "主题匹配词：forecasting",
+        "可核查的机制线索：periodic patterns、weather forecasting、energy forecasting",
+        "比较价值：由已知论文回查、主题与关键词发现，可作主题对照",
+        "公开实现线索（unverified）：https://github.com/ACAT-SCUT/CycleNet",
+        "复现成本：有仓库线索，需核对归属与实现范围，数据获取条件待核实，算力预算未知"
+      ]
+    },
+    {
+      "id": "W2137643484",
+      "title": "Communications to the Editor—Exponential Forecasting: Some New Variations",
+      "doi": "10.1287/mnsc.15.5.311",
+      "url": "https://doi.org/10.1287/mnsc.15.5.311",
+      "date": "1969-01-01",
+      "year": 1969,
+      "type": "letter",
+      "abstract": "Exponential forecasting or smoothing models are presented which take into account all combinations of trend and cyclical effects in additive and multiplicative form. Although other authors have hinted that the proposed models existed, no one has ever presented them in comprehensive form. This paper presents the nine possible models in graphical form and summarizes them by one summary formula.",
+      "authors": [
+        {
+          "id": "A5109976864",
+          "name": "Garth P. McCormick"
+        }
+      ],
+      "institutions": [],
+      "keywords": [
+        "exponential smoothing",
+        "trends",
+        "cyclical effects",
+        "additive models",
+        "multiplicative model",
+        "time series forecasting",
+        "forecasting models"
+      ],
+      "versions": [
+        {
+          "id": "W2137643484",
+          "doi": "10.1287/mnsc.15.5.311",
+          "title": "Communications to the Editor—Exponential Forecasting: Some New Variations",
+          "paths": [
+            "q7"
+          ]
+        }
+      ],
+      "paths": [
+        "q7"
+      ],
+      "code": [],
+      "code_scope": "abstract",
+      "code_status": "not_checked",
+      "lookup_status": "not_checked",
+      "scores": {
+        "relevance": 24,
+        "mechanism": 12,
+        "value": 2,
+        "code": 0,
+        "cost": 0
+      },
+      "score": 38,
+      "reasons": [
+        "主题匹配词：forecasting、trend",
+        "可核查的机制线索：exponential smoothing、trends、cyclical effects",
+        "比较价值：由研究问题语义检索发现，可作主题对照",
+        "公开实现线索（not_checked）：尚未查仓",
+        "复现成本：实现工作量待核实，数据获取条件待核实，算力预算未知"
+      ]
+    },
+    {
+      "id": "W3215624848",
+      "title": "NeuralProphet: Explainable Forecasting at Scale",
+      "doi": "10.48550/arxiv.2111.15397",
+      "url": "https://doi.org/10.48550/arxiv.2111.15397",
+      "date": "2021-11-29",
+      "year": 2021,
+      "type": "preprint",
+      "abstract": "We introduce NeuralProphet, a successor to Facebook Prophet, which set an industry standard for explainable, scalable, and user-friendly forecasting frameworks. With the proliferation of time series data, explainable forecasting remains a challenging task for business and operational decision making. Hybrid solutions are needed to bridge the gap between interpretable classical methods and scalable deep learning models. We view Prophet as a precursor to such a solution. However, Prophet lacks local context, which is essential for forecasting the near-term future and is challenging to extend due to its Stan backend. NeuralProphet is a hybrid forecasting framework based on PyTorch and trained with standard deep learning methods, making it easy for developers to extend the framework. Local context is introduced with auto-regression and covariate modules, which can be configured as classical linear regression or as Neural Networks. Otherwise, NeuralProphet retains the design philosophy of Prophet and provides the same basic model components. Our results demonstrate that NeuralProphet produces interpretable forecast components of equivalent or superior quality to Prophet on a set of generated time series. NeuralProphet outperforms Prophet on a diverse collection of real-world datasets. For short to medium-term forecasts, NeuralProphet improves forecast accuracy by 55 to 92 percent.",
+      "authors": [
+        {
+          "id": "A5058625372",
+          "name": "Oskar Triebe"
+        },
+        {
+          "id": "A5017345423",
+          "name": "Hansika Hewamalage"
+        },
+        {
+          "id": "A5091714711",
+          "name": "Polina Pilyugina"
+        },
+        {
+          "id": "A5004928497",
+          "name": "Nikolay Laptev"
+        },
+        {
+          "id": "A5010495833",
+          "name": "Christoph Bergmeir"
+        },
+        {
+          "id": "A5028892842",
+          "name": "Ram Rajagopal"
+        }
+      ],
+      "institutions": [
+        "Meta (United States)",
+        "Monash University",
+        "Skolkovo Institute of Science and Technology",
+        "Stanford University"
+      ],
+      "keywords": [
+        "NeuralProphet",
+        "time series forecasting",
+        "explainable forecasting",
+        "hybrid forecasting",
+        "Facebook Prophet",
+        "autoregression",
+        "local context",
+        "PyTorch",
+        "short-term forecasting"
+      ],
+      "versions": [
+        {
+          "id": "W3215624848",
+          "doi": "10.48550/arxiv.2111.15397",
+          "title": "NeuralProphet: Explainable Forecasting at Scale",
+          "paths": [
+            "q10"
+          ]
+        }
+      ],
+      "paths": [
+        "q10"
+      ],
+      "code": [],
+      "code_scope": "abstract",
+      "code_status": "not_checked",
+      "lookup_status": "not_checked",
+      "scores": {
+        "relevance": 24,
+        "mechanism": 12,
+        "value": 2,
+        "code": 0,
+        "cost": 0
+      },
+      "score": 38,
+      "reasons": [
+        "主题匹配词：forecasting、interpretable",
+        "可核查的机制线索：NeuralProphet、time series forecasting、explainable forecasting",
+        "比较价值：由已知论文回查发现，可作主题对照",
+        "公开实现线索（not_checked）：尚未查仓",
+        "复现成本：实现工作量待核实，数据获取条件待核实，算力预算未知"
+      ]
+    },
+    {
+      "id": "W4382895992",
+      "title": "The Importance of Taking into Account the Results of Additive Modeling During Dynamics Process Analyzing",
+      "doi": "10.31521/modecon.v38(2023)-01",
+      "url": "https://doi.org/10.31521/modecon.v38(2023)-01",
+      "date": "2023-04-20",
+      "year": 2023,
+      "type": "article",
+      "abstract": "Introduction. In order to cope with such changes during the analysis, it is necessary to understand the essence of the methods and approaches that should be used by the researcher. The authors of this article aim to inform a wide range of scientists about the possibilities of using additive modeling not only to forecast data with seasonal and random components, but also to take into account its results at each stage of analysis to determine the essence (features) of the dynamics of processes (on the example of the gross domestic product of the Russian Federation and Ukraine until 2026), as well as to compare its forecast data with the results of extrapolation using a sixth-order polynomial. The authors of this paper extrapolated the data of the gross domestic product of the Russian Federation and Ukraine to 2026 using additive modeling. Purpose. The purpose of the article is to convey to a wide range of scientists the possibilities of using additive modeling not only for forecasting data taking into account the seasonal component, but also taking into account its results at each stage of analysis to determine the essence (features) of the dynamics of processes (on the example of data on the gross domestic product of the Russian Federation and Ukraine with a forecast until 2026), as well as a comparison of its forecast data with the results of extrapolation using a sixth-order polynomial. Results. Thus, based on the results of calculating the average percentage error, average absolute percentage error, coefficient of determination and the results of checking the adequacy of the model, the following conclusions were made: the specificity of the statistical data proposed for analysis (GDP of Ukraine and the Russian Federation) fully meets the requirements of additive modeling; there are no significant deviations from the average variation in the statistical data proposed for analysis, so the reliability of extrapolation is high; similar values in the changes in the average percentage error, average absolute. Conclusions. That is, to bring the extrapolation closer to reality, the value of the seasonal component was calculated. According to the results obtained, the dynamics of Ukraine's GDP, based on the data for 1986-2022, is more stable than that of the Russian Federation (1987-2022). According to the results obtained after evaluating the results of the two calculations, the following conclusions can be drawn: although Ukraine's GDP indicators reacted more sharply to changes in the national economy (sharper drops in the sample than in the Russian Federation's indicators), the extrapolation data of both approaches have a similar trend, which is evidence of a faster recovery of economic processes within the country; the results of extrapolation of the two approaches do not coincide, which indicates the presence of hidden processes in the national economy that have a significant impact on the dynamics of Thus, today the problem is not only in more realistic data forecasting, but also in the qualitative interpretation of the results at each stage of analysis to determine the essence (features) of the dynamics of processes.",
+      "authors": [
+        {
+          "id": "A5026674855",
+          "name": "Maryna Abramova"
+        }
+      ],
+      "institutions": [
+        "Central Scientific Research Institute of Armament and Military Equipment of the Armed Forces of Ukraine",
+        "The Central Research Institute of the Armed Forces of Ukraine"
+      ],
+      "keywords": [
+        "gross domestic product",
+        "GDP forecasting",
+        "seasonal component",
+        "polynomial extrapolation",
+        "economic dynamics",
+        "Ukrainian economy",
+        "forecast accuracy",
+        "model adequacy",
+        "economic recovery"
+      ],
+      "versions": [
+        {
+          "id": "W4382895992",
+          "doi": "10.31521/modecon.v38(2023)-01",
+          "title": "The Importance of Taking into Account the Results of Additive Modeling During Dynamics Process Analyzing",
+          "paths": [
+            "q7"
+          ]
+        }
+      ],
+      "paths": [
+        "q7"
+      ],
+      "code": [],
+      "code_scope": "abstract",
+      "code_status": "not_checked",
+      "lookup_status": "not_checked",
+      "scores": {
+        "relevance": 22,
+        "mechanism": 12,
+        "value": 2,
+        "code": 0,
+        "cost": 0
+      },
+      "score": 36,
+      "reasons": [
+        "主题匹配词：forecasting、trend",
+        "可核查的机制线索：gross domestic product、GDP forecasting、seasonal component",
+        "比较价值：由研究问题语义检索发现，可作主题对照",
+        "公开实现线索（not_checked）：尚未查仓",
+        "复现成本：实现工作量待核实，数据获取条件待核实，算力预算未知"
+      ]
+    },
+    {
+      "id": "W2990255447",
+      "title": "Wind power forecasting based on singular spectrum analysis and a new hybrid Laguerre neural network",
+      "doi": "10.1016/j.apenergy.2019.114139",
+      "url": "https://doi.org/10.1016/j.apenergy.2019.114139",
+      "date": "2019-11-22",
+      "year": 2019,
+      "type": "article",
+      "abstract": "",
+      "authors": [
+        {
+          "id": "A5100390479",
+          "name": "Cong Wang"
+        },
+        {
+          "id": "A5100417306",
+          "name": "Hongli Zhang"
+        },
+        {
+          "id": "A5100664656",
+          "name": "Ping Ma"
+        }
+      ],
+      "institutions": [
+        "Xinjiang University"
+      ],
+      "keywords": [
+        "wind power forecasting",
+        "singular spectrum analysis",
+        "hybrid forecasting model",
+        "opposition-based learning",
+        "state transition algorithm",
+        "signal decomposition",
+        "wind power uncertainty",
+        "wind farm power output"
+      ],
+      "versions": [
+        {
+          "id": "W2990255447",
+          "doi": "10.1016/j.apenergy.2019.114139",
+          "title": "Wind power forecasting based on singular spectrum analysis and a new hybrid Laguerre neural network",
+          "paths": [
+            "q5"
+          ]
+        }
+      ],
+      "paths": [
+        "q5"
+      ],
+      "code": [],
+      "code_scope": "abstract",
+      "code_status": "not_checked",
+      "lookup_status": "not_checked",
+      "scores": {
+        "relevance": 14,
+        "mechanism": 16,
+        "value": 2,
+        "code": 0,
+        "cost": 0
+      },
+      "score": 32,
+      "reasons": [
+        "主题匹配词：forecasting",
+        "可核查的机制线索：wind power forecasting、singular spectrum analysis、hybrid forecasting model；可与该检索路线对照：\"harmonic\" AND \"trend\" AND \"forecasting\" AND \"neural network\"",
+        "比较价值：由替代方法路线发现，可作主题对照",
+        "公开实现线索（not_checked）：尚未查仓",
+        "复现成本：实现工作量待核实，数据获取条件待核实，算力预算未知"
+      ]
+    },
+    {
+      "id": "W4386928809",
+      "title": "Forecasting crude oil futures using an ensemble model including investor sentiment and attention",
+      "doi": "10.1108/k-03-2023-0364",
+      "url": "https://doi.org/10.1108/k-03-2023-0364",
+      "date": "2023-09-22",
+      "year": 2023,
+      "type": "article",
+      "abstract": "Purpose Since crude oil is crucial to the nation's economic growth, crude oil futures are closely related to many other markets. Accurate forecasting can offer investors trustworthy guidance. Numerous studies have begun to consider creating new metrics from social networks to improve forecasting models in light of their rapid development. To improve the forecasting of crude oil futures, the authors suggest an integrated model that combines investor sentiment and attention. Design/methodology/approach This study first creates investor attention variables using Baidu search indices and investor sentiment variables for medium sulfur crude oil (SC) futures by collecting comments from financial forums. The authors feed the price series into the NeuralProphet model to generate a new feature set using the output subsequences and predicted values. Next, the authors use the CatBoost model to extract additional features from the new feature set and perform multi-step predictions. Finally, the authors explain the model using Shapley additive explanations (SHAP) values and examine the direction and magnitude of each variable's influence. Findings The authors conduct forecasting experiments for SC futures one, two and three days in advance to evaluate the effectiveness of the proposed model. The empirical results show that the model is a reliable and effective tool for predicting, and including investor sentiment and attention variables in the model enhances its predictive power. Research limitations/implications The data analyzed in this paper span from 2018 through 2022, and the forecast objectives only apply to futures prices for those years. If the authors alter the sample data, the experimental process must be repeated, and the outcomes will differ. Additionally, because crude oil has financial characteristics, its price is influenced by various external circumstances, including global epidemics and adjustments in political and economic policies. Future studies could consider these factors in models to forecast crude oil futures price volatility. Practical implications In conclusion, the proposed integrated model provides effective multistep forecasts for SC futures, and the findings will offer crucial practical guidance for policymakers and investors. This study also considers other relevant markets, such as stocks and exchange rates, to increase the forecast precision of the model. Furthermore, the model proposed in this paper, which combines investor factors, confirms the predictive ability of investor sentiment. Regulators can utilize these findings to improve their ability to predict market risks based on changes in investor sentiment. Future research can improve predictive effectiveness by considering the inclusion of macro events and further model optimization. Additionally, this model can be adapted to forecast other financial markets, such as stock markets and other futures products. Originality/value The authors propose a novel integrated model that considers investor factors to enhance the accuracy of crude oil futures forecasting. This method can also be applied to other financial markets to improve their forecasting efficiency.",
+      "authors": [
+        {
+          "id": "A5087683652",
+          "name": "Xiying Yao"
+        },
+        {
+          "id": "A5115580356",
+          "name": "Xuetao Yang"
+        }
+      ],
+      "institutions": [
+        "Nanjing University of Posts and Telecommunications"
+      ],
+      "keywords": [
+        "crude oil futures",
+        "futures price forecasting",
+        "investor sentiment",
+        "investor attention",
+        "Baidu Index",
+        "ensemble forecasting",
+        "NeuralProphet",
+        "CatBoost",
+        "multi-step forecasting",
+        "SHAP",
+        "social media data",
+        "oil price volatility",
+        "financial market forecasting"
+      ],
+      "versions": [
+        {
+          "id": "W4386928809",
+          "doi": "10.1108/k-03-2023-0364",
+          "title": "Forecasting crude oil futures using an ensemble model including investor sentiment and attention",
+          "paths": [
+            "q3"
+          ]
+        }
+      ],
+      "paths": [
+        "q3"
+      ],
+      "code": [],
+      "code_scope": "abstract",
+      "code_status": "not_checked",
+      "lookup_status": "not_checked",
+      "scores": {
+        "relevance": 16,
+        "mechanism": 12,
+        "value": 2,
+        "code": 0,
+        "cost": 0
+      },
+      "score": 30,
+      "reasons": [
+        "主题匹配词：forecasting",
+        "可核查的机制线索：crude oil futures、futures price forecasting、investor sentiment",
+        "比较价值：由主题与关键词发现，可作主题对照",
+        "公开实现线索（not_checked）：尚未查仓",
+        "复现成本：实现工作量待核实，数据获取条件待核实，算力预算未知"
+      ]
+    },
+    {
+      "id": "W2288789415",
+      "title": "A comparison of focus forecasting with averaging and exponential smoothing",
+      "doi": "",
+      "url": "https://openalex.org/W2288789415",
+      "date": "1986-09-01",
+      "year": 1986,
+      "type": "article",
+      "abstract": "",
+      "authors": [
+        {
+          "id": "A5111874022",
+          "name": "Benito E. Flores"
+        },
+        {
+          "id": "A5018319008",
+          "name": "Clay D Whybark"
+        }
+      ],
+      "institutions": [],
+      "keywords": [
+        "averaging",
+        "exponential smoothing",
+        "forecasting method comparison",
+        "time series forecasting"
+      ],
+      "versions": [
+        {
+          "id": "W2288789415",
+          "doi": "",
+          "title": "A comparison of focus forecasting with averaging and exponential smoothing",
+          "paths": [
+            "q7"
+          ]
+        }
+      ],
+      "paths": [
+        "q7"
+      ],
+      "code": [],
+      "code_scope": "abstract",
+      "code_status": "not_checked",
+      "lookup_status": "not_checked",
+      "scores": {
+        "relevance": 14,
+        "mechanism": 12,
+        "value": 2,
+        "code": 0,
+        "cost": 0
+      },
+      "score": 28,
+      "reasons": [
+        "主题匹配词：forecasting",
+        "可核查的机制线索：averaging、exponential smoothing、forecasting method comparison",
+        "比较价值：由研究问题语义检索发现，可作主题对照",
+        "公开实现线索（not_checked）：尚未查仓",
+        "复现成本：实现工作量待核实，数据获取条件待核实，算力预算未知"
+      ]
+    },
+    {
+      "id": "W2040057016",
+      "title": "A note on aggregation, disaggregation and forecasting performance",
+      "doi": "10.1002/1099-131x(200009)19:5<457::aid-for761>3.0.co;2-6",
+      "url": "https://doi.org/10.1002/1099-131x(200009)19:5<457::aid-for761>3.0.co;2-6",
+      "date": "2000-09-01",
+      "year": 2000,
+      "type": "article",
+      "abstract": "",
+      "authors": [
+        {
+          "id": "A5050606907",
+          "name": "Arnold Zellner"
+        },
+        {
+          "id": "A5054275598",
+          "name": "Justin L. Tobias"
+        }
+      ],
+      "institutions": [
+        "University of Chicago"
+      ],
+      "keywords": [
+        "aggregation",
+        "disaggregation",
+        "forecasting performance",
+        "forecast accuracy",
+        "time series aggregation"
+      ],
+      "versions": [
+        {
+          "id": "W2040057016",
+          "doi": "10.1002/1099-131x(200009)19:5<457::aid-for761>3.0.co;2-6",
+          "title": "A note on aggregation, disaggregation and forecasting performance",
+          "paths": [
+            "q7"
+          ]
+        }
+      ],
+      "paths": [
+        "q7"
+      ],
+      "code": [],
+      "code_scope": "abstract",
+      "code_status": "not_checked",
+      "lookup_status": "not_checked",
+      "scores": {
+        "relevance": 14,
+        "mechanism": 12,
+        "value": 2,
+        "code": 0,
+        "cost": 0
+      },
+      "score": 28,
+      "reasons": [
+        "主题匹配词：forecasting",
+        "可核查的机制线索：aggregation、disaggregation、forecasting performance",
+        "比较价值：由研究问题语义检索发现，可作主题对照",
+        "公开实现线索（not_checked）：尚未查仓",
+        "复现成本：实现工作量待核实，数据获取条件待核实，算力预算未知"
+      ]
+    },
+    {
+      "id": "W2591318697",
+      "title": "Additive models with trend filtering",
+      "doi": "10.1214/19-aos1833",
+      "url": "https://doi.org/10.1214/19-aos1833",
+      "date": "2019-10-30",
+      "year": 2019,
+      "type": "article",
+      "abstract": "We study additive models built with trend filtering, that is, additive models whose components are each regularized by the (discrete) total variation of their $k$th (discrete) derivative, for a chosen integer $k\\geq0$. This results in $k$th degree piecewise polynomial components, (e.g., $k=0$ gives piecewise constant components, $k=1$ gives piecewise linear, $k=2$ gives piecewise quadratic, etc.). Analogous to its advantages in the univariate case, additive trend filtering has favorable theoretical and computational properties, thanks in large part to the localized nature of the (discrete) total variation regularizer that it uses. On the theory side, we derive fast error rates for additive trend filtering estimates, and show these rates are minimax optimal when the underlying function is additive and has component functions whose derivatives are of bounded variation. We also show that these rates are unattainable by additive smoothing splines (and by additive models built from linear smoothers, in general). On the computational side, we use backfitting, to leverage fast univariate trend filtering solvers; we also describe a new backfitting algorithm whose iterations can be run in parallel, which (as far as we can tell) is the first of its kind. Lastly, we present a number of experiments to examine the empirical performance of trend filtering.",
+      "authors": [
+        {
+          "id": "A5055343062",
+          "name": "Veeranjaneyulu Sadhanala"
+        },
+        {
+          "id": "A5076708141",
+          "name": "Ryan J. Tibshirani"
+        }
+      ],
+      "institutions": [],
+      "keywords": [
+        "additive models",
+        "total variation regularization",
+        "backfitting",
+        "minimax optimality",
+        "linear smoothers"
+      ],
+      "versions": [
+        {
+          "id": "W2591318697",
+          "doi": "10.1214/19-aos1833",
+          "title": "Additive models with trend filtering",
+          "paths": [
+            "q7"
+          ]
+        }
+      ],
+      "paths": [
+        "q7"
+      ],
+      "code": [],
+      "code_scope": "abstract",
+      "code_status": "not_checked",
+      "lookup_status": "not_checked",
+      "scores": {
+        "relevance": 14,
+        "mechanism": 12,
+        "value": 2,
+        "code": 0,
+        "cost": 0
+      },
+      "score": 28,
+      "reasons": [
+        "主题匹配词：trend",
+        "可核查的机制线索：additive models、backfitting、linear smoothers",
+        "比较价值：由研究问题语义检索发现，可作主题对照",
+        "公开实现线索（not_checked）：尚未查仓",
+        "复现成本：实现工作量待核实，数据获取条件待核实，算力预算未知"
+      ]
+    },
+    {
+      "id": "W7135246424",
+      "title": "FM-LLM: A frequency-enhanced mixture-of-experts framework for adapting LLMs to time series forecasting",
+      "doi": "10.1016/j.knosys.2026.115776",
+      "url": "https://doi.org/10.1016/j.knosys.2026.115776",
+      "date": "2026-03-13",
+      "year": 2026,
+      "type": "article",
+      "abstract": "",
+      "authors": [
+        {
+          "id": "A5091039444",
+          "name": "Rentao Gu"
+        },
+        {
+          "id": "A5129095116",
+          "name": "Yihang Ding"
+        },
+        {
+          "id": "A5128938514",
+          "name": "Junjie Li"
+        },
+        {
+          "id": "A5129020761",
+          "name": "Yi Ding"
+        },
+        {
+          "id": "A5049588089",
+          "name": "Weijing Sang"
+        },
+        {
+          "id": "A5090375059",
+          "name": "Xiaoli Huo"
+        },
+        {
+          "id": "A5128969584",
+          "name": "Qin Xin"
+        },
+        {
+          "id": "A5128968679",
+          "name": "Yuefeng Ji"
+        }
+      ],
+      "institutions": [
+        "Beijing University of Posts and Telecommunications",
+        "China Telecom",
+        "State Key Laboratory of Information Photonics and Optical Communications"
+      ],
+      "keywords": [
+        "time series forecasting",
+        "large language models",
+        "mixture of experts",
+        "frequency analysis",
+        "asymmetric coupling",
+        "long-term forecasting"
+      ],
+      "versions": [
+        {
+          "id": "W7135246424",
+          "doi": "10.1016/j.knosys.2026.115776",
+          "title": "FM-LLM: A frequency-enhanced mixture-of-experts framework for adapting LLMs to time series forecasting",
+          "paths": [
+            "q6"
+          ]
+        }
+      ],
+      "paths": [
+        "q6"
+      ],
+      "code": [],
+      "code_scope": "abstract",
+      "code_status": "not_checked",
+      "lookup_status": "not_checked",
+      "scores": {
+        "relevance": 14,
+        "mechanism": 12,
+        "value": 2,
+        "code": 0,
+        "cost": 0
+      },
+      "score": 28,
+      "reasons": [
+        "主题匹配词：forecasting",
+        "可核查的机制线索：time series forecasting、mixture of experts；可与该检索路线对照：\"time series forecasting\" AND \"periodic residual\"",
+        "比较价值：由替代方法路线发现，可作主题对照",
+        "公开实现线索（not_checked）：尚未查仓",
+        "复现成本：实现工作量待核实，数据获取条件待核实，算力预算未知"
+      ]
+    },
+    {
+      "id": "W7133222734",
+      "title": "Curve Your Enthusiasm: Concurvity Regularization in Differentiable Generalized Additive Models",
+      "doi": "10.52202/075280-0834",
+      "url": "https://doi.org/10.52202/075280-0834",
+      "date": "2023-01-01",
+      "year": 2023,
+      "type": "conference-paper",
+      "abstract": "Generalized Additive Models (GAMs) have recently experienced a resurgence in popularity due to their interpretability, which arises from expressing the target value as a sum of non-linear transformations of the features. Despite the current enthusiasm for GAMs, their susceptibility to concurvity - i.e., (possibly non-linear) dependencies between the features - has hitherto been largely overlooked. Here, we demonstrate how concurvity can severly impair the interpretability of GAMs and propose a remedy: a conceptually simple, yet effective regularizer which penalizes pairwise correlations of the non-linearly transformed feature variables. This procedure is applicable to any differentiable additive model, such as Neural Additive Models or NeuralProphet, and enhances interpretability by eliminating ambiguities due to self-canceling feature contributions. We validate the effectiveness of our regularizer in experiments on synthetic as well as real-world datasets for time-series and tabular data. Our experiments show that concurvity in GAMs can be reduced without significantly compromising prediction quality, improving interpretability and reducing variance in the feature importances.",
+      "authors": [
+        {
+          "id": "A5074049510",
+          "name": "Julien Siems"
+        },
+        {
+          "id": "A5056641281",
+          "name": "Konstantin Ditschuneit"
+        },
+        {
+          "id": "A5091998639",
+          "name": "Winfried Ripken"
+        },
+        {
+          "id": "A5056766549",
+          "name": "Alma Lindborg"
+        },
+        {
+          "id": "A5069717368",
+          "name": "Maximilian Schambach"
+        },
+        {
+          "id": "A5077978476",
+          "name": "Johannes Otterbach"
+        },
+        {
+          "id": "A5027021592",
+          "name": "Martin Genzel"
+        }
+      ],
+      "institutions": [],
+      "keywords": [
+        "generalized additive models",
+        "neural additive models",
+        "NeuralProphet",
+        "interpretability",
+        "feature correlation",
+        "nonlinear transformation",
+        "feature importance",
+        "time series forecasting",
+        "tabular data"
+      ],
+      "versions": [
+        {
+          "id": "W7133222734",
+          "doi": "10.52202/075280-0834",
+          "title": "Curve Your Enthusiasm: Concurvity Regularization in Differentiable Generalized Additive Models",
+          "paths": [
+            "q3"
+          ]
+        }
+      ],
+      "paths": [
+        "q3"
+      ],
+      "code": [],
+      "code_scope": "abstract",
+      "code_status": "not_checked",
+      "lookup_status": "not_checked",
+      "scores": {
+        "relevance": 13,
+        "mechanism": 12,
+        "value": 2,
+        "code": 0,
+        "cost": 0
+      },
+      "score": 27,
+      "reasons": [
+        "主题匹配词：forecasting",
+        "可核查的机制线索：generalized additive models、neural additive models、NeuralProphet",
+        "比较价值：由主题与关键词发现，可作主题对照",
+        "公开实现线索（not_checked）：尚未查仓",
+        "复现成本：实现工作量待核实，数据获取条件待核实，算力预算未知"
+      ]
+    },
+    {
+      "id": "W4412642765",
+      "title": "Multi-Scale Periodic Residual State Space Model for Time Series Forecasting",
+      "doi": "10.1007/978-981-95-0006-2_36",
+      "url": "https://doi.org/10.1007/978-981-95-0006-2_36",
+      "date": "2025-07-25",
+      "year": 2025,
+      "type": "conference-paper",
+      "abstract": "",
+      "authors": [
+        {
+          "id": "A5102028084",
+          "name": "Jiqing Wang"
+        },
+        {
+          "id": "A5102597781",
+          "name": "Nianping Qin"
+        },
+        {
+          "id": "A5010390572",
+          "name": "Yao Zhou"
+        }
+      ],
+      "institutions": [
+        "Sichuan University"
+      ],
+      "keywords": [
+        "time series forecasting",
+        "spatiotemporal dependencies",
+        "Mamba",
+        "selective state space models",
+        "convolutional neural networks",
+        "electricity theft detection",
+        "weather forecasting"
+      ],
+      "versions": [
+        {
+          "id": "W4412642765",
+          "doi": "10.1007/978-981-95-0006-2_36",
+          "title": "Multi-Scale Periodic Residual State Space Model for Time Series Forecasting",
+          "paths": [
+            "q6"
+          ]
+        }
+      ],
+      "paths": [
+        "q6"
+      ],
+      "code": [],
+      "code_scope": "abstract",
+      "code_status": "not_checked",
+      "lookup_status": "not_checked",
+      "scores": {
+        "relevance": 15,
+        "mechanism": 8,
+        "value": 2,
+        "code": 0,
+        "cost": 0
+      },
+      "score": 25,
+      "reasons": [
+        "主题匹配词：forecasting",
+        "可核查的机制线索：time series forecasting；可与该检索路线对照：\"time series forecasting\" AND \"periodic residual\"",
+        "比较价值：由替代方法路线发现，可作主题对照",
+        "公开实现线索（not_checked）：尚未查仓",
+        "复现成本：实现工作量待核实，数据获取条件待核实，算力预算未知"
+      ]
+    },
+    {
+      "id": "W2080942961",
+      "title": "A note on a comparison of exponential smoothing methods for forecasting seasonal series",
+      "doi": "10.1016/0169-2070(89)90068-x",
+      "url": "https://doi.org/10.1016/0169-2070(89)90068-x",
+      "date": "1989-01-01",
+      "year": 1989,
+      "type": "article",
+      "abstract": "",
+      "authors": [
+        {
+          "id": "A5090660344",
+          "name": "Sonia M. Bartolomei"
+        },
+        {
+          "id": "A5113626643",
+          "name": "Arnold L. Sweet"
+        }
+      ],
+      "institutions": [
+        "Purdue University West Lafayette",
+        "University of Puerto Rico-Mayaguez"
+      ],
+      "keywords": [
+        "exponential smoothing",
+        "seasonal forecasting",
+        "Winters method",
+        "bandwidth selection",
+        "forecast accuracy comparison",
+        "squared error"
+      ],
+      "versions": [
+        {
+          "id": "W2080942961",
+          "doi": "10.1016/0169-2070(89)90068-x",
+          "title": "A note on a comparison of exponential smoothing methods for forecasting seasonal series",
+          "paths": [
+            "q7"
+          ]
+        }
+      ],
+      "paths": [
+        "q7"
+      ],
+      "code": [],
+      "code_scope": "abstract",
+      "code_status": "not_checked",
+      "lookup_status": "not_checked",
+      "scores": {
+        "relevance": 14,
+        "mechanism": 8,
+        "value": 2,
+        "code": 0,
+        "cost": 0
+      },
+      "score": 24,
+      "reasons": [
+        "主题匹配词：forecasting",
+        "可核查的机制线索：exponential smoothing、seasonal forecasting",
+        "比较价值：由研究问题语义检索发现，可作主题对照",
+        "公开实现线索（not_checked）：尚未查仓",
+        "复现成本：实现工作量待核实，数据获取条件待核实，算力预算未知"
+      ]
+    },
+    {
+      "id": "W2001645924",
+      "title": "Monitoring and adjusting forecasts in the presence of additive outliers",
+      "doi": "10.1002/for.3980030208",
+      "url": "https://doi.org/10.1002/for.3980030208",
+      "date": "1984-04-01",
+      "year": 1984,
+      "type": "article",
+      "abstract": "The effect of an additive outlier upon the accuracy of forecasts derived from extrapolative methods is investigated. It is demonstrated that an outlier affects not only the accuracy of the forecasts at the time of occurrence but also subsequent forecasts. Methods to adjust for additive outliers are discussed. The results of the paper are illustrated with two examples.",
+      "authors": [
+        {
+          "id": "A5019849451",
+          "name": "Steven C. Hillmer"
+        }
+      ],
+      "institutions": [
+        "United States Census Bureau",
+        "University of Kansas"
+      ],
+      "keywords": [
+        "additive outliers",
+        "forecast accuracy",
+        "time series forecasting"
+      ],
+      "versions": [
+        {
+          "id": "W2001645924",
+          "doi": "10.1002/for.3980030208",
+          "title": "Monitoring and adjusting forecasts in the presence of additive outliers",
+          "paths": [
+            "q7"
+          ]
+        }
+      ],
+      "paths": [
+        "q7"
+      ],
+      "code": [],
+      "code_scope": "abstract",
+      "code_status": "not_checked",
+      "lookup_status": "not_checked",
+      "scores": {
+        "relevance": 12,
+        "mechanism": 8,
+        "value": 2,
+        "code": 0,
+        "cost": 0
+      },
+      "score": 22,
+      "reasons": [
+        "主题匹配词：forecasting",
+        "可核查的机制线索：additive outliers、forecast accuracy",
+        "比较价值：由研究问题语义检索发现，可作主题对照",
+        "公开实现线索（not_checked）：尚未查仓",
+        "复现成本：实现工作量待核实，数据获取条件待核实，算力预算未知"
+      ]
+    },
+    {
+      "id": "W7221196173",
+      "title": "CDSFNet: cycle-anchored dual-spectrum forecasting with confidence-adaptive fusion for long-term multivariate time series",
+      "doi": "10.1007/s11227-026-08925-4",
+      "url": "https://doi.org/10.1007/s11227-026-08925-4",
+      "date": "2026-10-09",
+      "year": 2026,
+      "type": "article",
+      "abstract": "",
+      "authors": [
+        {
+          "id": "A5158065042",
+          "name": "Guangwen Song"
+        },
+        {
+          "id": "A5036717624",
+          "name": "B Liu"
+        },
+        {
+          "id": "A5122843087",
+          "name": "Tianyi Feng"
+        },
+        {
+          "id": "A5158123360",
+          "name": "Jing Hu"
+        },
+        {
+          "id": "A5016863880",
+          "name": "Weiwei Lin"
+        }
+      ],
+      "institutions": [
+        "South China Normal University",
+        "South China University of Technology"
+      ],
+      "keywords": [
+        "phase consistency"
+      ],
+      "versions": [
+        {
+          "id": "W7221196173",
+          "doi": "10.1007/s11227-026-08925-4",
+          "title": "CDSFNet: cycle-anchored dual-spectrum forecasting with confidence-adaptive fusion for long-term multivariate time series",
+          "paths": [
+            "q6"
+          ]
+        }
+      ],
+      "paths": [
+        "q6"
+      ],
+      "code": [],
+      "code_scope": "abstract",
+      "code_status": "not_checked",
+      "lookup_status": "not_checked",
+      "scores": {
+        "relevance": 14,
+        "mechanism": 4,
+        "value": 2,
+        "code": 0,
+        "cost": 0
+      },
+      "score": 20,
+      "reasons": [
+        "主题匹配词：forecasting",
+        "可核查的机制线索：phase consistency；可与该检索路线对照：\"time series forecasting\" AND \"periodic residual\"",
+        "比较价值：由替代方法路线发现，可作主题对照",
+        "公开实现线索（not_checked）：尚未查仓",
+        "复现成本：实现工作量待核实，数据获取条件待核实，算力预算未知"
+      ]
+    },
+    {
+      "id": "W2071142960",
+      "title": "Level-adjusted exponential smoothing for modeling planned discontinuities",
+      "doi": "10.1016/s0169-2070(98)00083-1",
+      "url": "https://doi.org/10.1016/s0169-2070(98)00083-1",
+      "date": "1999-07-01",
+      "year": 1999,
+      "type": "article",
+      "abstract": "",
+      "authors": [
+        {
+          "id": "A5063593250",
+          "name": "Daniel W. Williams"
+        },
+        {
+          "id": "A5020885708",
+          "name": "Don M. Miller"
+        }
+      ],
+      "institutions": [
+        "Baruch College",
+        "City University of New York",
+        "Virginia Commonwealth University"
+      ],
+      "keywords": [
+        "level shifts",
+        "forecast updating",
+        "forecast accuracy",
+        "automated reporting",
+        "change detection"
+      ],
+      "versions": [
+        {
+          "id": "W2071142960",
+          "doi": "10.1016/s0169-2070(98)00083-1",
+          "title": "Level-adjusted exponential smoothing for modeling planned discontinuities",
+          "paths": [
+            "q7"
+          ]
+        }
+      ],
+      "paths": [
+        "q7"
+      ],
+      "code": [],
+      "code_scope": "abstract",
+      "code_status": "not_checked",
+      "lookup_status": "not_checked",
+      "scores": {
+        "relevance": 0,
+        "mechanism": 0,
+        "value": 2,
+        "code": 0,
+        "cost": 0
+      },
+      "score": 2,
+      "reasons": [
+        "主题匹配词：无直接词项命中",
+        "可核查的机制线索：level shifts、forecast updating、forecast accuracy",
+        "比较价值：由研究问题语义检索发现，可作主题对照",
+        "公开实现线索（not_checked）：尚未查仓",
+        "复现成本：实现工作量待核实，数据获取条件待核实，算力预算未知"
+      ]
+    }
+  ],
+  "top": [
+    "W4396917366",
+    "W7167581812",
+    "W4409158573"
+  ],
+  "experiment_context": {
+    "id": "cycle-e6bd782009166d68",
+    "path": "research/memory/cycles/cycle-e6bd782009166d68.json",
+    "next_action": "search",
+    "reason": "两条假设各完成两轮候选和一次五模型同预算复验。历史带来的速度收益尚无法区分运动趋势估计与额外动力学记忆。角速度更偏好低阶命令表示，原因可能与命令编码、操纵与反馈相关性或执行机构动态有关。再增加滤波阶数不能区分这些解释。已写入下轮检索问题，本次在交接处结束。",
+    "limits": "两条研究的原报告是各自短平台终点。最终结论取本轮 extended/paired_results.json 的 49,152 步，五组均已到最低学习率持续平台。121个训练架次、同39个开发架次、单种子17；整架次配对区间，实录控制条件预测。跨种子、封存泛化、独立激励、隐态物理含义与闭环效果尚未验证。",
+    "findings": [
+      {
+        "status": "supported",
+        "finding": "同结构下加入过去半秒运动，2秒速度 RMSE 降0.03136 m/s，95%架次区间[0.01433,0.05037]。对强基线角速度退化2.86%，未过2%门槛。均取49,152步，详见 research/rounds/history-identification-20261125/extended/paired_results.json。",
+        "refs": [
+          "study-f408239b1b1e/exp-ee674dbe15d9",
+          "study-f408239b1b1e/exp-254c0229bb0f",
+          "study-f408239b1b1e/baseline"
+        ],
+        "total_refs": 3
+      },
+      {
+        "status": "contradicted",
+        "finding": "相同更新49,152步，在当前混合编码中显式增加命令二、三阶形状，相对仅低阶的2秒角速度收益−3.27%，速度收益−1.73%，角减速为−1.54个百分点，配对95%区间[−2.89,−0.22]。两项必要方向均与原预测相反。",
+        "refs": [
+          "study-c636b4ae2d87/exp-36d39396fd30",
+          "study-c636b4ae2d87/exp-7c2120e6fa14"
+        ],
+        "total_refs": 2
+      },
+      {
+        "status": "supported",
+        "finding": "49,152步，仅低阶命令模型相对强基线的2秒角速度从0.54468降至0.53783 rad/s，27/39架改善，收益区间[0.00380,0.01005]；速度收益0.00099 m/s，区间跨零。符合本线工程保留条件，保留同预算权重。",
+        "refs": [
+          "study-c636b4ae2d87/baseline",
+          "study-c636b4ae2d87/exp-7c2120e6fa14"
+        ],
+        "total_refs": 2
+      },
+      {
+        "status": "unresolved",
+        "finding": "历史运动对短时速度的预测收益可来自局部趋势、降噪或额外隐态。低阶命令通道的角速度收益也可能受到编码混合和闭环反馈的影响。下一轮寻找可区分上述解释的开源匹配对照，并核实是否需要执行机构实测或独立激励。",
+        "refs": [
+          "study-f408239b1b1e/exp-ee674dbe15d9",
+          "study-c636b4ae2d87/exp-7c2120e6fa14"
+        ],
+        "total_refs": 2
+      }
+    ],
+    "total_findings": 4,
+    "question": "Which open-source controlled identification benchmarks can distinguish denoising or local velocity trend estimation from additional predictive-state memory, and separate command encoding effects from actuator dynamics w…"
+  },
+  "prior_refs": [
+    "study-c636b4ae2d87/baseline",
+    "study-c636b4ae2d87/exp-36d39396fd30",
+    "study-c636b4ae2d87/exp-7c2120e6fa14",
+    "study-f408239b1b1e/baseline",
+    "study-f408239b1b1e/exp-254c0229bb0f",
+    "study-f408239b1b1e/exp-ee674dbe15d9"
+  ],
+  "followup": {
+    "parent": "20261125T062113Z-dfd8a4a333a6",
+    "before": "PARTIAL",
+    "after": "PARTIAL",
+    "added_ids": [
+      "W3215624848",
+      "W4386928809",
+      "W4415795980",
+      "W4417289390",
+      "W7124997453",
+      "W7133222734",
+      "W7141736135",
+      "W7214204540"
+    ],
+    "lost_ids": [
+      "W2021033388",
+      "W4390190751",
+      "W4395098145",
+      "W4412626463",
+      "W4416017263",
+      "W7137939848",
+      "W7161555942",
+      "W7163164605",
+      "W7222962362"
+    ],
+    "before_issues": [
+      {
+        "severity": "partial",
+        "kind": "topic",
+        "path": "q1",
+        "reason": "\"trend\" AND \"seasonality\" AND \"interpretable forecasting\" 实取 9/67，检查单路上限或调整检索式"
+      },
+      {
+        "severity": "partial",
+        "kind": "topic",
+        "path": "q2",
+        "reason": "\"seasonal-trend decomposition\" AND \"forecasting\" 实取 9/795，检查单路上限或调整检索式"
+      },
+      {
+        "severity": "partial",
+        "kind": "topic",
+        "path": "q3",
+        "reason": "\"periodic\" AND \"disentangled\" AND \"time series forecasting\" 实取 9/25，检查单路上限或调整检索式"
+      },
+      {
+        "severity": "partial",
+        "kind": "alternative",
+        "path": "q4",
+        "reason": "\"harmonic\" AND \"trend\" AND \"forecasting\" AND \"neural network\" 实取 9/29，检查单路上限或调整检索式"
+      },
+      {
+        "severity": "partial",
+        "kind": "semantic",
+        "path": "q6",
+        "reason": "How can an additive forecast model distinguish periodic motion from slow trend and attribute forecast gains with matched ablations? 实取 9/50，检查单路上限或调整检索式"
+      },
+      {
+        "severity": "partial",
+        "kind": "repository",
+        "path": "q9",
+        "reason": "W7167581812：网络错误 SSLError"
+      },
+      {
+        "severity": "partial",
+        "kind": "readme",
+        "path": "q14",
+        "reason": "W4409158573：HTTP 403，请检查 API 访问权限或额度"
+      },
+      {
+        "severity": "partial",
+        "kind": "readme",
+        "path": "q16",
+        "reason": "W7160600450：HTTP 403，请检查 API 访问权限或额度"
+      },
+      {
+        "severity": "partial",
+        "kind": "readme",
+        "path": "q18",
+        "reason": "W7160705014：HTTP 403，请检查 API 访问权限或额度"
+      }
+    ],
+    "after_issues": [
+      {
+        "severity": "partial",
+        "kind": "topic",
+        "path": "q1",
+        "reason": "\"trend\" AND \"seasonality\" AND \"interpretable forecasting\" 实取 9/67，检查单路上限或调整检索式"
+      },
+      {
+        "severity": "partial",
+        "kind": "topic",
+        "path": "q2",
+        "reason": "\"seasonal-trend decomposition\" AND \"forecasting\" 实取 9/795，检查单路上限或调整检索式"
+      },
+      {
+        "severity": "partial",
+        "kind": "alternative",
+        "path": "q5",
+        "reason": "\"harmonic\" AND \"trend\" AND \"forecasting\" AND \"neural network\" 实取 9/29，检查单路上限或调整检索式"
+      },
+      {
+        "severity": "partial",
+        "kind": "semantic",
+        "path": "q7",
+        "reason": "How can an additive forecast model distinguish periodic motion from slow trend and attribute forecast gains with matched ablations? 实取 9/50，检查单路上限或调整检索式"
+      },
+      {
+        "severity": "partial",
+        "kind": "repository",
+        "path": "q12",
+        "reason": "W4396917366：HTTP 403，请检查 API 访问权限或额度"
+      },
+      {
+        "severity": "partial",
+        "kind": "repository",
+        "path": "q13",
+        "reason": "W4396917366：HTTP 403，请检查 API 访问权限或额度"
+      },
+      {
+        "severity": "partial",
+        "kind": "repository",
+        "path": "q14",
+        "reason": "W7167581812：HTTP 403，请检查 API 访问权限或额度"
+      },
+      {
+        "severity": "partial",
+        "kind": "repository",
+        "path": "q15",
+        "reason": "W7167581812：HTTP 403，请检查 API 访问权限或额度"
+      },
+      {
+        "severity": "partial",
+        "kind": "repository",
+        "path": "q16",
+        "reason": "W4409158573：HTTP 403，请检查 API 访问权限或额度"
+      },
+      {
+        "severity": "partial",
+        "kind": "readme",
+        "path": "q17",
+        "reason": "W4409158573：HTTP 403，请检查 API 访问权限或额度"
+      },
+      {
+        "severity": "partial",
+        "kind": "repository",
+        "path": "q18",
+        "reason": "W7160600450：HTTP 403，请检查 API 访问权限或额度"
+      },
+      {
+        "severity": "partial",
+        "kind": "repository",
+        "path": "q19",
+        "reason": "W7160600450：HTTP 403，请检查 API 访问权限或额度"
+      },
+      {
+        "severity": "partial",
+        "kind": "repository",
+        "path": "q20",
+        "reason": "W7160705014：HTTP 403，请检查 API 访问权限或额度"
+      },
+      {
+        "severity": "partial",
+        "kind": "repository",
+        "path": "q21",
+        "reason": "W7160705014：HTTP 403，请检查 API 访问权限或额度"
+      },
+      {
+        "severity": "partial",
+        "kind": "repository",
+        "path": "q22",
+        "reason": "W4402640700：HTTP 403，请检查 API 访问权限或额度"
+      }
+    ],
+    "checks": [],
+    "plan_changes": {
+      "keywords": {
+        "before": [
+          "\"seasonal-trend decomposition\" AND \"forecasting\"",
+          "\"periodic\" AND \"disentangled\" AND \"time series forecasting\""
+        ],
+        "after": [
+          "\"seasonal-trend decomposition\" AND \"forecasting\"",
+          "\"additive\" AND \"neuralprophet\"",
+          "\"periodic patterns\" AND \"residual cycle forecasting\""
+        ]
+      },
+      "lookups": {
+        "before": [
+          "N-BEATS: Neural basis expansion analysis for interpretable time series forecasting",
+          "CoST: Contrastive Learning of Disentangled Seasonal-Trend Representations for Time Series Forecasting"
+        ],
+        "after": [
+          "N-BEATS: Neural basis expansion analysis for interpretable time series forecasting",
+          "CoST: Contrastive Learning of Disentangled Seasonal-Trend Representations for Time Series Forecasting",
+          "NeuralProphet: Explainable Forecasting at Scale",
+          "CycleNet: Enhancing Time Series Forecasting through Modeling Periodic Patterns"
+        ]
+      }
+    }
+  },
+  "run_id": "20261125T062201Z-1a04428be1f9",
+  "created_at": "2026-11-25T06:22:01.427355+00:00",
+  "tool_version": "0.3.0"
+}

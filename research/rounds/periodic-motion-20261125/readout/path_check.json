@@ -1,0 +1,16 @@
+{
+  "train_windows": 4073,
+  "canonical_endpoint_max_error": 1.6689300537109375e-06,
+  "native_offgrid_path_disagreement_rms": [
+    0.13779155910015106,
+    0.25428450107574463
+  ],
+  "canonical_prefix_native_rms": [
+    0.7645761966705322,
+    0.8545107841491699
+  ],
+  "jittered_prefix_native_rms": [
+    0.765519917011261,
+    0.8777494430541992
+  ]
+}
