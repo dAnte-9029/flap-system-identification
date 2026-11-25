@@ -52,8 +52,8 @@ class FlightPredictor(nn.Module):
         return torch.einsum("bcqkj,bcjd->bqckd", weights, signal)
 
     def memory_features(self, moments):
-        c0, c1, c2, c3 = moments.unbind(dim=-2)
-        features = (c0, c1, torch.tanh(2 * c0) + c2, torch.tanh(2 * c1) + c3)
+        c0, c1 = moments[..., :2, :].unbind(dim=-2)
+        features = (c0, c1, torch.tanh(2 * c0), torch.tanh(2 * c1))
         return torch.cat(features, dim=-1)
 
     def rate(self, state, forcing):
