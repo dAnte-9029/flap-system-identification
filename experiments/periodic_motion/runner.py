@@ -18,7 +18,6 @@ old_load=fixed.load
 from model import FlightPredictor
 
 CACHE=Path("/home/zn/flap-system-identification/outputs/autopilot_periodic_motion_20261125")
-REFERENCE=Path("/home/zn/flap-system-identification/research/rounds/history-identification-20261125/extended/runs/low/final/metrics.json")
 COMMON=49152
 FLOOR=.000125
 
@@ -81,7 +80,7 @@ def train():
     gen=torch.Generator().manual_seed(seed)
     init=[p.detach().clone() for p in model.parameters()]
     history=[]; losses=[]
-    root=Path(os.environ["RA_TRAIN_INFO"]).parent
+    root=Path(os.environ["RA_OUTPUT"])
     first=COMMON
     for step in range(1,cap+1):
         ix=torch.randint(len(y),(384,),generator=gen).to("cuda")
