@@ -1,0 +1,83 @@
+schema_version: 1
+research_goal: 在相同过去半秒内，按真实翼拍进度取运动延迟能否超过固定时间或起点拍频延迟并改善冻结预测器？
+editable_paths:
+- research/rounds/phase-module-evidence-20261125/delay/arm.py
+data_version: velocity_rate_multistep_v1
+training:
+  preflight:
+  - /home/zn/anaconda3/envs/flap-train-gpu/bin/python
+  - research/rounds/phase-module-evidence-20261125/delay/run.py
+  - preflight
+  command:
+  - /home/zn/anaconda3/envs/flap-train-gpu/bin/python
+  - research/rounds/phase-module-evidence-20261125/delay/run.py
+  - train
+  budget:
+    steps: 16
+    seconds: 800
+  completion:
+    mode: sufficient_steps
+    min_steps: 16
+    rationale: 每次对一个真实时域和运动组求解完整凸岭回归；八时域两组共十六次，每次相对驻点残差低于1e-9。
+evaluation:
+  command:
+  - /home/zn/anaconda3/envs/flap-train-gpu/bin/python
+  - research/rounds/phase-module-evidence-20261125/delay/run.py
+  - evaluate
+  files:
+  - research/rounds/phase-module-evidence-20261125/delay/run.py
+  - research/rounds/phase-module-evidence-20261125/delay/data.py
+  - research/rounds/periodic-motion-20261125/readout/model.py
+  - research/rounds/periodic-motion-20261125/readout/strong.py
+  seconds: 160
+  protocol_version: fixed-eight-native-phase-delay-v1
+  primary: w2
+  min_gain: 0
+  metrics:
+  - name: v05
+    direction: minimize
+    unit: m/s
+  - name: w05
+    direction: minimize
+    unit: rad/s
+  - name: v1
+    direction: minimize
+    unit: m/s
+  - name: w1
+    direction: minimize
+    unit: rad/s
+  - name: v2
+    direction: minimize
+    unit: m/s
+    max_regression_pct_vs_baseline: 2
+  - name: w2
+    direction: minimize
+    unit: rad/s
+experiment:
+  baseline: research/phase-module-evidence-20261125
+  seeds:
+  - 17
+  - 29
+  - 43
+  split: validation
+  data_files:
+  - experiments/autopilot_flight_dynamics/data.json
+  - configs/data/velocity_rate_dataset_registry.yaml
+  protected_paths: []
+  device: cpu
+  preflight_seconds: 20
+  environment_version: flap-train-gpu numpy torch CPU；固定神经递推和原读出来自4ff8968
+  limits:
+    max_experiments: 2
+    max_retries: 1
+    total_seconds: 15000
+    gpu_seconds: 0
+  hypotheses:
+  - id: frequency-delay
+    prediction: 起点拍频对四个延迟的位置有独立价值。
+    falsifier: 不能胜过同容量固定延迟则不支持。
+    max_rounds: 1
+  - id: measured-delay
+    prediction: 实际拍距的历史对齐优于时间以及起点恒频近似。
+    falsifier: 两项对照没有一致开发架次改善则不能归因。
+    max_rounds: 1
