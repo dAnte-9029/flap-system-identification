@@ -1,0 +1,82 @@
+schema_version: 1
+research_goal: 完整复核双谐波圆矩的正确工况配对相对等容量错配时对短时角速度的贡献。
+editable_paths:
+- experiments/conditional_waveform/arm.py
+data_version: velocity_rate_multistep_v1
+training:
+  preflight:
+  - /home/zn/anaconda3/envs/flap-train-gpu/bin/python
+  - research/rounds/phase-module-evidence-20261125/waveform/study/runner.py
+  - preflight
+  command:
+  - /home/zn/anaconda3/envs/flap-train-gpu/bin/python
+  - research/rounds/phase-module-evidence-20261125/waveform/study/runner.py
+  - train
+  budget:
+    steps: 1
+    seconds: 180
+  completion:
+    mode: sufficient_steps
+    min_steps: 1
+    rationale: 全量样本一次分块累计，与一次批式多轴解等价；相对驻点残差必须低于1e-8。
+evaluation:
+  command:
+  - /home/zn/anaconda3/envs/flap-train-gpu/bin/python
+  - research/rounds/phase-module-evidence-20261125/waveform/study/runner.py
+  - evaluate
+  files:
+  - research/rounds/phase-module-evidence-20261125/waveform/study/runner.py
+  - research/rounds/phase-module-evidence-20261125/waveform/experiment.py
+  - research/rounds/phase-module-evidence-20261125/waveform/coherence/run.py
+  - research/rounds/phase-module-evidence-20261125/waveform/coherence/inference.py
+  - research/rounds/phase-module-evidence-20261125/coherence/module.py
+  - research/rounds/periodic-motion-20261125/readout/model.py
+  seconds: 90
+  protocol_version: paired-higher-harmonic-readout-rerun-v1
+  primary: w05
+  min_gain: 0
+  metrics:
+  - name: v05
+    direction: minimize
+    unit: m/s
+  - name: w05
+    direction: minimize
+    unit: rad/s
+  - name: v1
+    direction: minimize
+    unit: m/s
+  - name: w1
+    direction: minimize
+    unit: rad/s
+  - name: v2
+    direction: minimize
+    unit: m/s
+    max_regression_pct_vs_baseline: 2
+  - name: w2
+    direction: minimize
+    unit: rad/s
+experiment:
+  baseline: research/phase-module-evidence-20261125
+  seeds:
+  - 17
+  - 29
+  - 43
+  split: validation
+  data_files:
+  - experiments/autopilot_flight_dynamics/data.json
+  - configs/data/velocity_rate_dataset_registry.yaml
+  - research/rounds/phase-module-evidence-20261125/waveform/coherence/clock.npz
+  protected_paths: []
+  device: cuda:0
+  preflight_seconds: 20
+  environment_version: flap-train-gpu PyTorch, double-precision normal equations
+  limits:
+    max_experiments: 1
+    max_retries: 1
+    total_seconds: 4400
+    gpu_seconds: 4400
+  hypotheses:
+  - id: conditional-waveform
+    prediction: 保留真实工况与转角误差对应关系降低0.5秒角速度误差。
+    falsifier: 不胜过错配与原模型、或两秒速度恶化超过预定范围。
+    max_rounds: 1
