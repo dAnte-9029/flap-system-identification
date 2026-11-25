@@ -1,0 +1,35 @@
+{
+  "17": {
+    "max_component_discrepancy": 4.76837158203125e-07,
+    "shape": [
+      161,
+      8,
+      2,
+      3
+    ],
+    "earlier_prediction_change_after_future_command_intervention": 0.0,
+    "origin_readout": 0.0
+  },
+  "29": {
+    "max_component_discrepancy": 4.76837158203125e-07,
+    "shape": [
+      161,
+      8,
+      2,
+      3
+    ],
+    "earlier_prediction_change_after_future_command_intervention": 0.0,
+    "origin_readout": 0.0
+  },
+  "43": {
+    "max_component_discrepancy": 9.5367431640625e-07,
+    "shape": [
+      161,
+      8,
+      2,
+      3
+    ],
+    "earlier_prediction_change_after_future_command_intervention": 0.0,
+    "origin_readout": 0.0
+  }
+}

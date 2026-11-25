@@ -1,0 +1,47 @@
+{
+  "seed": 17,
+  "parameters": 40584,
+  "train": {
+    "split": "train",
+    "windows": 126237,
+    "flights": 121,
+    "median_segments": 113.0,
+    "max_segments": 119,
+    "max_dt": 0.11014699935913086
+  },
+  "validation": {
+    "split": "validation",
+    "windows": 44524,
+    "flights": 39,
+    "median_segments": 113.0,
+    "max_segments": 118,
+    "max_dt": 0.10596200078725815
+  },
+  "epochs": 126,
+  "steps": 31122,
+  "parameter_change_l2": 34.48494338989258,
+  "stop": "minimum_learning_rate_validation_plateau",
+  "best_epoch": 118,
+  "best_loss": 0.19541524382288103,
+  "metrics": {
+    "v05": 0.3440634248804071,
+    "w05": 0.5423218815679598,
+    "v1": 0.5398931189754951,
+    "w1": 0.5757436142136678,
+    "v2": 1.0914987059195278,
+    "w2": 0.6311295631016085
+  },
+  "preflight": {
+    "future_suffix_max": 0.0,
+    "half_step_max": 2.9627233743667603e-05,
+    "half_step_rms": 4.594268375512911e-06,
+    "windows": 48
+  },
+  "checkpoint_check": {
+    "future_suffix_max": 0.0,
+    "half_step_max": 0.0008859038352966309,
+    "half_step_rms": 0.00011550410999916494,
+    "windows": 48
+  },
+  "training_wall_s": 78.93420289549977
+}

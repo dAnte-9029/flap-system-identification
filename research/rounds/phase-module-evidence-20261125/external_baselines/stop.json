@@ -1,0 +1,14 @@
+{
+  "epoch": 108,
+  "steps": 13392,
+  "lr": 3.75e-05,
+  "validation": 0.17047528536522955,
+  "best": 0.16887600158006194,
+  "best_epoch": 100,
+  "train_last_batch": 0.13443899154663086,
+  "encoder_parameter_change": 0.24436300992965698,
+  "elapsed_s": 1172.9213028214872,
+  "stale": 8,
+  "reason": "plateau",
+  "original_steps": 2976
+}

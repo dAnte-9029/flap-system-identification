@@ -1,0 +1,276 @@
+{
+  "train_flights": 121,
+  "train_pairs": 505616,
+  "dev_flights": 39,
+  "normal_residual": {
+    "global": 7.974357773102934e-17,
+    "conditional": 7.974357773102934e-16,
+    "sham": 5.008053048833153e-16
+  },
+  "scores": {
+    "early": {
+      "global": {
+        "loss": 0.05445724838454169,
+        "alignment": 0.972345991943813,
+        "magnitude": 0.9761596215594196
+      },
+      "direction": {
+        "loss": 0.031376053406286755,
+        "alignment": 0.9842029083745407,
+        "magnitude": 0.9761596215594196
+      },
+      "magnitude": {
+        "loss": 0.05451115842760377,
+        "alignment": 0.972345991943813,
+        "magnitude": 0.9783183512012912
+      },
+      "conditional": {
+        "loss": 0.0313628856778831,
+        "alignment": 0.9842029083745407,
+        "magnitude": 0.9783183512012911
+      },
+      "sham": {
+        "loss": 0.05796170436431942,
+        "alignment": 0.9705109746221309,
+        "magnitude": 0.975208924639442
+      },
+      "legacy": {
+        "loss": 0.07112574811943209,
+        "alignment": 0.9721738567298394,
+        "magnitude": 0.850027356392298
+      },
+      "conditional_vs_global": {
+        "loss_reduction": 0.023094362706658596,
+        "interval95": [
+          0.021201498144779455,
+          0.025145334536851957
+        ],
+        "improved_flights": 39
+      },
+      "conditional_vs_sham": {
+        "loss_reduction": 0.02659881868643631,
+        "interval95": [
+          0.02455618461149192,
+          0.028808033092461424
+        ],
+        "improved_flights": 39
+      },
+      "conditional_vs_legacy": {
+        "loss_reduction": 0.03976286244154897,
+        "interval95": [
+          0.03801578188957977,
+          0.041546405818237875
+        ],
+        "improved_flights": 39
+      },
+      "magnitude_vs_global": {
+        "loss_reduction": -5.391004306207719e-05,
+        "interval95": [
+          -8.654430868805788e-05,
+          -1.290833857723548e-05
+        ],
+        "improved_flights": 7
+      },
+      "conditional_vs_direction": {
+        "loss_reduction": 1.316772840365168e-05,
+        "interval95": [
+          -9.667445891859689e-06,
+          3.500575224199003e-05
+        ],
+        "improved_flights": 23
+      },
+      "direction_vs_global": {
+        "loss_reduction": 0.02308119497825495,
+        "interval95": [
+          0.021175965664264544,
+          0.025146960468494215
+        ],
+        "improved_flights": 39
+      },
+      "conditional_vs_magnitude": {
+        "loss_reduction": 0.023148272749720675,
+        "interval95": [
+          0.021255023894722603,
+          0.025197865465204843
+        ],
+        "improved_flights": 39
+      }
+    },
+    "mid": {
+      "global": {
+        "loss": 0.1394156389513837,
+        "alignment": 0.9274483321580533,
+        "magnitude": 0.9331577069406602
+      },
+      "direction": {
+        "loss": 0.10167082920503583,
+        "alignment": 0.9476842481254689,
+        "magnitude": 0.9331577069406606
+      },
+      "magnitude": {
+        "loss": 0.1402287979528669,
+        "alignment": 0.9274483321580533,
+        "magnitude": 0.9427829164138262
+      },
+      "conditional": {
+        "loss": 0.10186272355930176,
+        "alignment": 0.9476842481254689,
+        "magnitude": 0.9427829164138262
+      },
+      "sham": {
+        "loss": 0.14562197064498916,
+        "alignment": 0.9241563798747428,
+        "magnitude": 0.9336861774135343
+      },
+      "legacy": {
+        "loss": 0.2010123479178097,
+        "alignment": 0.9266258453696137,
+        "magnitude": 0.6848370264738034
+      },
+      "conditional_vs_global": {
+        "loss_reduction": 0.03755291539208194,
+        "interval95": [
+          0.03518138174256589,
+          0.04018267647348687
+        ],
+        "improved_flights": 39
+      },
+      "conditional_vs_sham": {
+        "loss_reduction": 0.043759247085687354,
+        "interval95": [
+          0.03905848762169443,
+          0.04844138846683468
+        ],
+        "improved_flights": 39
+      },
+      "conditional_vs_legacy": {
+        "loss_reduction": 0.09914962435850792,
+        "interval95": [
+          0.09525411285293309,
+          0.10276132420326851
+        ],
+        "improved_flights": 39
+      },
+      "magnitude_vs_global": {
+        "loss_reduction": -0.0008131590014831888,
+        "interval95": [
+          -0.0010573216977170705,
+          -0.000590173101135142
+        ],
+        "improved_flights": 4
+      },
+      "conditional_vs_direction": {
+        "loss_reduction": -0.00019189435426595166,
+        "interval95": [
+          -0.0004337658551932345,
+          2.134196578785153e-05
+        ],
+        "improved_flights": 21
+      },
+      "direction_vs_global": {
+        "loss_reduction": 0.03774480974634789,
+        "interval95": [
+          0.03531120599774019,
+          0.04040386765994888
+        ],
+        "improved_flights": 39
+      },
+      "conditional_vs_magnitude": {
+        "loss_reduction": 0.038366074393565125,
+        "interval95": [
+          0.035867352384449776,
+          0.04109406274699634
+        ],
+        "improved_flights": 39
+      }
+    },
+    "late": {
+      "global": {
+        "loss": 0.4239509712616017,
+        "alignment": 0.7519894839754383,
+        "magnitude": 0.7522704857817725
+      },
+      "direction": {
+        "loss": 0.4052288021911453,
+        "alignment": 0.764120262971566,
+        "magnitude": 0.7522704857817725
+      },
+      "magnitude": {
+        "loss": 0.4242175517600606,
+        "alignment": 0.7519894839754385,
+        "magnitude": 0.7649643781745378
+      },
+      "conditional": {
+        "loss": 0.40579054351552796,
+        "alignment": 0.764120262971566,
+        "magnitude": 0.7649643781745378
+      },
+      "sham": {
+        "loss": 0.4368776171469439,
+        "alignment": 0.7440678011293519,
+        "magnitude": 0.7630486155824617
+      },
+      "legacy": {
+        "loss": 0.5086274333949063,
+        "alignment": 0.7533331265515709,
+        "magnitude": 0.46156809345269817
+      },
+      "conditional_vs_global": {
+        "loss_reduction": 0.018160427746073866,
+        "interval95": [
+          0.013251235134528517,
+          0.023032704526995493
+        ],
+        "improved_flights": 37
+      },
+      "conditional_vs_sham": {
+        "loss_reduction": 0.03108707363141617,
+        "interval95": [
+          0.02004627717794056,
+          0.04182710633819535
+        ],
+        "improved_flights": 32
+      },
+      "conditional_vs_legacy": {
+        "loss_reduction": 0.10283688987937853,
+        "interval95": [
+          0.085407414592832,
+          0.11892480336181246
+        ],
+        "improved_flights": 37
+      },
+      "magnitude_vs_global": {
+        "loss_reduction": -0.00026658049845894354,
+        "interval95": [
+          -0.001552627180503772,
+          0.0008551649449416354
+        ],
+        "improved_flights": 21
+      },
+      "conditional_vs_direction": {
+        "loss_reduction": -0.0005617413243825425,
+        "interval95": [
+          -0.0022276525466045677,
+          0.0008681102737628499
+        ],
+        "improved_flights": 21
+      },
+      "direction_vs_global": {
+        "loss_reduction": 0.018722169070456405,
+        "interval95": [
+          0.01463840322005011,
+          0.023034298770872597
+        ],
+        "improved_flights": 36
+      },
+      "conditional_vs_magnitude": {
+        "loss_reduction": 0.018427008244532805,
+        "interval95": [
+          0.014199173857120459,
+          0.02286910604769421
+        ],
+        "improved_flights": 37
+      }
+    }
+  }
+}

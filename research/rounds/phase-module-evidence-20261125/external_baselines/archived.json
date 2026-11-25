@@ -1,0 +1,29 @@
+{
+  "metrics": {
+    "v05": 0.5118674682222317,
+    "w05": 0.6967098811379785,
+    "v1": 0.6577350283913003,
+    "w1": 0.6847768997733048,
+    "v2": 1.1505210641275723,
+    "w2": 0.6924196427547963
+  },
+  "matched_validation_loss": 0.2632108249441978,
+  "native_check": {
+    "time_max_abs_s": 0.0,
+    "target_max_abs": 4.7536265768144403e-07,
+    "valid_integer_count": 712384,
+    "windows": 44524,
+    "flights": 39,
+    "archive_metric_signed_replay_difference": {
+      "v05": -6.510175754037562e-07,
+      "w05": 6.945050901041583e-08,
+      "v1": -1.9286819114006093e-06,
+      "w1": -6.203013147576542e-08,
+      "v2": -3.5521138828098486e-06,
+      "w2": -1.2462496445930782e-07
+    }
+  },
+  "weights": "/home/zn/flap-system-identification/outputs/controlled_baselines_20261119_run1/tcn/best.pt",
+  "epoch": 24,
+  "updates": 2976
+}

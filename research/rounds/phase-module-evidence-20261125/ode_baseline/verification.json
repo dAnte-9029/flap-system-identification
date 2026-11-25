@@ -1,0 +1,9 @@
+{
+  "windows": 156,
+  "flights": 39,
+  "export_same_batch_max_abs": 0.0,
+  "export_different_batch_max_abs": 0.0019931793212890625,
+  "changed_control_prefix_max": 0.0,
+  "half_step_vrmse": 0.0007585870916955173,
+  "half_step_wrmse": 0.0009434522944502532
+}
