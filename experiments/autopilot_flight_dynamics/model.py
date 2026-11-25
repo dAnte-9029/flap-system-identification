@@ -1,4 +1,4 @@
-"""Predict trajectories by integrating interval-local rates evaluated at each predicted latent state."""
+"""Predict latent-state increments from local forcing and polynomial moments of each command prefix."""
 import torch
 from torch import nn
 
@@ -17,6 +17,8 @@ class FlightPredictor(nn.Module):
         self.field_linear = nn.Linear(inputs, latent)
         self.readout = nn.Sequential(nn.Linear(latent, 16), nn.Tanh(), nn.Linear(16, 6, bias=False))
         self.readout_linear = nn.Linear(latent, 6, bias=False)
+        self.memory_rate = nn.Linear(16, latent, bias=False)
+        nn.init.zeros_(self.memory_rate.weight)
 
     def interval_features(self, pooled, u0, time):
         previous = torch.cat((torch.zeros_like(time[:, :1]), time[:, :-1]), dim=1)
@@ -32,6 +34,28 @@ class FlightPredictor(nn.Module):
         command = torch.cat((u0[:, None, None].expand(-1, time.shape[1], 2, -1), centered), dim=-1)
         return dt, torch.cat((command, dt, midpoint, torch.exp(-midpoint / self.tau)), dim=-1)
 
+    def command_moments(self, centered_command, time):
+        # For each native clock, integrate piecewise-constant interval means on [0,T].
+        # time: (batch, query, clock). Normalized edges past each endpoint both equal 1,
+        # so those intervals get exactly zero weight at that query.
+        edges = time.transpose(1, 2)
+        upper = (edges.unsqueeze(-2) / edges.unsqueeze(-1)).clamp(max=1.)
+        # Primitives of P_k(2s-1) on [0,1], including orthonormal scale sqrt(2k+1).
+        product = upper * (upper - 1.)
+        cumulative = torch.stack((upper,
+                                  3.**.5 * product,
+                                  5.**.5 * product * (2. * upper - 1.),
+                                  7.**.5 * product * (5. * product + 1.)), dim=-2)
+        bounds = torch.cat((torch.zeros_like(cumulative[..., :1]), cumulative), dim=-1)
+        weights = bounds[..., 1:] - bounds[..., :-1]
+        signal = centered_command.transpose(1, 2)
+        return torch.einsum("bcqkj,bcjd->bqckd", weights, signal)
+
+    def memory_features(self, moments):
+        c0, c1, c2, c3 = moments.unbind(dim=-2)
+        features = (c0, c1, torch.tanh(2 * c0) + c2, torch.tanh(2 * c1) + c3)
+        return torch.cat(features, dim=-1)
+
     def rate(self, state, forcing):
         features = torch.cat((state, forcing), dim=-1)
         return self.field_linear(features) + self.field(features)
@@ -42,11 +66,14 @@ class FlightPredictor(nn.Module):
     def forward(self, hist, pooled, u0, time):
         initial = self.encoder((hist - self.mean) / self.std)[:, None, None]
         dt, forcing = self.interval_features(pooled, u0, time)
+        # The four raw channels of the tau=1 s exponential interval summary.
+        moments = self.command_moments(forcing[..., 12:16], time)
+        memory_rate = self.memory_rate(self.memory_features(moments))
         # Each interval queries the latent state reached at its own native start time.
         state = initial[:, 0].expand(-1, 2, -1)
         trajectory = []
-        for duration, command in zip(dt.unbind(dim=1), forcing.unbind(dim=1)):
-            state = state + duration * self.rate(state, command)
+        for duration, command, extra_rate in zip(dt.unbind(1), forcing.unbind(1), memory_rate.unbind(1)):
+            state = state + duration * (self.rate(state, command) + extra_rate)
             trajectory.append(state)
         states = torch.stack(trajectory, dim=1)
         change = self.observe(states) - self.observe(initial)
