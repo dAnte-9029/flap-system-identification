@@ -7,7 +7,7 @@ from torch.nn import functional as F
 
 
 class FlightPredictor(nn.Module):
-    carrier_basis = "wingbeat"
+    carrier_basis = "slow"
 
     def __init__(self, mean, std):
         super().__init__()
