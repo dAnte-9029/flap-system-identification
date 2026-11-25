@@ -1,7 +1,7 @@
 schema_version: 1
 research_goal: 在相同过去半秒内，按真实翼拍进度取运动延迟能否超过固定时间或起点拍频延迟并改善冻结预测器？
 editable_paths:
-- research/rounds/phase-module-evidence-20261125/delay/arm.py
+- experiments/phase_delay/arm.py
 data_version: velocity_rate_multistep_v1
 training:
   preflight:

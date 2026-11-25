@@ -11,6 +11,7 @@ import numpy as np
 import torch
 
 from data import CLOCKS, corrected, load, taps
+sys.path.insert(0, str(Path(__file__).resolve().parents[4] / "experiments" / "phase_delay"))
 from arm import CLOCK
 
 WIDTH = 256
