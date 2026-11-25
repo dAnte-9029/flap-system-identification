@@ -1,4 +1,4 @@
-"""Predict trajectories by integrating history-conditioned, interval-local latent rates."""
+"""Predict trajectories by integrating interval-local rates evaluated at each predicted latent state."""
 import torch
 from torch import nn
 
@@ -42,8 +42,12 @@ class FlightPredictor(nn.Module):
     def forward(self, hist, pooled, u0, time):
         initial = self.encoder((hist - self.mean) / self.std)[:, None, None]
         dt, forcing = self.interval_features(pooled, u0, time)
-        # All local rates query the same initial state. Prefix addition enforces causality.
-        query = initial.expand(-1, time.shape[1], 2, -1)
-        states = initial + torch.cumsum(dt * self.rate(query, forcing), dim=1)
+        # Each interval queries the latent state reached at its own native start time.
+        state = initial[:, 0].expand(-1, 2, -1)
+        trajectory = []
+        for duration, command in zip(dt.unbind(dim=1), forcing.unbind(dim=1)):
+            state = state + duration * self.rate(state, command)
+            trajectory.append(state)
+        states = torch.stack(trajectory, dim=1)
         change = self.observe(states) - self.observe(initial)
         return torch.stack((change[:, :, 0, :3], change[:, :, 1, 3:]), dim=2)
