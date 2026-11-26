@@ -1,0 +1,230 @@
+{
+  "v05": {
+    "reference": 0.2961384847889137,
+    "candidate": 0.2961384847889137,
+    "candidate_minus_reference": 0.0,
+    "interval95": [
+      0.0,
+      0.0
+    ],
+    "improved": 0,
+    "flights": 39
+  },
+  "w05": {
+    "reference": 0.4738436057688553,
+    "candidate": 0.5631932846066251,
+    "candidate_minus_reference": 0.08934967883776979,
+    "interval95": [
+      0.07576861847572257,
+      0.10349636762933105
+    ],
+    "improved": 0,
+    "flights": 39
+  },
+  "v1": {
+    "reference": 0.4933996005987151,
+    "candidate": 0.4933996005987151,
+    "candidate_minus_reference": 0.0,
+    "interval95": [
+      0.0,
+      0.0
+    ],
+    "improved": 0,
+    "flights": 39
+  },
+  "w1": {
+    "reference": 0.49484845652575943,
+    "candidate": 0.601601315336671,
+    "candidate_minus_reference": 0.10675285881091162,
+    "interval95": [
+      0.08993161151836042,
+      0.12408024864557268
+    ],
+    "improved": 0,
+    "flights": 39
+  },
+  "v2": {
+    "reference": 0.9850171131422938,
+    "candidate": 0.9850171131422938,
+    "candidate_minus_reference": 0.0,
+    "interval95": [
+      0.0,
+      0.0
+    ],
+    "improved": 0,
+    "flights": 39
+  },
+  "w2": {
+    "reference": 0.5352834581551388,
+    "candidate": 0.6445509646189963,
+    "candidate_minus_reference": 0.10926750646385752,
+    "interval95": [
+      0.09110338011163818,
+      0.12771319892207916
+    ],
+    "improved": 0,
+    "flights": 39
+  },
+  "full_all": {
+    "versus_AC": {
+      "reference": 0.5310865743644931,
+      "candidate": 0.23755362792878526,
+      "candidate_minus_reference": -0.2935329464357079,
+      "interval95": [
+        -0.33018603285472203,
+        -0.2539373906822971
+      ],
+      "improved": 30,
+      "flights": 30
+    },
+    "versus_persistence": {
+      "reference": 0.3255486929587077,
+      "candidate": 0.23755362792878526,
+      "candidate_minus_reference": -0.08799506502992244,
+      "interval95": [
+        -0.1287376338919892,
+        -0.04740300464456035
+      ],
+      "improved": 26,
+      "flights": 30
+    },
+    "direction": {
+      "reference": 0.4327977566725577,
+      "candidate": 0.7772034010117914,
+      "candidate_minus_reference": 0.3444056443392337,
+      "interval95": [
+        0.268319327019049,
+        0.42499924840678727
+      ],
+      "improved": 29,
+      "flights": 30
+    }
+  },
+  "full_high": {
+    "versus_AC": {
+      "reference": 0.5607680301395257,
+      "candidate": 0.21525335481570373,
+      "candidate_minus_reference": -0.34551467532382196,
+      "interval95": [
+        -0.40072408322968156,
+        -0.2941856614170537
+      ],
+      "improved": 24,
+      "flights": 24
+    },
+    "versus_persistence": {
+      "reference": 0.46848206114579694,
+      "candidate": 0.21525335481570373,
+      "candidate_minus_reference": -0.2532287063300932,
+      "interval95": [
+        -0.28829018228377634,
+        -0.2187681153364644
+      ],
+      "improved": 24,
+      "flights": 24
+    },
+    "direction": {
+      "reference": 0.5491025483025189,
+      "candidate": 0.8934105301476547,
+      "candidate_minus_reference": 0.3443079818451358,
+      "interval95": [
+        0.2672301779007967,
+        0.4365472170278901
+      ],
+      "improved": 24,
+      "flights": 24
+    }
+  },
+  "retrospective_rate": {
+    "versus_AC": {
+      "reference": 0.5858781220138141,
+      "candidate": 0.4541080369630597,
+      "candidate_minus_reference": -0.13177008505075438,
+      "interval95": [
+        -0.18531171289732215,
+        -0.08560296869160582
+      ],
+      "improved": 27,
+      "flights": 38
+    },
+    "versus_persistence": {
+      "reference": 0.18061839091161574,
+      "candidate": 0.4541080369630597,
+      "candidate_minus_reference": 0.27348964605144394,
+      "interval95": [
+        0.23864755412423283,
+        0.30652709123331656
+      ],
+      "improved": 0,
+      "flights": 38
+    },
+    "direction": {
+      "reference": 0.05361782162185987,
+      "candidate": 0.10623864090098932,
+      "candidate_minus_reference": 0.05262081927912945,
+      "interval95": [
+        0.0014166716542417137,
+        0.10039489098821958
+      ],
+      "improved": 19,
+      "flights": 38
+    }
+  },
+  "retrospective_speed": {
+    "versus_AC": {
+      "reference": 0.6427419332445031,
+      "candidate": 0.6427419332445031,
+      "candidate_minus_reference": 0.0,
+      "interval95": [
+        0.0,
+        0.0
+      ],
+      "improved": 0,
+      "flights": 27
+    },
+    "versus_persistence": {
+      "reference": 1.6535827281565494,
+      "candidate": 0.6427419332445031,
+      "candidate_minus_reference": -1.0108407949120464,
+      "interval95": [
+        -1.2853112651859113,
+        -0.7376855053757433
+      ],
+      "improved": 26,
+      "flights": 27
+    },
+    "direction": {
+      "reference": 0.9367135270030292,
+      "candidate": 0.9367135270030292,
+      "candidate_minus_reference": 0.0,
+      "interval95": [
+        0.0,
+        0.0
+      ],
+      "improved": 0,
+      "flights": 27
+    }
+  },
+  "slow_readout_all": {
+    "reference": 0.3255486929587077,
+    "candidate": 0.18278265698906088,
+    "candidate_minus_reference": -0.14276603596964682,
+    "interval95": [
+      -0.18107837766190205,
+      -0.10520103622704388
+    ],
+    "improved": 29,
+    "flights": 30
+  },
+  "slow_readout_high": {
+    "reference": 0.46848206114579694,
+    "candidate": 0.20464957846196064,
+    "candidate_minus_reference": -0.2638324826838363,
+    "interval95": [
+      -0.2994619452675217,
+      -0.22887900126784155
+    ],
+    "improved": 24,
+    "flights": 24
+  }
+}
