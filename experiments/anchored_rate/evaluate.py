@@ -49,7 +49,7 @@ def native(net,use,d,b,out):
             slow=anchor[ii]+drift
             absolute=origin[ii]+net.offsets(h,p,u,t,co,anchor[ii],origin[ii])[:,0]+drift
             valid=b['ok'][ii]&(cc==1)
-            base[valid]=absolute[valid].double()
+            base[valid]=absolute[valid].to(base.dtype)
         full.append(base.numpy());branch.append(slow.numpy())
     full=np.concatenate(full);branch=np.concatenate(branch)
     first=np.r_[0,np.flatnonzero(np.diff(ref['block']))+1]

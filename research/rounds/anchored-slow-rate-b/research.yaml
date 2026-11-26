@@ -10,7 +10,7 @@ training:
 evaluation:
   command: [/home/zn/anaconda3/envs/flap-train-gpu/bin/python, -B, experiments/anchored_rate/evaluate.py]
   files: [experiments/anchored_rate/evaluate.py, experiments/anchored_rate/anchored_model.py, experiments/anchored_rate/labels.py, experiments/anchored_rate/train.py]
-  protocol_version: anchored-rate-native-v1
+  protocol_version: anchored-rate-native-v1.1
   primary: w2
   min_gain: 0
   seconds: 240
