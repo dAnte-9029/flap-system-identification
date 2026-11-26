@@ -39,7 +39,7 @@ class Dynamics(nn.Module):
         left=torch.cat((u[:,None,None].expand(-1,1,2,-1),filtered),1)
         return dt,f,memory,left
 
-    def forward(self,hist,anchor,dt,f,memory,left,freeze_s=False,quadrature=None):
+    def forward(self,hist,anchor,dt,f,memory,left,freeze_s=False,quadrature=None,trace=False):
         h0=self.core.encoder(hist)+self.anchor_init(anchor)
         h=h0[:,None].expand(-1,2,-1)
         if self.coupled:
@@ -53,7 +53,7 @@ class Dynamics(nn.Module):
             if self.coupled:
                 equilibrium=self.s_target(torch.cat((h,s,left[:,i]),-1))
                 field=field+self.feedback(s)
-                if quadrature is not None:
+                if quadrature is not None or trace:
                     s_begin.append(s[:,1])
                     targets.append(equilibrium[:,1])
                 if not freeze_s:
@@ -72,6 +72,13 @@ class Dynamics(nn.Module):
             if not freeze_s:
                 avg=avg+(alpha[:,:,None]*(eq-starts)).sum(1)
             read=anchor[:,:3]+self.s_readout(avg-s0)
+        if trace:
+            hs=torch.cat((h0[:,None],torch.stack(htraj,1)[:,:,1]),1)
+            ss=None
+            if self.coupled:
+                # The quadrature path already appended the terminal state.
+                ss=torch.stack(s_begin if quadrature is not None else [*s_begin,s[:,1]],1)
+            return motion,read,hs,ss
         return motion,read
 
     def point(self,h,pool,u,time,anchor,qt,qp,freeze_s=False,return_s=False):

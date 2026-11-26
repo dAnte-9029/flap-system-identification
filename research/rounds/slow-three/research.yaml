@@ -1,0 +1,93 @@
+schema_version: 1
+research_goal: 在固定 A+C 上实施三轮证据驱动的慢隐状态与原生拍均/拍内监督独立消融
+data_version: velocity_rate_multistep_v1
+editable_paths:
+- experiments/slow_iterations/recipe.py
+- experiments/slow_iterations/fit_stage.py
+training:
+  preflight:
+  - /home/zn/anaconda3/envs/flap-train-gpu/bin/python
+  - -B
+  - experiments/slow_iterations/fit_stage.py
+  - preflight
+  command:
+  - /home/zn/anaconda3/envs/flap-train-gpu/bin/python
+  - -B
+  - experiments/slow_iterations/fit_stage.py
+  - fit
+  budget:
+    steps: 2976
+    seconds: 1500
+  completion:
+    mode: sufficient_steps
+    min_steps: 2976
+    rationale: 每个重训臂完整遍历24次、2976更新，主比较固定末步，另报选时端点
+evaluation:
+  command:
+  - /home/zn/anaconda3/envs/flap-train-gpu/bin/python
+  - -B
+  - experiments/slow_iterations/judge.py
+  files:
+  - experiments/coupled_slow/evaluate.py
+  - experiments/coupled_slow/network.py
+  - experiments/coupled_slow/dataset.py
+  - experiments/coupled_slow/shifted.py
+  - experiments/coupled_slow/fit_coupled.py
+  - experiments/slow_iterations/judge.py
+  - experiments/slow_iterations/shared.py
+  protocol_version: three-rounds-native-last24-v1
+  primary: w2
+  min_gain: 0
+  seconds: 900
+  metrics:
+  - name: w2
+    direction: minimize
+    unit: rad/s
+  - name: w1
+    direction: minimize
+    unit: rad/s
+    max_regression_pct_vs_baseline: 0
+  - name: w05
+    direction: minimize
+    unit: rad/s
+    max_regression_pct_vs_baseline: 0
+  - name: v05
+    direction: minimize
+    unit: m/s
+    max_regression_pct_vs_baseline: 0
+  - name: v1
+    direction: minimize
+    unit: m/s
+    max_regression_pct_vs_baseline: 0
+  - name: v2
+    direction: minimize
+    unit: m/s
+    max_regression_pct_vs_baseline: 0
+  - name: slowrate
+    direction: minimize
+    unit: rad/s
+  - name: offgrid2
+    direction: minimize
+    unit: rad/s
+experiment:
+  baseline: research/slow-motion-three-rounds
+  split: validation
+  seeds:
+  - 17
+  data_files:
+  - configs/data/velocity_rate_dataset_registry.yaml
+  - dataset/velocity_rate_multistep_v1/dataset_manifest.json
+  protected_paths: []
+  device: cuda:0
+  preflight_seconds: 80
+  environment_version: flap-train-gpu PyTorch CUDA on RTX 4090
+  hypotheses:
+  - id: slow-identification
+    prediction: 独立重训移除有效分量将损害跨拍或原生预测，报告正式端点代价
+    falsifier: 独立重训无损改善或收益仅来自训练标签
+    max_rounds: 3
+  limits:
+    max_experiments: 3
+    max_retries: 1
+    total_seconds: 14500
+    gpu_seconds: 14000

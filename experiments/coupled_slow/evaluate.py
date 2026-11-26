@@ -65,7 +65,8 @@ def beats(net,orig,d,b,flight,freeze,cache,out):
     v=df.loc[take,['flight','window']].copy()
     v['native']=mean(mse(p,ref['data'][ids])[:,None])[take,0]
     v['beat_mean']=mse(mp,raw)[take];v['centered']=v.native-v.beat_mean
-    by=average(v,['native','beat_mean','centered'])
+    if s is not None:v['readout_gap']=mse(mp[take],mean(s)[take])
+    by=average(v,[k for k in ('native','beat_mean','centered','readout_gap') if k in v])
     scores['measured']={k:float(np.sqrt(v)) for k,v in by.mean().items()}
     by.to_csv(out/'native_by_flight.csv')
     pd.concat(tables).reset_index().to_csv(out/'trends_by_flight.csv',index=False)
