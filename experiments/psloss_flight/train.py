@@ -53,19 +53,26 @@ def preflight():
     after=integral(tape,q)
     np.testing.assert_array_equal(first[:,:2],after[:,:2])
     np.testing.assert_allclose(after[0,2,0]-first[0,2,0],.4,atol=1e-6)
-    if ARM!="mse":
-        # On supported patches, the adapted splitter must reproduce the authors' loss and gradients.
-        from exp.exp_main import Exp_Main
-        ps=FlightPS(m.core)
-        x=d.x[:16]; target=m.grid(x)[:,1:96].detach()+.15*torch.sin(torch.arange(95)/8)[None,:,None]
-        pred=m.grid(x)[:,1:96]
-        a=ps.ps_loss(target,pred)
-        orig=object.__new__(Exp_Main);orig.model=m.core;orig.kl_loss=ps.kl_loss;orig.patch_len_threshold=24
-        b=orig.ps_loss(target,pred)
-        ga=torch.autograd.grad(a,m.core.Linear_Trend.weight,retain_graph=True)[0]
-        gb=torch.autograd.grad(b,m.core.Linear_Trend.weight)[0]
-        torch.testing.assert_close(a,b);torch.testing.assert_close(ga,gb)
+    check_loss(m,d)
     print("preflight ok", ARM, flush=True)
+
+
+def check_loss(m,d):
+    # Use a known supported period for parity, then check the zero-stride edge separately.
+    from exp.exp_main import Exp_Main
+    ps=FlightPS(m.core)
+    x=d.x[:16]
+    pred=m.grid(x)[:,1:96]
+    target=torch.sin(torch.arange(95)*2*torch.pi/24)[None,:,None].expand_as(pred).contiguous()
+    a=ps.ps_loss(target,pred)
+    orig=object.__new__(Exp_Main);orig.model=m.core;orig.kl_loss=ps.kl_loss;orig.patch_len_threshold=24
+    b=orig.ps_loss(target,pred)
+    ga=torch.autograd.grad(a,m.core.Linear_Trend.weight,retain_graph=True)[0]
+    gb=torch.autograd.grad(b,m.core.Linear_Trend.weight)[0]
+    torch.testing.assert_close(a,b);torch.testing.assert_close(ga,gb)
+    alternating=((torch.arange(95)%2)*2.-1)[None,:,None].expand_as(pred).contiguous()
+    edge=ps.ps_loss(alternating,m.grid(x)[:,1:96])
+    assert ps.clamped==1 and edge.isfinite()
 
 
 def monitor_indices(flights):
