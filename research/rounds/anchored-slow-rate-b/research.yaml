@@ -1,0 +1,37 @@
+schema_version: 1
+research_goal: 以历史翼拍拍均角速度和命令条件隐状态增量构造模块B，配对比较A+B+C与冻结A+C
+data_version: velocity_rate_multistep_v1
+editable_paths: [experiments/anchored_rate/arm.py]
+training:
+  preflight: [/home/zn/anaconda3/envs/flap-train-gpu/bin/python, -B, experiments/anchored_rate/train.py, preflight]
+  command: [/home/zn/anaconda3/envs/flap-train-gpu/bin/python, -B, experiments/anchored_rate/train.py, fit]
+  budget: {steps: 1, seconds: 600}
+  completion: {mode: sufficient_steps, min_steps: 1, rationale: 完整训练集构造确定性凸二次目标并一次精确求解，单次拟合检查正规方程残差}
+evaluation:
+  command: [/home/zn/anaconda3/envs/flap-train-gpu/bin/python, -B, experiments/anchored_rate/evaluate.py]
+  files: [experiments/anchored_rate/evaluate.py, experiments/anchored_rate/anchored_model.py, experiments/anchored_rate/labels.py, experiments/anchored_rate/train.py]
+  protocol_version: anchored-rate-native-v1
+  primary: w2
+  min_gain: 0
+  seconds: 240
+  metrics:
+    - {name: w2, direction: minimize, unit: rad/s}
+    - {name: w1, direction: minimize, unit: rad/s, max_regression_pct_vs_baseline: 0}
+    - {name: w05, direction: minimize, unit: rad/s, max_regression_pct_vs_baseline: 0}
+    - {name: v05, direction: minimize, unit: m/s, max_regression_pct_vs_baseline: 0}
+    - {name: v1, direction: minimize, unit: m/s, max_regression_pct_vs_baseline: 0}
+    - {name: v2, direction: minimize, unit: m/s, max_regression_pct_vs_baseline: 0}
+    - {name: slowrate, direction: minimize, unit: rad/s}
+    - {name: direction_high, direction: maximize, unit: cosine}
+experiment:
+  baseline: research/anchored-slow-rate-b
+  split: validation
+  seeds: [17]
+  data_files: [configs/data/velocity_rate_dataset_registry.yaml, dataset/velocity_rate_multistep_v1/dataset_manifest.json]
+  protected_paths: []
+  device: cpu
+  preflight_seconds: 60
+  environment_version: flap-train-gpu PyTorch CPU float64 least squares
+  hypotheses:
+    - {id: anchored-readout, prediction: B在历史持续值上预测跨拍增量且方向与1秒2秒端点均有增益, falsifier: 仅缩幅或端点退化, max_rounds: 1}
+  limits: {max_experiments: 1, max_retries: 1, total_seconds: 2400, gpu_seconds: 0}
