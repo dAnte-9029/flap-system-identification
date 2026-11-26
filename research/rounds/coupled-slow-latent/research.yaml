@@ -1,0 +1,37 @@
+schema_version: 1
+research_goal: 在原A递推中引入慢状态反馈，配对检验跨拍、瞬时和离网格预测并固定慢态验证机制
+data_version: velocity_rate_multistep_v1
+editable_paths: [experiments/coupled_slow/arm.py]
+training:
+  preflight: [/home/zn/anaconda3/envs/flap-train-gpu/bin/python, -B, experiments/coupled_slow/fit_coupled.py, preflight]
+  command: [/home/zn/anaconda3/envs/flap-train-gpu/bin/python, -B, experiments/coupled_slow/fit_coupled.py, fit]
+  budget: {steps: 2976, seconds: 540}
+  completion: {mode: sufficient_steps, min_steps: 2976, rationale: 两组完整余弦日程各遍历全部训练窗24次，124次更新每轮，同预算监测并保留验证最优权重}
+evaluation:
+  command: [/home/zn/anaconda3/envs/flap-train-gpu/bin/python, -B, experiments/coupled_slow/evaluate.py]
+  files: [experiments/coupled_slow/evaluate.py, experiments/coupled_slow/network.py, experiments/coupled_slow/dataset.py, experiments/coupled_slow/shifted.py, experiments/coupled_slow/fit_coupled.py]
+  protocol_version: coupled-slow-held-native-v1
+  primary: w2
+  min_gain: 0
+  seconds: 360
+  metrics:
+    - {name: w2, direction: minimize, unit: rad/s}
+    - {name: w1, direction: minimize, unit: rad/s, max_regression_pct_vs_baseline: 0}
+    - {name: w05, direction: minimize, unit: rad/s, max_regression_pct_vs_baseline: 0}
+    - {name: v05, direction: minimize, unit: m/s, max_regression_pct_vs_baseline: 0}
+    - {name: v1, direction: minimize, unit: m/s, max_regression_pct_vs_baseline: 0}
+    - {name: v2, direction: minimize, unit: m/s, max_regression_pct_vs_baseline: 0}
+    - {name: slowrate, direction: minimize, unit: rad/s}
+    - {name: offgrid2, direction: minimize, unit: rad/s}
+experiment:
+  baseline: research/coupled-slow-latent
+  split: validation
+  seeds: [17]
+  data_files: [configs/data/velocity_rate_dataset_registry.yaml, dataset/velocity_rate_multistep_v1/dataset_manifest.json]
+  protected_paths: []
+  device: cuda:0
+  preflight_seconds: 80
+  environment_version: flap-train-gpu PyTorch CUDA on RTX 4090
+  hypotheses:
+    - {id: slow-feedback, prediction: 相对同预算A+C提升跨拍和完整端点且收益依赖未来慢态更新, falsifier: 主端点退化或保持慢态后预测并未失去相应收益, max_rounds: 1}
+  limits: {max_experiments: 1, max_retries: 1, total_seconds: 3500, gpu_seconds: 3400}
