@@ -1,0 +1,18 @@
+revision: 66a9ca0b98c0b041b8428f422640cf9bc5a6b986
+seed: 17
+dataset: velocity_rate_multistep_v1
+baseline: research/rounds/phase-module-evidence-20261125/ode_baseline/best.pt
+arms: [fixed_self, clock_self, fixed_cross, full, clock_deleted]
+prior: [mdpnet-flight-transfer, mdpnet-endpoint-repair]
+training:
+  completion: full_train_float64_regularized_least_squares
+  relative_diagonal_ridge: 0.0001
+evaluation:
+  primary_clock: w05
+  primary_wave_to_smooth: w2
+  bootstrap_flights: 10000
+followup:
+  reference: pretrained_ode_plus_second_round_waveform
+  arms: [cross, self, deleted]
+  primary_metric: w05
+  reason: earlier_short_horizon_clock_benefit_and_gap_to_frozen_waveform_reference
