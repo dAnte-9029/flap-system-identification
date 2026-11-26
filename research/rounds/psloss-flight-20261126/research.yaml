@@ -1,0 +1,40 @@
+schema_version: 1
+research_goal: 将完整 DLinear 和 PS Loss 迁移至六轴扑翼条件预测并在共同实飞窗口评价
+data_version: velocity_rate_multistep_v1
+editable_paths: [experiments/psloss_flight/arm.py]
+training:
+  preflight: [/home/zn/anaconda3/envs/flap-train-gpu/bin/python, -B, experiments/psloss_flight/train.py, preflight]
+  command: [/home/zn/anaconda3/envs/flap-train-gpu/bin/python, -B, experiments/psloss_flight/train.py, train]
+  budget: {steps: 4940, seconds: 420}
+  completion: {mode: sufficient_steps, min_steps: 4940, rationale: 原论文给出10轮完整计划，使用同一调度与最佳验证权重，训练126237窗每轮494次真实更新。}
+evaluation:
+  command: [/home/zn/anaconda3/envs/flap-train-gpu/bin/python, -B, experiments/psloss_flight/evaluate.py]
+  files: [experiments/psloss_flight/evaluate.py, experiments/psloss_flight/data.py, experiments/psloss_flight/network.py, experiments/psloss_flight/train.py]
+  protocol_version: native-8-time-flight-equal-and-heldout-beat-v1
+  primary: w2
+  min_gain: 0
+  seconds: 120
+  metrics:
+    - {name: v05, direction: minimize, unit: m/s}
+    - {name: w05, direction: minimize, unit: rad/s, max_regression_pct_vs_baseline: 2}
+    - {name: v1, direction: minimize, unit: m/s}
+    - {name: w1, direction: minimize, unit: rad/s}
+    - {name: v2, direction: minimize, unit: m/s, max_regression_pct_vs_baseline: 2}
+    - {name: w2, direction: minimize, unit: rad/s}
+    - {name: slowv, direction: minimize, unit: m/s}
+    - {name: sloww, direction: minimize, unit: rad/s}
+experiment:
+  reproduction_id: rep-5607a7033ada4b1d
+  target_reproduction: full-paper
+  baseline: research/psloss-flight-transfer
+  split: validation
+  seeds: [17]
+  data_files: [configs/data/velocity_rate_dataset_registry.yaml, dataset/velocity_rate_multistep_v1/dataset_manifest.json]
+  protected_paths: []
+  device: cuda:0
+  preflight_seconds: 80
+  environment_version: flap-train-gpu torch 2.7 and CUDA 12.8; author PS_Loss c64db5b
+  hypotheses:
+    - {id: full-paper, prediction: 在相同DLinear上完整PS改善2秒角速度与跨拍角速度, falsifier: 2秒或跨拍角速度没有降低, max_rounds: 1}
+    - {id: causal-commands, prediction: 补入命令前缀降低完整PS的中长时域误差, falsifier: 中长时域误差没有降低, max_rounds: 1}
+  limits: {max_experiments: 2, max_retries: 1, total_seconds: 3000, gpu_seconds: 2700}
