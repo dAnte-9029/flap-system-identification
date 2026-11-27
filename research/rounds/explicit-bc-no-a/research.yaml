@@ -1,0 +1,90 @@
+schema_version: 1
+research_goal: 配对重训显式 B+C 与 A+B+C，检验移除主隐状态是否改善完整飞行预测
+data_version: velocity_rate_multistep_v1
+editable_paths:
+- experiments/explicit_bc/bc_arm.py
+training:
+  preflight:
+  - /home/zn/anaconda3/envs/flap-train-gpu/bin/python
+  - -B
+  - experiments/explicit_bc/check.py
+  command:
+  - /home/zn/anaconda3/envs/flap-train-gpu/bin/python
+  - -B
+  - experiments/explicit_bc/bc_fit.py
+  budget:
+    steps: 2976
+    seconds: 600
+  completion:
+    mode: sufficient_steps
+    min_steps: 2976
+    rationale: 每个重训臂完整遍历24次、2976更新，主比较固定末步，另报选时端点
+evaluation:
+  command:
+  - /home/zn/anaconda3/envs/flap-train-gpu/bin/python
+  - -B
+  - experiments/explicit_bc/bc_score.py
+  files:
+  - experiments/explicit_bc/bc_features.py
+  - experiments/explicit_bc/bc_fit.py
+  - experiments/explicit_bc/bc_model.py
+  - experiments/explicit_bc/bc_score.py
+  - experiments/explicit_bc/check.py
+  - experiments/coupled_slow/evaluate.py
+  - experiments/coupled_slow/shifted.py
+  protocol_version: explicit-bc-switch-last24-v1
+  primary: w2
+  min_gain: 0
+  seconds: 600
+  metrics:
+  - name: w2
+    direction: minimize
+    unit: rad/s
+  - name: w1
+    direction: minimize
+    unit: rad/s
+    max_regression_pct_vs_baseline: 0
+  - name: w05
+    direction: minimize
+    unit: rad/s
+    max_regression_pct_vs_baseline: 0
+  - name: v05
+    direction: minimize
+    unit: m/s
+    max_regression_pct_vs_baseline: 0
+  - name: v1
+    direction: minimize
+    unit: m/s
+    max_regression_pct_vs_baseline: 0
+  - name: v2
+    direction: minimize
+    unit: m/s
+    max_regression_pct_vs_baseline: 0
+  - name: slowrate
+    direction: minimize
+    unit: rad/s
+  - name: offgrid2
+    direction: minimize
+    unit: rad/s
+experiment:
+  baseline: research/explicit-bc-no-a
+  split: validation
+  seeds:
+  - 17
+  data_files:
+  - configs/data/velocity_rate_dataset_registry.yaml
+  - dataset/velocity_rate_multistep_v1/dataset_manifest.json
+  protected_paths: []
+  device: cuda:0
+  preflight_seconds: 80
+  environment_version: flap-train-gpu PyTorch CUDA on RTX 4090
+  hypotheses:
+  - id: remove-a
+    prediction: 显式分离改善2秒角速度且其余端点保持，报告各分量的独立代价
+    falsifier: 去A重训后2秒或其他正式端点退化
+    max_rounds: 1
+  limits:
+    max_experiments: 1
+    max_retries: 1
+    total_seconds: 3400
+    gpu_seconds: 3200

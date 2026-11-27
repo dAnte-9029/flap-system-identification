@@ -34,12 +34,12 @@ def exact_points(net,orig,d,b,wi,t,p,freeze,slow=False):
         if ss is not None:reads.append(ss.numpy())
     return np.concatenate(outputs),np.concatenate(reads) if reads else None
 
-def beats(net,orig,d,b,flight,freeze,cache,out):
+def beats(net,orig,d,b,flight,freeze,cache,out,point_fn=exact_points):
     _,ref,times,pool,_=cache
     ids=np.flatnonzero(ref['ch']==1)
     wi=ref['window_idx'][ids]
     np.testing.assert_array_equal(flight[wi],ref['flight_ids'][ref['flight_index'][ids]])
-    p,s=exact_points(net,orig,d,b,wi,times[ids],pool[ids],freeze,True)
+    p,s=point_fn(net,orig,d,b,wi,times[ids],pool[ids],freeze,True)
     first=np.r_[0,np.flatnonzero(np.diff(ref['block'][ids]))+1]
     w=ref['weight'][ids,None]
     def mean(x):return np.add.reduceat(w*x,first)
@@ -72,7 +72,7 @@ def beats(net,orig,d,b,flight,freeze,cache,out):
     pd.concat(tables).reset_index().to_csv(out/'trends_by_flight.csv',index=False)
     return scores
 
-def shifted(net,orig,d,b,flight,freeze,inputs,out):
+def shifted(net,orig,d,b,flight,freeze,inputs,out,point_fn=exact_points):
     times,ys,masks=inputs; tape=np.load(ROOT/'outputs/controlled_slow_fast_20261119_tapes/validation_commands.npy',mmap_mode='r')
     tables=[]
     for j in range(3):
@@ -82,7 +82,7 @@ def shifted(net,orig,d,b,flight,freeze,inputs,out):
             parts.append(wave.pool_commands(tape[ix[sub]],t[sub]))
         qt=torch.from_numpy(t.reshape(-1))[:,None,None].expand(-1,1,2)
         qp=torch.from_numpy(np.concatenate(parts).reshape(-1,16))[:,None,None,:].expand(-1,1,2,-1)
-        pred,_=exact_points(net,orig,d,b,np.repeat(ix,3),qt,qp,freeze)
+        pred,_=point_fn(net,orig,d,b,np.repeat(ix,3),qt,qp,freeze)
         err=mse(pred.reshape(len(ix),3,3),ys[ix,j])
         fr=pd.DataFrame(err,columns=['minus125','minus20','registered']).assign(flight=flight[ix]).groupby('flight').mean()
         tables.append(fr.assign(horizon=(.5,1.,2.)[j]))
