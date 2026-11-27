@@ -1,0 +1,5 @@
+baseline,candidate,flights,improved,lower,upper
+linear_motion,linear_motion_cmd,30,22,0.002999743167023653,0.012481233292732635
+last_beat,anchored_B_s17,30,29,0.10520103587042241,0.18107837737603036
+last_beat_vs_measured,anchored_B_s17_vs_measured,30,30,0.11381014463395231,0.17251816005109444
+last_beat_evolution,anchored_B_s17_evolution,29,20,0.014603805585401903,0.06717931533326646

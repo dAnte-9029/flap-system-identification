@@ -1,0 +1,102 @@
+                                                        nrmse  pulse_gain  waveform_gain
+channel stride case              beats local_linear
+q       1      combined          5     False         0.113710    0.912740       0.985274
+                                       True          0.112593    0.910325       0.985175
+                                 11    False         0.194724    0.977658       0.942285
+                                       True          0.193963    0.975582       0.942986
+                                 51    False         0.377114    1.018366       0.869056
+               constant          5     False         0.002220         NaN       0.999663
+                                       True          0.002355         NaN       0.999666
+                                 11    False         0.001781         NaN       0.999629
+                                       True          0.001803         NaN       0.999631
+                                 51    False         0.001457         NaN       0.999562
+               transient         5     False         0.331013    0.898463            NaN
+                                       True          0.331480    0.896944            NaN
+                                 11    False         0.220205    0.954443            NaN
+                                       True          0.220827    0.954334            NaN
+                                 51    False         0.054343    0.990216            NaN
+               varying_amplitude 5     False         0.097310         NaN       0.978555
+                                       True          0.095305         NaN       0.978553
+                                 11    False         0.193786         NaN       0.934475
+                                       True          0.192806         NaN       0.935162
+                                 51    False         0.382378         NaN       0.866825
+               varying_frequency 5     False         0.004722         NaN       0.998684
+                                       True          0.005319         NaN       0.998668
+                                 11    False         0.008366         NaN       0.995874
+                                       True          0.007586         NaN       0.995937
+                                 51    False         0.013535         NaN       0.991395
+        2      combined          5     False         0.114968    0.896989       0.984652
+                                       True          0.111420    0.898659       0.984552
+                                 11    False         0.195096    0.965220       0.940745
+                                       True          0.192842    0.964870       0.942286
+                                 51    False         0.375475    1.010230       0.867197
+               constant          5     False         0.009294         NaN       0.998384
+                                       True          0.010923         NaN       0.998128
+                                 11    False         0.007898         NaN       0.998164
+                                       True          0.008471         NaN       0.998082
+                                 51    False         0.006951         NaN       0.997982
+               transient         5     False         0.337407    0.894012            NaN
+                                       True          0.338361    0.891557            NaN
+                                 11    False         0.223389    0.952095            NaN
+                                       True          0.223733    0.951753            NaN
+                                 51    False         0.055266    0.989689            NaN
+               varying_amplitude 5     False         0.097692         NaN       0.977337
+                                       True          0.093424         NaN       0.977322
+                                 11    False         0.193969         NaN       0.932729
+                                       True          0.191404         NaN       0.934269
+                                 51    False         0.380585         NaN       0.864904
+               varying_frequency 5     False         0.013651         NaN       0.996716
+                                       True          0.019869         NaN       0.995158
+                                 11    False         0.014283         NaN       0.993800
+                                       True          0.016266         NaN       0.992917
+                                 51    False         0.016716         NaN       0.989040
+vD      1      combined          5     False         0.113361    0.914056       0.985166
+                                       True          0.112570    0.911649       0.985058
+                                 11    False         0.194864    0.977660       0.942322
+                                       True          0.194086    0.976311       0.942663
+                                 51    False         0.377008    1.018884       0.870016
+               constant          5     False         0.001489         NaN       0.999782
+                                       True          0.001571         NaN       0.999790
+                                 11    False         0.001184         NaN       0.999752
+                                       True          0.001203         NaN       0.999755
+                                 51    False         0.000813         NaN       0.999755
+               transient         5     False         0.328276    0.898877            NaN
+                                       True          0.329484    0.898154            NaN
+                                 11    False         0.218526    0.954754            NaN
+                                       True          0.219108    0.954653            NaN
+                                 51    False         0.054125    0.990250            NaN
+               varying_amplitude 5     False         0.097162         NaN       0.978558
+                                       True          0.095755         NaN       0.978480
+                                 11    False         0.194018         NaN       0.934638
+                                       True          0.193087         NaN       0.934994
+                                 51    False         0.382314         NaN       0.867824
+               varying_frequency 5     False         0.003805         NaN       0.998889
+                                       True          0.004004         NaN       0.998929
+                                 11    False         0.007838         NaN       0.996122
+                                       True          0.006800         NaN       0.996227
+                                 51    False         0.013389         NaN       0.991691
+        2      combined          5     False         0.115102    0.905357       0.984531
+                                       True          0.112791    0.901219       0.985614
+                                 11    False         0.197147    0.966525       0.941035
+                                       True          0.193434    0.966327       0.942871
+                                 51    False         0.376411    1.009748       0.869555
+               constant          5     False         0.006353         NaN       0.999122
+                                       True          0.007712         NaN       0.999047
+                                 11    False         0.005891         NaN       0.998909
+                                       True          0.006405         NaN       0.998828
+                                 51    False         0.005590         NaN       0.998652
+               transient         5     False         0.337512    0.894761            NaN
+                                       True          0.339031    0.892853            NaN
+                                 11    False         0.222751    0.952682            NaN
+                                       True          0.223403    0.952421            NaN
+                                 51    False         0.055275    0.989788            NaN
+               varying_amplitude 5     False         0.097908         NaN       0.977316
+                                       True          0.094699         NaN       0.978511
+                                 11    False         0.196060         NaN       0.932945
+                                       True          0.192125         NaN       0.934775
+                                 51    False         0.381611         NaN       0.867246
+               varying_frequency 5     False         0.011001         NaN       0.997080
+                                       True          0.015516         NaN       0.995843
+                                 11    False         0.012789         NaN       0.994236
+                                       True          0.014023         NaN       0.993541
+                                 51    False         0.016820         NaN       0.989168

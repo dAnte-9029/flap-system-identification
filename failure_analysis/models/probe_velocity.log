@@ -1,0 +1,8 @@
+windows/flights 2462 90 113 26
+representation    mean     raw     tcn  transformer
+target
+h1              0.0721  0.0597  0.0600       0.0632
+h2              0.0241  0.0199  0.0195       0.0204
+h3              0.0153  0.0140  0.0138       0.0142
+level           1.8931  0.3035  0.8414       0.7627
+slope           0.5297  0.2547  0.3066       0.2877

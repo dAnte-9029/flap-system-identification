@@ -1,0 +1,6 @@
+native points 38276 phase eligible 38276
+completed 17
+completed 29
+completed 43
+/home/zn/flap-system-identification/.worktrees/slow-fast-failure-analysis-v1/failure_analysis/oracle/run.py:146: FutureWarning: The default of observed=False is deprecated and will be changed to True in a future version of pandas. Pass observed=False to retain current behavior or observed=True to adopt the future default and silence this warning.
+  n.groupby(['seed','arm','flight','stream','period','window'],observed=True)[['full','higher']].mean().groupby(

@@ -1,0 +1,16 @@
+data_version: velocity_rate_multistep_v1
+registry: configs/data/velocity_rate_dataset_registry.yaml
+base_commit: 66a9ca0
+protocol: frozen-weight conditional motion diagnosis
+split: [train, validation]
+experiment:
+  seeds: [17, 29, 43]
+  single_seed_archives: [transformer, tcn, transformer_slowfast_v2, anchored_B]
+  hypotheses:
+  - {id: H1, comparison: ordinary output projections and frozen history probes, evidence: models}
+  - {id: H2, comparison: known injection across window size and observation density, evidence: separation}
+  - {id: H3, comparison: phase oracle with identical high-order readout capacity, evidence: oracle}
+  - {id: H4, comparison: prior matched readout supervision and gradient interventions, commit: b8dc6c7}
+  - {id: H5, comparison: prior path-preserving queries and supervision ablation, commit: 4ff8968}
+  - {id: H6, comparison: causal persistence and history-based readouts at identical beats, evidence: slow}
+  parent_studies: [study-ad32ba4afa95, study-2074852903a4, study-fc047226bd1e]

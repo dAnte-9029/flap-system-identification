@@ -1,0 +1,77 @@
+{
+  "id": "cycle-5db6bbe47c397703",
+  "created_at": "2026-11-27T02:05:27.741074+00:00",
+  "parents": [
+    "cycle-e6bd782009166d68"
+  ],
+  "decision": {
+    "studies": [
+      "study-ad32ba4afa95",
+      "study-2074852903a4",
+      "study-fc047226bd1e"
+    ],
+    "next_action": "complete",
+    "reason": "完成三种子已有研究的冻结模型机制复查；原始逐架次测量和六条假设判定见 failure_analysis/report_zh.md。后续方向只作建议。",
+    "limits": "历史 study ID 标识被复查的训练来源。新测量由 evidence_files 定位。观测限开发飞行、给定实录命令。普通主干横评、锚定 B 与慢监督梯度干预仅有一个共同训练种子。",
+    "evidence_files": [
+      "failure_analysis/report_zh.md",
+      "failure_analysis/research.yaml",
+      "failure_analysis/models/paired.csv",
+      "failure_analysis/oracle/contrasts.csv",
+      "failure_analysis/separation/per_flight.csv",
+      "failure_analysis/slow/paired.csv"
+    ],
+    "findings": [
+      {
+        "status": "contradicted",
+        "finding": "H1 完全冗余说不成立；普通 TCN 有早期基频预测能力，但完整模型相对 TCN 的二三阶 RMSE 低 0.0429/0.0623。归档 models/native_rmse.csv。",
+        "refs": [
+          "study-ad32ba4afa95/exp-1c5b32fe2557",
+          "study-2074852903a4/exp-b35bd28e635a",
+          "study-fc047226bd1e/exp-b61f617fb26d"
+        ]
+      },
+      {
+        "status": "supported",
+        "finding": "H2 注入 q 的时变幅值与非周期脉冲在 5 与 51 拍邻域中出现相反的恢复误差，见 separation/summary.csv。",
+        "refs": [
+          "study-ad32ba4afa95/exp-1c5b32fe2557"
+        ]
+      },
+      {
+        "status": "supported",
+        "finding": "H3 仅给二三阶真实相位，两种读出在训练集等容量重拟合后，2s角速率改善0.02600 rad/s，39/39架，见 oracle/contrasts.csv。",
+        "refs": [
+          "study-ad32ba4afa95/exp-1c5b32fe2557",
+          "study-2074852903a4/exp-b35bd28e635a",
+          "study-fc047226bd1e/exp-b61f617fb26d"
+        ]
+      },
+      {
+        "status": "supported",
+        "finding": "H4 旧研究 b8dc6c7 的等范数投影和单步重放支持拍均与端点监督冲突；不能据此普遍判断单总损失下所有分支冲突。",
+        "refs": [
+          "study-ad32ba4afa95/exp-1c5b32fe2557"
+        ]
+      },
+      {
+        "status": "supported",
+        "finding": "H5 裸递推对积分节点敏感，观察与训练时刻改变结论的范围，详见原 readout/path_check.json 及本次 models/REPORT.md。",
+        "refs": [
+          "study-ad32ba4afa95/exp-1c5b32fe2557",
+          "study-2074852903a4/exp-b35bd28e635a",
+          "study-fc047226bd1e/exp-b61f617fb26d"
+        ]
+      },
+      {
+        "status": "unresolved",
+        "finding": "H6 有锚点的B内部读出胜历史持续值与后续拍零变化，无锚点、真实噪声方差及控制因果信息仍未确定，见 slow/paired.csv。",
+        "refs": [
+          "study-ad32ba4afa95",
+          "study-2074852903a4",
+          "study-fc047226bd1e"
+        ]
+      }
+    ]
+  }
+}
