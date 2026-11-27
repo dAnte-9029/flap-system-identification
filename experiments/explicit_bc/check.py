@@ -37,6 +37,9 @@ def run():
             direct,_=model.forecast(raw['hist'][ii],raw['pooled'][ii],raw['u0'][ii],raw['time'][ii],raw['coef'][ii],a[ii],d['origin'][ii],stats,clock)
             torch.testing.assert_close(direct,full,rtol=2e-5,atol=5e-6)
             ef,es=points(model,clock,raw,b,ii.numpy(),tt,pp,False,True)
+            # Exercise a single-row group (NumPy indexing with a length-one Torch index can squeeze).
+            single,_=points(model,clock,raw,b,ii[:1].numpy(),tt[:1],pp[:1],False,True)
+            np.testing.assert_allclose(single,ef[:1],atol=2e-6)
             origin=d['origin'][ii]
             errors=[(torch.as_tensor(v)-origin-z).abs().max().item() for v,z in ((ef,pf),(es,ps))]
             assert max(errors)<1e-5,errors

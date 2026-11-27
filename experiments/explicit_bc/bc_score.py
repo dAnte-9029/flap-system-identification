@@ -16,7 +16,7 @@ spec.loader.exec_module(ref)
 def points(model,clock,d,b,wi,t,p,freeze,slow=False):
     answers=[];trends=[]
     for lo in range(0,len(wi),512):
-        ids=wi[lo:lo+512];qt=t[lo:lo+512];qp=p[lo:lo+512]
+        ids=torch.as_tensor(wi[lo:lo+512],dtype=torch.long);qt=t[lo:lo+512];qp=p[lo:lo+512]
         ct=d['time'][ids];cp=d['pooled'][ids]
         before=(ct[:,:,1]<qt[:,0,1,None]-1e-7).sum(1) if model.include_a else torch.zeros(len(ids),dtype=torch.long)
         full=torch.empty(len(ids),3);trend=torch.empty_like(full)
